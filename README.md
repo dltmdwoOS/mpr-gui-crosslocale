@@ -51,3 +51,20 @@ pytest
 Download and audit scripts are scaffolded in `scripts/`. They are intentionally
 conservative until the public dataset license, exact manifest, and official
 evaluation variables are confirmed.
+
+## Canonical Inference Prep
+
+The repository now includes the runner entry points needed before launching the
+first Qwen canonical smoke run:
+
+```bash
+scripts/audit_release.sh
+scripts/run_canonical.sh --dry-run --limit 8
+scripts/processor_preflight.sh --limit 48
+```
+
+The actual model run requires the optional model dependencies:
+
+```bash
+pip install -e ".[models]"
+```

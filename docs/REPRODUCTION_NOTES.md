@@ -27,12 +27,31 @@ Unresolved reproduction variables:
 
 Default local profile:
 
-- Prompt profile: `mpr_direct_v1`.
+- Prompt profile: `mpr_minimal_v1` for primary canonical reproduction.
+- Prompt sensitivity profile: `mpr_label_only_v1`.
 - Generation: deterministic, `do_sample=false`.
 - Answer parsing: conservative first-label parser.
 - Episode ordering: numeric natural sort.
 - Metrics: exact match, normalized label accuracy, FPR-ACC, label bias.
+- First model: `Qwen/Qwen2.5-VL-7B-Instruct`.
+- Pinned Qwen model revision: `cc594898137f460bfe9f0759e9844b3ce807cfb5`.
 
 Manifest invariant checks are intentionally pinned to the current public
 release. If the upstream release changes, `scripts/audit_release.sh` should
 fail until the release change is deliberately audited.
+
+Before renting a GPU for a full run:
+
+```bash
+scripts/run_canonical.sh --dry-run --limit 8
+scripts/processor_preflight.sh --limit 48
+```
+
+Then run a small model smoke subset:
+
+```bash
+scripts/run_canonical.sh \
+  --limit 48 \
+  --resume \
+  --output results/raw/canonical_reproduction/qwen25vl_smoke.jsonl
+```

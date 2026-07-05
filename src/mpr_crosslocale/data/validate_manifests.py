@@ -14,6 +14,8 @@ EXPECTED_PUBLIC_RELEASE = {
     "parallel_ids": 2245,
     "languages_per_parallel_id": 6,
     "directed_mismatch_pairs": 67350,
+    "canonical_inputs": 13470,
+    "mismatch_inputs": 67350,
 }
 
 
@@ -79,6 +81,66 @@ def validate_pairs(rows: list[dict[str, Any]]) -> list[str]:
     return errors
 
 
+def validate_canonical_inputs(rows: list[dict[str, Any]], manifest: list[dict[str, Any]]) -> list[str]:
+    errors: list[str] = []
+    by_sample = {row["sample_id"]: row for row in manifest}
+    input_ids = [row["input_id"] for row in rows]
+    if len(rows) != EXPECTED_PUBLIC_RELEASE["canonical_inputs"]:
+        errors.append(f"canonical input file has {len(rows)} rows")
+    if len(input_ids) != len(set(input_ids)):
+        errors.append("canonical input_id is not unique")
+    for row in rows:
+        sample = by_sample.get(row["sample_id"])
+        if sample is None:
+            errors.append(f"{row['input_id']} sample_id is missing from manifest")
+            continue
+        if row["question_language"] != row["gui_language"]:
+            errors.append(f"{row['input_id']} is not matched-language")
+        if row["question_language"] != sample["language"]:
+            errors.append(f"{row['input_id']} language does not match manifest")
+        if row["gold_label"] != sample["gold_label"]:
+            errors.append(f"{row['input_id']} gold label does not match manifest")
+        if row["num_images"] != len(row["image_paths"]):
+            errors.append(f"{row['input_id']} num_images does not match image_paths")
+        for image_path in row["image_paths"]:
+            if not Path(image_path).exists():
+                errors.append(f"{row['input_id']} image path does not exist: {image_path}")
+    return errors
+
+
+def validate_mismatch_inputs(rows: list[dict[str, Any]], manifest: list[dict[str, Any]]) -> list[str]:
+    errors: list[str] = []
+    by_sample = {row["sample_id"]: row for row in manifest}
+    input_ids = [row["input_id"] for row in rows]
+    if len(rows) != EXPECTED_PUBLIC_RELEASE["mismatch_inputs"]:
+        errors.append(f"mismatch input file has {len(rows)} rows")
+    if len(input_ids) != len(set(input_ids)):
+        errors.append("mismatch input_id is not unique")
+    for row in rows:
+        if row["question_language"] == row["gui_language"]:
+            errors.append(f"{row['input_id']} is not a mismatch")
+        question = by_sample.get(row["question_sample_id"])
+        gui = by_sample.get(row["gui_sample_id"])
+        oracle = by_sample.get(row["oracle_sample_id"])
+        if question is None or gui is None or oracle is None:
+            errors.append(f"{row['input_id']} references a missing sample")
+            continue
+        if not (question["parallel_id"] == gui["parallel_id"] == oracle["parallel_id"] == row["parallel_id"]):
+            errors.append(f"{row['input_id']} parallel_id mismatch")
+        if not (question["dimension"] == gui["dimension"] == oracle["dimension"] == row["dimension"]):
+            errors.append(f"{row['input_id']} dimension mismatch")
+        if not (question["gold_label"] == gui["gold_label"] == oracle["gold_label"] == row["gold_label"]):
+            errors.append(f"{row['input_id']} gold label mismatch")
+        if row["image_paths"] != gui["image_paths"]:
+            errors.append(f"{row['input_id']} GUI image paths do not match gui_sample_id")
+        if row["num_images"] != len(row["image_paths"]):
+            errors.append(f"{row['input_id']} num_images does not match image_paths")
+        for image_path in row["image_paths"]:
+            if not Path(image_path).exists():
+                errors.append(f"{row['input_id']} image path does not exist: {image_path}")
+    return errors
+
+
 def validate_option_order(rows: list[dict[str, Any]]) -> list[str]:
     errors: list[str] = []
     grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -102,6 +164,8 @@ def validate_all(
     manifest_path: Path,
     parallel_path: Path,
     pairs_path: Path,
+    canonical_inputs_path: Path | None = None,
+    mismatch_inputs_path: Path | None = None,
 ) -> dict[str, Any]:
     manifest = read_jsonl(manifest_path)
     parallel_index = json.loads(parallel_path.read_text(encoding="utf-8"))
@@ -111,6 +175,16 @@ def validate_all(
     errors.extend(validate_parallel_index(parallel_index))
     errors.extend(validate_pairs(pairs))
     errors.extend(validate_option_order(manifest))
+    canonical_count = None
+    mismatch_count = None
+    if canonical_inputs_path is not None and canonical_inputs_path.exists():
+        canonical_inputs = read_jsonl(canonical_inputs_path)
+        canonical_count = len(canonical_inputs)
+        errors.extend(validate_canonical_inputs(canonical_inputs, manifest))
+    if mismatch_inputs_path is not None and mismatch_inputs_path.exists():
+        mismatch_inputs = read_jsonl(mismatch_inputs_path)
+        mismatch_count = len(mismatch_inputs)
+        errors.extend(validate_mismatch_inputs(mismatch_inputs, manifest))
     return {
         "ok": not errors,
         "errors": errors,
@@ -118,6 +192,8 @@ def validate_all(
             "manifest_rows": len(manifest),
             "parallel_ids": len(parallel_index["entries"]),
             "directed_mismatch_pairs": len(pairs),
+            "canonical_inputs": canonical_count,
+            "mismatch_inputs": mismatch_count,
         },
     }
 
@@ -127,8 +203,16 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--manifest", type=Path, default=Path("data/manifests/mpr_gui_manifest.jsonl"))
     parser.add_argument("--parallel", type=Path, default=Path("data/manifests/parallel_index.json"))
     parser.add_argument("--pairs", type=Path, default=Path("data/manifests/cross_locale_pairs.jsonl"))
+    parser.add_argument("--canonical-inputs", type=Path, default=Path("data/manifests/canonical_inputs.jsonl"))
+    parser.add_argument("--mismatch-inputs", type=Path, default=Path("data/manifests/mismatch_inputs.jsonl"))
     args = parser.parse_args(argv)
-    result = validate_all(args.manifest, args.parallel, args.pairs)
+    result = validate_all(
+        args.manifest,
+        args.parallel,
+        args.pairs,
+        args.canonical_inputs,
+        args.mismatch_inputs,
+    )
     print(json.dumps(result, ensure_ascii=False, indent=2))
     if not result["ok"]:
         raise SystemExit(1)

@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Any
 
 from mpr_crosslocale.data.pair_builder import directed_language_pairs
+from mpr_crosslocale.data.schema import LANGUAGES
 
 
 def build_canonical_inputs(manifest: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -21,6 +22,7 @@ def build_canonical_inputs(manifest: list[dict[str, Any]]) -> list[dict[str, Any
                 "question_stem": row["question_stem"],
                 "options": row["options"],
                 "option_order": row["option_order"],
+                "answer_raw": row["answer_raw"],
                 "gold_label": row["gold_label"],
                 "image_paths": row["image_paths"],
                 "num_images": row["num_images"],
@@ -35,7 +37,7 @@ def build_mismatch_inputs(manifest: list[dict[str, Any]]) -> list[dict[str, Any]
         (str(row["parallel_id"]), str(row["language"])): row
         for row in manifest
     }
-    languages = sorted({str(row["language"]) for row in manifest})
+    languages = [language for language in LANGUAGES if any(row["language"] == language for row in manifest)]
     parallel_ids = sorted({str(row["parallel_id"]) for row in manifest})
     rows: list[dict[str, Any]] = []
     for parallel_id in parallel_ids:
@@ -54,6 +56,7 @@ def build_mismatch_inputs(manifest: list[dict[str, Any]]) -> list[dict[str, Any]
                     "gui_language": gui_language,
                     "dimension": question_row["dimension"],
                     "question_source": "resolve_from_manifest.question_sample_id",
+                    "answer_raw": question_row["answer_raw"],
                     "gold_label": question_row["gold_label"],
                     "image_paths": gui_row["image_paths"],
                     "num_images": gui_row["num_images"],

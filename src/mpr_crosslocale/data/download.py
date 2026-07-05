@@ -20,27 +20,32 @@ def load_source_lock(path: Path) -> dict[str, object]:
 
 
 def download_hf_images(repo_id: str, images_dir: Path, revision: str | None) -> dict[str, object]:
-    images_dir.mkdir(parents=True, exist_ok=True)
     api = HfApi()
     info = api.dataset_info(repo_id, revision=revision, files_metadata=True)
-    snapshot_download(
-        repo_id=repo_id,
-        repo_type="dataset",
-        revision=revision,
-        local_dir=images_dir,
-        allow_patterns=[
-            "1/**",
-            "2/**",
-            "3/**",
-            "4/**",
-            "5/**",
-            "6/**",
-            "rich/**",
-            "sparse/**",
-            "README.md",
-            ".gitattributes",
-        ],
-    )
+    images_dir.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="mpr-gui-images-") as tmp:
+        tmp_images = Path(tmp) / "images"
+        snapshot_download(
+            repo_id=repo_id,
+            repo_type="dataset",
+            revision=revision,
+            local_dir=tmp_images,
+            allow_patterns=[
+                "1/**",
+                "2/**",
+                "3/**",
+                "4/**",
+                "5/**",
+                "6/**",
+                "rich/**",
+                "sparse/**",
+                "README.md",
+                ".gitattributes",
+            ],
+        )
+        if images_dir.exists():
+            shutil.rmtree(images_dir)
+        shutil.copytree(tmp_images, images_dir)
     return {
         "repo_id": repo_id,
         "requested_revision": revision,
