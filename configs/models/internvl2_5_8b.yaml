@@ -1,0 +1,10 @@
+model_id: OpenGVLab/InternVL2_5-8B
+model_family: internvl2_5
+revision: null
+precision: bf16
+quantization: null
+prompt_profile: mpr_direct_v1
+generation:
+  do_sample: false
+  max_new_tokens: 8
+  temperature: null

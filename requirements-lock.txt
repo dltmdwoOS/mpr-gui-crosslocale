@@ -1,0 +1,11 @@
+# Human-maintained starting lock. Regenerate with the chosen environment manager
+# once GPU/model dependencies and exact CUDA constraints are fixed.
+datasets>=2.20.0
+huggingface-hub>=0.24.0
+numpy>=1.26.0
+pandas>=2.2.0
+pillow>=10.0.0
+pyyaml>=6.0.0
+tqdm>=4.66.0
+pytest>=8.0.0
+ruff>=0.5.0

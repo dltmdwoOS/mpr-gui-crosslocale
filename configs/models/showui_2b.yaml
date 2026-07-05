@@ -1,0 +1,10 @@
+model_id: showlab/ShowUI-2B
+model_family: showui
+revision: null
+precision: bf16
+quantization: null
+prompt_profile: mpr_direct_v1
+generation:
+  do_sample: false
+  max_new_tokens: 8
+  temperature: null

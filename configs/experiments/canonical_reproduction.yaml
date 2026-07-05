@@ -1,0 +1,15 @@
+name: canonical_reproduction
+reproduction_status: public_release_reproduction
+data: configs/data/mpr_gui.yaml
+models:
+  - configs/models/qwen2_5_vl_7b.yaml
+conditions:
+  - canonical_matched
+metrics:
+  - exact_match
+  - normalized_accuracy
+  - fpr_acc
+  - label_bias
+outputs:
+  raw_dir: results/raw/canonical_reproduction
+  summary_dir: results/summaries/canonical_reproduction

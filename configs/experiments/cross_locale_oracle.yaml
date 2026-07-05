@@ -1,0 +1,16 @@
+name: cross_locale_oracle
+data: configs/data/mpr_gui.yaml
+conditions:
+  - canonical_matched
+  - raw_mismatch
+  - oracle_aligned
+directed_pairs: all_nonidentical
+scoring:
+  constrained_labels: [A, B, C, D]
+metrics:
+  - normalized_accuracy
+  - policy_shift
+  - calibration
+outputs:
+  raw_dir: results/raw/cross_locale_oracle
+  summary_dir: results/summaries/cross_locale_oracle

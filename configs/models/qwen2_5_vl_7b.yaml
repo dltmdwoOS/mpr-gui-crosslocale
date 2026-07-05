@@ -1,0 +1,10 @@
+model_id: Qwen/Qwen2.5-VL-7B-Instruct
+model_family: qwen2_5_vl
+revision: null
+precision: bf16
+quantization: null
+prompt_profile: mpr_direct_v1
+generation:
+  do_sample: false
+  max_new_tokens: 8
+  temperature: null

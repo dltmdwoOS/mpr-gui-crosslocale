@@ -1,0 +1,20 @@
+dataset_name: chenruihan/MPR-GUI-Bench
+repo_name: chenruihan32/MPR-GUI-Bench
+root: data/raw/mpr_gui_bench
+images_dir: data/raw/mpr_gui_bench/images
+qas_dir: data/raw/mpr_gui_bench/qas
+manifest_dir: data/manifests
+languages: [en, zh, fr, ru, ja, th]
+dimensions:
+  wf: wf
+  wi: wi
+  au: au
+  ap: ap
+  ael: abs_el
+  rel: rel_el
+  ri: knowledge_rich
+  si: knowledge_sparse
+episode_dimensions: [ri, si]
+path_policy:
+  image_and_qas_are_siblings: true
+  episode_order: natural_sort

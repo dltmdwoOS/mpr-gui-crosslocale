@@ -1,0 +1,4066 @@
+{
+  "root": "data/raw/mpr_gui_bench",
+  "images_dir_exists": true,
+  "qas_dir_exists": true,
+  "image_jpg_files": 3152,
+  "qas_jsonl_files": 48,
+  "dataset_license": "cc-by-nc-4.0",
+  "total_rows": 13470,
+  "rows_by_language": {
+    "en": 2245,
+    "zh": 2245,
+    "fr": 2245,
+    "ru": 2245,
+    "ja": 2245,
+    "th": 2245
+  },
+  "rows_by_dimension": {
+    "wf": 2190,
+    "wi": 2196,
+    "au": 2196,
+    "ap": 2196,
+    "ael": 2196,
+    "rel": 2196,
+    "ri": 150,
+    "si": 150
+  },
+  "language_dimension_matrix": {
+    "en": {
+      "ael": 366,
+      "ap": 366,
+      "au": 366,
+      "rel": 366,
+      "ri": 25,
+      "si": 25,
+      "wf": 365,
+      "wi": 366
+    },
+    "zh": {
+      "ael": 366,
+      "ap": 366,
+      "au": 366,
+      "rel": 366,
+      "ri": 25,
+      "si": 25,
+      "wf": 365,
+      "wi": 366
+    },
+    "fr": {
+      "ael": 366,
+      "ap": 366,
+      "au": 366,
+      "rel": 366,
+      "ri": 25,
+      "si": 25,
+      "wf": 365,
+      "wi": 366
+    },
+    "ru": {
+      "ael": 366,
+      "ap": 366,
+      "au": 366,
+      "rel": 366,
+      "ri": 25,
+      "si": 25,
+      "wf": 365,
+      "wi": 366
+    },
+    "ja": {
+      "ael": 366,
+      "ap": 366,
+      "au": 366,
+      "rel": 366,
+      "ri": 25,
+      "si": 25,
+      "wf": 365,
+      "wi": 366
+    },
+    "th": {
+      "ael": 366,
+      "ap": 366,
+      "au": 366,
+      "rel": 366,
+      "ri": 25,
+      "si": 25,
+      "wf": 365,
+      "wi": 366
+    }
+  },
+  "paper_reported_samples_per_language": 2156,
+  "delta_vs_paper_by_language": {
+    "en": 89,
+    "zh": 89,
+    "fr": 89,
+    "ru": 89,
+    "ja": 89,
+    "th": 89
+  },
+  "files": {
+    "abs_el_en.jsonl": {
+      "rows": 366,
+      "language": "en",
+      "dimension": "ael",
+      "answer_labels": {
+        "B": 133,
+        "C": 105,
+        "A": 69,
+        "D": 59
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "cbbb1ef690ddd84dde7beae36ed1add66941621e452749abd5879c672cfe2707"
+    },
+    "abs_el_fr.jsonl": {
+      "rows": 366,
+      "language": "fr",
+      "dimension": "ael",
+      "answer_labels": {
+        "B": 133,
+        "C": 105,
+        "A": 69,
+        "D": 59
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 1,
+      "sha256": "c3e0ec63262983582f9a73447581556b7c0cba5dfe0f0d36405f94567daf5687"
+    },
+    "abs_el_ja.jsonl": {
+      "rows": 366,
+      "language": "ja",
+      "dimension": "ael",
+      "answer_labels": {
+        "B": 133,
+        "C": 105,
+        "A": 69,
+        "D": 59
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "04b7e2e506ae04c659248329f0f7829642b7c67d03efd4a19d78355b3f0ee90e"
+    },
+    "abs_el_ru.jsonl": {
+      "rows": 366,
+      "language": "ru",
+      "dimension": "ael",
+      "answer_labels": {
+        "B": 133,
+        "C": 105,
+        "A": 69,
+        "D": 59
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "5c743b57969041f77be006c4f4b3d94ceaca138e99599b72ff1b306679552a14"
+    },
+    "abs_el_th.jsonl": {
+      "rows": 366,
+      "language": "th",
+      "dimension": "ael",
+      "answer_labels": {
+        "C": 105,
+        "A": 69,
+        "D": 59,
+        "B": 133
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "942f7414edcbebb3dacb216fcf54e49a3230f87bf3a49eac24a1e9ef9ac91f32"
+    },
+    "abs_el_zh.jsonl": {
+      "rows": 366,
+      "language": "zh",
+      "dimension": "ael",
+      "answer_labels": {
+        "B": 133,
+        "C": 105,
+        "A": 69,
+        "D": 59
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "f04c757db57ad77dac0e528962d9ad1deef5927bf3d336481e5031746d5aba8d"
+    },
+    "ap_en.jsonl": {
+      "rows": 366,
+      "language": "en",
+      "dimension": "ap",
+      "answer_labels": {
+        "D": 38,
+        "C": 87,
+        "B": 105,
+        "A": 136
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "aae81e18e7af1c9899f252acb41daa67020cfdf302a6f23211289dbc0dc31175"
+    },
+    "ap_fr.jsonl": {
+      "rows": 366,
+      "language": "fr",
+      "dimension": "ap",
+      "answer_labels": {
+        "D": 38,
+        "C": 87,
+        "B": 105,
+        "A": 136
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "e3857061cf3677b0547cc3860b4444610a0c0c0158dba3323f41f8d85d534f4a"
+    },
+    "ap_ja.jsonl": {
+      "rows": 366,
+      "language": "ja",
+      "dimension": "ap",
+      "answer_labels": {
+        "D": 38,
+        "C": 87,
+        "B": 105,
+        "A": 136
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "08ad546d38058942c8f9933285d344a85b0277ee07b4d4216cc41cfc655d0279"
+    },
+    "ap_ru.jsonl": {
+      "rows": 366,
+      "language": "ru",
+      "dimension": "ap",
+      "answer_labels": {
+        "D": 38,
+        "C": 87,
+        "B": 105,
+        "A": 136
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "658e0a9e876a6c7276f707d526fbfb2e2e4f46734067699b28a5703befe9b7f5"
+    },
+    "ap_th.jsonl": {
+      "rows": 366,
+      "language": "th",
+      "dimension": "ap",
+      "answer_labels": {
+        "D": 38,
+        "C": 87,
+        "B": 105,
+        "A": 136
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "90a9330bdb558237e07030d8d2c5f93429d0ccc78e80802ee420a376cb46de2a"
+    },
+    "ap_zh.jsonl": {
+      "rows": 366,
+      "language": "zh",
+      "dimension": "ap",
+      "answer_labels": {
+        "D": 38,
+        "C": 87,
+        "B": 105,
+        "A": 136
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "d01a706ec4e487eda6f188ec05e74e561093c721fcb1f241c8ba360901fb44a8"
+    },
+    "au_en.jsonl": {
+      "rows": 366,
+      "language": "en",
+      "dimension": "au",
+      "answer_labels": {
+        "A": 153,
+        "B": 133,
+        "D": 14,
+        "C": 66
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "a4ef184d2bd8ea74b5e7f8f95879e84131b46e792977e8e8ce1886e5d373ba0e"
+    },
+    "au_fr.jsonl": {
+      "rows": 366,
+      "language": "fr",
+      "dimension": "au",
+      "answer_labels": {
+        "A": 153,
+        "B": 133,
+        "D": 14,
+        "C": 66
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "0c43b371d5eb61be07f4b4d7b50586295cd24edb2ddd6a3281bde677951e8607"
+    },
+    "au_ja.jsonl": {
+      "rows": 366,
+      "language": "ja",
+      "dimension": "au",
+      "answer_labels": {
+        "A": 153,
+        "B": 133,
+        "D": 14,
+        "C": 66
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "09c8f08f4e209bb88c0e425da713a4b2acc3413029f24b84c48d6d1827a346c6"
+    },
+    "au_ru.jsonl": {
+      "rows": 366,
+      "language": "ru",
+      "dimension": "au",
+      "answer_labels": {
+        "A": 153,
+        "B": 133,
+        "D": 14,
+        "C": 66
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "71455fa464642036b73d7d27e56d57e2a586578ce1aead028a345004e5d9b528"
+    },
+    "au_th.jsonl": {
+      "rows": 366,
+      "language": "th",
+      "dimension": "au",
+      "answer_labels": {
+        "A": 153,
+        "B": 133,
+        "D": 14,
+        "C": 66
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "cb051d33b7f08c6f238a1ea707f4bab38f1a397bede573f11cc31d2751c03a95"
+    },
+    "au_zh.jsonl": {
+      "rows": 366,
+      "language": "zh",
+      "dimension": "au",
+      "answer_labels": {
+        "A": 153,
+        "B": 133,
+        "D": 14,
+        "C": 66
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "a75562cc4a6099fb7aad839437038b3cbb4d2665caaf7f488886dc9ba9a499ff"
+    },
+    "knowledge_rich_en.jsonl": {
+      "rows": 25,
+      "language": "en",
+      "dimension": "ri",
+      "answer_labels": {
+        "A": 25
+      },
+      "missing_assets": 0,
+      "episode_rows": 25,
+      "duplicate_question_excess": 0,
+      "sha256": "08dbdab04d65ffdcdad639a0d93c8818e9d0cadc7af88b3dd30236f337d873c1"
+    },
+    "knowledge_rich_fr.jsonl": {
+      "rows": 25,
+      "language": "fr",
+      "dimension": "ri",
+      "answer_labels": {
+        "A": 25
+      },
+      "missing_assets": 0,
+      "episode_rows": 25,
+      "duplicate_question_excess": 0,
+      "sha256": "485c46fa3eea6f0a39254a462b3fef0172f1ed29e8fdc27e084e1721995af2e0"
+    },
+    "knowledge_rich_ja.jsonl": {
+      "rows": 25,
+      "language": "ja",
+      "dimension": "ri",
+      "answer_labels": {
+        "A": 25
+      },
+      "missing_assets": 0,
+      "episode_rows": 25,
+      "duplicate_question_excess": 0,
+      "sha256": "c460a9b2fa73433c5bb6f77841cfae3d408f17a3bcf620af28f2c8ec846f5e3d"
+    },
+    "knowledge_rich_ru.jsonl": {
+      "rows": 25,
+      "language": "ru",
+      "dimension": "ri",
+      "answer_labels": {
+        "A": 25
+      },
+      "missing_assets": 0,
+      "episode_rows": 25,
+      "duplicate_question_excess": 0,
+      "sha256": "d5f986fc4390a7fb8b50b9ce9c6cbd40494b2d0c194821233232755e4bd0ad05"
+    },
+    "knowledge_rich_th.jsonl": {
+      "rows": 25,
+      "language": "th",
+      "dimension": "ri",
+      "answer_labels": {
+        "A": 25
+      },
+      "missing_assets": 0,
+      "episode_rows": 25,
+      "duplicate_question_excess": 0,
+      "sha256": "5c646c1698fe7b66406a4463def5c347d3a9b1b8dc7363c17e80bc00c27ddccd"
+    },
+    "knowledge_rich_zh.jsonl": {
+      "rows": 25,
+      "language": "zh",
+      "dimension": "ri",
+      "answer_labels": {
+        "A": 25
+      },
+      "missing_assets": 0,
+      "episode_rows": 25,
+      "duplicate_question_excess": 0,
+      "sha256": "4bbcff172ddb08c21c75f6e815fba39f4b7cca2413fa7867dbe1220c2df5d35f"
+    },
+    "knowledge_sparse_en.jsonl": {
+      "rows": 25,
+      "language": "en",
+      "dimension": "si",
+      "answer_labels": {
+        "A": 25
+      },
+      "missing_assets": 0,
+      "episode_rows": 25,
+      "duplicate_question_excess": 0,
+      "sha256": "97a4c0f698bddf6895cdb9e3202a2b6f84e9163d6ae0cbc24bc3262446cd675b"
+    },
+    "knowledge_sparse_fr.jsonl": {
+      "rows": 25,
+      "language": "fr",
+      "dimension": "si",
+      "answer_labels": {
+        "A": 25
+      },
+      "missing_assets": 0,
+      "episode_rows": 25,
+      "duplicate_question_excess": 0,
+      "sha256": "7a7174a9aa6cfae94cf7ac01c3413fe513f6ab16d2e442036be6112e66ff7772"
+    },
+    "knowledge_sparse_ja.jsonl": {
+      "rows": 25,
+      "language": "ja",
+      "dimension": "si",
+      "answer_labels": {
+        "A": 25
+      },
+      "missing_assets": 0,
+      "episode_rows": 25,
+      "duplicate_question_excess": 0,
+      "sha256": "00bca50e8c706a9be77ba44823bc7803b504f4e67b6c20bb5cd230f36a918182"
+    },
+    "knowledge_sparse_ru.jsonl": {
+      "rows": 25,
+      "language": "ru",
+      "dimension": "si",
+      "answer_labels": {
+        "A": 25
+      },
+      "missing_assets": 0,
+      "episode_rows": 25,
+      "duplicate_question_excess": 0,
+      "sha256": "69c0373a6121398d1d6b619344a16e838be17ac061f0c2a747e6038843864829"
+    },
+    "knowledge_sparse_th.jsonl": {
+      "rows": 25,
+      "language": "th",
+      "dimension": "si",
+      "answer_labels": {
+        "A": 25
+      },
+      "missing_assets": 0,
+      "episode_rows": 25,
+      "duplicate_question_excess": 0,
+      "sha256": "e3126bc7a2fc5d546d4df6bb79d4b00c10eb2396b41be988db92770b62846053"
+    },
+    "knowledge_sparse_zh.jsonl": {
+      "rows": 25,
+      "language": "zh",
+      "dimension": "si",
+      "answer_labels": {
+        "A": 25
+      },
+      "missing_assets": 0,
+      "episode_rows": 25,
+      "duplicate_question_excess": 0,
+      "sha256": "bd55bab5da2c5aeb5df3df0fee9cdb33b952328f4515b629f33cbd8d09860652"
+    },
+    "rel_el_en.jsonl": {
+      "rows": 366,
+      "language": "en",
+      "dimension": "rel",
+      "answer_labels": {
+        "C": 79,
+        "B": 114,
+        "D": 34,
+        "A": 139
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "742a793bfede1bd1924ead91762099c19a3e079a54d79938959c131ca0f0ff94"
+    },
+    "rel_el_fr.jsonl": {
+      "rows": 366,
+      "language": "fr",
+      "dimension": "rel",
+      "answer_labels": {
+        "C": 79,
+        "B": 114,
+        "D": 34,
+        "A": 139
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "29e532a39eb4c6b59b93b451c739962e5267d468710fa55e5bfc37ec87d26568"
+    },
+    "rel_el_ja.jsonl": {
+      "rows": 366,
+      "language": "ja",
+      "dimension": "rel",
+      "answer_labels": {
+        "C": 79,
+        "B": 114,
+        "D": 34,
+        "A": 139
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "77591f6f3829ecfe36a8b8775e4d77bf3750961a9aac0c1ed271bb1e30fd64a9"
+    },
+    "rel_el_ru.jsonl": {
+      "rows": 366,
+      "language": "ru",
+      "dimension": "rel",
+      "answer_labels": {
+        "C": 79,
+        "B": 114,
+        "D": 34,
+        "A": 139
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "ffcb7ffb69718c176f6904aab49d638ce6852bab189f1212e22d51cc34a98c74"
+    },
+    "rel_el_th.jsonl": {
+      "rows": 366,
+      "language": "th",
+      "dimension": "rel",
+      "answer_labels": {
+        "B": 114,
+        "D": 34,
+        "C": 79,
+        "A": 139
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "fed9249bd5b20de2a49e5ce6a392baa2f1cc6470460cd6f2a7ab3d5bc68cd067"
+    },
+    "rel_el_zh.jsonl": {
+      "rows": 366,
+      "language": "zh",
+      "dimension": "rel",
+      "answer_labels": {
+        "C": 79,
+        "B": 114,
+        "D": 34,
+        "A": 139
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "56113e66ebf2985e7b118078311eae4ce4d4ec2228343f76e6128cdf6fbe5ee0"
+    },
+    "wf_en.jsonl": {
+      "rows": 365,
+      "language": "en",
+      "dimension": "wf",
+      "answer_labels": {
+        "B": 144,
+        "C": 96,
+        "A": 102,
+        "D": 23
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "56f943ba937db6e17345b362e35368f120c08c4a0df24320d09526f4c4f71608"
+    },
+    "wf_fr.jsonl": {
+      "rows": 365,
+      "language": "fr",
+      "dimension": "wf",
+      "answer_labels": {
+        "B": 144,
+        "C": 96,
+        "A": 102,
+        "D": 23
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "485299570b005dfe14e44b0ca20f880837b1398c4e5423db3249bd3d742798d6"
+    },
+    "wf_ja.jsonl": {
+      "rows": 365,
+      "language": "ja",
+      "dimension": "wf",
+      "answer_labels": {
+        "B": 144,
+        "C": 96,
+        "A": 102,
+        "D": 23
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "ec69dcae0cb75d399167a3d430ddd604cccda23264e2c4dc4d1de2efe8ed2b94"
+    },
+    "wf_ru.jsonl": {
+      "rows": 365,
+      "language": "ru",
+      "dimension": "wf",
+      "answer_labels": {
+        "B": 144,
+        "C": 96,
+        "A": 102,
+        "D": 23
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "cf9226c7160d7658725c51ce72aa0a8148231385159c5965b5381ab18ccf8159"
+    },
+    "wf_th.jsonl": {
+      "rows": 365,
+      "language": "th",
+      "dimension": "wf",
+      "answer_labels": {
+        "B": 144,
+        "C": 96,
+        "A": 102,
+        "D": 23
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "61d48ca20e72a0f16dce04ca68f9a95689d65da4fba0a666c971c10e895e6641"
+    },
+    "wf_zh.jsonl": {
+      "rows": 365,
+      "language": "zh",
+      "dimension": "wf",
+      "answer_labels": {
+        "B": 144,
+        "C": 96,
+        "A": 102,
+        "D": 23
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "39fb43259868da72573cc1d327668319d88ce4e487a0d4088bc9e9fb22fa6939"
+    },
+    "wi_en.jsonl": {
+      "rows": 366,
+      "language": "en",
+      "dimension": "wi",
+      "answer_labels": {
+        "A": 149,
+        "B": 141,
+        "C": 63,
+        "D": 13
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "6e9ab15db13f5a50d101f6a2c360be15cba9911b299c892a870ac6cf8dd72da6"
+    },
+    "wi_fr.jsonl": {
+      "rows": 366,
+      "language": "fr",
+      "dimension": "wi",
+      "answer_labels": {
+        "A": 149,
+        "B": 141,
+        "C": 63,
+        "D": 13
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "c84a4ecad88bbbc8f53bbec64cf7c039ed48a4e4b9a706c284ad958584bf68d1"
+    },
+    "wi_ja.jsonl": {
+      "rows": 366,
+      "language": "ja",
+      "dimension": "wi",
+      "answer_labels": {
+        "A": 149,
+        "B": 141,
+        "C": 63,
+        "D": 13
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "93f8c314172ba53197e8eb33e4909e4a65ed74a13e725b9a62e0adcd1d0186c7"
+    },
+    "wi_ru.jsonl": {
+      "rows": 366,
+      "language": "ru",
+      "dimension": "wi",
+      "answer_labels": {
+        "A": 149,
+        "B": 141,
+        "C": 63,
+        "D": 13
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "0c1b82159e1e850c8187dabe51596b98fd52e046701a33282e63a54ae0321872"
+    },
+    "wi_th.jsonl": {
+      "rows": 366,
+      "language": "th",
+      "dimension": "wi",
+      "answer_labels": {
+        "A": 149,
+        "B": 141,
+        "C": 63,
+        "D": 13
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "5917ffb4047c6d88ff42c697ab3974847e06eda3bbea6a9a668f2d4de8f1bf74"
+    },
+    "wi_zh.jsonl": {
+      "rows": 366,
+      "language": "zh",
+      "dimension": "wi",
+      "answer_labels": {
+        "A": 149,
+        "B": 141,
+        "C": 63,
+        "D": 13
+      },
+      "missing_assets": 0,
+      "episode_rows": 0,
+      "duplicate_question_excess": 0,
+      "sha256": "c26e00645410f1e3e8d297c718a4abcc95e0023fd2cd3be49ecd90f3f7d9037e"
+    }
+  },
+  "source_metadata": {
+    "downloaded_at_utc": "2026-07-05T13:52:28.818026+00:00",
+    "layout": {
+      "root": "data/raw/mpr_gui_bench",
+      "images_dir": "data/raw/mpr_gui_bench/images",
+      "qas_dir": "data/raw/mpr_gui_bench/qas"
+    },
+    "huggingface": {
+      "repo_id": "chenruihan/MPR-GUI-Bench",
+      "sha": "c1edb808d424a2fa7bc4a2e601d39b431b04acd5",
+      "siblings": 3685
+    },
+    "github": {
+      "repo_url": "https://github.com/chenruihan32/MPR-GUI-Bench.git",
+      "commit": "e4f1cfcd11ee0d0dfa8ee6a0a97c2c782ce21aba",
+      "jsonl_files": 48
+    }
+  },
+  "parallel_summary": {
+    "ael": {
+      "unique_state_keys": 366,
+      "complete_six_language_states": 366,
+      "coverage_histogram_num_languages": {
+        "6": 366
+      },
+      "incomplete_state_keys": []
+    },
+    "ap": {
+      "unique_state_keys": 366,
+      "complete_six_language_states": 366,
+      "coverage_histogram_num_languages": {
+        "6": 366
+      },
+      "incomplete_state_keys": []
+    },
+    "au": {
+      "unique_state_keys": 366,
+      "complete_six_language_states": 366,
+      "coverage_histogram_num_languages": {
+        "6": 366
+      },
+      "incomplete_state_keys": []
+    },
+    "rel": {
+      "unique_state_keys": 366,
+      "complete_six_language_states": 366,
+      "coverage_histogram_num_languages": {
+        "6": 366
+      },
+      "incomplete_state_keys": []
+    },
+    "ri": {
+      "unique_state_keys": 25,
+      "complete_six_language_states": 25,
+      "coverage_histogram_num_languages": {
+        "6": 25
+      },
+      "incomplete_state_keys": []
+    },
+    "si": {
+      "unique_state_keys": 25,
+      "complete_six_language_states": 25,
+      "coverage_histogram_num_languages": {
+        "6": 25
+      },
+      "incomplete_state_keys": []
+    },
+    "wf": {
+      "unique_state_keys": 365,
+      "complete_six_language_states": 365,
+      "coverage_histogram_num_languages": {
+        "6": 365
+      },
+      "incomplete_state_keys": []
+    },
+    "wi": {
+      "unique_state_keys": 366,
+      "complete_six_language_states": 366,
+      "coverage_histogram_num_languages": {
+        "6": 366
+      },
+      "incomplete_state_keys": []
+    }
+  },
+  "missing_assets": [],
+  "missing_assets_count": 0,
+  "malformed_answers": [],
+  "malformed_answers_count": 0,
+  "noncanonical_answer_fields": [
+    {
+      "file": "abs_el_en.jsonl",
+      "line": 85,
+      "answer": "C. Lower-left quadrant",
+      "label": "C"
+    },
+    {
+      "file": "abs_el_fr.jsonl",
+      "line": 85,
+      "answer": "C. Lower-left quadrant",
+      "label": "C"
+    },
+    {
+      "file": "abs_el_ja.jsonl",
+      "line": 85,
+      "answer": "C. Lower-left quadrant",
+      "label": "C"
+    },
+    {
+      "file": "abs_el_ru.jsonl",
+      "line": 84,
+      "answer": "C. Lower-left quadrant",
+      "label": "C"
+    },
+    {
+      "file": "abs_el_th.jsonl",
+      "line": 85,
+      "answer": "C. Lower-left quadrant",
+      "label": "C"
+    },
+    {
+      "file": "abs_el_zh.jsonl",
+      "line": 85,
+      "answer": "C. Lower-left quadrant",
+      "label": "C"
+    },
+    {
+      "file": "au_en.jsonl",
+      "line": 323,
+      "answer": "A. A new screen detailing monetization options will slide in, replacing the current menu.",
+      "label": "A"
+    },
+    {
+      "file": "au_fr.jsonl",
+      "line": 322,
+      "answer": "A. A new screen detailing monetization options will slide in, replacing the current menu.",
+      "label": "A"
+    },
+    {
+      "file": "au_ja.jsonl",
+      "line": 322,
+      "answer": "A. A new screen detailing monetization options will slide in, replacing the current menu.",
+      "label": "A"
+    },
+    {
+      "file": "au_ru.jsonl",
+      "line": 322,
+      "answer": "A. A new screen detailing monetization options will slide in, replacing the current menu.",
+      "label": "A"
+    },
+    {
+      "file": "au_th.jsonl",
+      "line": 323,
+      "answer": "A. A new screen detailing monetization options will slide in, replacing the current menu.",
+      "label": "A"
+    },
+    {
+      "file": "au_zh.jsonl",
+      "line": 323,
+      "answer": "A. A new screen detailing monetization options will slide in, replacing the current menu.",
+      "label": "A"
+    },
+    {
+      "file": "wf_en.jsonl",
+      "line": 74,
+      "answer": "D. Deleting a current task",
+      "label": "D"
+    },
+    {
+      "file": "wf_en.jsonl",
+      "line": 112,
+      "answer": "A. Setting a song as a ringtone",
+      "label": "A"
+    },
+    {
+      "file": "wf_en.jsonl",
+      "line": 117,
+      "answer": "C. Messaging app",
+      "label": "C"
+    },
+    {
+      "file": "wf_en.jsonl",
+      "line": 173,
+      "answer": "D. Delete",
+      "label": "D"
+    },
+    {
+      "file": "wf_en.jsonl",
+      "line": 195,
+      "answer": "B. Turn on Deep Focus mode",
+      "label": "B"
+    },
+    {
+      "file": "wf_en.jsonl",
+      "line": 223,
+      "answer": "B. Flash Off",
+      "label": "B"
+    },
+    {
+      "file": "wf_fr.jsonl",
+      "line": 74,
+      "answer": "D. Deleting a current task",
+      "label": "D"
+    },
+    {
+      "file": "wf_fr.jsonl",
+      "line": 112,
+      "answer": "A. Setting a song as a ringtone",
+      "label": "A"
+    },
+    {
+      "file": "wf_fr.jsonl",
+      "line": 117,
+      "answer": "C. Messaging app",
+      "label": "C"
+    },
+    {
+      "file": "wf_fr.jsonl",
+      "line": 173,
+      "answer": "D. Delete",
+      "label": "D"
+    },
+    {
+      "file": "wf_fr.jsonl",
+      "line": 195,
+      "answer": "B. Turn on Deep Focus mode",
+      "label": "B"
+    },
+    {
+      "file": "wf_fr.jsonl",
+      "line": 223,
+      "answer": "B. Flash Off",
+      "label": "B"
+    },
+    {
+      "file": "wf_ja.jsonl",
+      "line": 74,
+      "answer": "D. Deleting a current task",
+      "label": "D"
+    },
+    {
+      "file": "wf_ja.jsonl",
+      "line": 112,
+      "answer": "A. Setting a song as a ringtone",
+      "label": "A"
+    },
+    {
+      "file": "wf_ja.jsonl",
+      "line": 117,
+      "answer": "C. Messaging app",
+      "label": "C"
+    },
+    {
+      "file": "wf_ja.jsonl",
+      "line": 168,
+      "answer": "D. Delete",
+      "label": "D"
+    },
+    {
+      "file": "wf_ja.jsonl",
+      "line": 194,
+      "answer": "B. Turn on Deep Focus mode",
+      "label": "B"
+    },
+    {
+      "file": "wf_ja.jsonl",
+      "line": 222,
+      "answer": "B. Flash Off",
+      "label": "B"
+    },
+    {
+      "file": "wf_ru.jsonl",
+      "line": 74,
+      "answer": "D. Deleting a current task",
+      "label": "D"
+    },
+    {
+      "file": "wf_ru.jsonl",
+      "line": 112,
+      "answer": "A. Setting a song as a ringtone",
+      "label": "A"
+    },
+    {
+      "file": "wf_ru.jsonl",
+      "line": 117,
+      "answer": "C. Messaging app",
+      "label": "C"
+    },
+    {
+      "file": "wf_ru.jsonl",
+      "line": 172,
+      "answer": "D. Delete",
+      "label": "D"
+    },
+    {
+      "file": "wf_ru.jsonl",
+      "line": 194,
+      "answer": "B. Turn on Deep Focus mode",
+      "label": "B"
+    },
+    {
+      "file": "wf_ru.jsonl",
+      "line": 222,
+      "answer": "B. Flash Off",
+      "label": "B"
+    },
+    {
+      "file": "wf_th.jsonl",
+      "line": 74,
+      "answer": "D. Deleting a current task",
+      "label": "D"
+    },
+    {
+      "file": "wf_th.jsonl",
+      "line": 112,
+      "answer": "A. Setting a song as a ringtone",
+      "label": "A"
+    },
+    {
+      "file": "wf_th.jsonl",
+      "line": 117,
+      "answer": "C. Messaging app",
+      "label": "C"
+    },
+    {
+      "file": "wf_th.jsonl",
+      "line": 169,
+      "answer": "D. Delete",
+      "label": "D"
+    },
+    {
+      "file": "wf_th.jsonl",
+      "line": 195,
+      "answer": "B. Turn on Deep Focus mode",
+      "label": "B"
+    },
+    {
+      "file": "wf_th.jsonl",
+      "line": 223,
+      "answer": "B. Flash Off",
+      "label": "B"
+    },
+    {
+      "file": "wf_zh.jsonl",
+      "line": 74,
+      "answer": "D. Deleting a current task",
+      "label": "D"
+    },
+    {
+      "file": "wf_zh.jsonl",
+      "line": 112,
+      "answer": "A. Setting a song as a ringtone",
+      "label": "A"
+    },
+    {
+      "file": "wf_zh.jsonl",
+      "line": 117,
+      "answer": "C. Messaging app",
+      "label": "C"
+    },
+    {
+      "file": "wf_zh.jsonl",
+      "line": 172,
+      "answer": "D. Delete",
+      "label": "D"
+    },
+    {
+      "file": "wf_zh.jsonl",
+      "line": 195,
+      "answer": "B. Turn on Deep Focus mode",
+      "label": "B"
+    },
+    {
+      "file": "wf_zh.jsonl",
+      "line": 223,
+      "answer": "B. Flash Off",
+      "label": "B"
+    },
+    {
+      "file": "wi_en.jsonl",
+      "line": 29,
+      "answer": "C. Tap the shutter button",
+      "label": "C"
+    },
+    {
+      "file": "wi_en.jsonl",
+      "line": 39,
+      "answer": "B. Swiping left or right at the bottom mode selector bar.",
+      "label": "B"
+    },
+    {
+      "file": "wi_en.jsonl",
+      "line": 41,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_en.jsonl",
+      "line": 43,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_en.jsonl",
+      "line": 50,
+      "answer": "B. Open details of the voicemail, including playback options and contact information.",
+      "label": "B"
+    },
+    {
+      "file": "wi_en.jsonl",
+      "line": 141,
+      "answer": "A. All notifications from the Messages app will be disabled.",
+      "label": "A"
+    },
+    {
+      "file": "wi_en.jsonl",
+      "line": 142,
+      "answer": "C. The toggle switch state changes, enabling multiple user accounts on the device.",
+      "label": "C"
+    },
+    {
+      "file": "wi_en.jsonl",
+      "line": 146,
+      "answer": "B. Deletes 202 MB of cache junk files immediately",
+      "label": "B"
+    },
+    {
+      "file": "wi_en.jsonl",
+      "line": 151,
+      "answer": "A. Initiates a voice call to the entered number on the dial pad.",
+      "label": "A"
+    },
+    {
+      "file": "wi_en.jsonl",
+      "line": 154,
+      "answer": "B. Tapping the toggle switch to turn it on or off",
+      "label": "B"
+    },
+    {
+      "file": "wi_en.jsonl",
+      "line": 197,
+      "answer": "B. Activates cellular data use specifically for transferring files.",
+      "label": "B"
+    },
+    {
+      "file": "wi_en.jsonl",
+      "line": 222,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_en.jsonl",
+      "line": 324,
+      "answer": "A. Opens a panel to change the channel name.",
+      "label": "A"
+    },
+    {
+      "file": "wi_en.jsonl",
+      "line": 343,
+      "answer": "B.",
+      "label": "B"
+    },
+    {
+      "file": "wi_fr.jsonl",
+      "line": 29,
+      "answer": "C. Tap the shutter button",
+      "label": "C"
+    },
+    {
+      "file": "wi_fr.jsonl",
+      "line": 39,
+      "answer": "B. Swiping left or right at the bottom mode selector bar.",
+      "label": "B"
+    },
+    {
+      "file": "wi_fr.jsonl",
+      "line": 41,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_fr.jsonl",
+      "line": 43,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_fr.jsonl",
+      "line": 50,
+      "answer": "B. Open details of the voicemail, including playback options and contact information.",
+      "label": "B"
+    },
+    {
+      "file": "wi_fr.jsonl",
+      "line": 141,
+      "answer": "A. All notifications from the Messages app will be disabled.",
+      "label": "A"
+    },
+    {
+      "file": "wi_fr.jsonl",
+      "line": 142,
+      "answer": "C. The toggle switch state changes, enabling multiple user accounts on the device.",
+      "label": "C"
+    },
+    {
+      "file": "wi_fr.jsonl",
+      "line": 146,
+      "answer": "B. Deletes 202 MB of cache junk files immediately",
+      "label": "B"
+    },
+    {
+      "file": "wi_fr.jsonl",
+      "line": 151,
+      "answer": "A. Initiates a voice call to the entered number on the dial pad.",
+      "label": "A"
+    },
+    {
+      "file": "wi_fr.jsonl",
+      "line": 154,
+      "answer": "B. Tapping the toggle switch to turn it on or off",
+      "label": "B"
+    },
+    {
+      "file": "wi_fr.jsonl",
+      "line": 197,
+      "answer": "B. Activates cellular data use specifically for transferring files.",
+      "label": "B"
+    },
+    {
+      "file": "wi_fr.jsonl",
+      "line": 222,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_fr.jsonl",
+      "line": 336,
+      "answer": "B.",
+      "label": "B"
+    },
+    {
+      "file": "wi_fr.jsonl",
+      "line": 344,
+      "answer": "A. Opens a panel to change the channel name.",
+      "label": "A"
+    },
+    {
+      "file": "wi_ja.jsonl",
+      "line": 29,
+      "answer": "C. Tap the shutter button",
+      "label": "C"
+    },
+    {
+      "file": "wi_ja.jsonl",
+      "line": 39,
+      "answer": "B. Swiping left or right at the bottom mode selector bar.",
+      "label": "B"
+    },
+    {
+      "file": "wi_ja.jsonl",
+      "line": 41,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_ja.jsonl",
+      "line": 43,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_ja.jsonl",
+      "line": 50,
+      "answer": "B. Open details of the voicemail, including playback options and contact information.",
+      "label": "B"
+    },
+    {
+      "file": "wi_ja.jsonl",
+      "line": 141,
+      "answer": "A. All notifications from the Messages app will be disabled.",
+      "label": "A"
+    },
+    {
+      "file": "wi_ja.jsonl",
+      "line": 142,
+      "answer": "C. The toggle switch state changes, enabling multiple user accounts on the device.",
+      "label": "C"
+    },
+    {
+      "file": "wi_ja.jsonl",
+      "line": 146,
+      "answer": "B. Deletes 202 MB of cache junk files immediately",
+      "label": "B"
+    },
+    {
+      "file": "wi_ja.jsonl",
+      "line": 151,
+      "answer": "A. Initiates a voice call to the entered number on the dial pad.",
+      "label": "A"
+    },
+    {
+      "file": "wi_ja.jsonl",
+      "line": 154,
+      "answer": "B. Tapping the toggle switch to turn it on or off",
+      "label": "B"
+    },
+    {
+      "file": "wi_ja.jsonl",
+      "line": 197,
+      "answer": "B. Activates cellular data use specifically for transferring files.",
+      "label": "B"
+    },
+    {
+      "file": "wi_ja.jsonl",
+      "line": 222,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_ja.jsonl",
+      "line": 337,
+      "answer": "B.",
+      "label": "B"
+    },
+    {
+      "file": "wi_ja.jsonl",
+      "line": 345,
+      "answer": "A. Opens a panel to change the channel name.",
+      "label": "A"
+    },
+    {
+      "file": "wi_ru.jsonl",
+      "line": 29,
+      "answer": "C. Tap the shutter button",
+      "label": "C"
+    },
+    {
+      "file": "wi_ru.jsonl",
+      "line": 39,
+      "answer": "B. Swiping left or right at the bottom mode selector bar.",
+      "label": "B"
+    },
+    {
+      "file": "wi_ru.jsonl",
+      "line": 41,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_ru.jsonl",
+      "line": 43,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_ru.jsonl",
+      "line": 50,
+      "answer": "B. Open details of the voicemail, including playback options and contact information.",
+      "label": "B"
+    },
+    {
+      "file": "wi_ru.jsonl",
+      "line": 141,
+      "answer": "A. All notifications from the Messages app will be disabled.",
+      "label": "A"
+    },
+    {
+      "file": "wi_ru.jsonl",
+      "line": 142,
+      "answer": "C. The toggle switch state changes, enabling multiple user accounts on the device.",
+      "label": "C"
+    },
+    {
+      "file": "wi_ru.jsonl",
+      "line": 146,
+      "answer": "B. Deletes 202 MB of cache junk files immediately",
+      "label": "B"
+    },
+    {
+      "file": "wi_ru.jsonl",
+      "line": 151,
+      "answer": "A. Initiates a voice call to the entered number on the dial pad.",
+      "label": "A"
+    },
+    {
+      "file": "wi_ru.jsonl",
+      "line": 154,
+      "answer": "B. Tapping the toggle switch to turn it on or off",
+      "label": "B"
+    },
+    {
+      "file": "wi_ru.jsonl",
+      "line": 197,
+      "answer": "B. Activates cellular data use specifically for transferring files.",
+      "label": "B"
+    },
+    {
+      "file": "wi_ru.jsonl",
+      "line": 222,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_ru.jsonl",
+      "line": 337,
+      "answer": "B.",
+      "label": "B"
+    },
+    {
+      "file": "wi_ru.jsonl",
+      "line": 345,
+      "answer": "A. Opens a panel to change the channel name.",
+      "label": "A"
+    },
+    {
+      "file": "wi_th.jsonl",
+      "line": 28,
+      "answer": "C. Tap the shutter button",
+      "label": "C"
+    },
+    {
+      "file": "wi_th.jsonl",
+      "line": 40,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_th.jsonl",
+      "line": 42,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_th.jsonl",
+      "line": 49,
+      "answer": "B. Open details of the voicemail, including playback options and contact information.",
+      "label": "B"
+    },
+    {
+      "file": "wi_th.jsonl",
+      "line": 141,
+      "answer": "A. All notifications from the Messages app will be disabled.",
+      "label": "A"
+    },
+    {
+      "file": "wi_th.jsonl",
+      "line": 142,
+      "answer": "C. The toggle switch state changes, enabling multiple user accounts on the device.",
+      "label": "C"
+    },
+    {
+      "file": "wi_th.jsonl",
+      "line": 146,
+      "answer": "B. Deletes 202 MB of cache junk files immediately",
+      "label": "B"
+    },
+    {
+      "file": "wi_th.jsonl",
+      "line": 154,
+      "answer": "B. Tapping the toggle switch to turn it on or off",
+      "label": "B"
+    },
+    {
+      "file": "wi_th.jsonl",
+      "line": 197,
+      "answer": "B. Activates cellular data use specifically for transferring files.",
+      "label": "B"
+    },
+    {
+      "file": "wi_th.jsonl",
+      "line": 222,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_th.jsonl",
+      "line": 324,
+      "answer": "A. Opens a panel to change the channel name.",
+      "label": "A"
+    },
+    {
+      "file": "wi_th.jsonl",
+      "line": 343,
+      "answer": "B.",
+      "label": "B"
+    },
+    {
+      "file": "wi_th.jsonl",
+      "line": 365,
+      "answer": "B. Choosing \"New Station\" from the \"Stations\" section.",
+      "label": "B"
+    },
+    {
+      "file": "wi_zh.jsonl",
+      "line": 29,
+      "answer": "C. Tap the shutter button",
+      "label": "C"
+    },
+    {
+      "file": "wi_zh.jsonl",
+      "line": 39,
+      "answer": "B. Swiping left or right at the bottom mode selector bar.",
+      "label": "B"
+    },
+    {
+      "file": "wi_zh.jsonl",
+      "line": 41,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_zh.jsonl",
+      "line": 43,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_zh.jsonl",
+      "line": 50,
+      "answer": "B. Open details of the voicemail, including playback options and contact information.",
+      "label": "B"
+    },
+    {
+      "file": "wi_zh.jsonl",
+      "line": 141,
+      "answer": "A. All notifications from the Messages app will be disabled.",
+      "label": "A"
+    },
+    {
+      "file": "wi_zh.jsonl",
+      "line": 142,
+      "answer": "C. The toggle switch state changes, enabling multiple user accounts on the device.",
+      "label": "C"
+    },
+    {
+      "file": "wi_zh.jsonl",
+      "line": 146,
+      "answer": "B. Deletes 202 MB of cache junk files immediately",
+      "label": "B"
+    },
+    {
+      "file": "wi_zh.jsonl",
+      "line": 153,
+      "answer": "B. Tapping the toggle switch to turn it on or off",
+      "label": "B"
+    },
+    {
+      "file": "wi_zh.jsonl",
+      "line": 183,
+      "answer": "A. Initiates a voice call to the entered number on the dial pad.",
+      "label": "A"
+    },
+    {
+      "file": "wi_zh.jsonl",
+      "line": 197,
+      "answer": "B. Activates cellular data use specifically for transferring files.",
+      "label": "B"
+    },
+    {
+      "file": "wi_zh.jsonl",
+      "line": 222,
+      "answer": "A.",
+      "label": "A"
+    },
+    {
+      "file": "wi_zh.jsonl",
+      "line": 324,
+      "answer": "A. Opens a panel to change the channel name.",
+      "label": "A"
+    },
+    {
+      "file": "wi_zh.jsonl",
+      "line": 343,
+      "answer": "B.",
+      "label": "B"
+    }
+  ],
+  "noncanonical_answer_fields_count": 131,
+  "duplicate_questions": {
+    "abs_el_fr.jsonl": 1
+  },
+  "episode_frame_counts": [
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 1,
+      "asset": "../images/rich/en/sport_episode_0",
+      "frames": 5,
+      "first_frame": "sport_episode_0_0.jpg",
+      "last_frame": "sport_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 2,
+      "asset": "../images/rich/en/record_episode_0",
+      "frames": 6,
+      "first_frame": "record_episode_0_0.jpg",
+      "last_frame": "record_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 3,
+      "asset": "../images/rich/en/general_episode_3",
+      "frames": 8,
+      "first_frame": "general_episode_3_0.jpg",
+      "last_frame": "general_episode_3_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 4,
+      "asset": "../images/rich/en/music_episode_0",
+      "frames": 7,
+      "first_frame": "music_episode_0_en_0.jpg",
+      "last_frame": "music_episode_0_en_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 5,
+      "asset": "../images/rich/en/booking_episode_1",
+      "frames": 6,
+      "first_frame": "booking_episode_1_0.jpg",
+      "last_frame": "booking_episode_1_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 6,
+      "asset": "../images/rich/en/camera_episode_0",
+      "frames": 6,
+      "first_frame": "camera_episode_0_0.jpg",
+      "last_frame": "camera_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 7,
+      "asset": "../images/rich/en/calendar_episode_0",
+      "frames": 7,
+      "first_frame": "calendar_episode_0_0.jpg",
+      "last_frame": "calendar_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 8,
+      "asset": "../images/rich/en/clock_episode_0",
+      "frames": 7,
+      "first_frame": "clock_episode_0_en_0.jpg",
+      "last_frame": "clock_episode_0_en_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 9,
+      "asset": "../images/rich/en/general_episode_4",
+      "frames": 8,
+      "first_frame": "general_episode_4_0.jpg",
+      "last_frame": "general_episode_4_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 10,
+      "asset": "../images/rich/en/google_episode_0",
+      "frames": 5,
+      "first_frame": "google_episode_0_0.jpg",
+      "last_frame": "google_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 11,
+      "asset": "../images/rich/en/general_episode_0",
+      "frames": 6,
+      "first_frame": "general_episode_0_0.jpg",
+      "last_frame": "general_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 12,
+      "asset": "../images/rich/en/booking_episode_0",
+      "frames": 7,
+      "first_frame": "booking_episode_0_0.jpg",
+      "last_frame": "booking_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 13,
+      "asset": "../images/rich/en/message_episode_0",
+      "frames": 6,
+      "first_frame": "message_episode_0_0.jpg",
+      "last_frame": "message_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 14,
+      "asset": "../images/rich/en/freeform_episode_0",
+      "frames": 6,
+      "first_frame": "freeform_episode_0_0.jpg",
+      "last_frame": "freeform_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 15,
+      "asset": "../images/rich/en/backend_episode_0",
+      "frames": 8,
+      "first_frame": "backend_episode_0_en_0.jpg",
+      "last_frame": "backend_episode_0_en_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 16,
+      "asset": "../images/rich/en/weather_episode_0",
+      "frames": 7,
+      "first_frame": "weather_episode_0_0.jpg",
+      "last_frame": "weather_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 17,
+      "asset": "../images/rich/en/general_episode_1",
+      "frames": 6,
+      "first_frame": "general_episode_1_0.jpg",
+      "last_frame": "general_episode_1_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 18,
+      "asset": "../images/rich/en/homescreen_episode_0",
+      "frames": 6,
+      "first_frame": "homescreen_episode_0_en_0.jpg",
+      "last_frame": "homescreen_episode_0_en_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 19,
+      "asset": "../images/rich/en/note_episode_0",
+      "frames": 7,
+      "first_frame": "note_episode_0_en_0.jpg",
+      "last_frame": "note_episode_0_en_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 20,
+      "asset": "../images/rich/en/general_episode_2",
+      "frames": 6,
+      "first_frame": "general_episode_2_0.jpg",
+      "last_frame": "general_episode_2_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 21,
+      "asset": "../images/rich/en/accor_episode_0",
+      "frames": 5,
+      "first_frame": "accor_episode_0_0.jpg",
+      "last_frame": "accor_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 22,
+      "asset": "../images/rich/en/files_episode_0",
+      "frames": 7,
+      "first_frame": "files_episode_0_0.jpg",
+      "last_frame": "files_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 23,
+      "asset": "../images/rich/en/settings_episode_0",
+      "frames": 7,
+      "first_frame": "settings_episode_0_0.jpg",
+      "last_frame": "settings_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 24,
+      "asset": "../images/rich/en/phone_episode_0",
+      "frames": 7,
+      "first_frame": "phone_episode_0_0.jpg",
+      "last_frame": "phone_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_en.jsonl",
+      "line": 25,
+      "asset": "../images/rich/en/accor_episode_1",
+      "frames": 7,
+      "first_frame": "accor_episode_1_0.jpg",
+      "last_frame": "accor_episode_1_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 1,
+      "asset": "../images/rich/fr/sport_episode_0",
+      "frames": 5,
+      "first_frame": "sport_episode_0_0.jpg",
+      "last_frame": "sport_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 2,
+      "asset": "../images/rich/fr/record_episode_0",
+      "frames": 6,
+      "first_frame": "record_episode_0_0.jpg",
+      "last_frame": "record_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 3,
+      "asset": "../images/rich/fr/general_episode_3",
+      "frames": 8,
+      "first_frame": "general_episode_3_0.jpg",
+      "last_frame": "general_episode_3_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 4,
+      "asset": "../images/rich/fr/music_episode_0",
+      "frames": 7,
+      "first_frame": "music_episode_0_fr_0.jpg",
+      "last_frame": "music_episode_0_fr_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 5,
+      "asset": "../images/rich/fr/booking_episode_1",
+      "frames": 6,
+      "first_frame": "booking_episode_1_0.jpg",
+      "last_frame": "booking_episode_1_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 6,
+      "asset": "../images/rich/fr/camera_episode_0",
+      "frames": 6,
+      "first_frame": "camera_episode_0_0.jpg",
+      "last_frame": "camera_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 7,
+      "asset": "../images/rich/fr/calendar_episode_0",
+      "frames": 7,
+      "first_frame": "calendar_episode_0_0.jpg",
+      "last_frame": "calendar_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 8,
+      "asset": "../images/rich/fr/clock_episode_0",
+      "frames": 7,
+      "first_frame": "clock_episode_0_fr_0.jpg",
+      "last_frame": "clock_episode_0_fr_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 9,
+      "asset": "../images/rich/fr/general_episode_4",
+      "frames": 8,
+      "first_frame": "general_episode_4_0.jpg",
+      "last_frame": "general_episode_4_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 10,
+      "asset": "../images/rich/fr/google_episode_0",
+      "frames": 5,
+      "first_frame": "google_episode_0_0.jpg",
+      "last_frame": "google_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 11,
+      "asset": "../images/rich/fr/general_episode_0",
+      "frames": 6,
+      "first_frame": "general_episode_0_0.jpg",
+      "last_frame": "general_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 12,
+      "asset": "../images/rich/fr/booking_episode_0",
+      "frames": 7,
+      "first_frame": "booking_episode_0_0.jpg",
+      "last_frame": "booking_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 13,
+      "asset": "../images/rich/fr/message_episode_0",
+      "frames": 6,
+      "first_frame": "message_episode_0_0.jpg",
+      "last_frame": "message_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 14,
+      "asset": "../images/rich/fr/freeform_episode_0",
+      "frames": 6,
+      "first_frame": "freeform_episode_0_0.jpg",
+      "last_frame": "freeform_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 15,
+      "asset": "../images/rich/fr/backend_episode_0",
+      "frames": 8,
+      "first_frame": "backend_episode_0_fr_0.jpg",
+      "last_frame": "backend_episode_0_fr_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 16,
+      "asset": "../images/rich/fr/weather_episode_0",
+      "frames": 7,
+      "first_frame": "weather_episode_0_0.jpg",
+      "last_frame": "weather_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 17,
+      "asset": "../images/rich/fr/general_episode_1",
+      "frames": 6,
+      "first_frame": "general_episode_1_0.jpg",
+      "last_frame": "general_episode_1_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 18,
+      "asset": "../images/rich/fr/homescreen_episode_0",
+      "frames": 6,
+      "first_frame": "homescreen_episode_0_fr_0.jpg",
+      "last_frame": "homescreen_episode_0_fr_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 19,
+      "asset": "../images/rich/fr/note_episode_0",
+      "frames": 7,
+      "first_frame": "note_episode_0_fr_0.jpg",
+      "last_frame": "note_episode_0_fr_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 20,
+      "asset": "../images/rich/fr/general_episode_2",
+      "frames": 6,
+      "first_frame": "general_episode_2_0.jpg",
+      "last_frame": "general_episode_2_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 21,
+      "asset": "../images/rich/fr/accor_episode_0",
+      "frames": 5,
+      "first_frame": "accor_episode_0_0.jpg",
+      "last_frame": "accor_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 22,
+      "asset": "../images/rich/fr/files_episode_0",
+      "frames": 7,
+      "first_frame": "files_episode_0_0.jpg",
+      "last_frame": "files_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 23,
+      "asset": "../images/rich/fr/settings_episode_0",
+      "frames": 7,
+      "first_frame": "settings_episode_0_0.jpg",
+      "last_frame": "settings_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 24,
+      "asset": "../images/rich/fr/phone_episode_0",
+      "frames": 7,
+      "first_frame": "phone_episode_0_0.jpg",
+      "last_frame": "phone_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_fr.jsonl",
+      "line": 25,
+      "asset": "../images/rich/fr/accor_episode_1",
+      "frames": 7,
+      "first_frame": "accor_episode_1_0.jpg",
+      "last_frame": "accor_episode_1_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 1,
+      "asset": "../images/rich/ja/sport_episode_0",
+      "frames": 5,
+      "first_frame": "sport_episode_0_0.jpg",
+      "last_frame": "sport_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 2,
+      "asset": "../images/rich/ja/record_episode_0",
+      "frames": 6,
+      "first_frame": "record_episode_0_0.jpg",
+      "last_frame": "record_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 3,
+      "asset": "../images/rich/ja/general_episode_3",
+      "frames": 8,
+      "first_frame": "general_episode_3_0.jpg",
+      "last_frame": "general_episode_3_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 4,
+      "asset": "../images/rich/ja/music_episode_0",
+      "frames": 7,
+      "first_frame": "music_episode_0_ja_0.jpg",
+      "last_frame": "music_episode_0_ja_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 5,
+      "asset": "../images/rich/ja/booking_episode_1",
+      "frames": 6,
+      "first_frame": "booking_episode_1_0.jpg",
+      "last_frame": "booking_episode_1_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 6,
+      "asset": "../images/rich/ja/camera_episode_0",
+      "frames": 6,
+      "first_frame": "camera_episode_0_0.jpg",
+      "last_frame": "camera_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 7,
+      "asset": "../images/rich/ja/calendar_episode_0",
+      "frames": 7,
+      "first_frame": "calendar_episode_0_0.jpg",
+      "last_frame": "calendar_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 8,
+      "asset": "../images/rich/ja/clock_episode_0",
+      "frames": 7,
+      "first_frame": "clock_episode_0_ja_0.jpg",
+      "last_frame": "clock_episode_0_ja_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 9,
+      "asset": "../images/rich/ja/general_episode_4",
+      "frames": 8,
+      "first_frame": "general_episode_4_0.jpg",
+      "last_frame": "general_episode_4_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 10,
+      "asset": "../images/rich/ja/google_episode_0",
+      "frames": 5,
+      "first_frame": "google_episode_0_0.jpg",
+      "last_frame": "google_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 11,
+      "asset": "../images/rich/ja/general_episode_0",
+      "frames": 6,
+      "first_frame": "general_episode_0_0.jpg",
+      "last_frame": "general_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 12,
+      "asset": "../images/rich/ja/booking_episode_0",
+      "frames": 7,
+      "first_frame": "booking_episode_0_0.jpg",
+      "last_frame": "booking_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 13,
+      "asset": "../images/rich/ja/message_episode_0",
+      "frames": 6,
+      "first_frame": "message_episode_0_0.jpg",
+      "last_frame": "message_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 14,
+      "asset": "../images/rich/ja/freeform_episode_0",
+      "frames": 6,
+      "first_frame": "freeform_episode_0_0.jpg",
+      "last_frame": "freeform_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 15,
+      "asset": "../images/rich/ja/backend_episode_0",
+      "frames": 8,
+      "first_frame": "backend_episode_0_ja_0.jpg",
+      "last_frame": "backend_episode_0_ja_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 16,
+      "asset": "../images/rich/ja/weather_episode_0",
+      "frames": 7,
+      "first_frame": "weather_episode_0_0.jpg",
+      "last_frame": "weather_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 17,
+      "asset": "../images/rich/ja/general_episode_1",
+      "frames": 6,
+      "first_frame": "general_episode_1_0.jpg",
+      "last_frame": "general_episode_1_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 18,
+      "asset": "../images/rich/ja/homescreen_episode_0",
+      "frames": 6,
+      "first_frame": "homescreen_episode_0_ja_0.jpg",
+      "last_frame": "homescreen_episode_0_ja_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 19,
+      "asset": "../images/rich/ja/note_episode_0",
+      "frames": 7,
+      "first_frame": "note_episode_0_ja_0.jpg",
+      "last_frame": "note_episode_0_ja_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 20,
+      "asset": "../images/rich/ja/general_episode_2",
+      "frames": 6,
+      "first_frame": "general_episode_2_0.jpg",
+      "last_frame": "general_episode_2_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 21,
+      "asset": "../images/rich/ja/accor_episode_0",
+      "frames": 5,
+      "first_frame": "accor_episode_0_0.jpg",
+      "last_frame": "accor_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 22,
+      "asset": "../images/rich/ja/files_episode_0",
+      "frames": 7,
+      "first_frame": "files_episode_0_0.jpg",
+      "last_frame": "files_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 23,
+      "asset": "../images/rich/ja/settings_episode_0",
+      "frames": 7,
+      "first_frame": "settings_episode_0_0.jpg",
+      "last_frame": "settings_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 24,
+      "asset": "../images/rich/ja/phone_episode_0",
+      "frames": 7,
+      "first_frame": "phone_episode_0_0.jpg",
+      "last_frame": "phone_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ja.jsonl",
+      "line": 25,
+      "asset": "../images/rich/ja/accor_episode_1",
+      "frames": 7,
+      "first_frame": "accor_episode_1_0.jpg",
+      "last_frame": "accor_episode_1_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 1,
+      "asset": "../images/rich/ru/sport_episode_0",
+      "frames": 5,
+      "first_frame": "sport_episode_0_0.jpg",
+      "last_frame": "sport_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 2,
+      "asset": "../images/rich/ru/record_episode_0",
+      "frames": 6,
+      "first_frame": "record_episode_0_0.jpg",
+      "last_frame": "record_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 3,
+      "asset": "../images/rich/ru/general_episode_3",
+      "frames": 8,
+      "first_frame": "general_episode_3_0.jpg",
+      "last_frame": "general_episode_3_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 4,
+      "asset": "../images/rich/ru/music_episode_0",
+      "frames": 7,
+      "first_frame": "music_episode_0_ru_0.jpg",
+      "last_frame": "music_episode_0_ru_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 5,
+      "asset": "../images/rich/ru/booking_episode_1",
+      "frames": 6,
+      "first_frame": "booking_episode_1_0.jpg",
+      "last_frame": "booking_episode_1_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 6,
+      "asset": "../images/rich/ru/camera_episode_0",
+      "frames": 6,
+      "first_frame": "camera_episode_0_0.jpg",
+      "last_frame": "camera_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 7,
+      "asset": "../images/rich/ru/calendar_episode_0",
+      "frames": 7,
+      "first_frame": "calendar_episode_0_0.jpg",
+      "last_frame": "calendar_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 8,
+      "asset": "../images/rich/ru/clock_episode_0",
+      "frames": 7,
+      "first_frame": "clock_episode_0_ru_0.jpg",
+      "last_frame": "clock_episode_0_ru_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 9,
+      "asset": "../images/rich/ru/general_episode_4",
+      "frames": 8,
+      "first_frame": "general_episode_4_0.jpg",
+      "last_frame": "general_episode_4_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 10,
+      "asset": "../images/rich/ru/google_episode_0",
+      "frames": 5,
+      "first_frame": "google_episode_0_0.jpg",
+      "last_frame": "google_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 11,
+      "asset": "../images/rich/ru/general_episode_0",
+      "frames": 6,
+      "first_frame": "general_episode_0_0.jpg",
+      "last_frame": "general_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 12,
+      "asset": "../images/rich/ru/booking_episode_0",
+      "frames": 7,
+      "first_frame": "booking_episode_0_0.jpg",
+      "last_frame": "booking_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 13,
+      "asset": "../images/rich/ru/message_episode_0",
+      "frames": 6,
+      "first_frame": "message_episode_0_0.jpg",
+      "last_frame": "message_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 14,
+      "asset": "../images/rich/ru/freeform_episode_0",
+      "frames": 6,
+      "first_frame": "freeform_episode_0_0.jpg",
+      "last_frame": "freeform_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 15,
+      "asset": "../images/rich/ru/backend_episode_0",
+      "frames": 8,
+      "first_frame": "backend_episode_0_ru_0.jpg",
+      "last_frame": "backend_episode_0_ru_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 16,
+      "asset": "../images/rich/ru/weather_episode_0",
+      "frames": 7,
+      "first_frame": "weather_episode_0_0.jpg",
+      "last_frame": "weather_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 17,
+      "asset": "../images/rich/ru/general_episode_1",
+      "frames": 6,
+      "first_frame": "general_episode_1_0.jpg",
+      "last_frame": "general_episode_1_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 18,
+      "asset": "../images/rich/ru/homescreen_episode_0",
+      "frames": 6,
+      "first_frame": "homescreen_episode_0_ru_0.jpg",
+      "last_frame": "homescreen_episode_0_ru_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 19,
+      "asset": "../images/rich/ru/note_episode_0",
+      "frames": 7,
+      "first_frame": "note_episode_0_ru_0.jpg",
+      "last_frame": "note_episode_0_ru_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 20,
+      "asset": "../images/rich/ru/general_episode_2",
+      "frames": 6,
+      "first_frame": "general_episode_2_0.jpg",
+      "last_frame": "general_episode_2_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 21,
+      "asset": "../images/rich/ru/accor_episode_0",
+      "frames": 5,
+      "first_frame": "accor_episode_0_0.jpg",
+      "last_frame": "accor_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 22,
+      "asset": "../images/rich/ru/files_episode_0",
+      "frames": 7,
+      "first_frame": "files_episode_0_0.jpg",
+      "last_frame": "files_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 23,
+      "asset": "../images/rich/ru/settings_episode_0",
+      "frames": 7,
+      "first_frame": "settings_episode_0_0.jpg",
+      "last_frame": "settings_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 24,
+      "asset": "../images/rich/ru/phone_episode_0",
+      "frames": 7,
+      "first_frame": "phone_episode_0_0.jpg",
+      "last_frame": "phone_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_ru.jsonl",
+      "line": 25,
+      "asset": "../images/rich/ru/accor_episode_1",
+      "frames": 7,
+      "first_frame": "accor_episode_1_0.jpg",
+      "last_frame": "accor_episode_1_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 1,
+      "asset": "../images/rich/th/sport_episode_0",
+      "frames": 5,
+      "first_frame": "sport_episode_0_0.jpg",
+      "last_frame": "sport_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 2,
+      "asset": "../images/rich/th/record_episode_0",
+      "frames": 6,
+      "first_frame": "record_episode_0_0.jpg",
+      "last_frame": "record_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 3,
+      "asset": "../images/rich/th/general_episode_3",
+      "frames": 8,
+      "first_frame": "general_episode_3_0.jpg",
+      "last_frame": "general_episode_3_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 4,
+      "asset": "../images/rich/th/music_episode_0",
+      "frames": 7,
+      "first_frame": "music_episode_0_th_0.jpg",
+      "last_frame": "music_episode_0_th_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 5,
+      "asset": "../images/rich/th/booking_episode_1",
+      "frames": 6,
+      "first_frame": "booking_episode_1_0.jpg",
+      "last_frame": "booking_episode_1_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 6,
+      "asset": "../images/rich/th/camera_episode_0",
+      "frames": 6,
+      "first_frame": "camera_episode_0_0.jpg",
+      "last_frame": "camera_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 7,
+      "asset": "../images/rich/th/calendar_episode_0",
+      "frames": 7,
+      "first_frame": "calendar_episode_0_0.jpg",
+      "last_frame": "calendar_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 8,
+      "asset": "../images/rich/th/clock_episode_0",
+      "frames": 7,
+      "first_frame": "clock_episode_0_th_0.jpg",
+      "last_frame": "clock_episode_0_th_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 9,
+      "asset": "../images/rich/th/general_episode_4",
+      "frames": 8,
+      "first_frame": "general_episode_4_0.jpg",
+      "last_frame": "general_episode_4_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 10,
+      "asset": "../images/rich/th/google_episode_0",
+      "frames": 5,
+      "first_frame": "google_episode_0_0.jpg",
+      "last_frame": "google_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 11,
+      "asset": "../images/rich/th/general_episode_0",
+      "frames": 6,
+      "first_frame": "general_episode_0_0.jpg",
+      "last_frame": "general_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 12,
+      "asset": "../images/rich/th/booking_episode_0",
+      "frames": 7,
+      "first_frame": "booking_episode_0_0.jpg",
+      "last_frame": "booking_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 13,
+      "asset": "../images/rich/th/message_episode_0",
+      "frames": 6,
+      "first_frame": "message_episode_0_0.jpg",
+      "last_frame": "message_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 14,
+      "asset": "../images/rich/th/freeform_episode_0",
+      "frames": 6,
+      "first_frame": "freeform_episode_0_0.jpg",
+      "last_frame": "freeform_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 15,
+      "asset": "../images/rich/th/backend_episode_0",
+      "frames": 8,
+      "first_frame": "backend_episode_0_th_0.jpg",
+      "last_frame": "backend_episode_0_th_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 16,
+      "asset": "../images/rich/th/weather_episode_0",
+      "frames": 7,
+      "first_frame": "weather_episode_0_0.jpg",
+      "last_frame": "weather_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 17,
+      "asset": "../images/rich/th/general_episode_1",
+      "frames": 6,
+      "first_frame": "general_episode_1_0.jpg",
+      "last_frame": "general_episode_1_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 18,
+      "asset": "../images/rich/th/homescreen_episode_0",
+      "frames": 6,
+      "first_frame": "homescreen_episode_0_th_0.jpg",
+      "last_frame": "homescreen_episode_0_th_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 19,
+      "asset": "../images/rich/th/note_episode_0",
+      "frames": 7,
+      "first_frame": "note_episode_0_th_0.jpg",
+      "last_frame": "note_episode_0_th_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 20,
+      "asset": "../images/rich/th/general_episode_2",
+      "frames": 6,
+      "first_frame": "general_episode_2_0.jpg",
+      "last_frame": "general_episode_2_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 21,
+      "asset": "../images/rich/th/accor_episode_0",
+      "frames": 5,
+      "first_frame": "accor_episode_0_0.jpg",
+      "last_frame": "accor_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 22,
+      "asset": "../images/rich/th/files_episode_0",
+      "frames": 7,
+      "first_frame": "files_episode_0_0.jpg",
+      "last_frame": "files_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 23,
+      "asset": "../images/rich/th/settings_episode_0",
+      "frames": 7,
+      "first_frame": "settings_episode_0_0.jpg",
+      "last_frame": "settings_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 24,
+      "asset": "../images/rich/th/phone_episode_0",
+      "frames": 7,
+      "first_frame": "phone_episode_0_0.jpg",
+      "last_frame": "phone_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_th.jsonl",
+      "line": 25,
+      "asset": "../images/rich/th/accor_episode_1",
+      "frames": 7,
+      "first_frame": "accor_episode_1_0.jpg",
+      "last_frame": "accor_episode_1_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 1,
+      "asset": "../images/rich/zh/sport_episode_0",
+      "frames": 5,
+      "first_frame": "sport_episode_0_0.jpg",
+      "last_frame": "sport_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 2,
+      "asset": "../images/rich/zh/record_episode_0",
+      "frames": 7,
+      "first_frame": "record_episode_0_0.jpg",
+      "last_frame": "record_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 3,
+      "asset": "../images/rich/zh/general_episode_3",
+      "frames": 8,
+      "first_frame": "general_episode_3_0.jpg",
+      "last_frame": "general_episode_3_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 4,
+      "asset": "../images/rich/zh/music_episode_0",
+      "frames": 7,
+      "first_frame": "music_episode_0_zh_0.jpg",
+      "last_frame": "music_episode_0_zh_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 5,
+      "asset": "../images/rich/zh/booking_episode_1",
+      "frames": 6,
+      "first_frame": "booking_episode_1_0.jpg",
+      "last_frame": "booking_episode_1_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 6,
+      "asset": "../images/rich/zh/camera_episode_0",
+      "frames": 6,
+      "first_frame": "camera_episode_0_0.jpg",
+      "last_frame": "camera_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 7,
+      "asset": "../images/rich/zh/calendar_episode_0",
+      "frames": 7,
+      "first_frame": "calendar_episode_0_0.jpg",
+      "last_frame": "calendar_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 8,
+      "asset": "../images/rich/zh/clock_episode_0",
+      "frames": 7,
+      "first_frame": "clock_episode_0_zh_0.jpg",
+      "last_frame": "clock_episode_0_zh_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 9,
+      "asset": "../images/rich/zh/general_episode_4",
+      "frames": 8,
+      "first_frame": "general_episode_4_0.jpg",
+      "last_frame": "general_episode_4_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 10,
+      "asset": "../images/rich/zh/google_episode_0",
+      "frames": 5,
+      "first_frame": "google_episode_0_0.jpg",
+      "last_frame": "google_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 11,
+      "asset": "../images/rich/zh/general_episode_0",
+      "frames": 6,
+      "first_frame": "general_episode_0_0.jpg",
+      "last_frame": "general_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 12,
+      "asset": "../images/rich/zh/booking_episode_0",
+      "frames": 7,
+      "first_frame": "booking_episode_0_0.jpg",
+      "last_frame": "booking_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 13,
+      "asset": "../images/rich/zh/message_episode_0",
+      "frames": 6,
+      "first_frame": "message_episode_0_0.jpg",
+      "last_frame": "message_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 14,
+      "asset": "../images/rich/zh/freeform_episode_0",
+      "frames": 6,
+      "first_frame": "freeform_episode_0_0.jpg",
+      "last_frame": "freeform_episode_0_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 15,
+      "asset": "../images/rich/zh/backend_episode_0",
+      "frames": 8,
+      "first_frame": "backend_episode_0_zh_0.jpg",
+      "last_frame": "backend_episode_0_zh_7.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 16,
+      "asset": "../images/rich/zh/weather_episode_0",
+      "frames": 7,
+      "first_frame": "weather_episode_0_0.jpg",
+      "last_frame": "weather_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 17,
+      "asset": "../images/rich/zh/general_episode_1",
+      "frames": 6,
+      "first_frame": "general_episode_1_0.jpg",
+      "last_frame": "general_episode_1_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 18,
+      "asset": "../images/rich/zh/homescreen_episode_0",
+      "frames": 6,
+      "first_frame": "homescreen_episode_0_zh_0.jpg",
+      "last_frame": "homescreen_episode_0_zh_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 19,
+      "asset": "../images/rich/zh/note_episode_0",
+      "frames": 7,
+      "first_frame": "note_episode_0_zh_0.jpg",
+      "last_frame": "note_episode_0_zh_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 20,
+      "asset": "../images/rich/zh/general_episode_2",
+      "frames": 6,
+      "first_frame": "general_episode_2_0.jpg",
+      "last_frame": "general_episode_2_5.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 21,
+      "asset": "../images/rich/zh/accor_episode_0",
+      "frames": 5,
+      "first_frame": "accor_episode_0_0.jpg",
+      "last_frame": "accor_episode_0_4.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 22,
+      "asset": "../images/rich/zh/files_episode_0",
+      "frames": 7,
+      "first_frame": "files_episode_0_0.jpg",
+      "last_frame": "files_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 23,
+      "asset": "../images/rich/zh/settings_episode_0",
+      "frames": 7,
+      "first_frame": "settings_episode_0_0.jpg",
+      "last_frame": "settings_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 24,
+      "asset": "../images/rich/zh/phone_episode_0",
+      "frames": 7,
+      "first_frame": "phone_episode_0_0.jpg",
+      "last_frame": "phone_episode_0_6.jpg"
+    },
+    {
+      "file": "knowledge_rich_zh.jsonl",
+      "line": 25,
+      "asset": "../images/rich/zh/accor_episode_1",
+      "frames": 7,
+      "first_frame": "accor_episode_1_0.jpg",
+      "last_frame": "accor_episode_1_6.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 1,
+      "asset": "../images/sparse/en/backend_episode_0",
+      "frames": 3,
+      "first_frame": "backend_episode_0_en_0.jpg",
+      "last_frame": "backend_episode_0_en_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 2,
+      "asset": "../images/sparse/en/clock_episode_0",
+      "frames": 3,
+      "first_frame": "clock_episode_0_en_0.jpg",
+      "last_frame": "clock_episode_0_en_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 3,
+      "asset": "../images/sparse/en/music_episode_0",
+      "frames": 4,
+      "first_frame": "music_episode_0_en_0.jpg",
+      "last_frame": "music_episode_0_en_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 4,
+      "asset": "../images/sparse/en/settings_episode_0",
+      "frames": 3,
+      "first_frame": "settings_episode_0_en_0.jpg",
+      "last_frame": "settings_episode_0_en_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 5,
+      "asset": "../images/sparse/en/note_episode_0",
+      "frames": 3,
+      "first_frame": "note_episode_0_en_0.jpg",
+      "last_frame": "note_episode_0_en_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 6,
+      "asset": "../images/sparse/en/weather_episode_0",
+      "frames": 3,
+      "first_frame": "weather_episode_0_0.jpg",
+      "last_frame": "weather_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 7,
+      "asset": "../images/sparse/en/notes-iOS_episode_0",
+      "frames": 3,
+      "first_frame": "notes_episode_0_0.jpg",
+      "last_frame": "notes_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 8,
+      "asset": "../images/sparse/en/booking_episode_1",
+      "frames": 2,
+      "first_frame": "booking_episode_1_0.jpg",
+      "last_frame": "booking_episode_1_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 9,
+      "asset": "../images/sparse/en/booking_episode_0",
+      "frames": 3,
+      "first_frame": "booking_episode_0_0.jpg",
+      "last_frame": "booking_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 10,
+      "asset": "../images/sparse/en/sport_episode_0",
+      "frames": 2,
+      "first_frame": "sport_episode_0_0.jpg",
+      "last_frame": "sport_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 11,
+      "asset": "../images/sparse/en/google_episode_0",
+      "frames": 3,
+      "first_frame": "google_episode_0_0.jpg",
+      "last_frame": "google_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 12,
+      "asset": "../images/sparse/en/record_episode_0",
+      "frames": 3,
+      "first_frame": "record_episode_0_0.jpg",
+      "last_frame": "record_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 13,
+      "asset": "../images/sparse/en/phone_episode_0",
+      "frames": 3,
+      "first_frame": "phone_episode_0_0.jpg",
+      "last_frame": "phone_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 14,
+      "asset": "../images/sparse/en/message_episode_0",
+      "frames": 2,
+      "first_frame": "message_episode_0_0.jpg",
+      "last_frame": "message_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 15,
+      "asset": "../images/sparse/en/camera_episode_0",
+      "frames": 3,
+      "first_frame": "camera_episode_0_0.jpg",
+      "last_frame": "camera_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 16,
+      "asset": "../images/sparse/en/accor_episode_1",
+      "frames": 3,
+      "first_frame": "accor_episode_1_0.jpg",
+      "last_frame": "accor_episode_1_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 17,
+      "asset": "../images/sparse/en/accor_episode_0",
+      "frames": 3,
+      "first_frame": "accor_episode_0_0.jpg",
+      "last_frame": "accor_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 18,
+      "asset": "../images/sparse/en/general_episode_2",
+      "frames": 5,
+      "first_frame": "general_episode_2_0.jpg",
+      "last_frame": "general_episode_2_4.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 19,
+      "asset": "../images/sparse/en/clock-iOS_episode_0",
+      "frames": 4,
+      "first_frame": "clock_episode_0_0.jpg",
+      "last_frame": "clock_episode_0_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 20,
+      "asset": "../images/sparse/en/general_episode_3",
+      "frames": 5,
+      "first_frame": "general_episode_3_0.jpg",
+      "last_frame": "general_episode_3_4.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 21,
+      "asset": "../images/sparse/en/general_episode_4",
+      "frames": 3,
+      "first_frame": "general_episode_4_0.jpg",
+      "last_frame": "general_episode_4_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 22,
+      "asset": "../images/sparse/en/general_episode_0",
+      "frames": 3,
+      "first_frame": "general_episode_0_0.jpg",
+      "last_frame": "general_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 23,
+      "asset": "../images/sparse/en/settings-iOS_episode_0",
+      "frames": 2,
+      "first_frame": "settings_episode_0_0.jpg",
+      "last_frame": "settings_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 24,
+      "asset": "../images/sparse/en/general_episode_1",
+      "frames": 4,
+      "first_frame": "general_episode_1_0.jpg",
+      "last_frame": "general_episode_1_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_en.jsonl",
+      "line": 25,
+      "asset": "../images/sparse/en/homescreen_episode_0",
+      "frames": 3,
+      "first_frame": "homescreen_episode_0_0.jpg",
+      "last_frame": "homescreen_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 1,
+      "asset": "../images/sparse/fr/backend_episode_0",
+      "frames": 3,
+      "first_frame": "backend_episode_0_fr_0.jpg",
+      "last_frame": "backend_episode_0_fr_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 2,
+      "asset": "../images/sparse/fr/clock_episode_0",
+      "frames": 3,
+      "first_frame": "clock_episode_0_fr_0.jpg",
+      "last_frame": "clock_episode_0_fr_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 3,
+      "asset": "../images/sparse/fr/music_episode_0",
+      "frames": 4,
+      "first_frame": "music_episode_0_fr_0.jpg",
+      "last_frame": "music_episode_0_fr_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 4,
+      "asset": "../images/sparse/fr/settings_episode_0",
+      "frames": 3,
+      "first_frame": "settings_episode_0_fr_0.jpg",
+      "last_frame": "settings_episode_0_fr_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 5,
+      "asset": "../images/sparse/fr/note_episode_0",
+      "frames": 3,
+      "first_frame": "note_episode_0_fr_0.jpg",
+      "last_frame": "note_episode_0_fr_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 6,
+      "asset": "../images/sparse/fr/weather_episode_0",
+      "frames": 3,
+      "first_frame": "weather_episode_0_0.jpg",
+      "last_frame": "weather_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 7,
+      "asset": "../images/sparse/fr/notes-iOS_episode_0",
+      "frames": 3,
+      "first_frame": "notes_episode_0_0.jpg",
+      "last_frame": "notes_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 8,
+      "asset": "../images/sparse/fr/booking_episode_1",
+      "frames": 2,
+      "first_frame": "booking_episode_1_0.jpg",
+      "last_frame": "booking_episode_1_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 9,
+      "asset": "../images/sparse/fr/booking_episode_0",
+      "frames": 3,
+      "first_frame": "booking_episode_0_0.jpg",
+      "last_frame": "booking_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 10,
+      "asset": "../images/sparse/fr/sport_episode_0",
+      "frames": 2,
+      "first_frame": "sport_episode_0_0.jpg",
+      "last_frame": "sport_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 11,
+      "asset": "../images/sparse/fr/google_episode_0",
+      "frames": 3,
+      "first_frame": "google_episode_0_0.jpg",
+      "last_frame": "google_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 12,
+      "asset": "../images/sparse/fr/record_episode_0",
+      "frames": 3,
+      "first_frame": "record_episode_0_0.jpg",
+      "last_frame": "record_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 13,
+      "asset": "../images/sparse/fr/phone_episode_0",
+      "frames": 3,
+      "first_frame": "phone_episode_0_0.jpg",
+      "last_frame": "phone_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 14,
+      "asset": "../images/sparse/fr/message_episode_0",
+      "frames": 2,
+      "first_frame": "message_episode_0_0.jpg",
+      "last_frame": "message_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 15,
+      "asset": "../images/sparse/fr/camera_episode_0",
+      "frames": 3,
+      "first_frame": "camera_episode_0_0.jpg",
+      "last_frame": "camera_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 16,
+      "asset": "../images/sparse/fr/accor_episode_1",
+      "frames": 3,
+      "first_frame": "accor_episode_1_0.jpg",
+      "last_frame": "accor_episode_1_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 17,
+      "asset": "../images/sparse/fr/accor_episode_0",
+      "frames": 3,
+      "first_frame": "accor_episode_0_0.jpg",
+      "last_frame": "accor_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 18,
+      "asset": "../images/sparse/fr/general_episode_2",
+      "frames": 5,
+      "first_frame": "general_episode_2_0.jpg",
+      "last_frame": "general_episode_2_4.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 19,
+      "asset": "../images/sparse/fr/clock-iOS_episode_0",
+      "frames": 4,
+      "first_frame": "clock_episode_0_0.jpg",
+      "last_frame": "clock_episode_0_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 20,
+      "asset": "../images/sparse/fr/general_episode_3",
+      "frames": 5,
+      "first_frame": "general_episode_3_0.jpg",
+      "last_frame": "general_episode_3_4.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 21,
+      "asset": "../images/sparse/fr/general_episode_4",
+      "frames": 3,
+      "first_frame": "general_episode_4_0.jpg",
+      "last_frame": "general_episode_4_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 22,
+      "asset": "../images/sparse/fr/general_episode_0",
+      "frames": 3,
+      "first_frame": "general_episode_0_0.jpg",
+      "last_frame": "general_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 23,
+      "asset": "../images/sparse/fr/settings-iOS_episode_0",
+      "frames": 2,
+      "first_frame": "settings_episode_0_0.jpg",
+      "last_frame": "settings_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 24,
+      "asset": "../images/sparse/fr/general_episode_1",
+      "frames": 4,
+      "first_frame": "general_episode_1_0.jpg",
+      "last_frame": "general_episode_1_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_fr.jsonl",
+      "line": 25,
+      "asset": "../images/sparse/fr/homescreen_episode_0",
+      "frames": 3,
+      "first_frame": "homescreen_episode_0_0.jpg",
+      "last_frame": "homescreen_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 1,
+      "asset": "../images/sparse/ja/backend_episode_0",
+      "frames": 3,
+      "first_frame": "backend_episode_0_ja_0.jpg",
+      "last_frame": "backend_episode_0_ja_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 2,
+      "asset": "../images/sparse/ja/clock_episode_0",
+      "frames": 3,
+      "first_frame": "clock_episode_0_ja_0.jpg",
+      "last_frame": "clock_episode_0_ja_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 3,
+      "asset": "../images/sparse/ja/music_episode_0",
+      "frames": 4,
+      "first_frame": "music_episode_0_ja_0.jpg",
+      "last_frame": "music_episode_0_ja_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 4,
+      "asset": "../images/sparse/ja/settings_episode_0",
+      "frames": 3,
+      "first_frame": "Screenshot_2025-07-08-19-46-51-110_com.android.settings.jpg",
+      "last_frame": "Screenshot_2025-07-08-19-46-57-324_com.miui.securitycenter.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 5,
+      "asset": "../images/sparse/ja/note_episode_0",
+      "frames": 3,
+      "first_frame": "note_episode_0_ja_0.jpg",
+      "last_frame": "note_episode_0_ja_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 6,
+      "asset": "../images/sparse/ja/weather_episode_0",
+      "frames": 3,
+      "first_frame": "weather_episode_0_0.jpg",
+      "last_frame": "weather_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 7,
+      "asset": "../images/sparse/ja/notes-iOS_episode_0",
+      "frames": 3,
+      "first_frame": "notes_episode_0_0.jpg",
+      "last_frame": "notes_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 8,
+      "asset": "../images/sparse/ja/booking_episode_1",
+      "frames": 2,
+      "first_frame": "booking_episode_1_0.jpg",
+      "last_frame": "booking_episode_1_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 9,
+      "asset": "../images/sparse/ja/booking_episode_0",
+      "frames": 3,
+      "first_frame": "booking_episode_0_0.jpg",
+      "last_frame": "booking_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 10,
+      "asset": "../images/sparse/ja/sport_episode_0",
+      "frames": 2,
+      "first_frame": "sport_episode_0_0.jpg",
+      "last_frame": "sport_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 11,
+      "asset": "../images/sparse/ja/google_episode_0",
+      "frames": 3,
+      "first_frame": "google_episode_0_0.jpg",
+      "last_frame": "google_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 12,
+      "asset": "../images/sparse/ja/record_episode_0",
+      "frames": 3,
+      "first_frame": "record_episode_0_0.jpg",
+      "last_frame": "record_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 13,
+      "asset": "../images/sparse/ja/phone_episode_0",
+      "frames": 3,
+      "first_frame": "phone_episode_0_0.jpg",
+      "last_frame": "phone_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 14,
+      "asset": "../images/sparse/ja/message_episode_0",
+      "frames": 2,
+      "first_frame": "message_episode_0_0.jpg",
+      "last_frame": "message_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 15,
+      "asset": "../images/sparse/ja/camera_episode_0",
+      "frames": 3,
+      "first_frame": "camera_episode_0_0.jpg",
+      "last_frame": "camera_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 16,
+      "asset": "../images/sparse/ja/accor_episode_1",
+      "frames": 3,
+      "first_frame": "accor_episode_1_0.jpg",
+      "last_frame": "accor_episode_1_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 17,
+      "asset": "../images/sparse/ja/accor_episode_0",
+      "frames": 3,
+      "first_frame": "accor_episode_0_0.jpg",
+      "last_frame": "accor_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 18,
+      "asset": "../images/sparse/ja/general_episode_2",
+      "frames": 5,
+      "first_frame": "general_episode_2_0.jpg",
+      "last_frame": "general_episode_2_4.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 19,
+      "asset": "../images/sparse/ja/clock-iOS_episode_0",
+      "frames": 4,
+      "first_frame": "clock_episode_0_0.jpg",
+      "last_frame": "clock_episode_0_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 20,
+      "asset": "../images/sparse/ja/general_episode_3",
+      "frames": 5,
+      "first_frame": "general_episode_3_0.jpg",
+      "last_frame": "general_episode_3_4.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 21,
+      "asset": "../images/sparse/ja/general_episode_4",
+      "frames": 3,
+      "first_frame": "general_episode_4_0.jpg",
+      "last_frame": "general_episode_4_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 22,
+      "asset": "../images/sparse/ja/general_episode_0",
+      "frames": 3,
+      "first_frame": "general_episode_0_0.jpg",
+      "last_frame": "general_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 23,
+      "asset": "../images/sparse/ja/settings-iOS_episode_0",
+      "frames": 2,
+      "first_frame": "settings_episode_0_0.jpg",
+      "last_frame": "settings_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 24,
+      "asset": "../images/sparse/ja/general_episode_1",
+      "frames": 4,
+      "first_frame": "general_episode_1_0.jpg",
+      "last_frame": "general_episode_1_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ja.jsonl",
+      "line": 25,
+      "asset": "../images/sparse/ja/homescreen_episode_0",
+      "frames": 3,
+      "first_frame": "homescreen_episode_0_0.jpg",
+      "last_frame": "homescreen_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 1,
+      "asset": "../images/sparse/ru/backend_episode_0",
+      "frames": 3,
+      "first_frame": "backend_episode_0_ru_0.jpg",
+      "last_frame": "backend_episode_0_ru_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 2,
+      "asset": "../images/sparse/ru/clock_episode_0",
+      "frames": 3,
+      "first_frame": "clock_episode_0_ru_0.jpg",
+      "last_frame": "clock_episode_0_ru_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 3,
+      "asset": "../images/sparse/ru/music_episode_0",
+      "frames": 4,
+      "first_frame": "music_episode_0_ru_0.jpg",
+      "last_frame": "music_episode_0_ru_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 4,
+      "asset": "../images/sparse/ru/settings_episode_0",
+      "frames": 3,
+      "first_frame": "settings_episode_0_ru_0.jpg",
+      "last_frame": "settings_episode_0_ru_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 5,
+      "asset": "../images/sparse/ru/note_episode_0",
+      "frames": 3,
+      "first_frame": "note_episode_0_ru_0.jpg",
+      "last_frame": "note_episode_0_ru_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 6,
+      "asset": "../images/sparse/ru/weather_episode_0",
+      "frames": 3,
+      "first_frame": "weather_episode_0_0.jpg",
+      "last_frame": "weather_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 7,
+      "asset": "../images/sparse/ru/notes-iOS_episode_0",
+      "frames": 3,
+      "first_frame": "notes_episode_0_0.jpg",
+      "last_frame": "notes_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 8,
+      "asset": "../images/sparse/ru/booking_episode_1",
+      "frames": 2,
+      "first_frame": "booking_episode_1_0.jpg",
+      "last_frame": "booking_episode_1_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 9,
+      "asset": "../images/sparse/ru/booking_episode_0",
+      "frames": 3,
+      "first_frame": "booking_episode_0_0.jpg",
+      "last_frame": "booking_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 10,
+      "asset": "../images/sparse/ru/sport_episode_0",
+      "frames": 2,
+      "first_frame": "sport_episode_0_0.jpg",
+      "last_frame": "sport_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 11,
+      "asset": "../images/sparse/ru/google_episode_0",
+      "frames": 3,
+      "first_frame": "google_episode_0_0.jpg",
+      "last_frame": "google_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 12,
+      "asset": "../images/sparse/ru/record_episode_0",
+      "frames": 3,
+      "first_frame": "record_episode_0_0.jpg",
+      "last_frame": "record_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 13,
+      "asset": "../images/sparse/ru/phone_episode_0",
+      "frames": 3,
+      "first_frame": "phone_episode_0_0.jpg",
+      "last_frame": "phone_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 14,
+      "asset": "../images/sparse/ru/message_episode_0",
+      "frames": 2,
+      "first_frame": "message_episode_0_0.jpg",
+      "last_frame": "message_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 15,
+      "asset": "../images/sparse/ru/camera_episode_0",
+      "frames": 3,
+      "first_frame": "camera_episode_0_0.jpg",
+      "last_frame": "camera_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 16,
+      "asset": "../images/sparse/ru/accor_episode_1",
+      "frames": 3,
+      "first_frame": "accor_episode_1_0.jpg",
+      "last_frame": "accor_episode_1_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 17,
+      "asset": "../images/sparse/ru/accor_episode_0",
+      "frames": 3,
+      "first_frame": "accor_episode_0_0.jpg",
+      "last_frame": "accor_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 18,
+      "asset": "../images/sparse/ru/general_episode_2",
+      "frames": 5,
+      "first_frame": "general_episode_2_0.jpg",
+      "last_frame": "general_episode_2_4.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 19,
+      "asset": "../images/sparse/ru/clock-iOS_episode_0",
+      "frames": 4,
+      "first_frame": "clock_episode_0_0.jpg",
+      "last_frame": "clock_episode_0_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 20,
+      "asset": "../images/sparse/ru/general_episode_3",
+      "frames": 5,
+      "first_frame": "general_episode_3_0.jpg",
+      "last_frame": "general_episode_3_4.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 21,
+      "asset": "../images/sparse/ru/general_episode_4",
+      "frames": 3,
+      "first_frame": "general_episode_4_0.jpg",
+      "last_frame": "general_episode_4_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 22,
+      "asset": "../images/sparse/ru/general_episode_0",
+      "frames": 3,
+      "first_frame": "general_episode_0_0.jpg",
+      "last_frame": "general_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 23,
+      "asset": "../images/sparse/ru/settings-iOS_episode_0",
+      "frames": 2,
+      "first_frame": "settings_episode_0_0.jpg",
+      "last_frame": "settings_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 24,
+      "asset": "../images/sparse/ru/general_episode_1",
+      "frames": 4,
+      "first_frame": "general_episode_1_0.jpg",
+      "last_frame": "general_episode_1_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_ru.jsonl",
+      "line": 25,
+      "asset": "../images/sparse/ru/homescreen_episode_0",
+      "frames": 3,
+      "first_frame": "homescreen_episode_0_0.jpg",
+      "last_frame": "homescreen_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 1,
+      "asset": "../images/sparse/th/backend_episode_0",
+      "frames": 3,
+      "first_frame": "backend_episode_0_th_0.jpg",
+      "last_frame": "backend_episode_0_th_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 2,
+      "asset": "../images/sparse/th/clock_episode_0",
+      "frames": 3,
+      "first_frame": "clock_episode_0_th_0.jpg",
+      "last_frame": "clock_episode_0_th_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 3,
+      "asset": "../images/sparse/th/music_episode_0",
+      "frames": 4,
+      "first_frame": "music_episode_0_th_0.jpg",
+      "last_frame": "music_episode_0_th_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 4,
+      "asset": "../images/sparse/th/settings_episode_0",
+      "frames": 3,
+      "first_frame": "settings_episode_0_th_0.jpg",
+      "last_frame": "settings_episode_0_th_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 5,
+      "asset": "../images/sparse/th/note_episode_0",
+      "frames": 3,
+      "first_frame": "note_episode_0_th_0.jpg",
+      "last_frame": "note_episode_0_th_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 6,
+      "asset": "../images/sparse/th/weather_episode_0",
+      "frames": 3,
+      "first_frame": "weather_episode_0_0.jpg",
+      "last_frame": "weather_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 7,
+      "asset": "../images/sparse/th/notes-iOS_episode_0",
+      "frames": 3,
+      "first_frame": "notes_episode_0_0.jpg",
+      "last_frame": "notes_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 8,
+      "asset": "../images/sparse/th/booking_episode_1",
+      "frames": 2,
+      "first_frame": "booking_episode_1_0.jpg",
+      "last_frame": "booking_episode_1_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 9,
+      "asset": "../images/sparse/th/booking_episode_0",
+      "frames": 3,
+      "first_frame": "booking_episode_0_0.jpg",
+      "last_frame": "booking_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 10,
+      "asset": "../images/sparse/th/sport_episode_0",
+      "frames": 2,
+      "first_frame": "sport_episode_0_0.jpg",
+      "last_frame": "sport_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 11,
+      "asset": "../images/sparse/th/google_episode_0",
+      "frames": 3,
+      "first_frame": "google_episode_0_0.jpg",
+      "last_frame": "google_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 12,
+      "asset": "../images/sparse/th/record_episode_0",
+      "frames": 3,
+      "first_frame": "record_episode_0_0.jpg",
+      "last_frame": "record_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 13,
+      "asset": "../images/sparse/th/phone_episode_0",
+      "frames": 3,
+      "first_frame": "phone_episode_0_0.jpg",
+      "last_frame": "phone_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 14,
+      "asset": "../images/sparse/th/message_episode_0",
+      "frames": 2,
+      "first_frame": "message_episode_0_0.jpg",
+      "last_frame": "message_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 15,
+      "asset": "../images/sparse/th/camera_episode_0",
+      "frames": 3,
+      "first_frame": "camera_episode_0_0.jpg",
+      "last_frame": "camera_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 16,
+      "asset": "../images/sparse/th/accor_episode_1",
+      "frames": 3,
+      "first_frame": "accor_episode_1_0.jpg",
+      "last_frame": "accor_episode_1_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 17,
+      "asset": "../images/sparse/th/accor_episode_0",
+      "frames": 3,
+      "first_frame": "accor_episode_0_0.jpg",
+      "last_frame": "accor_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 18,
+      "asset": "../images/sparse/th/general_episode_2",
+      "frames": 5,
+      "first_frame": "general_episode_2_0.jpg",
+      "last_frame": "general_episode_2_4.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 19,
+      "asset": "../images/sparse/th/clock-iOS_episode_0",
+      "frames": 4,
+      "first_frame": "clock_episode_0_0.jpg",
+      "last_frame": "clock_episode_0_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 20,
+      "asset": "../images/sparse/th/general_episode_3",
+      "frames": 5,
+      "first_frame": "general_episode_3_0.jpg",
+      "last_frame": "general_episode_3_4.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 21,
+      "asset": "../images/sparse/th/general_episode_4",
+      "frames": 3,
+      "first_frame": "general_episode_4_0.jpg",
+      "last_frame": "general_episode_4_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 22,
+      "asset": "../images/sparse/th/general_episode_0",
+      "frames": 3,
+      "first_frame": "general_episode_0_0.jpg",
+      "last_frame": "general_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 23,
+      "asset": "../images/sparse/th/settings-iOS_episode_0",
+      "frames": 2,
+      "first_frame": "settings_episode_0_0.jpg",
+      "last_frame": "settings_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 24,
+      "asset": "../images/sparse/th/general_episode_1",
+      "frames": 4,
+      "first_frame": "general_episode_1_0.jpg",
+      "last_frame": "general_episode_1_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_th.jsonl",
+      "line": 25,
+      "asset": "../images/sparse/th/homescreen_episode_0",
+      "frames": 3,
+      "first_frame": "homescreen_episode_0_0.jpg",
+      "last_frame": "homescreen_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 1,
+      "asset": "../images/sparse/zh/backend_episode_0",
+      "frames": 3,
+      "first_frame": "backend_episode_0_zh_0.jpg",
+      "last_frame": "backend_episode_0_zh_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 2,
+      "asset": "../images/sparse/zh/clock_episode_0",
+      "frames": 3,
+      "first_frame": "clock_episode_0_zh_0.jpg",
+      "last_frame": "clock_episode_0_zh_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 3,
+      "asset": "../images/sparse/zh/music_episode_0",
+      "frames": 4,
+      "first_frame": "music_episode_0_zh_0.jpg",
+      "last_frame": "music_episode_0_zh_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 4,
+      "asset": "../images/sparse/zh/settings_episode_0",
+      "frames": 3,
+      "first_frame": "settings_episode_0_zh_0.jpg",
+      "last_frame": "settings_episode_0_zh_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 5,
+      "asset": "../images/sparse/zh/note_episode_0",
+      "frames": 3,
+      "first_frame": "note_episode_0_zh_0.jpg",
+      "last_frame": "note_episode_0_zh_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 6,
+      "asset": "../images/sparse/zh/weather_episode_0",
+      "frames": 3,
+      "first_frame": "weather_episode_0_0.jpg",
+      "last_frame": "weather_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 7,
+      "asset": "../images/sparse/zh/booking_episode_1",
+      "frames": 2,
+      "first_frame": "booking_episode_1_0.jpg",
+      "last_frame": "booking_episode_1_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 8,
+      "asset": "../images/sparse/zh/booking_episode_0",
+      "frames": 3,
+      "first_frame": "booking_episode_0_0.jpg",
+      "last_frame": "booking_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 9,
+      "asset": "../images/sparse/zh/sport_episode_0",
+      "frames": 2,
+      "first_frame": "sport_episode_0_0.jpg",
+      "last_frame": "sport_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 10,
+      "asset": "../images/sparse/zh/google_episode_0",
+      "frames": 3,
+      "first_frame": "google_episode_0_0.jpg",
+      "last_frame": "google_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 11,
+      "asset": "../images/sparse/zh/record_episode_0",
+      "frames": 3,
+      "first_frame": "record_episode_0_0.jpg",
+      "last_frame": "record_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 12,
+      "asset": "../images/sparse/zh/phone_episode_0",
+      "frames": 3,
+      "first_frame": "phone_episode_0_0.jpg",
+      "last_frame": "phone_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 13,
+      "asset": "../images/sparse/zh/message_episode_0",
+      "frames": 2,
+      "first_frame": "message_episode_0_0.jpg",
+      "last_frame": "message_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 14,
+      "asset": "../images/sparse/zh/camera_episode_0",
+      "frames": 3,
+      "first_frame": "camera_episode_0_0.jpg",
+      "last_frame": "camera_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 15,
+      "asset": "../images/sparse/zh/accor_episode_1",
+      "frames": 3,
+      "first_frame": "accor_episode_1_0.jpg",
+      "last_frame": "accor_episode_1_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 16,
+      "asset": "../images/sparse/zh/accor_episode_0",
+      "frames": 3,
+      "first_frame": "accor_episode_0_0.jpg",
+      "last_frame": "accor_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 17,
+      "asset": "../images/sparse/zh/general_episode_2",
+      "frames": 5,
+      "first_frame": "general_episode_2_0.jpg",
+      "last_frame": "general_episode_2_4.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 18,
+      "asset": "../images/sparse/zh/clock-iOS_episode_0",
+      "frames": 4,
+      "first_frame": "clock_episode_0_0.jpg",
+      "last_frame": "clock_episode_0_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 19,
+      "asset": "../images/sparse/zh/general_episode_3",
+      "frames": 5,
+      "first_frame": "general_episode_3_0.jpg",
+      "last_frame": "general_episode_3_4.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 20,
+      "asset": "../images/sparse/zh/general_episode_4",
+      "frames": 3,
+      "first_frame": "general_episode_4_0.jpg",
+      "last_frame": "general_episode_4_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 21,
+      "asset": "../images/sparse/zh/general_episode_0",
+      "frames": 3,
+      "first_frame": "general_episode_0_0.jpg",
+      "last_frame": "general_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 22,
+      "asset": "../images/sparse/zh/settings-iOS_episode_0",
+      "frames": 2,
+      "first_frame": "settings_episode_0_0.jpg",
+      "last_frame": "settings_episode_0_1.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 23,
+      "asset": "../images/sparse/zh/general_episode_1",
+      "frames": 4,
+      "first_frame": "general_episode_1_0.jpg",
+      "last_frame": "general_episode_1_3.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 24,
+      "asset": "../images/sparse/zh/homescreen_episode_0",
+      "frames": 3,
+      "first_frame": "homescreen_episode_0_0.jpg",
+      "last_frame": "homescreen_episode_0_2.jpg"
+    },
+    {
+      "file": "knowledge_sparse_zh.jsonl",
+      "line": 25,
+      "asset": "../images/sparse/zh/notes-iOS_episode_0",
+      "frames": 3,
+      "first_frame": "notes_episode_0_0.jpg",
+      "last_frame": "notes_episode_0_2.jpg"
+    }
+  ]
+}
