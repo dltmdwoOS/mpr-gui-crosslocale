@@ -13,11 +13,17 @@ def test_build_cross_locale_pair_rows():
                     "en": {
                         "sample_id": "wf::1/foo_1.jpg::en",
                         "asset": "../images/1/en/foo_en_1.jpg",
+                        "asset_path": "data/raw/mpr_gui_bench/images/1/en/foo_en_1.jpg",
+                        "image_paths": ["data/raw/mpr_gui_bench/images/1/en/foo_en_1.jpg"],
+                        "num_images": 1,
                         "gold_label": "A",
                     },
                     "ja": {
                         "sample_id": "wf::1/foo_1.jpg::ja",
                         "asset": "../images/1/ja/foo_ja_1.jpg",
+                        "asset_path": "data/raw/mpr_gui_bench/images/1/ja/foo_ja_1.jpg",
+                        "image_paths": ["data/raw/mpr_gui_bench/images/1/ja/foo_ja_1.jpg"],
+                        "num_images": 1,
                         "gold_label": "A",
                     },
                 },

@@ -15,6 +15,8 @@ It is generated from local files under `data/raw/mpr_gui_bench`.
 - Missing asset references: `0`
 - Malformed answer fields: `0`
 - Non-label-only answer fields: `131`
+- Option parse status: `{'ok': 13470}`
+- Non-A/B/C/D option-order rows: `2`
 - Hugging Face dataset SHA: `c1edb808d424a2fa7bc4a2e601d39b431b04acd5`
 - MPR-GUI-Bench GitHub commit: `e4f1cfcd11ee0d0dfa8ee6a0a97c2c782ce21aba`
 
@@ -25,6 +27,8 @@ It is generated from local files under `data/raw/mpr_gui_bench`.
 - All audited asset references resolve locally after normalizing `../images/...` paths.
 - RI and SI are completely label-biased in the public option order: every audited RI/SI answer is `A`.
 - The audit found no malformed answers under the conservative A/B/C/D label parser.
+- Option parsing succeeds for all rows. Two rows preserve a non-standard option order `C,A,B,D` in the raw question text.
+- Parallel coverage is structural: it follows official filename conventions and gold-label consistency, not manual visual verification of every screenshot.
 
 ## Generated Artifacts
 
@@ -34,6 +38,9 @@ It is generated from local files under `data/raw/mpr_gui_bench`.
 - Sample manifest: `data/manifests/mpr_gui_manifest.jsonl`.
 - Parallel index: `data/manifests/parallel_index.json`.
 - Directed cross-locale pairs: `data/manifests/cross_locale_pairs.jsonl`.
+- Canonical matched inference inputs: `data/manifests/canonical_inputs.jsonl`.
+- Raw mismatch inference inputs: `data/manifests/mismatch_inputs.jsonl`.
+  `mismatch_inputs.jsonl` is deduplicated: question text/options are resolved from `question_sample_id` in the sample manifest.
 
 ## Rows By Language
 
@@ -124,6 +131,12 @@ It is generated from local files under `data/raw/mpr_gui_bench`.
 | `wi_zh.jsonl` | 366 | wi | zh | 149 | 141 | 63 | 13 | 0 | `c26e00645410` |
 
 ## Parallel Coverage
+
+## Option Structure
+
+- Option parse status counts: `{'ok': 13470}`
+- Option-order counts: `{'A,B,C,D': 13468, 'C,A,B,D': 2}`
+- The canonical prompt must still use `question_raw` verbatim. Parsed options are for auditing, permutation controls, and later constrained scoring.
 
 | Dimension | Unique state keys | Complete 6-language states | Coverage histogram |
 | --- | ---: | ---: | --- |

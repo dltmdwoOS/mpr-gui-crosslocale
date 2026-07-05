@@ -1658,6 +1658,14 @@
     }
   ],
   "noncanonical_answer_fields_count": 131,
+  "option_parse_status": {
+    "ok": 13470
+  },
+  "option_order_counts": {
+    "A,B,C,D": 13468,
+    "C,A,B,D": 2
+  },
+  "non_abcd_option_order_count": 2,
   "duplicate_questions": {
     "abs_el_fr.jsonl": 1
   },

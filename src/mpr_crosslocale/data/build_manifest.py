@@ -4,6 +4,9 @@ import argparse
 import json
 from pathlib import Path
 
+from mpr_crosslocale.data.episode_loader import sorted_episode_frames
+from mpr_crosslocale.data.input_specs import build_canonical_inputs, build_mismatch_inputs
+from mpr_crosslocale.data.options import parse_question_options
 from mpr_crosslocale.data.parallel_index import canonical_state_key
 from mpr_crosslocale.data.pair_builder import build_cross_locale_pair_rows
 from mpr_crosslocale.data.validate_release import DIMENSION_FILES, LANGUAGES, iter_jsonl, resolve_asset_path, row_asset
@@ -23,7 +26,16 @@ def build_manifest(root: Path) -> list[dict[str, object]]:
         )
         for line_no, row in iter_jsonl(qas_path):
             asset, is_episode = row_asset(row)
+            asset_path = resolve_asset_path(images_dir, asset) if asset else Path("")
+            if is_episode and asset_path.exists():
+                image_paths = [path.as_posix() for path in sorted_episode_frames(asset_path)]
+            elif asset:
+                image_paths = [asset_path.as_posix()]
+            else:
+                image_paths = []
             state_key = canonical_state_key(asset)
+            question_raw = str(row.get("question", ""))
+            parsed_options = parse_question_options(question_raw)
             rows.append(
                 {
                     "sample_id": f"{dimension}::{state_key}::{language}",
@@ -33,13 +45,22 @@ def build_manifest(root: Path) -> list[dict[str, object]]:
                     "language": language,
                     "qas_file": qas_path.name,
                     "qas_line": line_no,
-                    "question": row.get("question", ""),
+                    "question": question_raw,
+                    "question_raw": question_raw,
+                    "question_stem": parsed_options.question_stem,
+                    "options": parsed_options.options,
+                    "option_order": parsed_options.option_order,
+                    "option_count": parsed_options.option_count,
+                    "option_parse_status": parsed_options.option_parse_status,
                     "answer_raw": row.get("answer", ""),
                     "gold_label": parse_label(str(row.get("answer", ""))),
                     "asset": asset,
-                    "asset_path": resolve_asset_path(images_dir, asset).as_posix() if asset else "",
+                    "asset_path": asset_path.as_posix() if asset else "",
+                    "image_paths": image_paths,
+                    "num_images": len(image_paths),
+                    "frame_order": "natural_sort" if is_episode else "single_image",
                     "is_episode": is_episode,
-                    "asset_exists": resolve_asset_path(images_dir, asset).exists() if asset else False,
+                    "asset_exists": asset_path.exists() if asset else False,
                 }
             )
     return rows
@@ -55,6 +76,9 @@ def build_parallel_index(manifest: list[dict[str, object]]) -> dict[str, object]
             "qas_file": row["qas_file"],
             "qas_line": row["qas_line"],
             "asset": row["asset"],
+            "asset_path": row["asset_path"],
+            "image_paths": row["image_paths"],
+            "num_images": row["num_images"],
             "gold_label": row["gold_label"],
             "asset_exists": row["asset_exists"],
         }
@@ -97,6 +121,8 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--out", type=Path, default=Path("data/manifests/mpr_gui_manifest.jsonl"))
     parser.add_argument("--parallel-out", type=Path, default=Path("data/manifests/parallel_index.json"))
     parser.add_argument("--pairs-out", type=Path, default=Path("data/manifests/cross_locale_pairs.jsonl"))
+    parser.add_argument("--canonical-inputs-out", type=Path, default=Path("data/manifests/canonical_inputs.jsonl"))
+    parser.add_argument("--mismatch-inputs-out", type=Path, default=Path("data/manifests/mismatch_inputs.jsonl"))
     args, _ = parser.parse_known_args(argv)
     manifest = build_manifest(args.root)
     write_jsonl(args.out, manifest)
@@ -108,9 +134,15 @@ def main(argv: list[str] | None = None) -> None:
     )
     pair_rows = build_cross_locale_pair_rows(parallel_index)
     write_jsonl(args.pairs_out, pair_rows)
+    canonical_inputs = build_canonical_inputs(manifest)
+    mismatch_inputs = build_mismatch_inputs(manifest)
+    write_jsonl(args.canonical_inputs_out, canonical_inputs)
+    write_jsonl(args.mismatch_inputs_out, mismatch_inputs)
     print(f"Wrote {len(manifest)} manifest rows to {args.out}")
     print(f"Wrote parallel index to {args.parallel_out}")
     print(f"Wrote {len(pair_rows)} cross-locale pair rows to {args.pairs_out}")
+    print(f"Wrote {len(canonical_inputs)} canonical input rows to {args.canonical_inputs_out}")
+    print(f"Wrote {len(mismatch_inputs)} mismatch input rows to {args.mismatch_inputs_out}")
 
 
 if __name__ == "__main__":

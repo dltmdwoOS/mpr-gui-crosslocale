@@ -15,13 +15,18 @@ DEFAULT_HF_REPO = "chenruihan/MPR-GUI-Bench"
 DEFAULT_GITHUB_REPO = "https://github.com/chenruihan32/MPR-GUI-Bench.git"
 
 
-def download_hf_images(repo_id: str, images_dir: Path) -> dict[str, object]:
+def load_source_lock(path: Path) -> dict[str, object]:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def download_hf_images(repo_id: str, images_dir: Path, revision: str | None) -> dict[str, object]:
     images_dir.mkdir(parents=True, exist_ok=True)
     api = HfApi()
-    info = api.dataset_info(repo_id, files_metadata=True)
+    info = api.dataset_info(repo_id, revision=revision, files_metadata=True)
     snapshot_download(
         repo_id=repo_id,
         repo_type="dataset",
+        revision=revision,
         local_dir=images_dir,
         allow_patterns=[
             "1/**",
@@ -38,12 +43,13 @@ def download_hf_images(repo_id: str, images_dir: Path) -> dict[str, object]:
     )
     return {
         "repo_id": repo_id,
+        "requested_revision": revision,
         "sha": info.sha,
         "siblings": len(info.siblings),
     }
 
 
-def download_github_qas(repo_url: str, qas_dir: Path) -> dict[str, object]:
+def download_github_qas(repo_url: str, qas_dir: Path, ref: str | None) -> dict[str, object]:
     qas_dir.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="mpr-gui-qas-") as tmp:
         clone_dir = Path(tmp) / "repo"
@@ -51,6 +57,8 @@ def download_github_qas(repo_url: str, qas_dir: Path) -> dict[str, object]:
             ["git", "clone", "--filter=blob:none", "--sparse", repo_url, str(clone_dir)],
             check=True,
         )
+        if ref:
+            subprocess.run(["git", "checkout", ref], cwd=clone_dir, check=True)
         subprocess.run(["git", "sparse-checkout", "set", "qas"], cwd=clone_dir, check=True)
         commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=clone_dir, text=True).strip()
         source_qas = clone_dir / "qas"
@@ -59,6 +67,7 @@ def download_github_qas(repo_url: str, qas_dir: Path) -> dict[str, object]:
         shutil.copytree(source_qas, qas_dir)
     return {
         "repo_url": repo_url,
+        "requested_ref": ref,
         "commit": commit,
         "jsonl_files": len(list(qas_dir.glob("*.jsonl"))),
     }
@@ -84,12 +93,22 @@ def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description="Download and normalize MPR-GUI-Bench assets.")
     parser.add_argument("--root", type=Path, default=Path("data/raw/mpr_gui_bench"))
     parser.add_argument("--hf-repo", default=DEFAULT_HF_REPO)
+    parser.add_argument("--hf-revision", default=None)
     parser.add_argument("--github-repo", default=DEFAULT_GITHUB_REPO)
+    parser.add_argument("--github-ref", default=None)
+    parser.add_argument("--source-lock", type=Path, default=None)
     args = parser.parse_args(argv)
 
+    if args.source_lock:
+        lock = load_source_lock(args.source_lock)
+        args.hf_repo = lock.get("huggingface", {}).get("repo_id", args.hf_repo)
+        args.hf_revision = lock.get("huggingface", {}).get("sha", args.hf_revision)
+        args.github_repo = lock.get("github", {}).get("repo_url", args.github_repo)
+        args.github_ref = lock.get("github", {}).get("commit", args.github_ref)
+
     args.root.mkdir(parents=True, exist_ok=True)
-    hf_meta = download_hf_images(args.hf_repo, args.root / "images")
-    github_meta = download_github_qas(args.github_repo, args.root / "qas")
+    hf_meta = download_hf_images(args.hf_repo, args.root / "images", args.hf_revision)
+    github_meta = download_github_qas(args.github_repo, args.root / "qas", args.github_ref)
     source_path = write_source_metadata(args.root, hf_meta, github_meta)
     print(f"Downloaded MPR-GUI-Bench into {args.root}")
     print(f"Wrote source metadata to {source_path}")

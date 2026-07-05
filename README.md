@@ -32,6 +32,13 @@ and build a reliable parallel sample index for cross-locale experiments.
 - `results/`: raw model outputs and summaries.
 - `docs/`: release audit, reproduction notes, and protocol documents.
 
+## Data License Note
+
+Code in this repository is MIT-licensed. MPR-GUI-Bench data is third-party
+material; the downloaded Hugging Face README declares `CC-BY-NC-4.0`.
+Generated manifests that include questions, answers, paths, or parsed options
+should be treated as dataset-derived artifacts. See `THIRD_PARTY_DATA.md`.
+
 ## Quick Start
 
 ```bash

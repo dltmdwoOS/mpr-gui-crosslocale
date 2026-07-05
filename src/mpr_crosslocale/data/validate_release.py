@@ -8,6 +8,7 @@ from pathlib import Path
 
 from mpr_crosslocale.inference.answer_parser import parse_label
 from mpr_crosslocale.data.episode_loader import sorted_episode_frames
+from mpr_crosslocale.data.options import parse_question_options
 from mpr_crosslocale.data.parallel_index import canonical_state_key, normalize_asset_reference
 
 LANGUAGES = ("en", "zh", "fr", "ru", "ja", "th")
@@ -76,6 +77,8 @@ def audit_release(root: Path) -> dict[str, object]:
     parallel: dict[str, dict[str, set[str]]] = defaultdict(lambda: defaultdict(set))
     duplicate_questions: dict[str, int] = {}
     noncanonical_answer_fields: list[dict[str, object]] = []
+    option_parse_status: Counter[str] = Counter()
+    option_order_counts: Counter[tuple[str, ...]] = Counter()
     missing_assets: list[dict[str, object]] = []
     malformed_answers: list[dict[str, object]] = []
     episode_frame_counts: list[dict[str, object]] = []
@@ -106,6 +109,9 @@ def audit_release(root: Path) -> dict[str, object]:
                         {"file": path.name, "line": line_no, "answer": row.get("answer", ""), "label": label}
                     )
             question_counts[question_signature(str(row.get("question", "")))] += 1
+            parsed_options = parse_question_options(str(row.get("question", "")))
+            option_parse_status[parsed_options.option_parse_status] += 1
+            option_order_counts[tuple(parsed_options.option_order)] += 1
             asset, is_folder = row_asset(row)
             asset_path = resolve_asset_path(images_dir, asset) if asset else images_dir / "__missing__"
             if not asset or not asset_path.exists():
@@ -192,6 +198,13 @@ def audit_release(root: Path) -> dict[str, object]:
         "malformed_answers_count": len(malformed_answers),
         "noncanonical_answer_fields": noncanonical_answer_fields[:200],
         "noncanonical_answer_fields_count": len(noncanonical_answer_fields),
+        "option_parse_status": dict(option_parse_status),
+        "option_order_counts": {
+            ",".join(order): count for order, count in sorted(option_order_counts.items())
+        },
+        "non_abcd_option_order_count": sum(
+            count for order, count in option_order_counts.items() if order != ("A", "B", "C", "D")
+        ),
         "duplicate_questions": duplicate_questions,
         "episode_frame_counts": episode_frame_counts,
     }
@@ -216,6 +229,8 @@ def format_markdown(report: dict[str, object]) -> str:
     lines.append(f"- Missing asset references: `{report['missing_assets_count']}`")
     lines.append(f"- Malformed answer fields: `{report['malformed_answers_count']}`")
     lines.append(f"- Non-label-only answer fields: `{report['noncanonical_answer_fields_count']}`")
+    lines.append(f"- Option parse status: `{report['option_parse_status']}`")
+    lines.append(f"- Non-A/B/C/D option-order rows: `{report['non_abcd_option_order_count']}`")
     if report.get("source_metadata"):
         source = report["source_metadata"]
         lines.append(f"- Hugging Face dataset SHA: `{source['huggingface']['sha']}`")
@@ -228,6 +243,8 @@ def format_markdown(report: dict[str, object]) -> str:
     lines.append("- All audited asset references resolve locally after normalizing `../images/...` paths.")
     lines.append("- RI and SI are completely label-biased in the public option order: every audited RI/SI answer is `A`.")
     lines.append("- The audit found no malformed answers under the conservative A/B/C/D label parser.")
+    lines.append("- Option parsing succeeds for all rows. Two rows preserve a non-standard option order `C,A,B,D` in the raw question text.")
+    lines.append("- Parallel coverage is structural: it follows official filename conventions and gold-label consistency, not manual visual verification of every screenshot.")
     lines.append("")
     lines.append("## Generated Artifacts")
     lines.append("")
@@ -237,6 +254,12 @@ def format_markdown(report: dict[str, object]) -> str:
     lines.append("- Sample manifest: `data/manifests/mpr_gui_manifest.jsonl`.")
     lines.append("- Parallel index: `data/manifests/parallel_index.json`.")
     lines.append("- Directed cross-locale pairs: `data/manifests/cross_locale_pairs.jsonl`.")
+    lines.append("- Canonical matched inference inputs: `data/manifests/canonical_inputs.jsonl`.")
+    lines.append("- Raw mismatch inference inputs: `data/manifests/mismatch_inputs.jsonl`.")
+    lines.append(
+        "  `mismatch_inputs.jsonl` is deduplicated: question text/options are resolved "
+        "from `question_sample_id` in the sample manifest."
+    )
     lines.append("")
     lines.append("## Rows By Language")
     lines.append("")
@@ -276,6 +299,15 @@ def format_markdown(report: dict[str, object]) -> str:
         )
     lines.append("")
     lines.append("## Parallel Coverage")
+    lines.append("")
+    lines.append("## Option Structure")
+    lines.append("")
+    lines.append(f"- Option parse status counts: `{report['option_parse_status']}`")
+    lines.append(f"- Option-order counts: `{report['option_order_counts']}`")
+    lines.append(
+        "- The canonical prompt must still use `question_raw` verbatim. Parsed options are for "
+        "auditing, permutation controls, and later constrained scoring."
+    )
     lines.append("")
     lines.append("| Dimension | Unique state keys | Complete 6-language states | Coverage histogram |")
     lines.append("| --- | ---: | ---: | --- |")

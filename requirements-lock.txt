@@ -9,3 +9,11 @@ pyyaml>=6.0.0
 tqdm>=4.66.0
 pytest>=8.0.0
 ruff>=0.5.0
+
+# Model execution extras for the next canonical reproduction step.
+accelerate>=0.33.0
+torch>=2.3.0
+transformers>=4.45.0
+qwen-vl-utils>=0.0.8
+# flash-attn is environment/CUDA specific; install the matching wheel manually
+# when using configs/models/qwen2_5_vl_7b.yaml with flash_attention_2.
