@@ -18,6 +18,7 @@ from mpr_crosslocale.inference.runtime import (
 )
 from mpr_crosslocale.metrics.exact_match import exact_match
 from mpr_crosslocale.models.qwen25vl import Qwen25VLAdapter
+import tqdm
 
 
 def filter_rows(
@@ -124,7 +125,7 @@ def run(args: argparse.Namespace) -> None:
         processor_kwargs=processor_kwargs,
     )
 
-    for row in pending:
+    for row in tqdm.tqdm(pending, desc="Processing rows"):
         started = time.perf_counter()
         base = build_result_base(row, args.run_id, model_config, source_lock, prompt_profile)
         try:
