@@ -126,7 +126,6 @@ data/derived/*
 !data/derived/.gitkeep
 results/raw/*
 !results/raw/.gitkeep
-results/summaries/*
 !results/summaries/.gitkeep
 
 # Local environments and model caches
