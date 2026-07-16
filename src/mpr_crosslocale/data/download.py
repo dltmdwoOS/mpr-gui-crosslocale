@@ -4,7 +4,6 @@ import argparse
 import json
 import shutil
 import subprocess
-import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -23,13 +22,16 @@ def download_hf_images(repo_id: str, images_dir: Path, revision: str | None) -> 
     api = HfApi()
     info = api.dataset_info(repo_id, revision=revision, files_metadata=True)
     images_dir.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix="mpr-gui-images-") as tmp:
-        tmp_images = Path(tmp) / "images"
+    staging_dir = images_dir.parent / ".images-download"
+    staging_dir.mkdir(parents=True, exist_ok=True)
+
+    try:
         snapshot_download(
             repo_id=repo_id,
             repo_type="dataset",
             revision=revision,
-            local_dir=tmp_images,
+            local_dir=staging_dir,
+            max_workers=4,
             allow_patterns=[
                 "1/**",
                 "2/**",
@@ -43,9 +45,13 @@ def download_hf_images(repo_id: str, images_dir: Path, revision: str | None) -> 
                 ".gitattributes",
             ],
         )
-        if images_dir.exists():
-            shutil.rmtree(images_dir)
-        shutil.copytree(tmp_images, images_dir)
+    except Exception:
+        print(f"Image download interrupted; partial files were left in {staging_dir}")
+        raise
+
+    if images_dir.exists():
+        shutil.rmtree(images_dir)
+    shutil.move(str(staging_dir), str(images_dir))
     return {
         "repo_id": repo_id,
         "requested_revision": revision,
