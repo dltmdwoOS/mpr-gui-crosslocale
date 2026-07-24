@@ -2,13 +2,14 @@ import json
 from pathlib import Path
 
 import pytest
+import torch
 
 from mpr_crosslocale.analysis.summarize_cross_locale import summarize
 from mpr_crosslocale.inference.label_scoring import summarize_label_logprobs
 from mpr_crosslocale.inference.run_cross_locale import main
-from mpr_crosslocale.inference.runtime import existing_success_ids
+from mpr_crosslocale.inference.runtime import existing_success_ids, hardware_metadata
 from mpr_crosslocale.inference.system_prompts import build_system_prompt
-from mpr_crosslocale.models.qwen25vl import _model_class, _vision_process_kwargs
+from mpr_crosslocale.models.qwen25vl import Qwen25VLAdapter, _model_class, _vision_process_kwargs
 
 
 def write_manifest(path: Path) -> None:
@@ -75,6 +76,50 @@ def test_label_scoring_entropy_and_margins():
     assert summary.entropy > 0
 
 
+def test_qwen_label_summary_uses_next_token_logits():
+    adapter = object.__new__(Qwen25VLAdapter)
+    adapter.processor = type(
+        "Processor",
+        (),
+        {
+            "tokenizer": type(
+                "Tokenizer",
+                (),
+                {"encode": lambda self, label, add_special_tokens: [ord(label)]},
+            )()
+        },
+    )()
+    logits = torch.full((128,), -10.0)
+    logits[ord("C")] = 3.0
+
+    summary = adapter._summarize_label_logits(logits, {"gold_label": "C"})
+
+    assert summary.scored_predicted_label == "C"
+    assert summary.label_token_ids == {label: [ord(label)] for label in ("A", "B", "C", "D")}
+    assert summary.scoring_method == "next_token_single_label"
+
+
+def test_hardware_metadata_has_reproducibility_fields():
+    metadata = hardware_metadata()
+
+    assert set(metadata) == {
+        "cuda_available",
+        "cuda_runtime_version",
+        "gpu_count",
+        "gpus",
+    }
+    assert metadata["gpu_count"] == len(metadata["gpus"])
+    assert all(
+        set(gpu) == {
+            "index",
+            "name",
+            "compute_capability",
+            "total_memory_bytes",
+        }
+        for gpu in metadata["gpus"]
+    )
+
+
 def test_dry_run_and_mock_runner_without_model(tmp_path: Path):
     manifest = tmp_path / "manifest.jsonl"
     dry_output = tmp_path / "dry.jsonl"
@@ -112,6 +157,11 @@ def test_dry_run_and_mock_runner_without_model(tmp_path: Path):
     dry_rows = [json.loads(line) for line in dry_output.read_text(encoding="utf-8").splitlines()]
     assert len(dry_rows) == 4
     assert all(row["status"] == "dry_run" for row in dry_rows)
+    assert all(row["attn_implementation"] for row in dry_rows)
+    assert all("torch" in row["software_versions"] for row in dry_rows)
+    assert all("transformers" in row["software_versions"] for row in dry_rows)
+    assert all("cuda_runtime_version" in row["hardware"] for row in dry_rows)
+    assert all("gpus" in row["hardware"] for row in dry_rows)
     assert json.loads(sample_manifest.read_text(encoding="utf-8"))["n_evaluations"] == 4
 
     main(

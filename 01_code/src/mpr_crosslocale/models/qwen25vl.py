@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Any
 
 from mpr_crosslocale.inference.constrained_choice import LABELS
-from mpr_crosslocale.inference.label_scoring import summarize_label_logprobs
+from mpr_crosslocale.inference.label_scoring import LabelScoreSummary, summarize_label_logprobs
 from mpr_crosslocale.inference.prompts import build_prompt_text
 
 
@@ -15,6 +15,7 @@ class QwenGenerateOutput:
     rendered_prompt: str
     prompt_token_count: int
     output_token_count: int
+    label_summary: LabelScoreSummary | None = None
 
 
 def _torch_dtype(dtype_name: str):
@@ -104,6 +105,7 @@ class Qwen25VLAdapter:
         prompt_profile: str,
         generation_config: dict[str, Any],
         system_prompt: str | None = None,
+        score_labels: bool = False,
     ) -> QwenGenerateOutput:
         import torch
         from qwen_vl_utils import process_vision_info
@@ -127,9 +129,24 @@ class Qwen25VLAdapter:
         )
         inputs = inputs.to(self.model.device)
         generation_kwargs = _clean_generation_kwargs(generation_config)
+        if score_labels:
+            generation_kwargs["return_dict_in_generate"] = True
+            generation_kwargs["output_logits"] = True
 
         with torch.inference_mode():
-            generated_ids = self.model.generate(**inputs, **generation_kwargs)
+            generation_output = self.model.generate(**inputs, **generation_kwargs)
+
+        label_summary = None
+        if score_labels:
+            generated_ids = generation_output.sequences
+            if not generation_output.logits:
+                raise RuntimeError("Generation did not return first-step logits for label scoring")
+            label_summary = self._summarize_label_logits(
+                generation_output.logits[0][0],
+                input_row,
+            )
+        else:
+            generated_ids = generation_output
 
         prompt_len = int(inputs.input_ids.shape[1])
         generated_trimmed = generated_ids[:, prompt_len:]
@@ -143,6 +160,7 @@ class Qwen25VLAdapter:
             rendered_prompt=rendered_prompt,
             prompt_token_count=prompt_len,
             output_token_count=int(generated_trimmed.shape[1]),
+            label_summary=label_summary,
         )
 
     def score_labels(
@@ -172,15 +190,24 @@ class Qwen25VLAdapter:
             return_tensors="pt",
         )
         inputs = inputs.to(self.model.device)
-        label_token_ids = self._label_token_ids()
-        if any(len(ids) != 1 for ids in label_token_ids.values()):
-            raise ValueError("A/B/C/D labels are not single-token under this tokenizer")
 
         with torch.inference_mode():
             outputs = self.model(**inputs)
             next_token_logits = outputs.logits[0, -1, :]
-            log_probs = torch.nn.functional.log_softmax(next_token_logits, dim=-1)
 
+        return self._summarize_label_logits(next_token_logits, input_row)
+
+    def _summarize_label_logits(
+        self,
+        next_token_logits: Any,
+        input_row: dict[str, Any],
+    ) -> LabelScoreSummary:
+        import torch
+
+        label_token_ids = self._label_token_ids()
+        if any(len(ids) != 1 for ids in label_token_ids.values()):
+            raise ValueError("A/B/C/D labels are not single-token under this tokenizer")
+        log_probs = torch.nn.functional.log_softmax(next_token_logits, dim=-1)
         label_logprobs = {
             label: float(log_probs[token_ids[0]].detach().cpu())
             for label, token_ids in label_token_ids.items()

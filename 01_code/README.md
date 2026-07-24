@@ -155,6 +155,13 @@ results/summaries/vast_6x6_qwen3vl4b.csv
 - `runtime_ms`: 항목별 추론 시간
 - `status`: `success` 또는 `failed`
 
+`runtime_ms`는 항목별 이미지/prompt 전처리, generation, next-token label
+scoring을 포함합니다. 모델 로딩, 실행 메타데이터 수집, 결과 파일 기록과
+요약 생성은 포함하지 않습니다. Label score는 generation 첫 step의 raw
+logits를 사용하므로 별도의 중복 model forward를 실행하지 않습니다.
+결과 metadata에는 attention backend, GPU, CUDA runtime, PyTorch와
+Transformers 버전이 자동으로 기록됩니다.
+
 ## 비용과 파일 보존
 
 Vast.ai 인스턴스를 종료하거나 삭제하면 로컬 파일이 사라질 수 있습니다.
@@ -177,3 +184,10 @@ ruff check src tests build_pilot.py
 저장소 코드는 MIT 라이선스입니다. MPR-GUI-Bench 데이터는 별도의
 `CC-BY-NC-4.0` 조건을 따릅니다. 자세한 내용은 `THIRD_PARTY_DATA.md`를
 확인합니다.
+
+## 변경 기록
+
+- 2026-07-24: generation 첫 step logits를 label scoring에 재사용해 중복
+  전처리와 model forward를 제거했습니다. 동일한 72건에서 예측 결과는
+  유지됐고 항목별 추론은 약 2.1배 빨라졌습니다. Attention backend는
+  FlashAttention으로 변경하지 않고 SDPA를 계속 사용합니다.

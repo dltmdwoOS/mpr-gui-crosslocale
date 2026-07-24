@@ -26,6 +26,7 @@ from mpr_crosslocale.inference.runtime import (
     append_jsonl,
     existing_success_ids,
     git_commit,
+    hardware_metadata,
     load_yaml,
     read_jsonl,
     resolve_paths,
@@ -64,6 +65,13 @@ def run(args: argparse.Namespace) -> None:
     generation_config.setdefault("do_sample", False)
     if args.max_new_tokens is not None:
         generation_config["max_new_tokens"] = args.max_new_tokens
+    attn_implementation = args.attn_implementation or model_config.get("attn_implementation")
+    run_metadata = {
+        "code_commit": git_commit(),
+        "software_versions": software_versions(),
+        "hardware": hardware_metadata(),
+        "attn_implementation": attn_implementation,
+    }
 
     write_sample_manifest(args.sample_manifest_out, plan, args)
     if plan.missing:
@@ -72,7 +80,7 @@ def run(args: argparse.Namespace) -> None:
     if args.dry_run:
         dry_rows = [
             {
-                **_result_base(row, args, model_config, prompt_profile),
+                **_result_base(row, args, model_config, prompt_profile, run_metadata),
                 "status": "dry_run",
                 "rendered_prompt": _render_plain_prompt(row, args.system_prompt_mode, prompt_profile),
             }
@@ -90,9 +98,9 @@ def run(args: argparse.Namespace) -> None:
 
     retry_counts: dict[str, int] = {}
     for row in tqdm.tqdm(pending, desc="Processing cross-locale rows"):
-        started = time.perf_counter()
-        base = _result_base(row, args, model_config, prompt_profile)
+        base = _result_base(row, args, model_config, prompt_profile, run_metadata)
         try:
+            started = time.perf_counter()
             if args.mock_model:
                 generated_text, label_summary = _mock_inference(row, args.seed)
                 rendered_prompt = _render_plain_prompt(row, args.system_prompt_mode, prompt_profile)
@@ -105,22 +113,22 @@ def run(args: argparse.Namespace) -> None:
                     prompt_profile,
                     generation_config,
                     system_prompt=base["system_prompt"],
+                    score_labels=args.score_labels,
                 )
                 generated_text = output.raw_output
                 rendered_prompt = output.rendered_prompt
                 prompt_token_count = output.prompt_token_count
                 output_token_count = output.output_token_count
-                if args.score_labels and hasattr(adapter, "score_labels"):
-                    label_summary = adapter.score_labels(
-                        row,
-                        prompt_profile,
-                        system_prompt=base["system_prompt"],
-                    )
+                if args.score_labels:
+                    if output.label_summary is None:
+                        raise RuntimeError("Label scoring was requested but generation returned no scores")
+                    label_summary = output.label_summary
                 else:
                     label_summary = uniform_label_score(
                         row["gold_label"],
-                        scoring_method="not_requested" if not args.score_labels else "unavailable",
+                        scoring_method="not_requested",
                     )
+            runtime_ms = int((time.perf_counter() - started) * 1000)
             parsed = parse_label(generated_text)
             scored = label_summary.scored_predicted_label
             result = {
@@ -145,7 +153,7 @@ def run(args: argparse.Namespace) -> None:
                 "parse_success": parsed is not None,
                 "inference_status": "success",
                 "status": "success",
-                "runtime_ms": int((time.perf_counter() - started) * 1000),
+                "runtime_ms": runtime_ms,
                 "timestamp": _utc_now(),
             }
         except Exception as exc:
@@ -205,13 +213,14 @@ def _result_base(
     args: argparse.Namespace,
     model_config: dict[str, Any],
     prompt_profile: str,
+    run_metadata: dict[str, Any],
 ) -> dict[str, Any]:
     system_prompt, system_language, template_version = build_system_prompt(
         args.system_prompt_mode, row["question_language"]
     )
     return {
         "run_id": args.run_id,
-        "code_commit": git_commit(),
+        "code_commit": run_metadata["code_commit"],
         "input_id": row["input_id"],
         "parallel_id": row["parallel_id"],
         "semantic_item_id": row["semantic_item_id"],
@@ -233,12 +242,14 @@ def _result_base(
         "model_revision": model_config.get("revision"),
         "processor_revision": model_config.get("revision"),
         "precision": model_config.get("dtype", "bfloat16"),
+        "attn_implementation": run_metadata["attn_implementation"],
         "vision_token_limit": model_config.get("vision_token_limit"),
         "min_pixels": model_config.get("min_pixels"),
         "max_pixels": model_config.get("max_pixels"),
         "seed": args.seed,
         "gold_label": row["gold_label"],
-        "software_versions": software_versions(),
+        "software_versions": run_metadata["software_versions"],
+        "hardware": run_metadata["hardware"],
     }
 
 

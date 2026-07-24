@@ -61,6 +61,38 @@ def software_versions() -> dict[str, str | None]:
     }
 
 
+def hardware_metadata() -> dict[str, Any]:
+    try:
+        import torch
+    except ImportError:
+        return {
+            "cuda_available": False,
+            "cuda_runtime_version": None,
+            "gpu_count": 0,
+            "gpus": [],
+        }
+
+    cuda_available = torch.cuda.is_available()
+    gpus = []
+    if cuda_available:
+        for index in range(torch.cuda.device_count()):
+            properties = torch.cuda.get_device_properties(index)
+            gpus.append(
+                {
+                    "index": index,
+                    "name": properties.name,
+                    "compute_capability": f"{properties.major}.{properties.minor}",
+                    "total_memory_bytes": properties.total_memory,
+                }
+            )
+    return {
+        "cuda_available": cuda_available,
+        "cuda_runtime_version": torch.version.cuda,
+        "gpu_count": len(gpus),
+        "gpus": gpus,
+    }
+
+
 def load_yaml(path: Path) -> dict[str, Any]:
     import yaml
 
