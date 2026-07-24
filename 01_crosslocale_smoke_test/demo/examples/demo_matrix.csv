@@ -1,0 +1,5 @@
+question_language,gui_language,n,accuracy
+en,en,0,N/A
+en,ja,12,0.16666666666666666
+ja,en,12,0.5
+ja,ja,0,N/A

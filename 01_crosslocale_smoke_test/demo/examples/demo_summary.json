@@ -1,0 +1,1253 @@
+{
+  "counts": {
+    "rows": 24,
+    "success": 24,
+    "failed": 0,
+    "dry_run": 0,
+    "semantic_items": 12,
+    "missing_rows": 0,
+    "n_semantic_items": 12,
+    "n_language_pairs": 2,
+    "n_evaluations": 24,
+    "planned_n_semantic_items": 12,
+    "planned_n_evaluations": 24,
+    "first_run_written": 24,
+    "resume_skipped": 24
+  },
+  "overall_accuracy": 0.3333333333333333,
+  "accuracy_matrix": {
+    "en": {
+      "en": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "zh": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "fr": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ru": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ja": {
+        "accuracy": 0.16666666666666666,
+        "n": 12
+      },
+      "th": {
+        "accuracy": 0.0,
+        "n": 0
+      }
+    },
+    "zh": {
+      "en": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "zh": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "fr": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ru": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ja": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "th": {
+        "accuracy": 0.0,
+        "n": 0
+      }
+    },
+    "fr": {
+      "en": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "zh": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "fr": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ru": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ja": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "th": {
+        "accuracy": 0.0,
+        "n": 0
+      }
+    },
+    "ru": {
+      "en": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "zh": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "fr": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ru": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ja": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "th": {
+        "accuracy": 0.0,
+        "n": 0
+      }
+    },
+    "ja": {
+      "en": {
+        "accuracy": 0.5,
+        "n": 12
+      },
+      "zh": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "fr": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ru": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ja": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "th": {
+        "accuracy": 0.0,
+        "n": 0
+      }
+    },
+    "th": {
+      "en": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "zh": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "fr": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ru": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ja": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "th": {
+        "accuracy": 0.0,
+        "n": 0
+      }
+    }
+  },
+  "dimension_accuracy_matrix": {
+    "ael": {
+      "en": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.5,
+          "n": 2
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "zh": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "fr": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "ru": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "ja": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 2
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "th": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      }
+    },
+    "ap": {
+      "en": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.5,
+          "n": 2
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "zh": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "fr": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "ru": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "ja": {
+        "en": {
+          "accuracy": 0.5,
+          "n": 2
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "th": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      }
+    },
+    "au": {
+      "en": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 2
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "zh": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "fr": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "ru": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "ja": {
+        "en": {
+          "accuracy": 0.5,
+          "n": 2
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "th": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      }
+    },
+    "rel": {
+      "en": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 2
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "zh": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "fr": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "ru": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "ja": {
+        "en": {
+          "accuracy": 1.0,
+          "n": 2
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "th": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      }
+    },
+    "wf": {
+      "en": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 2
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "zh": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "fr": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "ru": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "ja": {
+        "en": {
+          "accuracy": 0.5,
+          "n": 2
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "th": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      }
+    },
+    "wi": {
+      "en": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 2
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "zh": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "fr": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "ru": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "ja": {
+        "en": {
+          "accuracy": 0.5,
+          "n": 2
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "th": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      }
+    }
+  },
+  "matched_mean": 0.0,
+  "mismatch_mean": 0.3333333333333333,
+  "matched_mismatch_delta": -0.3333333333333333,
+  "directional_deltas": {
+    "en->zh_minus_zh->en": 0.0,
+    "en->fr_minus_fr->en": 0.0,
+    "en->ru_minus_ru->en": 0.0,
+    "en->ja_minus_ja->en": -0.33333333333333337,
+    "en->th_minus_th->en": 0.0,
+    "fr->zh_minus_zh->fr": 0.0,
+    "fr->ru_minus_ru->fr": 0.0,
+    "fr->ja_minus_ja->fr": 0.0,
+    "fr->th_minus_th->fr": 0.0,
+    "ru->zh_minus_zh->ru": 0.0,
+    "ru->th_minus_th->ru": 0.0,
+    "ja->zh_minus_zh->ja": 0.0,
+    "ja->ru_minus_ru->ja": 0.0,
+    "ja->th_minus_th->ja": 0.0,
+    "th->zh_minus_zh->th": 0.0
+  },
+  "query_language_mean": {
+    "en": {
+      "accuracy": 0.16666666666666666,
+      "n": 12
+    },
+    "ja": {
+      "accuracy": 0.5,
+      "n": 12
+    }
+  },
+  "gui_language_mean": {
+    "ja": {
+      "accuracy": 0.16666666666666666,
+      "n": 12
+    },
+    "en": {
+      "accuracy": 0.5,
+      "n": 12
+    }
+  },
+  "dimension_mean": {
+    "ael": {
+      "accuracy": 0.25,
+      "n": 4
+    },
+    "ap": {
+      "accuracy": 0.5,
+      "n": 4
+    },
+    "au": {
+      "accuracy": 0.25,
+      "n": 4
+    },
+    "rel": {
+      "accuracy": 0.5,
+      "n": 4
+    },
+    "wf": {
+      "accuracy": 0.25,
+      "n": 4
+    },
+    "wi": {
+      "accuracy": 0.25,
+      "n": 4
+    }
+  },
+  "macro_f1": 0.34285714285714286,
+  "balanced_accuracy": 0.35416666666666663,
+  "gold_label_distribution": {
+    "A": 6,
+    "B": 8,
+    "D": 4,
+    "C": 6
+  },
+  "predicted_label_distribution": {
+    "A": 4,
+    "C": 8,
+    "D": 6,
+    "B": 6
+  },
+  "majority_label_baseline": {
+    "label": "B",
+    "accuracy": 0.3333333333333333
+  },
+  "mean_gold_probability": 0.3353460141155928,
+  "mean_top1_top2_margin": 0.34269075445047376,
+  "mean_gold_vs_best_wrong_margin": -0.1401497193301441,
+  "mean_entropy": 0.9135607523370152,
+  "parsing_failure_rate": 0.0,
+  "scoring_generation_disagreement_rate": 0.0,
+  "demo_direction_counts": {
+    "en->ja": 12,
+    "ja->en": 12
+  },
+  "demo_dimension_semantic_counts": {
+    "ael": 2,
+    "ap": 2,
+    "au": 2,
+    "rel": 2,
+    "wf": 2,
+    "wi": 2
+  },
+  "demo_dimension_evaluation_counts": {
+    "ael": 4,
+    "ap": 4,
+    "au": 4,
+    "rel": 4,
+    "wf": 4,
+    "wi": 4
+  },
+  "demo_2x2_matrix": {
+    "en": {
+      "en": null,
+      "ja": {
+        "n": 12,
+        "accuracy": 0.16666666666666666
+      }
+    },
+    "ja": {
+      "en": {
+        "n": 12,
+        "accuracy": 0.5
+      },
+      "ja": null
+    }
+  },
+  "parsing_scoring_failure_count": 0
+}

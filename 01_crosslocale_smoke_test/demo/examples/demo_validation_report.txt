@@ -1,0 +1,29 @@
+Cross-Locale Local Demo Validation
+
+PASS: semantic item count is 12 - 12
+PASS: evaluation count is 24 - 24
+PASS: both directions share identical semantic item IDs
+PASS: en->ja count is 12 - 12
+PASS: ja->en count is 12 - 12
+PASS: all six dimensions are present - ['ael', 'ap', 'au', 'rel', 'wf', 'wi']
+PASS: each dimension has 2 semantic items - {'wf': 2, 'wi': 2, 'au': 2, 'ap': 2, 'ael': 2, 'rel': 2}
+PASS: each dimension has 4 evaluations - {'ael': 4, 'ap': 4, 'au': 4, 'rel': 4, 'wf': 4, 'wi': 4}
+PASS: en->ja language fields are correct
+PASS: ja->en language fields are correct
+PASS: image paths exist and follow GUI language
+PASS: all rows are mismatch
+PASS: all rows use requested system prompt mode
+PASS: probabilities sum to 1
+PASS: gold rank is in 1..4
+PASS: entropy and margins are finite
+PASS: first run wrote 24 rows - 24
+PASS: resume keeps JSONL at 24 rows
+PASS: same seed reproduces samples and mock scores
+PASS: different seed changes mock scores or sample order
+PASS: system prompt includes A/B/C/D-only instruction
+PASS: system prompt does not include gold labels as answers
+
+n_semantic_items: 12
+n_evaluations: 24
+overall_mock_accuracy: 0.3333333333333333
+resume_skipped: 24
