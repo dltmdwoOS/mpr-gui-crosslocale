@@ -1,0 +1,5 @@
+# The Vast.ai PyTorch template must provide CUDA-enabled torch and torchvision.
+accelerate>=0.33.0,<2
+einops==0.8.2
+transformers>=4.57.0,<5
+qwen-vl-utils>=0.0.14,<0.1

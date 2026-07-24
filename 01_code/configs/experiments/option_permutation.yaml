@@ -1,0 +1,12 @@
+name: option_permutation
+data: configs/data/mpr_gui.yaml
+seed: 20260705
+num_permutations: 5
+dimensions: [ri, si]
+baselines:
+  - canonical_order
+  - permutation_controlled
+  - question_only
+outputs:
+  raw_dir: results/raw/option_permutation
+  summary_dir: results/summaries/option_permutation

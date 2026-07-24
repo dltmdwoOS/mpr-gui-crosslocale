@@ -1,0 +1,10 @@
+{
+  "huggingface": {
+    "repo_id": "chenruihan/MPR-GUI-Bench",
+    "sha": "c1edb808d424a2fa7bc4a2e601d39b431b04acd5"
+  },
+  "github": {
+    "repo_url": "https://github.com/chenruihan32/MPR-GUI-Bench.git",
+    "commit": "e4f1cfcd11ee0d0dfa8ee6a0a97c2c782ce21aba"
+  }
+}

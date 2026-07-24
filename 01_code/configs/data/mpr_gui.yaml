@@ -1,0 +1,29 @@
+dataset_name: chenruihan/MPR-GUI-Bench
+dataset_revision: c1edb808d424a2fa7bc4a2e601d39b431b04acd5
+repo_name: chenruihan32/MPR-GUI-Bench
+repo_revision: e4f1cfcd11ee0d0dfa8ee6a0a97c2c782ce21aba
+dataset_license: CC-BY-NC-4.0
+root: data/raw/mpr_gui_bench
+images_dir: data/raw/mpr_gui_bench/images
+qas_dir: data/raw/mpr_gui_bench/qas
+manifest_dir: data/manifests
+manifests:
+  sample_manifest: data/manifests/mpr_gui_manifest.jsonl
+  parallel_index: data/manifests/parallel_index.json
+  cross_locale_pairs: data/manifests/cross_locale_pairs.jsonl
+  canonical_inputs: data/manifests/canonical_inputs.jsonl
+  mismatch_inputs: data/manifests/mismatch_inputs.jsonl
+languages: [en, zh, fr, ru, ja, th]
+dimensions:
+  wf: wf
+  wi: wi
+  au: au
+  ap: ap
+  ael: abs_el
+  rel: rel_el
+  ri: knowledge_rich
+  si: knowledge_sparse
+episode_dimensions: [ri, si]
+path_policy:
+  image_and_qas_are_siblings: true
+  episode_order: natural_sort

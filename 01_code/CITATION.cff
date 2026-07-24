@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it and the original MPR-GUI-Bench paper."
+title: "mpr-gui-crosslocale"
+type: software
+authors:
+  - family-names: "Lee"
+    given-names: "Seungjae"
+repository-code: "https://github.com/seungjaelee/mpr-gui-crosslocale"
+license: MIT
+date-released: 2026-07-05
+references:
+  - type: article
+    title: "MPR-GUI: Benchmarking and Enhancing Multilingual Perception and Reasoning in GUI Agents"
+    authors:
+      - family-names: "Chen"
+        given-names: "Ruihan"
+    notes: "Add complete bibliographic metadata once final citation details are confirmed."

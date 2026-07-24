@@ -1,0 +1,19 @@
+name: gui_xli_reimplementation
+reproduction_status: independent_reimplementation
+paper_algorithm_version: acl2026
+data: configs/data/mpr_gui.yaml
+hook_location: block_output
+injected_positions: last_token
+retrieval_top_k: 3
+memory_source: heldout_parallel_subset
+defaults:
+  memory_size: 10
+paper_reported_settings:
+  qwen2_5_vl_7b:
+    zh: {layer: 16, alpha: 0.12}
+    ru: {layer: 18, alpha: 0.10}
+    ja: {layer: 13, alpha: 0.10}
+  internvl2_5_8b:
+    zh: {layer: 12, alpha: 0.12}
+    th: {layer: 17, alpha: 0.06}
+    ja: {layer: 14, alpha: 0.10}
