@@ -48,8 +48,8 @@ source .venv/bin/activate
 ## 2. 환경 설치
 
 ```bash
-bash scripts/setup_vast.sh
-bash scripts/vast_preflight.sh
+bash 01_code/scripts/setup_vast.sh
+bash 01_code/scripts/vast_preflight.sh
 ```
 
 `vast_preflight.sh`는 CUDA 연결, GPU 메모리, 디스크 공간, Qwen3-VL 클래스
@@ -58,7 +58,7 @@ bash scripts/vast_preflight.sh
 ## 3. 데이터 준비
 
 ```bash
-bash scripts/prepare_vast_data.sh
+bash 01_code/scripts/prepare_vast_data.sh
 ```
 
 이 명령은 다음 작업을 수행합니다.
@@ -74,7 +74,7 @@ bash scripts/prepare_vast_data.sh
 ## 4. Vast.ai smoke test
 
 ```bash
-bash scripts/run_vast_smoke.sh
+bash 01_code/scripts/run_vast_smoke.sh
 ```
 
 smoke test 조건은 다음과 같습니다.
@@ -104,7 +104,7 @@ results/summaries/vast_smoke.csv
 6x6 평가에서는 sample size를 명시해야 합니다.
 
 ```bash
-SAMPLE_SIZE=1 bash scripts/run_vast_6x6.sh
+SAMPLE_SIZE=1 bash 01_code/scripts/run_vast_6x6.sh
 ```
 
 `SAMPLE_SIZE=1`은 semantic item 1개를 36개 언어 조합으로 평가하므로 총
@@ -117,9 +117,9 @@ SAMPLE_SIZE=1 bash scripts/run_vast_6x6.sh
 smoke 결과를 확인한 뒤 단계적으로 크기를 늘립니다.
 
 ```bash
-SAMPLE_SIZE=5 bash scripts/run_vast_6x6.sh
-SAMPLE_SIZE=12 bash scripts/run_vast_6x6.sh
-SAMPLE_SIZE=60 bash scripts/run_vast_6x6.sh
+SAMPLE_SIZE=5 bash 01_code/scripts/run_vast_6x6.sh
+SAMPLE_SIZE=12 bash 01_code/scripts/run_vast_6x6.sh
+SAMPLE_SIZE=60 bash 01_code/scripts/run_vast_6x6.sh
 ```
 
 `SAMPLE_SIZE=60`은 총 2,160 evaluations입니다.

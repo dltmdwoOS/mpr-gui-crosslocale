@@ -1,19 +1,25 @@
 model_id: Qwen/Qwen2.5-VL-7B-Instruct
 model_family: qwen2_5_vl
 revision: cc594898137f460bfe9f0759e9844b3ce807cfb5
+
 dtype: bfloat16
 quantization: null
-attn_implementation: flash_attention_2
-device_strategy: single_gpu_or_explicit_device_map
-processor_profile: qwen_default
-min_pixels: null
-max_pixels: null
-prompt_profiles:
-  primary: mpr_minimal_v1
-  sensitivity: mpr_label_only_v1
-prompt_profile: mpr_minimal_v1
+
+# Vast 환경에서는 별도 flash-attn 설치에 의존하지 않도록 SDPA로 통일
+attn_implementation: sdpa
+device_strategy: auto
+
+# Qwen3-VL 실험과 동일한 visual preprocessing 조건 사용
+processor_profile: qwen_vast_fixed_2048
+min_pixels: 262144
+max_pixels: 2097152
+vision_token_limit: 2048
+
+# 생성 accuracy와 next-token label scoring이 같은 prompt를 사용하도록 통일
+prompt_profile: mpr_label_only_v1
+
 generation:
   do_sample: false
   num_beams: 1
-  max_new_tokens: 8
+  max_new_tokens: 2
   temperature: null

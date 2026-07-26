@@ -131,8 +131,6 @@ data/manifests/*
 !data/manifests/source_lock.json
 results/raw/*
 !results/raw/.gitkeep
-results/summaries/*
-!results/summaries/.gitkeep
 
 # Local environments and model caches
 .venv/
