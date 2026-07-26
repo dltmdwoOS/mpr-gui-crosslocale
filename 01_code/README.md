@@ -1,8 +1,8 @@
 # MPR-GUI Cross-Locale Evaluation
 
-MPR-GUI-Bench의 질문 언어와 GUI 언어를 독립적으로 조합해 Qwen3-VL을
-평가하는 코드입니다. 이 저장소는 모델 학습 코드가 아니라, 사전 학습된
-모델을 이용한 inference 및 평가 코드입니다.
+MPR-GUI-Bench의 질문 언어와 GUI 언어를 독립적으로 조합해 Qwen-VL과
+InternVL2.5를 평가하는 코드입니다. 이 저장소는 모델 학습 코드가 아니라,
+사전 학습된 모델을 이용한 inference 및 평가 코드입니다.
 
 ## 평가 구성
 
@@ -22,7 +22,7 @@ MPR-GUI-Bench의 질문 언어와 GUI 언어를 독립적으로 조합해 Qwen3-
 다음 조건을 만족하는 PyTorch 템플릿을 사용합니다.
 
 - NVIDIA GPU
-- GPU 메모리 16GB 이상, 24GB 이상 권장
+- GPU 메모리 16GB 이상, Qwen2.5-VL-7B/InternVL2.5-8B는 24GB 이상 권장
 - 저장 공간 40GB 이상 권장
 - Python 3.10 이상
 - CUDA를 지원하는 `torch`와 이에 맞는 `torchvision`
@@ -33,7 +33,7 @@ Vast.ai 템플릿에 설치된 CUDA PyTorch를 유지해야 합니다. CPU용 Py
 ## 1. 저장소 받기
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/dltmdwoOS/mpr-gui-crosslocale.git
 cd mpr-gui-crosslocale
 ```
 
@@ -48,17 +48,34 @@ source .venv/bin/activate
 ## 2. 환경 설치
 
 ```bash
-bash 01_code/scripts/setup_vast.sh
-bash 01_code/scripts/vast_preflight.sh
+cd 01_code
+bash scripts/setup_vast.sh
+bash scripts/vast_preflight.sh
 ```
 
-`vast_preflight.sh`는 CUDA 연결, GPU 메모리, 디스크 공간, Qwen3-VL 클래스
-지원 여부를 확인합니다.
+`setup_vast.sh`는 InternVL2.5 tokenizer에 필요한 `protobuf`와 호환되는
+`sentencepiece==0.2.0`도 현재 활성화된 venv에 설치합니다. 이미 환경을 만든
+경우에는 다음 명령으로 의존성만 맞출 수 있습니다.
+
+```bash
+python -m pip install -e ".[models]"
+```
+
+`vast_preflight.sh`는 CUDA 연결, GPU 메모리, 디스크 공간, Qwen3-VL 클래스와
+InternVL2.5 의존성 지원 여부를 확인합니다. InternVL 설정을 검사할 때도 모델
+가중치는 다운로드하지 않습니다.
+
+InternVL2.5를 실행할 인스턴스에서는 다음처럼 설정 파일을 지정합니다.
+
+```bash
+MODEL_CONFIG=configs/models/internvl2_5_8b.yaml \
+bash scripts/vast_preflight.sh
+```
 
 ## 3. 데이터 준비
 
 ```bash
-bash 01_code/scripts/prepare_vast_data.sh
+bash scripts/prepare_vast_data.sh
 ```
 
 이 명령은 다음 작업을 수행합니다.
@@ -74,7 +91,7 @@ bash 01_code/scripts/prepare_vast_data.sh
 ## 4. Vast.ai smoke test
 
 ```bash
-bash 01_code/scripts/run_vast_smoke.sh
+bash scripts/run_vast_smoke.sh
 ```
 
 smoke test 조건은 다음과 같습니다.
@@ -91,20 +108,55 @@ smoke test 조건은 다음과 같습니다.
 스크립트는 결과 4건이 모두 `success`인지 확인한 뒤 요약 파일을 만듭니다.
 
 ```text
-results/raw/vast_smoke.jsonl
-results/raw/vast_smoke_failures.jsonl
-results/summaries/vast_smoke.json
-results/summaries/vast_smoke.csv
+results/raw/vast_smoke_qwen3_vl_4b_vast.jsonl
+results/raw/vast_smoke_qwen3_vl_4b_vast_failures.jsonl
+results/summaries/vast_smoke_qwen3_vl_4b_vast.json
+results/summaries/vast_smoke_qwen3_vl_4b_vast.csv
 ```
 
-`vast_smoke_failures.jsonl`은 오류가 없으면 생성되지 않을 수 있습니다.
+failure JSONL은 오류가 없으면 생성되지 않을 수 있습니다.
+
+### InternVL2.5 8B smoke test
+
+모델 파일을 persistent Hugging Face cache에 미리 내려받으려면 GPU 인스턴스에서
+다음 명령을 직접 실행합니다. 약 8B 규모의 가중치를 다운로드하므로 코드
+설치나 preflight에는 이 명령이 포함되지 않습니다.
+
+```bash
+export HF_HOME=/path/to/persistent-volume/huggingface
+hf download OpenGVLab/InternVL2_5-8B \
+  --revision e9e4c0dc1db56bfab10458671519b7fa3dd29463
+```
+
+미리 다운로드하지 않아도 첫 smoke test에서 같은 revision을 Hugging Face
+cache로 자동 다운로드합니다.
+
+```bash
+MODEL_CONFIG=configs/models/internvl2_5_8b.yaml \
+MODEL_TAG=internvl2_5_8b \
+bash scripts/run_vast_smoke.sh
+```
+
+InternVL 설정은 Qwen2.5-VL-7B 실험과 동일하게 label-only prompt, greedy
+generation, `max_new_tokens=2`, 최대 2048 visual tokens를 사용합니다.
+InternVL2.5 remote backend의 비-FlashAttention 경로는 SDPA가 아닌 eager이므로
+실제 attention backend는 결과 metadata에 `eager`로 기록됩니다.
+
+Transformers 4.57.x에서는 이 checkpoint의 legacy tokenizer metadata 때문에
+`AutoTokenizer`가 tokenizer 대신 `False`를 반환할 수 있습니다. 어댑터는 이를
+검출하고 pinned remote tokenizer class와 고정 special-token ID를 사용해
+tokenizer를 다시 구성합니다.
+
+또한 InternLM2 remote code는 legacy tuple KV cache를 기대하므로, 어댑터는
+Transformers 4.57의 기본 `DynamicCache` 생성을 비활성화하고 기존 cache 형식을
+사용합니다. KV cache 자체는 활성 상태로 유지됩니다.
 
 ## 5. 6x6 평가
 
 6x6 평가에서는 sample size를 명시해야 합니다.
 
 ```bash
-SAMPLE_SIZE=1 bash 01_code/scripts/run_vast_6x6.sh
+SAMPLE_SIZE=1 bash scripts/run_vast_6x6.sh
 ```
 
 `SAMPLE_SIZE=1`은 semantic item 1개를 36개 언어 조합으로 평가하므로 총
@@ -117,9 +169,23 @@ SAMPLE_SIZE=1 bash 01_code/scripts/run_vast_6x6.sh
 smoke 결과를 확인한 뒤 단계적으로 크기를 늘립니다.
 
 ```bash
-SAMPLE_SIZE=5 bash 01_code/scripts/run_vast_6x6.sh
-SAMPLE_SIZE=12 bash 01_code/scripts/run_vast_6x6.sh
-SAMPLE_SIZE=60 bash 01_code/scripts/run_vast_6x6.sh
+SAMPLE_SIZE=5 bash scripts/run_vast_6x6.sh
+SAMPLE_SIZE=12 bash scripts/run_vast_6x6.sh
+SAMPLE_SIZE=60 bash scripts/run_vast_6x6.sh
+```
+
+InternVL2.5 8B는 같은 스크립트에 모델 설정과 tag를 지정합니다.
+
+```bash
+MODEL_CONFIG=configs/models/internvl2_5_8b.yaml \
+MODEL_TAG=internvl2_5_8b \
+SAMPLE_SIZE=1 \
+bash scripts/run_vast_6x6.sh
+
+MODEL_CONFIG=configs/models/internvl2_5_8b.yaml \
+MODEL_TAG=internvl2_5_8b \
+SAMPLE_SIZE=60 \
+bash scripts/run_vast_6x6.sh
 ```
 
 `SAMPLE_SIZE=60`은 총 2,160 evaluations입니다.
@@ -128,16 +194,18 @@ SAMPLE_SIZE=60 bash 01_code/scripts/run_vast_6x6.sh
 60 semantic items x 36 language pairs = 2,160 evaluations
 ```
 
-기본 출력 파일은 다음과 같습니다.
+출력 파일 이름에는 설정 파일명 또는 `MODEL_TAG`가 들어갑니다. 예를 들어
+InternVL 실행의 기본 출력은 다음과 같습니다.
 
 ```text
-results/raw/vast_6x6_qwen3vl4b.jsonl
-results/raw/vast_6x6_qwen3vl4b_failures.jsonl
-results/summaries/vast_6x6_qwen3vl4b.json
-results/summaries/vast_6x6_qwen3vl4b.csv
+results/raw/vast_6x6_internvl2_5_8b.jsonl
+results/raw/vast_6x6_internvl2_5_8b_failures.jsonl
+results/summaries/vast_6x6_internvl2_5_8b.json
+results/summaries/vast_6x6_internvl2_5_8b.csv
 ```
 
 동일한 명령을 다시 실행하면 `--resume`에 의해 이미 성공한 항목은 건너뜁니다.
+서로 다른 모델에 같은 `MODEL_TAG` 또는 `OUTPUT` 경로를 사용하면 안 됩니다.
 
 ## 결과 필드
 
@@ -175,8 +243,8 @@ Vast.ai 인스턴스를 종료하거나 삭제하면 로컬 파일이 사라질 
 
 ```bash
 pip install -e ".[dev]"
-pytest -q
-ruff check src tests build_pilot.py
+pytest -q ../02_tests/tests
+ruff check src ../02_tests/tests build_pilot.py
 ```
 
 ## 데이터 라이선스

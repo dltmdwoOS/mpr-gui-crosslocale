@@ -4,6 +4,7 @@ import argparse
 import json
 import random
 import time
+import traceback
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
@@ -24,6 +25,7 @@ from mpr_crosslocale.inference.label_scoring import (
 from mpr_crosslocale.inference.prompts import build_prompt_text
 from mpr_crosslocale.inference.runtime import (
     append_jsonl,
+    existing_model_ids,
     existing_success_ids,
     git_commit,
     hardware_metadata,
@@ -33,6 +35,7 @@ from mpr_crosslocale.inference.runtime import (
     software_versions,
 )
 from mpr_crosslocale.inference.system_prompts import build_system_prompt
+from mpr_crosslocale.models.internvl25 import InternVL25Adapter
 from mpr_crosslocale.models.qwen25vl import Qwen25VLAdapter
 
 
@@ -60,17 +63,23 @@ def run(args: argparse.Namespace) -> None:
     )
     rows = resolve_paths(plan.rows, repo_root)
     model_config = load_yaml(args.model_config)
+    _reject_mixed_model_output(args.output, model_config["model_id"])
+    _reject_mixed_model_output(args.failures_out, model_config["model_id"])
     prompt_profile = args.prompt_profile or model_config.get("prompt_profile", "mpr_label_only_v1")
     generation_config = dict(model_config.get("generation", {}))
     generation_config.setdefault("do_sample", False)
     if args.max_new_tokens is not None:
         generation_config["max_new_tokens"] = args.max_new_tokens
     attn_implementation = args.attn_implementation or model_config.get("attn_implementation")
+    effective_use_flash_attn = model_config.get("use_flash_attn")
+    if model_config.get("model_family") == "internvl2_5" and args.attn_implementation:
+        effective_use_flash_attn = args.attn_implementation == "flash_attention_2"
     run_metadata = {
         "code_commit": git_commit(),
         "software_versions": software_versions(),
         "hardware": hardware_metadata(),
         "attn_implementation": attn_implementation,
+        "use_flash_attn": effective_use_flash_attn,
     }
 
     write_sample_manifest(args.sample_manifest_out, plan, args)
@@ -94,7 +103,7 @@ def run(args: argparse.Namespace) -> None:
     pending = [row for row in rows if row["input_id"] not in done]
     adapter = None
     if not args.mock_model:
-        adapter = _build_qwen_adapter(args, model_config)
+        adapter = _build_model_adapter(args, model_config)
 
     retry_counts: dict[str, int] = {}
     for row in tqdm.tqdm(pending, desc="Processing cross-locale rows"):
@@ -106,6 +115,8 @@ def run(args: argparse.Namespace) -> None:
                 rendered_prompt = _render_plain_prompt(row, args.system_prompt_mode, prompt_profile)
                 prompt_token_count = None
                 output_token_count = None
+                num_patches_list = None
+                visual_token_count = None
             else:
                 assert adapter is not None
                 output = adapter.generate_one(
@@ -119,6 +130,8 @@ def run(args: argparse.Namespace) -> None:
                 rendered_prompt = output.rendered_prompt
                 prompt_token_count = output.prompt_token_count
                 output_token_count = output.output_token_count
+                num_patches_list = getattr(output, "num_patches_list", None)
+                visual_token_count = getattr(output, "visual_token_count", None)
                 if args.score_labels:
                     if output.label_summary is None:
                         raise RuntimeError("Label scoring was requested but generation returned no scores")
@@ -136,6 +149,8 @@ def run(args: argparse.Namespace) -> None:
                 "rendered_prompt": rendered_prompt,
                 "prompt_token_count": prompt_token_count,
                 "output_token_count": output_token_count,
+                "num_patches_list": num_patches_list,
+                "visual_token_count": visual_token_count,
                 "generated_text": generated_text,
                 "parsed_generated_label": parsed,
                 "scored_predicted_label": scored,
@@ -164,6 +179,7 @@ def run(args: argparse.Namespace) -> None:
                 "status": "failed",
                 "error_type": type(exc).__name__,
                 "error_message": str(exc),
+                "error_traceback": traceback.format_exc(),
                 "retry_count": retry_counts[row["input_id"]],
                 "runtime_ms": int((time.perf_counter() - started) * 1000),
                 "timestamp": _utc_now(),
@@ -239,6 +255,7 @@ def _result_base(
         "prompt_template_version": template_version,
         "prompt_profile": prompt_profile,
         "model_id": model_config["model_id"],
+        "model_family": model_config.get("model_family"),
         "model_revision": model_config.get("revision"),
         "processor_revision": model_config.get("revision"),
         "precision": model_config.get("dtype", "bfloat16"),
@@ -246,6 +263,13 @@ def _result_base(
         "vision_token_limit": model_config.get("vision_token_limit"),
         "min_pixels": model_config.get("min_pixels"),
         "max_pixels": model_config.get("max_pixels"),
+        "processor_profile": model_config.get("processor_profile"),
+        "input_size": model_config.get("input_size"),
+        "min_num": model_config.get("min_num"),
+        "max_num": model_config.get("max_num"),
+        "use_thumbnail": model_config.get("use_thumbnail"),
+        "trust_remote_code": model_config.get("trust_remote_code", False),
+        "use_flash_attn": run_metadata["use_flash_attn"],
         "seed": args.seed,
         "gold_label": row["gold_label"],
         "software_versions": run_metadata["software_versions"],
@@ -264,6 +288,24 @@ def _mock_inference(row: dict[str, Any], seed: int):
     return predicted, deterministic_mock_label_score(row["gold_label"], predicted)
 
 
+def _reject_mixed_model_output(path: Path, model_id: str) -> None:
+    existing = existing_model_ids(path)
+    if existing and existing != {model_id}:
+        raise ValueError(
+            f"Refusing to mix model {model_id!r} into {path}; "
+            f"existing model IDs: {sorted(existing)!r}"
+        )
+
+
+def _build_model_adapter(args: argparse.Namespace, model_config: dict[str, Any]):
+    model_family = model_config.get("model_family", "qwen2_5_vl")
+    if model_family in {"qwen2_5_vl", "qwen3_vl"}:
+        return _build_qwen_adapter(args, model_config)
+    if model_family == "internvl2_5":
+        return _build_internvl_adapter(args, model_config)
+    raise ValueError(f"Unsupported model_family: {model_family!r}")
+
+
 def _build_qwen_adapter(args: argparse.Namespace, model_config: dict[str, Any]) -> Qwen25VLAdapter:
     processor_kwargs = {
         key: model_config[key]
@@ -278,6 +320,34 @@ def _build_qwen_adapter(args: argparse.Namespace, model_config: dict[str, Any]) 
         device_map=args.device_map or "auto",
         processor_kwargs=processor_kwargs,
         model_family=model_config.get("model_family", "qwen2_5_vl"),
+    )
+
+
+def _build_internvl_adapter(
+    args: argparse.Namespace,
+    model_config: dict[str, Any],
+) -> InternVL25Adapter:
+    configured_attention = model_config.get("attn_implementation", "eager")
+    requested_attention = args.attn_implementation or configured_attention
+    if requested_attention not in {"eager", "flash_attention_2"}:
+        raise ValueError(
+            "InternVL2.5 supports attention modes 'eager' and 'flash_attention_2' "
+            f"in this backend, not {requested_attention!r}"
+        )
+    use_flash_attn = requested_attention == "flash_attention_2"
+    if args.attn_implementation is None:
+        use_flash_attn = bool(model_config.get("use_flash_attn", use_flash_attn))
+    return InternVL25Adapter(
+        model_id=model_config["model_id"],
+        revision=model_config.get("revision"),
+        dtype=model_config.get("dtype", "bfloat16"),
+        device_map=args.device_map or model_config.get("device_strategy", "auto"),
+        trust_remote_code=bool(model_config.get("trust_remote_code", True)),
+        use_flash_attn=use_flash_attn,
+        input_size=int(model_config.get("input_size", 448)),
+        min_num=int(model_config.get("min_num", 1)),
+        max_num=int(model_config.get("max_num", 7)),
+        use_thumbnail=bool(model_config.get("use_thumbnail", True)),
     )
 
 

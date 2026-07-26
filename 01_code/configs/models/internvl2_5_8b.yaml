@@ -1,10 +1,28 @@
 model_id: OpenGVLab/InternVL2_5-8B
 model_family: internvl2_5
-revision: null
-precision: bf16
+revision: e9e4c0dc1db56bfab10458671519b7fa3dd29463
+dtype: bfloat16
 quantization: null
-prompt_profile: mpr_direct_v1
+trust_remote_code: true
+
+# Qwen Vast 실험과 마찬가지로 별도 flash-attn 설치에 의존하지 않는다.
+# InternVL2.5 remote backend에서 비-FlashAttention 경로는 eager이다.
+attn_implementation: eager
+use_flash_attn: false
+device_strategy: auto
+
+# InternVL2.5의 native 448px dynamic tiling을 사용하되, thumbnail을 포함한
+# 최악의 경우가 8 tiles = 2048 visual tokens가 되도록 Qwen과 예산을 맞춘다.
+processor_profile: internvl_dynamic_448_fixed_2048
+input_size: 448
+min_num: 1
+max_num: 7
+use_thumbnail: true
+vision_token_limit: 2048
+
+prompt_profile: mpr_label_only_v1
 generation:
   do_sample: false
-  max_new_tokens: 8
+  num_beams: 1
+  max_new_tokens: 2
   temperature: null

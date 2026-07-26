@@ -28,7 +28,10 @@ dev = [
 models = [
   "accelerate>=0.33.0,<2",
   "einops==0.8.2",
-  "transformers>=4.57.0,<5",
+  "protobuf>=5,<7",
+  "sentencepiece==0.2.0",
+  "timm>=1.0.7,<2",
+  "transformers>=4.57.0,<4.58",
   "qwen-vl-utils>=0.0.14,<0.1",
 ]
 

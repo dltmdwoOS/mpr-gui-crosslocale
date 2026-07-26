@@ -1,4 +1,5 @@
 import json
+from argparse import Namespace
 from pathlib import Path
 
 import pytest
@@ -6,9 +7,16 @@ import torch
 
 from mpr_crosslocale.analysis.summarize_cross_locale import summarize
 from mpr_crosslocale.inference.label_scoring import summarize_label_logprobs
-from mpr_crosslocale.inference.run_cross_locale import main
+from mpr_crosslocale.inference import run_cross_locale
+from mpr_crosslocale.inference.run_cross_locale import _build_model_adapter, main
 from mpr_crosslocale.inference.runtime import existing_success_ids, hardware_metadata
 from mpr_crosslocale.inference.system_prompts import build_system_prompt
+from mpr_crosslocale.models.internvl25 import (
+    InternVL25Adapter,
+    _is_usable_tokenizer,
+    dynamic_preprocess,
+    ensure_generation_mixin,
+)
 from mpr_crosslocale.models.qwen25vl import Qwen25VLAdapter, _model_class, _vision_process_kwargs
 
 
@@ -60,6 +68,105 @@ def test_qwen3_uses_vision_patch_size_from_processor():
 
     assert _vision_process_kwargs("qwen3_vl", processor) == {"image_patch_size": 16}
     assert _vision_process_kwargs("qwen2_5_vl", processor) == {}
+
+
+def test_internvl_builds_numbered_multi_image_prompt():
+    question = InternVL25Adapter.build_question(
+        {
+            "image_paths": ["one.png", "two.png"],
+            "question_raw": "Which option is correct?",
+        },
+        "mpr_label_only_v1",
+    )
+
+    assert question.count("<image>") == 2
+    assert question.startswith("Image-1: <image>\nImage-2: <image>\n")
+    assert question.endswith("Respond with exactly one label: A, B, C, or D.")
+
+
+def test_internvl_dynamic_preprocess_respects_visual_budget():
+    from PIL import Image
+
+    image = Image.new("RGB", (1792, 448))
+    tiles = dynamic_preprocess(image, max_num=7, image_size=448, use_thumbnail=True)
+
+    assert 1 < len(tiles) <= 8
+    assert all(tile.size == (448, 448) for tile in tiles)
+
+
+def test_internvl_generation_compatibility_is_noop_when_generate_exists():
+    language_model = type(
+        "LanguageModel",
+        (),
+        {
+            "generate": lambda self: None,
+            "_supports_default_dynamic_cache": classmethod(lambda cls: True),
+        },
+    )()
+    model = type("Model", (), {"language_model": language_model})()
+
+    assert ensure_generation_mixin(model) is False
+    assert model.language_model._supports_default_dynamic_cache() is False
+
+
+def test_internvl_rejects_boolean_tokenizer_sentinel():
+    tokenizer = type(
+        "Tokenizer",
+        (),
+        {
+            "__call__": lambda self: None,
+            "batch_decode": lambda self: None,
+            "convert_tokens_to_ids": lambda self: None,
+            "encode": lambda self: None,
+        },
+    )()
+
+    assert _is_usable_tokenizer(False) is False
+    assert _is_usable_tokenizer(tokenizer) is True
+
+
+def test_model_factory_builds_internvl_with_parallel_settings(monkeypatch):
+    captured = {}
+
+    def fake_adapter(**kwargs):
+        captured.update(kwargs)
+        return "internvl-adapter"
+
+    monkeypatch.setattr(run_cross_locale, "InternVL25Adapter", fake_adapter)
+    args = Namespace(attn_implementation=None, device_map=None)
+    config = {
+        "model_id": "OpenGVLab/InternVL2_5-8B",
+        "model_family": "internvl2_5",
+        "revision": "pinned",
+        "dtype": "bfloat16",
+        "device_strategy": "auto",
+        "trust_remote_code": True,
+        "attn_implementation": "eager",
+        "use_flash_attn": False,
+        "input_size": 448,
+        "min_num": 1,
+        "max_num": 7,
+        "use_thumbnail": True,
+    }
+
+    adapter = _build_model_adapter(args, config)
+
+    assert adapter == "internvl-adapter"
+    assert captured["revision"] == "pinned"
+    assert captured["max_num"] == 7
+    assert captured["use_flash_attn"] is False
+
+
+def test_internvl_rejects_sdpa_backend():
+    args = Namespace(attn_implementation="sdpa", device_map=None)
+    config = {
+        "model_id": "OpenGVLab/InternVL2_5-8B",
+        "model_family": "internvl2_5",
+        "revision": "pinned",
+    }
+
+    with pytest.raises(ValueError, match="not 'sdpa'"):
+        _build_model_adapter(args, config)
 
 
 def test_label_scoring_entropy_and_margins():
@@ -185,6 +292,35 @@ def test_dry_run_and_mock_runner_without_model(tmp_path: Path):
         ]
     )
     assert len(existing_success_ids(mock_output)) == 2
+
+
+def test_runner_rejects_mixed_model_output(tmp_path: Path):
+    manifest = tmp_path / "manifest.jsonl"
+    output = tmp_path / "mixed.jsonl"
+    write_manifest(manifest)
+    output.write_text(
+        json.dumps({"model_id": "another/model", "status": "success"}) + "\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="Refusing to mix model"):
+        main(
+            [
+                "--manifest",
+                str(manifest),
+                "--model-config",
+                "configs/models/internvl2_5_8b.yaml",
+                "--output",
+                str(output),
+                "--language-pairs",
+                "en:ja",
+                "--dimensions",
+                "wf",
+                "--sample-size",
+                "1",
+                "--dry-run",
+            ]
+        )
 
 
 def test_aggregation_6x6_shape():

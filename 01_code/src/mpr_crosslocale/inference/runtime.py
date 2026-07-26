@@ -31,6 +31,16 @@ def existing_success_ids(path: Path) -> set[str]:
     return done
 
 
+def existing_model_ids(path: Path) -> set[str]:
+    if not path.exists():
+        return set()
+    return {
+        str(row["model_id"])
+        for row in read_jsonl(path)
+        if row.get("model_id")
+    }
+
+
 def git_commit() -> str | None:
     try:
         return subprocess.check_output(
@@ -57,6 +67,10 @@ def software_versions() -> dict[str, str | None]:
         "transformers": package_version("transformers"),
         "accelerate": package_version("accelerate"),
         "qwen-vl-utils": package_version("qwen-vl-utils"),
+        "torchvision": package_version("torchvision"),
+        "timm": package_version("timm"),
+        "protobuf": package_version("protobuf"),
+        "sentencepiece": package_version("sentencepiece"),
         "flash-attn": package_version("flash-attn"),
     }
 

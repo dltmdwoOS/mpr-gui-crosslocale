@@ -1,0 +1,557 @@
+{
+  "counts": {
+    "rows": 4,
+    "success": 4,
+    "failed": 0,
+    "dry_run": 0,
+    "semantic_items": 2,
+    "missing_rows": 0
+  },
+  "overall_accuracy": 1.0,
+  "accuracy_matrix": {
+    "en": {
+      "en": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "zh": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "fr": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ru": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ja": {
+        "accuracy": 1.0,
+        "n": 2
+      },
+      "th": {
+        "accuracy": 0.0,
+        "n": 0
+      }
+    },
+    "zh": {
+      "en": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "zh": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "fr": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ru": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ja": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "th": {
+        "accuracy": 0.0,
+        "n": 0
+      }
+    },
+    "fr": {
+      "en": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "zh": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "fr": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ru": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ja": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "th": {
+        "accuracy": 0.0,
+        "n": 0
+      }
+    },
+    "ru": {
+      "en": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "zh": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "fr": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ru": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ja": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "th": {
+        "accuracy": 0.0,
+        "n": 0
+      }
+    },
+    "ja": {
+      "en": {
+        "accuracy": 1.0,
+        "n": 2
+      },
+      "zh": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "fr": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ru": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ja": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "th": {
+        "accuracy": 0.0,
+        "n": 0
+      }
+    },
+    "th": {
+      "en": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "zh": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "fr": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ru": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "ja": {
+        "accuracy": 0.0,
+        "n": 0
+      },
+      "th": {
+        "accuracy": 0.0,
+        "n": 0
+      }
+    }
+  },
+  "dimension_accuracy_matrix": {
+    "ael": {
+      "en": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "zh": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "fr": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "ru": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "ja": {
+        "en": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "th": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      }
+    },
+    "ap": {
+      "en": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "zh": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "fr": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "ru": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "ja": {
+        "en": {
+          "accuracy": 1.0,
+          "n": 1
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      },
+      "th": {
+        "en": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "zh": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "fr": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ru": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "ja": {
+          "accuracy": 0.0,
+          "n": 0
+        },
+        "th": {
+          "accuracy": 0.0,
+          "n": 0
+        }
+      }
+    }
+  },
+  "matched_mean": 0.0,
+  "mismatch_mean": 1.0,
+  "matched_mismatch_delta": -1.0,
+  "directional_deltas": {
+    "en->zh_minus_zh->en": 0.0,
+    "en->fr_minus_fr->en": 0.0,
+    "en->ru_minus_ru->en": 0.0,
+    "en->ja_minus_ja->en": 0.0,
+    "en->th_minus_th->en": 0.0,
+    "fr->zh_minus_zh->fr": 0.0,
+    "fr->ru_minus_ru->fr": 0.0,
+    "fr->ja_minus_ja->fr": 0.0,
+    "fr->th_minus_th->fr": 0.0,
+    "ru->zh_minus_zh->ru": 0.0,
+    "ru->th_minus_th->ru": 0.0,
+    "ja->zh_minus_zh->ja": 0.0,
+    "ja->ru_minus_ru->ja": 0.0,
+    "ja->th_minus_th->ja": 0.0,
+    "th->zh_minus_zh->th": 0.0
+  },
+  "query_language_mean": {
+    "en": {
+      "accuracy": 1.0,
+      "n": 2
+    },
+    "ja": {
+      "accuracy": 1.0,
+      "n": 2
+    }
+  },
+  "gui_language_mean": {
+    "ja": {
+      "accuracy": 1.0,
+      "n": 2
+    },
+    "en": {
+      "accuracy": 1.0,
+      "n": 2
+    }
+  },
+  "dimension_mean": {
+    "ael": {
+      "accuracy": 1.0,
+      "n": 2
+    },
+    "ap": {
+      "accuracy": 1.0,
+      "n": 2
+    }
+  },
+  "macro_f1": 0.5,
+  "balanced_accuracy": 1.0,
+  "gold_label_distribution": {
+    "A": 2,
+    "B": 2
+  },
+  "predicted_label_distribution": {
+    "A": 2,
+    "B": 2
+  },
+  "majority_label_baseline": {
+    "label": "A",
+    "accuracy": 0.5
+  },
+  "mean_gold_probability": 0.8852785227604638,
+  "mean_top1_top2_margin": 0.8214545573658981,
+  "mean_gold_vs_best_wrong_margin": 0.8214545573658981,
+  "mean_entropy": 0.41397392032061897,
+  "parsing_failure_rate": 0.0,
+  "scoring_generation_disagreement_rate": 0.0
+}
