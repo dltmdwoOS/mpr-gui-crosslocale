@@ -1,0 +1,7 @@
+dimension,outcome,estimate,conf.low,conf.high,nsim,estimand
+wf,generation_correct,0.02119885321824755,0.007375513931235345,0.03552188713940345,2000,item-marginal standardized probability difference
+wi,generation_correct,0.009681381054221486,-0.002041559880177915,0.021182847755366253,2000,item-marginal standardized probability difference
+au,generation_correct,0.009618796191735668,-0.004312265902828544,0.02416607365307944,2000,item-marginal standardized probability difference
+ap,generation_correct,0.024070245114765593,0.012796644888857412,0.03592793327408372,2000,item-marginal standardized probability difference
+ael,generation_correct,0.039670548402922126,0.025540251215735724,0.05424656816976698,2000,item-marginal standardized probability difference
+rel,generation_correct,0.09207361759682743,0.07766576709428179,0.10670817484272227,2000,item-marginal standardized probability difference

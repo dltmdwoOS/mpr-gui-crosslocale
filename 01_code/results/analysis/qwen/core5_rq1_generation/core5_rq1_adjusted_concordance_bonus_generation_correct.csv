@@ -1,0 +1,2 @@
+estimate,conf.low,conf.high,nsim,estimand,outcome,contrast
+0.020828615613546205,0.016425304502544383,0.025263219160849813,2000,item-marginal standardized probability difference,generation_correct,matched_minus_counterfactual_mismatch

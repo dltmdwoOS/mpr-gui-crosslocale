@@ -1,0 +1,79 @@
+{
+  "raw_rows": 79020,
+  "status_counts": {
+    "success": 79020
+  },
+  "analysis_rows": 79020,
+  "semantic_items": 2195,
+  "expected_rows": 79020,
+  "dimension_item_counts": {
+    "ael": 366,
+    "ap": 366,
+    "au": 366,
+    "rel": 366,
+    "wf": 365,
+    "wi": 366
+  },
+  "parse_failures": 0,
+  "generation_scoring_disagreements": 1703,
+  "generation_scoring_disagreement_rate": 0.021551505947861302,
+  "top_label_ties": 2935,
+  "top_label_tie_rate": 0.037142495570741584,
+  "generation_token_tiebreak_disagreements": 0,
+  "generation_token_tiebreak_disagreement_rate": 0.0,
+  "stored_disagreement_mismatches": 0,
+  "stored_correct_vs_scoring_mismatches": 0,
+  "configuration_values": {
+    "attn_implementation": [
+      "eager"
+    ],
+    "code_commit": [
+      "39b702a89766180e8a948b2e59ebd7730ed628db"
+    ],
+    "input_size": [
+      "448"
+    ],
+    "max_num": [
+      "7"
+    ],
+    "min_num": [
+      "1"
+    ],
+    "model_id": [
+      "OpenGVLab/InternVL2_5-8B"
+    ],
+    "model_revision": [
+      "e9e4c0dc1db56bfab10458671519b7fa3dd29463"
+    ],
+    "precision": [
+      "bfloat16"
+    ],
+    "processor_profile": [
+      "internvl_dynamic_448_fixed_2048"
+    ],
+    "processor_revision": [
+      "e9e4c0dc1db56bfab10458671519b7fa3dd29463"
+    ],
+    "prompt_profile": [
+      "mpr_label_only_v1"
+    ],
+    "prompt_template_version": [
+      "cross_locale_system_v1"
+    ],
+    "run_id": [
+      "cross-locale-af8bea481a2d"
+    ],
+    "system_prompt_mode": [
+      "english_fixed"
+    ],
+    "use_flash_attn": [
+      "False"
+    ],
+    "use_thumbnail": [
+      "True"
+    ],
+    "vision_token_limit": [
+      "2048"
+    ]
+  }
+}

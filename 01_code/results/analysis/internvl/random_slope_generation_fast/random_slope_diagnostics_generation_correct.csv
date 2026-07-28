@@ -1,0 +1,4 @@
+model,nobs,log_likelihood,AIC,BIC,singular,max_absolute_gradient,hessian_min_eigenvalue,random_effect_sd,convergence_messages
+rq1_random_slope,79020,-28715.21125370411,57468.42250740822,57644.69417642356,TRUE,NA,NA,2.73445 | 0,
+rq2_random_slope,79020,-28527.828365438498,57203.656730876995,57890.18849441043,TRUE,NA,NA,2.751406 | 0,
+rq2_no_matched_dimension_random_slope,79020,-28561.687002815852,57261.374005631704,57901.518487845315,TRUE,NA,NA,2.749428 | 0,

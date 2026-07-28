@@ -1,0 +1,2 @@
+estimate,conf.low,conf.high,nsim,estimand,outcome,interpretation
+0.0343404995944618,0.028806124842908627,0.03986929054308178,2000,item-marginal standardized probability difference,generation_correct,"Average diagonal-cell probability bonus beyond additive query/GUI effects, integrated over the fitted item-difficulty distribution"
