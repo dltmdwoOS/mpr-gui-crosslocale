@@ -127,6 +127,9 @@ data/derived/*
 !data/derived/.gitkeep
 data/pilot/*
 !data/pilot/.gitkeep
+
+# Generated statistical model checkpoints
+results/analysis/**/*.rds
 data/manifests/*
 !data/manifests/source_lock.json
 results/raw/*
