@@ -33,7 +33,8 @@ GITHUB_COMMIT = "e4f1cfcd11ee0d0dfa8ee6a0a97c2c782ce21aba"
 HF_REPO = "chenruihan/MPR-GUI-Bench"
 HF_REVISION = "c1edb808d424a2fa7bc4a2e601d39b431b04acd5"
 DEFAULT_SEED = 20260803
-DEFAULT_SIZE = 48
+PILOT_SIZE = 48
+DEFAULT_SIZE = 366
 
 
 def sha256(path: Path) -> str:
@@ -108,11 +109,29 @@ def load_items(qas_paths: dict[str, Path]) -> list[dict[str, object]]:
 
 
 def stratified_sample(items: list[dict[str, object]], size: int, seed: int):
+    if not 1 <= size <= len(items):
+        raise ValueError(f"sample-size must be between 1 and {len(items)}, got {size}")
     strata: dict[str, list[dict[str, object]]] = defaultdict(list)
     for item in items:
         strata[str(item["stratum"])].append(item)
     rng = random.Random(seed)
     keys = sorted(strata)
+    if size == len(items):
+        selected = list(items)
+        rng.shuffle(selected)
+        if len(items) > PILOT_SIZE:
+            pilot, _, _ = stratified_sample(items, PILOT_SIZE, seed)
+            pilot_ids = {str(item["parallel_id"]) for item in pilot}
+            selected = pilot + [
+                item for item in selected if str(item["parallel_id"]) not in pilot_ids
+            ]
+        allocation = Counter(str(item["stratum"]) for item in selected)
+        for display_order, item in enumerate(selected, start=1):
+            item["display_order"] = display_order
+        return selected, dict(sorted(allocation.items())), {
+            key: len(value) for key, value in strata.items()
+        }
+
     base_count, remainder = divmod(size, len(keys))
     selected = []
     allocation = {}
@@ -126,6 +145,28 @@ def stratified_sample(items: list[dict[str, object]], size: int, seed: int):
     for display_order, item in enumerate(selected, start=1):
         item["display_order"] = display_order
     return selected, allocation, {key: len(value) for key, value in strata.items()}
+
+
+def preserve_existing_prefix(
+    selected: list[dict[str, object]], manifest_path: Path
+) -> list[dict[str, object]]:
+    """Keep already-annotated pilot item order when expanding a manifest."""
+    if not manifest_path.exists():
+        return selected
+    existing = json.loads(manifest_path.read_text(encoding="utf-8"))
+    existing_ids = [
+        str(item["parallel_id"])
+        for item in sorted(existing.get("items", []), key=lambda row: row["display_order"])
+    ]
+    selected_by_id = {str(item["parallel_id"]): item for item in selected}
+    prefix = [selected_by_id[item_id] for item_id in existing_ids if item_id in selected_by_id]
+    prefix_ids = {str(item["parallel_id"]) for item in prefix}
+    combined = prefix + [
+        item for item in selected if str(item["parallel_id"]) not in prefix_ids
+    ]
+    for display_order, item in enumerate(combined, start=1):
+        item["display_order"] = display_order
+    return combined
 
 
 def quoted_gui_spans(text: str) -> list[tuple[int, int, str]]:
@@ -338,9 +379,11 @@ def main():
 
     qas_paths = download_qas(args.data_dir, force=args.force_qas)
     all_items = load_items(qas_paths)
+    manifest_path = args.data_dir / "pilot_manifest.json"
     selected, allocation, population = stratified_sample(
         all_items, args.sample_size, args.seed
     )
+    selected = preserve_existing_prefix(selected, manifest_path)
     translation_path = args.data_dir / "translations_ko.json"
     translations = {}
     if not args.skip_translation:
@@ -364,7 +407,6 @@ def main():
         image_report = download_images(selected, args.data_dir, args.workers)
         image_report["existing"] = len(selected_assets)
 
-    manifest_path = args.data_dir / "pilot_manifest.json"
     write_manifest(selected, translations, manifest_path)
     report = {
         "sample_size": len(selected),

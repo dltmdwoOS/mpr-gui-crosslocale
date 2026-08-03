@@ -1,20 +1,19 @@
 # REL Text Dependency Annotation Tool
 
-REL 366개 중 guideline pilot용 48개 semantic item을 독립 annotation하는 로컬 웹 도구다. 정답은 표시하지만 모델 output과 다른 annotator의 판정은 표시하지 않는다.
+REL 366개 semantic item 전체를 독립 annotation하는 로컬 웹 도구다. 정답은 표시하지만 모델 output과 다른 annotator의 판정은 표시하지 않는다.
 
 ## 현재 준비된 데이터
 
 - Source: 잠금된 MPR-GUI GitHub commit `e4f1cfcd11ee0d0dfa8ee6a0a97c2c782ce21aba`
 - Image source: Hugging Face revision `c1edb808d424a2fa7bc4a2e601d39b431b04acd5`
-- Pilot seed: `20260803`
-- Pilot size: 48 items
-- Sampling: source strata `1–6`에서 각각 8개
-- Images: 48 × 6 = 288개
+- Ordering seed: `20260803`
+- Full size: 366 items
+- Images: 366 × 6 = 2,196개
 - Gold: manifest에는 없으며, 요청에 따라 잠금 QAS에서 runtime으로 연결해 정답 option에 녹색 테두리 표시
 - 모델 output: UI에서 제외
 - 한국어: quoted GUI token을 보존한 기계 번역 보조 자료
 
-이 표본은 guideline의 애매함을 찾기 위해 source diversity를 동일 가중한 pilot이다. 작은 stratum도 8개를 뽑았으므로 REL 모집단의 label prevalence를 추정하는 대표 표본으로 사용하면 안 된다.
+처음 48개는 guideline pilot에서 사용한 source-stratified 순서가 그대로 유지된다. 나머지 318개가 뒤에 추가되므로 기존 pilot annotation을 잃지 않고 전체 REL annotation으로 이어갈 수 있다.
 
 ## 처음 설치 및 데이터 준비
 
@@ -27,7 +26,7 @@ python -m venv .venv-rel-annotation
 .\.venv-rel-annotation\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 python -m pip install -r annotation/rel_text_dependency/requirements.txt
-python annotation/rel_text_dependency/prepare_pilot.py --sample-size 48 --seed 20260803 --workers 8
+python annotation/rel_text_dependency/prepare_pilot.py --sample-size 366 --seed 20260803 --workers 8
 ```
 
 ### macOS Terminal
@@ -40,12 +39,36 @@ source .venv-rel-annotation/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r annotation/rel_text_dependency/requirements.txt
 python annotation/rel_text_dependency/prepare_pilot.py \
-  --sample-size 48 \
+  --sample-size 366 \
   --seed 20260803 \
   --workers 8
 ```
 
-처음 준비할 때 잠금된 MPR-GUI QAS와 288개 이미지를 내려받고 한국어 보조 번역을 생성하므로 네트워크 연결이 필요하다. 같은 seed와 source revision을 사용하면 두 annotator에게 동일한 48개 문항과 순서가 만들어진다.
+처음 준비할 때 잠금된 MPR-GUI QAS와 2,196개 이미지를 내려받고 한국어 보조 번역을 생성하므로 네트워크 연결이 필요하다. 같은 seed와 source revision을 사용하면 두 annotator에게 동일한 366개 문항과 순서가 만들어진다.
+
+## 기존 48-item pilot에서 전체 366개로 확장
+
+먼저 실행 중인 annotation server를 `Ctrl+C`로 종료하고 UI의 `CSV export`로 한 번 백업한다. 이후 저장소 루트에서 다음을 실행한다.
+
+Windows PowerShell:
+
+```powershell
+python annotation/rel_text_dependency/prepare_pilot.py `
+  --sample-size 366 `
+  --seed 20260803 `
+  --workers 8
+```
+
+macOS Terminal:
+
+```bash
+python annotation/rel_text_dependency/prepare_pilot.py \
+  --sample-size 366 \
+  --seed 20260803 \
+  --workers 8
+```
+
+기존 SQLite를 삭제하거나 수정할 필요는 없다. 저장된 label, review flag, note와 annotation time은 `parallel_id` 기준으로 그대로 유지된다. 첫 48개 순서도 유지되며, server를 다시 시작할 때 새 manifest의 순서와 provenance metadata만 자동 정합화된다. 기존 288개 이미지는 재사용하고 나머지만 다운로드한다.
 
 ## 가장 간단한 실행
 
@@ -143,18 +166,18 @@ python annotation/rel_text_dependency/summarize_agreement.py \
 - `agreement_summary.json`: raw agreement, expected agreement, Cohen’s κ, confusion counts
 - `disagreements.csv`: adjudication 대상과 양쪽 note
 
-## Pilot 데이터를 다시 준비하는 경우
+## 데이터를 다시 준비하는 경우
 
 로컬에서 준비를 마쳤다면 다시 실행할 필요가 없다.
 
 ```powershell
 python annotation/rel_text_dependency/prepare_pilot.py `
-  --sample-size 48 `
+  --sample-size 366 `
   --seed 20260803 `
   --workers 8
 ```
 
-이 명령은 잠금된 QAS, 선택된 288개 이미지와 한국어 보조 번역을 준비한다. 같은 seed와 source revision에서는 같은 semantic items가 선택된다.
+이 명령은 잠금된 QAS, 2,196개 이미지와 한국어 보조 번역을 준비한다. 같은 seed와 source revision에서는 같은 semantic items와 순서가 선택된다. 파일명 `pilot_manifest.json`은 기존 설치와의 호환성을 위해 유지한다.
 
 ## 검증
 

@@ -159,6 +159,38 @@ class AnnotationStore:
             ).fetchall()
         return [self._row_to_dict(row) for row in rows]
 
+    def reconcile_manifest(
+        self,
+        items: list[dict[str, object]],
+        *,
+        guideline_version: str,
+        manifest_sha256: str,
+    ) -> int:
+        """Refresh provenance/order metadata without changing annotation decisions."""
+        updated = 0
+        with self.connect() as connection:
+            for item in items:
+                cursor = connection.execute(
+                    """
+                    UPDATE annotations
+                    SET display_order=?, guideline_version=?, manifest_sha256=?
+                    WHERE parallel_id=? AND (
+                        display_order<>? OR guideline_version<>? OR manifest_sha256<>?
+                    )
+                    """,
+                    (
+                        int(item["display_order"]),
+                        guideline_version,
+                        manifest_sha256,
+                        str(item["parallel_id"]),
+                        int(item["display_order"]),
+                        guideline_version,
+                        manifest_sha256,
+                    ),
+                )
+                updated += cursor.rowcount
+        return updated
+
     def progress(self, annotator_id: str, total_items: int) -> dict[str, int]:
         rows = self.all_for(annotator_id)
         labeled = sum(row["label"] in VALID_LABELS for row in rows)

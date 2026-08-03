@@ -68,6 +68,11 @@ def create_app(data_dir: Path = DEFAULT_DATA_DIR, output_dir: Path = DEFAULT_OUT
     guideline_version = manifest.get("guideline_version", "pilot-v1")
     gold_by_asset = load_gold_by_asset(data_dir / "qas")
     store = AnnotationStore(output_dir / "rel_text_dependency.sqlite3")
+    store.reconcile_manifest(
+        items,
+        guideline_version=guideline_version,
+        manifest_sha256=manifest_hash,
+    )
 
     app = Flask(__name__, template_folder="templates", static_folder="static")
     app.config.update(

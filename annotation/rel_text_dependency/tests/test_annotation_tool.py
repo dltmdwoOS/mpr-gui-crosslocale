@@ -11,6 +11,7 @@ sys.path.insert(0, str(TOOL_DIR))
 
 from annotation_store import AnnotationStore
 from app import create_app
+from prepare_pilot import LANGUAGES, load_items, preserve_existing_prefix, stratified_sample
 from summarize_agreement import summarize
 
 
@@ -35,17 +36,83 @@ def test_store_roundtrip_and_export(tmp_path):
     assert "text_dependency" in exported
     assert "dependent" in exported
 
+    changed = store.reconcile_manifest(
+        [{"parallel_id": "rel::demo.jpg", "display_order": 7}],
+        guideline_version="pilot-v1",
+        manifest_sha256="new-manifest",
+    )
+    migrated = store.get("검수자_A", "rel::demo.jpg")
+    assert changed == 1
+    assert migrated["label"] == "dependent"
+    assert migrated["review_flag"] is True
+    assert migrated["note"] == "target label 확인 필요"
+    assert migrated["annotation_seconds"] == 12.5
+    assert migrated["display_order"] == 7
+    assert migrated["manifest_sha256"] == "new-manifest"
+
+
+def test_full_census_and_existing_prefix(tmp_path):
+    items = [
+        {"parallel_id": f"rel::{index}", "stratum": stratum}
+        for index, stratum in enumerate(["1", "1", "2", "2", "2", "3"], start=1)
+    ]
+    selected, allocation, population = stratified_sample(items, len(items), seed=42)
+    assert len(selected) == len(items)
+    assert allocation == population == {"1": 2, "2": 3, "3": 1}
+
+    manifest = {
+        "items": [
+            {"parallel_id": "rel::2", "display_order": 1},
+            {"parallel_id": "rel::5", "display_order": 2},
+        ]
+    }
+    manifest_path = tmp_path / "pilot_manifest.json"
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    expanded = preserve_existing_prefix(selected, manifest_path)
+    assert [item["parallel_id"] for item in expanded[:2]] == ["rel::2", "rel::5"]
+    assert [item["display_order"] for item in expanded] == list(range(1, 7))
+
+    census_items = [
+        {"parallel_id": f"rel::{stratum}-{index}", "stratum": str(stratum)}
+        for stratum in range(1, 7)
+        for index in range(10)
+    ]
+    expected_pilot, _, _ = stratified_sample(census_items, 48, seed=20260803)
+    full_census, _, _ = stratified_sample(census_items, 60, seed=20260803)
+    assert [item["parallel_id"] for item in full_census[:48]] == [
+        item["parallel_id"] for item in expected_pilot
+    ]
+
 
 def test_manifest_is_blind_and_complete():
     manifest_path = TOOL_DIR / "data" / "pilot_manifest.json"
     if not manifest_path.exists():
         return
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    assert len(manifest["items"]) == 48
-    assert [item["display_order"] for item in manifest["items"]] == list(range(1, 49))
+    assert len(manifest["items"]) in {48, 366}
+    assert [item["display_order"] for item in manifest["items"]] == list(
+        range(1, len(manifest["items"]) + 1)
+    )
     for item in manifest["items"]:
         assert set(item["locales"]) == {"en", "zh", "fr", "ru", "ja", "th"}
         assert "answer" not in json.dumps(item)
+
+
+def test_actual_full_census_preserves_current_manifest_prefix():
+    data_dir = TOOL_DIR / "data"
+    manifest_path = data_dir / "pilot_manifest.json"
+    qas_paths = {language: data_dir / "qas" / f"rel_el_{language}.jsonl" for language in LANGUAGES}
+    if not manifest_path.exists() or not all(path.exists() for path in qas_paths.values()):
+        return
+    existing = json.loads(manifest_path.read_text(encoding="utf-8"))
+    existing_ids = [item["parallel_id"] for item in existing["items"]]
+    full, allocation, population = stratified_sample(
+        load_items(qas_paths), 366, seed=20260803
+    )
+    full = preserve_existing_prefix(full, manifest_path)
+    assert len(full) == 366
+    assert allocation == population
+    assert [item["parallel_id"] for item in full[: len(existing_ids)]] == existing_ids
 
 
 def test_real_app_health_annotation_export_and_image(tmp_path):
@@ -59,8 +126,8 @@ def test_real_app_health_annotation_export_and_image(tmp_path):
     health = client.get("/api/health")
     assert health.status_code == 200
     assert health.json["status"] == "ok"
-    assert health.json["items"] == 48
-    assert health.json["images"] == 288
+    assert health.json["items"] in {48, 366}
+    assert health.json["images"] == health.json["items"] * 6
     assert health.json["gold_in_manifest"] is False
     assert health.json["gold_in_ui"] is True
 
