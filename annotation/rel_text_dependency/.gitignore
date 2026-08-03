@@ -1,0 +1,11 @@
+data/images/
+data/qas/
+data/pilot_manifest.json
+data/translations_ko.json
+data/preparation_report.json
+outputs/*.sqlite3
+outputs/*.sqlite3-*
+outputs/*.csv
+outputs/*.json
+!outputs/.gitkeep
+validation/
