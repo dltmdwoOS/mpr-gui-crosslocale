@@ -21,12 +21,9 @@ DEFAULT_OUTPUT_DIR = HERE / "outputs"
 ANNOTATOR_RE = re.compile(r"^[A-Za-z0-9가-힣_.-]{1,80}$")
 
 
-def file_sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+def canonical_text_sha256(path: Path) -> str:
+    content = path.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return hashlib.sha256(content).hexdigest()
 
 
 def normalize_asset(path: str) -> str:
@@ -64,7 +61,7 @@ def create_app(data_dir: Path = DEFAULT_DATA_DIR, output_dir: Path = DEFAULT_OUT
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     items = sorted(manifest["items"], key=lambda item: item["display_order"])
     item_by_id = {item["parallel_id"]: item for item in items}
-    manifest_hash = file_sha256(manifest_path)
+    manifest_hash = canonical_text_sha256(manifest_path)
     guideline_version = manifest.get("guideline_version", "pilot-v1")
     gold_by_asset = load_gold_by_asset(data_dir / "qas")
     store = AnnotationStore(output_dir / "rel_text_dependency.sqlite3")

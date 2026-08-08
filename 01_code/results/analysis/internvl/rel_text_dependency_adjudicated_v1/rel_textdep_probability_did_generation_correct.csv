@@ -1,0 +1,2 @@
+contrast,estimate,conf.low,conf.high,nsim,estimand
+dependent_bonus_minus_independent_bonus,0.1256754606240927,0.0800591091913153,0.17018510862118896,2000,difference in item-marginal standardized concordance bonuses; fixed-effect covariance propagated; random-intercept SD plug-in

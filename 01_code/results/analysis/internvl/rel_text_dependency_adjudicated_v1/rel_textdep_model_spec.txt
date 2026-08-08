@@ -1,0 +1,21 @@
+Outcome: generation_correct
+Scope: REL only; 366 semantic items x 36 language cells = 13,176 rows
+Final annotation: dependent=302, independent=64
+Annotator ID: team_consensus
+Guideline: pilot-v1+team-adjudication-v1
+Manifest file: annotation/rel_text_dependency/data/pilot_manifest.json
+Manifest SHA-256: fa8f6ea6393dd5ecb60740a83bff2e50bd18934771e673d744d98e798b5af4f1
+
+M0:
+y ~ question_language * text_dependency + gui_language * text_dependency +      (1 | parallel_id)
+
+M1:
+y ~ question_language * text_dependency + gui_language * text_dependency +      matched_num + (1 | parallel_id)
+
+M2 PRIMARY:
+y ~ question_language * text_dependency + gui_language * text_dependency +      matched_num * text_dependency + (1 | parallel_id)
+
+Primary hypothesis test: likelihood-ratio test M1 vs M2
+Primary moderation term: matched_num x text_dependency
+Probability estimand: equal-language item-marginal standardized concordance bonus
+Probability CI: 2,000 MVN fixed-effect draws; random-intercept SD plug-in

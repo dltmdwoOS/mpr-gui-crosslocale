@@ -1,0 +1,2 @@
+analysis_input,annotation_input,manifest_input,outcome,rel_rows,rel_items,independent_items,dependent_items,annotator_id,guideline_version,manifest_sha256
+01_code/data/derived/internvl_glmm.csv,annotation/rel_text_dependency/outputs/rel_annotations_integrated_366.csv,annotation/rel_text_dependency/data/pilot_manifest.json,generation_correct,13176,366,64,302,team_consensus,pilot-v1+team-adjudication-v1,fa8f6ea6393dd5ecb60740a83bff2e50bd18934771e673d744d98e798b5af4f1

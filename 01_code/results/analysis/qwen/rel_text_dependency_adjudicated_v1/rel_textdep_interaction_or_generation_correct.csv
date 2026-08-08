@@ -1,0 +1,2 @@
+contrast,estimate,SE,df,asymp.LCL,asymp.UCL,z.ratio,p.value,interaction_odds_ratio,interaction_or_low,interaction_or_high
+dependent_minus_independent,1.0061821052674942,0.17971119252084714,Inf,0.65395464030789,1.3584095702270984,5.59888391565135,2.1573619182585895e-8,2.73513858430232,1.923131102496319,3.8900016050016633

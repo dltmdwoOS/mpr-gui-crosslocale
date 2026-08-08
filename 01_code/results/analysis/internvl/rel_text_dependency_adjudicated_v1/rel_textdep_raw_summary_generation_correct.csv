@@ -1,0 +1,5 @@
+text_dependency,matched_num,n_rows,n_items,correct,accuracy,condition
+independent,0,1920,64,1156,0.6020833333333333,mismatch
+independent,1,384,64,230,0.5989583333333334,matched
+dependent,0,9060,302,4414,0.48719646799117,mismatch
+dependent,1,1812,302,1121,0.6186534216335541,matched

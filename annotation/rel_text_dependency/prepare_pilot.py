@@ -45,6 +45,11 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def canonical_text_sha256(path: Path) -> str:
+    content = path.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return hashlib.sha256(content).hexdigest()
+
+
 def download_url(url: str, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     request = urllib.request.Request(url, headers={"User-Agent": "mpr-rel-annotation/1.0"})
@@ -414,7 +419,8 @@ def main():
         "population_by_stratum": population,
         "sample_by_stratum": allocation,
         "manifest": str(manifest_path),
-        "manifest_sha256": sha256(manifest_path),
+        "manifest_sha256": canonical_text_sha256(manifest_path),
+        "manifest_hash_policy": "SHA-256 after CRLF/CR normalization to LF",
         "qas_sha256": {lang: sha256(path) for lang, path in qas_paths.items()},
         "translation_items": len(translations),
         "translation_quoted_token_mismatches": translation_token_mismatches(

@@ -1,0 +1,39 @@
+{
+  "sample_size": 366,
+  "seed": 20260803,
+  "population_by_stratum": {
+    "1": 15,
+    "2": 82,
+    "3": 75,
+    "4": 30,
+    "5": 105,
+    "6": 59
+  },
+  "sample_by_stratum": {
+    "1": 15,
+    "2": 82,
+    "3": 75,
+    "4": 30,
+    "5": 105,
+    "6": 59
+  },
+  "manifest": "annotation/rel_text_dependency/data/pilot_manifest.json",
+  "manifest_sha256": "fa8f6ea6393dd5ecb60740a83bff2e50bd18934771e673d744d98e798b5af4f1",
+  "manifest_hash_policy": "SHA-256 after CRLF/CR normalization to LF",
+  "qas_sha256": {
+    "en": "742a793bfede1bd1924ead91762099c19a3e079a54d79938959c131ca0f0ff94",
+    "zh": "56113e66ebf2985e7b118078311eae4ce4d4ec2228343f76e6128cdf6fbe5ee0",
+    "fr": "29e532a39eb4c6b59b93b451c739962e5267d468710fa55e5bfc37ec87d26568",
+    "ru": "ffcb7ffb69718c176f6904aab49d638ce6852bab189f1212e22d51cc34a98c74",
+    "ja": "77591f6f3829ecfe36a8b8775e4d77bf3750961a9aac0c1ed271bb1e30fd64a9",
+    "th": "fed9249bd5b20de2a49e5ce6a392baa2f1cc6470460cd6f2a7ab3d5bc68cd067"
+  },
+  "translation_items": 366,
+  "translation_quoted_token_mismatches": [],
+  "images": {
+    "assets": 2196,
+    "newly_downloaded": 915,
+    "existing": 2196
+  },
+  "gold_fields_in_manifest": false
+}

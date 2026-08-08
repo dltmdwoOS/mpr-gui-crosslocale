@@ -1,0 +1,3 @@
+text_dependency,adjusted_matched_probability,adjusted_counterfactual_mismatch_probability,adjusted_concordance_bonus,bonus_conf_low,bonus_conf_high,nsim,estimand
+independent,0.5983662292417327,0.6009056606525506,-0.0025394314108178793,-0.04366212451209902,0.03833800975293872,2000,equal-language item-marginal diagonal matched-vs-matched-off counterfactual probability difference
+dependent,0.6130014969679213,0.48986546775464646,0.12313602921327484,0.10444764956800401,0.14057770146318865,2000,equal-language item-marginal diagonal matched-vs-matched-off counterfactual probability difference

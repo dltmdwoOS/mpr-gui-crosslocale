@@ -10,9 +10,19 @@ TOOL_DIR = HERE.parent
 sys.path.insert(0, str(TOOL_DIR))
 
 from annotation_store import AnnotationStore
-from app import create_app
+from app import canonical_text_sha256, create_app
 from prepare_pilot import LANGUAGES, load_items, preserve_existing_prefix, stratified_sample
 from summarize_agreement import summarize
+
+
+def test_manifest_hash_is_newline_portable(tmp_path):
+    lf_path = tmp_path / "manifest_lf.json"
+    crlf_path = tmp_path / "manifest_crlf.json"
+    content = '{\n  "items": []\n}\n'
+    lf_path.write_bytes(content.encode("utf-8"))
+    crlf_path.write_bytes(content.replace("\n", "\r\n").encode("utf-8"))
+
+    assert canonical_text_sha256(lf_path) == canonical_text_sha256(crlf_path)
 
 
 def test_store_roundtrip_and_export(tmp_path):
@@ -95,7 +105,9 @@ def test_manifest_is_blind_and_complete():
     )
     for item in manifest["items"]:
         assert set(item["locales"]) == {"en", "zh", "fr", "ru", "ja", "th"}
-        assert "answer" not in json.dumps(item)
+        assert not ({"answer", "correct_answer", "gold", "gold_label"} & set(item))
+        for locale in item["locales"].values():
+            assert not ({"answer", "correct_answer", "gold", "gold_label"} & set(locale))
 
 
 def test_actual_full_census_preserves_current_manifest_prefix():
