@@ -89,7 +89,7 @@ def _original_success_rows(path: Path) -> dict[str, dict[str, Any]]:
     return selected
 
 
-def _nllb_success_rows(path: Path) -> tuple[dict[str, dict[str, Any]], int]:
+def _intervention_success_rows(path: Path) -> tuple[dict[str, dict[str, Any]], int]:
     successes: dict[str, dict[str, Any]] = {}
     failed_attempts = 0
     for row in read_jsonl(path):
@@ -98,11 +98,11 @@ def _nllb_success_rows(path: Path) -> tuple[dict[str, dict[str, Any]], int]:
             continue
         key = str(row["pair_id"])
         if key in successes:
-            raise ValueError(f"Duplicate successful NLLB pair: {key}")
+            raise ValueError(f"Duplicate successful intervention pair: {key}")
         successes[key] = row
     if len(successes) != EXPECTED_INTERVENTION_ROWS:
         raise ValueError(
-            f"NLLB result must provide {EXPECTED_INTERVENTION_ROWS} successful pairs; "
+            f"Intervention result must provide {EXPECTED_INTERVENTION_ROWS} successful pairs; "
             f"found {len(successes)} (failed attempts={failed_attempts})."
         )
     return successes, failed_attempts
@@ -117,25 +117,34 @@ def _generation_correct(row: dict[str, Any]) -> int:
 
 def validate_and_combine(
     original_path: Path,
-    nllb_path: Path,
-    nllb_inputs_path: Path,
+    intervention_path: Path,
+    intervention_inputs_path: Path,
     annotation_path: Path,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
     annotations = _read_annotations(annotation_path)
     originals = _original_success_rows(original_path)
-    nllb_rows, failed_attempts = _nllb_success_rows(nllb_path)
-    inputs = {row["pair_id"]: row for row in read_jsonl(nllb_inputs_path)}
+    intervention_rows, failed_attempts = _intervention_success_rows(intervention_path)
+    inputs = {row["pair_id"]: row for row in read_jsonl(intervention_inputs_path)}
     if len(inputs) != EXPECTED_INTERVENTION_ROWS:
-        raise ValueError("NLLB input artifact must contain 10,980 unique pairs.")
+        raise ValueError("Intervention input artifact must contain 10,980 unique pairs.")
     pair_universe = set(originals)
-    if pair_universe != set(nllb_rows) or pair_universe != set(inputs):
-        raise ValueError("Original, NLLB result, and NLLB input pair universes differ.")
+    if pair_universe != set(intervention_rows) or pair_universe != set(inputs):
+        raise ValueError(
+            "Original, intervention result, and intervention input pair universes differ."
+        )
+    conditions = {str(row.get("condition")) for row in inputs.values()}
+    if conditions == {"nllb_query_aligned"}:
+        intervention_label = "nllb"
+    elif conditions == {"contextual_query_aligned"}:
+        intervention_label = "contextual"
+    else:
+        raise ValueError(f"Unexpected intervention condition set: {sorted(conditions)}")
 
     combined: list[dict[str, Any]] = []
     pair_audits: list[dict[str, Any]] = []
     for key in sorted(pair_universe):
         original = originals[key]
-        nllb = nllb_rows[key]
+        intervention = intervention_rows[key]
         input_row = inputs[key]
         source_language = str(original["question_language"])
         gui_language = str(original["gui_language"])
@@ -144,15 +153,15 @@ def validate_and_combine(
         for field in INVARIANT_RESULT_FIELDS:
             # Older Qwen raw rows did not record every processor field. Compare
             # every invariant that is actually present in the frozen original.
-            if field in original and original.get(field) != nllb.get(field):
+            if field in original and original.get(field) != intervention.get(field):
                 invariant_differences.append(field)
-        if source_language != nllb.get("source_question_language"):
+        if source_language != intervention.get("source_question_language"):
             invariant_differences.append("source_question_language")
-        if original.get("source_question_id") != nllb.get("source_question_id"):
+        if original.get("source_question_id") != intervention.get("source_question_id"):
             invariant_differences.append("source_question_id")
-        if original.get("image_paths") != nllb.get("image_paths"):
+        if original.get("image_paths") != intervention.get("image_paths"):
             invariant_differences.append("image_paths")
-        if nllb.get("input_id") != input_row.get("input_id"):
+        if intervention.get("input_id") != input_row.get("input_id"):
             invariant_differences.append("input_id_vs_frozen_input")
         if normalized_image_assets(original["image_paths"]) != normalized_image_assets(
             input_row["image_paths"]
@@ -168,7 +177,7 @@ def validate_and_combine(
             invariant_differences.append("input_gui_language")
         if invariant_differences:
             raise ValueError(
-                f"Forbidden original-NLLB metadata difference for {key}: "
+                f"Forbidden original-intervention metadata difference for {key}: "
                 f"{sorted(set(invariant_differences))}"
             )
 
@@ -184,7 +193,10 @@ def validate_and_combine(
             "model_revision": original["model_revision"],
             "translation_status": input_row["translation_status"],
             "translation_failed_fields": json.dumps(
-                input_row["translation_failed_fields"], ensure_ascii=False
+                input_row.get("translation_failed_fields", []), ensure_ascii=False
+            ),
+            "semantic_diagnostic_flags": json.dumps(
+                input_row.get("semantic_diagnostic_flags", []), ensure_ascii=False
             ),
             "translation_analysis_eligible": int(
                 input_row["translation_analysis_eligible"]
@@ -201,10 +213,10 @@ def validate_and_combine(
                 },
                 {
                     **common,
-                    "intervention": "nllb",
-                    "generation_correct": _generation_correct(nllb),
-                    "parse_success": int(bool(nllb.get("parse_success"))),
-                    "input_id": nllb["input_id"],
+                    "intervention": intervention_label,
+                    "generation_correct": _generation_correct(intervention),
+                    "parse_success": int(bool(intervention.get("parse_success"))),
+                    "input_id": intervention["input_id"],
                 },
             ]
         )
@@ -222,7 +234,10 @@ def validate_and_combine(
                 "model_protocol_equal": 1,
                 "translation_status": input_row["translation_status"],
                 "translation_failed_fields": json.dumps(
-                    input_row["translation_failed_fields"], ensure_ascii=False
+                    input_row.get("translation_failed_fields", []), ensure_ascii=False
+                ),
+                "semantic_diagnostic_flags": json.dumps(
+                    input_row.get("semantic_diagnostic_flags", []), ensure_ascii=False
                 ),
                 "translation_analysis_eligible": int(
                     input_row["translation_analysis_eligible"]
@@ -237,21 +252,24 @@ def validate_and_combine(
     pair_counts = Counter(row["pair_id"] for row in combined)
     condition_counts = Counter((row["pair_id"], row["intervention"]) for row in combined)
     if set(pair_counts.values()) != {2} or set(condition_counts.values()) != {1}:
-        raise ValueError("Each pair must contain exactly one original and one NLLB observation.")
+        raise ValueError(
+            "Each pair must contain exactly one original and one intervention observation."
+        )
 
     summary = {
         "status": "pass",
         "original_input": original_path.as_posix(),
-        "nllb_input": nllb_path.as_posix(),
-        "frozen_nllb_inputs": nllb_inputs_path.as_posix(),
+        "intervention_label": intervention_label,
+        "intervention_input": intervention_path.as_posix(),
+        "frozen_intervention_inputs": intervention_inputs_path.as_posix(),
         "annotation_input": annotation_path.as_posix(),
         "original_sha256": file_sha256(original_path),
-        "nllb_sha256": file_sha256(nllb_path),
-        "nllb_inputs_sha256": file_sha256(nllb_inputs_path),
+        "intervention_sha256": file_sha256(intervention_path),
+        "intervention_inputs_sha256": file_sha256(intervention_inputs_path),
         "annotation_sha256": file_sha256(annotation_path),
         "pair_ids": EXPECTED_INTERVENTION_ROWS,
         "combined_rows": EXPECTED_INTERVENTION_ROWS * 2,
-        "failed_nllb_attempts_retained_outside_analysis": failed_attempts,
+        "failed_intervention_attempts_retained_outside_analysis": failed_attempts,
         "pair_metadata_diff_failures": 0,
         "translation_status_counts": dict(
             Counter(row["translation_status"] for row in inputs.values())
@@ -276,12 +294,17 @@ def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(
-        description="Validate original-NLLB pairing and build the 21,960-row RQ4 GLMM table."
+        description=(
+            "Validate original-intervention pairing and build the 21,960-row RQ4 table."
+        )
     )
     parser.add_argument("--original-results", type=Path, required=True)
-    parser.add_argument("--nllb-results", type=Path, required=True)
     parser.add_argument(
-        "--nllb-inputs",
+        "--intervention-results", "--nllb-results", dest="intervention_results",
+        type=Path, required=True
+    )
+    parser.add_argument(
+        "--intervention-inputs", "--nllb-inputs", dest="intervention_inputs",
         type=Path,
         default=Path("data/derived/interventions/rel_nllb_inputs.jsonl"),
     )
@@ -295,10 +318,13 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--summary-out", type=Path, required=True)
     args = parser.parse_args(argv)
 
-    log_step("STEP 1/4 reading frozen original, NLLB result, inputs, and annotations")
+    log_step("STEP 1/4 reading frozen original, intervention result, inputs, and annotations")
     log_step("STEP 2/4 validating 10,980 exact pairs and immutable metadata")
     combined, pair_audits, summary = validate_and_combine(
-        args.original_results, args.nllb_results, args.nllb_inputs, args.annotations
+        args.original_results,
+        args.intervention_results,
+        args.intervention_inputs,
+        args.annotations,
     )
     log_step("STEP 3/4 building the paired 21,960-row GLMM table")
     _write_csv(args.combined_out, combined)

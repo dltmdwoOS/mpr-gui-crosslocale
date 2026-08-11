@@ -45,6 +45,11 @@ mpr-build-rel-nllb-translations = "mpr_crosslocale.interventions.build_rel_nllb_
 mpr-build-rel-nllb-inputs = "mpr_crosslocale.interventions.build_rel_nllb_inputs:main"
 mpr-run-rel-nllb-intervention = "mpr_crosslocale.inference.run_rel_nllb_intervention:main"
 mpr-validate-rel-nllb-results = "mpr_crosslocale.interventions.validate_rel_nllb_results:main"
+mpr-build-rel-contextual-translations = "mpr_crosslocale.interventions.build_rel_qwen3_contextual_translations:main"
+mpr-build-rel-contextual-review = "mpr_crosslocale.interventions.build_rel_qwen3_contextual_review:main"
+mpr-build-rel-contextual-inputs = "mpr_crosslocale.interventions.build_rel_qwen3_contextual_inputs:main"
+mpr-run-rel-contextual-intervention = "mpr_crosslocale.inference.run_rel_contextual_intervention:main"
+mpr-validate-rel-contextual-results = "mpr_crosslocale.interventions.validate_rel_nllb_results:main"
 mpr-summarize-cross-locale = "mpr_crosslocale.analysis.summarize_cross_locale:main"
 mpr-processor-preflight = "mpr_crosslocale.inference.processor_preflight:main"
 

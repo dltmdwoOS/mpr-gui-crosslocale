@@ -1,0 +1,56 @@
+schema_version: rq4-rel-contextual-v2
+condition: contextual_query_aligned
+
+translator:
+  model_id: Qwen/Qwen3-8B
+  revision: 47719a242beab8f9aecc40ce3928b034dd5dd559
+  transformers_version: 4.57.6
+  dtype: bfloat16
+  attn_implementation: sdpa
+  seed: 42
+  enable_thinking: false
+
+generation:
+  do_sample: false
+  num_beams: 1
+  max_new_tokens: 512
+
+runtime:
+  device: cuda
+  min_gpu_memory_gib: 20
+  batch_size: 2
+
+protocol:
+  method: full_mcq_contextual_structured_json
+  prompt_template_version: rq4_contextual_translation_v2
+  structured_output: prompted_json_with_validation
+  dependency_blind_generation: true
+  screenshot_hidden: true
+  gold_hidden: true
+  human_parallel_hidden: true
+  prior_translation_hidden: true
+  preserve_option_keys: true
+  preserve_option_order: true
+  hard_validation:
+    - exact_json_object
+    - exact_top_level_keys
+    - exact_option_keys_and_order
+    - non_empty_fields
+    - numeric_tokens_preserved
+    - percentage_tokens_preserved
+    - file_format_tokens_preserved
+  semantic_diagnostics:
+    - spatial_relation_mismatch
+    - negation_mismatch
+    - quoted_ascii_span_transformation
+    - target_script_mismatch
+  repair:
+    enabled: true
+    max_attempts: 1
+    batch_size: 1
+    retain_all_attempts: true
+
+smoke:
+  per_direction: 2
+  seed: 20260811
+  expected_rows: 60

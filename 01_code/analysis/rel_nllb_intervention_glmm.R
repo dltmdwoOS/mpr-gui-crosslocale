@@ -36,7 +36,6 @@ EXPECTED_ROWS <- 21960L
 EXPECTED_PAIRS <- 10980L
 EXPECTED_ITEMS <- 366L
 DEPENDENCY_LEVELS <- c("independent", "dependent")
-INTERVENTION_LEVELS <- c("original", "nllb")
 
 progress_message("Reading validated RQ4 paired table: ", data_path)
 raw <- read_csv(data_path, show_col_types = FALSE)
@@ -52,6 +51,12 @@ if (length(missing) > 0L) {
 if (nrow(raw) != EXPECTED_ROWS) {
   stop("RQ4 combined table must contain exactly 21,960 rows; found ", nrow(raw), ".")
 }
+intervention_treatments <- setdiff(unique(raw$intervention), "original")
+if (length(intervention_treatments) != 1L) {
+  stop("RQ4 table must contain original plus exactly one intervention treatment.")
+}
+intervention_treatment <- intervention_treatments[[1]]
+INTERVENTION_LEVELS <- c("original", intervention_treatment)
 
 issue_pair_count <- raw %>%
   distinct(pair_id, translation_status, translation_analysis_eligible) %>%
@@ -64,7 +69,7 @@ if (translation_issue_policy == "exclude_failed") {
 }
 analysis_pairs <- n_distinct(raw$pair_id)
 if (nrow(raw) != analysis_pairs * 2L) {
-  stop("Translation-issue filtering did not preserve exact original-NLLB pairs.")
+  stop("Translation-issue filtering did not preserve exact original-intervention pairs.")
 }
 
 data <- raw %>%
@@ -75,7 +80,7 @@ data <- raw %>%
     gui_language = factor(gui_language, levels = LANGUAGES),
     text_dependency = factor(text_dependency, levels = DEPENDENCY_LEVELS),
     intervention = factor(intervention, levels = INTERVENTION_LEVELS),
-    intervention_num = as.integer(intervention == "nllb"),
+    intervention_num = as.integer(intervention == intervention_treatment),
     y = to_binary(generation_correct)
   )
 
@@ -90,7 +95,7 @@ if (any(table(data$pair_id) != 2L)) stop("Every pair_id must have exactly two ro
 pair_conditions <- data %>%
   count(pair_id, intervention, name = "n")
 if (nrow(pair_conditions) != analysis_pairs * 2L || any(pair_conditions$n != 1L)) {
-  stop("Every pair must contain exactly one original and one NLLB row.")
+  stop("Every pair must contain exactly one original and one intervention row.")
 }
 if (any(as.character(data$source_question_language) == as.character(data$gui_language))) {
   stop("RQ4 combined table contains a source-matched language pair.")
@@ -122,7 +127,7 @@ write_csv(raw_summary, file.path(output_dir, "rq4_raw_summary_generation_correct
 raw_gains <- raw_summary %>%
   select(text_dependency, intervention, accuracy) %>%
   pivot_wider(names_from = intervention, values_from = accuracy) %>%
-  mutate(raw_mt_gain = nllb - original)
+  mutate(raw_intervention_gain = .data[[intervention_treatment]] - original)
 write_csv(raw_gains, file.path(output_dir, "rq4_raw_mt_gains_generation_correct.csv"))
 
 optimizer_print_every <- if (verbose_level == 0L) 0L else if (verbose_level == 1L) 500L else 100L
@@ -204,8 +209,8 @@ model_m1 <- selected$models$m1
 model_m2 <- selected$models$m2
 
 lrt_results <- bind_rows(
-  lrt_table(model_m0, model_m1, "common_nllb_intervention_gain"),
-  lrt_table(model_m1, model_m2, "nllb_by_text_dependency_PRIMARY")
+  lrt_table(model_m0, model_m1, "common_query_alignment_intervention_gain"),
+  lrt_table(model_m1, model_m2, "intervention_by_text_dependency_PRIMARY")
 )
 write_csv(lrt_results, file.path(output_dir, "rq4_lrt_generation_correct.csv"))
 write_csv(fixed_effect_table(model_m2), file.path(output_dir, "rq4_fixed_effects_generation_correct.csv"))
@@ -276,26 +281,33 @@ random_sd <- total_random_sd(model_m2)
 
 estimate_gain <- function(dependency) {
   original_grid <- make_grid(dependency, 0L)
-  nllb_grid <- make_grid(dependency, 1L)
+  intervention_grid <- make_grid(dependency, 1L)
   x_original <- fixed_model_matrix(model_m2, original_grid)
-  x_nllb <- fixed_model_matrix(model_m2, nllb_grid)
+  x_intervention <- fixed_model_matrix(model_m2, intervention_grid)
   beta <- fixef(model_m2)
   p_original <- marginal_probability_from_eta(as.numeric(x_original %*% beta), random_sd)
-  p_nllb <- marginal_probability_from_eta(as.numeric(x_nllb %*% beta), random_sd)
+  p_intervention <- marginal_probability_from_eta(
+    as.numeric(x_intervention %*% beta), random_sd
+  )
   original_draws <- marginal_probability_from_eta(x_original %*% t(coefficient_draws), random_sd)
-  nllb_draws <- marginal_probability_from_eta(x_nllb %*% t(coefficient_draws), random_sd)
-  gain_draw <- colMeans(nllb_draws - original_draws)
+  intervention_draws <- marginal_probability_from_eta(
+    x_intervention %*% t(coefficient_draws), random_sd
+  )
+  gain_draw <- colMeans(intervention_draws - original_draws)
   list(
     summary = tibble(
       text_dependency = dependency,
       adjusted_original_probability = mean(p_original),
-      adjusted_nllb_probability = mean(p_nllb),
-      adjusted_mt_gain = mean(p_nllb - p_original),
+      adjusted_intervention_probability = mean(p_intervention),
+      adjusted_intervention_gain = mean(p_intervention - p_original),
       gain_conf_low = unname(quantile(gain_draw, 0.025)),
       gain_conf_high = unname(quantile(gain_draw, 0.975)),
       nsim = nsim,
       random_structure = selected_structure,
-      estimand = "equal-directed-pair marginal NLLB-minus-original probability difference"
+      estimand = paste0(
+        "equal-directed-pair marginal ", intervention_treatment,
+        "-minus-original probability difference"
+      )
     ),
     draws = gain_draw
   )
@@ -308,19 +320,24 @@ write_csv(gain_table, file.path(output_dir, "rq4_adjusted_mt_gains_generation_co
 
 did_draws <- dependent_gain$draws - independent_gain$draws
 probability_did <- tibble(
-  contrast = "dependent_mt_gain_minus_independent_mt_gain",
-  estimate = dependent_gain$summary$adjusted_mt_gain - independent_gain$summary$adjusted_mt_gain,
+  contrast = "dependent_intervention_gain_minus_independent_intervention_gain",
+  estimate = dependent_gain$summary$adjusted_intervention_gain -
+    independent_gain$summary$adjusted_intervention_gain,
   conf.low = unname(quantile(did_draws, 0.025)),
   conf.high = unname(quantile(did_draws, 0.975)),
   nsim = nsim,
   random_structure = selected_structure,
-  estimand = "difference in equal-directed-pair marginal MT gains"
+  estimand = "difference in equal-directed-pair marginal intervention gains"
 )
 write_csv(probability_did, file.path(output_dir, "rq4_probability_did_generation_correct.csv"))
 
 model_spec <- c(
   "RQ4 frozen primary outcome: generation_correct",
-  paste0("Full validated artifact: 21,960 rows = 10,980 exact pairs x (original, NLLB)"),
+  paste0(
+    "Full validated artifact: 21,960 rows = 10,980 exact pairs x (original, ",
+    intervention_treatment, ")"
+  ),
+  paste0("Intervention treatment label: ", intervention_treatment),
   paste0("Translation issue policy: ", translation_issue_policy),
   paste0("Translation issue pairs in full artifact: ", issue_pair_count),
   paste0("Analyzed rows: ", nrow(data), "; analyzed pairs: ", analysis_pairs),
@@ -347,27 +364,28 @@ writeLines(model_spec, file.path(output_dir, "rq4_model_spec.txt"))
 capture.output(sessionInfo(), file = file.path(output_dir, "rq4_session_info.txt"))
 
 primary_lrt <- lrt_results %>%
-  filter(test_block == "nllb_by_text_dependency_PRIMARY") %>%
+  filter(test_block == "intervention_by_text_dependency_PRIMARY") %>%
   slice_tail(n = 1L)
 p_column <- grep("^Pr\\(", names(primary_lrt), value = TRUE)
 primary_p <- if (length(p_column) == 1L) primary_lrt[[p_column]] else NA_real_
 gain_by_dependency <- setNames(
-  gain_table$adjusted_mt_gain,
+  gain_table$adjusted_intervention_gain,
   gain_table$text_dependency
 )
 did_value <- probability_did$estimate[[1]]
 result_report <- c(
-  "# RQ4 REL NLLB GLMM 결과 요약",
+  "# RQ4 REL query-alignment intervention GLMM 결과 요약",
   "",
   paste0("- Model: `", unique(data$model_id), "`"),
   paste0("- Revision: `", unique(data$model_revision), "`"),
+  paste0("- Intervention: `", intervention_treatment, "`"),
   paste0("- Random-effects structure: `", selected_structure, "`"),
   paste0(
-    "- Independent adjusted NLLB gain: ",
+    "- Independent adjusted intervention gain: ",
     sprintf("%+.2f%%p", 100 * gain_by_dependency[["independent"]])
   ),
   paste0(
-    "- Dependent adjusted NLLB gain: ",
+    "- Dependent adjusted intervention gain: ",
     sprintf("%+.2f%%p", 100 * gain_by_dependency[["dependent"]])
   ),
   paste0("- Probability DID: ", sprintf("%+.2f%%p", 100 * did_value)),

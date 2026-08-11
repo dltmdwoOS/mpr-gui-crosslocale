@@ -38,6 +38,11 @@ from mpr_crosslocale.interventions.rq4_nllb import (
     NLLB_MODEL_ID,
     NLLB_REVISION,
 )
+from mpr_crosslocale.interventions.rq4_contextual import (
+    CONTEXTUAL_CONDITION,
+    CONTEXTUAL_MODEL_ID,
+    CONTEXTUAL_REVISION,
+)
 
 
 def validate_intervention_inputs(rows: list[dict[str, Any]]) -> None:
@@ -64,8 +69,6 @@ def validate_intervention_inputs(rows: list[dict[str, Any]]) -> None:
         "translator_model_id",
         "translator_revision",
         "translation_status",
-        "translation_retry_events",
-        "translation_failed_fields",
         "translation_analysis_eligible",
     }
     input_ids = []
@@ -76,7 +79,7 @@ def validate_intervention_inputs(rows: list[dict[str, Any]]) -> None:
             raise ValueError(f"Input is missing fields {sorted(missing)}: {row.get('input_id')}")
         input_ids.append(str(row["input_id"]))
         pair_ids.append(str(row["pair_id"]))
-        if row["condition"] != "nllb_query_aligned":
+        if row["condition"] not in {"nllb_query_aligned", CONTEXTUAL_CONDITION}:
             raise ValueError(f"Unexpected condition: {row['input_id']}")
         if row["source_question_language"] == row["gui_language"]:
             raise ValueError(f"Source condition is not a mismatch: {row['input_id']}")
@@ -88,14 +91,27 @@ def validate_intervention_inputs(rows: list[dict[str, Any]]) -> None:
             raise ValueError(f"Post-intervention language alignment failed: {row['input_id']}")
         if row["matched"] is not False or row["original_matched"] is not False:
             raise ValueError(f"Original mismatch metadata changed: {row['input_id']}")
-        if row["translator_model_id"] != NLLB_MODEL_ID:
+        if row["condition"] == "nllb_query_aligned":
+            expected_model, expected_revision = NLLB_MODEL_ID, NLLB_REVISION
+            for field in ("translation_retry_events", "translation_failed_fields"):
+                if field not in row:
+                    raise ValueError(f"NLLB input lacks {field}: {row['input_id']}")
+        else:
+            expected_model, expected_revision = CONTEXTUAL_MODEL_ID, CONTEXTUAL_REVISION
+            for field in (
+                "translation_method",
+                "prompt_template_version",
+                "translation_attempt_count",
+                "semantic_diagnostic_flags",
+            ):
+                if field not in row:
+                    raise ValueError(f"Contextual input lacks {field}: {row['input_id']}")
+        if row["translator_model_id"] != expected_model:
             raise ValueError(f"Unexpected translator: {row['input_id']}")
-        if row["translator_revision"] != NLLB_REVISION:
+        if row["translator_revision"] != expected_revision:
             raise ValueError(f"Unexpected translator revision: {row['input_id']}")
-        if row["translation_status"] == "failed_empty_after_retry" and row[
-            "translation_analysis_eligible"
-        ] is not False:
-            raise ValueError(f"Failed translation eligibility mismatch: {row['input_id']}")
+        if row["translation_analysis_eligible"] is not True:
+            raise ValueError(f"Ineligible translation reached VLM inference: {row['input_id']}")
         if len(row["image_paths"]) != int(row["num_images"]):
             raise ValueError(f"num_images mismatch: {row['input_id']}")
     if len(input_ids) != len(set(input_ids)) or len(pair_ids) != len(set(pair_ids)):
@@ -134,10 +150,16 @@ def _result_base(
         "matched": False,
         "original_matched": False,
         "language_aligned_after_intervention": True,
-        "condition": "nllb_query_aligned",
+        "condition": row["condition"],
         "translation_status": row["translation_status"],
-        "translation_retry_events": row["translation_retry_events"],
-        "translation_failed_fields": row["translation_failed_fields"],
+        "translation_retry_events": row.get("translation_retry_events"),
+        "translation_failed_fields": row.get("translation_failed_fields"),
+        "translation_attempt_count": row.get("translation_attempt_count"),
+        "translation_method": row.get("translation_method"),
+        "translation_prompt_template_version": row.get("prompt_template_version"),
+        "translation_semantic_diagnostic_flags": row.get(
+            "semantic_diagnostic_flags", []
+        ),
         "translation_analysis_eligible": row["translation_analysis_eligible"],
         "dimension": "rel",
         "question_raw_sha256": __import__("hashlib").sha256(
@@ -174,8 +196,8 @@ def _result_base(
         "gold_label": row["gold_label"],
         "translator_model_id": row["translator_model_id"],
         "translator_revision": row["translator_revision"],
-        "translator_src_code": row["translator_src_code"],
-        "translator_tgt_code": row["translator_tgt_code"],
+        "translator_src_code": row.get("translator_src_code"),
+        "translator_tgt_code": row.get("translator_tgt_code"),
         "translation_generation_config": row["translation_generation_config"],
         "software_versions": run_metadata["software_versions"],
         "hardware": run_metadata["hardware"],
@@ -268,7 +290,7 @@ def run(args: argparse.Namespace) -> None:
     )
     adapter = None if args.mock_model else _build_model_adapter(args, model_config)
     log_step("STEP 4/4 inference started; per-row progress is shown below")
-    for row in tqdm.tqdm(pending, desc="RQ4 NLLB intervention"):
+    for row in tqdm.tqdm(pending, desc="RQ4 query-alignment intervention"):
         started = time.perf_counter()
         base = _result_base(
             row, args, model_config, prompt_profile, run_metadata, generation_config
@@ -341,7 +363,9 @@ def run(args: argparse.Namespace) -> None:
 
 
 def main(argv: list[str] | None = None) -> None:
-    parser = argparse.ArgumentParser(description="Run frozen RQ4 REL NLLB intervention inputs.")
+    parser = argparse.ArgumentParser(
+        description="Run frozen RQ4 REL query-alignment intervention inputs."
+    )
     parser.add_argument(
         "--inputs",
         type=Path,
