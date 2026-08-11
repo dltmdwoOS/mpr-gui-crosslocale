@@ -23,7 +23,6 @@ from mpr_crosslocale.interventions.rq4_nllb import (
     write_csv_atomic,
 )
 
-
 ALLOWED_CONTEXTUAL_INPUT_DIFF_FIELDS = {
     "condition",
     "effective_question_language",
@@ -43,11 +42,16 @@ ALLOWED_CONTEXTUAL_INPUT_DIFF_FIELDS = {
     "translator_revision",
     "prompt_template_version",
     "semantic_diagnostic_flags",
+    "hard_repair_attempted",
+    "semantic_repair_attempted",
+    "semantic_repair_accepted",
+    "initial_semantic_repair_reasons",
+    "final_semantic_repair_reasons",
 }
 
 
 def log_step(message: str) -> None:
-    print(f"[{datetime.now():%Y-%m-%d %H:%M:%S}] {message}", flush=True)
+    print(f"[{datetime.now().astimezone():%Y-%m-%d %H:%M:%S}] {message}", flush=True)
 
 
 def build_inputs(
@@ -122,6 +126,19 @@ def build_inputs(
             "translation_status": translation["translation_status"],
             "translation_attempt_count": len(translation["translation_attempts"]),
             "semantic_diagnostic_flags": translation["semantic_diagnostic_flags"],
+            "hard_repair_attempted": translation["hard_repair_attempted"],
+            "semantic_repair_attempted": translation[
+                "semantic_repair_attempted"
+            ],
+            "semantic_repair_accepted": translation[
+                "semantic_repair_accepted"
+            ],
+            "initial_semantic_repair_reasons": translation[
+                "initial_semantic_repair_reasons"
+            ],
+            "final_semantic_repair_reasons": translation[
+                "final_semantic_repair_reasons"
+            ],
             "translation_analysis_eligible": translation[
                 "translation_analysis_eligible"
             ],
@@ -224,26 +241,26 @@ def main(argv: list[str] | None = None) -> None:
         "--translations",
         type=Path,
         default=Path(
-            "data/derived/interventions/rel_qwen3_contextual_translations_v2.jsonl"
+            "data/derived/interventions/rel_qwen3_contextual_translations_v4.jsonl"
         ),
     )
     parser.add_argument(
         "--contextual-inputs-out",
         type=Path,
-        default=Path("data/derived/interventions/rel_qwen3_contextual_inputs_v2.jsonl"),
+        default=Path("data/derived/interventions/rel_qwen3_contextual_inputs_v4.jsonl"),
     )
     parser.add_argument(
         "--original-controls-out",
         type=Path,
         default=Path(
-            "data/derived/interventions/rel_qwen3_contextual_original_controls_v2.jsonl"
+            "data/derived/interventions/rel_qwen3_contextual_original_controls_v4.jsonl"
         ),
     )
     parser.add_argument(
         "--pair-diff-audit-out",
         type=Path,
         default=Path(
-            "data/derived/interventions/rel_qwen3_contextual_pair_metadata_diff_v2.csv"
+            "data/derived/interventions/rel_qwen3_contextual_pair_metadata_diff_v4.csv"
         ),
     )
     args = parser.parse_args(argv)
@@ -266,9 +283,14 @@ def main(argv: list[str] | None = None) -> None:
                 "status": "complete",
                 "rows": len(interventions),
                 "pair_metadata_diff_failures": 0,
-                "repair_recovered_rows": sum(
-                    row["translation_status"] == "recovered_after_structural_repair"
-                    for row in interventions
+                "hard_repair_rows": sum(
+                    row["hard_repair_attempted"] for row in interventions
+                ),
+                "semantic_repair_rows": sum(
+                    row["semantic_repair_attempted"] for row in interventions
+                ),
+                "semantic_repair_accepted_rows": sum(
+                    row["semantic_repair_accepted"] for row in interventions
                 ),
                 "semantic_diagnostic_flag_rows": sum(
                     bool(row["semantic_diagnostic_flags"]) for row in interventions

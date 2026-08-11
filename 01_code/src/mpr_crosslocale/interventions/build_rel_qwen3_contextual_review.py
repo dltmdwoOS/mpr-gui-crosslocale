@@ -21,7 +21,7 @@ from mpr_crosslocale.interventions.rq4_nllb import (
 
 
 def log_step(message: str) -> None:
-    print(f"[{datetime.now():%Y-%m-%d %H:%M:%S}] {message}", flush=True)
+    print(f"[{datetime.now().astimezone():%Y-%m-%d %H:%M:%S}] {message}", flush=True)
 
 
 def _flatten_options(prefix: str, options: dict[str, str]) -> dict[str, str]:
@@ -63,6 +63,27 @@ def build_review_rows(
                 **_flatten_options("human_parallel_reference_only", human["options"]),
                 "translation_status": translation["translation_status"],
                 "translation_attempt_count": len(translation["translation_attempts"]),
+                "hard_repair_attempted": int(translation["hard_repair_attempted"]),
+                "semantic_repair_attempted": int(
+                    translation["semantic_repair_attempted"]
+                ),
+                "semantic_repair_accepted": int(
+                    translation["semantic_repair_accepted"]
+                ),
+                "initial_semantic_repair_reasons": json.dumps(
+                    translation["initial_semantic_repair_reasons"],
+                    ensure_ascii=False,
+                ),
+                "initial_semantic_repair_score": translation[
+                    "initial_semantic_repair_score"
+                ],
+                "final_semantic_repair_reasons": json.dumps(
+                    translation["final_semantic_repair_reasons"],
+                    ensure_ascii=False,
+                ),
+                "final_semantic_repair_score": translation[
+                    "final_semantic_repair_score"
+                ],
                 "hard_validation_errors": json.dumps(
                     translation["hard_validation_errors"], ensure_ascii=False
                 ),
@@ -98,7 +119,7 @@ def main(argv: list[str] | None = None) -> None:
         "--translations",
         type=Path,
         default=Path(
-            "data/derived/interventions/rel_qwen3_contextual_smoke_60.jsonl"
+            "data/derived/interventions/rel_qwen3_contextual_smoke_v4_60.jsonl"
         ),
     )
     parser.add_argument(
@@ -125,7 +146,7 @@ def main(argv: list[str] | None = None) -> None:
         "--output",
         type=Path,
         default=Path(
-            "data/derived/interventions/rel_qwen3_contextual_smoke_review_60.csv"
+            "data/derived/interventions/rel_qwen3_contextual_smoke_review_v4_60.csv"
         ),
     )
     args = parser.parse_args(argv)

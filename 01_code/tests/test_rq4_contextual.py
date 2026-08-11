@@ -12,15 +12,18 @@ from mpr_crosslocale.interventions.rq4_contextual import (
     EXPECTED_SMOKE_ROWS,
     build_contextual_plan,
     build_contextual_plan_from_original_controls,
+    build_semantic_repair_prompt,
     build_user_prompt,
     select_smoke_rows,
     semantic_diagnostic_flags,
+    semantic_repair_reasons,
+    semantic_repair_score,
+    should_accept_semantic_repair,
     translation_payload,
     validate_contextual_translation_rows,
     validate_structured_output,
 )
 from mpr_crosslocale.interventions.rq4_nllb import load_rel_source_rows, read_jsonl
-
 
 ANNOTATION_MANIFEST = Path("../annotation/rel_text_dependency/data/pilot_manifest.json")
 # This checkout retains a legacy local QAS mirror only for equivalence testing.
@@ -86,6 +89,28 @@ def _valid_raw(row: dict) -> str:
 def _mock_translated_row(row: dict) -> dict:
     parsed, errors = validate_structured_output(_valid_raw(row), row)
     assert parsed is not None and not errors
+    flags = semantic_diagnostic_flags(row, parsed)
+    reasons = semantic_repair_reasons(row, parsed, flags)
+    score = semantic_repair_score(reasons)
+    primary_attempt = {
+        "attempt": 0,
+        "attempt_kind": "primary",
+        "raw_output": _valid_raw(row),
+        "parsed_output": parsed,
+        "hard_validation_errors": [],
+        "runtime_ms_approx": 0,
+        "selected_as_final": True,
+    }
+    rejected_attempt = {
+        **primary_attempt,
+        "attempt": 1,
+        "attempt_kind": "semantic_repair",
+        "semantic_diagnostic_flags": flags,
+        "semantic_repair_reasons": reasons,
+        "semantic_repair_score": score,
+        "semantic_repair_accepted": False,
+        "selected_as_final": False,
+    }
     return {
         **row,
         "translated_question_stem": parsed["question_stem"],
@@ -94,24 +119,23 @@ def _mock_translated_row(row: dict) -> dict:
         "translator_model_id": "Qwen/Qwen3-8B",
         "translator_revision": "47719a242beab8f9aecc40ce3928b034dd5dd559",
         "translation_method": "full_mcq_contextual_structured_json",
-        "prompt_template_version": "rq4_contextual_translation_v2",
+        "prompt_template_version": "rq4_contextual_translation_v4",
         "translation_generation_config": {
             "do_sample": False,
             "num_beams": 1,
             "max_new_tokens": 512,
         },
-        "translation_status": "ok",
-        "translation_attempts": [
-            {
-                "attempt": 0,
-                "raw_output": _valid_raw(row),
-                "parsed_output": parsed,
-                "hard_validation_errors": [],
-                "runtime_ms_approx": 0,
-            }
-        ],
+        "translation_status": "eligible_after_rejected_semantic_repair",
+        "translation_attempts": [primary_attempt, rejected_attempt],
         "hard_validation_errors": [],
-        "semantic_diagnostic_flags": ["all_fields_unchanged"],
+        "semantic_diagnostic_flags": flags,
+        "hard_repair_attempted": False,
+        "semantic_repair_attempted": True,
+        "semantic_repair_accepted": False,
+        "initial_semantic_repair_reasons": reasons,
+        "initial_semantic_repair_score": score,
+        "final_semantic_repair_reasons": reasons,
+        "final_semantic_repair_score": score,
         "translation_analysis_eligible": True,
         "translator_runtime_batch_size": 2,
     }
@@ -172,6 +196,61 @@ def test_structured_validator_rejects_structure_and_invariant_breakage() -> None
     assert any(error.startswith("number_tokens_changed") for error in errors)
 
 
+def test_numeric_validator_handles_cjk_boundaries_and_named_months() -> None:
+    row = _plan()[0]
+    phone_row = dict(row)
+    phone_row["source_question_stem"] = "+86 162 6746 0018の下にある項目は何ですか？"
+    translated_phone = {
+        "question_stem": "What item is below +86 162 6746 0018?",
+        "options": phone_row["source_options"],
+    }
+    _, errors = validate_structured_output(
+        json.dumps(translated_phone, ensure_ascii=False), phone_row
+    )
+    assert errors == []
+
+    date_row = dict(row)
+    date_row["source_question_stem"] = "日付「2025年6月11日水曜日」の下は何ですか？"
+    translated_date = {
+        "question_stem": 'What is below the date "Wednesday, June 11, 2025"?',
+        "options": date_row["source_options"],
+    }
+    _, errors = validate_structured_output(
+        json.dumps(translated_date, ensure_ascii=False), date_row
+    )
+    assert errors == []
+
+    missing_number = {
+        "question_stem": "What item is below this number?",
+        "options": date_row["source_options"],
+    }
+    standalone_row = dict(row)
+    standalone_row["source_question_stem"] = "What item is below 10?"
+    _, errors = validate_structured_output(json.dumps(missing_number), standalone_row)
+    assert any(error.startswith("number_tokens_changed") for error in errors)
+
+    hourly_row = dict(row)
+    hourly_row["source_options"] = {
+        "A": "1時間ごとの天気予報",
+        "B": "Map",
+        "C": "10日間天気予報",
+        "D": "Search",
+    }
+    hourly_translation = {
+        "question_stem": hourly_row["source_question_stem"],
+        "options": {
+            "A": "每小时天气预报",
+            "B": "Map",
+            "C": "10日天气预报",
+            "D": "Search",
+        },
+    }
+    _, errors = validate_structured_output(
+        json.dumps(hourly_translation, ensure_ascii=False), hourly_row
+    )
+    assert errors == []
+
+
 def test_semantic_checks_are_flags_not_hard_failures() -> None:
     row = _plan()[0]
     parsed = {
@@ -182,6 +261,44 @@ def test_semantic_checks_are_flags_not_hard_failures() -> None:
     assert isinstance(flags, list)
     _, errors = validate_structured_output(json.dumps(parsed, ensure_ascii=False), row)
     assert errors == []
+
+
+def test_semantic_checks_flag_opposition_and_untranslated_options() -> None:
+    row = dict(_plan()[0])
+    row["source_language"] = "en"
+    row["target_language"] = "th"
+    row["source_question_stem"] = "Which item is directly above the button?"
+    row["source_options"] = {
+        "A": "Delete",
+        "B": "Select",
+        "C": "Insert",
+        "D": "Join",
+    }
+    translated = {
+        "question_stem": "รายการใดอยู่ตรงข้ามกับปุ่ม?",
+        "options": row["source_options"],
+    }
+    flags = semantic_diagnostic_flags(row, translated)
+    assert "spatial_opposition_introduced" in flags
+    assert "multiple_options_unchanged:4" in flags
+    reasons = semantic_repair_reasons(row, translated, flags)
+    assert "spatial_opposition_introduced" in reasons
+    assert any(reason.startswith("translatable_options_unchanged") for reason in reasons)
+    assert semantic_repair_score(reasons) > 0
+    repair_prompt = build_semantic_repair_prompt(
+        row, json.dumps(translated, ensure_ascii=False), reasons
+    )
+    assert "Source relation categories detected for preservation: above, direct" in repair_prompt
+
+    corrected = {
+        "question_stem": "รายการใดอยู่เหนือปุ่มโดยตรง?",
+        "options": {"A": "ลบ", "B": "เลือก", "C": "แทรก", "D": "รวม"},
+    }
+    corrected_reasons = semantic_repair_reasons(row, corrected)
+    assert should_accept_semantic_repair(reasons, [], corrected_reasons)
+    assert not should_accept_semantic_repair(
+        reasons, ["number_tokens_changed:A:['1']->[]"], []
+    )
 
 
 def test_mock_full_artifact_builds_exact_pair_audit() -> None:

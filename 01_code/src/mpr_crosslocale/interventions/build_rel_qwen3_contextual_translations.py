@@ -25,11 +25,15 @@ from mpr_crosslocale.interventions.rq4_contextual import (
     build_contextual_plan,
     build_contextual_plan_from_original_controls,
     build_repair_prompt,
+    build_semantic_repair_prompt,
     build_user_prompt,
     canonical_json_sha256,
     read_jsonl,
     select_smoke_rows,
     semantic_diagnostic_flags,
+    semantic_repair_reasons,
+    semantic_repair_score,
+    should_accept_semantic_repair,
     validate_contextual_translation_rows,
     validate_structured_output,
     write_jsonl_atomic,
@@ -42,7 +46,7 @@ from mpr_crosslocale.interventions.rq4_nllb import (
 
 
 def log_step(message: str) -> None:
-    print(f"[{datetime.now():%Y-%m-%d %H:%M:%S}] {message}", flush=True)
+    print(f"[{datetime.now().astimezone():%Y-%m-%d %H:%M:%S}] {message}", flush=True)
 
 
 def _read_frozen_original_controls(path: Path) -> list[dict[str, Any]]:
@@ -62,6 +66,8 @@ def _read_frozen_original_controls(path: Path) -> list[dict[str, Any]]:
 
 
 def _validate_config(config: dict[str, Any]) -> None:
+    if config.get("schema_version") != "rq4-rel-contextual-v4":
+        raise ValueError("Unexpected contextual translation schema version.")
     translator = config.get("translator", {})
     expected_translator = {
         "model_id": CONTEXTUAL_MODEL_ID,
@@ -105,11 +111,33 @@ def _validate_config(config: dict[str, Any]) -> None:
     for key, expected in hidden_checks.items():
         if protocol.get(key) is not expected:
             raise ValueError(f"Frozen hidden-input rule changed: {key}")
+    if protocol.get("hard_validation") != [
+        "exact_json_object",
+        "exact_top_level_keys",
+        "exact_option_keys_and_order",
+        "non_empty_fields",
+        "numeric_tokens_preserved",
+        "percentage_tokens_preserved",
+        "file_format_tokens_preserved",
+    ]:
+        raise ValueError("Contextual hard-validation policy differs from v4.")
+    if protocol.get("semantic_diagnostics") != [
+        "spatial_relation_mismatch",
+        "spatial_direction_conflict",
+        "spatial_opposition_introduced",
+        "negation_mismatch",
+        "quoted_ascii_span_unchanged",
+        "multiple_options_unchanged",
+        "target_script_mismatch",
+    ]:
+        raise ValueError("Contextual semantic-diagnostic policy differs from v4.")
     if protocol.get("repair") != {
         "enabled": True,
-        "max_attempts": 1,
+        "hard_max_attempts": 1,
+        "semantic_max_attempts": 1,
         "batch_size": 1,
         "retain_all_attempts": True,
+        "accept_semantic_only_if_score_improves": True,
     }:
         raise ValueError("Contextual repair policy differs from the frozen protocol.")
     if config.get("smoke") != {
@@ -374,12 +402,17 @@ def translate_rows(
         primary_attempts = _attempt(translator, batch, prompts, 0)
         batch_had_repair = False
         for row, primary in zip(batch, primary_attempts, strict=True):
+            primary["attempt_kind"] = "primary"
             attempts = [primary]
             final_attempt = primary
+            hard_repair_attempted = False
+            semantic_repair_attempted = False
+            semantic_repair_accepted = False
             if primary["hard_validation_errors"]:
+                hard_repair_attempted = True
                 batch_had_repair = True
                 log_step(
-                    "STEP 5/7 STRUCTURAL REPAIR: "
+                    "STEP 5/7 HARD REPAIR: "
                     f"{row['translation_id']} errors={primary['hard_validation_errors']}"
                 )
                 repair_prompt = build_repair_prompt(
@@ -388,9 +421,75 @@ def translate_rows(
                     primary["hard_validation_errors"],
                 )
                 repaired = _attempt(translator, [row], [repair_prompt], 1)[0]
+                repaired["attempt_kind"] = "hard_repair"
                 attempts.append(repaired)
                 final_attempt = repaired
 
+            initial_semantic_reasons: list[str] = []
+            initial_semantic_score = 0
+            if (
+                final_attempt["parsed_output"] is not None
+                and not final_attempt["hard_validation_errors"]
+            ):
+                baseline_parsed = final_attempt["parsed_output"]
+                baseline_flags = semantic_diagnostic_flags(row, baseline_parsed)
+                initial_semantic_reasons = semantic_repair_reasons(
+                    row, baseline_parsed, baseline_flags
+                )
+                initial_semantic_score = semantic_repair_score(
+                    initial_semantic_reasons
+                )
+                if initial_semantic_reasons:
+                    semantic_repair_attempted = True
+                    batch_had_repair = True
+                    log_step(
+                        "STEP 5/7 SEMANTIC REPAIR: "
+                        f"{row['translation_id']} reasons={initial_semantic_reasons}"
+                    )
+                    semantic_prompt = build_semantic_repair_prompt(
+                        row,
+                        final_attempt["raw_output"],
+                        initial_semantic_reasons,
+                    )
+                    candidate = _attempt(
+                        translator, [row], [semantic_prompt], len(attempts)
+                    )[0]
+                    candidate["attempt_kind"] = "semantic_repair"
+                    candidate_flags: list[str] = []
+                    candidate_reasons: list[str] = []
+                    candidate_score: int | None = None
+                    if (
+                        candidate["parsed_output"] is not None
+                        and not candidate["hard_validation_errors"]
+                    ):
+                        candidate_flags = semantic_diagnostic_flags(
+                            row, candidate["parsed_output"]
+                        )
+                        candidate_reasons = semantic_repair_reasons(
+                            row, candidate["parsed_output"], candidate_flags
+                        )
+                        candidate_score = semantic_repair_score(candidate_reasons)
+                        semantic_repair_accepted = should_accept_semantic_repair(
+                            initial_semantic_reasons,
+                            candidate["hard_validation_errors"],
+                            candidate_reasons,
+                        )
+                    candidate["semantic_diagnostic_flags"] = candidate_flags
+                    candidate["semantic_repair_reasons"] = candidate_reasons
+                    candidate["semantic_repair_score"] = candidate_score
+                    candidate["semantic_repair_accepted"] = semantic_repair_accepted
+                    attempts.append(candidate)
+                    if semantic_repair_accepted:
+                        final_attempt = candidate
+                    else:
+                        log_step(
+                            "STEP 5/7 SEMANTIC REPAIR REJECTED: "
+                            f"{row['translation_id']} baseline={initial_semantic_score} "
+                            f"candidate={candidate_score}"
+                        )
+
+            for attempt in attempts:
+                attempt["selected_as_final"] = attempt is final_attempt
             parsed = final_attempt["parsed_output"]
             errors = list(final_attempt["hard_validation_errors"])
             eligible = parsed is not None and not errors
@@ -404,18 +503,28 @@ def translate_rows(
                     str(row["source_question_raw"]), translated_stem, translated_options
                 )
                 diagnostic_flags = semantic_diagnostic_flags(row, parsed)
+                final_semantic_reasons = semantic_repair_reasons(
+                    row, parsed, diagnostic_flags
+                )
+                final_semantic_score = semantic_repair_score(final_semantic_reasons)
             else:
                 translated_stem = ""
                 translated_options = {label: "" for label in ("A", "B", "C", "D")}
                 translated_raw = ""
                 diagnostic_flags = []
+                final_semantic_reasons = []
+                final_semantic_score = None
 
-            if eligible and len(attempts) == 1:
-                status = "ok"
-            elif eligible:
-                status = "recovered_after_structural_repair"
+            if not eligible:
+                status = "failed_after_repair"
+            elif semantic_repair_accepted:
+                status = "recovered_after_semantic_repair"
+            elif hard_repair_attempted:
+                status = "recovered_after_hard_repair"
+            elif semantic_repair_attempted:
+                status = "eligible_after_rejected_semantic_repair"
             else:
-                status = "failed_after_structural_repair"
+                status = "ok"
             user_prompt = build_user_prompt(row)
             translated_row = {
                 **row,
@@ -435,6 +544,13 @@ def translate_rows(
                 "translation_attempts": attempts,
                 "hard_validation_errors": errors,
                 "semantic_diagnostic_flags": diagnostic_flags,
+                "hard_repair_attempted": hard_repair_attempted,
+                "semantic_repair_attempted": semantic_repair_attempted,
+                "semantic_repair_accepted": semantic_repair_accepted,
+                "initial_semantic_repair_reasons": initial_semantic_reasons,
+                "initial_semantic_repair_score": initial_semantic_score,
+                "final_semantic_repair_reasons": final_semantic_reasons,
+                "final_semantic_repair_score": final_semantic_score,
                 "translation_analysis_eligible": eligible,
                 **run_provenance,
                 "created_at": datetime.now(timezone.utc).isoformat(),
@@ -547,13 +663,13 @@ def main(argv: list[str] | None = None) -> None:
         )
         expected_count = EXPECTED_SMOKE_ROWS
         default_output = Path(
-            "data/derived/interventions/rel_qwen3_contextual_smoke_60.jsonl"
+            "data/derived/interventions/rel_qwen3_contextual_smoke_v4_60.jsonl"
         )
     else:
         selected_plan = full_plan
         expected_count = EXPECTED_INTERVENTION_ROWS
         default_output = Path(
-            "data/derived/interventions/rel_qwen3_contextual_translations_v2.jsonl"
+            "data/derived/interventions/rel_qwen3_contextual_translations_v4.jsonl"
         )
     if len(selected_plan) != expected_count:
         raise AssertionError(f"Selected scope count mismatch: {len(selected_plan)}")
@@ -630,6 +746,13 @@ def main(argv: list[str] | None = None) -> None:
             "translation_status": row["translation_status"],
             "hard_validation_errors": row["hard_validation_errors"],
             "semantic_diagnostic_flags": row["semantic_diagnostic_flags"],
+            "hard_repair_attempted": row["hard_repair_attempted"],
+            "semantic_repair_attempted": row["semantic_repair_attempted"],
+            "semantic_repair_accepted": row["semantic_repair_accepted"],
+            "initial_semantic_repair_reasons": row[
+                "initial_semantic_repair_reasons"
+            ],
+            "final_semantic_repair_reasons": row["final_semantic_repair_reasons"],
             "translation_analysis_eligible": row["translation_analysis_eligible"],
             "translation_attempts": row["translation_attempts"],
         }
@@ -648,7 +771,19 @@ def main(argv: list[str] | None = None) -> None:
                 "scope": args.scope,
                 "rows": len(completed),
                 "eligible": sum(row["translation_analysis_eligible"] for row in completed),
-                "repair_rows": sum(len(row["translation_attempts"]) == 2 for row in completed),
+                "repair_rows": sum(len(row["translation_attempts"]) > 1 for row in completed),
+                "hard_repair_rows": sum(row["hard_repair_attempted"] for row in completed),
+                "semantic_repair_rows": sum(
+                    row["semantic_repair_attempted"] for row in completed
+                ),
+                "semantic_repair_accepted_rows": sum(
+                    row["semantic_repair_accepted"] for row in completed
+                ),
+                "semantic_repair_rejected_rows": sum(
+                    row["semantic_repair_attempted"]
+                    and not row["semantic_repair_accepted"]
+                    for row in completed
+                ),
                 "hard_failure_rows": sum(
                     not row["translation_analysis_eligible"] for row in completed
                 ),

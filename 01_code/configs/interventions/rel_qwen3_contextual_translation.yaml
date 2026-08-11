@@ -1,4 +1,4 @@
-schema_version: rq4-rel-contextual-v2
+schema_version: rq4-rel-contextual-v4
 condition: contextual_query_aligned
 
 translator:
@@ -22,7 +22,7 @@ runtime:
 
 protocol:
   method: full_mcq_contextual_structured_json
-  prompt_template_version: rq4_contextual_translation_v2
+  prompt_template_version: rq4_contextual_translation_v4
   structured_output: prompted_json_with_validation
   dependency_blind_generation: true
   screenshot_hidden: true
@@ -41,14 +41,19 @@ protocol:
     - file_format_tokens_preserved
   semantic_diagnostics:
     - spatial_relation_mismatch
+    - spatial_direction_conflict
+    - spatial_opposition_introduced
     - negation_mismatch
-    - quoted_ascii_span_transformation
+    - quoted_ascii_span_unchanged
+    - multiple_options_unchanged
     - target_script_mismatch
   repair:
     enabled: true
-    max_attempts: 1
+    hard_max_attempts: 1
+    semantic_max_attempts: 1
     batch_size: 1
     retain_all_attempts: true
+    accept_semantic_only_if_score_improves: true
 
 smoke:
   per_direction: 2
