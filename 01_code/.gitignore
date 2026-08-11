@@ -125,6 +125,15 @@ data/raw/*
 !data/raw/.gitkeep
 data/derived/*
 !data/derived/.gitkeep
+# Frozen RQ4 NLLB artifacts shared through Git LFS (except the small issue audit).
+!data/derived/interventions/
+data/derived/interventions/*
+!data/derived/interventions/rel_nllb_translation_plan.jsonl
+!data/derived/interventions/rel_nllb_translations.jsonl
+!data/derived/interventions/rel_nllb_translation_issue_audit.jsonl
+!data/derived/interventions/rel_nllb_inputs.jsonl
+!data/derived/interventions/rel_nllb_original_controls.jsonl
+!data/derived/interventions/rel_nllb_pair_metadata_diff.csv
 data/pilot/*
 !data/pilot/.gitkeep
 

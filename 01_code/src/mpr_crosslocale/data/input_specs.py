@@ -51,7 +51,11 @@ def build_mismatch_inputs(manifest: list[dict[str, Any]]) -> list[dict[str, Any]
                     "parallel_id": parallel_id,
                     "question_sample_id": question_row["sample_id"],
                     "gui_sample_id": gui_row["sample_id"],
+                    # Legacy field: this points to the source-side matched
+                    # endpoint (Q_A, G_A), not the RQ4 target endpoint.
                     "oracle_sample_id": question_row["sample_id"],
+                    "source_matched_endpoint_id": question_row["sample_id"],
+                    "target_human_parallel_endpoint_id": gui_row["sample_id"],
                     "question_language": question_language,
                     "gui_language": gui_language,
                     "dimension": question_row["dimension"],

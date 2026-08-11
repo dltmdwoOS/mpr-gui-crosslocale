@@ -1,0 +1,13 @@
+RQ4 human-parallel endpoint terminology:
+- source matched endpoint: (Q_A, G_A)
+- target human-parallel matched endpoint: (Q_B, G_B)
+- original mismatch: (Q_A, G_B)
+- NLLB intervention: (Q_MT[A->B], G_B)
+
+This analysis uses the target human-parallel matched endpoint only as a
+descriptive recoverable-headroom reference. It is not a causal language-only
+counterfactual and is not the RQ4 primary intervention test.
+Input: data/derived/qwen_glmm.csv
+Annotation: ../annotation/rel_text_dependency/outputs/rel_annotations_integrated_366.csv
+Bootstrap reps: 2000
+Seed: 42

@@ -1,0 +1,3 @@
+# RQ4 translation protocol freeze. Install the project models extra first,
+# then apply this constraint in the dedicated local translation environment.
+transformers==4.57.6

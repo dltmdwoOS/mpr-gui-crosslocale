@@ -1,0 +1,41 @@
+schema_version: rq4-rel-nllb-v1
+condition: nllb_query_aligned
+
+translator:
+  model_id: facebook/nllb-200-distilled-600M
+  revision: f8d333a098d19b4fd9a8b18f94170487ad3f821d
+  transformers_version: 4.57.6
+  dtype: float32
+  seed: 42
+  language_codes:
+    en: eng_Latn
+    zh: zho_Hans
+    fr: fra_Latn
+    ru: rus_Cyrl
+    ja: jpn_Jpan
+    th: tha_Thai
+
+generation:
+  do_sample: false
+  num_beams: 4
+  length_penalty: 1.0
+  early_stopping: true
+  max_new_tokens: 256
+
+protocol:
+  translation_unit: field_wise
+  translated_fields: [question_stem, A, B, C, D]
+  preserve_option_labels: true
+  preserve_option_order: true
+  preserve_source_delimiters: true
+  dependency_blind_generation: true
+  manual_translation_correction: false
+  source_fallback_on_failure: false
+  empty_translation_retry:
+    enabled: true
+    trigger: decoded_output_empty_after_strip
+    batch_size: 1
+    max_attempts: 1
+    generation_overrides:
+      repetition_penalty: 1.1
+    retain_failed_row: true

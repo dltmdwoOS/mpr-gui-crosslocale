@@ -122,7 +122,12 @@ def validate_mismatch_inputs(rows: list[dict[str, Any]], manifest: list[dict[str
         question = by_sample.get(row["question_sample_id"])
         gui = by_sample.get(row["gui_sample_id"])
         oracle = by_sample.get(row["oracle_sample_id"])
-        if question is None or gui is None or oracle is None:
+        source_endpoint = by_sample.get(row.get("source_matched_endpoint_id"))
+        target_endpoint = by_sample.get(row.get("target_human_parallel_endpoint_id"))
+        if (
+            question is None or gui is None or oracle is None or
+            source_endpoint is None or target_endpoint is None
+        ):
             errors.append(f"{row['input_id']} references a missing sample")
             continue
         if not (question["parallel_id"] == gui["parallel_id"] == oracle["parallel_id"] == row["parallel_id"]):
@@ -133,6 +138,16 @@ def validate_mismatch_inputs(rows: list[dict[str, Any]], manifest: list[dict[str
             errors.append(f"{row['input_id']} gold label mismatch")
         if row["image_paths"] != gui["image_paths"]:
             errors.append(f"{row['input_id']} GUI image paths do not match gui_sample_id")
+        if oracle["sample_id"] != question["sample_id"]:
+            errors.append(f"{row['input_id']} legacy oracle_sample_id is not source-side")
+        if source_endpoint["language"] != row["question_language"]:
+            errors.append(f"{row['input_id']} source matched endpoint language mismatch")
+        if target_endpoint["language"] != row["gui_language"]:
+            errors.append(f"{row['input_id']} target human-parallel endpoint language mismatch")
+        if target_endpoint["parallel_id"] != row["parallel_id"]:
+            errors.append(f"{row['input_id']} target human-parallel endpoint item mismatch")
+        if target_endpoint["gold_label"] != row["gold_label"]:
+            errors.append(f"{row['input_id']} target human-parallel endpoint gold mismatch")
         if row["num_images"] != len(row["image_paths"]):
             errors.append(f"{row['input_id']} num_images does not match image_paths")
         for image_path in row["image_paths"]:

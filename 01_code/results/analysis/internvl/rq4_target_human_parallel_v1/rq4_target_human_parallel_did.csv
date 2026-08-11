@@ -1,0 +1,2 @@
+contrast,estimate,conf.low,conf.high,bootstrap_reps,bootstrap_cluster,role
+dependent_gap_minus_independent_gap,0.13458195364238412,0.09483943846578366,0.17557136451434874,2000,parallel_id,headroom_sanity_check_not_primary_intervention_test
