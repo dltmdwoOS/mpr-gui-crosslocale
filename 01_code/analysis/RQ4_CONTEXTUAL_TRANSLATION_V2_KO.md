@@ -90,6 +90,23 @@ python -m pip install -e '.[models]' \
 
 export HF_HOME=/workspace/hf-cache
 mkdir -p "$HF_HOME" logs data/derived/interventions
+
+test -s data/derived/interventions/rel_nllb_original_controls.jsonl
+test "$(head -n 1 data/derived/interventions/rel_nllb_original_controls.jsonl)" != \
+  "version https://git-lfs.github.com/spec/v1"
+```
+
+Contextual v2의 기본 source는 Git LFS로 공유되는 위 10,980행 frozen
+original-control artifact다. Raw QAS의 `rel_el_en.jsonl` 등에 의존하지 않는다.
+Raw QAS reconstruction은 로컬 provenance audit가 필요할 때만
+`--source-mode raw-qas`로 명시한다.
+
+Translation smoke/full generation 자체는 screenshot을 읽지 않는다. 이후 VLM
+inference 전에는 image asset을 별도로 확인한다.
+
+```bash
+test -f data/raw/mpr_gui_bench/images/1/fr/booking_fr_1.jpg || \
+  bash scripts/prepare_vast_data.sh
 ```
 
 Vast image에 CUDA PyTorch가 없다면 그때만 다음을 먼저 설치한다.

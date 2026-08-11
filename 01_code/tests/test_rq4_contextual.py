@@ -11,6 +11,7 @@ from mpr_crosslocale.interventions.rq4_contextual import (
     EXPECTED_INTERVENTION_ROWS,
     EXPECTED_SMOKE_ROWS,
     build_contextual_plan,
+    build_contextual_plan_from_original_controls,
     build_user_prompt,
     select_smoke_rows,
     semantic_diagnostic_flags,
@@ -18,15 +19,58 @@ from mpr_crosslocale.interventions.rq4_contextual import (
     validate_contextual_translation_rows,
     validate_structured_output,
 )
-from mpr_crosslocale.interventions.rq4_nllb import load_rel_source_rows
+from mpr_crosslocale.interventions.rq4_nllb import load_rel_source_rows, read_jsonl
 
 
 ANNOTATION_MANIFEST = Path("../annotation/rel_text_dependency/data/pilot_manifest.json")
+# This checkout retains a legacy local QAS mirror only for equivalence testing.
+# Production/default execution uses the Git-LFS original controls instead.
 QAS_DIR = Path("data/raw/mpr_gui_bench_qas/qas")
+ORIGINAL_CONTROLS = Path(
+    "data/derived/interventions/rel_nllb_original_controls.jsonl"
+)
 
 
 def _plan() -> list[dict]:
-    return build_contextual_plan(load_rel_source_rows(ANNOTATION_MANIFEST, QAS_DIR))
+    return [
+        {
+            **row,
+            "translation_source_kind": "frozen_original_controls",
+            "translation_source_path": ORIGINAL_CONTROLS.as_posix(),
+            "translation_source_sha256": "test-source-sha256",
+        }
+        for row in build_contextual_plan_from_original_controls(
+            read_jsonl(ORIGINAL_CONTROLS)
+        )
+    ]
+
+
+def test_frozen_controls_reconstruct_the_same_translation_content_as_raw_qas() -> None:
+    controls_plan = _plan()
+    qas_plan = build_contextual_plan(
+        load_rel_source_rows(ANNOTATION_MANIFEST, QAS_DIR)
+    )
+    content_fields = (
+        "pair_id",
+        "parallel_id",
+        "source_language",
+        "target_language",
+        "source_question_sample_id",
+        "gui_sample_id",
+        "source_question_raw",
+        "source_question_stem",
+        "source_options",
+        "option_order",
+        "gold_label",
+        "image_paths",
+    )
+    by_pair = {row["pair_id"]: row for row in qas_plan}
+    assert set(by_pair) == {row["pair_id"] for row in controls_plan}
+    for control_row in controls_plan:
+        qas_row = by_pair[control_row["pair_id"]]
+        assert {key: control_row[key] for key in content_fields} == {
+            key: qas_row[key] for key in content_fields
+        }
 
 
 def _valid_raw(row: dict) -> str:

@@ -23,6 +23,7 @@ from mpr_crosslocale.interventions.rq4_contextual import (
     PROMPT_TEMPLATE_VERSION,
     SYSTEM_PROMPT,
     build_contextual_plan,
+    build_contextual_plan_from_original_controls,
     build_repair_prompt,
     build_user_prompt,
     canonical_json_sha256,
@@ -42,6 +43,22 @@ from mpr_crosslocale.interventions.rq4_nllb import (
 
 def log_step(message: str) -> None:
     print(f"[{datetime.now():%Y-%m-%d %H:%M:%S}] {message}", flush=True)
+
+
+def _read_frozen_original_controls(path: Path) -> list[dict[str, Any]]:
+    if not path.is_file():
+        raise FileNotFoundError(
+            f"Missing Git-LFS-shared frozen original controls: {path}. "
+            "From the repository root run `git lfs pull`, then retry."
+        )
+    with path.open("rb") as handle:
+        prefix = handle.read(80)
+    if prefix.startswith(b"version https://git-lfs.github.com/spec/v1"):
+        raise RuntimeError(
+            f"{path} is still a Git LFS pointer. Run `git lfs pull` from the "
+            "repository root before translation."
+        )
+    return read_jsonl(path)
 
 
 def _validate_config(config: dict[str, Any]) -> None:
@@ -328,6 +345,8 @@ def translate_rows(
             "source_question_raw",
             "gold_label",
             "image_paths",
+            "translation_source_kind",
+            "translation_source_sha256",
         )
         for translation_id, prior in existing.items():
             planned = plan_by_id[translation_id]
@@ -447,12 +466,28 @@ def main(argv: list[str] | None = None) -> None:
         description="Build RQ4 Qwen3 full-MCQ contextual translations."
     )
     parser.add_argument(
+        "--source-mode",
+        choices=["original-controls", "raw-qas"],
+        default="original-controls",
+        help=(
+            "Use the Git-LFS-shared 10,980-row frozen original controls by default. "
+            "raw-qas is a local reconstruction/audit path only."
+        ),
+    )
+    parser.add_argument(
+        "--source-controls",
+        type=Path,
+        default=Path(
+            "data/derived/interventions/rel_nllb_original_controls.jsonl"
+        ),
+    )
+    parser.add_argument(
         "--annotation-manifest",
         type=Path,
         default=Path("../annotation/rel_text_dependency/data/pilot_manifest.json"),
     )
     parser.add_argument(
-        "--qas-dir", type=Path, default=Path("data/raw/mpr_gui_bench_qas/qas")
+        "--qas-dir", type=Path, default=Path("data/raw/mpr_gui_bench/qas")
     )
     parser.add_argument(
         "--config",
@@ -464,7 +499,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--output", type=Path, default=None)
     parser.add_argument("--issue-audit-out", type=Path, default=None)
     parser.add_argument("--device", default="cuda")
-    parser.add_argument("--batch-size", type=int, default=4)
+    parser.add_argument("--batch-size", type=int, default=2)
     parser.add_argument("--log-every-batches", type=int, default=10)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--local-files-only", action="store_true")
@@ -482,9 +517,27 @@ def main(argv: list[str] | None = None) -> None:
             raise ValueError("Actual translator device differs from the frozen runtime config.")
         if args.batch_size != int(config["runtime"]["batch_size"]):
             raise ValueError("Actual translator batch size differs from the frozen runtime config.")
-    log_step("STEP 2/7 building dependency-blind full REL translation plan")
-    source_rows = load_rel_source_rows(args.annotation_manifest, args.qas_dir)
-    full_plan = build_contextual_plan(source_rows)
+    log_step(
+        "STEP 2/7 building dependency-blind full REL translation plan: "
+        f"source_mode={args.source_mode}"
+    )
+    if args.source_mode == "original-controls":
+        controls = _read_frozen_original_controls(args.source_controls)
+        full_plan = build_contextual_plan_from_original_controls(controls)
+        source_provenance = {
+            "translation_source_kind": "frozen_original_controls",
+            "translation_source_path": args.source_controls.as_posix(),
+            "translation_source_sha256": canonical_text_sha256(args.source_controls),
+        }
+    else:
+        source_rows = load_rel_source_rows(args.annotation_manifest, args.qas_dir)
+        full_plan = build_contextual_plan(source_rows)
+        source_provenance = {
+            "translation_source_kind": "raw_qas_reconstruction",
+            "translation_source_path": args.qas_dir.as_posix(),
+            "translation_source_sha256": None,
+        }
+    full_plan = [{**row, **source_provenance} for row in full_plan]
     if args.scope == "smoke":
         smoke = config["smoke"]
         selected_plan = select_smoke_rows(
@@ -523,6 +576,7 @@ def main(argv: list[str] | None = None) -> None:
                     "translator_model_id": CONTEXTUAL_MODEL_ID,
                     "translator_revision": CONTEXTUAL_REVISION,
                     "prompt_template_version": PROMPT_TEMPLATE_VERSION,
+                    **source_provenance,
                     "config_sha256": canonical_text_sha256(args.config),
                     "translator_hidden_fields": [
                         "image",

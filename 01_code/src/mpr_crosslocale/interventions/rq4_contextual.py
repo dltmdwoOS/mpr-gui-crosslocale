@@ -132,6 +132,151 @@ def build_contextual_plan(source_rows: list[dict[str, Any]]) -> list[dict[str, A
     return enriched
 
 
+def build_contextual_plan_from_original_controls(
+    controls: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Build v2 directly from the frozen, Git-LFS-shared original controls.
+
+    This is the deployment-safe path: raw MPR-GUI QAS files are intentionally not
+    tracked in Git, while the original-control artifact contains the exact 10,980
+    source-query/target-GUI pairs previously integrity-audited for RQ4.
+    """
+
+    if len(controls) != EXPECTED_INTERVENTION_ROWS:
+        raise ValueError(
+            "Frozen original controls must contain exactly "
+            f"{EXPECTED_INTERVENTION_ROWS} rows; found {len(controls)}."
+        )
+    plans: list[dict[str, Any]] = []
+    seen_pairs: set[str] = set()
+    source_versions: dict[tuple[str, str], tuple[Any, ...]] = {}
+    for control in controls:
+        required = {
+            "input_id",
+            "pair_id",
+            "parallel_id",
+            "dimension",
+            "source_question_language",
+            "gui_language",
+            "question_sample_id",
+            "gui_sample_id",
+            "source_qas_file",
+            "source_qas_line",
+            "source_matched_endpoint_id",
+            "target_human_parallel_endpoint_id",
+            "question_raw",
+            "question_stem",
+            "options",
+            "option_order",
+            "gold_label",
+            "answer_raw",
+            "image_paths",
+            "num_images",
+            "frame_order",
+            "condition",
+            "matched",
+            "original_matched",
+        }
+        missing = required - set(control)
+        if missing:
+            raise ValueError(
+                f"Frozen original control lacks {sorted(missing)}: "
+                f"{control.get('pair_id')}"
+            )
+        pair_id = str(control["pair_id"])
+        if pair_id in seen_pairs:
+            raise ValueError(f"Duplicate frozen original-control pair: {pair_id}")
+        seen_pairs.add(pair_id)
+        source_language = str(control["source_question_language"])
+        target_language = str(control["gui_language"])
+        if source_language == target_language:
+            raise ValueError(f"Original control is not a mismatch: {pair_id}")
+        if control["dimension"] != "rel" or control["condition"] != "original_mismatch":
+            raise ValueError(f"Unexpected original-control condition: {pair_id}")
+        if control["matched"] is not False or control["original_matched"] is not False:
+            raise ValueError(f"Original-control match metadata changed: {pair_id}")
+        if list(control["option_order"]) != list(LABELS):
+            raise ValueError(f"Original-control option order changed: {pair_id}")
+        if list(control["options"]) != list(LABELS):
+            raise ValueError(f"Original-control option keys/order changed: {pair_id}")
+        if len(control["image_paths"]) != int(control["num_images"]):
+            raise ValueError(f"Original-control image count mismatch: {pair_id}")
+
+        source_key = (str(control["parallel_id"]), source_language)
+        source_signature = (
+            control["question_raw"],
+            control["question_stem"],
+            json.dumps(control["options"], ensure_ascii=False, sort_keys=True),
+            tuple(control["option_order"]),
+            control["gold_label"],
+            control["question_sample_id"],
+        )
+        previous = source_versions.setdefault(source_key, source_signature)
+        if previous != source_signature:
+            raise ValueError(
+                "Source query differs across target-GUI controls for "
+                f"{source_key}."
+            )
+
+        plans.append(
+            {
+                "translation_id": contextual_translation_id(pair_id),
+                "pair_id": pair_id,
+                "source_input_id": control["input_id"],
+                "parallel_id": control["parallel_id"],
+                "dimension": "rel",
+                "source_language": source_language,
+                "target_language": target_language,
+                "source_question_sample_id": control["question_sample_id"],
+                "gui_sample_id": control["gui_sample_id"],
+                "source_qas_file": control["source_qas_file"],
+                "source_qas_line": control["source_qas_line"],
+                "source_matched_endpoint_id": control["source_matched_endpoint_id"],
+                "target_human_parallel_endpoint_id": control[
+                    "target_human_parallel_endpoint_id"
+                ],
+                "source_question_raw": control["question_raw"],
+                "source_question_stem": control["question_stem"],
+                "source_options": control["options"],
+                "option_order": list(control["option_order"]),
+                "gold_label": control["gold_label"],
+                "answer_raw": control["answer_raw"],
+                "image_paths": list(control["image_paths"]),
+                "num_images": int(control["num_images"]),
+                "frame_order": control["frame_order"],
+                "translation_method": METHOD_NAME,
+            }
+        )
+    validate_contextual_plan(plans)
+    return sorted(plans, key=lambda row: row["translation_id"])
+
+
+def human_reference_map_from_original_controls(
+    controls: list[dict[str, Any]],
+) -> dict[str, dict[str, Any]]:
+    """Recover each human Q_language endpoint without reading raw QAS files."""
+
+    references: dict[str, dict[str, Any]] = {}
+    for control in controls:
+        endpoint_id = str(control["source_matched_endpoint_id"])
+        candidate = {
+            "sample_id": endpoint_id,
+            "question_stem": str(control["question_stem"]),
+            "options": {label: str(control["options"][label]) for label in LABELS},
+        }
+        previous = references.setdefault(endpoint_id, candidate)
+        if previous != candidate:
+            raise ValueError(
+                f"Human endpoint differs across frozen controls: {endpoint_id}"
+            )
+    expected_endpoints = EXPECTED_REL_ITEMS * 6
+    if len(references) != expected_endpoints:
+        raise ValueError(
+            f"Expected {expected_endpoints} human endpoints; found {len(references)}."
+        )
+    return references
+
+
 def validate_contextual_plan(rows: list[dict[str, Any]]) -> None:
     if len(rows) != EXPECTED_INTERVENTION_ROWS:
         raise ValueError(
@@ -360,6 +505,9 @@ def validate_contextual_translation_rows(
         "semantic_diagnostic_flags",
         "translation_analysis_eligible",
         "translator_runtime_batch_size",
+        "translation_source_kind",
+        "translation_source_path",
+        "translation_source_sha256",
     }
     for row in rows:
         missing = required - set(row)
@@ -406,6 +554,12 @@ def validate_contextual_translation_rows(
     batch_sizes = {int(row["translator_runtime_batch_size"]) for row in rows}
     if len(batch_sizes) > 1:
         raise ValueError(f"Mixed contextual runtime batch sizes: {sorted(batch_sizes)}")
+    source_kinds = {str(row["translation_source_kind"]) for row in rows}
+    source_hashes = {row["translation_source_sha256"] for row in rows}
+    if len(source_kinds) != 1 or len(source_hashes) != 1:
+        raise ValueError("Mixed contextual translation source provenance.")
+    if not source_kinds <= {"frozen_original_controls", "raw_qas_reconstruction"}:
+        raise ValueError(f"Unexpected translation source kind: {source_kinds}")
 
 
 def write_jsonl_atomic(path: Path, rows: Iterable[dict[str, Any]]) -> None:

@@ -10,6 +10,7 @@ from typing import Any
 from mpr_crosslocale.data.schema import LABELS
 from mpr_crosslocale.interventions.rq4_contextual import (
     EXPECTED_SMOKE_ROWS,
+    human_reference_map_from_original_controls,
     read_jsonl,
     validate_contextual_translation_rows,
 )
@@ -28,9 +29,8 @@ def _flatten_options(prefix: str, options: dict[str, str]) -> dict[str, str]:
 
 
 def build_review_rows(
-    translations: list[dict[str, Any]], source_rows: list[dict[str, Any]]
+    translations: list[dict[str, Any]], by_endpoint: dict[str, dict[str, Any]]
 ) -> list[dict[str, Any]]:
-    by_endpoint = {str(row["sample_id"]): row for row in source_rows}
     review_rows = []
     for index, translation in enumerate(
         sorted(
@@ -102,12 +102,24 @@ def main(argv: list[str] | None = None) -> None:
         ),
     )
     parser.add_argument(
+        "--source-mode",
+        choices=["original-controls", "raw-qas"],
+        default="original-controls",
+    )
+    parser.add_argument(
+        "--source-controls",
+        type=Path,
+        default=Path(
+            "data/derived/interventions/rel_nllb_original_controls.jsonl"
+        ),
+    )
+    parser.add_argument(
         "--annotation-manifest",
         type=Path,
         default=Path("../annotation/rel_text_dependency/data/pilot_manifest.json"),
     )
     parser.add_argument(
-        "--qas-dir", type=Path, default=Path("data/raw/mpr_gui_bench_qas/qas")
+        "--qas-dir", type=Path, default=Path("data/raw/mpr_gui_bench/qas")
     )
     parser.add_argument(
         "--output",
@@ -123,9 +135,28 @@ def main(argv: list[str] | None = None) -> None:
     validate_contextual_translation_rows(
         translations, expected_count=EXPECTED_SMOKE_ROWS
     )
-    log_step("STEP 2/3 joining human-parallel text for review only")
-    source_rows = load_rel_source_rows(args.annotation_manifest, args.qas_dir)
-    review_rows = build_review_rows(translations, source_rows)
+    log_step(
+        "STEP 2/3 joining human-parallel text for review only: "
+        f"source_mode={args.source_mode}"
+    )
+    if args.source_mode == "original-controls":
+        if not args.source_controls.is_file():
+            raise FileNotFoundError(
+                f"Missing frozen original controls: {args.source_controls}. "
+                "Run `git lfs pull` from the repository root."
+            )
+        with args.source_controls.open("rb") as handle:
+            source_prefix = handle.read(80)
+        if source_prefix.startswith(b"version https://git-lfs.github.com/spec/v1"):
+            raise RuntimeError(
+                f"{args.source_controls} is still a Git LFS pointer. Run `git lfs pull`."
+            )
+        controls = read_jsonl(args.source_controls)
+        by_endpoint = human_reference_map_from_original_controls(controls)
+    else:
+        source_rows = load_rel_source_rows(args.annotation_manifest, args.qas_dir)
+        by_endpoint = {str(row["sample_id"]): row for row in source_rows}
+    review_rows = build_review_rows(translations, by_endpoint)
     validate_review_rows(review_rows)
     log_step(f"STEP 3/3 writing UTF-8 review CSV: {args.output}")
     write_csv_atomic(args.output, review_rows)
