@@ -159,9 +159,12 @@ def translate_rows(
         batch = pending[start : start + batch_size]
         batch_no = start // batch_size + 1
         if batch_no == 1 or batch_no == total_batches or batch_no % log_every_batches == 0:
+            global_start = len(completed) + 1
+            global_end = len(completed) + len(batch)
             log_step(
                 f"STEP 5/7 batch {batch_no}/{total_batches}: "
-                f"rows={start + 1}-{start + len(batch)}/{len(pending)}"
+                f"pending_rows={start + 1}-{start + len(batch)}/{len(pending)}, "
+                f"global_rows={global_start}-{global_end}/{len(plan)}"
             )
         prompts = [build_lexical_user_prompt(row) for row in batch]
         primary_attempts = _generate_attempts(
