@@ -45,6 +45,13 @@ ALLOWED_DIFFS = {
     "visible_string_count",
     "inventory_extractor_model_id",
     "inventory_extractor_revision",
+    "inventory_status",
+    "lexical_evidence_available",
+    "inventory_failure_included",
+    "inventory_failure_policy",
+    "inventory_final_validation_errors",
+    "inventory_default_analysis_included",
+    "inventory_sensitivity_exclusion_recommended",
 }
 
 
@@ -123,6 +130,19 @@ def build_inputs(
             "visible_string_count": len(row["visible_strings"]),
             "inventory_extractor_model_id": row["inventory_extractor_model_id"],
             "inventory_extractor_revision": row["inventory_extractor_revision"],
+            "inventory_status": row["inventory_status"],
+            "lexical_evidence_available": row["lexical_evidence_available"],
+            "inventory_failure_included": row["inventory_failure_included"],
+            "inventory_failure_policy": row["inventory_failure_policy"],
+            "inventory_final_validation_errors": row[
+                "inventory_final_validation_errors"
+            ],
+            "inventory_default_analysis_included": row[
+                "inventory_default_analysis_included"
+            ],
+            "inventory_sensitivity_exclusion_recommended": row[
+                "inventory_sensitivity_exclusion_recommended"
+            ],
         }
         changed = top_level_diff(original, intervention)
         unexpected = sorted(set(changed) - ALLOWED_DIFFS)

@@ -328,6 +328,12 @@ def main(argv: list[str] | None = None) -> None:
     )
     parser.add_argument("--scope", choices=["smoke", "full"], required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--inventory-failure-audit-out",
+        type=Path,
+        default=None,
+        help="Defaults to <output_stem>_inventory_failures.jsonl.",
+    )
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--batch-size", type=int, default=2)
     parser.add_argument("--log-every-batches", type=int, default=10)
@@ -362,6 +368,46 @@ def main(argv: list[str] | None = None) -> None:
     plan = build_lexical_plan(controls, inventories, selected_pair_ids)
     if len(plan) != expected:
         raise AssertionError(f"Selected lexical plan has {len(plan)} rows, expected {expected}.")
+    failed_inventory_ids = {
+        row["visible_string_inventory_id"]
+        for row in plan
+        if row["inventory_failure_included"]
+    }
+    failure_audit = []
+    for inventory_id in sorted(failed_inventory_ids):
+        inventory = next(row for row in inventories if row["inventory_id"] == inventory_id)
+        affected = [
+            row for row in plan if row["visible_string_inventory_id"] == inventory_id
+        ]
+        failure_audit.append(
+            {
+                "inventory_id": inventory_id,
+                "target_human_parallel_endpoint_id": inventory[
+                    "target_human_parallel_endpoint_id"
+                ],
+                "parallel_id": inventory["parallel_id"],
+                "target_language": inventory["target_language"],
+                "inventory_status": inventory["inventory_status"],
+                "final_validation_errors": inventory.get(
+                    "final_validation_errors", []
+                ),
+                "attempt_count": inventory.get("attempt_count"),
+                "raw_extractor_output_preserved_in_inventory_artifact": True,
+                "failed_inventory_policy": affected[0]["inventory_failure_policy"],
+                "lexical_evidence_available": False,
+                "default_translation_and_inference_included": True,
+                "sensitivity_exclusion_recommended": True,
+                "affected_translation_count": len(affected),
+                "affected_translation_ids": [
+                    row["translation_id"] for row in affected
+                ],
+                "affected_pair_ids": [row["pair_id"] for row in affected],
+            }
+        )
+    failure_audit_path = args.inventory_failure_audit_out or args.output.with_name(
+        args.output.stem + "_inventory_failures.jsonl"
+    )
+    write_jsonl_atomic(failure_audit_path, failure_audit)
     print(
         json.dumps(
             {
@@ -373,6 +419,12 @@ def main(argv: list[str] | None = None) -> None:
                 "translator_has_image_access": False,
                 "translator_has_layout_access": False,
                 "translator_has_visible_string_access": True,
+                "failed_inventory_rows": len(failed_inventory_ids),
+                "affected_translation_rows": sum(
+                    row["inventory_failure_included"] for row in plan
+                ),
+                "failed_inventory_default_included": True,
+                "inventory_failure_audit": failure_audit_path.as_posix(),
             },
             indent=2,
         )

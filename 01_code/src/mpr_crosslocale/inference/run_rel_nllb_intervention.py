@@ -117,6 +117,12 @@ def validate_intervention_inputs(rows: list[dict[str, Any]]) -> None:
                     "visible_string_inventory_sha256",
                     "inventory_extractor_model_id",
                     "inventory_extractor_revision",
+                    "inventory_status",
+                    "lexical_evidence_available",
+                    "inventory_failure_included",
+                    "inventory_failure_policy",
+                    "inventory_default_analysis_included",
+                    "inventory_sensitivity_exclusion_recommended",
                 ):
                     if field not in row:
                         raise ValueError(
@@ -184,6 +190,16 @@ def _result_base(
         "visible_string_count": row.get("visible_string_count"),
         "inventory_extractor_model_id": row.get("inventory_extractor_model_id"),
         "inventory_extractor_revision": row.get("inventory_extractor_revision"),
+        "inventory_status": row.get("inventory_status"),
+        "lexical_evidence_available": row.get("lexical_evidence_available"),
+        "inventory_failure_included": row.get("inventory_failure_included"),
+        "inventory_failure_policy": row.get("inventory_failure_policy"),
+        "inventory_default_analysis_included": row.get(
+            "inventory_default_analysis_included"
+        ),
+        "inventory_sensitivity_exclusion_recommended": row.get(
+            "inventory_sensitivity_exclusion_recommended"
+        ),
         "dimension": "rel",
         "question_raw_sha256": __import__("hashlib").sha256(
             row["question_raw"].encode("utf-8")

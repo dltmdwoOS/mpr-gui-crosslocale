@@ -26,6 +26,7 @@ INVENTORY_SCHEMA_VERSION = "rq4-rel-visible-string-inventory-v1"
 INVENTORY_METHOD = "query_blind_target_gui_visible_string_extraction"
 INVENTORY_PROMPT_VERSION = "rq4_visible_strings_v1"
 EXPECTED_INVENTORIES = EXPECTED_REL_ITEMS * 6
+FAILED_INVENTORY_POLICY = "include_with_explicit_empty_lexical_evidence"
 
 LEXICAL_SCHEMA_VERSION = "rq4-rel-gui-lexical-v3"
 LEXICAL_CONDITION = "gui_lexical_query_aligned"
@@ -158,6 +159,7 @@ def validate_lexical_config(config: dict[str, Any]) -> None:
         "inventory_canonicalized_unordered_unique": True,
         "semantic_max_attempts": 1,
         "semantic_repair_accept_only_if_score_improves": True,
+        "failed_inventory_policy": FAILED_INVENTORY_POLICY,
     }
     if protocol != expected_protocol:
         raise ValueError("Two-step hidden-input protocol changed.")
@@ -411,7 +413,9 @@ def build_lexical_plan(
     inventories: list[dict[str, Any]],
     selected_pair_ids: set[str] | None = None,
 ) -> list[dict[str, Any]]:
-    validate_inventory_rows(inventories, expected_count=len(inventories))
+    validate_inventory_rows(
+        inventories, expected_count=len(inventories), require_success=False
+    )
     inventory_by_endpoint = {
         str(row["target_human_parallel_endpoint_id"]): row for row in inventories
     }
@@ -428,9 +432,13 @@ def build_lexical_plan(
             raise ValueError(f"Missing GUI inventory for target endpoint: {endpoint_id}")
         if list(source["image_paths"]) != list(inventory["image_paths"]):
             raise ValueError(f"Inventory image differs from intervention GUI: {source['pair_id']}")
-        canonical_strings = canonicalize_visible_strings(
-            list(inventory["visible_strings"])
-        )
+        inventory_success = inventory["inventory_status"] == "success"
+        canonical_strings = canonicalize_visible_strings(list(inventory["visible_strings"]))
+        if not inventory_success and canonical_strings:
+            raise ValueError(
+                "Failed inventories must not expose partial lexical evidence: "
+                f"{inventory['inventory_id']}"
+            )
         row = {
             **source,
             "schema_version": LEXICAL_SCHEMA_VERSION,
@@ -449,6 +457,17 @@ def build_lexical_plan(
             "inventory_prompt_template_version": inventory[
                 "prompt_template_version"
             ],
+            "inventory_status": inventory["inventory_status"],
+            "lexical_evidence_available": inventory_success,
+            "inventory_failure_included": not inventory_success,
+            "inventory_failure_policy": (
+                None if inventory_success else FAILED_INVENTORY_POLICY
+            ),
+            "inventory_final_validation_errors": list(
+                inventory.get("final_validation_errors", [])
+            ),
+            "inventory_default_analysis_included": True,
+            "inventory_sensitivity_exclusion_recommended": not inventory_success,
             "inventory_order_exposed_to_translator": False,
             "inventory_duplicate_counts_exposed_to_translator": False,
         }
@@ -472,6 +491,20 @@ def validate_lexical_plan(
             raise ValueError("Unexpected lexical plan schema.")
         if row["translation_method"] != LEXICAL_METHOD:
             raise ValueError("Unexpected lexical translation method.")
+        failed = bool(row["inventory_failure_included"])
+        if failed != (row["inventory_status"] != "success"):
+            raise ValueError(f"Inventory failure flag mismatch: {row['pair_id']}")
+        if bool(row["lexical_evidence_available"]) == failed:
+            raise ValueError(f"Lexical evidence flag mismatch: {row['pair_id']}")
+        if failed:
+            if row["visible_strings"] or row["inventory_failure_policy"] != (
+                FAILED_INVENTORY_POLICY
+            ):
+                raise ValueError(f"Invalid failed-inventory inclusion: {row['pair_id']}")
+        elif row["inventory_failure_policy"] is not None:
+            raise ValueError(f"Unexpected inventory failure policy: {row['pair_id']}")
+        if row["inventory_default_analysis_included"] is not True:
+            raise ValueError(f"Lexical row excluded by default: {row['pair_id']}")
 
 
 def lexical_payload(row: dict[str, Any]) -> dict[str, Any]:
@@ -580,6 +613,19 @@ def validate_lexical_translation_rows(
             raise ValueError(f"Fast inventory processor not pinned: {row['translation_id']}")
         if row.get("inventory_processor_mode_explicit") is not True:
             raise ValueError(f"Inventory processor mode was implicit: {row['translation_id']}")
+        failed = bool(row["inventory_failure_included"])
+        if failed != (row["inventory_status"] != "success"):
+            raise ValueError(f"Inventory failure flag mismatch: {row['translation_id']}")
+        if bool(row["lexical_evidence_available"]) == failed:
+            raise ValueError(f"Lexical evidence flag mismatch: {row['translation_id']}")
+        if failed and (
+            row["visible_strings"]
+            or row["inventory_failure_policy"] != FAILED_INVENTORY_POLICY
+            or row["inventory_sensitivity_exclusion_recommended"] is not True
+        ):
+            raise ValueError(f"Invalid failed inventory row: {row['translation_id']}")
+        if row["inventory_default_analysis_included"] is not True:
+            raise ValueError(f"Lexical translation excluded by default: {row['translation_id']}")
         if row["translation_analysis_eligible"] is not True:
             raise ValueError(f"Ineligible lexical row: {row['translation_id']}")
         attempt_kinds = [

@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 
 from mpr_crosslocale.interventions.rq4_gui_lexical import (
+    FAILED_INVENTORY_POLICY,
     INVENTORY_REPAIR_SUFFIX,
     INVENTORY_REPAIR_SYSTEM_PROMPT,
     INVENTORY_SCHEMA_VERSION,
@@ -16,6 +17,7 @@ from mpr_crosslocale.interventions.rq4_gui_lexical import (
     recover_truncated_repetition_prefix,
     validate_inventory_plan,
     validate_inventory_rows,
+    validate_lexical_plan,
     validate_lexical_structured_output,
 )
 
@@ -108,7 +110,7 @@ def test_visible_string_parser_repairs_only_parseable_inner_quote_drift() -> Non
     assert events and events[0].startswith("escaped_unquoted_inner_quotes:")
 
 
-def test_failed_inventory_can_be_checkpointed_but_not_used_for_translation() -> None:
+def test_failed_inventory_validation_remains_strict_by_default() -> None:
     failed = {
         "inventory_id": "endpoint::visible_strings_v1",
         "extractor_model_id": "Qwen/Qwen2.5-VL-7B-Instruct",
@@ -126,6 +128,29 @@ def test_failed_inventory_can_be_checkpointed_but_not_used_for_translation() -> 
         assert "Unsuccessful inventory row" in str(error)
     else:
         raise AssertionError("Stage 2 must reject a failed inventory.")
+
+
+def test_lexical_plan_explicitly_includes_failed_inventory_without_partial_text() -> None:
+    row = {
+        "pair_id": "pair",
+        "translation_id": "translation",
+        "schema_version": "rq4-rel-gui-lexical-v3",
+        "translation_method": "target_gui_lexical_evidence_contextual_translation",
+        "inventory_status": "failed_after_repair",
+        "visible_strings": [],
+        "lexical_evidence_available": False,
+        "inventory_failure_included": True,
+        "inventory_failure_policy": FAILED_INVENTORY_POLICY,
+        "inventory_default_analysis_included": True,
+    }
+    validate_lexical_plan([row], expected_count=1)
+    row["visible_strings"] = ["partial unvalidated text"]
+    try:
+        validate_lexical_plan([row], expected_count=1)
+    except ValueError as error:
+        assert "Invalid failed-inventory inclusion" in str(error)
+    else:
+        raise AssertionError("Partial failed inventory must not reach Stage 2.")
 
 
 def test_translator_inventory_is_deduplicated_and_has_no_reading_order() -> None:
