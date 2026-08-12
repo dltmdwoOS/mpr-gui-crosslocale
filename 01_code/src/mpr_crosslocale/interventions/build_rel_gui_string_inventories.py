@@ -30,6 +30,7 @@ from mpr_crosslocale.interventions.rq4_gui_lexical import (
     INVENTORY_METHOD,
     INVENTORY_PROMPT_VERSION,
     INVENTORY_REPAIR_SUFFIX,
+    INVENTORY_REPAIR_SYSTEM_PROMPT,
     INVENTORY_SYSTEM_PROMPT,
     INVENTORY_USER_PROMPT,
     build_inventory_plan,
@@ -110,12 +111,14 @@ class VisibleStringExtractor:
 
     def generate(self, image_path: str, repair: bool = False):
         prompt = INVENTORY_USER_PROMPT
+        system_prompt = INVENTORY_SYSTEM_PROMPT
         if repair:
             prompt += INVENTORY_REPAIR_SUFFIX
+            system_prompt = INVENTORY_REPAIR_SYSTEM_PROMPT
         messages = [
             {
                 "role": "system",
-                "content": [{"type": "text", "text": INVENTORY_SYSTEM_PROMPT}],
+                "content": [{"type": "text", "text": system_prompt}],
             },
             {
                 "role": "user",

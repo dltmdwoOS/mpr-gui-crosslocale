@@ -46,6 +46,11 @@ INVENTORY_USER_PROMPT = (
     'Return only: {"visible_strings": ["..."]}'
 )
 
+INVENTORY_REPAIR_SYSTEM_PROMPT = INVENTORY_SYSTEM_PROMPT.replace(
+    "Duplicates may be retained.",
+    "Return each distinct visible string at most once; duplicates must not be retained.",
+)
+
 INVENTORY_REPAIR_SUFFIX = """ The prior response was invalid.
 Return the exact JSON shape only and do not change the visible transcription for any other reason.
 Return each distinct visible string at most once; never loop or repeat a string. Exact duplicate removal does not remove lexical evidence used downstream.

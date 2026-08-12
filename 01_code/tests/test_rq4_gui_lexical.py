@@ -4,6 +4,7 @@ import json
 
 from mpr_crosslocale.interventions.rq4_gui_lexical import (
     INVENTORY_REPAIR_SUFFIX,
+    INVENTORY_REPAIR_SYSTEM_PROMPT,
     INVENTORY_SCHEMA_VERSION,
     LEXICAL_PROMPT_VERSION,
     LEXICAL_SYSTEM_PROMPT,
@@ -71,6 +72,8 @@ def test_visible_string_parser_recovers_empty_null_and_text_objects() -> None:
 
 
 def test_inventory_repair_prevents_duplicate_loops_and_invalid_json_escaping() -> None:
+    assert "Duplicates may be retained" not in INVENTORY_REPAIR_SYSTEM_PROMPT
+    assert "duplicates must not be retained" in INVENTORY_REPAIR_SYSTEM_PROMPT
     assert "distinct visible string at most once" in INVENTORY_REPAIR_SUFFIX
     assert "never loop or repeat" in INVENTORY_REPAIR_SUFFIX
     assert "Escape every double quote, backslash" in INVENTORY_REPAIR_SUFFIX
