@@ -13,6 +13,7 @@ from mpr_crosslocale.interventions.rq4_gui_lexical import (
     canonicalize_visible_strings,
     parse_visible_string_output,
     parse_visible_string_output_detailed,
+    recover_truncated_repetition_prefix,
     validate_inventory_plan,
     validate_inventory_rows,
     validate_lexical_structured_output,
@@ -80,6 +81,27 @@ def test_inventory_repair_prevents_duplicate_loops_and_invalid_json_escaping() -
     assert "never loop or repeat" in INVENTORY_REPAIR_SUFFIX
     assert "Escape every double quote, backslash" in INVENTORY_REPAIR_SUFFIX
     assert "Do not omit any distinct readable GUI word or label" in INVENTORY_REPAIR_SUFFIX
+
+
+def test_truncated_repetition_recovery_is_narrow_and_deduplicates() -> None:
+    raw = '{"visible_strings": ["Settings", ' + ', '.join(['"19"'] * 12) + ', "'
+    parsed, events = recover_truncated_repetition_prefix(raw)
+    assert parsed == ["Settings", "19"]
+    assert events == [
+        "closed_truncated_repetition_loop:12",
+        "dropped_exact_duplicates:11",
+    ]
+    assert recover_truncated_repetition_prefix(
+        '{"visible_strings": ["Jan", "1", "2", "3", "'
+    ) == (None, [])
+
+
+def test_visible_string_parser_repairs_only_parseable_inner_quote_drift() -> None:
+    raw = r'{"visible_strings": ["starting with \"." (dot)", "Recent"]}'
+    parsed, errors, events = parse_visible_string_output_detailed(raw)
+    assert parsed == ['starting with "." (dot)', "Recent"]
+    assert errors == []
+    assert events and events[0].startswith("escaped_unquoted_inner_quotes:")
 
 
 def test_failed_inventory_can_be_checkpointed_but_not_used_for_translation() -> None:

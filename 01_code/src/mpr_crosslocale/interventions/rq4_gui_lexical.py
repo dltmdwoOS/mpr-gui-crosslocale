@@ -56,6 +56,8 @@ Preserve the visible script, spelling, capitalization, digits, and punctuation.
 Return one JSON object with exactly one key, visible_strings, whose value is a JSON array of non-empty strings.
 Return each distinct string at most once. Never loop or repeat a string.
 For a dense calendar, grid, keypad, or on-screen keyboard, treat cells or keys as atomic strings and return each distinct token once rather than transcribing every row or occurrence.
+For a calendar, never enumerate day-of-month cells. Keep month names, weekday headings, named controls, and only a highlighted or selected date value.
+For weather, status, badge, or repeated list values, return each distinct value once and never enumerate repeated occurrences.
 Return at most 160 strings. If more are visible, retain named GUI controls, titles, tabs, menu items, and multi-character labels before repeated one-character or numeric grid tokens.
 Escape all JSON special characters correctly and close the JSON object. Do not use Markdown fences."""
 
@@ -177,6 +179,91 @@ def canonicalize_visible_strings(values: list[str]) -> list[str]:
     return [by_key[key] for key in sorted(by_key)]
 
 
+def recover_truncated_repetition_prefix(
+    raw_output: str, *, minimum_terminal_run: int = 8
+) -> tuple[list[str] | None, list[str]]:
+    """Close only a truncated JSON array ending in an obvious duplicate loop."""
+
+    text = raw_output.strip()
+    prefix = '{"visible_strings": ['
+    if not text.startswith(prefix) or text.endswith("]}"):
+        return None, []
+    decoder = json.JSONDecoder()
+    position = len(prefix)
+    values: list[str] = []
+    while position < len(text):
+        while position < len(text) and text[position].isspace():
+            position += 1
+        if position >= len(text) or text[position] == "]":
+            break
+        try:
+            value, end = decoder.raw_decode(text, position)
+        except json.JSONDecodeError:
+            break
+        if not isinstance(value, str) or not value.strip():
+            return None, []
+        values.append(value.strip())
+        position = end
+        while position < len(text) and text[position].isspace():
+            position += 1
+        if position >= len(text) or text[position] != ",":
+            break
+        position += 1
+    if not values:
+        return None, []
+    terminal = values[-1]
+    terminal_run = 0
+    for value in reversed(values):
+        if value != terminal:
+            break
+        terminal_run += 1
+    if terminal_run < minimum_terminal_run:
+        return None, []
+    unique: list[str] = []
+    seen: set[str] = set()
+    for value in values:
+        if value not in seen:
+            seen.add(value)
+            unique.append(value)
+    return unique, [
+        f"closed_truncated_repetition_loop:{terminal_run}",
+        f"dropped_exact_duplicates:{len(values) - len(unique)}",
+    ]
+
+
+def _escape_unquoted_inner_json_quotes(raw_output: str) -> tuple[str, list[str]]:
+    """Escape quote characters that cannot legally terminate a JSON string."""
+
+    text = raw_output.strip()
+    if not text.endswith("]}"):
+        return text, []
+    repaired: list[str] = []
+    positions: list[int] = []
+    in_string = False
+    backslashes = 0
+    for index, character in enumerate(text):
+        escaped = backslashes % 2 == 1
+        if character == '"' and not escaped:
+            if not in_string:
+                in_string = True
+            else:
+                lookahead = index + 1
+                while lookahead < len(text) and text[lookahead].isspace():
+                    lookahead += 1
+                if lookahead < len(text) and text[lookahead] in ",]}:":
+                    in_string = False
+                else:
+                    repaired.append("\\")
+                    positions.append(index)
+        repaired.append(character)
+        backslashes = backslashes + 1 if character == "\\" else 0
+    if not positions:
+        return text, []
+    return "".join(repaired), [
+        "escaped_unquoted_inner_quotes:" + ",".join(map(str, positions))
+    ]
+
+
 def lexical_translation_id(pair_id: str) -> str:
     return f"{pair_id}::qwen3_gui_lexical_v3"
 
@@ -238,14 +325,21 @@ def parse_visible_string_output_detailed(
 ) -> tuple[list[str] | None, list[str], list[str]]:
     """Parse extractor JSON and mechanically recover harmless element-shape drift."""
 
+    normalization_events: list[str] = []
     try:
         parsed = json.loads(raw_output.strip())
     except json.JSONDecodeError as error:
-        return None, [f"invalid_json:{error.msg}"], []
+        repaired, quote_events = _escape_unquoted_inner_json_quotes(raw_output)
+        if error.msg != "Expecting ',' delimiter" or not quote_events:
+            return None, [f"invalid_json:{error.msg}"], []
+        try:
+            parsed = json.loads(repaired)
+        except json.JSONDecodeError:
+            return None, [f"invalid_json:{error.msg}"], []
+        normalization_events.extend(quote_events)
     if not isinstance(parsed, dict):
         return None, ["top_level_not_object"], []
     errors: list[str] = []
-    normalization_events: list[str] = []
     if list(parsed) != ["visible_strings"]:
         errors.append(f"top_level_keys:{list(parsed)!r}")
     values = parsed.get("visible_strings")

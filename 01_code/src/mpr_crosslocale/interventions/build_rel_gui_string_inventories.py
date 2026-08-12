@@ -35,6 +35,7 @@ from mpr_crosslocale.interventions.rq4_gui_lexical import (
     INVENTORY_USER_PROMPT,
     build_inventory_plan,
     parse_visible_string_output_detailed,
+    recover_truncated_repetition_prefix,
     validate_inventory_rows,
     validate_lexical_config,
 )
@@ -289,6 +290,18 @@ def main(argv: list[str] | None = None) -> None:
                     parsed, errors, normalized = parse_visible_string_output_detailed(
                         output.raw_output
                     )
+                    if (
+                        errors
+                        and output.output_token_count
+                        == int(extractor.repair_generation["max_new_tokens"])
+                    ):
+                        recovered, recovery_events = recover_truncated_repetition_prefix(
+                            output.raw_output
+                        )
+                        if recovered is not None:
+                            parsed = recovered
+                            errors = []
+                            normalized = recovery_events
                     attempt_records.append(
                         {
                             "attempt": 1,
