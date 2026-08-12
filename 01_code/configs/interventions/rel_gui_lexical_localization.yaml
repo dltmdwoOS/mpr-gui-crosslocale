@@ -39,6 +39,7 @@ runtime:
   device: cuda
   min_gpu_memory_gib: 20
   translation_batch_size: 2
+  benchmark_translation_batch_sizes: [4]
 
 protocol:
   inventory_method: query_blind_target_gui_visible_string_extraction
@@ -56,6 +57,7 @@ protocol:
   semantic_max_attempts: 1
   semantic_repair_accept_only_if_score_improves: true
   failed_inventory_policy: include_with_explicit_empty_lexical_evidence
+  nondefault_batch_requires_equivalence_audit: true
 
 smoke:
   per_direction: 2

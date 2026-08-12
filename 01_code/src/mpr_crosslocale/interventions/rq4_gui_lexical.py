@@ -135,6 +135,7 @@ def validate_lexical_config(config: dict[str, Any]) -> None:
         "device": "cuda",
         "min_gpu_memory_gib": 20,
         "translation_batch_size": 2,
+        "benchmark_translation_batch_sizes": [4],
     }:
         raise ValueError("GUI lexical runtime config changed from the frozen protocol.")
     if config.get("smoke") != {
@@ -160,6 +161,7 @@ def validate_lexical_config(config: dict[str, Any]) -> None:
         "semantic_max_attempts": 1,
         "semantic_repair_accept_only_if_score_improves": True,
         "failed_inventory_policy": FAILED_INVENTORY_POLICY,
+        "nondefault_batch_requires_equivalence_audit": True,
     }
     if protocol != expected_protocol:
         raise ValueError("Two-step hidden-input protocol changed.")

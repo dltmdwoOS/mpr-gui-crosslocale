@@ -432,14 +432,24 @@ def main(argv: list[str] | None = None) -> None:
             indent=2,
         )
     )
+    default_batch_size = int(config["runtime"]["translation_batch_size"])
+    benchmark_batch_sizes = {
+        int(value)
+        for value in config["runtime"]["benchmark_translation_batch_sizes"]
+    }
+    if not args.mock_model and args.batch_size not in {
+        default_batch_size,
+        *benchmark_batch_sizes,
+    }:
+        raise ValueError("Translation batch size is not an approved runtime size.")
+    if args.batch_size != default_batch_size and args.scope != "smoke":
+        raise ValueError(
+            "Nondefault translation batch sizes are smoke-only until an exact "
+            "equivalence audit is passed."
+        )
     if args.dry_run:
         log_step("DRY RUN COMPLETE: no Qwen3 model loaded")
         return
-
-    if not args.mock_model and args.batch_size != int(
-        config["runtime"]["translation_batch_size"]
-    ):
-        raise ValueError("Translation batch size differs from frozen protocol.")
     existing_rows = read_jsonl(args.output) if args.resume and args.output.exists() else []
     existing = {str(row["translation_id"]): row for row in existing_rows}
     log_step(
