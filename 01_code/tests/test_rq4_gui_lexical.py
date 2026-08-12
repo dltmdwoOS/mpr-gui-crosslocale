@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 
 from mpr_crosslocale.interventions.rq4_gui_lexical import (
+    INVENTORY_REPAIR_SUFFIX,
     INVENTORY_SCHEMA_VERSION,
     LEXICAL_PROMPT_VERSION,
     LEXICAL_SYSTEM_PROMPT,
@@ -67,6 +68,13 @@ def test_visible_string_parser_recovers_empty_null_and_text_objects() -> None:
         "dropped_null:2",
         "unwrapped_text_object:3",
     ]
+
+
+def test_inventory_repair_prevents_duplicate_loops_and_invalid_json_escaping() -> None:
+    assert "distinct visible string at most once" in INVENTORY_REPAIR_SUFFIX
+    assert "never loop or repeat" in INVENTORY_REPAIR_SUFFIX
+    assert "Escape every double quote, backslash" in INVENTORY_REPAIR_SUFFIX
+    assert "Do not omit any distinct readable GUI word or label" in INVENTORY_REPAIR_SUFFIX
 
 
 def test_failed_inventory_can_be_checkpointed_but_not_used_for_translation() -> None:

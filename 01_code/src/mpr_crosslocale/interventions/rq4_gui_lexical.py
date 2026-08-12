@@ -46,6 +46,12 @@ INVENTORY_USER_PROMPT = (
     'Return only: {"visible_strings": ["..."]}'
 )
 
+INVENTORY_REPAIR_SUFFIX = """ The prior response was invalid.
+Return the exact JSON shape only and do not change the visible transcription for any other reason.
+Return each distinct visible string at most once; never loop or repeat a string. Exact duplicate removal does not remove lexical evidence used downstream.
+Escape every double quote, backslash, and control character inside a JSON string according to the JSON standard.
+Do not omit any distinct readable GUI word or label. Do not use Markdown fences."""
+
 LEXICAL_SYSTEM_PROMPT = """You localize multilingual GUI multiple-choice questions using a target GUI visible-string inventory.
 
 Translate the complete MCQ from the declared source language to the declared target language.
@@ -82,6 +88,11 @@ def validate_lexical_config(config: dict[str, Any]) -> None:
         "max_pixels": 2097152,
         "seed": 42,
         "generation": {"do_sample": False, "num_beams": 1, "max_new_tokens": 768},
+        "repair_generation": {
+            "do_sample": False,
+            "num_beams": 1,
+            "max_new_tokens": 1536,
+        },
     }
     if config.get("extractor") != expected_extractor:
         raise ValueError("Visible-string extractor config changed from the frozen protocol.")

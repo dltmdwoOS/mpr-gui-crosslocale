@@ -29,6 +29,7 @@ from mpr_crosslocale.interventions.rq4_gui_lexical import (
     EXTRACTOR_REVISION,
     INVENTORY_METHOD,
     INVENTORY_PROMPT_VERSION,
+    INVENTORY_REPAIR_SUFFIX,
     INVENTORY_SYSTEM_PROMPT,
     INVENTORY_USER_PROMPT,
     build_inventory_plan,
@@ -103,16 +104,14 @@ class VisibleStringExtractor:
         if loaded_revision and loaded_revision != EXTRACTOR_REVISION:
             raise RuntimeError(
                 f"Loaded extractor revision {loaded_revision} != {EXTRACTOR_REVISION}"
-            )
+        )
         self.generation = dict(extractor["generation"])
+        self.repair_generation = dict(extractor["repair_generation"])
 
     def generate(self, image_path: str, repair: bool = False):
         prompt = INVENTORY_USER_PROMPT
         if repair:
-            prompt += (
-                " The prior response was invalid. Return the exact JSON shape only; "
-                "do not change the visible transcription for any other reason."
-            )
+            prompt += INVENTORY_REPAIR_SUFFIX
         messages = [
             {
                 "role": "system",
@@ -126,7 +125,8 @@ class VisibleStringExtractor:
                 ],
             },
         ]
-        return self.adapter.generate_messages(messages, self.generation)
+        generation = self.repair_generation if repair else self.generation
+        return self.adapter.generate_messages(messages, generation)
 
 
 def _mock_inventory(row: dict[str, Any]) -> tuple[list[str], str]:
