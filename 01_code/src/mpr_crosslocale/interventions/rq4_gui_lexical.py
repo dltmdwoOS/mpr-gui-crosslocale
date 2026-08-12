@@ -37,7 +37,7 @@ Do not translate, summarize, normalize, interpret, or correct it.
 Do not describe icons, layout, positions, relationships, or UI behavior.
 Do not answer any question. No question or answer options are available.
 Preserve the visible script, spelling, capitalization, digits, and punctuation.
-Return one JSON object with exactly one key, visible_strings, whose value is a JSON array of strings in approximate reading order. Duplicates may be retained. If no text is visible, return an empty array. Do not use Markdown fences."""
+Return one JSON object with exactly one key, visible_strings, whose value is a JSON array of non-empty strings in approximate reading order. Never emit null, objects, or empty strings as array elements. Duplicates may be retained. If no text is visible, return an empty array. Do not use Markdown fences."""
 
 INVENTORY_USER_PROMPT = (
     "Transcribe every readable string visible in this target-locale GUI screenshot. "
@@ -199,30 +199,59 @@ def validate_inventory_plan(rows: list[dict[str, Any]]) -> None:
             raise ValueError(f"REL lexical extraction expects one image: {row['inventory_id']}")
 
 
-def parse_visible_string_output(raw_output: str) -> tuple[list[str] | None, list[str]]:
+def parse_visible_string_output_detailed(
+    raw_output: str,
+) -> tuple[list[str] | None, list[str], list[str]]:
+    """Parse extractor JSON and mechanically recover harmless element-shape drift."""
+
     try:
         parsed = json.loads(raw_output.strip())
     except json.JSONDecodeError as error:
-        return None, [f"invalid_json:{error.msg}"]
+        return None, [f"invalid_json:{error.msg}"], []
     if not isinstance(parsed, dict):
-        return None, ["top_level_not_object"]
+        return None, ["top_level_not_object"], []
     errors: list[str] = []
+    normalization_events: list[str] = []
     if list(parsed) != ["visible_strings"]:
         errors.append(f"top_level_keys:{list(parsed)!r}")
     values = parsed.get("visible_strings")
     if not isinstance(values, list):
-        return None, errors + ["visible_strings_not_array"]
+        return None, errors + ["visible_strings_not_array"], normalization_events
     if len(values) > 500:
         errors.append("visible_strings_exceeds_500")
-    if any(not isinstance(value, str) or not value.strip() for value in values):
-        errors.append("visible_strings_contains_empty_or_non_string")
+    recovered: list[str] = []
+    for index, value in enumerate(values):
+        if isinstance(value, str):
+            stripped = value.strip()
+            if stripped:
+                recovered.append(stripped)
+            else:
+                normalization_events.append(f"dropped_empty_string:{index}")
+            continue
+        if value is None:
+            normalization_events.append(f"dropped_null:{index}")
+            continue
+        if isinstance(value, dict) and set(value) == {"text"}:
+            text = value.get("text")
+            if isinstance(text, str) and text.strip():
+                recovered.append(text.strip())
+                normalization_events.append(f"unwrapped_text_object:{index}")
+                continue
+        errors.append(f"unsupported_visible_string_element:{index}:{type(value).__name__}")
     if errors:
-        return None, errors
-    return [value.strip() for value in values], []
+        return None, errors, normalization_events
+    return recovered, [], normalization_events
+
+
+def parse_visible_string_output(raw_output: str) -> tuple[list[str] | None, list[str]]:
+    strings, errors, _ = parse_visible_string_output_detailed(raw_output)
+    return strings, errors
 
 
 def validate_inventory_rows(
-    rows: list[dict[str, Any]], expected_count: int = EXPECTED_INVENTORIES
+    rows: list[dict[str, Any]],
+    expected_count: int = EXPECTED_INVENTORIES,
+    require_success: bool = True,
 ) -> None:
     if len(rows) != expected_count:
         raise ValueError(f"Expected {expected_count} inventory rows; found {len(rows)}.")
@@ -234,7 +263,10 @@ def validate_inventory_rows(
         if row["extractor_revision"] != EXTRACTOR_REVISION:
             raise ValueError(f"Unexpected extractor revision: {row['inventory_id']}")
         if row["inventory_status"] != "success":
-            raise ValueError(f"Unsuccessful inventory row: {row['inventory_id']}")
+            if require_success:
+                raise ValueError(f"Unsuccessful inventory row: {row['inventory_id']}")
+            if not str(row["inventory_status"]).startswith("failed"):
+                raise ValueError(f"Unknown inventory status: {row['inventory_id']}")
         if not isinstance(row["visible_strings"], list):
             raise TypeError(f"Invalid string inventory: {row['inventory_id']}")
         if row.get("query_content_exposed") is not False:

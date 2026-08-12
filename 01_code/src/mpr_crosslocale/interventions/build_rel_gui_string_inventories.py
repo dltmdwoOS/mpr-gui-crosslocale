@@ -32,7 +32,7 @@ from mpr_crosslocale.interventions.rq4_gui_lexical import (
     INVENTORY_SYSTEM_PROMPT,
     INVENTORY_USER_PROMPT,
     build_inventory_plan,
-    parse_visible_string_output,
+    parse_visible_string_output_detailed,
     validate_inventory_rows,
     validate_lexical_config,
 )
@@ -149,6 +149,12 @@ def main(argv: list[str] | None = None) -> None:
     )
     parser.add_argument("--scope", choices=["smoke", "full"], required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--issue-audit-out",
+        type=Path,
+        default=None,
+        help="Defaults to <output_stem>_issues.jsonl.",
+    )
     parser.add_argument("--repo-root", type=Path, default=Path("."))
     parser.add_argument("--device-map", default="auto")
     parser.add_argument("--log-every", type=int, default=10)
@@ -198,14 +204,28 @@ def main(argv: list[str] | None = None) -> None:
     if set(existing) - selected_ids:
         raise ValueError("Resume inventory contains rows outside the selected scope.")
     if existing:
-        validate_inventory_rows(list(existing.values()), expected_count=len(existing))
+        validate_inventory_rows(
+            list(existing.values()), expected_count=len(existing), require_success=False
+        )
+
+    successful_existing = {
+        inventory_id: row
+        for inventory_id, row in existing.items()
+        if row["inventory_status"] == "success"
+    }
+    prior_failed = {
+        inventory_id: row
+        for inventory_id, row in existing.items()
+        if row["inventory_status"] != "success"
+    }
 
     log_step(
-        f"STEP 3/6 loading query-blind extractor: completed={len(existing)}, "
-        f"pending={len(selected) - len(existing)}, mock={args.mock_model}"
+        f"STEP 3/6 loading query-blind extractor: completed={len(successful_existing)}, "
+        f"retry_failed={len(prior_failed)}, "
+        f"pending={len(selected) - len(successful_existing)}, mock={args.mock_model}"
     )
     extractor = None if args.mock_model else VisibleStringExtractor(config, args.device_map)
-    completed = dict(existing)
+    completed = dict(successful_existing)
     provenance = {
         "extractor_model_id": EXTRACTOR_MODEL_ID,
         "extractor_revision": EXTRACTOR_REVISION,
@@ -221,39 +241,95 @@ def main(argv: list[str] | None = None) -> None:
     log_step("STEP 4/6 extracting visible strings; per-endpoint checkpoints enabled")
     for index, row in enumerate(pending, start=1):
         started = time.perf_counter()
+        attempt_records: list[dict[str, Any]] = []
+        strings: list[str] = []
+        final_errors: list[str] = []
+        normalization_events: list[str] = []
+        raw_output = ""
+        rendered_prompt = ""
+        prompt_tokens = output_tokens = None
+        status = "success"
         if args.mock_model:
             strings, raw_output = _mock_inventory(row)
             rendered_prompt = "mock"
-            prompt_tokens = output_tokens = None
-            attempts = 1
+            attempt_records.append(
+                {
+                    "attempt": 0,
+                    "raw_output": raw_output,
+                    "validation_errors": [],
+                    "normalization_events": [],
+                }
+            )
         else:
             assert extractor is not None
-            output = extractor.generate(row["resolved_image_path"])
-            strings, errors = parse_visible_string_output(output.raw_output)
-            attempts = 1
-            if errors:
-                log_step(f"STEP 4/6 STRUCTURE REPAIR {row['inventory_id']}: {errors}")
-                output = extractor.generate(row["resolved_image_path"], repair=True)
-                strings, errors = parse_visible_string_output(output.raw_output)
-                attempts = 2
-            if errors or strings is None:
-                raise RuntimeError(
-                    f"Visible-string extraction failed for {row['inventory_id']}: {errors}"
+            try:
+                output = extractor.generate(row["resolved_image_path"])
+                parsed, errors, normalized = parse_visible_string_output_detailed(
+                    output.raw_output
                 )
-            raw_output = output.raw_output
-            rendered_prompt = output.rendered_prompt
-            prompt_tokens = output.prompt_token_count
-            output_tokens = output.output_token_count
+                attempt_records.append(
+                    {
+                        "attempt": 0,
+                        "raw_output": output.raw_output,
+                        "validation_errors": errors,
+                        "normalization_events": normalized,
+                    }
+                )
+                if errors:
+                    log_step(
+                        f"STEP 4/6 STRUCTURE REPAIR {row['inventory_id']}: {errors}"
+                    )
+                    output = extractor.generate(row["resolved_image_path"], repair=True)
+                    parsed, errors, normalized = parse_visible_string_output_detailed(
+                        output.raw_output
+                    )
+                    attempt_records.append(
+                        {
+                            "attempt": 1,
+                            "raw_output": output.raw_output,
+                            "validation_errors": errors,
+                            "normalization_events": normalized,
+                        }
+                    )
+                raw_output = output.raw_output
+                rendered_prompt = output.rendered_prompt
+                prompt_tokens = output.prompt_token_count
+                output_tokens = output.output_token_count
+                final_errors = list(errors)
+                normalization_events = list(normalized)
+                if errors or parsed is None:
+                    status = "failed_after_repair"
+                else:
+                    strings = parsed
+            except Exception as error:  # noqa: BLE001 - preserve and continue endpoint audit
+                status = "failed_exception"
+                final_errors = [f"{type(error).__name__}:{error}"]
+                attempt_records.append(
+                    {
+                        "attempt": len(attempt_records),
+                        "raw_output": raw_output,
+                        "validation_errors": final_errors,
+                        "normalization_events": normalization_events,
+                    }
+                )
+            if status != "success":
+                log_step(
+                    f"STEP 4/6 RECORDED FAILURE {row['inventory_id']}: {final_errors}"
+                )
         artifact = {
             **{key: value for key, value in row.items() if key != "resolved_image_path"},
             "visible_strings": strings,
             "visible_string_count": len(strings),
-            "inventory_status": "success",
+            "inventory_status": status,
             "raw_extractor_output": raw_output,
             "rendered_extractor_prompt": rendered_prompt,
             "prompt_token_count": prompt_tokens,
             "output_token_count": output_tokens,
-            "attempt_count": attempts,
+            "attempt_count": len(attempt_records),
+            "extraction_attempts": attempt_records,
+            "final_validation_errors": final_errors,
+            "normalization_events": normalization_events,
+            "resumed_from_prior_failure": row["inventory_id"] in prior_failed,
             "runtime_ms": int((time.perf_counter() - started) * 1000),
             **provenance,
             "created_at": datetime.now(timezone.utc).isoformat(),
@@ -261,7 +337,9 @@ def main(argv: list[str] | None = None) -> None:
         completed[row["inventory_id"]] = artifact
         if index == 1 or index == len(pending) or index % args.log_every == 0:
             ordered = sorted(completed.values(), key=lambda value: value["inventory_id"])
-            validate_inventory_rows(ordered, expected_count=len(ordered))
+            validate_inventory_rows(
+                ordered, expected_count=len(ordered), require_success=False
+            )
             write_jsonl_atomic(args.output, ordered)
             log_step(
                 f"STEP 4/6 CHECKPOINT {len(completed)}/{len(selected)}: {args.output}"
@@ -269,19 +347,39 @@ def main(argv: list[str] | None = None) -> None:
 
     log_step("STEP 5/6 validating frozen inventory artifact")
     result = sorted(completed.values(), key=lambda row: row["inventory_id"])
-    validate_inventory_rows(result, expected_count=len(selected))
+    validate_inventory_rows(
+        result, expected_count=len(selected), require_success=False
+    )
     if args.scope == "full" and len(result) != EXPECTED_INVENTORIES:
         raise AssertionError("Full inventory artifact is incomplete.")
+    issue_rows = [
+        row
+        for row in result
+        if row["inventory_status"] != "success"
+        or int(row["attempt_count"]) > 1
+        or bool(row.get("normalization_events", []))
+    ]
+    issue_path = args.issue_audit_out or args.output.with_name(
+        args.output.stem + "_issues.jsonl"
+    )
+    write_jsonl_atomic(issue_path, issue_rows)
+    failure_count = sum(row["inventory_status"] != "success" for row in result)
     log_step("STEP 6/6 complete")
     print(
         json.dumps(
             {
-                "status": "complete",
+                "status": "complete" if failure_count == 0 else "complete_with_failures",
                 "scope": args.scope,
                 "rows": len(result),
                 "nonempty_inventory_rows": sum(bool(row["visible_strings"]) for row in result),
                 "repair_rows": sum(int(row["attempt_count"]) > 1 for row in result),
+                "normalized_rows": sum(
+                    bool(row.get("normalization_events", [])) for row in result
+                ),
+                "failed_rows": failure_count,
                 "output": args.output.as_posix(),
+                "issue_audit": issue_path.as_posix(),
+                "next_step_allowed": failure_count == 0,
             },
             indent=2,
         )

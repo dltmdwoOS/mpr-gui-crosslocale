@@ -7,7 +7,9 @@ from mpr_crosslocale.interventions.rq4_gui_lexical import (
     build_lexical_user_prompt,
     canonicalize_visible_strings,
     parse_visible_string_output,
+    parse_visible_string_output_detailed,
     validate_inventory_plan,
+    validate_inventory_rows,
     validate_lexical_structured_output,
 )
 
@@ -49,6 +51,37 @@ def test_visible_string_parser_is_structure_strict_and_allows_empty_gui() -> Non
     assert errors == []
     assert parse_visible_string_output('{"visible_strings": []}') == ([], [])
     assert parse_visible_string_output('{"text": ["設定"]}')[0] is None
+
+
+def test_visible_string_parser_recovers_empty_null_and_text_objects() -> None:
+    parsed, errors, events = parse_visible_string_output_detailed(
+        '{"visible_strings": ["Clock", "", null, {"text": "Alarm"}]}'
+    )
+    assert parsed == ["Clock", "Alarm"]
+    assert errors == []
+    assert events == [
+        "dropped_empty_string:1",
+        "dropped_null:2",
+        "unwrapped_text_object:3",
+    ]
+
+
+def test_failed_inventory_can_be_checkpointed_but_not_used_for_translation() -> None:
+    failed = {
+        "inventory_id": "endpoint::visible_strings_v1",
+        "extractor_model_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+        "extractor_revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+        "inventory_status": "failed_after_repair",
+        "visible_strings": [],
+        "query_content_exposed": False,
+    }
+    validate_inventory_rows([failed], expected_count=1, require_success=False)
+    try:
+        validate_inventory_rows([failed], expected_count=1)
+    except ValueError as error:
+        assert "Unsuccessful inventory row" in str(error)
+    else:
+        raise AssertionError("Stage 2 must reject a failed inventory.")
 
 
 def test_translator_inventory_is_deduplicated_and_has_no_reading_order() -> None:
