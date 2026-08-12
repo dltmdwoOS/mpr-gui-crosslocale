@@ -107,7 +107,7 @@ def validate_lexical_config(config: dict[str, Any]) -> None:
         "repair_generation": {
             "do_sample": False,
             "num_beams": 1,
-            "max_new_tokens": 1536,
+            "max_new_tokens": 2048,
         },
     }
     if config.get("extractor") != expected_extractor:
