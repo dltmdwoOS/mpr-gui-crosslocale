@@ -4,6 +4,9 @@ import json
 
 from mpr_crosslocale.interventions.rq4_gui_lexical import (
     INVENTORY_SCHEMA_VERSION,
+    LEXICAL_PROMPT_VERSION,
+    LEXICAL_SYSTEM_PROMPT,
+    build_lexical_semantic_repair_prompt,
     build_lexical_user_prompt,
     canonicalize_visible_strings,
     parse_visible_string_output,
@@ -71,6 +74,8 @@ def test_failed_inventory_can_be_checkpointed_but_not_used_for_translation() -> 
         "inventory_id": "endpoint::visible_strings_v1",
         "extractor_model_id": "Qwen/Qwen2.5-VL-7B-Instruct",
         "extractor_revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+        "processor_use_fast": True,
+        "processor_mode_explicit": True,
         "inventory_status": "failed_after_repair",
         "visible_strings": [],
         "query_content_exposed": False,
@@ -118,6 +123,24 @@ def test_lexical_prompt_exposes_inventory_but_not_image_gold_or_human_endpoint()
     assert "image_paths" not in payload
     assert "gold_label" not in payload
     assert "human" not in json.dumps(payload).casefold()
+
+
+def test_lexical_v3_prompt_explicitly_preserves_spatial_direction() -> None:
+    assert LEXICAL_PROMPT_VERSION == "rq4_gui_lexical_translation_v3"
+    assert "above must remain above" in LEXICAL_SYSTEM_PROMPT
+    assert "ตรงข้าม means opposite" in LEXICAL_SYSTEM_PROMPT
+    assert "MUST NOT be used to translate directly/immediately" in LEXICAL_SYSTEM_PROMPT
+
+
+def test_lexical_semantic_repair_retains_inventory_without_layout() -> None:
+    prompt = build_lexical_semantic_repair_prompt(
+        _lexical_row(),
+        '{"question_stem":"opposite"}',
+        ["spatial_opposition_introduced"],
+    )
+    assert '"target_gui_visible_strings"' in prompt
+    assert "spatial_opposition_introduced" in prompt
+    assert "provides no layout information" in prompt
 
 
 def test_lexical_validator_keeps_token_changes_as_diagnostics() -> None:

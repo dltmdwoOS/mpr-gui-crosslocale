@@ -40,6 +40,7 @@ INVARIANT_RESULT_FIELDS = (
     "attn_implementation",
     "vision_token_limit",
     "processor_profile",
+    "processor_use_fast",
     "min_pixels",
     "max_pixels",
     "input_size",

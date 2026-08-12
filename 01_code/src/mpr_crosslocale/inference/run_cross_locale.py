@@ -264,6 +264,7 @@ def _result_base(
         "min_pixels": model_config.get("min_pixels"),
         "max_pixels": model_config.get("max_pixels"),
         "processor_profile": model_config.get("processor_profile"),
+        "processor_use_fast": model_config.get("use_fast"),
         "input_size": model_config.get("input_size"),
         "min_num": model_config.get("min_num"),
         "max_num": model_config.get("max_num"),
@@ -309,7 +310,7 @@ def _build_model_adapter(args: argparse.Namespace, model_config: dict[str, Any])
 def _build_qwen_adapter(args: argparse.Namespace, model_config: dict[str, Any]) -> Qwen25VLAdapter:
     processor_kwargs = {
         key: model_config[key]
-        for key in ("min_pixels", "max_pixels")
+        for key in ("use_fast", "min_pixels", "max_pixels")
         if model_config.get(key) is not None
     }
     return Qwen25VLAdapter(

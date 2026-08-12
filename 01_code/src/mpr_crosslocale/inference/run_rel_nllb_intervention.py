@@ -208,6 +208,7 @@ def _result_base(
         "min_pixels": model_config.get("min_pixels"),
         "max_pixels": model_config.get("max_pixels"),
         "processor_profile": model_config.get("processor_profile"),
+        "processor_use_fast": model_config.get("use_fast"),
         "input_size": model_config.get("input_size"),
         "min_num": model_config.get("min_num"),
         "max_num": model_config.get("max_num"),

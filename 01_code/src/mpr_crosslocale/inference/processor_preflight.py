@@ -73,7 +73,7 @@ def run_preflight(args: argparse.Namespace) -> dict[str, Any]:
     model_config = load_yaml(args.model_config)
     processor_kwargs = {
         key: model_config[key]
-        for key in ("min_pixels", "max_pixels")
+        for key in ("use_fast", "min_pixels", "max_pixels")
         if model_config.get(key) is not None
     }
     processor = AutoProcessor.from_pretrained(
@@ -123,6 +123,7 @@ def run_preflight(args: argparse.Namespace) -> dict[str, Any]:
                 "visual_grid_tokens": visual_grid_tokens,
                 "prompt_profile": prompt_profile,
                 "processor_profile": model_config.get("processor_profile", "qwen_default"),
+                "processor_use_fast": model_config.get("use_fast"),
             }
         )
     return {"summary": summarize(records), "records": records}

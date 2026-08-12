@@ -93,6 +93,7 @@ class VisibleStringExtractor:
             attn_implementation=str(extractor["attn_implementation"]),
             device_map=device_map,
             processor_kwargs={
+                "use_fast": bool(extractor["use_fast"]),
                 "min_pixels": int(extractor["min_pixels"]),
                 "max_pixels": int(extractor["max_pixels"]),
             },
@@ -232,6 +233,8 @@ def main(argv: list[str] | None = None) -> None:
         "extraction_method": INVENTORY_METHOD,
         "prompt_template_version": INVENTORY_PROMPT_VERSION,
         "system_prompt_sha256": canonical_json_sha256(INVENTORY_SYSTEM_PROMPT),
+        "processor_use_fast": bool(config["extractor"]["use_fast"]),
+        "processor_mode_explicit": True,
         "query_content_exposed": False,
         "code_commit": git_commit(),
         "software_versions": software_versions(),

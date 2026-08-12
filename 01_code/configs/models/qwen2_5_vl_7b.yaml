@@ -11,6 +11,7 @@ device_strategy: auto
 
 # Qwen3-VL 실험과 동일한 visual preprocessing 조건 사용
 processor_profile: qwen_vast_fixed_2048
+use_fast: true
 min_pixels: 262144
 max_pixels: 2097152
 vision_token_limit: 2048

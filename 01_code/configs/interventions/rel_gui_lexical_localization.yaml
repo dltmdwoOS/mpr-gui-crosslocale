@@ -1,4 +1,4 @@
-schema_version: rq4-rel-gui-lexical-v1
+schema_version: rq4-rel-gui-lexical-v3
 condition: gui_lexical_query_aligned
 
 extractor:
@@ -8,6 +8,7 @@ extractor:
   model_family: qwen2_5_vl
   dtype: bfloat16
   attn_implementation: sdpa
+  use_fast: true
   min_pixels: 262144
   max_pixels: 2097152
   seed: 42
@@ -39,7 +40,7 @@ protocol:
   inventory_method: query_blind_target_gui_visible_string_extraction
   inventory_prompt_template_version: rq4_visible_strings_v1
   translation_method: target_gui_lexical_evidence_contextual_translation
-  translation_prompt_template_version: rq4_gui_lexical_translation_v1
+  translation_prompt_template_version: rq4_gui_lexical_translation_v3
   query_hidden_during_inventory_extraction: true
   layout_hidden_from_translator: true
   screenshot_hidden_from_translator: true
@@ -48,6 +49,8 @@ protocol:
   human_parallel_hidden: true
   prior_translation_hidden: true
   inventory_canonicalized_unordered_unique: true
+  semantic_max_attempts: 1
+  semantic_repair_accept_only_if_score_improves: true
 
 smoke:
   per_direction: 2

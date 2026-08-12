@@ -58,6 +58,7 @@ def build_result_base(
         "software_versions": software_versions(),
         "prompt_profile": prompt_profile,
         "processor_profile": model_config.get("processor_profile", "qwen_default"),
+        "processor_use_fast": model_config.get("use_fast"),
         "input_id": row["input_id"],
         "sample_id": row["sample_id"],
         "parallel_id": row["parallel_id"],
@@ -113,7 +114,7 @@ def run(args: argparse.Namespace) -> None:
 
     processor_kwargs = {
         key: model_config[key]
-        for key in ("min_pixels", "max_pixels")
+        for key in ("use_fast", "min_pixels", "max_pixels")
         if model_config.get(key) is not None
     }
     adapter = Qwen25VLAdapter(
