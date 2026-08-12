@@ -46,14 +46,23 @@ INVENTORY_USER_PROMPT = (
     'Return only: {"visible_strings": ["..."]}'
 )
 
-INVENTORY_REPAIR_SYSTEM_PROMPT = INVENTORY_SYSTEM_PROMPT.replace(
-    "Duplicates may be retained.",
-    "Return each distinct visible string at most once; duplicates must not be retained.",
-)
+INVENTORY_REPAIR_SYSTEM_PROMPT = """You transcribe a compact set of distinct visible lexical strings from a GUI screenshot after an earlier JSON response overflowed or was malformed.
+
+Return only text that is visibly rendered in the supplied screenshot.
+Do not translate, summarize, interpret, correct, or invent text.
+Do not describe icons, layout, positions, relationships, or UI behavior.
+Do not answer any question. No question or answer options are available.
+Preserve the visible script, spelling, capitalization, digits, and punctuation.
+Return one JSON object with exactly one key, visible_strings, whose value is a JSON array of non-empty strings.
+Return each distinct string at most once. Never loop or repeat a string.
+For a dense calendar, grid, keypad, or on-screen keyboard, treat cells or keys as atomic strings and return each distinct token once rather than transcribing every row or occurrence.
+Return at most 160 strings. If more are visible, retain named GUI controls, titles, tabs, menu items, and multi-character labels before repeated one-character or numeric grid tokens.
+Escape all JSON special characters correctly and close the JSON object. Do not use Markdown fences."""
 
 INVENTORY_REPAIR_SUFFIX = """ The prior response was invalid.
 Return the exact JSON shape only and do not change the visible transcription for any other reason.
 Return each distinct visible string at most once; never loop or repeat a string. Exact duplicate removal does not remove lexical evidence used downstream.
+For dense grids or keyboards, follow the compact atomic-token rule in the system message.
 Escape every double quote, backslash, and control character inside a JSON string according to the JSON standard.
 Do not omit any distinct readable GUI word or label. Do not use Markdown fences."""
 

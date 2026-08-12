@@ -73,7 +73,9 @@ def test_visible_string_parser_recovers_empty_null_and_text_objects() -> None:
 
 def test_inventory_repair_prevents_duplicate_loops_and_invalid_json_escaping() -> None:
     assert "Duplicates may be retained" not in INVENTORY_REPAIR_SYSTEM_PROMPT
-    assert "duplicates must not be retained" in INVENTORY_REPAIR_SYSTEM_PROMPT
+    assert "Return at most 160 strings" in INVENTORY_REPAIR_SYSTEM_PROMPT
+    assert "treat cells or keys as atomic strings" in INVENTORY_REPAIR_SYSTEM_PROMPT
+    assert "named GUI controls, titles, tabs" in INVENTORY_REPAIR_SYSTEM_PROMPT
     assert "distinct visible string at most once" in INVENTORY_REPAIR_SUFFIX
     assert "never loop or repeat" in INVENTORY_REPAIR_SUFFIX
     assert "Escape every double quote, backslash" in INVENTORY_REPAIR_SUFFIX
