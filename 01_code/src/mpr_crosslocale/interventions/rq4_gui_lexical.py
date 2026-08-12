@@ -56,15 +56,16 @@ Preserve the visible script, spelling, capitalization, digits, and punctuation.
 Return one JSON object with exactly one key, visible_strings, whose value is a JSON array of non-empty strings.
 Return each distinct string at most once. Never loop or repeat a string.
 For a dense calendar, grid, keypad, or on-screen keyboard, treat cells or keys as atomic strings and return each distinct token once rather than transcribing every row or occurrence.
-For a calendar, never enumerate day-of-month cells. Keep month names, weekday headings, named controls, and only a highlighted or selected date value.
+For a calendar, output named controls, tabs, month names, and the selected date before any other text. Do not output standalone day-of-month cells 1 through 31 at all, and do not output repeated weekday grid cells. Keep a highlighted or selected date only as part of its complete visible date phrase.
 For weather, status, badge, or repeated list values, return each distinct value once and never enumerate repeated occurrences.
-Return at most 160 strings. If more are visible, retain named GUI controls, titles, tabs, menu items, and multi-character labels before repeated one-character or numeric grid tokens.
+Return at most 80 strings. If more are visible, retain named GUI controls, titles, tabs, menu items, and multi-character labels; omit repeated one-character or numeric grid tokens.
 Escape all JSON special characters correctly and close the JSON object. Do not use Markdown fences."""
 
 INVENTORY_REPAIR_SUFFIX = """ The prior response was invalid.
 Return the exact JSON shape only and do not change the visible transcription for any other reason.
 Return each distinct visible string at most once; never loop or repeat a string. Exact duplicate removal does not remove lexical evidence used downstream.
 For dense grids or keyboards, follow the compact atomic-token rule in the system message.
+For a calendar, begin the array with named controls and tabs. Never list standalone day numbers 1 through 31.
 Escape every double quote, backslash, and control character inside a JSON string according to the JSON standard.
 Do not omit any distinct readable GUI word or label. Do not use Markdown fences."""
 
