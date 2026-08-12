@@ -224,3 +224,24 @@ def test_lexical_validator_keeps_token_changes_as_diagnostics() -> None:
     assert parsed is not None
     assert hard == []
     assert isinstance(diagnostics, list)
+
+
+def test_lexical_validator_recovers_only_invalid_apostrophe_json_escape() -> None:
+    row = _lexical_row()
+    raw = r'''{
+      "question_stem": "L\'élément est sous le champ Fin.",
+      "options": {"A": "Trouver", "B": "Renommer", "C": "Dupliquer", "D": "Masquer"}
+    }'''
+    parsed, hard, diagnostics = validate_lexical_structured_output(raw, row)
+    assert parsed is not None
+    assert parsed["question_stem"] == "L'élément est sous le champ Fin."
+    assert hard == []
+    assert "normalized_invalid_json_apostrophe_escape" in diagnostics
+
+    invalid_other_escape = raw.replace(r"L\'élément", r"L\qélément")
+    parsed, hard, diagnostics = validate_lexical_structured_output(
+        invalid_other_escape, row
+    )
+    assert parsed is None
+    assert hard == ["invalid_json:Invalid \\escape"]
+    assert diagnostics == []

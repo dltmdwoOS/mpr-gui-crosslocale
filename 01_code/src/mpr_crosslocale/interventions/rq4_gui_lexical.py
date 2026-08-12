@@ -569,10 +569,24 @@ def validate_lexical_structured_output(
     """
 
     parsed, all_errors = validate_structured_output(raw_output, row)
+    normalization_diagnostics: list[str] = []
+    if parsed is None and all_errors == ["invalid_json:Invalid \\escape"]:
+        repaired = raw_output.replace("\\'", "'")
+        if repaired != raw_output:
+            repaired_parsed, repaired_errors = validate_structured_output(repaired, row)
+            if repaired_parsed is not None and not any(
+                error.startswith("invalid_json:") for error in repaired_errors
+            ):
+                parsed = repaired_parsed
+                all_errors = repaired_errors
+                normalization_diagnostics.append(
+                    "normalized_invalid_json_apostrophe_escape"
+                )
     diagnostic_prefixes = ("number_tokens_changed:", "file_format_tokens_changed:")
     diagnostics = [
         error for error in all_errors if error.startswith(diagnostic_prefixes)
     ]
+    diagnostics.extend(normalization_diagnostics)
     hard_errors = [error for error in all_errors if error not in diagnostics]
     return parsed, hard_errors, diagnostics
 
