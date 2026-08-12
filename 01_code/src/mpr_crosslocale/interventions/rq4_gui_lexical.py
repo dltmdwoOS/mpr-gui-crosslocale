@@ -135,7 +135,7 @@ def validate_lexical_config(config: dict[str, Any]) -> None:
         "device": "cuda",
         "min_gpu_memory_gib": 20,
         "translation_batch_size": 2,
-        "benchmark_translation_batch_sizes": [4],
+        "benchmark_translation_batch_sizes": [4, 8],
     }:
         raise ValueError("GUI lexical runtime config changed from the frozen protocol.")
     if config.get("smoke") != {

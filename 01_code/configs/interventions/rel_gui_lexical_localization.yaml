@@ -39,7 +39,7 @@ runtime:
   device: cuda
   min_gpu_memory_gib: 20
   translation_batch_size: 2
-  benchmark_translation_batch_sizes: [4]
+  benchmark_translation_batch_sizes: [4, 8]
 
 protocol:
   inventory_method: query_blind_target_gui_visible_string_extraction
