@@ -2,12 +2,17 @@ from __future__ import annotations
 
 import json
 
+from mpr_crosslocale.interventions.build_rel_gui_lexical_translations import (
+    translate_rows,
+)
+from mpr_crosslocale.interventions.rq4_contextual import canonical_json_sha256
 from mpr_crosslocale.interventions.rq4_gui_lexical import (
     FAILED_INVENTORY_POLICY,
     INVENTORY_REPAIR_SUFFIX,
     INVENTORY_REPAIR_SYSTEM_PROMPT,
     INVENTORY_SCHEMA_VERSION,
     LEXICAL_PROMPT_VERSION,
+    LEXICAL_SCHEMA_VERSION,
     LEXICAL_SYSTEM_PROMPT,
     build_lexical_semantic_repair_prompt,
     build_lexical_user_prompt,
@@ -19,6 +24,7 @@ from mpr_crosslocale.interventions.rq4_gui_lexical import (
     validate_inventory_rows,
     validate_lexical_plan,
     validate_lexical_structured_output,
+    validate_lexical_translation_rows,
 )
 
 
@@ -245,3 +251,99 @@ def test_lexical_validator_recovers_only_invalid_apostrophe_json_escape() -> Non
     assert parsed is None
     assert hard == ["invalid_json:Invalid \\escape"]
     assert diagnostics == []
+
+
+def _translation_plan_row(index: int) -> dict:
+    visible_strings = ["設定", "名前を変更"]
+    return {
+        "schema_version": LEXICAL_SCHEMA_VERSION,
+        "translation_id": f"translation-{index}",
+        "pair_id": f"pair-{index}",
+        "parallel_id": f"rel::{index}",
+        "source_language": "en",
+        "target_language": "ja",
+        "visible_string_inventory_id": f"inventory-{index}",
+        "visible_string_inventory_sha256": canonical_json_sha256(visible_strings),
+        "visible_strings": visible_strings,
+        "inventory_processor_use_fast": True,
+        "inventory_processor_mode_explicit": True,
+        "inventory_status": "success",
+        "lexical_evidence_available": True,
+        "inventory_failure_included": False,
+        "inventory_failure_policy": None,
+        "inventory_default_analysis_included": True,
+        "inventory_sensitivity_exclusion_recommended": False,
+        "source_question_raw": (
+            'Which item is below "Settings"? A: Find B: Rename '
+            "C: Duplicate D: Hide grid"
+        ),
+        "source_question_stem": 'Which item is below "Settings"?',
+        "source_options": {
+            "A": "Find",
+            "B": "Rename",
+            "C": "Duplicate",
+            "D": "Hide grid",
+        },
+    }
+
+
+class _FailFirstRowTranslator:
+    batch_size = 2
+
+    def generate(self, prompts: list[str]) -> list[str]:
+        if len(prompts) == 2:
+            return ["not json", self._valid()]
+        return ["still not json"]
+
+    @staticmethod
+    def _valid() -> str:
+        return json.dumps(
+            {
+                "question_stem": "設定の下にある項目はどれですか？",
+                "options": {
+                    "A": "検索",
+                    "B": "名前を変更",
+                    "C": "複製",
+                    "D": "グリッドを非表示",
+                },
+            },
+            ensure_ascii=False,
+        )
+
+
+class _AlwaysValidTranslator(_FailFirstRowTranslator):
+    def generate(self, prompts: list[str]) -> list[str]:
+        return [self._valid() for _ in prompts]
+
+
+def test_translation_failure_is_recorded_continues_and_retries_on_resume(tmp_path) -> None:
+    plan = [_translation_plan_row(1), _translation_plan_row(2)]
+    output = tmp_path / "translations.jsonl"
+    config = {"translation_generation": {"do_sample": False, "num_beams": 1}}
+
+    first = translate_rows(
+        plan,
+        _FailFirstRowTranslator(),
+        config,
+        output,
+        {},
+        log_every_batches=1,
+    )
+    assert len(first) == 2
+    assert first[0]["translation_status"] == "failed_after_repair"
+    assert first[0]["translation_analysis_eligible"] is False
+    assert first[1]["translation_analysis_eligible"] is True
+    validate_lexical_translation_rows(first, 2, require_success=False)
+
+    resumed = translate_rows(
+        plan,
+        _AlwaysValidTranslator(),
+        config,
+        output,
+        {row["translation_id"]: row for row in first},
+        log_every_batches=1,
+    )
+    assert len(resumed) == 2
+    assert all(row["translation_analysis_eligible"] for row in resumed)
+    retried = next(row for row in resumed if row["translation_id"] == "translation-1")
+    assert retried["resumed_from_prior_failure"] is True

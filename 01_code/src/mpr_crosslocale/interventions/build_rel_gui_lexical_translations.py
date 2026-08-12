@@ -129,9 +129,20 @@ def translate_rows(
             if prior.get(field) != planned.get(field):
                 raise ValueError(f"Resume invariant changed: {translation_id}, field={field}")
     if existing:
-        validate_lexical_translation_rows(list(existing.values()), len(existing))
+        validate_lexical_translation_rows(
+            list(existing.values()), len(existing), require_success=False
+        )
 
-    completed = dict(existing)
+    prior_failed = {
+        translation_id: row
+        for translation_id, row in existing.items()
+        if not row["translation_analysis_eligible"]
+    }
+    completed = {
+        translation_id: row
+        for translation_id, row in existing.items()
+        if row["translation_analysis_eligible"]
+    }
     pending = [row for row in plan if row["translation_id"] not in completed]
     batch_size = int(translator.batch_size)
     total_batches = (len(pending) + batch_size - 1) // batch_size
@@ -167,9 +178,24 @@ def translate_rows(
                 f"global_rows={global_start}-{global_end}/{len(plan)}"
             )
         prompts = [build_lexical_user_prompt(row) for row in batch]
-        primary_attempts = _generate_attempts(
-            translator, batch, prompts, 0, "initial"
-        )
+        try:
+            primary_attempts = _generate_attempts(
+                translator, batch, prompts, 0, "initial"
+            )
+        except Exception as error:  # noqa: BLE001 - preserve batch failure and continue
+            message = f"{type(error).__name__}:{error}"
+            primary_attempts = [
+                {
+                    "attempt": 0,
+                    "attempt_kind": "initial",
+                    "raw_output": "",
+                    "parsed_output": None,
+                    "hard_validation_errors": [message],
+                    "token_invariant_diagnostic_flags": [],
+                    "runtime_ms_approx": 0,
+                }
+                for _ in batch
+            ]
         batch_repaired = False
         for row, primary in zip(batch, primary_attempts, strict=True):
             attempts = [primary]
@@ -183,22 +209,71 @@ def translate_rows(
                 repair_prompt = build_lexical_repair_prompt(
                     row, primary["raw_output"], primary["hard_validation_errors"]
                 )
-                repaired = _generate_attempts(
-                    translator,
-                    [row],
-                    [repair_prompt],
-                    len(attempts),
-                    "structure_repair",
-                )[0]
+                try:
+                    repaired = _generate_attempts(
+                        translator,
+                        [row],
+                        [repair_prompt],
+                        len(attempts),
+                        "structure_repair",
+                    )[0]
+                except Exception as error:  # noqa: BLE001 - preserve row failure
+                    repaired = {
+                        "attempt": len(attempts),
+                        "attempt_kind": "structure_repair",
+                        "raw_output": "",
+                        "parsed_output": None,
+                        "hard_validation_errors": [f"{type(error).__name__}:{error}"],
+                        "token_invariant_diagnostic_flags": [],
+                        "runtime_ms_approx": 0,
+                    }
                 attempts.append(repaired)
                 final = repaired
             parsed = final["parsed_output"]
             hard_errors = list(final["hard_validation_errors"])
             if parsed is None or hard_errors:
-                raise RuntimeError(
-                    f"Lexical translation failed after repair: {row['translation_id']}, "
-                    f"errors={hard_errors}"
+                log_step(
+                    f"STEP 5/7 RECORDED FAILURE {row['translation_id']}: "
+                    f"{hard_errors}"
                 )
+                artifact = {
+                    **row,
+                    "translated_question_stem": "",
+                    "translated_options": {label: "" for label in LABELS},
+                    "translated_question_raw": "",
+                    "translation_status": (
+                        "failed_exception"
+                        if any(
+                            not str(error).startswith("invalid_json:")
+                            and not str(error).startswith("invalid_")
+                            for error in hard_errors
+                        )
+                        else "failed_after_repair"
+                    ),
+                    "translation_attempts": attempts,
+                    "hard_validation_errors": hard_errors,
+                    "token_invariant_diagnostic_flags": final[
+                        "token_invariant_diagnostic_flags"
+                    ],
+                    "semantic_diagnostic_flags": [],
+                    "semantic_repair_attempted": False,
+                    "semantic_repair_accepted": False,
+                    "initial_semantic_repair_reasons": [],
+                    "initial_semantic_repair_score": 0,
+                    "final_semantic_repair_reasons": [],
+                    "final_semantic_repair_score": None,
+                    "translation_analysis_eligible": False,
+                    "resumed_from_prior_failure": (
+                        row["translation_id"] in prior_failed
+                    ),
+                    "user_prompt_sha256": canonical_json_sha256(
+                        build_lexical_user_prompt(row)
+                    ),
+                    **provenance,
+                    "created_at": datetime.now(timezone.utc).isoformat(),
+                }
+                completed[str(row["translation_id"])] = artifact
+                continue
             initial_semantic_flags = lexical_semantic_flags(row, parsed)
             initial_semantic_reasons = semantic_repair_reasons(
                 row, parsed, initial_semantic_flags
@@ -218,13 +293,24 @@ def translate_rows(
                 semantic_prompt = build_lexical_semantic_repair_prompt(
                     row, final["raw_output"], initial_semantic_reasons
                 )
-                candidate = _generate_attempts(
-                    translator,
-                    [row],
-                    [semantic_prompt],
-                    len(attempts),
-                    "semantic_repair",
-                )[0]
+                try:
+                    candidate = _generate_attempts(
+                        translator,
+                        [row],
+                        [semantic_prompt],
+                        len(attempts),
+                        "semantic_repair",
+                    )[0]
+                except Exception as error:  # noqa: BLE001 - retain valid baseline
+                    candidate = {
+                        "attempt": len(attempts),
+                        "attempt_kind": "semantic_repair",
+                        "raw_output": "",
+                        "parsed_output": None,
+                        "hard_validation_errors": [f"{type(error).__name__}:{error}"],
+                        "token_invariant_diagnostic_flags": [],
+                        "runtime_ms_approx": 0,
+                    }
                 attempts.append(candidate)
                 candidate_parsed = candidate["parsed_output"]
                 candidate_reasons = list(initial_semantic_reasons)
@@ -295,6 +381,7 @@ def translate_rows(
                 "final_semantic_repair_reasons": final_semantic_reasons,
                 "final_semantic_repair_score": final_semantic_score,
                 "translation_analysis_eligible": True,
+                "resumed_from_prior_failure": row["translation_id"] in prior_failed,
                 "user_prompt_sha256": canonical_json_sha256(
                     build_lexical_user_prompt(row)
                 ),
@@ -308,7 +395,9 @@ def translate_rows(
             or batch_repaired
         ):
             checkpoint = sorted(completed.values(), key=lambda row: row["translation_id"])
-            validate_lexical_translation_rows(checkpoint, len(checkpoint))
+            validate_lexical_translation_rows(
+                checkpoint, len(checkpoint), require_success=False
+            )
             write_jsonl_atomic(output, checkpoint)
             log_step(f"STEP 5/7 CHECKPOINT {len(checkpoint)}/{len(plan)}: {output}")
     return sorted(completed.values(), key=lambda row: row["translation_id"])
@@ -336,6 +425,12 @@ def main(argv: list[str] | None = None) -> None:
         type=Path,
         default=None,
         help="Defaults to <output_stem>_inventory_failures.jsonl.",
+    )
+    parser.add_argument(
+        "--translation-failure-audit-out",
+        type=Path,
+        default=None,
+        help="Defaults to <output_stem>_translation_failures.jsonl.",
     )
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--batch-size", type=int, default=2)
@@ -452,9 +547,20 @@ def main(argv: list[str] | None = None) -> None:
         return
     existing_rows = read_jsonl(args.output) if args.resume and args.output.exists() else []
     existing = {str(row["translation_id"]): row for row in existing_rows}
+    successful_existing = {
+        translation_id: row
+        for translation_id, row in existing.items()
+        if row["translation_analysis_eligible"]
+    }
+    prior_failed = {
+        translation_id: row
+        for translation_id, row in existing.items()
+        if not row["translation_analysis_eligible"]
+    }
     log_step(
-        f"STEP 3/7 preparing no-image Qwen3 translator: completed={len(existing)}, "
-        f"pending={len(plan) - len(existing)}, mock={args.mock_model}"
+        "STEP 3/7 preparing no-image Qwen3 translator: "
+        f"completed={len(successful_existing)}, retry_failed={len(prior_failed)}, "
+        f"pending={len(plan) - len(successful_existing)}, mock={args.mock_model}"
     )
     if args.mock_model:
         translator: Qwen3ContextualTranslator | MockLexicalTranslator = (
@@ -478,12 +584,21 @@ def main(argv: list[str] | None = None) -> None:
         plan, translator, config, args.output, existing, args.log_every_batches
     )
     log_step("STEP 6/7 validating completed lexical translation artifact")
-    validate_lexical_translation_rows(completed, expected)
+    validate_lexical_translation_rows(completed, expected, require_success=False)
+    failed_translations = [
+        row for row in completed if not row["translation_analysis_eligible"]
+    ]
+    translation_failure_path = args.translation_failure_audit_out or args.output.with_name(
+        args.output.stem + "_translation_failures.jsonl"
+    )
+    write_jsonl_atomic(translation_failure_path, failed_translations)
     log_step("STEP 7/7 complete")
     print(
         json.dumps(
             {
-                "status": "complete",
+                "status": (
+                    "complete" if not failed_translations else "complete_with_failures"
+                ),
                 "scope": args.scope,
                 "rows": len(completed),
                 "structure_repair_rows": sum(
@@ -505,6 +620,9 @@ def main(argv: list[str] | None = None) -> None:
                 "semantic_diagnostic_rows": sum(
                     bool(row["semantic_diagnostic_flags"]) for row in completed
                 ),
+                "failed_translation_rows": len(failed_translations),
+                "translation_failure_audit": translation_failure_path.as_posix(),
+                "next_step_allowed": not failed_translations,
                 "output": args.output.as_posix(),
             },
             indent=2,

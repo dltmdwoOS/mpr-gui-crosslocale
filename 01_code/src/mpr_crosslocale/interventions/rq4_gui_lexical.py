@@ -608,7 +608,10 @@ def lexical_semantic_flags(row: dict[str, Any], parsed: dict[str, Any]) -> list[
 
 
 def validate_lexical_translation_rows(
-    rows: list[dict[str, Any]], expected_count: int
+    rows: list[dict[str, Any]],
+    expected_count: int,
+    *,
+    require_success: bool = True,
 ) -> None:
     if len(rows) != expected_count:
         raise ValueError(f"Expected {expected_count} lexical translations; found {len(rows)}.")
@@ -642,8 +645,28 @@ def validate_lexical_translation_rows(
             raise ValueError(f"Invalid failed inventory row: {row['translation_id']}")
         if row["inventory_default_analysis_included"] is not True:
             raise ValueError(f"Lexical translation excluded by default: {row['translation_id']}")
-        if row["translation_analysis_eligible"] is not True:
-            raise ValueError(f"Ineligible lexical row: {row['translation_id']}")
+        eligible = row["translation_analysis_eligible"] is True
+        if not eligible:
+            if require_success:
+                raise ValueError(f"Ineligible lexical row: {row['translation_id']}")
+            if row.get("translation_status") not in {
+                "failed_after_repair",
+                "failed_exception",
+            }:
+                raise ValueError(f"Invalid lexical failure status: {row['translation_id']}")
+            if row.get("translated_question_stem") != "" or row.get(
+                "translated_question_raw"
+            ) != "":
+                raise ValueError(f"Failed lexical row contains text: {row['translation_id']}")
+            if row.get("translated_options") != {label: "" for label in LABELS}:
+                raise ValueError(f"Failed lexical row contains options: {row['translation_id']}")
+            if not row.get("hard_validation_errors"):
+                raise ValueError(f"Failed lexical row lacks errors: {row['translation_id']}")
+            if canonical_json_sha256(row["visible_strings"]) != row[
+                "visible_string_inventory_sha256"
+            ]:
+                raise ValueError(f"Inventory hash mismatch: {row['translation_id']}")
+            continue
         attempt_kinds = [
             attempt.get("attempt_kind") for attempt in row["translation_attempts"]
         ]
