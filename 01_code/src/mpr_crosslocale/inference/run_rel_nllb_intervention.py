@@ -33,15 +33,16 @@ from mpr_crosslocale.inference.runtime import (
     software_versions,
 )
 from mpr_crosslocale.inference.system_prompts import build_system_prompt
-from mpr_crosslocale.interventions.rq4_nllb import (
-    EXPECTED_INTERVENTION_ROWS,
-    NLLB_MODEL_ID,
-    NLLB_REVISION,
-)
 from mpr_crosslocale.interventions.rq4_contextual import (
     CONTEXTUAL_CONDITION,
     CONTEXTUAL_MODEL_ID,
     CONTEXTUAL_REVISION,
+)
+from mpr_crosslocale.interventions.rq4_gui_lexical import LEXICAL_CONDITION
+from mpr_crosslocale.interventions.rq4_nllb import (
+    EXPECTED_INTERVENTION_ROWS,
+    NLLB_MODEL_ID,
+    NLLB_REVISION,
 )
 
 
@@ -79,7 +80,11 @@ def validate_intervention_inputs(rows: list[dict[str, Any]]) -> None:
             raise ValueError(f"Input is missing fields {sorted(missing)}: {row.get('input_id')}")
         input_ids.append(str(row["input_id"]))
         pair_ids.append(str(row["pair_id"]))
-        if row["condition"] not in {"nllb_query_aligned", CONTEXTUAL_CONDITION}:
+        if row["condition"] not in {
+            "nllb_query_aligned",
+            CONTEXTUAL_CONDITION,
+            LEXICAL_CONDITION,
+        }:
             raise ValueError(f"Unexpected condition: {row['input_id']}")
         if row["source_question_language"] == row["gui_language"]:
             raise ValueError(f"Source condition is not a mismatch: {row['input_id']}")
@@ -106,6 +111,17 @@ def validate_intervention_inputs(rows: list[dict[str, Any]]) -> None:
             ):
                 if field not in row:
                     raise ValueError(f"Contextual input lacks {field}: {row['input_id']}")
+            if row["condition"] == LEXICAL_CONDITION:
+                for field in (
+                    "visible_string_inventory_id",
+                    "visible_string_inventory_sha256",
+                    "inventory_extractor_model_id",
+                    "inventory_extractor_revision",
+                ):
+                    if field not in row:
+                        raise ValueError(
+                            f"GUI lexical input lacks {field}: {row['input_id']}"
+                        )
         if row["translator_model_id"] != expected_model:
             raise ValueError(f"Unexpected translator: {row['input_id']}")
         if row["translator_revision"] != expected_revision:
@@ -161,6 +177,13 @@ def _result_base(
             "semantic_diagnostic_flags", []
         ),
         "translation_analysis_eligible": row["translation_analysis_eligible"],
+        "visible_string_inventory_id": row.get("visible_string_inventory_id"),
+        "visible_string_inventory_sha256": row.get(
+            "visible_string_inventory_sha256"
+        ),
+        "visible_string_count": row.get("visible_string_count"),
+        "inventory_extractor_model_id": row.get("inventory_extractor_model_id"),
+        "inventory_extractor_revision": row.get("inventory_extractor_revision"),
         "dimension": "rel",
         "question_raw_sha256": __import__("hashlib").sha256(
             row["question_raw"].encode("utf-8")
@@ -217,7 +240,7 @@ def _mock_inference(row: dict[str, Any], seed: int):
 
 def run(args: argparse.Namespace) -> None:
     def log_step(message: str) -> None:
-        print(f"[{datetime.now():%Y-%m-%d %H:%M:%S}] {message}", flush=True)
+        print(f"[{datetime.now().astimezone():%Y-%m-%d %H:%M:%S}] {message}", flush=True)
 
     repo_root = Path(args.repo_root).resolve()
     log_step(f"STEP 1/4 reading and validating intervention inputs: {args.inputs}")
@@ -346,7 +369,7 @@ def run(args: argparse.Namespace) -> None:
                 "runtime_ms": int((time.perf_counter() - started) * 1000),
                 "timestamp": datetime.now(timezone.utc).isoformat(),
             }
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - preserve every failed inference row
             result = {
                 **base,
                 "inference_status": "failed",

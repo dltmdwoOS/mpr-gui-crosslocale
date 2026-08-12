@@ -51,6 +51,12 @@ mpr-build-rel-contextual-inputs = "mpr_crosslocale.interventions.build_rel_qwen3
 mpr-run-rel-contextual-intervention = "mpr_crosslocale.inference.run_rel_contextual_intervention:main"
 mpr-validate-rel-contextual-results = "mpr_crosslocale.interventions.validate_rel_nllb_results:main"
 mpr-summarize-cross-locale = "mpr_crosslocale.analysis.summarize_cross_locale:main"
+mpr-rq4-translation-correspondence = "mpr_crosslocale.analysis.rq4_translation_correspondence:main"
+mpr-build-rel-gui-string-inventories = "mpr_crosslocale.interventions.build_rel_gui_string_inventories:main"
+mpr-build-rel-gui-inventory-review = "mpr_crosslocale.interventions.build_rel_gui_inventory_review:main"
+mpr-build-rel-gui-lexical-translations = "mpr_crosslocale.interventions.build_rel_gui_lexical_translations:main"
+mpr-build-rel-gui-lexical-inputs = "mpr_crosslocale.interventions.build_rel_gui_lexical_inputs:main"
+mpr-run-rel-gui-lexical-intervention = "mpr_crosslocale.inference.run_rel_gui_lexical_intervention:main"
 mpr-processor-preflight = "mpr_crosslocale.inference.processor_preflight:main"
 
 [tool.setuptools.packages.find]

@@ -107,10 +107,33 @@ class Qwen25VLAdapter:
         system_prompt: str | None = None,
         score_labels: bool = False,
     ) -> QwenGenerateOutput:
+        messages = self.build_messages(input_row, prompt_profile, system_prompt=system_prompt)
+        return self.generate_messages(
+            messages,
+            generation_config,
+            input_row=input_row,
+            score_labels=score_labels,
+        )
+
+    def generate_messages(
+        self,
+        messages: list[dict[str, Any]],
+        generation_config: dict[str, Any],
+        input_row: dict[str, Any] | None = None,
+        score_labels: bool = False,
+    ) -> QwenGenerateOutput:
+        """Generate from caller-supplied multimodal chat messages.
+
+        This keeps the exact processor/model path used by canonical inference
+        while allowing query-blind tasks such as visible-string extraction.
+        Label scoring remains available only when an MCQ input row is supplied.
+        """
+
         import torch
         from qwen_vl_utils import process_vision_info
 
-        messages = self.build_messages(input_row, prompt_profile, system_prompt=system_prompt)
+        if score_labels and input_row is None:
+            raise ValueError("Label scoring requires input_row metadata.")
         rendered_prompt = self.processor.apply_chat_template(
             messages,
             tokenize=False,
@@ -143,7 +166,7 @@ class Qwen25VLAdapter:
                 raise RuntimeError("Generation did not return first-step logits for label scoring")
             label_summary = self._summarize_label_logits(
                 generation_output.logits[0][0],
-                input_row,
+                input_row or {},
             )
         else:
             generated_ids = generation_output

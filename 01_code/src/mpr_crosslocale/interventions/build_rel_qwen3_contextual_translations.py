@@ -187,12 +187,14 @@ class Qwen3ContextualTranslator:
         device: str,
         batch_size: int,
         local_files_only: bool,
+        system_prompt: str = SYSTEM_PROMPT,
     ) -> None:
         self.config = config
         self.batch_size = batch_size
         self.generation = dict(config["generation"])
         self.local_files_only = local_files_only
         self.mock = False
+        self.system_prompt = system_prompt
         self.torch = runtime_preflight(config, device)
 
         if not local_files_only:
@@ -245,7 +247,7 @@ class Qwen3ContextualTranslator:
         rendered = []
         for user_prompt in user_prompts:
             messages = [
-                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "system", "content": self.system_prompt},
                 {"role": "user", "content": user_prompt},
             ]
             rendered.append(
