@@ -1,0 +1,29 @@
+{
+  "status": "pass",
+  "original_input": "results/raw/vast_6x6_qwen2_5_vl_7b.jsonl",
+  "intervention_label": "gui_lexical",
+  "intervention_input": "results/raw/qwen/rel_gui_lexical_v3.jsonl",
+  "frozen_intervention_inputs": "data/derived/interventions/rel_gui_lexical_inputs_v3.jsonl",
+  "annotation_input": "../annotation/rel_text_dependency/outputs/rel_annotations_integrated_366.csv",
+  "original_sha256": "b795cb04adf3dc4a39fe8845f77820c7d3a14687d71b6d793666158ef226da92",
+  "intervention_sha256": "817dd24f246691916882a6235c00a206c4ef07ff3a074c4be89beabff6888f2f",
+  "intervention_inputs_sha256": "0bae9f9068a85c51b0d79189ac8caecf64c73fac28aa937f8f9600a57136a452",
+  "annotation_sha256": "10cf72990699fb917eca03da8841b33979e1f6c87f64695a0e59de850b098e2a",
+  "pair_ids": 10980,
+  "combined_rows": 21960,
+  "failed_intervention_attempts_retained_outside_analysis": 0,
+  "pair_metadata_diff_failures": 0,
+  "translation_status_counts": {
+    "ok": 9609,
+    "recovered_after_semantic_repair": 516,
+    "eligible_after_rejected_semantic_repair": 850,
+    "recovered_after_structure_repair": 3,
+    "recovered_after_manual_json_repair": 2
+  },
+  "analysis_ineligible_translation_pairs": 0,
+  "dependency_counts": {
+    "dependent": 302,
+    "independent": 64
+  },
+  "gee_sensitivity": "intentionally_not_implemented_in_current_scope"
+}
