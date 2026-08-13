@@ -4,7 +4,7 @@ import argparse
 import csv
 import json
 from collections import Counter
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -20,7 +20,7 @@ from mpr_crosslocale.interventions.rq4_nllb import (
 
 
 def log_step(message: str) -> None:
-    print(f"[{datetime.now():%Y-%m-%d %H:%M:%S}] {message}", flush=True)
+    print(f"[{datetime.now(timezone.utc):%Y-%m-%d %H:%M:%S}] {message}", flush=True)
 
 
 INVARIANT_RESULT_FIELDS = (
@@ -138,6 +138,8 @@ def validate_and_combine(
         intervention_label = "nllb"
     elif conditions == {"contextual_query_aligned"}:
         intervention_label = "contextual"
+    elif conditions == {"gui_lexical_query_aligned"}:
+        intervention_label = "gui_lexical"
     else:
         raise ValueError(f"Unexpected intervention condition set: {sorted(conditions)}")
 
