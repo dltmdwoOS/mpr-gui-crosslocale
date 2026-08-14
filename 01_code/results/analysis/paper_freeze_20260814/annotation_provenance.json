@@ -1,0 +1,18 @@
+{
+  "status": "frozen",
+  "freeze_date": "2026-08-14",
+  "path": "annotation/rel_text_dependency/outputs/rel_annotations_integrated_366.csv",
+  "rows": 366,
+  "label_counts": {
+    "dependent": 302,
+    "independent": 64
+  },
+  "guideline_version": "pilot-v1+team-adjudication-v1",
+  "source_manifest_sha256": "fa8f6ea6393dd5ecb60740a83bff2e50bd18934771e673d744d98e798b5af4f1",
+  "canonical_newline_policy": "UTF-8 CSV with LF line endings",
+  "canonical_lf_sha256": "10cf72990699fb917eca03da8841b33979e1f6c87f64695a0e59de850b098e2a",
+  "windows_crlf_worktree_sha256": "6e733dc3f69a72d3ce39f7565931fe87b19aec77aa5a53bcc18a6e2237a2cebe",
+  "semantic_parallel_id_to_label_sha256": "619cd9aa1bc65bdb56605e9eeb6b0c2e51d789a6897d20f5425e1de34c29d567",
+  "git_blob_oid": "cec20164851ce37dafc3affa29da9b97ce6f8c84",
+  "resolution": "The previously observed 10cf... versus 6e73... byte hashes are the same CSV under LF versus CRLF line endings. The 366-item semantic mapping is unchanged across RQ3 and RQ4 inputs."
+}

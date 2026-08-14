@@ -1,0 +1,5 @@
+text_dependency,intervention,n_rows,n_items,n_pairs,correct,accuracy
+independent,original,1920,64,1920,1156,0.6020833333333333
+independent,contextual,1920,64,1920,1074,0.559375
+dependent,original,9060,302,9060,4414,0.48719646799117
+dependent,contextual,9060,302,9060,4654,0.5136865342163356

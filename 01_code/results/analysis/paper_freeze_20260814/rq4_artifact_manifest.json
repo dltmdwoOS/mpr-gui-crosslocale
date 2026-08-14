@@ -1,0 +1,117 @@
+{
+  "status": "frozen",
+  "freeze_date": "2026-08-14",
+  "source_code_base_commit": "b61438df71f8282fc11911734b68616ca03b27cd",
+  "final_branch": "paper-freeze-20260814",
+  "annotation_canonical_lf_sha256": "10cf72990699fb917eca03da8841b33979e1f6c87f64695a0e59de850b098e2a",
+  "handoff_archive": {
+    "filename": "rq4_gui_lexical_v3_handoff_20260813.tar.gz",
+    "bytes": 45700954,
+    "sha256": "157402947f8e1458733a7fda105d4f79e924f9ab3179ee510cc009f1709a4ada",
+    "git_policy": "not committed; retained as the external raw-artifact handoff"
+  },
+  "models": {
+    "extractor": {
+      "model_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+      "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5"
+    },
+    "translator": {
+      "model_id": "Qwen/Qwen3-8B",
+      "revision": "47719a242beab8f9aecc40ce3928b034dd5dd559"
+    },
+    "qwen_downstream": {
+      "model_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+      "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5"
+    },
+    "internvl_downstream": {
+      "model_id": "OpenGVLab/InternVL2_5-8B",
+      "revision": "e9e4c0dc1db56bfab10458671519b7fa3dd29463"
+    }
+  },
+  "frozen_configs": {
+    "gui_lexical": {
+      "path": "01_code/configs/interventions/rel_gui_lexical_localization.yaml",
+      "sha256": "74662686c5d473df53c7bed195f31a423083db65c97d67ffa3bca3dc5f703f2f"
+    },
+    "text_only": {
+      "path": "01_code/configs/interventions/rel_qwen3_contextual_translation.yaml",
+      "sha256": "94ac3961afb0dd8488cc3dc7781967f60ecedf517b6f95654e6c8ab9b401aefb"
+    }
+  },
+  "large_artifacts": {
+    "stage1_inventory": {
+      "archive_path": "01_code/data/derived/interventions/rel_gui_visible_strings_v2.jsonl",
+      "rows": 2196,
+      "sha256": "c01ee0153657fa4579f74dcc49b6990fb9be57af3c3ab30dcfb0678a9a8371f8"
+    },
+    "gui_lexical_translations": {
+      "archive_path": "01_code/data/derived/interventions/rel_gui_lexical_translations_v3.jsonl",
+      "rows": 10980,
+      "sha256": "a739994068e2db96c3f061ccee5efc2dc3a835255956e8cc4abc271766c62f81"
+    },
+    "gui_lexical_inputs": {
+      "archive_path": "01_code/data/derived/interventions/rel_gui_lexical_inputs_v3.jsonl",
+      "rows": 10980,
+      "sha256": "0bae9f9068a85c51b0d79189ac8caecf64c73fac28aa937f8f9600a57136a452"
+    },
+    "text_only_translations": {
+      "archive_path": "01_code/data/derived/interventions/rel_qwen3_contextual_translations_v4_itt_override_10980.jsonl",
+      "rows": 10980,
+      "sha256": "c6b6fcc45026cb8e054fc2be9f7679e9f4571eb1409fd5d77f2dcfcbf249de13"
+    },
+    "text_only_inputs": {
+      "archive_path": "01_code/data/derived/interventions/rel_qwen3_contextual_inputs_v4_itt_10980.jsonl",
+      "rows": 10980,
+      "sha256": "650c79daf0679c9fc9fe93813e68dae3731e666aeb9ae688d4c5dd042bd62f1d"
+    },
+    "qwen_gui_lexical_results": {
+      "archive_path": "01_code/results/raw/qwen/rel_gui_lexical_v3.jsonl",
+      "rows": 10980,
+      "sha256": "817dd24f246691916882a6235c00a206c4ef07ff3a074c4be89beabff6888f2f"
+    },
+    "internvl_gui_lexical_results": {
+      "archive_path": "01_code/results/raw/internvl/rel_gui_lexical_v3.jsonl",
+      "rows": 10980,
+      "sha256": "6639836a29b34db97e0517e96df757ccc32ceeccc59f0b7a2c2ec69a44ffc74d"
+    },
+    "qwen_text_only_results": {
+      "archive_path": "01_code/results/raw/qwen/rel_contextual_v4_itt.jsonl",
+      "rows": 10980,
+      "sha256": "f4f3e2e1feb60da4855fb80a3082c9847e0cb87d8a4bcf97ca58c4df2c5012b7"
+    },
+    "internvl_text_only_results": {
+      "archive_path": "01_code/results/raw/internvl/rel_contextual_v4_itt.jsonl",
+      "rows": 10980,
+      "sha256": "c287ecc2f91ba0de497ce7a58d585c29b08047b0e3763c563bb88fc10479bdbf"
+    },
+    "qwen_original_6x6": {
+      "path": "01_code/results/raw/vast_6x6_qwen2_5_vl_7b.jsonl",
+      "sha256": "b795cb04adf3dc4a39fe8845f77820c7d3a14687d71b6d793666158ef226da92"
+    },
+    "internvl_original_6x6": {
+      "path": "01_code/results/raw/vast_6x6_internvl2_5_8b.jsonl",
+      "sha256": "9304ea3708ce635bd7a4c54bc955d62527af941c2108e70b4d2c43896243b750"
+    }
+  },
+  "analysis_freeze": {
+    "primary": "original mismatch versus GUI-lexical two-stage intervention",
+    "secondary": [
+      "original mismatch versus Qwen3 text-only",
+      "GUI-lexical two-stage versus Qwen3 text-only method-level comparison"
+    ],
+    "outcome": "generation_correct",
+    "pairs_per_model": 10980,
+    "paired_rows_per_comparison": 21960,
+    "items": 366,
+    "text_dependency_counts": {
+      "dependent": 302,
+      "independent": 64
+    },
+    "random_effects_primary": "(1 | parallel_id) + (1 | pair_id)",
+    "fallback_used": false,
+    "probability_draws": 5000,
+    "seed": 42,
+    "GEE_status": "deferred; not required for the short-paper freeze"
+  },
+  "mutation_policy": "No further prompt, translator, intervention, decoding, validator, or outcome tuning after this freeze."
+}

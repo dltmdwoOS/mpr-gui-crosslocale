@@ -1,0 +1,2 @@
+contrast,estimate,conf.low,conf.high,nsim,random_structure,estimand
+dependent_intervention_gain_minus_independent_intervention_gain,0.03879524358344121,0.016306235549366038,0.06084875429341728,5000,item_plus_pair_primary,difference in equal-directed-pair marginal intervention gains

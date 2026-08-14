@@ -3,3 +3,4 @@
 01_code/data/derived/interventions/rel_nllb_inputs.jsonl filter=lfs diff=lfs merge=lfs -text
 01_code/data/derived/interventions/rel_nllb_original_controls.jsonl filter=lfs diff=lfs merge=lfs -text
 01_code/data/derived/interventions/rel_nllb_pair_metadata_diff.csv filter=lfs diff=lfs merge=lfs -text
+annotation/rel_text_dependency/outputs/rel_annotations_integrated_366.csv text eol=lf

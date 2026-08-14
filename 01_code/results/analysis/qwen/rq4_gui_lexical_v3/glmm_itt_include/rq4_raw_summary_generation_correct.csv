@@ -1,0 +1,5 @@
+text_dependency,intervention,n_rows,n_items,n_pairs,correct,accuracy
+independent,original,1920,64,1920,1289,0.6713541666666667
+independent,gui_lexical,1920,64,1920,1257,0.6546875
+dependent,original,9060,302,9060,5425,0.5987858719646799
+dependent,gui_lexical,9060,302,9060,5823,0.6427152317880794

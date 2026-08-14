@@ -1,0 +1,28 @@
+{
+  "status": "pass",
+  "original_input": "results/raw/vast_6x6_internvl2_5_8b.jsonl",
+  "intervention_label": "contextual",
+  "intervention_input": "C:/rq4v3_20260813/01_code/results/raw/internvl/rel_contextual_v4_itt.jsonl",
+  "frozen_intervention_inputs": "C:/rq4v3_20260813/01_code/data/derived/interventions/rel_qwen3_contextual_inputs_v4_itt_10980.jsonl",
+  "annotation_input": "../annotation/rel_text_dependency/outputs/rel_annotations_integrated_366.csv",
+  "original_sha256": "9304ea3708ce635bd7a4c54bc955d62527af941c2108e70b4d2c43896243b750",
+  "intervention_sha256": "c287ecc2f91ba0de497ce7a58d585c29b08047b0e3763c563bb88fc10479bdbf",
+  "intervention_inputs_sha256": "650c79daf0679c9fc9fe93813e68dae3731e666aeb9ae688d4c5dd042bd62f1d",
+  "annotation_sha256": "6e733dc3f69a72d3ce39f7565931fe87b19aec77aa5a53bcc18a6e2237a2cebe",
+  "pair_ids": 10980,
+  "combined_rows": 21960,
+  "failed_intervention_attempts_retained_outside_analysis": 0,
+  "pair_metadata_diff_failures": 0,
+  "translation_status_counts": {
+    "ok": 8674,
+    "recovered_after_semantic_repair": 568,
+    "eligible_after_rejected_semantic_repair": 1375,
+    "recovered_after_hard_repair": 363
+  },
+  "analysis_ineligible_translation_pairs": 0,
+  "dependency_counts": {
+    "dependent": 302,
+    "independent": 64
+  },
+  "gee_sensitivity": "intentionally_not_implemented_in_current_scope"
+}
