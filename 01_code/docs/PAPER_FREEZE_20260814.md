@@ -85,15 +85,22 @@ exclude those RDS checkpoints and the large paired input tables.
 
 ## Branch consolidation
 
-The historical branches form a strict ancestor chain ending at `rq4`:
+The experiment branches form a strict ancestor chain, but that chain and
+`main` originate from different Git roots:
 
 ```text
-main -> test -> vast-standalone -> glmm -> rel-annotation-ui -> rq4
-                                                           -> paper-freeze-20260814
+main (repository-root layout; independent history)
+
+test -> vast-standalone -> glmm -> rel-annotation-ui -> rq4
+                                                    -> paper-freeze-20260814
+                                                       (`01_code/` layout)
 ```
 
-No unique commit is lost by retiring the intermediate branch labels after the
-freeze branch has been pushed and reviewed. Keep `main` as the original default
-baseline and retain `rq4` until the paper-freeze branch is accepted. Remote
-branch deletion is intentionally a separate explicit operation because it can
-affect collaborators.
+No unique experiment commit is lost by retiring the intermediate experiment
+branch labels after the freeze branch has been pushed and reviewed. Retain
+`rq4` until the paper-freeze branch is accepted because it is the direct review
+base and rollback point. Do not merge the two unrelated histories directly:
+that would preserve both directory layouts and duplicate the project tree.
+Final `main` integration requires a dedicated branch from `main` that ports the
+frozen files into the repository-root layout. Remote branch deletion remains a
+separate explicit operation because it can affect collaborators.
