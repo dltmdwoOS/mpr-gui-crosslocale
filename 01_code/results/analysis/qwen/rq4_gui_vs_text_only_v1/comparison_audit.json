@@ -1,0 +1,21 @@
+{
+  "status": "pass",
+  "estimand": "gui_lexical-minus-contextual",
+  "analysis_baseline_level": "original",
+  "analysis_treatment_level": "gui_lexical",
+  "baseline_source_condition": "contextual",
+  "treatment_source_condition": "gui_lexical",
+  "pairs": 10980,
+  "rows": 21960,
+  "pair_metadata_diff_failures": 0,
+  "dependency_item_counts": {
+    "dependent": 302,
+    "independent": 64
+  },
+  "baseline_input": "results/analysis/qwen/rq4_contextual_v4_itt/paired_original_contextual.csv",
+  "baseline_input_sha256": "b84d8b3599768bf57a9d6bf0882c993b9faa72c758c878bfbdcd951b3675cda7",
+  "treatment_input": "C:/rq4v3_20260813/01_code/results/analysis/qwen/rq4_gui_lexical_v3/paired_original_gui_lexical.csv",
+  "treatment_input_sha256": "709eb15193603615863de82d01109bacc850dfc6c2278f107438b93c63334e82",
+  "output": "results/analysis/qwen/rq4_gui_vs_text_only_v1/paired_text_only_gui_lexical.csv",
+  "output_sha256": "09c8aa9f262cf434242eb18cbb2a5f12e551fe1dc39f503a55f49ebed2bb4a94"
+}

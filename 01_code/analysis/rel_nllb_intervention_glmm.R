@@ -125,7 +125,7 @@ raw_summary <- data %>%
 write_csv(raw_summary, file.path(output_dir, "rq4_raw_summary_generation_correct.csv"))
 
 raw_gains <- raw_summary %>%
-  select(text_dependency, intervention, accuracy) %>%
+  dplyr::select(text_dependency, intervention, accuracy) %>%
   pivot_wider(names_from = intervention, values_from = accuracy) %>%
   mutate(raw_intervention_gain = .data[[intervention_treatment]] - original)
 write_csv(raw_gains, file.path(output_dir, "rq4_raw_mt_gains_generation_correct.csv"))
@@ -392,7 +392,7 @@ result_report <- c(
   paste0(
     "- Primary M1 vs M2 LRT: chi-square=",
     sprintf("%.3f", primary_lrt$Chisq[[1]]),
-    ", df=", primary_lrt$`Chi Df`[[1]],
+    ", df=", primary_lrt$Df[[1]],
     ", p=", format(primary_p, scientific = TRUE, digits = 4)
   ),
   "",

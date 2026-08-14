@@ -1,0 +1,3 @@
+text_dependency,adjusted_original_probability,adjusted_intervention_probability,adjusted_intervention_gain,gain_conf_low,gain_conf_high,nsim,random_structure,estimand
+independent,0.6575994477266186,0.6610535199435821,0.0034540722169635035,-0.016957929193867564,0.0234986302522497,5000,item_plus_pair_primary,equal-directed-pair marginal gui_lexical-minus-original probability difference
+dependent,0.5693801132129264,0.6427877698820323,0.07340765666910597,0.06394670585861155,0.08287825328812058,5000,item_plus_pair_primary,equal-directed-pair marginal gui_lexical-minus-original probability difference

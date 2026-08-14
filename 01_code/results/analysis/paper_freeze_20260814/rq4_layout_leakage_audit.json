@@ -1,0 +1,29 @@
+{
+  "status": "pass",
+  "scope": "RQ4 target-GUI lexical intervention layout/query leakage freeze",
+  "inventory_rows": 2196,
+  "translation_rows": 10980,
+  "downstream_input_rows": 10980,
+  "inventory_status_counts": {
+    "success": 2195,
+    "failed_after_repair": 1
+  },
+  "checks": {
+    "query_content_exposed_rows": 0,
+    "inventory_forbidden_field_rows": 0,
+    "translation_noncanonical_order_rows": 0,
+    "raw_to_stage2_canonical_mismatch_rows": 0,
+    "inventory_order_exposed_rows": 0,
+    "inventory_duplicate_counts_exposed_rows": 0,
+    "translator_layout_exposed_rows": 0,
+    "translator_screenshot_exposed_rows": 0,
+    "translator_gold_exposed_rows": 0,
+    "translator_dependency_exposed_rows": 0,
+    "downstream_inventory_payload_rows": 0
+  },
+  "failures": {},
+  "inventory_sha256": "c01ee0153657fa4579f74dcc49b6990fb9be57af3c3ab30dcfb0678a9a8371f8",
+  "translation_sha256": "a739994068e2db96c3f061ccee5efc2dc3a835255956e8cc4abc271766c62f81",
+  "downstream_input_sha256": "0bae9f9068a85c51b0d79189ac8caecf64c73fac28aa937f8f9600a57136a452",
+  "interpretation": "Raw extractor order is discarded through canonical lexical sorting before Stage 2; the downstream VLM receives the localized MCQ, not the inventory."
+}
