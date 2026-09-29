@@ -1,0 +1,5 @@
+*.py text eol=lf
+*.sh text eol=lf
+*.md text eol=lf
+followup_rel_4lang/*.json text eol=lf
+followup_rel_4lang/bundles/*.tar.gz -text

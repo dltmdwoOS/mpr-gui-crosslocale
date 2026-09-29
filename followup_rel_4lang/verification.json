@@ -1,0 +1,19 @@
+{
+  "schema": "rel-followup-verification-v1",
+  "new_runner_tests_passed": 15,
+  "existing_variant_regression_tests_passed": 11,
+  "full_dataset_rows_validated": 23424,
+  "image_files_decoded_and_hashed": 1464,
+  "pinned_remote_image_downloads_and_cache_hits_checked": 4,
+  "mock_smoke_models": [
+    "Qwen/Qwen2.5-VL-7B-Instruct",
+    "OpenGVLab/InternVL2_5-8B"
+  ],
+  "mock_smoke_rows_per_model": 128,
+  "mock_smoke_canonical_calls_per_model": 80,
+  "resume_without_repeating_successes_checked": true,
+  "archive_unpack_and_checksums_checked": true,
+  "shell_syntax_checked": true,
+  "gpu_inference_run": false,
+  "note": "CPU-only validation; B200 CUDA/model smoke tests must be run on the server."
+}

@@ -1,2 +1,14 @@
 .venv/
 __pycache__/
+
+# Expanded data, screenshots and GPU outputs stay outside Git.
+/followup_rel_4lang/data/
+/followup_rel_4lang/assets/
+/followup_rel_4lang/sources/
+/followup_rel_4lang/annotation/
+/followup_rel_4lang/bundles/*
+!/followup_rel_4lang/bundles/rel_all_366.tar.gz
+/followup_rel_4lang/results/
+/followup_rel_4lang/bundle_manifest.json
+*.download
+.DS_Store

@@ -20,6 +20,12 @@ content such as questions, answers, paths, and parsed options. Treat these
 artifacts as derived from MPR-GUI-Bench and therefore subject to the dataset
 license and non-commercial restriction.
 
+The frozen follow-up archive `followup_rel_4lang/bundles/rel_all_366.tar.gz`
+contains dataset-derived questions, options, answers, reference mappings, and
+source metadata. It is distributed under the same `CC-BY-NC-4.0` dataset terms,
+not the repository's MIT code license. Screenshots remain outside Git and are
+downloaded from the pinned Hugging Face revision, with per-file SHA-256 checks.
+
 The repository's code license does not relicense the MPR-GUI-Bench data or
 dataset-derived artifacts.
 
