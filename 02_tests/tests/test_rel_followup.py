@@ -294,3 +294,66 @@ def test_structural_audit_rejects_missing_quartet_and_modified_context(tmp_path)
     path.write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
     with pytest.raises(ValueError, match="reconstruction failed"):
         validate_dataset(root)
+
+
+def test_batch_preserves_quartets_partial_tail_and_resume_contract(tmp_path):
+    root = tmp_path / "data"
+    dataset(root)
+    single_options = args(root, tmp_path / "single")
+    runner.run(single_options)
+    options = args(root, tmp_path / "batch")
+    options.batch_size = 8
+    summary = runner.run(options)
+    single = [json.loads(s) for s in (single_options.output_dir / "results.jsonl").read_text().splitlines()]
+    batch = [json.loads(s) for s in (options.output_dir / "results.jsonl").read_text().splitlines()]
+    fields = ("input_id", "generated_text", "generation_correct", "scoring_correct", "prediction_source_input_id")
+    assert [[row[field] for field in fields] for row in batch] == [[row[field] for field in fields] for row in single]
+    assert summary["statuses"] == {"success": 64}
+    assert summary["actual_successful_inferences"] == 28
+    predictions = [json.loads(s) for s in (options.output_dir / "predictions.jsonl").read_text().splitlines()]
+    assert [row["batch_size"] for row in predictions] == [8] * 24 + [4] * 4
+    assert len({row["batch_id"] for row in predictions}) == 4
+    runner.run(options)
+    assert len((options.output_dir / "predictions.jsonl").read_text().splitlines()) == 28
+    options.batch_size = 4
+    with pytest.raises(ValueError, match="different dataset/model/settings/subset"):
+        runner.run(options)
+
+
+@pytest.mark.parametrize("nvml_reporting_error", [False, True])
+def test_oom_split_recovers_each_input_in_order(tmp_path, nvml_reporting_error):
+    import torch
+
+    root = tmp_path / "data"
+    rows = dataset(root)[:5]
+    options = args(root, tmp_path / "out")
+    options.mock_model = False
+    calls = []
+
+    class Adapter:
+        def generate_batch(self, inputs, profile, generation, **kwargs):
+            calls.append(len(inputs))
+            if len(inputs) > 2:
+                if nvml_reporting_error:
+                    raise RuntimeError('NVML_SUCCESS == r INTERNAL ASSERT FAILED at "/pytorch/c10/cuda/CUDACachingAllocator.cpp":1123')
+                raise torch.cuda.OutOfMemoryError("synthetic memory limit")
+            return [SimpleNamespace(
+                raw_output="A", rendered_prompt=row["question_raw"],
+                prompt_token_count=5, output_token_count=1,
+                label_summary=runner.deterministic_mock_label_score("A", row["gold_label"]),
+            ) for row in inputs]
+
+        def generate_one(self, row, *arguments, **kwargs):
+            return self.generate_batch([row], *arguments, **kwargs)[0]
+
+    chunk = [(runner.input_id(row), row) for row in rows]
+    results = list(runner.predict_chunk(Adapter(), chunk, options, runner.load_yaml(options.model_config), "fixed"))
+    assert calls == [5, 2, 3, 1, 2]
+    assert [(key, row) for key, row, _ in results] == chunk
+    assert all(result["status"] == "success" and result["scoring_correct"] for _, _, result in results)
+    assert [result["batch_size"] for _, _, result in results] == [2, 2, 1, 2, 2]
+
+
+def test_memory_error_classifier_keeps_unrelated_errors_visible():
+    assert runner.cuda_memory_error_kind(RuntimeError("invalid shape")) is None
+    assert runner.cuda_memory_error_kind(RuntimeError("NVML_SUCCESS == r INTERNAL ASSERT FAILED in another file")) is None

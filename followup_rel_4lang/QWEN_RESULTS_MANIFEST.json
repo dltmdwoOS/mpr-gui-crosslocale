@@ -1,0 +1,174 @@
+{
+  "schema": "qwen-rel-4lang-results-v1",
+  "created_at": "2026-09-30T09:21:30.547930+00:00",
+  "completed_full_output": "followup_rel_4lang/results/full/qwen2_5_vl_7b_batch32",
+  "model_family": "qwen2_5_vl",
+  "notes": "Only listed artifacts are published. Raw full JSONL files, images, checkpoints, and logs remain local. The earlier batch-1 full is an interrupted archive.",
+  "dataset_derived_license": "CC-BY-NC-4.0; see 01_code/THIRD_PARTY_DATA.md",
+  "files": {
+    "followup_rel_4lang/results/full/qwen2_5_vl_7b_batch32/data_audit.json": {
+      "bytes": 1547,
+      "sha256": "7f5621780b5cb84d9f44bb1593d6763097ffa19b488a84e8f33c527ff6787322"
+    },
+    "followup_rel_4lang/results/full/qwen2_5_vl_7b_batch32/plan.json": {
+      "bytes": 361,
+      "sha256": "ba23e5ded803cab06fbf4fff8d3c700002095c73c0587a36f0ce4ede16656424"
+    },
+    "followup_rel_4lang/results/full/qwen2_5_vl_7b_batch32/run_contract.json": {
+      "bytes": 3039,
+      "sha256": "6e7a1f5542f99e1ebf3d75bc49bcc5a862b07a33b076f3b85f62f4d4878b5a88"
+    },
+    "followup_rel_4lang/results/full/qwen2_5_vl_7b_batch32/summary.json": {
+      "bytes": 2300,
+      "sha256": "b300f7da77db03016bae2e57183343cf7915cf7204d8f1de4fccc8bfa4443d9d"
+    },
+    "followup_rel_4lang/results/full/qwen2_5_vl_7b_batch32/predictions.jsonl.gz": {
+      "bytes": 2808522,
+      "sha256": "c7a31ea58ff84e63cf4260356af47cc9a2c129c3e2ed024b755d45ad73aac249",
+      "uncompressed_bytes": 45520077,
+      "uncompressed_sha256": "bc593e12e71df70ddda82b358ee1530919f724f71fcfafaef9fb321c47d90ca5",
+      "uncompressed_rows": 18432
+    },
+    "followup_rel_4lang/results/full/qwen2_5_vl_7b_batch32/results.jsonl.gz": {
+      "bytes": 4868419,
+      "sha256": "d999c64a0a9ab32677bf7b19fbfea308b4a154338e9ec8559efe772d0eb0bd2b",
+      "uncompressed_bytes": 99055954,
+      "uncompressed_sha256": "3fdc0154da6e748c429eac36b35c237ac2f6fd57a201726cf28d9f04a641f365",
+      "uncompressed_rows": 23424
+    },
+    "followup_rel_4lang/results/full/qwen2_5_vl_7b/data_audit.json": {
+      "bytes": 1547,
+      "sha256": "7f5621780b5cb84d9f44bb1593d6763097ffa19b488a84e8f33c527ff6787322"
+    },
+    "followup_rel_4lang/results/full/qwen2_5_vl_7b/plan.json": {
+      "bytes": 309,
+      "sha256": "4bd45c77e1ed75c5f3af28182c93346c5d497c14675e74c5f4971642969b79ab"
+    },
+    "followup_rel_4lang/results/full/qwen2_5_vl_7b/run_contract.json": {
+      "bytes": 2961,
+      "sha256": "bce9ee28d47f20fb98ee54fc7326e387c904e6df148923ba14c2b127c239e707"
+    },
+    "followup_rel_4lang/results/full/qwen2_5_vl_7b/summary.json": {
+      "bytes": 2238,
+      "sha256": "bc8792fe8ce0fb1995b09fef78acaf81859f731dbc5bfeea2570ca4ae495f16e"
+    },
+    "followup_rel_4lang/results/full/qwen2_5_vl_7b/predictions.jsonl.gz": {
+      "bytes": 296933,
+      "sha256": "9f48498db3e22e79d252c270645632be6501a6d7ba6f28890f324964986cff1c",
+      "uncompressed_bytes": 4613810,
+      "uncompressed_sha256": "475617ebc1ef35bdacde63ea05a0bf330eb5f05e060773094c147055f9af3198",
+      "uncompressed_rows": 1951
+    },
+    "followup_rel_4lang/results/full/qwen2_5_vl_7b/results.jsonl.gz": {
+      "bytes": 1513730,
+      "sha256": "8c0c6a8622a4f4437ddadafb360df84541db2ae4f5ecff7ab9a8d930decb7af8",
+      "uncompressed_bytes": 50473416,
+      "uncompressed_sha256": "6899a54a97c54c81f379f5c26709bb5cc1fc15a2f9d550f5cb03a6fd3405cbd4",
+      "uncompressed_rows": 23424
+    },
+    "followup_rel_4lang/results/smoke/qwen2_5_vl_7b_batch32/data_audit.json": {
+      "bytes": 1547,
+      "sha256": "7f5621780b5cb84d9f44bb1593d6763097ffa19b488a84e8f33c527ff6787322"
+    },
+    "followup_rel_4lang/results/smoke/qwen2_5_vl_7b_batch32/plan.json": {
+      "bytes": 345,
+      "sha256": "1defe291b1230208cd220f19230ed4db147bff9083893f85ec663e21a1c75dd5"
+    },
+    "followup_rel_4lang/results/smoke/qwen2_5_vl_7b_batch32/run_contract.json": {
+      "bytes": 3039,
+      "sha256": "6249b824cb4154c2e4f4b6934d9b1f5c185e1852e6415cb25585d083de2841bd"
+    },
+    "followup_rel_4lang/results/smoke/qwen2_5_vl_7b_batch32/summary.json": {
+      "bytes": 2061,
+      "sha256": "d75487c4e21e40a85d025391bc53c72556f25d0a4b30aad7790bec9ec4ce24eb"
+    },
+    "followup_rel_4lang/results/smoke/qwen2_5_vl_7b_batch32/predictions.jsonl": {
+      "bytes": 193282,
+      "sha256": "9bdcdd293a66b883a7c07d73b768f8afe0f467713ff6ddef7dd8843d6d3e825d"
+    },
+    "followup_rel_4lang/results/smoke/qwen2_5_vl_7b_batch32/results.jsonl": {
+      "bytes": 512160,
+      "sha256": "c41ba8aa7993d03cb2b4f396c8fb1f9014a5d01b07dcfa867f3abb886d5ce841"
+    },
+    "followup_rel_4lang/results/smoke/qwen2_5_vl_7b/data_audit.json": {
+      "bytes": 1547,
+      "sha256": "7f5621780b5cb84d9f44bb1593d6763097ffa19b488a84e8f33c527ff6787322"
+    },
+    "followup_rel_4lang/results/smoke/qwen2_5_vl_7b/plan.json": {
+      "bytes": 295,
+      "sha256": "bec6ac867f0c4524f1b9c0941f0305ec060f35e3ca49e825f160ace4b877f42e"
+    },
+    "followup_rel_4lang/results/smoke/qwen2_5_vl_7b/run_contract.json": {
+      "bytes": 2961,
+      "sha256": "2c4fa27559c3fc23d110cbfcf847357dd2d5b2f3942a050361b7a805cc2810fd"
+    },
+    "followup_rel_4lang/results/smoke/qwen2_5_vl_7b/summary.json": {
+      "bytes": 2041,
+      "sha256": "4b7cdcf17d1b52bed0574dc84e3d9681499bbb5115550a3966b271c51ccc87a9"
+    },
+    "followup_rel_4lang/results/smoke/qwen2_5_vl_7b/predictions.jsonl": {
+      "bytes": 182601,
+      "sha256": "2a901abbeb1b5d7d4500dd8e6c9c26792c26253f6f629887798c1d46862cf829"
+    },
+    "followup_rel_4lang/results/smoke/qwen2_5_vl_7b/results.jsonl": {
+      "bytes": 494708,
+      "sha256": "da7a0ac89cb5d8ecafe5b0c5fc2b6e2a7ca0f88b4b2f42355acd097a73922b87"
+    },
+    "followup_rel_4lang/results/smoke/qwen2_5_vl_7b/gpu_memory.json": {
+      "bytes": 287,
+      "sha256": "b8e4ef2de1270e66768beb62a664c5dda11c1dcbb5e1cbcc5d7b30e8275cac5b"
+    },
+    "followup_rel_4lang/results/preflight/qwen2_5_vl_7b_batch32/data_audit.json": {
+      "bytes": 1547,
+      "sha256": "7f5621780b5cb84d9f44bb1593d6763097ffa19b488a84e8f33c527ff6787322"
+    },
+    "followup_rel_4lang/results/preflight/qwen2_5_vl_7b_batch32/dry_run_plan.json": {
+      "bytes": 361,
+      "sha256": "ba23e5ded803cab06fbf4fff8d3c700002095c73c0587a36f0ce4ede16656424"
+    },
+    "followup_rel_4lang/results/preflight/qwen2_5_vl_7b/data_audit.json": {
+      "bytes": 1547,
+      "sha256": "7f5621780b5cb84d9f44bb1593d6763097ffa19b488a84e8f33c527ff6787322"
+    },
+    "followup_rel_4lang/results/preflight/qwen2_5_vl_7b/dry_run_plan.json": {
+      "bytes": 309,
+      "sha256": "4bd45c77e1ed75c5f3af28182c93346c5d497c14675e74c5f4971642969b79ab"
+    },
+    "followup_rel_4lang/results/batch_benchmark/qwen2_5_vl_7b/summary.json": {
+      "bytes": 18790,
+      "sha256": "8e871ffc3c425cd3df4caa724c16cd0d281695b8fcb9e58519a90d8ffce9b80b"
+    },
+    "followup_rel_4lang/results/batch_benchmark/qwen2_5_vl_7b/partial_before_nvml_recovery.json": {
+      "bytes": 16581,
+      "sha256": "a26206eb748dbf9f14ab4fb51ee9c6c9d263a9a521fd39c7afe133d2d3c6aadd"
+    },
+    "followup_rel_4lang/results/setup_checks/qwen_full_completion.json": {
+      "bytes": 2126,
+      "sha256": "6d63164eaae6e1613bf65907800235ec4f54f14b3b1efe3670543b84e4f8224a"
+    },
+    "followup_rel_4lang/results/setup_checks/qwen_single_gpu.json": {
+      "bytes": 3439,
+      "sha256": "5b95401a8b145e6b3c0033179532f6a8bc4e397728443232be13ac135704ea10"
+    },
+    "followup_rel_4lang/results/setup_checks/qwen_readiness.json": {
+      "bytes": 2712,
+      "sha256": "ed270bd41f40036c3c13abc24233c59033d2f4ac864d9161724f2fd084fe32ac"
+    },
+    "followup_rel_4lang/results/setup_checks/qwen_batch_readiness.json": {
+      "bytes": 3478,
+      "sha256": "510de66a5f12ce36622ab58b685b96a9e175ef7ffd8db09e82e1c32c8ce885e6"
+    },
+    "followup_rel_4lang/results/setup_checks/stopped_qwen_full.json": {
+      "bytes": 185,
+      "sha256": "ecd11b337fe38a27891641d3ff0c4daa6469d127f38c935a425d852648642cac"
+    },
+    "followup_rel_4lang/results/setup_checks/current_data_audit.json": {
+      "bytes": 1546,
+      "sha256": "703fdca61de50a8c8b9b5affa977ca7d63a050a10c6749a6fa3a896893672925"
+    },
+    "followup_rel_4lang/results/setup_checks/bundle_checksum_verification.json": {
+      "bytes": 1546,
+      "sha256": "703fdca61de50a8c8b9b5affa977ca7d63a050a10c6749a6fa3a896893672925"
+    }
+  }
+}

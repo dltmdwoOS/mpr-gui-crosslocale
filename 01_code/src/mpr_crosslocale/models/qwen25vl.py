@@ -72,6 +72,7 @@ class Qwen25VLAdapter:
             revision=revision,
             **processor_kwargs,
         )
+        self.processor.tokenizer.padding_side = "left"
         self.model = model_class.from_pretrained(
             model_id,
             **model_kwargs,
@@ -107,21 +108,41 @@ class Qwen25VLAdapter:
         system_prompt: str | None = None,
         score_labels: bool = False,
     ) -> QwenGenerateOutput:
+        return self.generate_batch(
+            [input_row], prompt_profile, generation_config,
+            system_prompt=system_prompt, score_labels=score_labels,
+        )[0]
+
+    def generate_batch(
+        self,
+        input_rows: list[dict[str, Any]],
+        prompt_profile: str,
+        generation_config: dict[str, Any],
+        system_prompt: str | None = None,
+        score_labels: bool = False,
+    ) -> list[QwenGenerateOutput]:
+        if not input_rows:
+            return []
         import torch
         from qwen_vl_utils import process_vision_info
 
-        messages = self.build_messages(input_row, prompt_profile, system_prompt=system_prompt)
-        rendered_prompt = self.processor.apply_chat_template(
-            messages,
-            tokenize=False,
-            add_generation_prompt=True,
-        )
+        self.processor.tokenizer.padding_side = "left"
+        messages = [
+            self.build_messages(row, prompt_profile, system_prompt=system_prompt)
+            for row in input_rows
+        ]
+        rendered_prompts = [
+            self.processor.apply_chat_template(
+                conversation, tokenize=False, add_generation_prompt=True,
+            )
+            for conversation in messages
+        ]
         image_inputs, video_inputs = process_vision_info(
             messages,
             **_vision_process_kwargs(self.model_family, self.processor),
         )
         inputs = self.processor(
-            text=[rendered_prompt],
+            text=rendered_prompts,
             images=image_inputs,
             videos=video_inputs,
             padding=True,
@@ -136,32 +157,65 @@ class Qwen25VLAdapter:
         with torch.inference_mode():
             generation_output = self.model.generate(**inputs, **generation_kwargs)
 
-        label_summary = None
+        label_summaries = [None] * len(input_rows)
         if score_labels:
             generated_ids = generation_output.sequences
             if not generation_output.logits:
                 raise RuntimeError("Generation did not return first-step logits for label scoring")
-            label_summary = self._summarize_label_logits(
-                generation_output.logits[0][0],
-                input_row,
+            label_summaries = self._summarize_label_logits_batch(
+                generation_output.logits[0], input_rows,
             )
         else:
             generated_ids = generation_output
 
-        prompt_len = int(inputs.input_ids.shape[1])
-        generated_trimmed = generated_ids[:, prompt_len:]
+        padded_prompt_len = int(inputs.input_ids.shape[1])
+        prompt_lengths = inputs.attention_mask.sum(dim=1).detach().cpu().tolist()
+        generated_trimmed = generated_ids[:, padded_prompt_len:].detach().cpu().tolist()
         decoded = self.processor.batch_decode(
             generated_trimmed,
             skip_special_tokens=True,
             clean_up_tokenization_spaces=False,
         )
-        return QwenGenerateOutput(
-            raw_output=decoded[0].strip(),
-            rendered_prompt=rendered_prompt,
-            prompt_token_count=prompt_len,
-            output_token_count=int(generated_trimmed.shape[1]),
-            label_summary=label_summary,
+        eos = generation_config.get(
+            "eos_token_id", getattr(self.model.generation_config, "eos_token_id", None),
         )
+        eos_ids = {eos} if isinstance(eos, int) else set(eos or [])
+        return [
+            QwenGenerateOutput(
+                raw_output=decoded[index].strip(),
+                rendered_prompt=rendered_prompts[index],
+                prompt_token_count=int(prompt_lengths[index]),
+                output_token_count=next(
+                    (offset + 1 for offset, token in enumerate(tokens) if token in eos_ids),
+                    len(tokens),
+                ),
+                label_summary=label_summaries[index],
+            )
+            for index, tokens in enumerate(generated_trimmed)
+        ]
+
+    def _summarize_label_logits_batch(
+        self, next_token_logits: Any, input_rows: list[dict[str, Any]],
+    ) -> list[LabelScoreSummary]:
+        import torch
+
+        label_token_ids = self._label_token_ids()
+        if any(len(ids) != 1 for ids in label_token_ids.values()):
+            raise ValueError("A/B/C/D labels are not single-token under this tokenizer")
+        indices = torch.tensor(
+            [label_token_ids[label][0] for label in LABELS],
+            device=next_token_logits.device,
+        )
+        values = torch.nn.functional.log_softmax(next_token_logits, dim=-1)
+        # Transfer B x 4 values once, rather than synchronizing four times per item.
+        label_values = values.index_select(1, indices).detach().cpu().tolist()
+        return [
+            summarize_label_logprobs(
+                dict(zip(LABELS, values)), gold_label=str(row["gold_label"]),
+                scoring_method="next_token_single_label", label_token_ids=label_token_ids,
+            )
+            for row, values in zip(input_rows, label_values, strict=True)
+        ]
 
     def score_labels(
         self,

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import gc
 import hashlib
 import json
 import random
@@ -10,6 +11,7 @@ import time
 import traceback
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
+from itertools import chain
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -165,6 +167,10 @@ def predict(adapter, row: dict, args, config: dict, system_prompt: str) -> dict:
             system_prompt=system_prompt,
             score_labels=not args.no_score_labels,
         )
+    return prediction_result(output, row, args)
+
+
+def prediction_result(output, row: dict, args) -> dict:
     label = parse_label(output.raw_output)
     result = {
         "generated_text": output.raw_output,
@@ -200,6 +206,85 @@ def predict(adapter, row: dict, args, config: dict, system_prompt: str) -> dict:
         else None,
     )
     return result
+
+
+def predict_batch(adapter, rows: list[dict], args, config: dict, system_prompt: str) -> list[dict]:
+    if args.mock_model or len(rows) == 1:
+        return [predict(adapter, row, args, config, system_prompt) for row in rows]
+    inputs = [
+        {
+            "question_raw": row["question"],
+            "gold_label": row["gold_answer"],
+            "image_paths": [str((args.data_root / row["image_path"]).resolve())],
+        }
+        for row in rows
+    ]
+    outputs = adapter.generate_batch(
+        inputs, config["prompt_profile"], config["generation"],
+        system_prompt=system_prompt, score_labels=not args.no_score_labels,
+    )
+    if len(outputs) != len(rows):
+        raise RuntimeError("Batch output count does not match the input count")
+    return [prediction_result(output, row, args) for output, row in zip(outputs, rows, strict=True)]
+
+
+def cuda_memory_error_kind(exc: Exception) -> str | None:
+    import torch
+
+    if isinstance(exc, torch.cuda.OutOfMemoryError):
+        return "cuda_oom"
+    # On this MIG server, PyTorch's OOM diagnostic queries NVML and can raise
+    # an internal assertion before constructing its OutOfMemoryError.
+    # https://github.com/pytorch/pytorch/blob/v2.9.1/c10/cuda/CUDACachingAllocator.cpp
+    message = str(exc)
+    if isinstance(exc, RuntimeError) and all(part in message for part in (
+        "NVML_SUCCESS == r INTERNAL ASSERT FAILED", "CUDACachingAllocator.cpp",
+    )):
+        return "cuda_oom_nvml_reporting"
+    return None
+
+
+def predict_chunk(adapter, chunk: list[tuple], args, config: dict, system_prompt: str):
+    """Split only CUDA OOM batches; preserve input order and individual prediction records."""
+    started = time.perf_counter()
+    split = False
+    try:
+        results = predict_batch(adapter, [row for _, row in chunk], args, config, system_prompt)
+    except Exception as exc:
+        if cuda_memory_error_kind(exc) is not None and len(chunk) > 1:
+            split = True
+        else:
+            failure = {
+                "status": "failed", "error_type": type(exc).__name__,
+                "error_message": str(exc), "error_traceback": traceback.format_exc(),
+                "generation_correct": None, "scoring_correct": None,
+                "correct": None, "parse_success": None,
+            }
+            results = [failure.copy() for _ in chunk]
+    else:
+        results = [{**result, "status": "success"} for result in results]
+    # Leave the exception handler before freeing tensors retained by its traceback.
+    if split:
+        import torch
+
+        gc.collect()
+        if torch.cuda.is_initialized():
+            torch.cuda.empty_cache()
+        middle = len(chunk) // 2
+        print(f"CUDA OOM: splitting batch {len(chunk)} into {middle} and {len(chunk) - middle}", flush=True)
+        yield from predict_chunk(adapter, chunk[:middle], args, config, system_prompt)
+        yield from predict_chunk(adapter, chunk[middle:], args, config, system_prompt)
+        return
+    elapsed_ms = round((time.perf_counter() - started) * 1000, 3)
+    batch_id = stable_hash([key for key, _ in chunk])
+    for (key, row), result in zip(chunk, results, strict=True):
+        yield key, row, {
+            **result,
+            "batch_id": batch_id,
+            "batch_size": len(chunk),
+            "batch_runtime_ms": elapsed_ms,
+            "inference_runtime_ms": round(elapsed_ms / len(chunk), 3),
+        }
 
 
 def export_results(
@@ -273,6 +358,7 @@ def export_results(
         }
     summary = {
         "outcome": "generation_correct",
+        "batch_size": contract.get("batch_size", 1),
         "execution_mode": contract["execution_mode"],
         "condition_rows": len(rows),
         "statuses": dict(statuses),
@@ -288,6 +374,9 @@ def export_results(
 
 
 def run(args) -> dict:
+    args.batch_size = getattr(args, "batch_size", 1)
+    if args.batch_size < 1:
+        raise ValueError("--batch-size must be positive")
     args.data_root = args.data_root.resolve()
     rows, audit = validate_dataset(args.data_root, images=True)
     if (args.data_root / BUNDLE_MANIFEST).exists():
@@ -297,6 +386,8 @@ def run(args) -> dict:
     rows = select_rows(rows, args.population, args.max_items, args.seed)
     canonical, aliases = inference_plan(rows)
     config = load_yaml(args.model_config)
+    if args.batch_size > 1 and config.get("model_family") != "qwen2_5_vl":
+        raise ValueError("REL batched inference currently supports Qwen2.5-VL only")
     if config.get("model_family") not in ("qwen2_5_vl", "internvl2_5") or not config.get(
         "revision"
     ):
@@ -323,6 +414,8 @@ def run(args) -> dict:
         "system_prompt": system_prompt,
         "prompt_template_version": template,
         "score_labels": not args.no_score_labels,
+        "batch_size": args.batch_size,
+        "batching_policy": "ordered_left_padding_oom_split_v2",
         "seed": args.seed,
         "population": args.population,
         "selected_input_ids_sha256": stable_hash([input_id(r) for r in rows]),
@@ -334,6 +427,8 @@ def run(args) -> dict:
         "items": len({r["parallel_id"] for r in rows}),
         "condition_rows": len(rows),
         "actual_inferences": len(canonical),
+        "batch_size": args.batch_size,
+        "planned_model_batches": (len(canonical) + args.batch_size - 1) // args.batch_size,
         "reused_condition_rows": len(rows) - len(canonical),
         "source_issue_rows": sum(not r["eligible_without_source_adjudication"] for r in rows),
         "items_by_dependency": dict(
@@ -400,8 +495,12 @@ def run(args) -> dict:
     from tqdm import tqdm
 
     try:
-        for key, row in tqdm(pending, desc=f"REL O/R/C/F ({mode})"):
-            started = time.perf_counter()
+        progress = tqdm(total=len(pending), desc=f"REL O/R/C/F ({mode}, batch={args.batch_size})")
+        batches = (
+            predict_chunk(adapter, pending[offset:offset + args.batch_size], args, config, system_prompt)
+            for offset in range(0, len(pending), args.batch_size)
+        )
+        for key, row, result in chain.from_iterable(batches):
             prediction = {
                 "input_id": key,
                 "experiment_fingerprint": fingerprint,
@@ -411,31 +510,21 @@ def run(args) -> dict:
                 "software_versions": versions,
                 "code_commit": commit,
             }
-            try:
-                prediction.update(
-                    predict(adapter, row, args, config, system_prompt), status="success"
-                )
+            prediction.update(result)
+            if result["status"] == "success":
                 consecutive_failures = 0
-            except Exception as exc:  # noqa: BLE001 -- Persist arbitrary backend failures for resume.
+            else:
                 consecutive_failures += 1
-                prediction.update(
-                    status="failed",
-                    error_type=type(exc).__name__,
-                    error_message=str(exc),
-                    error_traceback=traceback.format_exc(),
-                    generation_correct=None,
-                    scoring_correct=None,
-                    correct=None,
-                    parse_success=None,
-                )
-            prediction["inference_runtime_ms"] = round((time.perf_counter() - started) * 1000)
             append_prediction(cache_path, prediction)
             cache[key] = prediction
+            progress.update(1)
             if consecutive_failures >= 3:
                 raise RuntimeError(
                     "Stopped after three consecutive failures; inspect predictions.jsonl"
                 )
     finally:
+        if "progress" in locals():
+            progress.close()
         summary = export_results(rows, aliases, cache, args.output_dir, contract)
     return summary
 
@@ -447,6 +536,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--population", choices=("all", "mismatch", "matched"), default="all")
     parser.add_argument("--max-items", type=int, help="Stratified item limit for a smoke test")
+    parser.add_argument("--batch-size", type=int, default=1)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--mock-model", action="store_true")

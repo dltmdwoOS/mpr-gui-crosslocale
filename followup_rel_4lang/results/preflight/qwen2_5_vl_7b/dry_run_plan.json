@@ -1,0 +1,12 @@
+{
+  "items": 366,
+  "condition_rows": 23424,
+  "actual_inferences": 18432,
+  "reused_condition_rows": 4992,
+  "source_issue_rows": 400,
+  "items_by_dependency": {
+    "dependent": 302,
+    "independent": 64
+  },
+  "experiment_fingerprint": "6ea31b4a62611e0c26eb0f725b2512ac93717e36523a24883d90d69437204317"
+}

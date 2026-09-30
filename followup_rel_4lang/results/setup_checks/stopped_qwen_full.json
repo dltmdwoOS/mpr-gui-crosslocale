@@ -1,0 +1,10 @@
+{
+  "pid": 194840,
+  "uid": 1002,
+  "start_ticks": 217176096,
+  "stopped": true,
+  "signals": [
+    "SIGINT"
+  ],
+  "previous_output": "followup_rel_4lang/results/full/qwen2_5_vl_7b"
+}

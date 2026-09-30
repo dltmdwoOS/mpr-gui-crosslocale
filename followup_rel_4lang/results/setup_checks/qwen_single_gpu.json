@@ -1,0 +1,106 @@
+{
+  "scope": "One Qwen GPU inference for environment validation; not the standard REL smoke/full run.",
+  "status": "success",
+  "created_at": "2026-09-29T10:47:19.254210+00:00",
+  "input_id": "rel_orcf::rel::2/note_2.png::en::en::O",
+  "image_path": "assets/images/2/en/note_en_2.png",
+  "image_sha256": "41a26ad3d781607929304f84cfdbc5a12b00e65ad72e1be1d99ce67a0d0d7d18",
+  "gold_answer": "B",
+  "model_config": {
+    "model_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "model_family": "qwen2_5_vl",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "dtype": "bfloat16",
+    "quantization": null,
+    "attn_implementation": "sdpa",
+    "device_strategy": "auto",
+    "processor_profile": "qwen_vast_fixed_2048",
+    "min_pixels": 262144,
+    "max_pixels": 2097152,
+    "vision_token_limit": 2048,
+    "prompt_profile": "mpr_label_only_v1",
+    "generation": {
+      "do_sample": false,
+      "num_beams": 1,
+      "max_new_tokens": 2,
+      "temperature": null
+    }
+  },
+  "code_commit": "9bc42358c0dfd2f5ab3bd929799bf9da6cd5ce89",
+  "dataset_sha256": "e5aa6cd0c426cc648322c8c7702b1b6985fddb09ad895d70a85d86c6a3de38ce",
+  "software_versions": {
+    "python": "3.11.11",
+    "platform": "Linux-6.8.0-87-generic-x86_64-with-glibc2.35",
+    "torch": "2.9.1+cu130",
+    "transformers": "4.57.6",
+    "accelerate": "1.15.0",
+    "qwen-vl-utils": "0.0.14",
+    "torchvision": "0.24.1+cu130",
+    "timm": "1.0.30",
+    "protobuf": "6.33.2",
+    "sentencepiece": "0.2.0",
+    "flash-attn": null
+  },
+  "hardware": {
+    "cuda_available": true,
+    "cuda_runtime_version": "13.0",
+    "gpu_count": 1,
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA B200 MIG 2g.45gb",
+        "compute_capability": "10.0",
+        "total_memory_bytes": 47513075712
+      }
+    ]
+  },
+  "loading_seconds": 21.72,
+  "inference_seconds": 4.74,
+  "peak_allocated_GiB": 16.04,
+  "peak_reserved_GiB": 16.54,
+  "generated_text": "B",
+  "parsed_generated_label": "B",
+  "parse_success": true,
+  "generation_correct": true,
+  "correct": true,
+  "rendered_prompt": "<|im_start|>system\nYou are a GUI reasoning assistant. Inspect the GUI image and answer the multiple-choice question. Respond with exactly one label: A, B, C, or D.<|im_end|>\n<|im_start|>user\n<|vision_start|><|image_pad|><|vision_end|>Which element is located directly to the right of the 'Markup' option in the share menu? A: Print B: An icon resembling a pencil and paper C: Save to Files D: Copy\n\nRespond with exactly one label: A, B, C, or D.<|im_end|>\n<|im_start|>assistant\n",
+  "prompt_token_count": 2770,
+  "output_token_count": 2,
+  "visual_token_count": null,
+  "num_patches_list": null,
+  "scored_predicted_label": "B",
+  "scoring_correct": true,
+  "label_logprobs": {
+    "A": -0.7703869938850403,
+    "B": -0.6453869938850403,
+    "C": -4.895387172698975,
+    "D": -5.270387172698975
+  },
+  "label_probabilities": {
+    "A": 0.4628727586376561,
+    "B": 0.5245035504170344,
+    "C": 0.007481639991427562,
+    "D": 0.0051420509538819435
+  },
+  "gold_probability": 0.5245035504170344,
+  "gold_rank": 1,
+  "gold_vs_best_wrong_margin": 0.06163079177937836,
+  "top1_top2_margin": 0.06163079177937836,
+  "entropy": 0.7587411347350469,
+  "label_token_ids": {
+    "A": [
+      32
+    ],
+    "B": [
+      33
+    ],
+    "C": [
+      34
+    ],
+    "D": [
+      35
+    ]
+  },
+  "label_scoring_method": "next_token_single_label",
+  "generation_scoring_disagreement": false
+}

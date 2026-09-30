@@ -1,0 +1,39 @@
+{
+  "status": "completed",
+  "checked_at": "2026-09-30T09:21:29.833603+00:00",
+  "model_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "model_revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+  "batch_size": 32,
+  "experiment_fingerprint": "8caa33106dc0d12447e57309af540f5e623c6d65d0d3d482341078021804a1c5",
+  "full_output": "followup_rel_4lang/results/full/qwen2_5_vl_7b_batch32",
+  "actual_successful_inferences": 18432,
+  "condition_rows": 23424,
+  "statuses": {
+    "success": 23424
+  },
+  "parse_failures": 2,
+  "source_issue_rows": 400,
+  "previous_batch1_full": {
+    "status": "interrupted",
+    "successful_inferences": 1951,
+    "output": "followup_rel_4lang/results/full/qwen2_5_vl_7b"
+  },
+  "predictions_jsonl_sha256": "bc593e12e71df70ddda82b358ee1530919f724f71fcfafaef9fb321c47d90ca5",
+  "results_jsonl_sha256": "3fdc0154da6e748c429eac36b35c237ac2f6fd57a201726cf28d9f04a641f365",
+  "code_sha256": {
+    "run_rel_followup.py": "2d6c34b3b5925c20f354403fa948b659428f89662396e847405d2977c19cbbfb",
+    "qwen25vl.py": "f0cb92d5e9c4ba7a126c111cba09be23472d57fa36fc1efa82ad4fbf24a94929",
+    "internvl25.py": "4c063b465e65fa8f33ff1ff169347450a5ca7d9ec31e78d93e638c93238b4754",
+    "prompts.py": "5db5085c28e4f7b4495992008bdebe30f47f4809c307bacd47ffd22c91d73ba9",
+    "system_prompts.py": "afbfe2dc4ea3e69c6d90bb2b9f65490e266343ef6533468857b36fbb843bf554",
+    "run_cross_locale.py": "9291ddb7152a7ecf920550880df0c40eeb7aaa461765799982805aaf10adb27c",
+    "answer_parser.py": "f13ffd717563ddc41f085c87b8dfceba9cf80c8151c8c3aed6da66a7523817a0",
+    "label_scoring.py": "b46e5c7e361030ef3cda661f2d8669942994a33626dafabbbfd3e4e74d00aecd",
+    "option_scoring.py": "f37979a48c5fe2f3e8450627ed7282e93135ab3de497df787e109da54a15727c",
+    "runtime.py": "4127423f94b24483b729e0a271f9b003b66c1415216ff3f6a9071bde0ecc3c44",
+    "rel_followup.py": "67580d17f4bc099de2bfcc3e834552f8d18f14aaac090ed477cf5d7f1631a244"
+  },
+  "run_contract_sha256": "6e7a1f5542f99e1ebf3d75bc49bcc5a862b07a33b076f3b85f62f4d4878b5a88",
+  "source_summary_sha256": "b300f7da77db03016bae2e57183343cf7915cf7204d8f1de4fccc8bfa4443d9d",
+  "internvl_run": false
+}

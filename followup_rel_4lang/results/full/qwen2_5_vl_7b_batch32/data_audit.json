@@ -1,0 +1,48 @@
+{
+  "schema": "rel-followup-audit-v1",
+  "structural_checks_passed": true,
+  "items": 366,
+  "rows": 23424,
+  "language_pairs": 5856,
+  "items_by_dependency": {
+    "dependent": 302,
+    "independent": 64
+  },
+  "mismatch_rows": 17568,
+  "unique_inferences_within_pairs": 18432,
+  "source_issue_rows": 400,
+  "source_issue_pairs": 100,
+  "source_issue_items": [
+    "rel::1/booking_3.jpg",
+    "rel::2/home_9.png",
+    "rel::2/map_10.png",
+    "rel::2/note_7.png",
+    "rel::3/backend_3.jpg",
+    "rel::3/map_1.jpg",
+    "rel::3/music_6.jpg",
+    "rel::3/note_2.jpg",
+    "rel::3/settings_6.jpg",
+    "rel::4/Youtube_1.jpg",
+    "rel::5/forest_10.jpg",
+    "rel::5/phone_14.jpg",
+    "rel::5/record_3.jpg",
+    "rel::6/health_3.jpg"
+  ],
+  "R_equals_O_mismatch_pairs": 292,
+  "method_item_counts": {
+    "parallel_quoted_references": 347,
+    "whole_option_label": 149,
+    "unquoted_option_label_with_wrapper_rule": 42,
+    "explicit_parallel_role_mapping": 59,
+    "navigation_path_labels": 1,
+    "visual_or_generic_description_not_label": 5
+  },
+  "image_files": 1464,
+  "images_present_checked": true,
+  "images_decoded_checked": false,
+  "conditions_sha256": "e5aa6cd0c426cc648322c8c7702b1b6985fddb09ad895d70a85d86c6a3de38ce",
+  "review_scope": "Structural/reference reconstruction checks and known source-issue review; not exhaustive semantic or screenshot-label adjudication.",
+  "human_reviewed": false,
+  "screenshot_verified_all": false,
+  "source_issue_policy": "Infer all rows; exclude flagged full quartets from primary analysis."
+}
