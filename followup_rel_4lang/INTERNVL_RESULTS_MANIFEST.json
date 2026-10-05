@@ -1,0 +1,76 @@
+{
+  "schema": "internvl-rel-4lang-results-v1",
+  "created_at": "2026-10-05T09:15:25.644508+00:00",
+  "completed_full_output": "followup_rel_4lang/results/full/internvl2_5_8b",
+  "model_family": "internvl2_5",
+  "model_revision": "e9e4c0dc1db56bfab10458671519b7fa3dd29463",
+  "source_run_code_commit": "192e366d21de35f7aa688be356dc919ced9162de",
+  "notes": "Only listed artifacts are published. Raw full JSONL files, images, checkpoints, and logs remain local.",
+  "dataset_derived_license": "CC-BY-NC-4.0; see 01_code/THIRD_PARTY_DATA.md",
+  "files": {
+    "followup_rel_4lang/results/full/internvl2_5_8b/data_audit.json": {
+      "bytes": 1547,
+      "sha256": "7f5621780b5cb84d9f44bb1593d6763097ffa19b488a84e8f33c527ff6787322"
+    },
+    "followup_rel_4lang/results/full/internvl2_5_8b/plan.json": {
+      "bytes": 362,
+      "sha256": "061aee4daf00451b99a4185513f9d3a7dab484a4a1909d8da0cd6ea29f717be9"
+    },
+    "followup_rel_4lang/results/full/internvl2_5_8b/run_contract.json": {
+      "bytes": 3141,
+      "sha256": "9bcc3eb2c3dc644fb918564b506fe9510d51f145bad3bfa57d4965a7d6d51bbc"
+    },
+    "followup_rel_4lang/results/full/internvl2_5_8b/summary.json": {
+      "bytes": 2305,
+      "sha256": "a76ce6e5c4f66a847ce2f668623985dc8b8eed0a0dae196e11179903fe644221"
+    },
+    "followup_rel_4lang/results/full/internvl2_5_8b/predictions.jsonl.gz": {
+      "bytes": 3620620,
+      "sha256": "26946d210619f4a64cbcd91b63700c0847ac32a4f11cf66835f55fa632516312",
+      "uncompressed_bytes": 44836562,
+      "uncompressed_sha256": "fe823d300aa8dd74a34afa12bd4d6bf4b627156cda6f404a5d6b9fbaa87e07a5",
+      "uncompressed_rows": 18432
+    },
+    "followup_rel_4lang/results/full/internvl2_5_8b/results.jsonl.gz": {
+      "bytes": 5859313,
+      "sha256": "8ac6851b98cb4c1c422dd76fdf27aad6d583bcd6cfd8682f38597c974fddb167",
+      "uncompressed_bytes": 98098953,
+      "uncompressed_sha256": "e28eddfc117745ef24c7a9af3e92cb819d3890d37d0acc60af6d3dc9bb0c2b96",
+      "uncompressed_rows": 23424
+    },
+    "followup_rel_4lang/results/smoke/internvl2_5_8b/data_audit.json": {
+      "bytes": 1547,
+      "sha256": "7f5621780b5cb84d9f44bb1593d6763097ffa19b488a84e8f33c527ff6787322"
+    },
+    "followup_rel_4lang/results/smoke/internvl2_5_8b/plan.json": {
+      "bytes": 345,
+      "sha256": "e61be079a28350e5688a05bc66de4dbc56668f13dda530c2baaa37e48428ad57"
+    },
+    "followup_rel_4lang/results/smoke/internvl2_5_8b/run_contract.json": {
+      "bytes": 3141,
+      "sha256": "26d2bf972715c713f620906654ae2ebabee373d535b07c5add49e800a3b21e39"
+    },
+    "followup_rel_4lang/results/smoke/internvl2_5_8b/summary.json": {
+      "bytes": 2120,
+      "sha256": "6c21951a7524061c9aa5ff9fa0ffa46410ce8051bc164c33cfc21a3de13d0f1b"
+    },
+    "followup_rel_4lang/results/smoke/internvl2_5_8b/predictions.jsonl": {
+      "bytes": 190321,
+      "sha256": "c0b8781cb78b0f9096d1e64a4a1a6b3c55b1348dda9cf1eee8d2aed911a2c943",
+      "rows": 80
+    },
+    "followup_rel_4lang/results/smoke/internvl2_5_8b/results.jsonl": {
+      "bytes": 506936,
+      "sha256": "d076e8ec0bcbd95a4ffcf5776f6408b1f4fb0f32574ea2988afb4b2fd3a7d363",
+      "rows": 128
+    },
+    "followup_rel_4lang/results/preflight/internvl2_5_8b/data_audit.json": {
+      "bytes": 1547,
+      "sha256": "7f5621780b5cb84d9f44bb1593d6763097ffa19b488a84e8f33c527ff6787322"
+    },
+    "followup_rel_4lang/results/preflight/internvl2_5_8b/dry_run_plan.json": {
+      "bytes": 362,
+      "sha256": "061aee4daf00451b99a4185513f9d3a7dab484a4a1909d8da0cd6ea29f717be9"
+    }
+  }
+}

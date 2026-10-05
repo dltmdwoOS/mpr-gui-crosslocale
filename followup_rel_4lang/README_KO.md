@@ -67,11 +67,12 @@ python followup_rel_4lang/data_bundle.py verify
 ## B200 실행
 
 현재 연구실 서버의 `.venv`, 개인 캐시, CPU 제한을 적용하는 절차와 준비 상태는
-[서버 실행 안내](SERVER_RUN_KO.md)에 정리했다.
+[Qwen 실행 안내](SERVER_RUN_KO.md)와 [InternVL 실행 안내](INTERNVL_SERVER_RUN_KO.md)에 정리했다.
+Qwen과 InternVL2.5-8B의 full을 완료했다. 각 모델의 고정 설정과 출력 경로를
+지정해 `run_inference.py`를 직접 호출한다. `run_b200.sh`는 두 모델을 순차 실행하므로
+현재 서버의 개별 모델 실행에는 사용하지 않는다.
 
-현재 서버에서는 Qwen2.5-VL만 실행한다. `run_b200.sh`는 두 모델을 모두
-실행하므로 아래처럼 Qwen 설정을 지정해 러너를 직접 호출한다.
-환경 설정 파일은 기존 고정 Qwen 캐시를 오프라인으로 재사용한다.
+Qwen의 기존 고정 캐시를 오프라인으로 재사용하는 smoke 명령은 다음과 같다.
 
 ```bash
 source followup_rel_4lang/qwen_server_env.sh
@@ -82,11 +83,16 @@ source followup_rel_4lang/qwen_server_env.sh
   --max-items 2 --resume
 ```
 
-Batch 32 full은 완료됐다. 실제 입력 18,432개를 추론해 23,424조건 행을 모두
+Qwen batch 32 full은 완료됐다. 실제 입력 18,432개를 추론해 23,424조건 행을 모두
 저장했고, 실행 실패는 0건, 파싱 실패는 2건이다. 이전 batch 1 full은 중지한
 부분 실행 기록으로 보존했다. 자세한 결과와 Git에 포함된 압축 예측 파일의
 복원 방법은 [Qwen 결과 안내](QWEN_RESULTS_KO.md)에 있다.
-[서버 실행 안내](SERVER_RUN_KO.md)는 실행·재개 절차를 설명한다.
+[Qwen 실행 안내](SERVER_RUN_KO.md)는 실행·재개 절차를 설명한다.
+
+InternVL2.5-8B는 기존 실험과 같은 고정 revision을 개인 캐시에 준비했고,
+batch 1 full에서 실제 입력 18,432개와 조건 결과 23,424행이 모두 성공했으며
+파싱 실패는 0건이다. [InternVL 결과 안내](INTERNVL_RESULTS_KO.md)에 결과와
+압축 파일 복원법을, [InternVL 실행 안내](INTERNVL_SERVER_RUN_KO.md)에 재개 명령을 정리했다.
 
 배치 크기 실험은 `benchmark_batch.py`로 별도 수행한다. full과 연결되지 않는다.
 현재 서버에서 1·2·4·8·16·32·64를 검사했으며, 32가 메모리 여유를 확보한 크기 중
@@ -99,24 +105,15 @@ Blackwell을 지원하는 CUDA PyTorch/torchvision 환경을 먼저 사용한다
 아래 설치는 CUDA PyTorch를 별도로 설치하지 않는다. 현재 모델 어댑터의
 Transformers 범위는 4.57.x다.
 
-두 모델의 가중치가 모두 준비된 환경에서 사용하는 공통 절차는 다음과 같다.
-
-```bash
-python -m pip install -e '01_code[models]'
-python followup_rel_4lang/run_inference.py \
-  --model-config 01_code/configs/models/qwen2_5_vl_7b.yaml \
-  --output-dir followup_rel_4lang/results/preflight --dry-run
-bash followup_rel_4lang/run_b200.sh smoke
-bash followup_rel_4lang/run_b200.sh full
-```
-
-smoke는 두 집단에서 1문항씩, 총 2문항의 모든 조건을 평가한다. 두 모델의
-`summary.json`에서 실행 실패·파싱 실패와 메모리를 확인한 뒤 full을 실행한다.
+현재 서버에는 모델 의존성이 `.venv`에 설치돼 있다. 다른 서버에서 처음 준비할
+때에만 CUDA PyTorch 설치 상태와 개인 캐시를 확인한 뒤 모델별 실행 안내의
+절차를 따른다. smoke는 두 집단에서 1문항씩, 총 2문항의 모든 조건을 평가한다.
+각 모델의 `summary.json`에서 실행 실패·파싱 실패를 확인한 뒤 full을 실행한다.
 메모리는 `nvidia-smi`로 확인하며 러너는 GPU 0 하나를 사용한다.
-로그를 유지하려면 tmux 안에서 실행한다. 중단 시 같은 명령으로 재개한다.
+로그를 유지하려면 실행 안내의 `nohup` 명령을 사용한다. 중단 시 같은 명령으로 재개한다.
 로컬 연결 점검은 `--dry-run` 또는 `--mock-model`로 수행하며 GPU나 모델 다운로드가 없다.
 
-출력은 모델·smoke/full별 디렉터리에 저장한다. 이번 Qwen full의 JSONL 원본은
+출력은 모델·smoke/full별 디렉터리에 저장한다. 두 모델 full의 JSONL 원본은
 서버에 보존하고, 원격 Git에는 동일 내용을 검증 가능한 `.jsonl.gz`로 포함한다.
 
 - `run_contract.json`: 데이터·모델·프롬프트·코드·배치 크기 지문. 다른 설정의 결과 혼합 차단.

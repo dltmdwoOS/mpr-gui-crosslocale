@@ -1,0 +1,14 @@
+{
+  "items": 2,
+  "condition_rows": 128,
+  "actual_inferences": 80,
+  "batch_size": 1,
+  "planned_model_batches": 80,
+  "reused_condition_rows": 48,
+  "source_issue_rows": 0,
+  "items_by_dependency": {
+    "dependent": 1,
+    "independent": 1
+  },
+  "experiment_fingerprint": "d8db6e9d89ec4b4770410c2f148af7075e0cab94f01766533714d219c3d92c06"
+}

@@ -1,5 +1,9 @@
 # 현재 연구실 서버에서 Qwen2.5-VL REL 4언어 실험 실행하기
 
+이 문서는 Qwen 실행 기록이다. 완료된 InternVL2.5-8B의 결과는
+[InternVL 결과 안내](INTERNVL_RESULTS_KO.md), 재개 명령은
+[InternVL 실행 안내](INTERNVL_SERVER_RUN_KO.md)에 정리했다.
+
 2026-09-29에 `followup-rel-4lang-inference` 브랜치의 `9bc4235`를 바탕으로
 Qwen 배치 구현과 실제 배치 크기 실험을 완료했다. 현재 권장 배치는 **32**다.
 명령은 저장소 최상위 `/home/jovyan/seungjae/mpr-gui-crosslocale`에서 실행한다.
@@ -40,7 +44,7 @@ SentencePiece 0.2.0 / timm 1.0.30 / einops 0.8.2도 설치돼 있다.
 `results/setup_checks/current_data_audit.json`에 있다.
 
 캐시된 Qwen의 단일 입력 및 기존 batch 1 smoke도 통과한 상태다.
-InternVL 가중치나 GPU 추론은 이번 작업 범위에 포함하지 않는다.
+InternVL의 모델 준비와 GPU smoke는 별도 [실행 안내](INTERNVL_SERVER_RUN_KO.md)를 본다.
 
 ## 매번 사용할 환경
 

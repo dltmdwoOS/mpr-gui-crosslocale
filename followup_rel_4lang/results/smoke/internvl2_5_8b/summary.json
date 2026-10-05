@@ -1,0 +1,81 @@
+{
+  "outcome": "generation_correct",
+  "batch_size": 1,
+  "execution_mode": "gpu",
+  "condition_rows": 128,
+  "statuses": {
+    "success": 128
+  },
+  "actual_successful_inferences": 80,
+  "source_issue_rows": 0,
+  "parse_failures": 0,
+  "primary_descriptive_summary": {
+    "dependent": {
+      "complete_unflagged_mismatch_quartets": 12,
+      "items": 1,
+      "generation_accuracy": {
+        "O": 0.75,
+        "R": 0.75,
+        "C": 0.8333333333333334,
+        "F": 0.5
+      },
+      "paired_contrasts": {
+        "R-O": {
+          "difference_pp": 0.0,
+          "errors_corrected": 0,
+          "errors_introduced": 0
+        },
+        "F-C": {
+          "difference_pp": -33.333333333333336,
+          "errors_corrected": 0,
+          "errors_introduced": 4
+        },
+        "C-O": {
+          "difference_pp": 8.333333333333334,
+          "errors_corrected": 3,
+          "errors_introduced": 2
+        },
+        "F-R": {
+          "difference_pp": -25.0,
+          "errors_corrected": 2,
+          "errors_introduced": 5
+        }
+      },
+      "interaction_pp": -33.333333333333336
+    },
+    "independent": {
+      "complete_unflagged_mismatch_quartets": 12,
+      "items": 1,
+      "generation_accuracy": {
+        "O": 0.9166666666666666,
+        "R": 0.9166666666666666,
+        "C": 0.75,
+        "F": 0.75
+      },
+      "paired_contrasts": {
+        "R-O": {
+          "difference_pp": 0.0,
+          "errors_corrected": 0,
+          "errors_introduced": 0
+        },
+        "F-C": {
+          "difference_pp": 0.0,
+          "errors_corrected": 0,
+          "errors_introduced": 0
+        },
+        "C-O": {
+          "difference_pp": -16.666666666666668,
+          "errors_corrected": 1,
+          "errors_introduced": 3
+        },
+        "F-R": {
+          "difference_pp": -16.666666666666668,
+          "errors_corrected": 1,
+          "errors_introduced": 3
+        }
+      },
+      "interaction_pp": 0.0
+    }
+  },
+  "note": "Unadjusted descriptive estimates; no independent-sample inference or CI. Failures exclude the entire quartet; unparseable generated labels count as wrong."
+}
