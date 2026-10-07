@@ -1,0 +1,35 @@
+{
+  "source_commit": "425c693c664fcab5f769a36f6f5ee3dccaf1f4ed",
+  "conditions_sha256": "e5aa6cd0c426cc648322c8c7702b1b6985fddb09ad895d70a85d86c6a3de38ce",
+  "outcome": "generation_correct",
+  "models": {
+    "internvl": {
+      "full_rows": 23424,
+      "actual_inferences": 18432,
+      "eligible_rows": 17168,
+      "eligible_quartets": 4292,
+      "source_issue_rows_excluded": 400,
+      "matched_rows_excluded": 5856,
+      "parse_failures": 0
+    },
+    "qwen": {
+      "full_rows": 23424,
+      "actual_inferences": 18432,
+      "eligible_rows": 17168,
+      "eligible_quartets": 4292,
+      "source_issue_rows_excluded": 400,
+      "matched_rows_excluded": 5856,
+      "parse_failures": 2
+    }
+  },
+  "combined_eligible_rows": 34336,
+  "combined_eligible_quartets": 8584,
+  "dependency_quartets_per_model": {
+    "dependent": 3576,
+    "independent": 716
+  },
+  "files": {
+    "glmm_rows.csv": "b7aafaa3e13432dbab5c525453ed88172ceddc61138834bfd537eda6f155fc86",
+    "quartet_contrasts.csv": "7177dd2058e246cde37a3fb3a4a7e9cda5c738a418331d90a23e7c9447655514"
+  }
+}

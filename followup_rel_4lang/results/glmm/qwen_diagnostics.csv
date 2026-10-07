@@ -1,0 +1,2 @@
+"model","smoke","input_sha256","n_rows","n_items","n_pairs","elapsed_seconds","log_likelihood","aic","singular","convergence_message"
+"qwen",FALSE,"b7aafaa3e13432dbab5c525453ed88172ceddc61138834bfd537eda6f155fc86",17168,364,4292,45.1869900226593,-6959.81337724318,13951.6267544864,FALSE,""

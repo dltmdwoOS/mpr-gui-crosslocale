@@ -1,0 +1,101 @@
+{
+  "schema": "rel-4lang-glmm-results-v1",
+  "source_inference_commit": "425c693c664fcab5f769a36f6f5ee3dccaf1f4ed",
+  "conditions_sha256": "e5aa6cd0c426cc648322c8c7702b1b6985fddb09ad895d70a85d86c6a3de38ce",
+  "glmm_rows_sha256": "b7aafaa3e13432dbab5c525453ed88172ceddc61138834bfd537eda6f155fc86",
+  "text_hash_policy": "SHA-256 after CRLF to LF normalization for .csv/.json/.txt; binary .rds is byte-exact",
+  "files": {
+    "followup_rel_4lang/results/analysis_ready/glmm_rows.csv": {
+      "bytes": 3015462,
+      "sha256": "b7aafaa3e13432dbab5c525453ed88172ceddc61138834bfd537eda6f155fc86"
+    },
+    "followup_rel_4lang/results/analysis_ready/preparation_report.json": {
+      "bytes": 1074,
+      "sha256": "4147efb498b949ce7f3f89e9abf8286900d4e013d352fd7c699349b0fb041fd4"
+    },
+    "followup_rel_4lang/results/analysis_ready/quartet_contrasts.csv": {
+      "bytes": 774698,
+      "sha256": "7177dd2058e246cde37a3fb3a4a7e9cda5c738a418331d90a23e7c9447655514"
+    },
+    "followup_rel_4lang/results/glmm/combined_contrasts.csv": {
+      "bytes": 5067,
+      "sha256": "30ce578fffdcd48ac2e8ad1d48f1d5aa12c1fda240faa07d8eb4dae6be237611"
+    },
+    "followup_rel_4lang/results/glmm/combined_diagnostics.csv": {
+      "bytes": 449,
+      "sha256": "482ebc49ce69446d5d6ad8b16cb74ff1ea5d32a9bddd8ba834ba6afc0f47dddd"
+    },
+    "followup_rel_4lang/results/glmm/internvl_contrasts.csv": {
+      "bytes": 2631,
+      "sha256": "06588081db92d117b997e816e4c60c89a5fd5a561d79e610de82c38fe0f0a2ed"
+    },
+    "followup_rel_4lang/results/glmm/internvl_diagnostics.csv": {
+      "bytes": 293,
+      "sha256": "27f18c5a1079aad7f27c4e0526b503ed863220baf4727c84b6e55a3c4ef44c85"
+    },
+    "followup_rel_4lang/results/glmm/internvl_model.rds": {
+      "bytes": 2600949,
+      "sha256": "f3130903e945a84e09d83e5ea1c6de6516855a06a26ed09143674ebf6829b44f"
+    },
+    "followup_rel_4lang/results/glmm/internvl_session_info.txt": {
+      "bytes": 790,
+      "sha256": "e29962253963b975428a7a01cc9583eabc9b10ab18a449b3daaea1e3b1230897"
+    },
+    "followup_rel_4lang/results/glmm/qwen_contrasts.csv": {
+      "bytes": 2548,
+      "sha256": "3e9bc9f0dd765340ea4cdcde561a7dc31347c10a7c171a91e5cd0da07d201bf8"
+    },
+    "followup_rel_4lang/results/glmm/qwen_diagnostics.csv": {
+      "bytes": 290,
+      "sha256": "3fb56924f0be58b11e05acbecb6068c6fb71fae54c99ca8c664a8317aab3c3cb"
+    },
+    "followup_rel_4lang/results/glmm/qwen_model.rds": {
+      "bytes": 2551247,
+      "sha256": "765960720c44e7be458b625218ddc159b3bdbb71d56c7a0e2fe8d604bd0f225d"
+    },
+    "followup_rel_4lang/results/glmm/qwen_session_info.txt": {
+      "bytes": 790,
+      "sha256": "e29962253963b975428a7a01cc9583eabc9b10ab18a449b3daaea1e3b1230897"
+    },
+    "followup_rel_4lang/results/glmm_smoke/combined_contrasts.csv": {
+      "bytes": 5022,
+      "sha256": "33dba13ec8ae5726061253fd141d76ece32524bd501185f983739fdfec1e9cb4"
+    },
+    "followup_rel_4lang/results/glmm_smoke/combined_diagnostics.csv": {
+      "bytes": 440,
+      "sha256": "ef3a0cfebcf1b7ff74d5020edcff18099a408cdeb8a73dfb032759f9b4f76bd6"
+    },
+    "followup_rel_4lang/results/glmm_smoke/internvl_smoke_contrasts.csv": {
+      "bytes": 2605,
+      "sha256": "8e75f8e578461212dc5ec43e1d01c4838d128c3b8282b025d289db754c8fb489"
+    },
+    "followup_rel_4lang/results/glmm_smoke/internvl_smoke_diagnostics.csv": {
+      "bytes": 290,
+      "sha256": "f8f91191061f010668acf0ef652a163521160b63ec6a86ad2326892a3c973b0a"
+    },
+    "followup_rel_4lang/results/glmm_smoke/internvl_smoke_model.rds": {
+      "bytes": 258437,
+      "sha256": "a84ea5505b073267d14fdc22c1586486601d50d5d7c1305cf736f1993278c2fd"
+    },
+    "followup_rel_4lang/results/glmm_smoke/internvl_smoke_session_info.txt": {
+      "bytes": 682,
+      "sha256": "785fb267d435e559eb5d4e0d6ef11d752edacf461eeadd9455f83e4cdde41179"
+    },
+    "followup_rel_4lang/results/glmm_smoke/qwen_smoke_contrasts.csv": {
+      "bytes": 2529,
+      "sha256": "720d21597a9b0af7c6a8df417978de553ef369d93a519aef80a916a54e2aad93"
+    },
+    "followup_rel_4lang/results/glmm_smoke/qwen_smoke_diagnostics.csv": {
+      "bytes": 284,
+      "sha256": "4ef145dc489d4f062a500ddfd99cff0728048aa2933df4ae997c6e24117e8294"
+    },
+    "followup_rel_4lang/results/glmm_smoke/qwen_smoke_model.rds": {
+      "bytes": 260417,
+      "sha256": "d94c1f0542d7683fb90af8e87911648831cbc6268726e611d0a5d69175764e57"
+    },
+    "followup_rel_4lang/results/glmm_smoke/qwen_smoke_session_info.txt": {
+      "bytes": 682,
+      "sha256": "785fb267d435e559eb5d4e0d6ef11d752edacf461eeadd9455f83e4cdde41179"
+    }
+  }
+}
