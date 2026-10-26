@@ -29,11 +29,13 @@
   .card-top button { margin-left: auto; }
   .question { margin: 0 0 5px; line-height: 1.2; font-size: .91rem; }
   mark { background: #ffeb8a; }
-  .image-area { width: 100%; background: #253244; }
-  .image-wrap { position: relative; display: block; width: 100%; }
-  .image-wrap img { display: block; width: 100%; height: auto; }
+  .card-content { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 340px); gap: 10px; align-items: start; }
+  .card-panel { min-width: 0; }
+  .image-area { min-width: 0; height: min(70vh, calc(100vh - 280px)); display: flex; align-items: center; justify-content: center; overflow: auto; background: #253244; }
+  .image-wrap { position: relative; display: inline-block; flex: none; max-width: 100%; max-height: 100%; }
+  .image-wrap img { display: block; max-width: 100%; max-height: min(70vh, calc(100vh - 280px)); width: auto; height: auto; }
   .image-wrap canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: crosshair; }
-  .fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.4fr); gap: 5px; margin-top: 6px; }
+  .fields { display: grid; grid-template-columns: 1fr; gap: 5px; }
   .fields label, .extra label { font-size: .79rem; color: #41566a; }
   .fields select, .fields input, .extra select, .extra textarea { display: block; width: 100%; padding: 5px; border: 1px solid #a9b8c9; border-radius: 4px; background: white; color: #17212e; }
   .card-actions { display: flex; gap: 6px; align-items: center; margin-top: 5px; }
@@ -41,7 +43,7 @@
   .card-actions span { color: #52657a; font-size: .77rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   details { margin-top: 5px; font-size: .82rem; }
   summary { color: #195ca5; cursor: pointer; }
-  .extra { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding-top: 6px; }
+  .extra { display: grid; grid-template-columns: 1fr; gap: 6px; padding-top: 6px; }
   .extra .wide { grid-column: 1 / -1; }
   .options { color: #41566a; max-height: 6em; overflow: auto; }
   .options div { margin: 2px 0; }
@@ -49,9 +51,13 @@
   footer { position: sticky; bottom: 0; z-index: 9; display: flex; gap: 8px; align-items: center; padding: 8px 12px; background: white; border-top: 1px solid #cad4df; }
   #message { flex: 1; font-size: .86rem; }
   .card.expanded { position: fixed; inset: 8px; z-index: 20; overflow: auto; box-shadow: 0 0 0 100vmax #17212ebb; }
-  .card.expanded .image-area { height: calc(100vh - 245px); overflow: auto; }
-  .card.expanded .image-wrap { width: max(125%, 1400px); }
-  @media (max-width: 700px) { header { position: static; } .fields { grid-template-columns: 1fr 1fr; } .fields label:last-child { grid-column: 1 / -1; } }
+  .card.expanded .card-content { display: block; }
+  .card.expanded .card-panel { display: none; }
+  .card.expanded .image-area { height: calc(100vh - 105px); display: block; overflow: auto; }
+  .card.expanded .image-wrap { display: block; width: min(100%, var(--zoom-width, 900px)); max-width: none; max-height: none; margin-inline: auto; }
+  .card.expanded .image-wrap img { width: 100%; max-width: none; max-height: none; }
+  @media (max-width: 900px) { .card-content { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) { header { position: static; } }
 </style>
 </head>
 <body>
@@ -177,7 +183,7 @@ function addCard(lang) {
   root.id = "card-" + lang;
   root.className = "card";
   root.innerHTML = '<div class="card-top"><strong></strong><span class="badge"></span><button class="expand">크게</button></div>' +
-    '<p class="question"></p><div class="image-area"><div class="image-wrap"><img alt="GUI 화면"><canvas></canvas></div></div>' +
+    '<p class="question"></p><div class="card-content"><div class="image-area"><div class="image-wrap"><img alt="GUI 화면"><canvas></canvas></div></div><div class="card-panel">' +
     '<div class="fields"><label>상태<select class="status"><option value="">선택</option><option value="valid">찾음</option>' +
     '<option value="ambiguous">대상 애매함</option><option value="multiple_matches">여러 개</option>' +
     '<option value="absent">없음</option><option value="unpointable">위치 지정 불가</option>' +
@@ -194,7 +200,7 @@ function addCard(lang) {
     '<label>영어와 같은 뜻? · 선택지<select class="options-equivalence">' +
     '<option value="yes">예</option><option value="no">아니요</option><option value="uncertain">모름</option></select></label>' +
     '<label class="wide">이유 / 메모<textarea class="note"></textarea></label>' +
-    '<div class="options wide"></div></div></details>';
+    '<div class="options wide"></div></div></details></div></div>';
   root.querySelector("strong").textContent = lang.toUpperCase();
   root.querySelector(".question").title = data.question_stem;
   highlight(root.querySelector(".question"), data.question_stem, [data.stem_span]);
@@ -206,6 +212,10 @@ function addCard(lang) {
     options.append(row);
   }
   root.querySelector(".expand").onclick = () => {
+    if (!root.classList.contains("expanded")) {
+      const displayedWidth = root.querySelector("img").getBoundingClientRect().width;
+      root.style.setProperty("--zoom-width", Math.max(700, Math.min(1100, displayedWidth * 1.8)) + "px");
+    }
     root.classList.toggle("expanded");
     root.querySelector(".expand").textContent = root.classList.contains("expanded") ? "작게" : "크게";
   };
