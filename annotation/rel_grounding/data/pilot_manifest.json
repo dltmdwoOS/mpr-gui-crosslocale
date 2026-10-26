@@ -1,0 +1,2728 @@
+{
+  "schema": "rel-grounding-pilot-v1",
+  "provenance": {
+    "conditions_sha256": "e5aa6cd0c426cc648322c8c7702b1b6985fddb09ad895d70a85d86c6a3de38ce",
+    "reference_mappings_sha256": "04ff9cb438a2e40ea9e4bd92ab5053817d49bea970c1c36d28f87948d19d95e3",
+    "seed": 20261026,
+    "selection_rule": "dependent, no source issue, 12 complete mismatched quartets, one stem span in every language, O/R stem and options differ in all 12 pairs"
+  },
+  "frame_item_ids_sha256": "19ecc085c3229c55526cf5d2c573fcf2c7074b1933b8a2ff0ed21b80e1c5ee89",
+  "pilot_pairs_per_item": [
+    [
+      "en",
+      "zh"
+    ],
+    [
+      "zh",
+      "th"
+    ],
+    [
+      "th",
+      "ru"
+    ],
+    [
+      "ru",
+      "en"
+    ]
+  ],
+  "items": [
+    {
+      "parallel_id": "rel::5/camera_1.jpg",
+      "group": "rel::5",
+      "locales": {
+        "en": {
+          "image_path": "assets/images/5/en/camera_en_1.jpg",
+          "image_sha256": "18105e5d0d9a6ee904968a90ad440fbff2c32fee16c4e7e46a97b09f0ebcd36c",
+          "width": 1080,
+          "height": 2400,
+          "question_stem": "Which element is located directly above the 'PHOTO' mode button?",
+          "stem_span": {
+            "start": 45,
+            "end": 50,
+            "text": "PHOTO",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "AI button",
+            "B": "Video mode text",
+            "C": "Zoom level indicator",
+            "D": "AI scene enhancement notification"
+          },
+          "option_spans": {
+            "A": [],
+            "B": [
+              {
+                "start": 0,
+                "end": 10,
+                "text": "Video mode",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [],
+            "D": [
+              {
+                "start": 0,
+                "end": 20,
+                "text": "AI scene enhancement",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "zh": {
+          "image_path": "assets/images/5/zh/camera_zh_1.jpg",
+          "image_sha256": "e05c484234b12c39619d1cdd8590e76261ac6851a2fb0bfb85af283a2cf59f6f",
+          "width": 1080,
+          "height": 2400,
+          "question_stem": "哪个元素位于“照片”模式按钮的正上方？",
+          "stem_span": {
+            "start": 7,
+            "end": 9,
+            "text": "照片",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "AI按钮",
+            "B": "视频模式文本",
+            "C": "缩放级别指示器",
+            "D": "AI场景增强通知"
+          },
+          "option_spans": {
+            "A": [],
+            "B": [
+              {
+                "start": 0,
+                "end": 4,
+                "text": "视频模式",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [],
+            "D": [
+              {
+                "start": 0,
+                "end": 6,
+                "text": "AI场景增强",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "th": {
+          "image_path": "assets/images/5/th/camera_th_1.jpg",
+          "image_sha256": "42e1588e4cab58ae6aec52017f7fa7ad7f7c59824d8814a423004d69386b17e3",
+          "width": 1080,
+          "height": 2400,
+          "question_stem": "องค์ประกอบใดอยู่เหนือปุ่มโหมด 'รูปถ่าย' โดยตรง?",
+          "stem_span": {
+            "start": 31,
+            "end": 38,
+            "text": "รูปถ่าย",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "ปุ่ม AI",
+            "B": "ข้อความโหมดวิดีโอ",
+            "C": "ตัวบ่งชี้ระดับการซูม",
+            "D": "การแจ้งเตือนการเพิ่มประสิทธิภาพฉาก AI"
+          },
+          "option_spans": {
+            "A": [],
+            "B": [
+              {
+                "start": 7,
+                "end": 17,
+                "text": "โหมดวิดีโอ",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [],
+            "D": [
+              {
+                "start": 12,
+                "end": 37,
+                "text": "การเพิ่มประสิทธิภาพฉาก AI",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "ru": {
+          "image_path": "assets/images/5/ru/camera_ru_1.jpg",
+          "image_sha256": "ca520ff328c0e8963fb031ce8da8474e70d9032eb2f66dea573175672e8f2d13",
+          "width": 1080,
+          "height": 2400,
+          "question_stem": "Какой элемент находится прямо над кнопкой режима 'ФОТО'?",
+          "stem_span": {
+            "start": 50,
+            "end": 54,
+            "text": "ФОТО",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Кнопка AI",
+            "B": "Текст режима ВИДЕО",
+            "C": "Индикатор уровня увеличения",
+            "D": "Уведомление о 'Улучшение сцены ИИ: вкл.'"
+          },
+          "option_spans": {
+            "A": [],
+            "B": [
+              {
+                "start": 6,
+                "end": 18,
+                "text": "режима ВИДЕО",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [],
+            "D": [
+              {
+                "start": 15,
+                "end": 39,
+                "text": "Улучшение сцены ИИ: вкл.",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "parallel_id": "rel::1/booking_10.jpg",
+      "group": "rel::1",
+      "locales": {
+        "en": {
+          "image_path": "assets/images/1/en/booking_en_10.jpg",
+          "image_sha256": "32437121341c4d9a0b5f36bf7235dad7cf10ca8e42d9ca0f31e699f8acca0f79",
+          "width": 1228,
+          "height": 2700,
+          "question_stem": "Which currency option is immediately below the \"Suggested for you\" section?",
+          "stem_span": {
+            "start": 48,
+            "end": 65,
+            "text": "Suggested for you",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Singaporean Dollar",
+            "B": "Euro",
+            "C": "Canadian Dollar",
+            "D": "U.S. Dollar"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 18,
+                "text": "Singaporean Dollar",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 4,
+                "text": "Euro",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 15,
+                "text": "Canadian Dollar",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 11,
+                "text": "U.S. Dollar",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "zh": {
+          "image_path": "assets/images/1/zh/booking_zh_10.jpg",
+          "image_sha256": "18831426888ac1c0822f18c79ac8f12450d7b35f999aaa7311cb5c29eb365216",
+          "width": 1228,
+          "height": 2700,
+          "question_stem": "哪个货币选项在“为你推荐”部分的正下方？",
+          "stem_span": {
+            "start": 8,
+            "end": 12,
+            "text": "为你推荐",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "新加坡元",
+            "B": "欧元",
+            "C": "加拿大元",
+            "D": "美元"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 4,
+                "text": "新加坡元",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "欧元",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 4,
+                "text": "加拿大元",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "美元",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "th": {
+          "image_path": "assets/images/1/th/booking_th_10.jpg",
+          "image_sha256": "3f2fcbb5a3b1c3bfcde891117aa1ca15ec872e6d3529fdafe2c4ec4cdd3868b2",
+          "width": 1228,
+          "height": 2700,
+          "question_stem": "ตัวเลือกสกุลเงินใดอยู่ด้านล่างของส่วน \"ตัวเลือกแนะนำสำหรับคุณ\" ทันที?",
+          "stem_span": {
+            "start": 39,
+            "end": 61,
+            "text": "ตัวเลือกแนะนำสำหรับคุณ",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "ดอลลาร์สิงคโปร์",
+            "B": "ยูโร",
+            "C": "ดอลลาร์แคนาดา",
+            "D": "ดอลลาร์สหรัฐอเมริกา"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 15,
+                "text": "ดอลลาร์สิงคโปร์",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 4,
+                "text": "ยูโร",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 13,
+                "text": "ดอลลาร์แคนาดา",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 19,
+                "text": "ดอลลาร์สหรัฐอเมริกา",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "ru": {
+          "image_path": "assets/images/1/ru/booking_ru_10.jpg",
+          "image_sha256": "bcd3f78667958038dde482eb2b41355ee3eaa189c3835acda61d585f0b261017",
+          "width": 1228,
+          "height": 2700,
+          "question_stem": "Какая валютная опция находится сразу под разделом \"Рекомендовано для вас\"?",
+          "stem_span": {
+            "start": 51,
+            "end": 72,
+            "text": "Рекомендовано для вас",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Сингапурский доллар",
+            "B": "Евро",
+            "C": "Канадский доллар",
+            "D": "Доллар США"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 19,
+                "text": "Сингапурский доллар",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 4,
+                "text": "Евро",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 16,
+                "text": "Канадский доллар",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 10,
+                "text": "Доллар США",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "parallel_id": "rel::5/message_1.jpg",
+      "group": "rel::5",
+      "locales": {
+        "en": {
+          "image_path": "assets/images/5/en/message_en_1.jpg",
+          "image_sha256": "04048a839dfd12851fa5c14f41b31635126d6f7278b2b4c0b9e7df4c2326f7b5",
+          "width": 1080,
+          "height": 2400,
+          "question_stem": "Which element is positioned directly above 'Hide notification details on Lock screen'?",
+          "stem_span": {
+            "start": 44,
+            "end": 84,
+            "text": "Hide notification details on Lock screen",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Lock screen",
+            "B": "Allow notifications",
+            "C": "Ringtone",
+            "D": "Categories"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 11,
+                "text": "Lock screen",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 19,
+                "text": "Allow notifications",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 8,
+                "text": "Ringtone",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 10,
+                "text": "Categories",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "zh": {
+          "image_path": "assets/images/5/zh/message_zh_1.jpg",
+          "image_sha256": "4f6c0776980acefae67741ae97007f3a6cd3cccf0dd41369b6d796bc8397df25",
+          "width": 1080,
+          "height": 2400,
+          "question_stem": "哪个元素位于“锁屏隐藏通知内容”正上方？",
+          "stem_span": {
+            "start": 7,
+            "end": 15,
+            "text": "锁屏隐藏通知内容",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "锁屏",
+            "B": "允许通知",
+            "C": "铃声",
+            "D": "类别"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "锁屏",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 4,
+                "text": "允许通知",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "铃声",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "类别",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "th": {
+          "image_path": "assets/images/5/th/message_th_1.jpg",
+          "image_sha256": "c38b9f16314358de74f806e0adaf5fe0f704cac9d6ac535b84559355377a3510",
+          "width": 1080,
+          "height": 2400,
+          "question_stem": "องค์ประกอบใดที่อยู่เหนือ \"ซ่อนรายละเอียดของการแจ้งบนหน้าจอล็อก\"?",
+          "stem_span": {
+            "start": 26,
+            "end": 62,
+            "text": "ซ่อนรายละเอียดของการแจ้งบนหน้าจอล็อก",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "ล็อกหน้าจอ",
+            "B": "อนุญาตการแจ้งเตือน",
+            "C": "เสียงเรียกเข้า",
+            "D": "หมวดหมู่"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 10,
+                "text": "ล็อกหน้าจอ",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 18,
+                "text": "อนุญาตการแจ้งเตือน",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 14,
+                "text": "เสียงเรียกเข้า",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 8,
+                "text": "หมวดหมู่",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "ru": {
+          "image_path": "assets/images/5/ru/message_ru_1.jpg",
+          "image_sha256": "907a987f41b1fc90ff362f25d44a6cdd819b1b24259e231388b77a662a0c3596",
+          "width": 1080,
+          "height": 2400,
+          "question_stem": "Какой элемент расположен непосредственно выше 'Скрывать данные уведомлений на экране блокировки'?",
+          "stem_span": {
+            "start": 47,
+            "end": 95,
+            "text": "Скрывать данные уведомлений на экране блокировки",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Экран блокировки",
+            "B": "Разрешить уведомления",
+            "C": "Мелодия звонка",
+            "D": "Значки"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 16,
+                "text": "Экран блокировки",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 21,
+                "text": "Разрешить уведомления",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 14,
+                "text": "Мелодия звонка",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 6,
+                "text": "Значки",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "parallel_id": "rel::1/booking_1.jpg",
+      "group": "rel::1",
+      "locales": {
+        "en": {
+          "image_path": "assets/images/1/en/booking_en_1.jpg",
+          "image_sha256": "0f006563219d58245b9f6d6a55606c7ed4d5581e7a0a4a049db80183aa36a72c",
+          "width": 1228,
+          "height": 2700,
+          "question_stem": "In the row for selecting the number of guests, which input field is located directly above the horizontal center of the blue 'Search' button?",
+          "stem_span": {
+            "start": 126,
+            "end": 132,
+            "text": "Search",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "The 'Adults' input field",
+            "B": "The 'Children' input field",
+            "C": "The 'Rooms' input field",
+            "D": "The 'Check-out date' input field"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 5,
+                "end": 11,
+                "text": "Adults",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 5,
+                "end": 13,
+                "text": "Children",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 5,
+                "end": 10,
+                "text": "Rooms",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 5,
+                "end": 19,
+                "text": "Check-out date",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "zh": {
+          "image_path": "assets/images/1/zh/booking_zh_1.jpg",
+          "image_sha256": "b7a65f4e3f80b1af8f886cbf736d31985538e6f64344250251da8bea973cf0ee",
+          "width": 1228,
+          "height": 2700,
+          "question_stem": "在选择客人数的行中，哪个输入字段位于蓝色“搜索”按钮的水平中心正上方？",
+          "stem_span": {
+            "start": 21,
+            "end": 23,
+            "text": "搜索",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "“成人”输入字段",
+            "B": "“儿童”输入字段",
+            "C": "“客房”输入字段",
+            "D": "“退房日期”输入字段"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 1,
+                "end": 3,
+                "text": "成人",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 1,
+                "end": 3,
+                "text": "儿童",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 1,
+                "end": 3,
+                "text": "客房",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 1,
+                "end": 5,
+                "text": "退房日期",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "th": {
+          "image_path": "assets/images/1/th/booking_th_1.jpg",
+          "image_sha256": "65d6f74cdba7a309e8b2fd9051efbbc834f7e6c682ad83d5e55aa949f3570c38",
+          "width": 1228,
+          "height": 2700,
+          "question_stem": "ในแถวสำหรับเลือกจำนวนแขก ช่องป้อนข้อมูลใดอยู่ตรงกลางแนวนอนของปุ่มสีน้ำเงิน \"ค้นหา\"?",
+          "stem_span": {
+            "start": 76,
+            "end": 81,
+            "text": "ค้นหา",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "ช่องป้อนข้อมูล \"ผู้ใหญ่\"",
+            "B": "ช่องป้อนข้อมูล \"เด็ก\"",
+            "C": "ช่องป้อนข้อมูล \"ห้องพัก\"",
+            "D": "ช่องป้อนข้อมูล \"วันที่เช็คเอาท์\""
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 16,
+                "end": 23,
+                "text": "ผู้ใหญ่",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 16,
+                "end": 20,
+                "text": "เด็ก",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 16,
+                "end": 23,
+                "text": "ห้องพัก",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 16,
+                "end": 31,
+                "text": "วันที่เช็คเอาท์",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "ru": {
+          "image_path": "assets/images/1/ru/booking_ru_1.jpg",
+          "image_sha256": "0aa35b5d15e824025eb4dc4ec769323320b3d2a3c82e5231161db242c8d250c3",
+          "width": 1228,
+          "height": 2700,
+          "question_stem": "В строке выбора количества гостей, какое поле ввода расположено прямо над горизонтальным центром синей кнопки 'Найти'?",
+          "stem_span": {
+            "start": 111,
+            "end": 116,
+            "text": "Найти",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Поле ввода 'Взрослых'",
+            "B": "Поле ввода 'Детей'",
+            "C": "Поле ввода 'Номера'",
+            "D": "Поле ввода 'Дата отъезда'"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 12,
+                "end": 20,
+                "text": "Взрослых",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 12,
+                "end": 17,
+                "text": "Детей",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 12,
+                "end": 18,
+                "text": "Номера",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 12,
+                "end": 24,
+                "text": "Дата отъезда",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "parallel_id": "rel::4/twitter_6.jpg",
+      "group": "rel::4",
+      "locales": {
+        "en": {
+          "image_path": "assets/images/4/en/twitter_en_6.jpg",
+          "image_sha256": "ede030b645fde51872e76e1e74799a9749a7fba6e36ef9023b71f133e1eacb22",
+          "width": 864,
+          "height": 1920,
+          "question_stem": "Which setting is located directly below the 'Security and account access' option in the settings menu?",
+          "stem_span": {
+            "start": 45,
+            "end": 72,
+            "text": "Security and account access",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Premium",
+            "B": "Monetization",
+            "C": "Privacy and safety",
+            "D": "Notifications"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 7,
+                "text": "Premium",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 12,
+                "text": "Monetization",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 18,
+                "text": "Privacy and safety",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 13,
+                "text": "Notifications",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "zh": {
+          "image_path": "assets/images/4/zh/twitter_zh_6.jpg",
+          "image_sha256": "43e46fbf8c8a32c5d71654d047d764deb6657debc24e0da800e67ecc8ffdc384",
+          "width": 1260,
+          "height": 2800,
+          "question_stem": "在设置菜单中，哪个设置位于“安全性和账号访问权限”选项的正下方？",
+          "stem_span": {
+            "start": 14,
+            "end": 24,
+            "text": "安全性和账号访问权限",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Premium",
+            "B": "盈利",
+            "C": "隐私与安全",
+            "D": "通知"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 7,
+                "text": "Premium",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "盈利",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 5,
+                "text": "隐私与安全",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "通知",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "th": {
+          "image_path": "assets/images/4/th/twitter_th_6.jpg",
+          "image_sha256": "a37bfd092d1840ff8f59daf2a8696ded844c6256d46ccda3c3b62b7fa586b4e6",
+          "width": 864,
+          "height": 1920,
+          "question_stem": "ตัวเลือกใดอยู่ด้านล่างของตัวเลือก 'ความปลอดภัยและการเข้าถึงบัญชี' ในเมนูการตั้งค่า?",
+          "stem_span": {
+            "start": 35,
+            "end": 64,
+            "text": "ความปลอดภัยและการเข้าถึงบัญชี",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Premium",
+            "B": "การสร้างเงิน",
+            "C": "ความเป็นส่วนตัวและความปลอดภัย",
+            "D": "การแจ้งเตือน"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 7,
+                "text": "Premium",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 12,
+                "text": "การสร้างเงิน",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 29,
+                "text": "ความเป็นส่วนตัวและความปลอดภัย",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 12,
+                "text": "การแจ้งเตือน",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "ru": {
+          "image_path": "assets/images/4/ru/twitter_ru_6.jpg",
+          "image_sha256": "e10e64bc38219fb0d8b9bf18097985e2952953130055903436a60b8765c8439e",
+          "width": 864,
+          "height": 1920,
+          "question_stem": "Какой параметр находится непосредственно ниже опции 'Безопасность и доступ к учетной записи' в меню настроек?",
+          "stem_span": {
+            "start": 53,
+            "end": 91,
+            "text": "Безопасность и доступ к учетной записи",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Premium",
+            "B": "Монетизация",
+            "C": "Конфиденциальность и безопасность",
+            "D": "Уведомления"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 7,
+                "text": "Premium",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 11,
+                "text": "Монетизация",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 33,
+                "text": "Конфиденциальность и безопасность",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 11,
+                "text": "Уведомления",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "parallel_id": "rel::6/wallet_3.jpg",
+      "group": "rel::6",
+      "locales": {
+        "en": {
+          "image_path": "assets/images/6/en/wallet_en_3.jpg",
+          "image_sha256": "29d05806d5920f4aba61715b1a900318b895a3e845dc1444f7ecdd572b46c4c2",
+          "width": 1280,
+          "height": 2769,
+          "question_stem": "What is the direct order of elements from top to bottom on the screen after the 'Orders' title?",
+          "stem_span": {
+            "start": 81,
+            "end": 87,
+            "text": "Orders",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Search bar, No Orders text, Learn More link",
+            "B": "Search bar, No Orders text, Box icon, Learn More link",
+            "C": "Box icon, No Orders text, Search bar, Learn More link",
+            "D": "Search bar, Box icon, No Orders text, Learn More link"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 6,
+                "text": "Search",
+                "ref_id": "A:0"
+              },
+              {
+                "start": 12,
+                "end": 21,
+                "text": "No Orders",
+                "ref_id": "A:1"
+              },
+              {
+                "start": 28,
+                "end": 38,
+                "text": "Learn More",
+                "ref_id": "A:2"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 6,
+                "text": "Search",
+                "ref_id": "B:0"
+              },
+              {
+                "start": 12,
+                "end": 21,
+                "text": "No Orders",
+                "ref_id": "B:1"
+              },
+              {
+                "start": 38,
+                "end": 48,
+                "text": "Learn More",
+                "ref_id": "B:2"
+              }
+            ],
+            "C": [
+              {
+                "start": 26,
+                "end": 32,
+                "text": "Search",
+                "ref_id": "C:0"
+              },
+              {
+                "start": 10,
+                "end": 19,
+                "text": "No Orders",
+                "ref_id": "C:1"
+              },
+              {
+                "start": 38,
+                "end": 48,
+                "text": "Learn More",
+                "ref_id": "C:2"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 6,
+                "text": "Search",
+                "ref_id": "D:0"
+              },
+              {
+                "start": 22,
+                "end": 31,
+                "text": "No Orders",
+                "ref_id": "D:1"
+              },
+              {
+                "start": 38,
+                "end": 48,
+                "text": "Learn More",
+                "ref_id": "D:2"
+              }
+            ]
+          }
+        },
+        "zh": {
+          "image_path": "assets/images/6/zh/wallet_zh_3.jpg",
+          "image_sha256": "2e3e124cab5dfabca7ff926fe3e19e4c1ac9de27e50c5a2c650756e6c0a6b0e9",
+          "width": 1280,
+          "height": 2769,
+          "question_stem": "在“订单”标题下，屏幕上元素从上到下的直接顺序是什么？",
+          "stem_span": {
+            "start": 2,
+            "end": 4,
+            "text": "订单",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "搜索栏，无订单文本，进一步了解链接",
+            "B": "搜索栏，无订单文本，箱子图标，进一步了解链接",
+            "C": "箱子图标，无订单文本，搜索栏，进一步了解链接",
+            "D": "搜索栏，箱子图标，无订单文本，进一步了解链接"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "搜索",
+                "ref_id": "A:0"
+              },
+              {
+                "start": 4,
+                "end": 7,
+                "text": "无订单",
+                "ref_id": "A:1"
+              },
+              {
+                "start": 10,
+                "end": 15,
+                "text": "进一步了解",
+                "ref_id": "A:2"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "搜索",
+                "ref_id": "B:0"
+              },
+              {
+                "start": 4,
+                "end": 7,
+                "text": "无订单",
+                "ref_id": "B:1"
+              },
+              {
+                "start": 15,
+                "end": 20,
+                "text": "进一步了解",
+                "ref_id": "B:2"
+              }
+            ],
+            "C": [
+              {
+                "start": 11,
+                "end": 13,
+                "text": "搜索",
+                "ref_id": "C:0"
+              },
+              {
+                "start": 5,
+                "end": 8,
+                "text": "无订单",
+                "ref_id": "C:1"
+              },
+              {
+                "start": 15,
+                "end": 20,
+                "text": "进一步了解",
+                "ref_id": "C:2"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "搜索",
+                "ref_id": "D:0"
+              },
+              {
+                "start": 9,
+                "end": 12,
+                "text": "无订单",
+                "ref_id": "D:1"
+              },
+              {
+                "start": 15,
+                "end": 20,
+                "text": "进一步了解",
+                "ref_id": "D:2"
+              }
+            ]
+          }
+        },
+        "th": {
+          "image_path": "assets/images/6/th/wallet_th_3.jpg",
+          "image_sha256": "e9c97e8b0c9c1997030f9dc5bbcafd0515cd6a87e96dcc39027dd17d2f7e6292",
+          "width": 1280,
+          "height": 2769,
+          "question_stem": "ลำดับโดยตรงขององค์ประกอบจากบนลงล่างบนหน้าจอหลังจากหัวข้อ \"คำสั่งซื้อ\" คืออะไร?",
+          "stem_span": {
+            "start": 58,
+            "end": 68,
+            "text": "คำสั่งซื้อ",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "แถบค้นหา, ข้อความ \"ไม่มีคำสั่งซื้อ\", ลิงก์ \"เรียนรู้เพิ่มเติม\"",
+            "B": "แถบค้นหา, ข้อความ \"ไม่มีคำสั่งซื้อ\", ไอคอนกล่อง, ลิงก์ \"เรียนรู้เพิ่มเติม\"",
+            "C": "ไอคอนกล่อง, ข้อความ \"ไม่มีคำสั่งซื้อ\", แถบค้นหา, ลิงก์ \"เรียนรู้เพิ่มเติม\"",
+            "D": "แถบค้นหา, ไอคอนกล่อง, ข้อความ \"ไม่มีคำสั่งซื้อ\", ลิงก์ \"เรียนรู้เพิ่มเติม\""
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 3,
+                "end": 8,
+                "text": "ค้นหา",
+                "ref_id": "A:0"
+              },
+              {
+                "start": 19,
+                "end": 34,
+                "text": "ไม่มีคำสั่งซื้อ",
+                "ref_id": "A:1"
+              },
+              {
+                "start": 44,
+                "end": 61,
+                "text": "เรียนรู้เพิ่มเติม",
+                "ref_id": "A:2"
+              }
+            ],
+            "B": [
+              {
+                "start": 3,
+                "end": 8,
+                "text": "ค้นหา",
+                "ref_id": "B:0"
+              },
+              {
+                "start": 19,
+                "end": 34,
+                "text": "ไม่มีคำสั่งซื้อ",
+                "ref_id": "B:1"
+              },
+              {
+                "start": 56,
+                "end": 73,
+                "text": "เรียนรู้เพิ่มเติม",
+                "ref_id": "B:2"
+              }
+            ],
+            "C": [
+              {
+                "start": 42,
+                "end": 47,
+                "text": "ค้นหา",
+                "ref_id": "C:0"
+              },
+              {
+                "start": 21,
+                "end": 36,
+                "text": "ไม่มีคำสั่งซื้อ",
+                "ref_id": "C:1"
+              },
+              {
+                "start": 56,
+                "end": 73,
+                "text": "เรียนรู้เพิ่มเติม",
+                "ref_id": "C:2"
+              }
+            ],
+            "D": [
+              {
+                "start": 3,
+                "end": 8,
+                "text": "ค้นหา",
+                "ref_id": "D:0"
+              },
+              {
+                "start": 31,
+                "end": 46,
+                "text": "ไม่มีคำสั่งซื้อ",
+                "ref_id": "D:1"
+              },
+              {
+                "start": 56,
+                "end": 73,
+                "text": "เรียนรู้เพิ่มเติม",
+                "ref_id": "D:2"
+              }
+            ]
+          }
+        },
+        "ru": {
+          "image_path": "assets/images/6/ru/wallet_ru_3.jpg",
+          "image_sha256": "361c7d60ff075b6665a474c29d201b37961c0e5aaa41f20fe0e8045fa5714fd5",
+          "width": 1280,
+          "height": 2769,
+          "question_stem": "Каков прямой порядок элементов сверху вниз на экране после заголовка \"Заказы\"?",
+          "stem_span": {
+            "start": 70,
+            "end": 76,
+            "text": "Заказы",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "\"Поиск\", \"Нет заказов\", \"Подробнее\"",
+            "B": "\"Поиск\", \"Нет заказов\", значок коробки, \"Подробнее\"",
+            "C": "значок коробки, \"Нет заказов\", \"Поиск\", \"Подробнее\"",
+            "D": "\"Поиск\", значок коробки, \"Нет заказов\", \"Подробнее\""
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 1,
+                "end": 6,
+                "text": "Поиск",
+                "ref_id": "A:0"
+              },
+              {
+                "start": 10,
+                "end": 21,
+                "text": "Нет заказов",
+                "ref_id": "A:1"
+              },
+              {
+                "start": 25,
+                "end": 34,
+                "text": "Подробнее",
+                "ref_id": "A:2"
+              }
+            ],
+            "B": [
+              {
+                "start": 1,
+                "end": 6,
+                "text": "Поиск",
+                "ref_id": "B:0"
+              },
+              {
+                "start": 10,
+                "end": 21,
+                "text": "Нет заказов",
+                "ref_id": "B:1"
+              },
+              {
+                "start": 41,
+                "end": 50,
+                "text": "Подробнее",
+                "ref_id": "B:2"
+              }
+            ],
+            "C": [
+              {
+                "start": 32,
+                "end": 37,
+                "text": "Поиск",
+                "ref_id": "C:0"
+              },
+              {
+                "start": 17,
+                "end": 28,
+                "text": "Нет заказов",
+                "ref_id": "C:1"
+              },
+              {
+                "start": 41,
+                "end": 50,
+                "text": "Подробнее",
+                "ref_id": "C:2"
+              }
+            ],
+            "D": [
+              {
+                "start": 1,
+                "end": 6,
+                "text": "Поиск",
+                "ref_id": "D:0"
+              },
+              {
+                "start": 26,
+                "end": 37,
+                "text": "Нет заказов",
+                "ref_id": "D:1"
+              },
+              {
+                "start": 41,
+                "end": 50,
+                "text": "Подробнее",
+                "ref_id": "D:2"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "parallel_id": "rel::2/weather_3.png",
+      "group": "rel::2",
+      "locales": {
+        "en": {
+          "image_path": "assets/images/2/en/weather_en_3.png",
+          "image_sha256": "eaf6a1350f32f36e40b677f1e193ed72413bcdf319be7501dcd7662398881d7c",
+          "width": 2746,
+          "height": 1908,
+          "question_stem": "Which element is located directly to the right of the 'Wind' section and above the pressure gauge?",
+          "stem_span": {
+            "start": 55,
+            "end": 59,
+            "text": "Wind",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "The 10-day forecast",
+            "B": "The air quality map",
+            "C": "The daily summary text",
+            "D": "The temperature scale"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 4,
+                "end": 19,
+                "text": "10-day forecast",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 4,
+                "end": 19,
+                "text": "air quality map",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 4,
+                "end": 17,
+                "text": "daily summary",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": []
+          }
+        },
+        "zh": {
+          "image_path": "assets/images/2/zh/weather_zh_3.png",
+          "image_sha256": "c4d528de547e76ade5f9a357994c00c4c40a0774d996cab21111f957b212be03",
+          "width": 2746,
+          "height": 1908,
+          "question_stem": "哪个元素位于「风」部分的右侧并且在气压表上方？",
+          "stem_span": {
+            "start": 7,
+            "end": 8,
+            "text": "风",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "「10日天气预报」",
+            "B": "「空气质量地图」",
+            "C": "「每日概要」文本",
+            "D": "温度刻度"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 1,
+                "end": 8,
+                "text": "10日天气预报",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 1,
+                "end": 7,
+                "text": "空气质量地图",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 1,
+                "end": 5,
+                "text": "每日概要",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": []
+          }
+        },
+        "th": {
+          "image_path": "assets/images/2/th/weather_th_3.png",
+          "image_sha256": "7b98203db5bf7cece993db816ed9c13867ec21802d6c913997265d17c90da2bb",
+          "width": 2746,
+          "height": 1908,
+          "question_stem": "องค์ประกอบใดอยู่ทางขวาของส่วน 'ลม' และเหนือมาตรวัดความดัน?",
+          "stem_span": {
+            "start": 31,
+            "end": 33,
+            "text": "ลม",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "การพยากรณ์อากาศ 10 วัน",
+            "B": "แผนที่คุณภาพอากาศ",
+            "C": "ข้อความสรุปรายวัน",
+            "D": "มาตราส่วนอุณหภูมิ"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 22,
+                "text": "การพยากรณ์อากาศ 10 วัน",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 17,
+                "text": "แผนที่คุณภาพอากาศ",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 7,
+                "end": 17,
+                "text": "สรุปรายวัน",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": []
+          }
+        },
+        "ru": {
+          "image_path": "assets/images/2/ru/weather_ru_3.png",
+          "image_sha256": "9a48c633e149e243ffcaacf26ab33a0b7429cb447154989d96829cf13dbc9b65",
+          "width": 2746,
+          "height": 1908,
+          "question_stem": "Какой элемент расположен непосредственно справа от раздела 'Ветер' и выше датчика давления?",
+          "stem_span": {
+            "start": 60,
+            "end": 65,
+            "text": "Ветер",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Прогноз на 10 дней",
+            "B": "Качество воздуха на карте",
+            "C": "Ежедневная сводка",
+            "D": "Шкала температуры"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 18,
+                "text": "Прогноз на 10 дней",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 25,
+                "text": "Качество воздуха на карте",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 17,
+                "text": "Ежедневная сводка",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": []
+          }
+        }
+      }
+    },
+    {
+      "parallel_id": "rel::4/Gmail_8.jpg",
+      "group": "rel::4",
+      "locales": {
+        "en": {
+          "image_path": "assets/images/4/en/Gmail_en_8.jpg",
+          "image_sha256": "f6745c9fc0457e6c7061f2a853c5d977558c14bb10cf0572fd589a2788298248",
+          "width": 1260,
+          "height": 2800,
+          "question_stem": "Which element is located directly above the 'Compose email' placeholder text?",
+          "stem_span": {
+            "start": 45,
+            "end": 58,
+            "text": "Compose email",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "To field",
+            "B": "Keyboard",
+            "C": "From field",
+            "D": "Subject field"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "To",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [],
+            "C": [
+              {
+                "start": 0,
+                "end": 4,
+                "text": "From",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 7,
+                "text": "Subject",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "zh": {
+          "image_path": "assets/images/4/zh/Gmail_zh_8.jpg",
+          "image_sha256": "6826f600b9e3b08904199361abb48148f3a8542c99011b6bd839bf6a2f6a4f30",
+          "width": 1260,
+          "height": 2800,
+          "question_stem": "哪个元素位于“撰写电子邮件”占位符文本的正上方？",
+          "stem_span": {
+            "start": 7,
+            "end": 13,
+            "text": "撰写电子邮件",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "发件人字段",
+            "B": "键盘",
+            "C": "收件人字段",
+            "D": "主题字段"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 3,
+                "text": "发件人",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [],
+            "C": [
+              {
+                "start": 0,
+                "end": 3,
+                "text": "收件人",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "主题",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "th": {
+          "image_path": "assets/images/4/th/Gmail_th_8.jpg",
+          "image_sha256": "577c7727e3558feb601250a1be4617dfb8acb1504be893ee20910a7c69339ef9",
+          "width": 1260,
+          "height": 2800,
+          "question_stem": "องค์ประกอบใดอยู่เหนือข้อความตัวอย่าง 'เขียนอีเมล' โดยตรง?",
+          "stem_span": {
+            "start": 38,
+            "end": 48,
+            "text": "เขียนอีเมล",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "ฟิลด์ถึง",
+            "B": "แป้นพิมพ์",
+            "C": "ฟิลด์จาก",
+            "D": "ฟิลด์เรื่อง"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 8,
+                "text": "ฟิลด์ถึง",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [],
+            "C": [
+              {
+                "start": 0,
+                "end": 8,
+                "text": "ฟิลด์จาก",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 11,
+                "text": "ฟิลด์เรื่อง",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "ru": {
+          "image_path": "assets/images/4/ru/Gmail_ru_8.jpg",
+          "image_sha256": "9d4e5227116e5110215ef6f18711988cc743e7621a0ee760fc4c1312cb56a283",
+          "width": 1260,
+          "height": 2800,
+          "question_stem": "Какой элемент находится непосредственно выше текста-заполнителя 'Текст сообщения'?",
+          "stem_span": {
+            "start": 65,
+            "end": 80,
+            "text": "Текст сообщения",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Поле Кому",
+            "B": "Клавиатура",
+            "C": "Поле От",
+            "D": "Поле Тема"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 9,
+                "text": "Поле Кому",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [],
+            "C": [
+              {
+                "start": 0,
+                "end": 7,
+                "text": "Поле От",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 9,
+                "text": "Поле Тема",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "parallel_id": "rel::3/settings_2.jpg",
+      "group": "rel::3",
+      "locales": {
+        "en": {
+          "image_path": "assets/images/3/en/settings_en_2.jpg",
+          "image_sha256": "845c8099480bec8e2fa5550f19184a470f737bd6f1a13c157e35f534a4ede859",
+          "width": 1080,
+          "height": 2340,
+          "question_stem": "Which element is located directly below 'Install certificates'?",
+          "stem_span": {
+            "start": 41,
+            "end": 61,
+            "text": "Install certificates",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Wi-Fi Direct",
+            "B": "Manage saved networks",
+            "C": "MAC address",
+            "D": "IP address"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 12,
+                "text": "Wi-Fi Direct",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 21,
+                "text": "Manage saved networks",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 11,
+                "text": "MAC address",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 10,
+                "text": "IP address",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "zh": {
+          "image_path": "assets/images/3/zh/settings_zh_2.jpg",
+          "image_sha256": "2ce9ac58f9662bfa3068378c02fb1dc118e98431f6e00ae390a8a4e3e6eb2baa",
+          "width": 1080,
+          "height": 2340,
+          "question_stem": "哪个元素位于“安装证书”正下方？",
+          "stem_span": {
+            "start": 7,
+            "end": 11,
+            "text": "安装证书",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Wi-Fi直连",
+            "B": "管理已保存网络",
+            "C": "MAC地址",
+            "D": "IP地址"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 7,
+                "text": "Wi-Fi直连",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 7,
+                "text": "管理已保存网络",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 5,
+                "text": "MAC地址",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 4,
+                "text": "IP地址",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "th": {
+          "image_path": "assets/images/3/th/settings_th_2.jpg",
+          "image_sha256": "0a96a535ebe253699eedb5e19ed47a424f813757b3250ebd25232b73b3407e61",
+          "width": 1080,
+          "height": 2340,
+          "question_stem": "องค์ประกอบใดอยู่ด้านล่างโดยตรงของ 'ติดตั้งใบรับรอง'?",
+          "stem_span": {
+            "start": 35,
+            "end": 50,
+            "text": "ติดตั้งใบรับรอง",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Wi-Fi Direct",
+            "B": "จัดการเครือข่ายที่บันทึก",
+            "C": "ที่อยู่ Mac",
+            "D": "ที่อยู่ IP"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 12,
+                "text": "Wi-Fi Direct",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 24,
+                "text": "จัดการเครือข่ายที่บันทึก",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 11,
+                "text": "ที่อยู่ Mac",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 10,
+                "text": "ที่อยู่ IP",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "ru": {
+          "image_path": "assets/images/3/ru/settings_ru_2.jpg",
+          "image_sha256": "91bc74ae96ffe820addc8daa117277bf2c333ccd49b5bd9d8d3978b8f7058773",
+          "width": 1080,
+          "height": 2340,
+          "question_stem": "Какой элемент находится непосредственно ниже 'Установка сертификатов'?",
+          "stem_span": {
+            "start": 46,
+            "end": 68,
+            "text": "Установка сертификатов",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Wi-Fi Direct",
+            "B": "Сохраненные сети",
+            "C": "MAC-адрес",
+            "D": "IP-адрес"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 12,
+                "text": "Wi-Fi Direct",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 16,
+                "text": "Сохраненные сети",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 9,
+                "text": "MAC-адрес",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 8,
+                "text": "IP-адрес",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "parallel_id": "rel::2/clock_10.png",
+      "group": "rel::2",
+      "locales": {
+        "en": {
+          "image_path": "assets/images/2/en/clock_en_10.png",
+          "image_sha256": "3ca5c2aa4831aea2137afba411369ae58c7340de6cc6f7cb6853a639b56e3550",
+          "width": 2746,
+          "height": 1908,
+          "question_stem": "Which element is located directly to the right of the 'Alarm' tab at the bottom of the screen?",
+          "stem_span": {
+            "start": 55,
+            "end": 60,
+            "text": "Alarm",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Stopwatch",
+            "B": "World Clock",
+            "C": "Timer",
+            "D": "Edit"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 9,
+                "text": "Stopwatch",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 11,
+                "text": "World Clock",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 5,
+                "text": "Timer",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 4,
+                "text": "Edit",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "zh": {
+          "image_path": "assets/images/2/zh/clock_zh_10.png",
+          "image_sha256": "158ba71a96786cb0b94957437fe632e05912de4c90ef7b0f1dc26da56662c55f",
+          "width": 2746,
+          "height": 1908,
+          "question_stem": "哪个元素位于屏幕底部“闹钟”标签的右侧？",
+          "stem_span": {
+            "start": 11,
+            "end": 13,
+            "text": "闹钟",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "秒表",
+            "B": "世界时钟",
+            "C": "计时器",
+            "D": "编辑"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "秒表",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 4,
+                "text": "世界时钟",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 3,
+                "text": "计时器",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "编辑",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "th": {
+          "image_path": "assets/images/2/th/clock_th_10.png",
+          "image_sha256": "3ab5d0e788a06b9538be0e13896a7fd804728b75a64bcc6020e85d06d11aeff5",
+          "width": 2746,
+          "height": 1908,
+          "question_stem": "องค์ประกอบใดอยู่ทางขวาของแท็บ 'นาฬิกาปลุก' ที่ด้านล่างของหน้าจอ?",
+          "stem_span": {
+            "start": 31,
+            "end": 41,
+            "text": "นาฬิกาปลุก",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "นาฬิกาจับเวลา",
+            "B": "นาฬิกาโลก",
+            "C": "นาฬิกานับถอยหลัง",
+            "D": "แก้ไข"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 13,
+                "text": "นาฬิกาจับเวลา",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 9,
+                "text": "นาฬิกาโลก",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 16,
+                "text": "นาฬิกานับถอยหลัง",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 5,
+                "text": "แก้ไข",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "ru": {
+          "image_path": "assets/images/2/ru/clock_ru_10.png",
+          "image_sha256": "4352b6b621a7d590ad181dd2b2750ae0ec04da3561cb33107249808d40c0fbfd",
+          "width": 2746,
+          "height": 1908,
+          "question_stem": "Какой элемент находится непосредственно справа от вкладки 'Будильник' в нижней части экрана?",
+          "stem_span": {
+            "start": 59,
+            "end": 68,
+            "text": "Будильник",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Секундомер",
+            "B": "Мировые часы",
+            "C": "Таймер",
+            "D": "Править"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 10,
+                "text": "Секундомер",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 12,
+                "text": "Мировые часы",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 6,
+                "text": "Таймер",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 7,
+                "text": "Править",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "parallel_id": "rel::6/safari_7.jpg",
+      "group": "rel::6",
+      "locales": {
+        "en": {
+          "image_path": "assets/images/6/en/safari_en_7.jpg",
+          "image_sha256": "40b4475c84ecd3c25fe18f893428edc81a673fccd44860a26d4ad6d212379dbf",
+          "width": 1280,
+          "height": 2769,
+          "question_stem": "Which option appears directly above the 'Web Archive' setting in the list shown in the screenshot?",
+          "stem_span": {
+            "start": 41,
+            "end": 52,
+            "text": "Web Archive",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Automatic",
+            "B": "PDF",
+            "C": "Done",
+            "D": "Send As"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 9,
+                "text": "Automatic",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 3,
+                "text": "PDF",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 4,
+                "text": "Done",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 7,
+                "text": "Send As",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "zh": {
+          "image_path": "assets/images/6/zh/safari_zh_7.jpg",
+          "image_sha256": "8fd25ed2cdb50764a0fd12e2540a8d5549aec5d310db0667ff643ccacbc3cb40",
+          "width": 1280,
+          "height": 2769,
+          "question_stem": "哪个选项在截图中列表显示的“网页归档”设置上方？",
+          "stem_span": {
+            "start": 14,
+            "end": 18,
+            "text": "网页归档",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "自动",
+            "B": "PDF",
+            "C": "完成",
+            "D": "Send As"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "自动",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 3,
+                "text": "PDF",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "完成",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 7,
+                "text": "Send As",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "th": {
+          "image_path": "assets/images/6/th/safari_th_7.jpg",
+          "image_sha256": "517ccbaf74fa3e370180e99034091b16c489b4a1842f60e5f5b833ef3fd28637",
+          "width": 1280,
+          "height": 2769,
+          "question_stem": "ตัวเลือกใดปรากฏอยู่เหนือการตั้งค่า \"ที่เก็บเว็บถาวร\" ในรายการที่แสดงในภาพหน้าจอ?",
+          "stem_span": {
+            "start": 36,
+            "end": 51,
+            "text": "ที่เก็บเว็บถาวร",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "อัตโนมัติ",
+            "B": "ไฟล์ PDF",
+            "C": "เสร็จสิ้น",
+            "D": "ส่งเป็น"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 9,
+                "text": "อัตโนมัติ",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 8,
+                "text": "ไฟล์ PDF",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 9,
+                "text": "เสร็จสิ้น",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 7,
+                "text": "ส่งเป็น",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "ru": {
+          "image_path": "assets/images/6/ru/safari_ru_7.jpg",
+          "image_sha256": "165cd4f29131b2adf213b4736f141e2fa3d72d65f6aaafc6775e7ab278e6971b",
+          "width": 1280,
+          "height": 2769,
+          "question_stem": "Какой вариант отображается непосредственно выше настройки 'Веб-архив' в списке, показанном на скриншоте?",
+          "stem_span": {
+            "start": 59,
+            "end": 68,
+            "text": "Веб-архив",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "Автоматически",
+            "B": "PDF",
+            "C": "Готово",
+            "D": "Отправить как"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 13,
+                "text": "Автоматически",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 3,
+                "text": "PDF",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 6,
+                "text": "Готово",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 13,
+                "text": "Отправить как",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "parallel_id": "rel::3/music_7.jpg",
+      "group": "rel::3",
+      "locales": {
+        "en": {
+          "image_path": "assets/images/3/en/music_en_7.jpg",
+          "image_sha256": "742752e8bbb8434153c14b75cdd4cba9b63ae35a6e84797480b764e470b36588",
+          "width": 1080,
+          "height": 2340,
+          "question_stem": "Which of the following options is located directly below the \"Repeat all\" option in the menu?",
+          "stem_span": {
+            "start": 62,
+            "end": 72,
+            "text": "Repeat all",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "0 Unknown artist | Unknown album",
+            "B": "4 Unknown artist | Unknown album",
+            "C": "Close",
+            "D": "3 Unknown artist | Unknown album"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 32,
+                "text": "0 Unknown artist | Unknown album",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 32,
+                "text": "4 Unknown artist | Unknown album",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 5,
+                "text": "Close",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 32,
+                "text": "3 Unknown artist | Unknown album",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "zh": {
+          "image_path": "assets/images/3/zh/music_zh_7.jpg",
+          "image_sha256": "f0698f1c66f09e2f30be82ed87424a88199735d5fa68196a02f2e84239e2199a",
+          "width": 1080,
+          "height": 2340,
+          "question_stem": "以下哪个选项位于菜单中“全部循环”选项的正下方？",
+          "stem_span": {
+            "start": 12,
+            "end": 16,
+            "text": "全部循环",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "0 未知歌手 | 未知专辑",
+            "B": "4 未知歌手 | 未知专辑",
+            "C": "关闭",
+            "D": "3 未知歌手 | 未知专辑"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 13,
+                "text": "0 未知歌手 | 未知专辑",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 13,
+                "text": "4 未知歌手 | 未知专辑",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 2,
+                "text": "关闭",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 13,
+                "text": "3 未知歌手 | 未知专辑",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "th": {
+          "image_path": "assets/images/3/th/music_th_7.jpg",
+          "image_sha256": "14e41a95a74ec80bdcfc1c6ebeb50fb1e5eb67a4520db56c58b946759413383f",
+          "width": 1080,
+          "height": 2340,
+          "question_stem": "ตัวเลือกใดต่อไปนี้อยู่ด้านล่างของตัวเลือก \"เล่นซ้ำทั้งหมด\" ในเมนู?",
+          "stem_span": {
+            "start": 43,
+            "end": 57,
+            "text": "เล่นซ้ำทั้งหมด",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "0 ไม่ทราบชื่อศิลปิน | อัลบั้มที่ไม่รู้จัก",
+            "B": "4 ไม่ทราบชื่อศิลปิน | อัลบั้มที่ไม่รู้จัก",
+            "C": "ปิด",
+            "D": "3 ไม่ทราบชื่อศิลปิน | อัลบั้มที่ไม่รู้จัก"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 41,
+                "text": "0 ไม่ทราบชื่อศิลปิน | อัลบั้มที่ไม่รู้จัก",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 41,
+                "text": "4 ไม่ทราบชื่อศิลปิน | อัลบั้มที่ไม่รู้จัก",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 3,
+                "text": "ปิด",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 41,
+                "text": "3 ไม่ทราบชื่อศิลปิน | อัลบั้มที่ไม่รู้จัก",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        },
+        "ru": {
+          "image_path": "assets/images/3/ru/music_ru_7.jpg",
+          "image_sha256": "305e1ddd7f3967243b153493d2270e2f9535498d530b76af97929c1bf04df984",
+          "width": 1080,
+          "height": 2340,
+          "question_stem": "Какой из следующих вариантов находится непосредственно под пунктом меню \"Повторить все\"?",
+          "stem_span": {
+            "start": 73,
+            "end": 86,
+            "text": "Повторить все",
+            "ref_id": "question_stem:0"
+          },
+          "options": {
+            "A": "0 Неизвестный исполнитель | Неизвестный …",
+            "B": "4 Неизвестный исполнитель | Неизвестный …",
+            "C": "Закрыть",
+            "D": "3 Неизвестный исполнитель | Неизвестный …"
+          },
+          "option_spans": {
+            "A": [
+              {
+                "start": 0,
+                "end": 41,
+                "text": "0 Неизвестный исполнитель | Неизвестный …",
+                "ref_id": "A:0"
+              }
+            ],
+            "B": [
+              {
+                "start": 0,
+                "end": 41,
+                "text": "4 Неизвестный исполнитель | Неизвестный …",
+                "ref_id": "B:0"
+              }
+            ],
+            "C": [
+              {
+                "start": 0,
+                "end": 7,
+                "text": "Закрыть",
+                "ref_id": "C:0"
+              }
+            ],
+            "D": [
+              {
+                "start": 0,
+                "end": 41,
+                "text": "3 Неизвестный исполнитель | Неизвестный …",
+                "ref_id": "D:0"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "model_outputs_included": false,
+  "gold_answer_included": false
+}
