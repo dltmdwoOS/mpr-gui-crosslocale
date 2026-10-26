@@ -22,27 +22,93 @@
 
 현재 화면에서 bbox 그리기·지우기 및 상태 변경으로 자동 삭제된 bbox는 `Ctrl+Z`(Mac `⌘Z`) 또는 **실행 취소** 버튼으로 되돌린다. 최근 30번까지 가능하며 저장하거나 화면을 옮기면 기록이 초기화된다. 텍스트 입력칸에서는 브라우저의 글자 실행 취소가 그대로 동작한다.
 
-## 실행
+## 설치 및 이미지 준비
 
-저장소 최상위에서 기존 `.venv`를 사용한다. 설치가 없는 다른 개인 환경에서는 Flask 3, Pillow 10 이상만 있으면 된다. 서버는 `127.0.0.1`에만 바인딩한다.
+저장소 **최상위 디렉터리**에서 실행한다. Python **3.10 이상**이 필요하다. 검수 UI에는 GPU·PyTorch·모델 가중치가 필요 없으며 [`requirements.txt`](requirements.txt)의 Flask와 Pillow만 설치한다. 아래 `.venv-rel-grounding`은 이 검수 전용 환경이며 Git에 포함되지 않는다. 기존 `.venv`가 없어도 된다.
+
+### Linux 연구실 서버
+
+개인 캐시 위치를 설정하고 가상환경을 만든다. 기존 `.venv-rel-grounding`이 있으면 생성 명령을 건너뛴다.
 
 ```bash
-python annotation/rel_grounding/prepare_pilot.py
-.venv/bin/python annotation/rel_grounding/app.py --annotator reviewer_a --port 8766
+cd /home/jovyan/seungjae/mpr-gui-crosslocale
+export XDG_CACHE_HOME=/home/jovyan/seungjae/.cache
+export HF_HOME=/home/jovyan/seungjae/.cache/huggingface
+export TORCH_HOME=/home/jovyan/seungjae/.cache/torch
+export PIP_CACHE_DIR=/home/jovyan/seungjae/.cache/pip
+python3 --version
+python3 -m venv .venv-rel-grounding
+.venv-rel-grounding/bin/python -m pip install -r annotation/rel_grounding/requirements.txt
 ```
 
-브라우저에서 `http://127.0.0.1:8766/`을 열어 화면마다 bbox·상태·명사구·번역 판정을 저장한다. 다른 검수자는 **별도의 ID와 포트**를 쓴다.
+새 clone에서는 먼저 Git에 들어 있는 고정 질문 묶음을 풀고 이미지를 준비한다. 이미지가 이미 있으면 `fetch-images`를 생략하고 `verify`부터 실행한다. 새 환경에서 `fetch-images`는 1,464개 이미지(약 1.3 GiB)를 내려받으며, 같은 파일이 이미 있으면 checksum을 확인하고 재사용한다. 검수 도구는 이미지의 별도 사본을 만들지 않는다.
 
 ```bash
-.venv/bin/python annotation/rel_grounding/app.py --annotator reviewer_b --port 8767
+.venv-rel-grounding/bin/python followup_rel_4lang/data_bundle.py unpack
+# 새 clone에 이미지가 없을 때만:
+.venv-rel-grounding/bin/python followup_rel_4lang/data_bundle.py fetch-images --workers 3
+.venv-rel-grounding/bin/python followup_rel_4lang/data_bundle.py verify
+.venv-rel-grounding/bin/python annotation/rel_grounding/prepare_pilot.py
 ```
 
-각자 화면 오른쪽 위 `내 annotation JSON 내보내기` 링크로 백업한다. 자동 저장 파일은 `annotation/rel_grounding/outputs/<annotator>.json`이며 Git 제외 대상이다. 두 파일을 받으면 다음 명령으로 누락·상태/번역 판정 차이·box IoU를 정리한다.
+### Windows PowerShell
+
+Python launcher에서 3.10 이상이 선택되는지 `py -3 --version`으로 확인한다. 더 오래된 버전이 선택되면 아래 `py -3`을 설치된 3.10 이상 버전의 선택자(예: `py -3.12`)로 바꾼다. `py`가 없다면 3.10 이상인 `python` 명령을 사용한다. 활성화 스크립트 없이 가상환경의 Python을 직접 호출하므로 PowerShell 실행 정책을 바꿀 필요가 없다.
+
+```powershell
+# 먼저 저장소 최상위 디렉터리로 이동
+$env:PIP_CACHE_DIR = Join-Path $env:LOCALAPPDATA 'mpr-gui-crosslocale\pip'
+py -3 --version
+py -3 -m venv .venv-rel-grounding
+.\.venv-rel-grounding\Scripts\python.exe -m pip install -r annotation\rel_grounding\requirements.txt
+```
+
+기존 `.venv-rel-grounding`이 있으면 `py -3 -m venv`는 생략한다. 새 clone에서 다음을 실행한다. 이미지가 이미 준비되어 있으면 `fetch-images` 줄은 생략한다.
+
+```powershell
+.\.venv-rel-grounding\Scripts\python.exe followup_rel_4lang\data_bundle.py unpack
+# 새 clone에 이미지가 없을 때만:
+.\.venv-rel-grounding\Scripts\python.exe followup_rel_4lang\data_bundle.py fetch-images --workers 3
+.\.venv-rel-grounding\Scripts\python.exe followup_rel_4lang\data_bundle.py verify
+.\.venv-rel-grounding\Scripts\python.exe annotation\rel_grounding\prepare_pilot.py
+```
+
+`prepare_pilot.py`는 Git에 포함된 `data/frame.json`과 `data/pilot_manifest.json`이 잠금 데이터·이미지와 같은지 확인하며, 다른 내용으로 덮어쓰지 않는다. 이미지가 없거나 checksum이 다르면 여기서 중지한다.
+
+## 검수 UI 실행
+
+두 검수자는 각각 **다른 이름과 포트**를 사용한다. 앱은 `127.0.0.1`에만 바인딩한다. 아래는 첫 번째 검수자의 명령이다. 두 번째 검수자는 `reviewer_b --port 8767`로 바꿔 **별도 터미널**에서 실행한다.
+
+Linux:
 
 ```bash
-python annotation/rel_grounding/summarize_agreement.py \
+.venv-rel-grounding/bin/python annotation/rel_grounding/app.py --annotator reviewer_a --port 8766
+```
+
+Windows PowerShell:
+
+```powershell
+.\.venv-rel-grounding\Scripts\python.exe annotation\rel_grounding\app.py --annotator reviewer_a --port 8766
+```
+
+브라우저에서 해당 `http://127.0.0.1:포트/`를 연다. 원격 연구실 서버에서 실행할 때는 사용 중인 원격 접속 도구로 포트를 로컬에 전달한 뒤 브라우저를 연다.
+
+화면마다 bbox·상태·명사구·번역 판정을 저장한다. 오른쪽 위 `내 annotation JSON 내보내기`로 백업할 수 있다. 자동 저장 파일은 `annotation/rel_grounding/outputs/<annotator>.json`이며 Git 제외 대상이다. 두 파일을 받은 뒤 누락·판정 차이·box IoU를 정리한다.
+
+Linux:
+
+```bash
+.venv-rel-grounding/bin/python annotation/rel_grounding/summarize_agreement.py \
   annotation/rel_grounding/outputs/reviewer_a.json \
   annotation/rel_grounding/outputs/reviewer_b.json
+```
+
+Windows PowerShell:
+
+```powershell
+.\.venv-rel-grounding\Scripts\python.exe annotation\rel_grounding\summarize_agreement.py `
+  annotation\rel_grounding\outputs\reviewer_a.json `
+  annotation\rel_grounding\outputs\reviewer_b.json
 ```
 
 `outputs/agreement/cases.csv`에서 불일치 사례를 사람이 재검토한다. box IoU는 동일 요소 판정의 **대리 지표**일 뿐이며, 작거나 긴 UI 요소에서 낮게 나올 수 있다. 모든 차이를 자동으로 한쪽 bbox로 채택하지 않는다.

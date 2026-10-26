@@ -1,4 +1,5 @@
 .venv/
+/.venv-rel-grounding/
 __pycache__/
 
 # Expanded data, screenshots and GPU outputs stay outside Git.
