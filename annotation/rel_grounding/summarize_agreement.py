@@ -29,7 +29,7 @@ def summarize(manifest_path: Path, first_path: Path, second_path: Path) -> tuple
     second = json.loads(second_path.read_text(encoding="utf-8"))
     for record in (first, second):
         if record.get("schema") != "rel-grounding-annotations-v1" or record.get("manifest_sha256") != manifest_hash:
-            raise ValueError("Annotation file does not match the pilot manifest")
+            raise ValueError("Annotation file does not match the selected manifest")
     if first["annotator_id"] == second["annotator_id"]:
         raise ValueError("Independent annotation files must use different annotator IDs")
     counters = Counter()
@@ -48,9 +48,17 @@ def summarize(manifest_path: Path, first_path: Path, second_path: Path) -> tuple
                     "first_bbox": a["bbox"] if a else None,
                     "second_bbox": b["bbox"] if b else None,
                     "bbox_iou": None,
+                    "first_reference_equivalence": a["reference_equivalence"] if a else "missing",
+                    "second_reference_equivalence": b["reference_equivalence"] if b else "missing",
+                    "first_options_equivalence": a["options_equivalence"] if a else "missing",
+                    "second_options_equivalence": b["options_equivalence"] if b else "missing",
                     "first_note": a["note"] if a else "", "second_note": b["note"] if b else ""}
             if a and b:
                 counters["both_completed"] += 1
+                meaning_flagged = any(record[field] != "yes" for record in (a, b)
+                                      for field in ("reference_equivalence", "options_equivalence"))
+                counters["meaning_review_flagged"] += meaning_flagged
+                case["meaning_review_flagged"] = meaning_flagged
                 for field in ("status", "reference_equivalence", "options_equivalence", "anchor_phrase", "element_role"):
                     counters[f"{field}_agreement"] += a[field] == b[field]
                     case[f"{field}_agreement"] = a[field] == b[field]
@@ -62,7 +70,7 @@ def summarize(manifest_path: Path, first_path: Path, second_path: Path) -> tuple
                 case["needs_adjudication"] = (
                     any(not case[f"{field}_agreement"] for field in (
                         "status", "reference_equivalence", "options_equivalence", "anchor_phrase", "element_role"
-                    )) or (case["bbox_iou"] is not None and case["bbox_iou"] < 0.5)
+                    )) or meaning_flagged or (case["bbox_iou"] is not None and case["bbox_iou"] < 0.5)
                 )
             else:
                 case["needs_adjudication"] = True
@@ -77,7 +85,7 @@ def summarize(manifest_path: Path, first_path: Path, second_path: Path) -> tuple
             if counters["both_valid"] else None
         ),
         "needs_adjudication": sum(c["needs_adjudication"] for c in cases),
-        "note": "IoU is a box-overlap proxy, not a semantic identity adjudication. Inspect flagged cases manually.",
+        "note": "IoU is a box-overlap proxy. Meaning-equivalence defaults to yes and its agreement is not translation validation. Inspect flagged cases manually.",
     }
     return summary, cases
 
@@ -86,7 +94,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("first", type=Path)
     parser.add_argument("second", type=Path)
-    parser.add_argument("--manifest", type=Path, default=HERE / "data/pilot_manifest.json")
+    parser.add_argument("--manifest", type=Path, default=HERE / "data/full_manifest.json")
     parser.add_argument("--output-dir", type=Path, default=HERE / "outputs/agreement")
     args = parser.parse_args()
     summary, cases = summarize(args.manifest, args.first, args.second)

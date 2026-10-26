@@ -8,7 +8,7 @@ import pytest
 from PIL import Image
 
 from annotation.rel_grounding.app import create_app, validate_annotation
-from annotation.rel_grounding.prepare_pilot import LANGUAGES, pilot_sample, structural_frame
+from annotation.rel_grounding.prepare_pilot import HERE, LANGUAGES, pilot_sample, structural_frame
 from annotation.rel_grounding.summarize_agreement import summarize
 
 
@@ -65,6 +65,10 @@ def valid_payload():
 def test_annotation_rejects_nonmatching_phrase_and_out_of_image_box():
     locale = locale_record("assets/images/1/en/one.png", "a" * 64)
     assert validate_annotation(valid_payload(), locale)["bbox"] == [10.0, 5.0, 30.0, 20.0]
+    without_equivalence = {key: value for key, value in valid_payload().items()
+                           if key not in {"reference_equivalence", "options_equivalence"}}
+    assert validate_annotation(without_equivalence, locale)["reference_equivalence"] == "yes"
+    assert validate_annotation(without_equivalence, locale)["options_equivalence"] == "yes"
     wrong = {**valid_payload(), "anchor_phrase": "Search button"}
     with pytest.raises(ValueError, match="exact stem substring"):
         validate_annotation(wrong, locale)
@@ -103,6 +107,55 @@ def test_app_serves_only_manifest_images_and_stores_blind_annotation(tmp_path):
     assert "model_output" not in json.dumps(client.get("/api/state").json)
 
 
+def test_full_manifest_matches_frame_and_keeps_pilot_ids():
+    frame = json.loads((HERE / "data/frame.json").read_text(encoding="utf-8"))
+    full = json.loads((HERE / "data/full_manifest.json").read_text(encoding="utf-8"))
+    pilot = json.loads((HERE / "data/pilot_manifest.json").read_text(encoding="utf-8"))
+    full_ids = [item["parallel_id"] for item in full["items"]]
+    assert full["schema"] == "rel-grounding-full-v1"
+    assert full_ids == frame["item_ids"]
+    assert full["pilot_item_ids"] == frame["pilot_item_ids"]
+    assert {item["parallel_id"] for item in pilot["items"]} == set(full["pilot_item_ids"])
+    assert all(set(item["locales"]) == set(LANGUAGES) for item in full["items"])
+    assert full["gold_answer_included"] is False
+    assert full["model_outputs_included"] is False
+
+
+def test_full_item_save_is_atomic_and_uses_separate_output(tmp_path):
+    root = tmp_path / "repo"
+    relative = "assets/images/1/en/one.png"
+    image = root / "followup_rel_4lang" / relative
+    image.parent.mkdir(parents=True)
+    Image.new("RGB", (100, 50), "white").save(image)
+    sha = hashlib.sha256(image.read_bytes()).hexdigest()
+    manifest = {"schema": "rel-grounding-full-v1", "items": [{
+        "parallel_id": "rel::1/one.png",
+        "locales": {lang: locale_record(relative, sha) for lang in LANGUAGES},
+    }]}
+    manifest_path = tmp_path / "full_manifest.json"
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    outputs = tmp_path / "outputs"
+    old_pilot = outputs / "reviewer_a.json"
+    outputs.mkdir()
+    old_pilot.write_text("pilot data", encoding="utf-8")
+    client = create_app(manifest_path, outputs, "reviewer_a", root).test_client()
+    records = {lang: {key: value for key, value in valid_payload().items()
+                      if key not in {"reference_equivalence", "options_equivalence"}}
+               for lang in LANGUAGES}
+    records["ru"]["bbox"] = [10, 5, 101, 20]
+    response = client.post("/api/item", json={"parallel_id": "rel::1/one.png", "annotations": records})
+    assert response.status_code == 400
+    assert not (outputs / "reviewer_a.full.json").exists()
+    records["ru"]["bbox"] = [10, 5, 30, 20]
+    response = client.post("/api/item", json={"parallel_id": "rel::1/one.png", "annotations": records})
+    assert response.status_code == 200
+    assert all(value["options_equivalence"] == "yes" for value in response.json["annotations"].values())
+    saved = json.loads((outputs / "reviewer_a.full.json").read_text(encoding="utf-8"))
+    assert set(saved["annotations"]["rel::1/one.png"]) == set(LANGUAGES)
+    assert old_pilot.read_text(encoding="utf-8") == "pilot data"
+    assert "reviewer_a.full.json" in client.get("/api/export").headers["Content-Disposition"]
+
+
 def test_agreement_flags_different_boxes_for_manual_review(tmp_path):
     manifest = {"schema": "rel-grounding-pilot-v1", "items": [{
         "parallel_id": "rel::1/one.png", "locales": {lang: {} for lang in LANGUAGES}
@@ -124,3 +177,10 @@ def test_agreement_flags_different_boxes_for_manual_review(tmp_path):
     assert cases[0]["bbox_iou"] == 0
     assert cases[0]["needs_adjudication"] is True
     assert summary["needs_adjudication"] == 4
+    for path in (first_path, second_path):
+        record = json.loads(path.read_text(encoding="utf-8"))
+        record["annotations"]["rel::1/one.png"]["en"]["reference_equivalence"] = "no"
+        path.write_text(json.dumps(record), encoding="utf-8")
+    summary, cases = summarize(manifest_path, first_path, second_path)
+    assert cases[0]["meaning_review_flagged"] is True
+    assert summary["counts"]["meaning_review_flagged"] == 1

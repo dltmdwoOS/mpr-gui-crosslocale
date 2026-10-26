@@ -1,4 +1,4 @@
-"""Build a model-output-blind structural frame and grounding annotation pilot."""
+"""Build model-output-blind pilot and full grounding annotation manifests."""
 
 from __future__ import annotations
 
@@ -115,7 +115,7 @@ def item_manifest(pid: str, mapping: dict, rows: list[dict], root: Path) -> dict
     return {"parallel_id": pid, "group": pid.split("/", 1)[0], "locales": locales}
 
 
-def build_packet(root: Path = REPO, seed: int = SEED) -> tuple[dict, dict]:
+def build_packet(root: Path = REPO, seed: int = SEED) -> tuple[dict, dict, dict]:
     data = root / "followup_rel_4lang/data/rel_all_366"
     conditions = data / "conditions_4lang.jsonl"
     references = data / "reference_mappings.jsonl"
@@ -141,6 +141,8 @@ def build_packet(root: Path = REPO, seed: int = SEED) -> tuple[dict, dict]:
         "item_ids": frame_ids,
         "pilot_item_ids": pilot_ids,
     }
+    full_items = [item_manifest(pid, mappings[pid], rows, root) for pid in frame_ids]
+    items_by_id = {item["parallel_id"]: item for item in full_items}
     packet = {
         "schema": "rel-grounding-pilot-v1",
         "provenance": provenance,
@@ -148,11 +150,20 @@ def build_packet(root: Path = REPO, seed: int = SEED) -> tuple[dict, dict]:
             json.dumps(frame_ids, ensure_ascii=False).encode("utf-8")
         ).hexdigest(),
         "pilot_pairs_per_item": [("en", "zh"), ("zh", "th"), ("th", "ru"), ("ru", "en")],
-        "items": [item_manifest(pid, mappings[pid], rows, root) for pid in pilot_ids],
+        "items": [items_by_id[pid] for pid in pilot_ids],
         "model_outputs_included": False,
         "gold_answer_included": False,
     }
-    return frame, packet
+    full_packet = {
+        "schema": "rel-grounding-full-v1",
+        "provenance": provenance,
+        "frame_item_ids_sha256": packet["frame_item_ids_sha256"],
+        "pilot_item_ids": pilot_ids,
+        "items": full_items,
+        "model_outputs_included": False,
+        "gold_answer_included": False,
+    }
+    return frame, packet, full_packet
 
 
 def write_immutable(path: Path, value: dict) -> None:
@@ -171,11 +182,12 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=SEED)
     parser.add_argument("--output-dir", type=Path, default=HERE / "data")
     args = parser.parse_args()
-    frame, packet = build_packet(args.root.resolve(), args.seed)
+    frame, packet, full_packet = build_packet(args.root.resolve(), args.seed)
     write_immutable(args.output_dir / "frame.json", frame)
     write_immutable(args.output_dir / "pilot_manifest.json", packet)
-    print(json.dumps({"frame_items": frame["item_count"], "pilot_items": len(packet["items"]),
-                      "pilot_images": 4 * len(packet["items"]),
+    write_immutable(args.output_dir / "full_manifest.json", full_packet)
+    print(json.dumps({"full_items": len(full_packet["items"]), "full_images": 4 * len(full_packet["items"]),
+                      "pilot_items": len(packet["items"]),
                       "pilot_ids": frame["pilot_item_ids"]}, ensure_ascii=False, indent=2))
 
 

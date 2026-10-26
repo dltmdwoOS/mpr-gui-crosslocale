@@ -1,4 +1,4 @@
-"""Local, output-blind bounding-box annotation UI for the REL grounding pilot."""
+"""Local, output-blind bounding-box annotation UI for REL grounding."""
 
 from __future__ import annotations
 
@@ -44,8 +44,8 @@ def validate_annotation(payload: dict, locale: dict) -> dict:
     status = payload.get("status")
     if status not in STATUSES:
         raise ValueError("Select a target status")
-    reference_equivalence = payload.get("reference_equivalence")
-    options_equivalence = payload.get("options_equivalence")
+    reference_equivalence = payload.get("reference_equivalence", "yes")
+    options_equivalence = payload.get("options_equivalence", "yes")
     if reference_equivalence not in EQUIVALENCE or options_equivalence not in EQUIVALENCE:
         raise ValueError("Select reference and option equivalence")
     phrase = str(payload.get("anchor_phrase", "")).strip()
@@ -82,7 +82,7 @@ def validate_annotation(payload: dict, locale: dict) -> dict:
 
 
 def create_app(
-    manifest_path: Path = HERE / "data/pilot_manifest.json",
+    manifest_path: Path = HERE / "data/full_manifest.json",
     output_dir: Path = HERE / "outputs",
     annotator_id: str = "annotator_1",
     repo_root: Path = REPO,
@@ -91,12 +91,12 @@ def create_app(
         raise ValueError("Annotator ID must contain 1–80 letters, numbers, ._- only")
     manifest_path = manifest_path.resolve()
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    if manifest.get("schema") != "rel-grounding-pilot-v1":
-        raise ValueError("Unknown pilot manifest schema")
+    if manifest.get("schema") not in {"rel-grounding-pilot-v1", "rel-grounding-full-v1"}:
+        raise ValueError("Unknown grounding manifest schema")
     manifest_hash = digest(manifest_path)
     items = {item["parallel_id"]: item for item in manifest["items"]}
     if len(items) != len(manifest["items"]):
-        raise ValueError("Duplicate pilot item ID")
+        raise ValueError("Duplicate grounding item ID")
     image_by_key = {}
     root = (repo_root / "followup_rel_4lang").resolve()
     for pid, item in items.items():
@@ -107,10 +107,11 @@ def create_app(
             if not path.is_relative_to(root) or not path.is_file():
                 raise ValueError(f"Missing or unsafe image: {locale['image_path']}")
             if digest(path) != locale["image_sha256"]:
-                raise ValueError(f"Image changed since pilot packet was generated: {locale['image_path']}")
+                raise ValueError(f"Image changed since manifest was generated: {locale['image_path']}")
             image_by_key[pid, language] = path
     output_dir.mkdir(parents=True, exist_ok=True)
-    output = output_dir / f"{annotator_id}.json"
+    suffix = ".full" if manifest["schema"] == "rel-grounding-full-v1" else ""
+    output = output_dir / f"{annotator_id}{suffix}.json"
     lock = threading.Lock()
 
     def load_state() -> dict:
@@ -168,13 +169,44 @@ def create_app(
             abort(400, str(exc))
         return jsonify({"saved": True, "annotation": saved["annotations"][pid][language]})
 
+    @app.post("/api/item")
+    def annotate_item():
+        payload = request.get_json(silent=True)
+        if not isinstance(payload, dict):
+            return jsonify({"error": "Expected a JSON object"}), 400
+        pid = payload.get("parallel_id")
+        records = payload.get("annotations")
+        if not isinstance(pid, str) or pid not in items or not isinstance(records, dict) or set(records) != set(LANGUAGES):
+            return jsonify({"error": "Expected one annotation for each of EN/ZH/TH/RU"}), 400
+        validated = {}
+        for language in LANGUAGES:
+            locale = items[pid]["locales"][language]
+            if not isinstance(records[language], dict):
+                return jsonify({"error": f"{language.upper()}: Expected an annotation object"}), 400
+            try:
+                validated[language] = {
+                    **validate_annotation(records[language], locale),
+                    "image_sha256": locale["image_sha256"],
+                    "updated_at": datetime.now(timezone.utc).isoformat(),
+                }
+            except (TypeError, ValueError) as exc:
+                return jsonify({"error": f"{language.upper()}: {exc}"}), 400
+        try:
+            with lock:
+                saved = load_state()
+                saved["annotations"][pid] = validated
+                save_state(saved)
+        except ValueError as exc:
+            return jsonify({"error": str(exc)}), 409
+        return jsonify({"saved": True, "annotations": validated})
+
     @app.get("/api/export")
     def export():
         with lock:
             saved = load_state()
         return Response(json.dumps(saved, ensure_ascii=False, indent=2) + "\n",
                         mimetype="application/json",
-                        headers={"Content-Disposition": f'attachment; filename="{annotator_id}.json"'})
+                        headers={"Content-Disposition": f'attachment; filename="{output.name}"'})
 
     return app
 
@@ -182,7 +214,7 @@ def create_app(
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--annotator", required=True)
-    parser.add_argument("--manifest", type=Path, default=HERE / "data/pilot_manifest.json")
+    parser.add_argument("--manifest", type=Path, default=HERE / "data/full_manifest.json")
     parser.add_argument("--output-dir", type=Path, default=HERE / "outputs")
     parser.add_argument("--port", type=int, default=8766)
     parser.add_argument("--open-browser", action="store_true")

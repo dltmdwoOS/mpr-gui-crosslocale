@@ -3,297 +3,409 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>REL grounding pilot annotation</title>
+<title>화면 위치 표시</title>
 <style>
-  :root { color-scheme: light; font-family: system-ui, "Noto Sans", sans-serif; color: #17212e; background: #f1f4f8; }
+  :root { font-family: system-ui, "Noto Sans", sans-serif; color: #17212e; background: #edf1f6; }
   * { box-sizing: border-box; }
   body { margin: 0; }
-  header { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 18px; background: #fff; border-bottom: 1px solid #d0d8e2; }
-  header strong { margin-right: auto; }
   button, select, input, textarea { font: inherit; }
-  button { padding: 7px 11px; border: 1px solid #9caec2; border-radius: 6px; background: #fff; cursor: pointer; }
-  button.primary { background: #195ca5; border-color: #195ca5; color: #fff; }
-  button.selected { background: #dcecff; border-color: #195ca5; }
+  button { padding: 6px 9px; border: 1px solid #a9b8c9; border-radius: 6px; background: white; cursor: pointer; }
   button:disabled { opacity: .5; cursor: default; }
-  main { display: grid; grid-template-columns: minmax(420px, 1.35fr) minmax(360px, 1fr); gap: 12px; padding: 12px; }
-  section { min-width: 0; background: #fff; border: 1px solid #d0d8e2; border-radius: 8px; padding: 14px; }
-  h2 { margin: 0 0 9px; font-size: 1.12rem; }
-  h3 { margin: 0 0 5px; font-size: 1rem; }
-  small, .muted { color: #52657a; }
-  .tabs { display: flex; gap: 6px; margin: 8px 0; }
-  .image-wrap { position: relative; display: inline-block; max-width: 100%; background: #233042; }
-  #screenshot { display: block; max-width: 100%; max-height: 68vh; width: auto; height: auto; }
-  #overlay { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: crosshair; }
-  .image-scroll { overflow: auto; padding: 8px; background: #233042; text-align: center; }
-  .image-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 10px 0; }
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  label { display: block; font-weight: 650; margin-bottom: 8px; }
-  label > input, label > select, label > textarea { display: block; width: 100%; margin-top: 4px; padding: 7px; border: 1px solid #9caec2; border-radius: 5px; background: #fff; }
-  textarea { min-height: 66px; resize: vertical; }
-  .reference-list { max-height: 32vh; overflow: auto; border-top: 1px solid #e0e6ed; margin-top: 12px; padding-top: 8px; }
-  .reference-card { border: 1px solid #dbe3ec; border-radius: 6px; margin: 6px 0; padding: 8px; }
-  .reference-card.current { border-color: #195ca5; background: #f2f8ff; }
-  .reference-card p { margin: 4px 0; }
-  .reference-card ul { margin: 4px 0 0; padding-left: 22px; }
-  mark { background: #fff1a8; padding: 0 2px; }
-  .help { font-size: .88rem; line-height: 1.4; color: #46586c; margin: 7px 0; }
-  #message { min-height: 1.4em; font-weight: 600; }
-  .actions { display: flex; gap: 8px; margin-top: 12px; }
-  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  button.selected { background: #d9ebff; border-color: #2266a8; }
+  button.primary { color: white; background: #195ca5; border-color: #195ca5; }
+  header { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 7px; flex-wrap: wrap; padding: 8px 12px; background: white; border-bottom: 1px solid #cad4df; }
+  header strong { margin-right: 8px; }
+  header a { color: #195ca5; }
+  #position { width: 4.2em; padding: 6px; }
+  .spacer { flex: 1; }
+  main { padding: 9px; }
+  #title { margin: 0 0 7px; font-size: .95rem; overflow-wrap: anywhere; }
+  #tip { margin: 0 0 8px; color: #52657a; font-size: .85rem; }
+  #cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .card { min-width: 0; padding: 8px; background: white; border: 1px solid #cad4df; border-radius: 8px; }
+  .card-top { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+  .card-top strong { font-size: 1.05rem; }
+  .badge { color: #496175; font-size: .82rem; }
+  .card-top button { margin-left: auto; }
+  .question { margin: 0 0 5px; min-height: 2.4em; line-height: 1.2; font-size: .91rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  mark { background: #ffeb8a; }
+  .image-area { height: min(30vh, 330px); min-height: 160px; display: flex; justify-content: center; align-items: center; overflow: auto; background: #253244; }
+  .image-wrap { position: relative; display: inline-block; flex: none; max-width: 100%; max-height: 100%; }
+  .image-wrap img { display: block; max-width: 100%; max-height: min(30vh, 330px); width: auto; height: auto; }
+  .image-wrap canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: crosshair; }
+  .fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.4fr); gap: 5px; margin-top: 6px; }
+  .fields label, .extra label { font-size: .79rem; color: #41566a; }
+  .fields select, .fields input, .extra select, .extra textarea { display: block; width: 100%; padding: 5px; border: 1px solid #a9b8c9; border-radius: 4px; background: white; color: #17212e; }
+  .card-actions { display: flex; gap: 6px; align-items: center; margin-top: 5px; }
+  .card-actions button { padding: 3px 7px; font-size: .78rem; }
+  .card-actions span { color: #52657a; font-size: .77rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  details { margin-top: 5px; font-size: .82rem; }
+  summary { color: #195ca5; cursor: pointer; }
+  .extra { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding-top: 6px; }
+  .extra .wide { grid-column: 1 / -1; }
+  .options { color: #41566a; max-height: 6em; overflow: auto; }
+  .options div { margin: 2px 0; }
+  textarea { min-height: 45px; resize: vertical; }
+  footer { position: sticky; bottom: 0; z-index: 9; display: flex; gap: 8px; align-items: center; padding: 8px 12px; background: white; border-top: 1px solid #cad4df; }
+  #message { flex: 1; font-size: .86rem; }
+  .card.expanded { position: fixed; inset: 8px; z-index: 20; overflow: auto; box-shadow: 0 0 0 100vmax #17212ebb; }
+  .card.expanded .image-area { height: calc(100vh - 245px); }
+  .card.expanded .image-wrap img { max-height: calc(100vh - 245px); }
+  .card.expanded .question { display: block; min-height: 0; }
+  @media (max-width: 700px) { #cards { grid-template-columns: 1fr; } header { position: static; } .image-area { height: 40vh; } .image-wrap img { max-height: 40vh; } }
 </style>
 </head>
 <body>
 <header>
-  <strong>REL grounding 파일럿</strong>
-  <span id="annotator"></span>
+  <strong id="app-title">화면 위치 표시</strong>
   <span id="progress"></span>
-  <button id="previous">← 이전</button>
-  <button id="next">다음 →</button>
-  <a href="/api/export">내 annotation JSON 내보내기</a>
+  <button id="previous" disabled>←</button>
+  <input id="position" type="number" min="1" aria-label="문항 번호" disabled>
+  <button id="jump" disabled>이동</button>
+  <button id="next" disabled>→</button>
+  <span class="spacer"></span>
+  <button id="mode-bbox" class="selected">대상 그리기</button>
+  <button id="mode-label">글자 그리기</button>
+  <button id="undo" title="Ctrl+Z / ⌘Z" disabled>↶ 취소</button>
+  <a href="/api/export">내보내기</a>
 </header>
 <main>
-  <section>
-    <h2 id="title"></h2>
-    <div class="tabs" id="tabs"></div>
-    <div class="image-scroll"><div class="image-wrap"><img id="screenshot" alt="GUI screenshot"><canvas id="overlay"></canvas></div></div>
-    <small id="image-details"></small>
-    <div class="image-tools">
-      <span>그리기:</span>
-      <button id="mode-target" class="selected">대상 요소 bbox</button>
-      <button id="mode-label">글자 bbox (선택)</button>
-      <button id="clear-target">대상 지우기</button>
-      <button id="clear-label">글자 지우기</button>
-      <button id="undo" title="Ctrl+Z (Mac: ⌘Z)" disabled>실행 취소</button>
-    </div>
-    <p class="help">이미지 위에서 드래그하면 원본 픽셀 좌표의 bbox를 그립니다. label과 control이 분리되어 있으면 질문의 대상 요소를 파란색, 읽히는 글자를 주황색으로 표시하세요. 현재 화면의 bbox 그리기·지우기와 상태 변경은 Ctrl+Z로 되돌릴 수 있습니다.</p>
-    <div class="reference-list" id="references"></div>
-  </section>
-  <section>
-    <h2>독립 검수 기록</h2>
-    <p class="help">모델 예측·정답은 표시하지 않습니다. 기준 요소 표현은 현재 언어의 질문 문장에서 연속된 부분을 그대로 복사하며, 노란색 span과 요소 종류를 함께 포함하세요. 단일 요소를 특정할 수 없다면 큰 bbox를 임의로 그리지 말고 사유를 선택하세요.</p>
-    <label>기준 요소 명사구 (질문 문장의 정확한 부분 문자열)
-      <input id="anchor-phrase" autocomplete="off">
-    </label>
-    <div class="form-grid">
-      <label>화면 대상 상태
-        <select id="status">
-          <option value="">선택</option><option value="valid">단일 요소 판정 가능</option>
-          <option value="ambiguous">경계/대상 모호</option><option value="multiple_matches">같은 대상 여러 개</option>
-          <option value="absent">화면에 없음</option><option value="unpointable">위치를 찍을 수 없는 개념</option>
-          <option value="screenshot_error">이미지 오류</option>
-        </select>
-      </label>
-      <label>대상 요소 종류
-        <select id="element-role">
-          <option value="">선택</option><option>button</option><option>label</option><option>control</option>
-          <option>section</option><option>row</option><option>icon</option><option>other</option>
-        </select>
-      </label>
-      <label>기준 표현의 EN 대비 의미 동등성
-        <select id="reference-equivalence"><option value="">선택</option><option>yes</option><option>no</option><option>uncertain</option></select>
-      </label>
-      <label>선택지 A–D의 EN 대비 의미 동등성
-        <select id="options-equivalence"><option value="">선택</option><option>yes</option><option>no</option><option>uncertain</option></select>
-      </label>
-    </div>
-    <label>판정 사유 / 번역 오류 / 기타 메모
-      <textarea id="note"></textarea>
-    </label>
-    <p class="help">파란 상자는 질문에서 지시하는 요소 자체의 범위입니다. `valid`는 파란 상자와 요소 종류가 필요합니다. 모호함·누락·번역 불일치·불확실 판정은 메모가 필요합니다.</p>
-    <p id="box-values" class="muted"></p>
-    <p id="message"></p>
-    <div class="actions"><button id="save" class="primary">저장</button><button id="save-next">저장하고 다음</button></div>
-  </section>
+  <p id="title"></p>
+  <p id="tip">노란 말을 참고해 네 화면의 같은 대상을 드래그하세요. 작은 요소는 ‘크게’로 확대할 수 있습니다.</p>
+  <div id="cards"></div>
 </main>
+<footer>
+  <span id="message"></span>
+  <button id="save" disabled>4개 저장</button>
+  <button id="save-next" class="primary" disabled>저장하고 다음 →</button>
+</footer>
 <script>
 "use strict";
 const LANGUAGES = ["en", "zh", "th", "ru"];
-let manifest, annotations, itemIndex = 0, languageIndex = 0, mode = "bbox", boxes = {bbox: null, label_bbox: null};
-let dragging = null, dirty = false, lastStatus = "", undoStack = [];
 const el = id => document.getElementById(id);
+let manifest, annotations, annotatorId, itemIndex = 0, drafts = {}, dirty = new Set();
+let mode = "bbox", dragging = null, undoStack = [], saving = false;
 const item = () => manifest.items[itemIndex];
-const language = () => LANGUAGES[languageIndex];
-const locale = () => item().locales[language()];
-const currentAnnotation = () => (annotations[item().parallel_id] || {})[language()] || null;
+const locale = lang => item().locales[lang];
+const clone = value => JSON.parse(JSON.stringify(value));
 
-function setMessage(message, error = false) {
-  el("message").textContent = message;
-  el("message").style.color = error ? "#a01a22" : "#146739";
+function message(value, error = false) {
+  el("message").textContent = value;
+  el("message").style.color = error ? "#a01a22" : "#17623c";
 }
-function snapshot(previousStatus) {
-  const previous = {
-    bbox: boxes.bbox ? [...boxes.bbox] : null,
-    label_bbox: boxes.label_bbox ? [...boxes.label_bbox] : null,
-  };
-  if (previousStatus !== undefined) {
-    previous.status = previousStatus;
-    previous.element_role = el("element-role").value;
-  }
-  return previous;
+function defaultDraft(lang) {
+  const saved = (annotations[item().parallel_id] || {})[lang];
+  return clone(saved || {
+    anchor_phrase: locale(lang).stem_span.text, status: "", element_role: null,
+    reference_equivalence: "yes", options_equivalence: "yes",
+    bbox: null, label_bbox: null, note: ""
+  });
 }
-function remember(previousStatus) {
-  undoStack.push(snapshot(previousStatus));
+function markDirty(lang) {
+  dirty.add(lang);
+  badge(lang);
+}
+function remember(lang) {
+  undoStack.push({lang: lang, draft: clone(drafts[lang]), wasDirty: dirty.has(lang)});
   if (undoStack.length > 30) undoStack.shift();
   el("undo").disabled = false;
 }
 function undo() {
   if (!undoStack.length) return;
   const previous = undoStack.pop();
-  boxes = {bbox: previous.bbox, label_bbox: previous.label_bbox};
-  if ("status" in previous) {
-    el("status").value = previous.status;
-    el("element-role").value = previous.element_role;
-    lastStatus = previous.status;
-  }
-  dirty = true;
-  setMessage("직전 bbox 편집을 되돌렸습니다. 저장하면 반영됩니다.");
-  draw();
-}
-function confirmLeave() { return !dirty || confirm("저장하지 않은 변경사항이 있습니다. 이동할까요?"); }
-function appendHighlighted(parent, value, spans) {
-  let cursor = 0;
-  for (const span of [...spans].sort((a,b) => a.start - b.start)) {
-    parent.append(document.createTextNode(value.slice(cursor, span.start)));
-    const mark = document.createElement("mark"); mark.textContent = value.slice(span.start, span.end); parent.append(mark);
-    cursor = span.end;
-  }
-  parent.append(document.createTextNode(value.slice(cursor)));
-}
-function renderReferences() {
-  const root = el("references"); root.replaceChildren();
-  for (const lang of LANGUAGES) {
-    const data = item().locales[lang];
-    const card = document.createElement("div"); card.className = "reference-card" + (lang === language() ? " current" : "");
-    const title = document.createElement("h3"); title.textContent = lang.toUpperCase(); card.append(title);
-    const stem = document.createElement("p"); appendHighlighted(stem, data.question_stem, [data.stem_span]); card.append(stem);
-    const options = document.createElement("ul");
-    for (const letter of "ABCD") {
-      const li = document.createElement("li"); li.append(document.createTextNode(letter + ": "));
-      appendHighlighted(li, data.options[letter], data.option_spans[letter]); options.append(li);
-    }
-    card.append(options); root.append(card);
-  }
-}
-function draw() {
-  const canvas = el("overlay"), context = canvas.getContext("2d");
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  for (const [key, color] of [["bbox", "#1c79d4"], ["label_bbox", "#ef9228"]]) {
-    const box = dragging && dragging.key === key ? dragging.preview : boxes[key];
-    if (!box) continue;
-    const [x1,y1,x2,y2] = box; context.fillStyle = color + "33"; context.strokeStyle = color;
-    context.lineWidth = Math.max(2, canvas.width / 500);
-    context.fillRect(x1,y1,x2-x1,y2-y1); context.strokeRect(x1,y1,x2-x1,y2-y1);
-  }
-  el("box-values").textContent = `대상: ${boxes.bbox ? boxes.bbox.join(", ") : "없음"} | 글자: ${boxes.label_bbox ? boxes.label_bbox.join(", ") : "없음"}`;
+  drafts[previous.lang] = previous.draft;
+  if (previous.wasDirty) dirty.add(previous.lang); else dirty.delete(previous.lang);
+  syncCard(previous.lang);
   el("undo").disabled = undoStack.length === 0;
+  message("되돌렸습니다.");
 }
-function point(event) {
-  const rect = el("overlay").getBoundingClientRect(), data = locale();
-  return [Math.max(0, Math.min(data.width, Math.round((event.clientX - rect.left) * data.width / rect.width))),
-          Math.max(0, Math.min(data.height, Math.round((event.clientY - rect.top) * data.height / rect.height)))];
+function confirmLeave() {
+  return !dirty.size || confirm("저장하지 않은 표시가 있습니다. 이동할까요?");
+}
+function highlight(parent, value, spans) {
+  let offset = 0;
+  for (const span of [...spans].sort((a, b) => a.start - b.start)) {
+    parent.append(document.createTextNode(value.slice(offset, span.start)));
+    const mark = document.createElement("mark");
+    mark.textContent = value.slice(span.start, span.end);
+    parent.append(mark);
+    offset = span.end;
+  }
+  parent.append(document.createTextNode(value.slice(offset)));
+}
+function card(lang) { return document.getElementById("card-" + lang); }
+function badge(lang) {
+  const saved = (annotations[item().parallel_id] || {})[lang];
+  card(lang).querySelector(".badge").textContent = dirty.has(lang) ? "수정 중" : (saved ? "저장됨 ✓" : "");
+}
+function draw(lang) {
+  const canvas = card(lang).querySelector("canvas"), context = canvas.getContext("2d");
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  for (const [key, color] of [["bbox", "#1581e3"], ["label_bbox", "#ff9c24"]]) {
+    const box = dragging && dragging.lang === lang && dragging.key === key ? dragging.preview : drafts[lang][key];
+    if (!box) continue;
+    context.fillStyle = color + "38";
+    context.strokeStyle = color;
+    context.lineWidth = Math.max(3, canvas.width / 450);
+    context.fillRect(box[0], box[1], box[2] - box[0], box[3] - box[1]);
+    context.strokeRect(box[0], box[1], box[2] - box[0], box[3] - box[1]);
+  }
+  const info = card(lang).querySelector(".box-info");
+  info.textContent = (drafts[lang].bbox ? "대상 ✓" : "대상 없음") +
+    (drafts[lang].label_bbox ? " · 글자 ✓" : "");
+}
+function syncCard(lang) {
+  const root = card(lang), data = drafts[lang];
+  for (const [field, selector] of [
+    ["status", ".status"], ["element_role", ".role"], ["anchor_phrase", ".phrase"],
+    ["reference_equivalence", ".reference-equivalence"], ["options_equivalence", ".options-equivalence"],
+    ["note", ".note"]
+  ]) root.querySelector(selector).value = data[field] || (field.endsWith("equivalence") ? "yes" : "");
+  root.querySelector(".role").disabled = data.status !== "valid";
+  badge(lang);
+  draw(lang);
+}
+function point(event, lang) {
+  const rect = card(lang).querySelector("canvas").getBoundingClientRect();
+  const data = locale(lang);
+  return [
+    Math.max(0, Math.min(data.width, Math.round((event.clientX - rect.left) * data.width / rect.width))),
+    Math.max(0, Math.min(data.height, Math.round((event.clientY - rect.top) * data.height / rect.height)))
+  ];
+}
+function addCard(lang) {
+  const data = locale(lang), root = document.createElement("article");
+  root.id = "card-" + lang;
+  root.className = "card";
+  root.innerHTML = '<div class="card-top"><strong></strong><span class="badge"></span><button class="expand">크게</button></div>' +
+    '<p class="question"></p><div class="image-area"><div class="image-wrap"><img alt="GUI 화면"><canvas></canvas></div></div>' +
+    '<div class="fields"><label>상태<select class="status"><option value="">선택</option><option value="valid">찾음</option>' +
+    '<option value="ambiguous">대상 애매함</option><option value="multiple_matches">여러 개</option>' +
+    '<option value="absent">없음</option><option value="unpointable">위치 지정 불가</option>' +
+    '<option value="screenshot_error">이미지 오류</option></select></label>' +
+    '<label>종류<select class="role"><option value="">선택</option><option value="button">버튼</option>' +
+    '<option value="label">글자</option><option value="control">입력·스위치</option><option value="section">영역</option>' +
+    '<option value="row">한 줄</option><option value="icon">아이콘</option><option value="other">기타</option></select></label>' +
+    '<label>가리키는 말<input class="phrase" autocomplete="off"></label></div>' +
+    '<div class="card-actions"><button class="clear-bbox">대상 지우기</button><button class="clear-label">글자 지우기</button>' +
+    '<span class="box-info"></span></div>' +
+    '<details><summary>추가 확인 · 메모</summary><div class="extra">' +
+    '<label>영어와 같은 뜻? · 가리키는 말<select class="reference-equivalence">' +
+    '<option value="yes">예</option><option value="no">아니요</option><option value="uncertain">모름</option></select></label>' +
+    '<label>영어와 같은 뜻? · 선택지<select class="options-equivalence">' +
+    '<option value="yes">예</option><option value="no">아니요</option><option value="uncertain">모름</option></select></label>' +
+    '<label class="wide">이유 / 메모<textarea class="note"></textarea></label>' +
+    '<div class="options wide"></div></div></details>';
+  root.querySelector("strong").textContent = lang.toUpperCase();
+  root.querySelector(".question").title = data.question_stem;
+  highlight(root.querySelector(".question"), data.question_stem, [data.stem_span]);
+  const options = root.querySelector(".options");
+  for (const letter of "ABCD") {
+    const row = document.createElement("div");
+    row.append(document.createTextNode(letter + " · "));
+    highlight(row, data.options[letter], data.option_spans[letter]);
+    options.append(row);
+  }
+  root.querySelector(".expand").onclick = () => {
+    root.classList.toggle("expanded");
+    root.querySelector(".expand").textContent = root.classList.contains("expanded") ? "작게" : "크게";
+  };
+  for (const [field, selector] of [
+    ["element_role", ".role"], ["anchor_phrase", ".phrase"],
+    ["reference_equivalence", ".reference-equivalence"], ["options_equivalence", ".options-equivalence"],
+    ["note", ".note"]
+  ]) {
+    root.querySelector(selector).addEventListener("input", event => {
+      drafts[lang][field] = event.target.value;
+      markDirty(lang);
+      if (field.endsWith("equivalence") && event.target.value !== "yes") root.querySelector("details").open = true;
+    });
+  }
+  root.querySelector(".status").addEventListener("change", event => {
+    if (drafts[lang].status === event.target.value) return;
+    remember(lang);
+    drafts[lang].status = event.target.value;
+    if (event.target.value !== "valid") {
+      drafts[lang].bbox = null;
+      drafts[lang].label_bbox = null;
+      drafts[lang].element_role = null;
+      root.querySelector(".role").value = "";
+      if (event.target.value) root.querySelector("details").open = true;
+    }
+    root.querySelector(".role").disabled = event.target.value !== "valid";
+    markDirty(lang);
+    draw(lang);
+  });
+  for (const [selector, key] of [[".clear-bbox", "bbox"], [".clear-label", "label_bbox"]]) {
+    root.querySelector(selector).onclick = () => {
+      if (!drafts[lang][key]) return;
+      remember(lang);
+      drafts[lang][key] = null;
+      markDirty(lang);
+      draw(lang);
+    };
+  }
+  const image = root.querySelector("img"), canvas = root.querySelector("canvas");
+  image.onload = () => {
+    canvas.width = data.width;
+    canvas.height = data.height;
+    draw(lang);
+  };
+  image.onerror = () => message(lang.toUpperCase() + " 이미지를 열지 못했습니다.", true);
+  canvas.addEventListener("pointerdown", event => {
+    if (!image.complete || !image.naturalWidth) return;
+    const start = point(event, lang);
+    dragging = {lang: lang, key: mode, start: start, preview: [start[0], start[1], start[0], start[1]]};
+    canvas.setPointerCapture(event.pointerId);
+  });
+  canvas.addEventListener("pointermove", event => {
+    if (!dragging || dragging.lang !== lang) return;
+    const start = dragging.start, end = point(event, lang);
+    dragging.preview = [Math.min(start[0], end[0]), Math.min(start[1], end[1]),
+      Math.max(start[0], end[0]), Math.max(start[1], end[1])];
+    draw(lang);
+  });
+  canvas.addEventListener("pointerup", event => {
+    if (!dragging || dragging.lang !== lang) return;
+    const start = dragging.start, end = point(event, lang);
+    const box = [Math.min(start[0], end[0]), Math.min(start[1], end[1]),
+      Math.max(start[0], end[0]), Math.max(start[1], end[1])];
+    if (box[2] > box[0] && box[3] > box[1] &&
+        JSON.stringify(box) !== JSON.stringify(drafts[lang][dragging.key])) {
+      remember(lang);
+      drafts[lang][dragging.key] = box;
+      if (dragging.key === "bbox") {
+        drafts[lang].status = "valid";
+        root.querySelector(".status").value = "valid";
+        root.querySelector(".role").disabled = false;
+      }
+      markDirty(lang);
+    }
+    dragging = null;
+    draw(lang);
+  });
+  canvas.addEventListener("pointercancel", () => { dragging = null; draw(lang); });
+  el("cards").append(root);
+  syncCard(lang);
+  image.src = "/api/image?pid=" + encodeURIComponent(item().parallel_id) + "&lang=" + lang;
+}
+function updateHeader() {
+  const savedCount = Object.values(annotations).reduce((count, group) => count + Object.keys(group).length, 0);
+  el("progress").textContent = savedCount + "/" + (manifest.items.length * 4);
+  el("position").value = itemIndex + 1;
+  el("position").max = manifest.items.length;
+  el("previous").disabled = itemIndex === 0;
+  el("next").disabled = itemIndex === manifest.items.length - 1;
+  el("position").disabled = false;
+  el("jump").disabled = false;
+  el("save").disabled = false;
+  el("save-next").disabled = false;
+  const isPilot = (manifest.pilot_item_ids || []).includes(item().parallel_id);
+  el("title").textContent = (itemIndex + 1) + "/" + manifest.items.length + " · " +
+    item().parallel_id + (isPilot ? " · 파일럿 문항" : "");
 }
 function render() {
-  const data = locale(), saved = currentAnnotation();
-  el("title").textContent = `${itemIndex + 1}/${manifest.items.length} · ${item().parallel_id}`;
-  el("annotator").textContent = `검수자: ${window.annotatorId}`;
-  el("progress").textContent = `${Object.values(annotations).reduce((n, v) => n + Object.keys(v).length, 0)}/${manifest.items.length * 4} 화면 저장`;
-  el("previous").disabled = itemIndex === 0 && languageIndex === 0;
-  el("next").disabled = itemIndex === manifest.items.length - 1 && languageIndex === 3;
-  const tabs = el("tabs"); tabs.replaceChildren();
-  LANGUAGES.forEach((lang, index) => {
-    const button = document.createElement("button");
-    button.textContent = `${lang.toUpperCase()} ${((annotations[item().parallel_id] || {})[lang]) ? "✓" : ""}`;
-    if (index === languageIndex) button.classList.add("selected");
-    button.onclick = () => { if (!confirmLeave()) return; languageIndex = index; render(); };
-    tabs.append(button);
-  });
-  el("anchor-phrase").value = saved?.anchor_phrase || "";
-  el("status").value = saved?.status || "";
-  el("element-role").value = saved?.element_role || "";
-  el("reference-equivalence").value = saved?.reference_equivalence || "";
-  el("options-equivalence").value = saved?.options_equivalence || "";
-  el("note").value = saved?.note || "";
-  boxes = {bbox: saved?.bbox || null, label_bbox: saved?.label_bbox || null};
-  lastStatus = el("status").value;
+  drafts = {};
+  dirty.clear();
   undoStack = [];
+  el("undo").disabled = true;
   dragging = null;
-  el("image-details").textContent = `${language().toUpperCase()} · ${data.width}×${data.height} 원본 픽셀 · ${data.image_path}`;
-  const image = el("screenshot");
-  image.onload = () => { el("overlay").width = data.width; el("overlay").height = data.height; draw(); };
-  image.src = `/api/image?pid=${encodeURIComponent(item().parallel_id)}&lang=${language()}`;
-  renderReferences(); setMessage(""); dirty = false; draw();
+  el("cards").replaceChildren();
+  for (const lang of LANGUAGES) drafts[lang] = defaultDraft(lang);
+  for (const lang of LANGUAGES) addCard(lang);
+  updateHeader();
+  message("");
 }
-function move(step) {
-  if (!confirmLeave()) return;
-  const index = itemIndex * 4 + languageIndex + step;
-  if (index < 0 || index >= manifest.items.length * 4) return;
-  itemIndex = Math.floor(index / 4); languageIndex = index % 4; render();
+function move(index) {
+  if (!Number.isInteger(index) || index < 0 || index >= manifest.items.length) {
+    el("position").value = itemIndex + 1;
+    message("1부터 " + manifest.items.length + " 사이의 번호를 입력하세요.", true);
+    return;
+  }
+  if (!confirmLeave()) { el("position").value = itemIndex + 1; return; }
+  itemIndex = index;
+  render();
+}
+function validateDrafts() {
+  for (const lang of LANGUAGES) {
+    const data = drafts[lang], source = locale(lang), label = lang.toUpperCase();
+    const phrase = data.anchor_phrase.trim(), anchor = source.stem_span.text;
+    if (!phrase || !source.question_stem.includes(phrase) || phrase.split(anchor).length !== 2)
+      return label + ": ‘가리키는 말’은 노란 표현이 한 번 들어간 질문의 일부여야 합니다.";
+    if (!data.status) return label + ": 상태를 고르세요.";
+    if (data.status === "valid" && (!data.bbox || !data.element_role))
+      return label + ": 대상을 그리고 종류를 고르세요.";
+    if (data.status !== "valid" && (data.bbox || data.label_bbox))
+      return label + ": 대상을 찾지 못했다면 상자를 지우세요.";
+    if ((data.status !== "valid" || data.reference_equivalence !== "yes" ||
+         data.options_equivalence !== "yes") && !data.note.trim()) {
+      card(lang).querySelector("details").open = true;
+      return label + ": 이유를 메모에 적으세요.";
+    }
+  }
+  return null;
 }
 async function save(advance) {
-  const payload = {parallel_id: item().parallel_id, language: language(), anchor_phrase: el("anchor-phrase").value,
-    status: el("status").value, element_role: el("element-role").value || null,
-    reference_equivalence: el("reference-equivalence").value, options_equivalence: el("options-equivalence").value,
-    bbox: boxes.bbox, label_bbox: boxes.label_bbox, note: el("note").value};
-  const response = await fetch("/api/annotation", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(payload)});
-  if (!response.ok) { setMessage((await response.text()).replace(/<[^>]*>/g, " ").trim(), true); return; }
-  const result = await response.json();
-  (annotations[item().parallel_id] ||= {})[language()] = result.annotation;
-  dirty = false; setMessage("저장했습니다.");
-  if (advance) move(1); else render();
+  if (saving) return;
+  const error = validateDrafts();
+  if (error) { message(error, true); return; }
+  saving = true;
+  el("save").disabled = true;
+  el("save-next").disabled = true;
+  try {
+    const response = await fetch("/api/item", {
+      method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({parallel_id: item().parallel_id, annotations: drafts})
+    });
+    if (!response.ok) {
+      const body = await response.json().catch(() => ({}));
+      throw new Error(body.error || "저장에 실패했습니다.");
+    }
+    const result = await response.json();
+    annotations[item().parallel_id] = result.annotations;
+    dirty.clear();
+    undoStack = [];
+    el("undo").disabled = true;
+    updateHeader();
+    for (const lang of LANGUAGES) badge(lang);
+    message("저장했습니다.");
+    if (advance && itemIndex < manifest.items.length - 1) { itemIndex += 1; render(); }
+  } catch (error) { message(error.message, true); }
+  finally { saving = false; el("save").disabled = false; el("save-next").disabled = false; }
 }
-el("overlay").addEventListener("pointerdown", event => {
-  if (!el("screenshot").complete) return;
-  const start = point(event); dragging = {key: mode, start, preview: [start[0], start[1], start[0], start[1]]};
-  el("overlay").setPointerCapture(event.pointerId);
-});
-el("overlay").addEventListener("pointermove", event => {
-  if (!dragging) return;
-  const end = point(event), start = dragging.start;
-  dragging.preview = [Math.min(start[0], end[0]), Math.min(start[1], end[1]), Math.max(start[0], end[0]), Math.max(start[1], end[1])];
-  draw();
-});
-el("overlay").addEventListener("pointerup", event => {
-  if (!dragging) return;
-  const end = point(event), start = dragging.start;
-  const box = [Math.min(start[0], end[0]), Math.min(start[1], end[1]), Math.max(start[0], end[0]), Math.max(start[1], end[1])];
-  if (box[2] > box[0] && box[3] > box[1] && JSON.stringify(box) !== JSON.stringify(boxes[dragging.key])) {
-    remember(); boxes[dragging.key] = box; dirty = true;
-  }
-  dragging = null; draw();
-});
-el("overlay").addEventListener("pointercancel", () => { dragging = null; draw(); });
-for (const [id, key] of [["mode-target", "bbox"], ["mode-label", "label_bbox"]]) {
-  el(id).onclick = () => { mode = key; el("mode-target").classList.toggle("selected", key === "bbox"); el("mode-label").classList.toggle("selected", key === "label_bbox"); };
+el("previous").onclick = () => move(itemIndex - 1);
+el("next").onclick = () => move(itemIndex + 1);
+el("jump").onclick = () => move(Number(el("position").value) - 1);
+el("position").addEventListener("keydown", event => { if (event.key === "Enter") move(Number(el("position").value) - 1); });
+for (const [id, key] of [["mode-bbox", "bbox"], ["mode-label", "label_bbox"]]) {
+  el(id).onclick = () => {
+    mode = key;
+    el("mode-bbox").classList.toggle("selected", key === "bbox");
+    el("mode-label").classList.toggle("selected", key === "label_bbox");
+  };
 }
-el("clear-target").onclick = () => { if (boxes.bbox) { remember(); boxes.bbox = null; dirty = true; draw(); } };
-el("clear-label").onclick = () => { if (boxes.label_bbox) { remember(); boxes.label_bbox = null; dirty = true; draw(); } };
 el("undo").onclick = undo;
-for (const id of ["anchor-phrase", "status", "element-role", "reference-equivalence", "options-equivalence", "note"]) {
-  el(id).addEventListener("input", () => { dirty = true; });
-}
-el("status").addEventListener("change", () => {
-  if (el("status").value === lastStatus) return;
-  remember(lastStatus);
-  if (el("status").value !== "valid") {
-    boxes = {bbox: null, label_bbox: null}; el("element-role").value = "";
-  }
-  lastStatus = el("status").value;
-  dirty = true;
-  draw();
-});
+el("save").onclick = () => save(false);
+el("save-next").onclick = () => save(true);
 document.addEventListener("keydown", event => {
   if (!(event.ctrlKey || event.metaKey) || event.shiftKey || event.key.toLowerCase() !== "z") return;
   if (event.target.closest?.("input, textarea, [contenteditable]")) return;
-  if (event.target.closest?.("select") && event.target.id !== "status") return;
-  if (dragging) { event.preventDefault(); dragging = null; draw(); return; }
+  if (dragging) { event.preventDefault(); const lang = dragging.lang; dragging = null; draw(lang); return; }
   if (undoStack.length) { event.preventDefault(); undo(); }
 });
-el("previous").onclick = () => move(-1); el("next").onclick = () => move(1);
-el("save").onclick = () => save(false); el("save-next").onclick = () => save(true);
-window.addEventListener("beforeunload", event => { if (dirty) { event.preventDefault(); event.returnValue = ""; } });
-fetch("/api/state").then(async response => { if (!response.ok) throw new Error(await response.text()); return response.json(); })
-  .then(data => { manifest = data.manifest; annotations = data.annotations; window.annotatorId = data.annotator_id; render(); })
-  .catch(error => setMessage("Manifest 로드 실패: " + error.message, true));
+window.addEventListener("beforeunload", event => {
+  if (dirty.size) { event.preventDefault(); event.returnValue = ""; }
+});
+fetch("/api/state").then(async response => {
+  if (!response.ok) throw new Error(await response.text());
+  return response.json();
+}).then(data => {
+  manifest = data.manifest;
+  annotations = data.annotations;
+  annotatorId = data.annotator_id;
+  el("app-title").textContent = "위치 표시 · " + annotatorId;
+  render();
+}).catch(error => message("목록을 열지 못했습니다: " + error.message, true));
 </script>
 </body>
 </html>
