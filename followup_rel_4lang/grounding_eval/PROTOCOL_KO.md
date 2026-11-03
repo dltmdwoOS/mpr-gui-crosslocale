@@ -1,6 +1,8 @@
-# REL 기준 요소 위치 지정 실험: 사전 지정 프로토콜 v2
+# REL 기준 요소 위치 지정 실험: 사전 지정 프로토콜 v3
 
-고정일: **2026-11-03**. 이 문서는 새 모델 위치 응답을 보기 전에 확정한 **표본, 입력, 채점, 분석 규칙**이다. 장시간 추론은 아직 실행하지 않았다. 기존 O/R 정답은 이 연구 질문을 만드는 데 사용했으므로, 아래 실험은 독립 데이터셋 재현이 아니라 동일 문항에 대한 새 진단이다. v1의 공통 0–1000 점 출력은 Qwen2.5의 좌표계와 맞지 않아 실행 전에 교체했다. 근거와 반례 검사는 [출력 형식 검토](FORMAT_REVIEW_KO.md)에 기록했다. v1 입력 파일은 결과와 섞지 않는다.
+고정일: **2026-11-03**. 이 문서는 Qwen 파일럿 O/R 응답을 보기 전에 확정한 **표본, 입력, 채점, 분석 규칙**이다. 장시간 본 분석 추론은 아직 실행하지 않았다. 기존 O/R 정답은 이 연구 질문을 만드는 데 사용했으므로, 아래 실험은 독립 데이터셋 재현이 아니라 동일 문항에 대한 새 진단이다. v1의 0–1000 점 계약은 Qwen2.5 좌표계와 맞지 않았다. v2의 양성 대조 8건은 출력 형식 게이트를 통과하지 못해 파일럿 O/R을 시작하지 않았다. v3는 그 원시 응답만 보고 출력 지시 위치와 목표 요소 설명을 수정했으며, 새 파일럿 O/R 결과를 보고 선택한 형식이 아니다. [출력 형식 검토](FORMAT_REVIEW_KO.md)에 경위를 남겼다. 각 버전 입력·결과는 분리한다.
+
+**현재 상태:** v3도 양성 대조 게이트에 실패해 v3 O/R 파일럿과 본 분석은 실행하지 않았다. 선정된 12문항의 짧은 기준 표현을 이용한 별도 탐색 실행은 O/R 96응답까지 완료했으나 형식 게이트에 실패했다. 수치와 해석 제한은 [Qwen 파일럿 결과](QWEN_PILOT_RESULTS_KO.md)에 기록했다. 아래 v3 규칙은 성공한 프로토콜이 아니라 **사전 지정 후 검증에 실패한 프로토콜**이다.
 
 ## 1. 가져온 annotation의 판정
 
@@ -36,17 +38,19 @@ annotation의 `unreviewed`, `pending`, 요소 종류 필드는 이번 실험의 
 
 - 본 분석은 포함된 158문항의 4 GUI 언어 각각에 대해 나머지 3 source 언어를 사용한다. 모델당 **1,896개 방향성 `(parallel_id, source, GUI)` 쌍**이다. 각 쌍에서 O/R 위치 질문 두 개를 같은 원본 이미지에 제시한다.
 - 12문항 파일럿은 본 분석에서 제외한다. 파일럿 위치 과제는 문항당 `EN→ZH, ZH→TH, TH→RU, RU→EN` 네 쌍, 모델당 **48쌍·96응답**이다.
-- [`build_protocol_inputs.py`](build_protocol_inputs.py)는 잠금 `conditions_4lang.jsonl`, `reference_mappings.jsonl`, manifest, 감사된 GT를 읽고 `results/grounding_protocol_inputs_v2/`에 정확한 입력을 만든다. 위치 과제 파일에는 **정답, bbox, 모델 출력이 없다**. 생성 내용은 Git에 포함한 [입력 잠금](input_lock.json)의 SHA-256과 먼저 비교하고, 재생성 시 내용이 다르면 덮어쓰지 않고 중지한다. 이전 v1 입력은 별도 디렉터리에 남겨 혼합하지 않는다.
+- [`build_protocol_inputs.py`](build_protocol_inputs.py)는 잠금 `conditions_4lang.jsonl`, `reference_mappings.jsonl`, manifest, 감사된 GT를 읽고 `results/grounding_protocol_inputs_v3/`에 정확한 입력을 만든다. 위치 과제 파일에는 **정답, bbox, 모델 출력이 없다**. 생성 내용은 Git에 포함한 [입력 잠금](input_lock.json)의 SHA-256과 먼저 비교하고, 재생성 시 내용이 다르면 덮어쓰지 않고 중지한다. 이전 버전 입력은 별도 디렉터리에 남겨 혼합하지 않는다.
 - 본 분석 O/R 객관식은 기존 `results/full/qwen2_5_vl_7b_batch32` 및 `results/full/internvl2_5_8b` 결과를 재사용한다. 각 모델의 1,896쌍 모두 O/R이 성공 상태이고 정오가 있다. 새 `R_stem`/`R_opts`만 추론한다.
 
 ### 위치 과제의 실제 텍스트
 
 원래 O의 질문 문장에 `<ref>...</ref>`를 **잠금 span 오프셋**으로 삽입한다. R은 그 한 span만 GUI 언어 span으로 바꾼 뒤 같은 위치에 표시한다. 나머지 source 문맥·이미지·지시문은 동일하다. A–D 선택지와 gold는 넣지 않는다. 예: `... blue '<ref>Search</ref>' button?` 대 `... blue '<ref>搜索</ref>' button?`. 질문 전체를 제공하므로 `Search`처럼 span 자체가 짧아도 버튼이라는 문맥이 남는다.
 
-두 모델의 **위치 출력 계약**만 모델 원래 학습 형식에 맞춘다. Qwen2.5-VL의 system prompt는 아래와 같다. `{model_width}`와 `{model_height}`는 Qwen 프로세서의 실제 `image_grid_thw`에서 각각 `grid[2]×14`, `grid[1]×14`로 읽는다. 이 크기를 알기 전에는 prompt를 완성하거나 추론하지 않는다.
+두 모델의 **위치 출력 계약**은 모델별 근거에 맞춘다. Qwen2.5-VL은 공식 예시처럼 지시문과 이미지가 같은 **user 메시지**에 들어간다. 별도 system prompt는 사용하지 않는다. `{model_width}`와 `{model_height}`는 Qwen 프로세서의 실제 `image_grid_thw`에서 각각 `grid[2]×14`, `grid[1]×14`로 읽는다. 이 크기를 알기 전에는 prompt를 완성하거나 추론하지 않는다. Qwen user text 전체는 다음과 같다.
 
 ```text
-Locate one reference element in the full GUI screenshot. The screenshot shown to you is {model_width} pixels wide and {model_height} pixels high. Return only this JSON array with exactly one object: [{"point_2d": [x, y], "label": "target"}]. x and y must be integer pixel coordinates on that screenshot, with (0, 0) at the top-left. Do not add any other text.
+Locate the GUI reference element marked with <ref>...</ref> in the question below. The marked expression may be in a different language from the screenshot. Use surrounding words to identify the marked element. Do not locate the element that the question asks for.
+Question: {marked_stem}
+The screenshot is {model_width} pixels wide and {model_height} pixels high. Give one point inside the marked reference element using integer pixel coordinates on this screenshot, with (0, 0) at the top-left. Return only this JSON array: [{"point_2d": [x, y]}]. No explanation or code fence.
 ```
 
 InternVL2.5-8B는 공식 grounding 데이터의 **0–1000 정규화 bbox** 형식을 따른다. system prompt는 다음과 같다. 두 모델에서 지시 대상·O/R 차이·원본 이미지는 같다.
@@ -55,14 +59,14 @@ InternVL2.5-8B는 공식 grounding 데이터의 **0–1000 정규화 bbox** 형�
 Locate one reference element in the full GUI screenshot. Return exactly one bounding box as <box>[[x1, y1, x2, y2]]</box>. Use integer coordinates normalized from 0 to 1000 over the full screenshot, with (0, 0) at the top-left and (1000, 1000) at the bottom-right. Do not add any other text.
 ```
 
-두 모델의 user text는 다음과 같다. `{marked_stem}` 외 문구는 O/R 간 같다. 표시된 이름 자체의 글자 위치가 아니라 주변 문장이 묘사하는 **기준 요소**를 찾고 관계 질문의 답은 찾지 않도록 한다.
+InternVL의 user text는 다음과 같다. 두 모델에서 `{marked_stem}`과 그 O/R 차이는 같고, 모델별 출력 지시만 다르다.
 
 ```text
 Question: {marked_stem}
 Locate the reference GUI element described by the marked expression and its surrounding words. Do not answer the relation question.
 ```
 
-이미지는 기존 모델 입력 방법으로 한 장만 넣는다. Qwen에는 공식 예시와 GUI 평가 선례처럼 **단일 객체의 JSON 배열**을 요청한다. 채점은 한 점만 명확한 JSON 객체 또는 단일 객체 배열에서 `point_2d`를 읽으며, `label`은 무시한다. 숫자와 공식 예시의 숫자 문자열을 모두 받는다. 요청한 배열·고정 label·정수 형태를 지킨 비율은 위치 정오와 별도로 기록한다. 최종 입력 폭·높이 `(Wm,Hm)`과 원본 폭·높이 `(Wo,Ho)`를 기록하고 `x_original=x·Wo/Wm`, `y_original=y·Ho/Hm`으로 옮긴다. InternVL 출력은 단일 `<box>[[x1,y1,x2,y2]]</box>`(선택적으로 앞에 `<ref>...</ref>`)만 받는다. 정규화 bbox 중심을 `((x1+x2)·Wo/2000,(y1+y2)·Ho/2000)`으로 옮긴다. [파서·채점 계약](point_format.py)에 맞지 않는 추가 설명, 범위 밖 좌표, 생성 실패는 오답이다. 변환된 점이 원본 GT bbox의 닫힌 경계 안에 있으면 성공이다. 680개 이미지의 원본 크기는 manifest와 일치하고, EXIF 방향 회전이 필요한 파일은 없었다. 이 지표는 **annotation된 영역 안에 점이 있는지**만 측정하며, 영역이 카드 전체일 때 작은 토글을 맞혔다고 해석하지 않는다.
+이미지는 기존 모델 입력 방법으로 한 장만 넣는다. Qwen에는 **점 하나의 JSON 배열**을 요청한다. 채점은 한 점만 명확한 JSON 객체 또는 단일 객체 배열에서 `point_2d`를 읽으며, 선택적인 `label`은 무시한다. 숫자와 공식 예시의 숫자 문자열을 모두 받는다. 요청한 배열·정수 형태를 지킨 비율은 위치 정오와 별도로 기록한다. 최종 입력 폭·높이 `(Wm,Hm)`과 원본 폭·높이 `(Wo,Ho)`를 기록하고 `x_original=x·Wo/Wm`, `y_original=y·Ho/Hm`으로 옮긴다. InternVL 출력은 단일 `<box>[[x1,y1,x2,y2]]</box>`(선택적으로 앞에 `<ref>...</ref>`)만 받는다. 정규화 bbox 중심을 `((x1+x2)·Wo/2000,(y1+y2)·Ho/2000)`으로 옮긴다. [파서·채점 계약](point_format.py)에 맞지 않는 추가 설명, 범위 밖 좌표, 생성 실패는 오답이다. 변환된 점이 원본 GT bbox의 닫힌 경계 안에 있으면 성공이다. 680개 이미지의 원본 크기는 manifest와 일치하고, EXIF 방향 회전이 필요한 파일은 없었다. 이 지표는 **annotation된 영역 안에 점이 있는지**만 측정하며, 영역이 카드 전체일 때 작은 토글을 맞혔다고 해석하지 않는다.
 
 모델 revision과 영상 전처리는 기존 run contract를 따른다. Qwen2.5-VL-7B는 `cc594898137f460bfe9f0759e9844b3ce807cfb5`와 pixel budget 262,144–2,097,152, InternVL2.5-8B는 `e9e4c0dc1db56bfab10458671519b7fa3dd29463`와 448px 동적 타일 최대 7개+thumbnail이다. 위치 응답만 greedy(`do_sample=false`, `num_beams=1`, `temperature=null`, `max_new_tokens=64`)로 새로 생성한다. 모델별 응답을 독립적으로 보고하며 두 모델의 원시 위치 정확도를 우열 비교의 주 대상으로 삼지 않는다. Qwen 점과 InternVL bbox 중심의 차이 때문에 R−O 크기의 모델 간 직접 우열도 주장하지 않는다.
 
@@ -94,14 +98,16 @@ Locate the reference GUI element described by the marked expression and its surr
 
 R과 O의 차이는 언어 문자열 조작 효과다. 번역 의미가 같다고 확인한 효과로 부르지 않는다. 위치 정확도가 올라가고 객관식도 개선되면 **기준 요소 위치 지정이 병목일 가능성**을 지지하지만, 내부 grounding 변화의 직접 증명은 아니다. 위치 정확도가 그대로여도 선택지 grounding·OCR·관계 판단·점 출력 능력 중 어디가 실패했는지는 구별되지 않는다.
 
-후속 위치 단서 개입은 이 v2의 확증 분석에 섞지 않는다. 필요하면 본 분석 결과를 본 뒤 별도 버전에서 GT 위치를 표시한 이미지와 중립 표시 이미지를 사전 정의해 `location cue`의 구제 효과를 검사한다. 그 개입도 정답 후보 위치 annotation 없이 `post-grounding reasoning failure`를 확정할 수 없다.
+후속 위치 단서 개입은 이 v3의 확증 분석에 섞지 않는다. 필요하면 본 분석 결과를 본 뒤 별도 버전에서 GT 위치를 표시한 이미지와 중립 표시 이미지를 사전 정의해 `location cue`의 구제 효과를 검사한다. 그 개입도 정답 후보 위치 annotation 없이 `post-grounding reasoning failure`를 확정할 수 없다.
 
 ## 재현 명령
 
-저장소 최상위에서 실행한다. 새 위치 입력 파일은 Git 제외된 `followup_rel_4lang/results/grounding_protocol_inputs_v2/`에 생성된다. 원본 전달본과 [검증 스크립트](annotations_20261103/verify.py)는 수정하지 않는다. 실제 모델 위치 추론 러너는 아직 구현·실행하지 않았다. 러너는 Qwen의 최종 `image_grid_thw`를 확인해 system prompt에 정확한 크기를 넣고 결과에 그리드를 저장해야 한다. 현재 환경의 개인 캐시에는 고정 Qwen revision의 전처리 설정만 있어 단건 생성 점검도 완료하지 못했다. 모델을 확보한 뒤 4절의 게이트를 통과해야 본 분석을 시작할 수 있다.
+저장소 최상위에서 실행한다. 새 위치 입력 파일은 Git 제외된 `followup_rel_4lang/results/grounding_protocol_inputs_v3/`에 생성된다. 원본 전달본과 [검증 스크립트](annotations_20261103/verify.py)는 수정하지 않는다. Qwen [파일럿 러너](run_qwen_pilot.py)는 현재 공유 디스크 여유를 고려해 고정 revision의 가중치를 한 shard씩 임시 다운로드·SHA-256 검증·GPU 적재 후 제거한다. 입력·결과 버전을 확인하며 본 분석 문항은 실행하지 않는다. 본 분석 러너는 아직 구현하지 않았다.
 
 ```bash
 python3 followup_rel_4lang/grounding_eval/annotations_20261103/verify.py --images
 python3 followup_rel_4lang/grounding_eval/audit_annotations.py
 python3 followup_rel_4lang/grounding_eval/build_protocol_inputs.py
+source followup_rel_4lang/qwen_server_env.sh
+"$PYTHON_BIN" followup_rel_4lang/grounding_eval/run_qwen_pilot.py
 ```

@@ -3,17 +3,18 @@
 import json
 from pathlib import Path
 
-from followup_rel_4lang.grounding_eval.build_protocol_inputs import build, render_qwen_system_prompt
+from followup_rel_4lang.grounding_eval.build_protocol_inputs import build, render_qwen_user_prompt
 from followup_rel_4lang.grounding_eval.point_format import (
     parse_internvl_box, parse_qwen_point, qwen_image_size_from_grid,
     score_internvl_box, score_qwen_point,
 )
+from followup_rel_4lang.grounding_eval.run_qwen_pilot import _load_phrase_descriptors, _trials
 
 
 def test_qwen_point_uses_actual_model_pixels_and_original_image_for_scoring():
     box = [100, 50, 300, 150]
     assert qwen_image_size_from_grid([1, 152, 70]) == (980, 2128)
-    result = score_qwen_point('[{"point_2d": [490, 1064], "label": "target"}]',
+    result = score_qwen_point('[{"point_2d": [490, 1064]}]',
                               box, 400, 200, 980, 2128)
     assert result == {
         "parsed_point_model_pixels": [490, 1064],
@@ -25,8 +26,10 @@ def test_qwen_point_uses_actual_model_pixels_and_original_image_for_scoring():
     assert parse_qwen_point('{"point_2d": ["490", "1064"]}', 980, 2128) == (490, 1064)
     assert score_qwen_point('{"point_2d": ["490", "1064"]}', box, 400, 200,
                             980, 2128)["requested_format_adherent"] is False
-    assert '980 pixels wide and 2128 pixels high' in render_qwen_system_prompt(980, 2128)
-    assert '[{"point_2d": [x, y], "label": "target"}]' in render_qwen_system_prompt(980, 2128)
+    rendered = render_qwen_user_prompt('Find <ref>Search</ref> button.', 980, 2128)
+    assert '980 pixels wide and 2128 pixels high' in rendered
+    assert '[{"point_2d": [x, y]}]' in rendered
+    assert 'Do not locate the element that the question asks for.' in rendered
     for invalid in (
         '(490, 1064)', '{"point_2d": [981, 1064]}',
         '{"point_2d": [490.5, 1064]}', '{"point_2d": [true, 1064]}',
@@ -66,7 +69,7 @@ def test_grounding_inputs_keep_annotation_and_gold_out_of_prompts():
     assert len(grounding) == 1944
     assert len(mixed) == 3888
     assert len(controls) == 8
-    assert lock["schema"] == "rel-grounding-protocol-inputs-v2"
+    assert lock["schema"] == "rel-grounding-protocol-inputs-v3"
     assert sum(row["split"] == "main" for row in grounding) == 1896
     assert sum(row["split"] == "main" for row in mixed) == 3792
     assert all("bbox" not in row and "gold_answer" not in row for row in grounding)
@@ -83,3 +86,16 @@ def test_grounding_inputs_keep_annotation_and_gold_out_of_prompts():
     relevant = [row for row in grounding if row["parallel_id"] == repeated[0]
                 and row["query_language"] == repeated[1]]
     assert relevant and all(row["question_O"].count("<ref>") == 1 for row in relevant)
+
+
+def test_pilot_only_referring_phrases_are_locked_source_question_substrings():
+    grounding, _, controls, _ = build()
+    pilot = [row for row in grounding if row["split"] == "pilot"]
+    descriptors, template, descriptor_hash = _load_phrase_descriptors(controls, pilot)
+    control_trials, pilot_trials = _trials(controls, pilot, descriptors)
+    assert len(control_trials) == 8 and len(pilot_trials) == 96
+    assert len(descriptor_hash) == 64
+    assert '[{"point_2d": [x, y]}]' in template.format(
+        descriptor="<ref>Search</ref>", model_width=980, model_height=2128,
+    )
+    assert all("Question:" not in trial["marked_stem"] for trial in pilot_trials)

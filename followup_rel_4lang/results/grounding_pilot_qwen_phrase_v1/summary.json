@@ -1,0 +1,21 @@
+{
+  "schema": "rel-grounding-qwen-phrase-pilot-v1",
+  "control_count": 8,
+  "control_valid": 3,
+  "control_format_adherent": 3,
+  "control_hit": 3,
+  "control_gate_passed": false,
+  "pilot_count": 96,
+  "pilot_valid": 43,
+  "pilot_format_adherent": 43,
+  "pilot_hit_O": 20,
+  "pilot_hit_R": 23,
+  "pilot_complete_pairs": 48,
+  "pilot_transitions": {
+    "0->0": 23,
+    "0->1": 5,
+    "1->0": 2,
+    "1->1": 18
+  },
+  "pilot_format_gate_passed": false
+}

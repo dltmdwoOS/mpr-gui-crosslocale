@@ -1,0 +1,79 @@
+{
+  "schema": "rel-grounding-pilot-referent-phrases-v1",
+  "note": "Pilot-only referring phrases copied from the locked source-language question stems. {ref} replaces only the marked O/R expression.",
+  "prompt_template": "Reference phrase: {descriptor}\nLocate this GUI element in the screenshot. The phrase may be in a different language from the screenshot. The screenshot is {model_width} pixels wide and {model_height} pixels high. Give one point inside the element, using integer pixel coordinates with (0, 0) at the top-left. Return only this JSON array: [{{\"point_2d\": [x, y]}}]. No explanation or code fence.",
+  "descriptors": {
+    "rel::1/booking_1.jpg": {
+      "en": "blue '{ref}' button",
+      "zh": "蓝色“{ref}”按钮",
+      "th": "ปุ่มสีน้ำเงิน \"{ref}\"",
+      "ru": "синей кнопки '{ref}'"
+    },
+    "rel::1/booking_10.jpg": {
+      "en": "\"{ref}\" section",
+      "zh": "“{ref}”部分",
+      "th": "ส่วน \"{ref}\"",
+      "ru": "разделом \"{ref}\""
+    },
+    "rel::2/clock_10.png": {
+      "en": "'{ref}' tab at the bottom of the screen",
+      "zh": "屏幕底部“{ref}”标签",
+      "th": "แท็บ '{ref}' ที่ด้านล่างของหน้าจอ",
+      "ru": "вкладки '{ref}' в нижней части экрана"
+    },
+    "rel::2/weather_3.png": {
+      "en": "'{ref}' section",
+      "zh": "「{ref}」部分",
+      "th": "ส่วน '{ref}'",
+      "ru": "раздела '{ref}'"
+    },
+    "rel::3/music_7.jpg": {
+      "en": "\"{ref}\" option in the menu",
+      "zh": "菜单中“{ref}”选项",
+      "th": "ตัวเลือก \"{ref}\" ในเมนู",
+      "ru": "пунктом меню \"{ref}\""
+    },
+    "rel::3/settings_2.jpg": {
+      "en": "'{ref}'",
+      "zh": "“{ref}”",
+      "th": "'{ref}'",
+      "ru": "'{ref}'"
+    },
+    "rel::4/Gmail_8.jpg": {
+      "en": "'{ref}' placeholder text",
+      "zh": "“{ref}”占位符文本",
+      "th": "ข้อความตัวอย่าง '{ref}'",
+      "ru": "текста-заполнителя '{ref}'"
+    },
+    "rel::4/twitter_6.jpg": {
+      "en": "'{ref}' option in the settings menu",
+      "zh": "“{ref}”选项",
+      "th": "ตัวเลือก '{ref}' ในเมนูการตั้งค่า",
+      "ru": "опции '{ref}' в меню настроек"
+    },
+    "rel::5/camera_1.jpg": {
+      "en": "'{ref}' mode button",
+      "zh": "“{ref}”模式按钮",
+      "th": "ปุ่มโหมด '{ref}'",
+      "ru": "кнопкой режима '{ref}'"
+    },
+    "rel::5/message_1.jpg": {
+      "en": "'{ref}'",
+      "zh": "“{ref}”",
+      "th": "\"{ref}\"",
+      "ru": "'{ref}'"
+    },
+    "rel::6/safari_7.jpg": {
+      "en": "'{ref}' setting in the list",
+      "zh": "“{ref}”设置",
+      "th": "การตั้งค่า \"{ref}\" ในรายการ",
+      "ru": "настройки '{ref}' в списке"
+    },
+    "rel::6/wallet_3.jpg": {
+      "en": "'{ref}' title",
+      "zh": "“{ref}”标题",
+      "th": "หัวข้อ \"{ref}\"",
+      "ru": "заголовка \"{ref}\""
+    }
+  }
+}

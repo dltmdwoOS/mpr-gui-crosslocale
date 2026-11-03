@@ -16,13 +16,17 @@ else:
 
 LANGUAGES = ("en", "zh", "th", "ru")
 PILOT_PAIRS = (("en", "zh"), ("zh", "th"), ("th", "ru"), ("ru", "en"))
-QWEN_SYSTEM_PROMPT_TEMPLATE = (
-    "Locate one reference element in the full GUI screenshot. "
-    "The screenshot shown to you is {model_width} pixels wide and {model_height} pixels high. "
-    "Return only this JSON array with exactly one object: "
-    "[{{\"point_2d\": [x, y], \"label\": \"target\"}}]. "
-    "x and y must be integer pixel coordinates on that screenshot, with (0, 0) at the top-left. "
-    "Do not add any other text."
+QWEN_USER_PROMPT_TEMPLATE = (
+    "Locate the GUI reference element marked with <ref>...</ref> in the question below. "
+    "The marked expression may be in a different language from the screenshot. "
+    "Use surrounding words to identify the marked element. "
+    "Do not locate the element that the question asks for.\n"
+    "Question: {marked_stem}\n"
+    "The screenshot is {model_width} pixels wide and {model_height} pixels high. "
+    "Give one point inside the marked reference element using integer pixel coordinates "
+    "on this screenshot, with (0, 0) at the top-left. "
+    "Return only this JSON array: [{{\"point_2d\": [x, y]}}]. "
+    "No explanation or code fence."
 )
 INTERNVL_SYSTEM_PROMPT = (
     "Locate one reference element in the full GUI screenshot. "
@@ -31,7 +35,7 @@ INTERNVL_SYSTEM_PROMPT = (
     "with (0, 0) at the top-left and (1000, 1000) at the bottom-right. "
     "Do not add any other text."
 )
-USER_TEMPLATE = (
+INTERNVL_USER_TEMPLATE = (
     "Question: {marked_stem}\n"
     "Locate the reference GUI element described by the marked expression and its surrounding words. "
     "Do not answer the relation question."
@@ -51,11 +55,13 @@ def mark_span(stem: str, start: int, end: int, replacement: str) -> str:
     return stem[:start] + "<ref>" + replacement + "</ref>" + stem[end:]
 
 
-def render_qwen_system_prompt(model_width: int, model_height: int) -> str:
+def render_qwen_user_prompt(marked_stem: str, model_width: int, model_height: int) -> str:
     if model_width <= 0 or model_height <= 0:
         raise ValueError("Qwen model image dimensions must be positive")
-    return QWEN_SYSTEM_PROMPT_TEMPLATE.format(
-        model_width=model_width, model_height=model_height,
+    if marked_stem.count("<ref>") != 1 or marked_stem.count("</ref>") != 1:
+        raise ValueError("Expected one marked reference expression")
+    return QWEN_USER_PROMPT_TEMPLATE.format(
+        marked_stem=marked_stem, model_width=model_width, model_height=model_height,
     )
 
 
@@ -142,8 +148,8 @@ def build() -> tuple[list[dict], list[dict], list[dict], dict]:
                 "image_path": "followup_rel_4lang/" + original["image_path"],
                 "image_sha256": image_locale["image_sha256"],
                 "question_O": marked_original, "question_R": marked_localized,
-                "user_prompt_O": USER_TEMPLATE.format(marked_stem=marked_original),
-                "user_prompt_R": USER_TEMPLATE.format(marked_stem=marked_localized),
+                "internvl_user_prompt_O": INTERNVL_USER_TEMPLATE.format(marked_stem=marked_original),
+                "internvl_user_prompt_R": INTERNVL_USER_TEMPLATE.format(marked_stem=marked_localized),
             })
             for condition, mixed_stem, mixed_options in (
                 ("R_stem", localized["question_stem"], original["options"]),
@@ -173,18 +179,18 @@ def build() -> tuple[list[dict], list[dict], list[dict], dict]:
                 "image_path": "followup_rel_4lang/" + locale["image_path"],
                 "image_sha256": locale["image_sha256"],
                 "question": marked,
-                "user_prompt": USER_TEMPLATE.format(marked_stem=marked),
+                "internvl_user_prompt": INTERNVL_USER_TEMPLATE.format(marked_stem=marked),
             })
     provenance = {
-        "schema": "rel-grounding-protocol-inputs-v2",
+        "schema": "rel-grounding-protocol-inputs-v3",
         "annotation_audit": summary,
         "conditions_sha256": sha256(conditions),
         "reference_mappings_sha256": sha256(mappings),
-        "qwen_system_prompt_template": QWEN_SYSTEM_PROMPT_TEMPLATE,
+        "qwen_user_prompt_template": QWEN_USER_PROMPT_TEMPLATE,
         "internvl_system_prompt": INTERNVL_SYSTEM_PROMPT,
-        "user_prompt_template": USER_TEMPLATE,
+        "internvl_user_prompt_template": INTERNVL_USER_TEMPLATE,
         "model_output_contracts": {
-            "qwen2_5_vl_7b": "one point_2d JSON object (prefer one-element array) in final image_grid_thw * 14 pixel coordinates",
+            "qwen2_5_vl_7b": "one point_2d JSON object (prefer one-element array) in final image_grid_thw * 14 pixel coordinates, no system prompt",
             "internvl2_5_8b": "single <box> with 0-1000 full-image normalized coordinates",
         },
         "pilot_pair_order": list(PILOT_PAIRS),
@@ -206,7 +212,7 @@ def write_immutable(path: Path, content: str) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path,
-                        default=REPO / "followup_rel_4lang/results/grounding_protocol_inputs_v2")
+                        default=REPO / "followup_rel_4lang/results/grounding_protocol_inputs_v3")
     args = parser.parse_args()
     grounding, mixed, controls, provenance = build()
     paths = {

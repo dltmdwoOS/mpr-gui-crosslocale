@@ -51,7 +51,7 @@ def _decode_qwen_point(
     x, y = (_coordinate(value) for value in values)
     if x is None or y is None or not (0 <= x <= model_width and 0 <= y <= model_height):
         return None, False
-    adherent = (one_element_array and item.get("label") == "target" and
+    adherent = (one_element_array and set(item) == {"point_2d"} and
                 all(type(value) is int for value in values))
     return (x, y), adherent
 
