@@ -16,16 +16,25 @@ else:
 
 LANGUAGES = ("en", "zh", "th", "ru")
 PILOT_PAIRS = (("en", "zh"), ("zh", "th"), ("th", "ru"), ("ru", "en"))
-SYSTEM_PROMPT = (
-    "Locate the marked reference element in the full GUI screenshot. "
-    "Return only one point as (x, y), where x and y are integers from 0 to 1000. "
-    "(0, 0) is the top-left and (1000, 1000) is the bottom-right. "
-    "Do not answer the question or add any other text."
+QWEN_SYSTEM_PROMPT_TEMPLATE = (
+    "Locate one reference element in the full GUI screenshot. "
+    "The screenshot shown to you is {model_width} pixels wide and {model_height} pixels high. "
+    "Return only this JSON array with exactly one object: "
+    "[{{\"point_2d\": [x, y], \"label\": \"target\"}}]. "
+    "x and y must be integer pixel coordinates on that screenshot, with (0, 0) at the top-left. "
+    "Do not add any other text."
+)
+INTERNVL_SYSTEM_PROMPT = (
+    "Locate one reference element in the full GUI screenshot. "
+    "Return exactly one bounding box as <box>[[x1, y1, x2, y2]]</box>. "
+    "Use integer coordinates normalized from 0 to 1000 over the full screenshot, "
+    "with (0, 0) at the top-left and (1000, 1000) at the bottom-right. "
+    "Do not add any other text."
 )
 USER_TEMPLATE = (
     "Question: {marked_stem}\n"
-    "Locate only the GUI element named between <ref> and </ref>. "
-    "Return the center of that element as (x, y)."
+    "Locate the reference GUI element described by the marked expression and its surrounding words. "
+    "Do not answer the relation question."
 )
 
 
@@ -40,6 +49,14 @@ def render_question(stem: str, options: dict[str, str]) -> str:
 
 def mark_span(stem: str, start: int, end: int, replacement: str) -> str:
     return stem[:start] + "<ref>" + replacement + "</ref>" + stem[end:]
+
+
+def render_qwen_system_prompt(model_width: int, model_height: int) -> str:
+    if model_width <= 0 or model_height <= 0:
+        raise ValueError("Qwen model image dimensions must be positive")
+    return QWEN_SYSTEM_PROMPT_TEMPLATE.format(
+        model_width=model_width, model_height=model_height,
+    )
 
 
 def replace_mapped_spans(text: str, source: list[dict], target: list[dict], key: str) -> str:
@@ -159,11 +176,17 @@ def build() -> tuple[list[dict], list[dict], list[dict], dict]:
                 "user_prompt": USER_TEMPLATE.format(marked_stem=marked),
             })
     provenance = {
-        "schema": "rel-grounding-protocol-inputs-v1",
+        "schema": "rel-grounding-protocol-inputs-v2",
         "annotation_audit": summary,
         "conditions_sha256": sha256(conditions),
         "reference_mappings_sha256": sha256(mappings),
-        "system_prompt": SYSTEM_PROMPT,
+        "qwen_system_prompt_template": QWEN_SYSTEM_PROMPT_TEMPLATE,
+        "internvl_system_prompt": INTERNVL_SYSTEM_PROMPT,
+        "user_prompt_template": USER_TEMPLATE,
+        "model_output_contracts": {
+            "qwen2_5_vl_7b": "one point_2d JSON object (prefer one-element array) in final image_grid_thw * 14 pixel coordinates",
+            "internvl2_5_8b": "single <box> with 0-1000 full-image normalized coordinates",
+        },
         "pilot_pair_order": list(PILOT_PAIRS),
         "pilot_positive_controls": len(controls),
         "grounding_pair_counts": {"main": 1896, "pilot": 48},
@@ -183,7 +206,7 @@ def write_immutable(path: Path, content: str) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path,
-                        default=REPO / "followup_rel_4lang/results/grounding_protocol_inputs")
+                        default=REPO / "followup_rel_4lang/results/grounding_protocol_inputs_v2")
     args = parser.parse_args()
     grounding, mixed, controls, provenance = build()
     paths = {

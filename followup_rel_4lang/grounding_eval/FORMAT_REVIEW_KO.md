@@ -1,0 +1,43 @@
+# 위치 출력 형식 검토: v1에서 v2로 바꾼 이유
+
+검토일: 2026-11-03. 새 grounding 모델 출력은 아직 생성하지 않았다. 기존 v1의 **0–1000 점 좌표를 두 모델에 공통으로 강제하는 계약은 사용하지 않는다.** 이 결론은 관련 모델의 1차 자료와 현재 저장소의 CPU 전처리 확인에 근거한다.
+
+## 직접 근거
+
+| 근거 | 확인된 내용 | 이 실험에 적용 |
+| --- | --- | --- |
+| [Qwen2.5-VL 기술 보고서](https://arxiv.org/pdf/2502.13923), [Qwen 팀 설명](https://qwenlm.github.io/blog/qwen2.5-vl/) | Qwen2.5-VL의 grounding 좌표는 이미지 크기에 기반한 **절대 좌표**다. 공식 예시에 `point_2d`·`bbox_2d` JSON 출력이 있다. 보고서는 JSON 외 형식도 학습했다고 설명하므로 단일한 정답 프롬프트가 있다는 뜻은 아니다. | Qwen 위치 응답은 최종 모델 입력 이미지의 절대 픽셀로 요청한다. `point_2d` JSON은 근거 있는 선택이지만 유일한 공식 형식이라고 부르지 않는다. |
+| [GUI grounding 연구의 Qwen2.5-VL 평가 프롬프트](https://openreview.net/pdf?id=LsWreF9ff4), 부록 A.2 | ScreenSpot-Pro 재현용으로 Qwen2.5-VL에 `[{"point_2d": [...], "label": ...}]` JSON 배열을 요청한다. Qwen 공식 예시도 점 객체의 배열을 사용한다. 이 논문의 프롬프트는 공식 모델 규격이 아니며, `instruction`은 이번 REL 관계 질문과 구조가 다르다. | 점 객체 하나를 담은 배열을 요청한다. `label`은 고정 텍스트로 요청하고 채점에는 쓰지 않는다. 논문의 `most related to the instruction` 문구는 관계 질문의 답을 가리킬 위험이 있어 복사하지 않는다. |
+| [Qwen 팀의 좌표계 답변](https://github.com/QwenLM/Qwen3-VL/issues/866), [리사이즈 설명](https://github.com/QwenLM/Qwen3-VL/issues/830) | Qwen2.5 좌표는 **리사이즈된** 이미지 기준이다. Qwen2-VL의 0–1000과 다르다. | 원본 이미지 폭·높이 또는 `qwen_vl_utils`가 반환한 중간 PIL 크기로 채점하지 않는다. 실제 `image_grid_thw × 14`에서 최종 폭·높이를 읽고 원본 좌표로 되돌린다. |
+| [ScreenSpot-Pro 공식 평가 코드](https://github.com/likaixin2000/ScreenSpot-Pro-GUI-Grounding/blob/main/models/qwen2_5vl.py), [GUI grounding 논문](https://openaccess.thecvf.com/content/ICCV2025/papers/Luo_Visual_Test-time_Scaling_for_GUI_Agent_Grounding_ICCV_2025_paper.pdf) | 공식 Qwen 평가 구현은 리사이즈된 폭·높이를 계산해 픽셀 좌표를 받고, 그 크기로 정규화해 원래 화면에 대응시킨다. GUI grounding 평가는 예측 위치가 대상 bbox 안에 들어가는지 사용한다. 공식 코드의 긴 `computer_use` 도구 프롬프트 자체는 이 연구에 필요한 표준 프롬프트가 아니다. | 점을 bbox 안에 넣는 **지표**는 유지한다. 도구 호출 형식을 그대로 복사하지 않는다. |
+| [InternVL2.5 공식 데이터 형식](https://internvl.readthedocs.io/en/latest/get_started/chat_data_format.html#grounding-detection-data), [공식 RefCOCO 평가 코드](https://github.com/OpenGVLab/InternVL/blob/main/internvl_chat/eval/refcoco/evaluate_grounding.py) | 명시적으로 문서화된 공간 출력은 `<box>[[x1,y1,x2,y2]]</box>`와 원본 화면에 대한 0–1000 정규화 **bbox**다. 공식 평가 코드도 1000으로 나누어 원본 크기에 곱한다. 점 형식의 동등한 공식 계약은 찾지 못했다. | InternVL에는 bbox를 요청하고 그 중심을 공통 point-in-GT-box 지표에 사용한다. IoU도 별도 보조 지표로 보고한다. |
+
+Qwen 팀의 [Qwen3-VL 설명](https://github.com/QwenLM/Qwen3-VL/issues/1677)은 그 세대에서 상대 좌표를 사용한다고 한다. 이것은 Qwen2.5의 출력 공간을 바꾸는 근거가 아니다. [SeeClick의 0–1 점 예시](https://github.com/njucckevin/SeeClick)는 Qwen-VL 기반 별도 학습 체크포인트의 계약이므로 Qwen2.5 원본 모델의 좌표계로 옮기지 않는다.
+
+## 현재 저장소에 적용한 반례 검사
+
+기존 Qwen 객관식 실험의 픽셀 예산(262,144–2,097,152)과 설치된 `qwen_vl_utils`/Transformers 전처리를 사용했다. `booking_en_1.jpg`는 원본 **1228×2700 → 중간 1232×2688 → 최종 980×2128**이며, 마지막 크기는 CPU에서 실제 `image_grid_thw=[1,152,70]`으로도 확인했다. 680개 GT 화면 전부 최종 높이가 1000을 넘고 172개는 폭도 넘는다. 전부 원본 크기와 최종 크기가 다르다.
+
+모든 GT bbox 중심에 완벽한 **Qwen 절대 픽셀 점**을 가정한 반례 검사에서, v1의 0–1000 파서는 680개 중 **293개를 좌표 범위 밖으로 즉시 거부**했다. 나머지에서도 v1 방식으로 잘못 역변환한 점이 우연히 같은 GT 안에 들어간 화면은 **8개뿐**이었다. 이는 모델 성능 측정이 아니라 **채점 계약 오류의 계산상 반례**다. 좌표를 옳게 출력하는 모델도 거의 전부 오답이 될 수 있으므로 v1을 실행하면 안 된다.
+
+## v2의 보수적인 선택과 남은 반증 가능성
+
+- **같은 연구 질문·표본·O/R 조작을 유지**한다. 두 모델의 원시 점 정확도를 서로 비교하지 않고 각 모델 내부의 R−O를 본다. Qwen은 절대 픽셀 점, InternVL은 정규화 bbox의 중심을 원본 이미지 공간으로 옮긴다. 두 응답 방식의 난도가 다르므로 모델 간 R−O 크기 비교도 신중히 해석한다.
+- Qwen의 `point_2d` JSON 배열은 공식 예시와 GUI 평가 선례에 맞지만, GUI referent를 찍는 유일한 최적 프롬프트라는 근거는 없다. InternVL도 공식 예시는 bbox이지 이 연구의 전체 질문 문장과 똑같은 입력이 아니다. **점 하나만 명확한 JSON 객체나 단일 객체 배열은 위치 채점에 사용**하되 요청한 배열·label 형태의 준수율을 따로 기록한다. 출력 추출 성공률과 쉬운 위치 대조를 파일럿에서 확인한다. 실패 시 본 분석 전에 버전이 표시된 **형식 수정**을 한다. O/R 이득을 보고 프롬프트를 고르지 않는다.
+- 현재 `<ref>` 표시는 한 span만 바꾸려는 실험 조작을 정확히 표시한다. 그러나 `Locate the element named between <ref>...</ref>`라는 v1 문구는 `Phone Manager services`처럼 토글을 식별하는 **이름**을 토글 자체와 혼동할 수 있다. v2는 표시된 표현과 그 **주변 문장**이 묘사한 기준 요소를 찾고, 관계 질문의 정답 요소는 찾지 말라고 명시한다. 큰 영역 GT에 대한 기존 민감도 분석은 유지한다.
+- Qwen의 최종 `image_grid_thw`, `qwen_vl_utils`가 만든 이미지 크기, 원본 이미지 크기, 렌더링된 프롬프트, 원시 출력을 각각 기록한다. 최종 크기를 프롬프트에 쓸 경우 프로세서가 실제 사용한 크기와 일치해야 한다. 이 일치 여부가 불명확하면 해당 입력은 실행하지 않는다.
+- 큰 이미지의 다운스케일은 작은 GUI 대상의 성공률을 낮출 수 있다. 기존 객관식과의 연결을 위해 픽셀 예산을 그대로 두며, bbox 크기별 결과를 보고한다. 이미지 해상도를 바꿔 얻은 별도 결과를 v2의 O/R 결과와 합치지 않는다.
+
+## 반증을 염두에 둔 판정
+
+| 위험 | 관찰되면 어떤 의미인가 | 실행 전·파일럿 대처 |
+| --- | --- | --- |
+| Qwen이 원본·최종 입력 중 다른 크기의 좌표를 출력 | 픽셀 변환 후 오답이 생겨 언어 효과와 혼동 | 실제 `image_grid_thw`를 기록하고 쉬운 목표점과 원본/최종 좌표 가설을 대조한다. 좌표계를 정답에 맞춰 사후 선택하지 않는다. |
+| `point_2d`가 아닌 설명·다중 점·bbox를 출력 | 위치 능력과 출력 형식 문제가 혼합 | 원시 출력, 단일 점 추출률, 요청 형식 준수율을 별도로 공개한다. 양성 대조·파일럿 게이트 미달이면 본 분석 전에 형식만 버전 올려 수정한다. |
+| `<ref>`의 짧은 이름이나 관계 질문의 답을 찍음 | 모델이 기준 요소와 관련 UI 요소를 혼동 | 질문의 주변 단어를 함께 제공하고 답 요소를 찾지 말라고 지시한다. 파일럿 오류는 목표 단위와 관계 답 혼동으로 수동 분류한다. |
+| InternVL bbox 중심은 맞지만 상자는 지나치게 큼 | point-in-box만으로 위치 지정이 좋아 보임 | bbox IoU와 bbox 크기를 보조 보고하고, Qwen 점과 InternVL bbox 중심의 원시 정확도를 직접 우열 비교하지 않는다. |
+| GT가 토글보다 카드 전체를 포함 | 중심점 적중이 정확한 조작 대상을 뜻하지 않음 | 넓은 GT 8문항 제외 민감도를 사전 지정하고, 두 검수자 GT로 재채점한다. |
+
+위 게이트는 **출력 계약의 기능 검사**이지 과학적 타당성 보증은 아니다. 특히 Qwen 공식 자료는 절대 좌표와 `point_2d` 사용을 뒷받침하지만 이 연구의 영어 지시문, `<ref>` 위치, 전체 질문 제공 방식까지 검증하지 않는다. InternVL 공식 형식도 bbox를 뒷받침할 뿐 동일한 질문 형식을 보증하지 않는다.
+
+현재 환경의 개인 Hugging Face 캐시에서 고정 Qwen revision에는 `preprocessor_config.json`만 확인되었다. 단일 positive control 생성을 시도했지만 `AutoProcessor`가 토크나이저 파일 부재로 실패해 **모델 가중치 로드나 GPU 추론은 시작되지 않았다**. 큰 체크포인트를 새로 내려받지 않았다. 따라서 v2의 실제 출력 형식과 적중률은 아직 미확인이다. 모델 확보 후 [사전 지정 게이트](PROTOCOL_KO.md#4-파일럿과-실행-게이트)를 통과해야 본 분석을 시작한다.

@@ -1,5 +1,5 @@
 {
-  "schema": "rel-grounding-protocol-inputs-v1",
+  "schema": "rel-grounding-protocol-inputs-v2",
   "annotation_audit": {
     "schema": "rel-grounding-annotation-audit-v1",
     "manifest_sha256": "453fdb7d9e81dbca7443e1cd4c5eff411135f062fc964cf575ae10c601d85d0f",
@@ -47,7 +47,13 @@
   },
   "conditions_sha256": "e5aa6cd0c426cc648322c8c7702b1b6985fddb09ad895d70a85d86c6a3de38ce",
   "reference_mappings_sha256": "04ff9cb438a2e40ea9e4bd92ab5053817d49bea970c1c36d28f87948d19d95e3",
-  "system_prompt": "Locate the marked reference element in the full GUI screenshot. Return only one point as (x, y), where x and y are integers from 0 to 1000. (0, 0) is the top-left and (1000, 1000) is the bottom-right. Do not answer the question or add any other text.",
+  "qwen_system_prompt_template": "Locate one reference element in the full GUI screenshot. The screenshot shown to you is {model_width} pixels wide and {model_height} pixels high. Return only this JSON array with exactly one object: [{{\"point_2d\": [x, y], \"label\": \"target\"}}]. x and y must be integer pixel coordinates on that screenshot, with (0, 0) at the top-left. Do not add any other text.",
+  "internvl_system_prompt": "Locate one reference element in the full GUI screenshot. Return exactly one bounding box as <box>[[x1, y1, x2, y2]]</box>. Use integer coordinates normalized from 0 to 1000 over the full screenshot, with (0, 0) at the top-left and (1000, 1000) at the bottom-right. Do not add any other text.",
+  "user_prompt_template": "Question: {marked_stem}\nLocate the reference GUI element described by the marked expression and its surrounding words. Do not answer the relation question.",
+  "model_output_contracts": {
+    "qwen2_5_vl_7b": "one point_2d JSON object (prefer one-element array) in final image_grid_thw * 14 pixel coordinates",
+    "internvl2_5_8b": "single <box> with 0-1000 full-image normalized coordinates"
+  },
   "pilot_pair_order": [
     [
       "en",
@@ -76,8 +82,8 @@
     "pilot": 96
   },
   "generated_sha256": {
-    "grounding_pairs.jsonl": "35ee2883141df28a22752c8843bba6f607cc3b22cd3aecc60568db92de2a4b5c",
+    "grounding_pairs.jsonl": "171b409fdbc51cfdd147dfa566d933a2b1d47b547c48e6ebb8609a2daa3468b4",
     "mixed_conditions.jsonl": "a7fb09962989ead44c9e76184b5759aefb30bb34e4fd2f3eec091dffe2e54cbe",
-    "positive_controls.jsonl": "e3a5423c5ecd78cd794baedb6d5c2e4440828b293962db66becb4320a4adadb5"
+    "positive_controls.jsonl": "ec0c0f7a4a342451bbb44ee764ec47dd3c7360f0cf4b473b379ab550a7602aa6"
   }
 }
