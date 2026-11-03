@@ -1,0 +1,10 @@
+{
+  "README_KO.md": "37f977cb59ebb6924c5e376619ec3c0d5f824155e1c1775beff61cdb17cc5dc5",
+  "audit/baegihyeon.full.json": "3e23a312442afa0f59f5c311690994844b446a635016d89e2104328ee8f258f3",
+  "audit/review_state.json": "8190573995c88793691c013449866ebddd9318f5369a438dac05f53a06d3f656",
+  "audit/reviewer_a.full.json": "66d0f01208d59868d73788fa71e2893c9a8e14b589f441a294268ae3fd3b083f",
+  "excluded_items.json": "dca55d1c9cac0447e54a962cdfa9f8c96f2fd5e12ad1c35a7611c4ad0706241c",
+  "grounding_gt_draft_170.json": "77d10ce812ee74a86aa6172d7076fefab643b8f6a40c5c27fd833ae41f2b6576",
+  "targets.jsonl": "aaba0177e4f59e3e8bc100e41b378dd1e7117cc8617f7a5a87f9aefca919db27",
+  "verify.py": "9fe51bdfce9b1ff3d4f75401c1e80528921976144751341be5858a4f80922edc"
+}

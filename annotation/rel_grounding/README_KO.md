@@ -115,4 +115,4 @@ Windows PowerShell:
 
 ## 다음 게이트
 
-전체 작업을 시작할 수 있지만 아직 grounding 진단의 프롬프트와 분석 규칙이 동결된 것은 아니다. 파일럿 12문항의 판정 차이를 먼저 검토하고, 주 분석에서는 이 12문항을 제외한다. 뜻 비교의 기본값 `yes`는 검증 결과로 해석하지 않는다. 실험 해석과 남은 결정은 [설계 검토안](../../followup_rel_4lang/GROUNDING_DESIGN_REVIEW_KO.md)에 있다.
+전체 annotation 전달본은 [`grounding_eval/annotations_20261103`](../../followup_rel_4lang/grounding_eval/annotations_20261103/README_KO.md)에 보관한다. 구조·파일·이미지 검증과 현재 실험 규칙은 [고정 프로토콜 v1](../../followup_rel_4lang/grounding_eval/PROTOCOL_KO.md)을 따른다. 파일럿 12문항은 본 분석에서 제외하며, 뜻 비교의 기본값 `yes`는 번역 검증 결과로 해석하지 않는다.

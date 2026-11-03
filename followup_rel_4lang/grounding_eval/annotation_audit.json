@@ -1,0 +1,45 @@
+{
+  "schema": "rel-grounding-annotation-audit-v1",
+  "manifest_sha256": "453fdb7d9e81dbca7443e1cd4c5eff411135f062fc964cf575ae10c601d85d0f",
+  "gt_sha256": "77d10ce812ee74a86aa6172d7076fefab643b8f6a40c5c27fd833ae41f2b6576",
+  "main_items": 158,
+  "pilot_items": 12,
+  "excluded_items": 9,
+  "main_directed_pairs_per_model": 1896,
+  "source_items": {
+    "baegihyeon": 118,
+    "consensus": 52
+  },
+  "role_pending_items": 47,
+  "main_role_pending_items": 46,
+  "main_broad_region_items_gt_0_15": [
+    "rel::3/backend_1.jpg",
+    "rel::4/Youtube_9.jpg",
+    "rel::4/google_play_8.jpg",
+    "rel::5/file_10.jpg",
+    "rel::5/manager_10.jpg",
+    "rel::5/message_2.jpg",
+    "rel::5/phone_9.jpg",
+    "rel::5/record_5.jpg"
+  ],
+  "counts": {
+    "consensus_screens": 208,
+    "gt_bbox_copy_pending": 453,
+    "gt_broad_region_screens_gt_0_15": 22,
+    "gt_options_unreviewed": 678,
+    "gt_question_repeats_span": 1,
+    "gt_reference_unreviewed": 677,
+    "gt_screens": 680,
+    "gt_selection_independent": 127,
+    "raw_both_valid": 713,
+    "raw_iou_ge_0_5": 546,
+    "raw_iou_lt_0_1": 50,
+    "raw_phrase_agree": 716,
+    "raw_role_agree": 398,
+    "raw_screens": 716,
+    "raw_source_screens": 472,
+    "raw_status_agree": 713,
+    "role_pending_screens": 188
+  },
+  "raw_source_iou_min": 0.5001193646129832
+}

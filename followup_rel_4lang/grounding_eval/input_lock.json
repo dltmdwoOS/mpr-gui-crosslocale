@@ -1,0 +1,83 @@
+{
+  "schema": "rel-grounding-protocol-inputs-v1",
+  "annotation_audit": {
+    "schema": "rel-grounding-annotation-audit-v1",
+    "manifest_sha256": "453fdb7d9e81dbca7443e1cd4c5eff411135f062fc964cf575ae10c601d85d0f",
+    "gt_sha256": "77d10ce812ee74a86aa6172d7076fefab643b8f6a40c5c27fd833ae41f2b6576",
+    "main_items": 158,
+    "pilot_items": 12,
+    "excluded_items": 9,
+    "main_directed_pairs_per_model": 1896,
+    "source_items": {
+      "baegihyeon": 118,
+      "consensus": 52
+    },
+    "role_pending_items": 47,
+    "main_role_pending_items": 46,
+    "main_broad_region_items_gt_0_15": [
+      "rel::3/backend_1.jpg",
+      "rel::4/Youtube_9.jpg",
+      "rel::4/google_play_8.jpg",
+      "rel::5/file_10.jpg",
+      "rel::5/manager_10.jpg",
+      "rel::5/message_2.jpg",
+      "rel::5/phone_9.jpg",
+      "rel::5/record_5.jpg"
+    ],
+    "counts": {
+      "consensus_screens": 208,
+      "gt_bbox_copy_pending": 453,
+      "gt_broad_region_screens_gt_0_15": 22,
+      "gt_options_unreviewed": 678,
+      "gt_question_repeats_span": 1,
+      "gt_reference_unreviewed": 677,
+      "gt_screens": 680,
+      "gt_selection_independent": 127,
+      "raw_both_valid": 713,
+      "raw_iou_ge_0_5": 546,
+      "raw_iou_lt_0_1": 50,
+      "raw_phrase_agree": 716,
+      "raw_role_agree": 398,
+      "raw_screens": 716,
+      "raw_source_screens": 472,
+      "raw_status_agree": 713,
+      "role_pending_screens": 188
+    },
+    "raw_source_iou_min": 0.5001193646129832
+  },
+  "conditions_sha256": "e5aa6cd0c426cc648322c8c7702b1b6985fddb09ad895d70a85d86c6a3de38ce",
+  "reference_mappings_sha256": "04ff9cb438a2e40ea9e4bd92ab5053817d49bea970c1c36d28f87948d19d95e3",
+  "system_prompt": "Locate the marked reference element in the full GUI screenshot. Return only one point as (x, y), where x and y are integers from 0 to 1000. (0, 0) is the top-left and (1000, 1000) is the bottom-right. Do not answer the question or add any other text.",
+  "pilot_pair_order": [
+    [
+      "en",
+      "zh"
+    ],
+    [
+      "zh",
+      "th"
+    ],
+    [
+      "th",
+      "ru"
+    ],
+    [
+      "ru",
+      "en"
+    ]
+  ],
+  "pilot_positive_controls": 8,
+  "grounding_pair_counts": {
+    "main": 1896,
+    "pilot": 48
+  },
+  "mixed_condition_counts": {
+    "main": 3792,
+    "pilot": 96
+  },
+  "generated_sha256": {
+    "grounding_pairs.jsonl": "35ee2883141df28a22752c8843bba6f607cc3b22cd3aecc60568db92de2a4b5c",
+    "mixed_conditions.jsonl": "a7fb09962989ead44c9e76184b5759aefb30bb34e4fd2f3eec091dffe2e54cbe",
+    "positive_controls.jsonl": "e3a5423c5ecd78cd794baedb6d5c2e4440828b293962db66becb4320a4adadb5"
+  }
+}

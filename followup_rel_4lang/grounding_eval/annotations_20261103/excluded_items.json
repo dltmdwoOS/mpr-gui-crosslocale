@@ -1,0 +1,167 @@
+{
+  "count": 9,
+  "excluded_items": [
+    {
+      "flags": [
+        {
+          "field": "note",
+          "language": "th",
+          "source": "baegihyeon",
+          "value": "번역차이"
+        },
+        {
+          "field": "options_equivalence",
+          "language": "th",
+          "source": "baegihyeon",
+          "value": "no"
+        },
+        {
+          "field": "note",
+          "language": "ru",
+          "source": "baegihyeon",
+          "value": "번역차이"
+        },
+        {
+          "field": "options_equivalence",
+          "language": "ru",
+          "source": "baegihyeon",
+          "value": "no"
+        }
+      ],
+      "number": 3,
+      "parallel_id": "rel::1/booking_6.jpg"
+    },
+    {
+      "flags": [
+        {
+          "field": "note",
+          "language": "en",
+          "source": "reviewer_a",
+          "value": "문제 이상"
+        }
+      ],
+      "number": 6,
+      "parallel_id": "rel::1/podcast_3.jpg"
+    },
+    {
+      "flags": [
+        {
+          "field": "note",
+          "language": "en",
+          "source": "reviewer_a",
+          "value": "문제 이상"
+        },
+        {
+          "field": "note",
+          "language": "ru",
+          "source": "reviewer_a",
+          "value": "문제 이상"
+        }
+      ],
+      "number": 10,
+      "parallel_id": "rel::2/calendar_5.png"
+    },
+    {
+      "flags": [
+        {
+          "field": "note",
+          "language": "en",
+          "source": "reviewer_a",
+          "value": "문제 이상"
+        }
+      ],
+      "number": 28,
+      "parallel_id": "rel::2/map_6.png"
+    },
+    {
+      "flags": [
+        {
+          "field": "note",
+          "language": "en",
+          "source": "reviewer_a",
+          "value": "쿼리 이상"
+        }
+      ],
+      "number": 29,
+      "parallel_id": "rel::2/map_7.png"
+    },
+    {
+      "flags": [
+        {
+          "field": "status",
+          "language": "ru",
+          "source": "reviewer_a",
+          "value": "absent"
+        },
+        {
+          "field": "note",
+          "language": "ru",
+          "source": "reviewer_a",
+          "value": "가려짐"
+        },
+        {
+          "field": "status",
+          "language": "ru",
+          "source": "consensus",
+          "value": "absent"
+        }
+      ],
+      "number": 105,
+      "parallel_id": "rel::4/twitter_5.jpg"
+    },
+    {
+      "flags": [
+        {
+          "field": "status",
+          "language": "zh",
+          "source": "reviewer_a",
+          "value": "screenshot_error"
+        },
+        {
+          "field": "note",
+          "language": "zh",
+          "source": "reviewer_a",
+          "value": "이미지 오류인듯"
+        },
+        {
+          "field": "status",
+          "language": "zh",
+          "source": "consensus",
+          "value": "screenshot_error"
+        }
+      ],
+      "number": 108,
+      "parallel_id": "rel::4/twitter_9.jpg"
+    },
+    {
+      "flags": [
+        {
+          "field": "status",
+          "language": "zh",
+          "source": "reviewer_a",
+          "value": "absent"
+        },
+        {
+          "field": "note",
+          "language": "zh",
+          "source": "reviewer_a",
+          "value": "없음"
+        }
+      ],
+      "number": 145,
+      "parallel_id": "rel::5/phone_3.jpg"
+    },
+    {
+      "flags": [
+        {
+          "field": "note",
+          "language": "zh",
+          "source": "reviewer_a",
+          "value": "영어에서는 7일인데 여기서는 8일.."
+        }
+      ],
+      "number": 166,
+      "parallel_id": "rel::6/message_3.jpg"
+    }
+  ]
+}

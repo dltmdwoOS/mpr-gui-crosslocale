@@ -1,6 +1,6 @@
 # REL grounding 후속 실험: 설계 검토안
 
-상태: **검토안, 아직 동결 전** (2026-10-26). 이 문서는 기존 결과와 데이터 구조를 재사용해 다음 실험의 판정 범위를 정한다. 모델 추론이나 새 annotation은 수행하지 않았다. 구조적 179문항 전체와 그 안의 12문항 파일럿은 [`annotation/rel_grounding`](../annotation/rel_grounding/README_KO.md)에 outcome-blind manifest와 네 화면 동시 bbox 검수 UI로 준비했다. 실제 사람 검수 두 건이 다음 필수 단계다.
+상태: **과거 검토안** (2026-10-26). annotation 전달 후 고정한 현재 설계는 [grounding 프로토콜 v1](grounding_eval/PROTOCOL_KO.md)을 따른다. 아래의 annotation 미완료·다음 단계 서술은 당시 기록이다.
 
 ## 1. 연구 질문과 현재 근거
 
