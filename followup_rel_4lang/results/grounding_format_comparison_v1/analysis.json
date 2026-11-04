@@ -120,7 +120,8 @@
     "tuple_invalid_output": {
       "addCriterion": 35,
       "at_64_token_cap": 7,
-      "complete_parenthesized_pair_anywhere": 2
+      "raw_text_with_parenthesized_digits_anywhere": 2,
+      "starts_with_complete_pair_then_extra_text": 1
     }
   }
 }

@@ -103,8 +103,12 @@ def main() -> None:
     errors = {
         "addCriterion": sum("addCriterion" in row["raw_output"] for row in invalid),
         "at_64_token_cap": sum(row["output_tokens"] == 64 for row in invalid),
-        "complete_parenthesized_pair_anywhere": sum(
+        "raw_text_with_parenthesized_digits_anywhere": sum(
             re.search(r"\([0-9]+\s*,\s*[0-9]+\)", row["raw_output"]) is not None
+            for row in invalid
+        ),
+        "starts_with_complete_pair_then_extra_text": sum(
+            re.match(r"\(\s*[0-9]+\s*,\s*[0-9]+\s*\)", row["raw_output"]) is not None
             for row in invalid
         ),
     }
