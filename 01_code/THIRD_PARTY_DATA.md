@@ -23,11 +23,19 @@ license and non-commercial restriction.
 The frozen follow-up archive `followup_rel_4lang/bundles/rel_all_366.tar.gz`
 contains dataset-derived questions, options, answers, reference mappings, and
 source metadata. It is distributed under the same `CC-BY-NC-4.0` dataset terms,
-not the repository's MIT code license. Screenshots remain outside Git and are
-downloaded from the pinned Hugging Face revision, with per-file SHA-256 checks.
+not the repository's MIT code license. Original source screenshots remain
+outside Git and are downloaded from the pinned Hugging Face revision, with
+per-file SHA-256 checks.
 
 The repository's code license does not relicense the MPR-GUI-Bench data or
 dataset-derived artifacts.
+
+The 48 WebP images under `followup_rel_4lang/grounding_eval/qwen_pilot_gallery/`
+are a small documented exception to keeping screenshots outside Git. They
+show the selected Qwen pilot screenshots with GT boxes and saved prediction
+points overlaid for review. They are derived from the pinned MPR-GUI-Bench
+images and remain subject to the dataset's `CC-BY-NC-4.0` terms. The model
+was evaluated on the original images, not these gallery copies.
 
 ## Reproducible Download
 
