@@ -1,0 +1,35 @@
+{
+  "schema": "rel-grounding-qwen-format-comparison-summary-v1",
+  "controls": {
+    "full_json": {
+      "count": 8,
+      "valid": 6,
+      "format_adherent": 6,
+      "hit": 0
+    },
+    "full_tuple": {
+      "count": 8,
+      "valid": 6,
+      "format_adherent": 6,
+      "hit": 1
+    },
+    "phrase_json": {
+      "count": 8,
+      "valid": 3,
+      "format_adherent": 3,
+      "hit": 3
+    },
+    "phrase_tuple": {
+      "count": 8,
+      "valid": 6,
+      "format_adherent": 6,
+      "hit": 6
+    }
+  },
+  "pilot_phrase_tuple": {
+    "count": 96,
+    "valid": 52,
+    "hit_O": 22,
+    "hit_R": 25
+  }
+}

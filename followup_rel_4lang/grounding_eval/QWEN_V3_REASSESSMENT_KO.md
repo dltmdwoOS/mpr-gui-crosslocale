@@ -2,6 +2,8 @@
 
 검토일: 2026-11-04. **문헌·저장된 출력 재분석이며 새 추론은 하지 않았다.** 기존 [v3 프로토콜](PROTOCOL_KO.md), [파일럿 결과](QWEN_PILOT_RESULTS_KO.md), [이전 MPR-GUI 설정 대조](BASELINE_ALIGNMENT_AUDIT_KO.md)를 소급 변경하지 않는다. 아래는 다음 버전의 검증안이지, 통과한 새 프로토콜이 아니다.
 
+이후 실제 JSON↔`(x, y)` 파일럿 비교는 [별도 실행 결과](QWEN_FORMAT_COMPARISON_RESULTS_KO.md)에 기록했다.
+
 ## 결론부터: JSON이 문제일 수 있는가?
 
 **출력 안정성에는 관여할 수 있지만, 현재 실패를 JSON 하나로 설명할 수 없다.** Qwen2.5-VL [기술 보고서](https://arxiv.org/abs/2502.13923)는 점·상자에 이미지 크기 기반 절대 좌표를 사용하고 JSON, XML, 자체 형식의 학습 데이터를 설명한다. [Qwen 팀의 예시](https://qwenlm.github.io/blog/qwen2.5-vl/)에는 `point_2d` JSON 배열이 실제로 있다. [HyperClick 논문 부록 A.2](https://openreview.net/pdf?id=LsWreF9ff4)도 Qwen2.5-VL의 GUI 위치 평가에 `point_2d` JSON 배열과 `label`을 요청한다. 따라서 JSON 자체가 Qwen에 부적합하다는 문헌 근거는 없다. 그렇다고 이 형식이 이 모델·과제의 유일한 표준이거나, 우리 파일럿에서 안정적이라는 뜻도 아니다.
