@@ -2,7 +2,7 @@
 
 실행일: 2026-11-03. 보고서 갱신일: 2026-11-04. 모델은 `Qwen/Qwen2.5-VL-7B-Instruct`의 고정 revision `cc594898137f460bfe9f0759e9844b3ce807cfb5`이다. 기존 객관식 실험과 같은 이미지 픽셀 예산을 썼다. 잠금 파일럿 **12문항**만 사용했고 본 분석 158문항은 실행하지 않았다. 이미지 48개의 해시와 Qwen 프로세서의 실제 `image_grid_thw`를 확인했다. 출력 점은 최종 모델 입력의 절대 픽셀로 해석한 뒤 원본 이미지 좌표로 변환해 GT bbox 안에 있는지 채점했다.
 
-각 버전의 실제 응답 전문은 후속 [원시 출력 뷰어](QWEN_RAW_OUTPUT_VIEWER.html)에서 화면별로 확인할 수 있다. ‘양성 대조군’의 뜻과 `addCriterion` 사례는 [원시 출력 점검](QWEN_RAW_OUTPUT_AUDIT_KO.md)에 설명했다.
+현재 검토하는 v3와 후속 형식 비교의 응답 전문은 [Markdown 원시 출력과 점검](QWEN_RAW_OUTPUT_AUDIT_KO.md)에서 화면별로 확인할 수 있다. ‘양성 대조군’의 뜻과 `addCriterion` 사례도 함께 설명했다.
 
 갤러리의 화면은 [chenruihan의 MPR-GUI-Bench](https://huggingface.co/datasets/chenruihan/MPR-GUI-Bench) 이미지(고정 revision `c1edb808d424a2fa7bc4a2e601d39b431b04acd5`)에 GT와 예측점을 덧그린 **보기용 파생 이미지**다. 모델 추론과 채점에는 원본 이미지를 사용했다. 데이터셋에 표시된 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) 조건이 이 화면에도 적용되며 저장소 코드의 MIT 라이선스로 바뀌지 않는다. [저장소의 제3자 데이터 안내](../../01_code/THIRD_PARTY_DATA.md)도 함께 참고한다.
 

@@ -2,12 +2,12 @@
 
 실행일: 2026-11-04. 이 문서는 [v3 재검토](QWEN_V3_REASSESSMENT_KO.md)의 **출력 형식 가설**을 실제 Qwen2.5-VL-7B-Instruct 추론으로 점검한 탐색 결과다. 기존 [v3 프로토콜](PROTOCOL_KO.md)의 게이트를 통과하거나 본 분석을 시작한 결과가 아니다.
 
-각 응답의 전문과 `addCriterion` 사례는 [원시 출력 뷰어](QWEN_RAW_OUTPUT_VIEWER.html)와 [읽는 법·오류 점검](QWEN_RAW_OUTPUT_AUDIT_KO.md)에 모았다. 여기서의 ‘대조군’은 **F 조건이 아니라**, 질문과 GUI 언어가 같은 8개 위치 지정 기능 검사다.
+각 응답의 전문과 `addCriterion` 사례는 [언어별 Markdown 원시 출력과 점검](QWEN_RAW_OUTPUT_AUDIT_KO.md)에 모았다. 여기서의 ‘대조군’은 **F 조건이 아니라**, 질문과 GUI 언어가 같은 8개 위치 지정 기능 검사다.
 
 ## 비교 설정
 
 - 고정 체크포인트 `cc594898137f460bfe9f0759e9844b3ce807cfb5`, BF16·SDPA, 픽셀 예산 262,144–2,097,152, greedy·최대 64 새 토큰, 이미지 1장, 명시적 system 메시지 없음. Qwen chat template의 기본 system은 그대로다. 48개 파일럿 이미지의 해시와 실제 전처리 격자를 추론 전에 재검사했다.
-- 이미 본 **같은 언어 양성 대조 8화면**에서 `전체 관계 질문/짧은 기준 표현 × JSON/(x, y)` 네 조건을 **같은 모델 적재 세션**에서 실행했다(새 응답 32개). 전체 질문과 짧은 표현의 프롬프트 문구는 기존 [파일럿 보고서](QWEN_PILOT_RESULTS_KO.md)의 두 템플릿을 그대로 썼다. 각 템플릿 **안에서** 마지막 출력 지시만 다음처럼 바꿨다.
+- 이미 본 **같은 언어 양성 대조 8화면**에서 `전체 관계 질문/짧은 기준 표현 × JSON/(x, y)` 네 조건을 **같은 모델 적재 세션**에서 실행했다(새 응답 32개). 전체 질문과 짧은 표현의 기존 프롬프트 문구를 유지했고, 각 템플릿 **안에서** 마지막 출력 지시만 다음처럼 바꿨다. 실제 렌더링 프롬프트는 [Markdown 원시 출력](QWEN_RAW_OUTPUT_AUDIT_KO.md)에 있다.
 
 ```text
 JSON: Return only this JSON array: [{"point_2d": [x, y]}]. No explanation or code fence.
