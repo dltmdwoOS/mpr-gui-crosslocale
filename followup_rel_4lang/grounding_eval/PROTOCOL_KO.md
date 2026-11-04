@@ -1,8 +1,10 @@
 # REL 기준 요소 위치 지정 실험: 사전 지정 프로토콜 v3
 
-고정일: **2026-11-03**. 이 문서는 Qwen 파일럿 O/R 응답을 보기 전에 확정한 **표본, 입력, 채점, 분석 규칙**이다. 장시간 본 분석 추론은 아직 실행하지 않았다. 기존 O/R 정답은 이 연구 질문을 만드는 데 사용했으므로, 아래 실험은 독립 데이터셋 재현이 아니라 동일 문항에 대한 새 진단이다. v1의 0–1000 점 계약은 Qwen2.5 좌표계와 맞지 않았다. v2의 양성 대조 8건은 출력 형식 게이트를 통과하지 못해 파일럿 O/R을 시작하지 않았다. v3는 그 원시 응답만 보고 출력 지시 위치와 목표 요소 설명을 수정했으며, 새 파일럿 O/R 결과를 보고 선택한 형식이 아니다. [출력 형식 검토](FORMAT_REVIEW_KO.md)에 경위를 남겼다. 각 버전 입력·결과는 분리한다.
+고정일: **2026-11-03**. 이 문서는 Qwen 파일럿 O/R 응답을 보기 전에 확정한 **표본, 입력, 채점, 분석 규칙**이다. 장시간 본 분석 추론은 아직 실행하지 않았다. 기존 O/R 정답은 이 연구 질문을 만드는 데 사용했으므로, 아래 실험은 독립 데이터셋 재현이 아니라 동일 문항에 대한 새 진단이다. v1의 0–1000 점 계약은 Qwen2.5 좌표계와 맞지 않았다. v2의 양성 대조 8건은 출력 형식 게이트를 통과하지 못해 파일럿 O/R을 시작하지 않았다. v3는 그 원시 응답만 보고 system/user 역할, 출력 지시, `label` 요청과 목표 요소 설명을 함께 수정했으며, 새 파일럿 O/R 결과를 보고 선택한 형식이 아니다. [출력 형식 검토](FORMAT_REVIEW_KO.md)에 경위를 남겼다. 각 버전 입력·결과는 분리한다.
 
 **현재 상태:** v3도 양성 대조 게이트에 실패해 v3 O/R 파일럿과 본 분석은 실행하지 않았다. 선정된 12문항의 짧은 기준 표현을 이용한 별도 탐색 실행은 O/R 96응답까지 완료했으나 형식 게이트에 실패했다. 수치와 해석 제한은 [Qwen 파일럿 결과](QWEN_PILOT_RESULTS_KO.md)에 기록했다. 아래 v3 규칙은 성공한 프로토콜이 아니라 **사전 지정 후 검증에 실패한 프로토콜**이다.
+
+**이전 실행과의 정합성 점검(2026-11-04):** [설정 대조](BASELINE_ALIGNMENT_AUDIT_KO.md)에서 초기 6×6과 REL full은 영어 객관식 system을 모든 조건에 고정했음을 확인했다. 아래 v3 Qwen은 명시적 system이 없고, 미실행 InternVL 계획은 새 위치 지시 system을 쓴다. 따라서 아래의 system/user 설계는 이전 객관식 실험에서 그대로 가져온 설정이 아니다. 두 모델 모두 **새 버전의 고정 system 정책과 기준 명사구 입력**을 정하기 전에는 본 위치 추론을 시작하지 않는다. v3의 잠금 입력과 파일럿 결과는 역사적 기록으로 유지한다.
 
 ## 1. 가져온 annotation의 판정
 
@@ -45,7 +47,7 @@ annotation의 `unreviewed`, `pending`, 요소 종류 필드는 이번 실험의 
 
 원래 O의 질문 문장에 `<ref>...</ref>`를 **잠금 span 오프셋**으로 삽입한다. R은 그 한 span만 GUI 언어 span으로 바꾼 뒤 같은 위치에 표시한다. 나머지 source 문맥·이미지·지시문은 동일하다. A–D 선택지와 gold는 넣지 않는다. 예: `... blue '<ref>Search</ref>' button?` 대 `... blue '<ref>搜索</ref>' button?`. 질문 전체를 제공하므로 `Search`처럼 span 자체가 짧아도 버튼이라는 문맥이 남는다.
 
-두 모델의 **위치 출력 계약**은 모델별 근거에 맞춘다. Qwen2.5-VL은 공식 예시처럼 지시문과 이미지가 같은 **user 메시지**에 들어간다. 별도 system prompt는 사용하지 않는다. `{model_width}`와 `{model_height}`는 Qwen 프로세서의 실제 `image_grid_thw`에서 각각 `grid[2]×14`, `grid[1]×14`로 읽는다. 이 크기를 알기 전에는 prompt를 완성하거나 추론하지 않는다. Qwen user text 전체는 다음과 같다.
+아래는 **실행했던 v3의 역사적 위치 출력 계약**이다. Qwen2.5-VL에는 지시문과 이미지가 같은 **user 메시지**에 들어가고, 별도 명시적 system prompt는 없다. 이는 모델 공식 예시를 참고해 선택한 방식이지만, 이전 REL full의 고정 영어 객관식 system과 다르다. 공식 예시는 좌표계와 출력 형식의 근거이지 이 연구의 **메시지 역할 선택을 검증한 근거는 아니다**. `{model_width}`와 `{model_height}`는 Qwen 프로세서의 실제 `image_grid_thw`에서 각각 `grid[2]×14`, `grid[1]×14`로 읽는다. 이 크기를 알기 전에는 prompt를 완성하거나 추론하지 않는다. Qwen user text 전체는 다음과 같다.
 
 ```text
 Locate the GUI reference element marked with <ref>...</ref> in the question below. The marked expression may be in a different language from the screenshot. Use surrounding words to identify the marked element. Do not locate the element that the question asks for.
@@ -53,7 +55,7 @@ Question: {marked_stem}
 The screenshot is {model_width} pixels wide and {model_height} pixels high. Give one point inside the marked reference element using integer pixel coordinates on this screenshot, with (0, 0) at the top-left. Return only this JSON array: [{"point_2d": [x, y]}]. No explanation or code fence.
 ```
 
-InternVL2.5-8B는 공식 grounding 데이터의 **0–1000 정규화 bbox** 형식을 따른다. system prompt는 다음과 같다. 두 모델에서 지시 대상·O/R 차이·원본 이미지는 같다.
+아래 InternVL2.5-8B system prompt는 **실행하지 않은 v3 계획**이다. 공식 grounding 데이터의 **0–1000 정규화 bbox** 출력 계약은 참고할 수 있으나, 새 위치 지시를 system에 넣는 선택은 이전 REL full과 다르다. 새 버전에서 메시지 역할을 다시 고정해야 한다. 두 모델에서 지시 대상·O/R 차이·원본 이미지를 같게 하려는 계획이었다.
 
 ```text
 Locate one reference element in the full GUI screenshot. Return exactly one bounding box as <box>[[x1, y1, x2, y2]]</box>. Use integer coordinates normalized from 0 to 1000 over the full screenshot, with (0, 0) at the top-left and (1000, 1000) at the bottom-right. Do not add any other text.
