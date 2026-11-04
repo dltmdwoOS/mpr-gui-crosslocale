@@ -1,0 +1,75 @@
+{
+  "schema": "qwen3-vl-8b-grounding-two-prompt-pilot-v1",
+  "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+  "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "arms": {
+    "query_informed": {
+      "count": 8,
+      "valid": 8,
+      "hit": 0,
+      "addCriterion": 0,
+      "eos_stop": 8,
+      "control_count": 8,
+      "control_valid": 8,
+      "control_hit": 0,
+      "by_gui": {
+        "en": {
+          "count": 2,
+          "valid": 2,
+          "hit": 0
+        },
+        "zh": {
+          "count": 2,
+          "valid": 2,
+          "hit": 0
+        },
+        "th": {
+          "count": 2,
+          "valid": 2,
+          "hit": 0
+        },
+        "ru": {
+          "count": 2,
+          "valid": 2,
+          "hit": 0
+        }
+      }
+    },
+    "element_only": {
+      "count": 8,
+      "valid": 8,
+      "hit": 8,
+      "addCriterion": 0,
+      "eos_stop": 8,
+      "control_count": 8,
+      "control_valid": 8,
+      "control_hit": 8,
+      "by_gui": {
+        "en": {
+          "count": 2,
+          "valid": 2,
+          "hit": 2
+        },
+        "zh": {
+          "count": 2,
+          "valid": 2,
+          "hit": 2
+        },
+        "th": {
+          "count": 2,
+          "valid": 2,
+          "hit": 2
+        },
+        "ru": {
+          "count": 2,
+          "valid": 2,
+          "hit": 2
+        }
+      }
+    }
+  },
+  "complete_screen_pairs": 8,
+  "hit_transition": {
+    "0->1": 8
+  }
+}

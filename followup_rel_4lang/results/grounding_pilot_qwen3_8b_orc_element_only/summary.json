@@ -1,0 +1,37 @@
+{
+  "schema": "qwen3-vl-8b-orc-element-only-quick-pilot-v1",
+  "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+  "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "selected_pairs": 4,
+  "complete_pairs": 4,
+  "conditions": {
+    "O": {
+      "count": 4,
+      "valid": 4,
+      "hit": 3,
+      "addCriterion": 0,
+      "eos_stop": 4
+    },
+    "R": {
+      "count": 4,
+      "valid": 4,
+      "hit": 4,
+      "addCriterion": 0,
+      "eos_stop": 4
+    },
+    "C": {
+      "count": 4,
+      "valid": 4,
+      "hit": 3,
+      "addCriterion": 0,
+      "eos_stop": 4
+    }
+  },
+  "generate_s_median_per_batch": 161.14,
+  "preprocess_s_median_per_batch": 0.6105,
+  "profiled_batch_count": 3,
+  "prefill_s_median": 158.519,
+  "decode_s_median": 2.517,
+  "prefill_share_median": 0.9842972588529793,
+  "max_peak_gpu_gib": 18.208
+}
