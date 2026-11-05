@@ -1,0 +1,51 @@
+{
+  "schema": "qwen3-execution-plan-v1",
+  "num_shards": 8,
+  "cross_locale": {
+    "items": 2195,
+    "inferences": 79020,
+    "per_shard": [
+      10656,
+      9720,
+      9864,
+      10548,
+      8316,
+      10116,
+      9648,
+      10152
+    ]
+  },
+  "rel_orcf": {
+    "items": 366,
+    "condition_rows": 23424,
+    "inferences": 18432,
+    "per_shard": [
+      2356,
+      1916,
+      2056,
+      2720,
+      2090,
+      1762,
+      2544,
+      2988
+    ]
+  },
+  "grounding_main_draft": {
+    "items": 158,
+    "pairs": 1896,
+    "inferences": 5688,
+    "per_shard": [
+      756,
+      504,
+      684,
+      936,
+      612,
+      540,
+      612,
+      1044
+    ],
+    "descriptors_finalized": false
+  },
+  "total_planned_inferences": 103140,
+  "partition_checks": "All planned IDs covered exactly once; all conditions/languages of each item remain on the same shard."
+}

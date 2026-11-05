@@ -1,5 +1,10 @@
 # REL 4언어 O/R/C/F 추론
 
+**2026-11-05 RTX 4090 실행 완료:** 기본 경로의 지연은 BF16 patch Conv3D의
+fallback에서 확인됐다. weight 메모리 배치 변경으로 같은 2MP·배치 3이
+171.984초→2.421초였다. 해상도 파일럿·원시 근거·현재 준비 상태는
+[4090 실행 결과](QWEN3_RTX4090_RESULTS_KO.md)에 정리했다.
+
 Qwen3-VL-8B 전환을 위한 속도·병목 근거와 다중 GPU 계산은
 [런타임 보고서](QWEN_RUNTIME_REPORT_KO.md)에, Vast.ai RTX 4090 한 장에서
 같은 파일럿 입력을 측정하는 절차는 [4090 계측 안내](QWEN3_VAST_4090_PROBE_KO.md)에 있다.

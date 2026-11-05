@@ -1,0 +1,41 @@
+{
+  "torch_version": "2.9.1+cu130",
+  "torch_git_version": "5811a8d7da873dd699ff6687092c225caffcf1bb",
+  "cudnn_version": 91300,
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "scope": "Backend selection for checkpoint-matching shapes; no Qwen2.5 weights or full-model inference loaded.",
+  "results": [
+    {
+      "model_shape": "qwen25",
+      "patch": 14,
+      "hidden": 1280,
+      "bias": false,
+      "layout": "native",
+      "backend": "_ConvBackend.SlowDilated3d"
+    },
+    {
+      "model_shape": "qwen25",
+      "patch": 14,
+      "hidden": 1280,
+      "bias": false,
+      "layout": "channels_last_3d",
+      "backend": "_ConvBackend.Cudnn"
+    },
+    {
+      "model_shape": "qwen3",
+      "patch": 16,
+      "hidden": 1152,
+      "bias": true,
+      "layout": "native",
+      "backend": "_ConvBackend.SlowDilated3d"
+    },
+    {
+      "model_shape": "qwen3",
+      "patch": 16,
+      "hidden": 1152,
+      "bias": true,
+      "layout": "channels_last_3d",
+      "backend": "_ConvBackend.Cudnn"
+    }
+  ]
+}

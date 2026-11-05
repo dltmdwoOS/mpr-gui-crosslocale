@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import random
 import time
 import traceback
 import uuid
+from dataclasses import replace
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -32,6 +34,7 @@ from mpr_crosslocale.inference.runtime import (
     load_yaml,
     read_jsonl,
     resolve_paths,
+    select_item_shard,
     software_versions,
 )
 from mpr_crosslocale.inference.system_prompts import build_system_prompt
@@ -61,6 +64,12 @@ def run(args: argparse.Namespace) -> None:
         sample_unit=args.sample_unit,
         seed=args.seed,
     )
+    num_shards = getattr(args, "num_shards", 1)
+    shard_index = getattr(args, "shard_index", 0)
+    selected = select_item_shard(plan.rows, num_shards, shard_index)
+    plan = replace(plan, rows=selected, n_evaluations=len(selected),
+                   n_semantic_items=len({r["parallel_id"] for r in selected}),
+                   missing=select_item_shard(plan.missing, num_shards, shard_index))
     rows = resolve_paths(plan.rows, repo_root)
     model_config = load_yaml(args.model_config)
     _reject_mixed_model_output(args.output, model_config["model_id"])
@@ -74,6 +83,30 @@ def run(args: argparse.Namespace) -> None:
     effective_use_flash_attn = model_config.get("use_flash_attn")
     if model_config.get("model_family") == "internvl2_5" and args.attn_implementation:
         effective_use_flash_attn = args.attn_implementation == "flash_attention_2"
+    contract = {
+        "schema": "cross-locale-run-contract-v1", "model_config": model_config,
+        "manifest_sha256": hashlib.sha256(Path(args.manifest).read_bytes()).hexdigest(),
+        "input_ids": [r["input_id"] for r in rows], "num_shards": num_shards,
+        "shard_index": shard_index, "prompt_profile": prompt_profile,
+        "generation": generation_config, "system_prompt_mode": args.system_prompt_mode,
+        "attn_implementation": attn_implementation, "score_labels": args.score_labels,
+        "execution_mode": "dry_run" if args.dry_run else "mock" if args.mock_model else "gpu",
+        "seed": args.seed,
+        "code_sha256": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in (
+            Path(__file__), Path(__file__).with_name("runtime.py"),
+            Path(__file__).with_name("prompts.py"), Path(__file__).with_name("system_prompts.py"),
+            Path(__file__).parents[1] / "models/qwen25vl.py",
+            Path(__file__).parents[1] / "models/qwen3_memory.py")},
+    }
+    contract_path = args.output.with_suffix(args.output.suffix + ".contract.json")
+    if contract_path.exists():
+        if json.loads(contract_path.read_text(encoding="utf-8")) != contract:
+            raise ValueError("Output belongs to a different experiment contract")
+    else:
+        if args.output.exists() and args.output.stat().st_size:
+            raise ValueError("Existing output has no experiment contract; use a fresh output path")
+        contract_path.parent.mkdir(parents=True, exist_ok=True)
+        contract_path.write_text(json.dumps(contract, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     run_metadata = {
         "code_commit": git_commit(),
         "software_versions": software_versions(),
@@ -263,6 +296,9 @@ def _result_base(
         "vision_token_limit": model_config.get("vision_token_limit"),
         "min_pixels": model_config.get("min_pixels"),
         "max_pixels": model_config.get("max_pixels"),
+        "patch_embed_memory_format": model_config.get("patch_embed_memory_format", "native"),
+        "num_shards": getattr(args, "num_shards", 1),
+        "shard_index": getattr(args, "shard_index", 0),
         "processor_profile": model_config.get("processor_profile"),
         "input_size": model_config.get("input_size"),
         "min_num": model_config.get("min_num"),
@@ -320,6 +356,7 @@ def _build_qwen_adapter(args: argparse.Namespace, model_config: dict[str, Any]) 
         device_map=args.device_map or "auto",
         processor_kwargs=processor_kwargs,
         model_family=model_config.get("model_family", "qwen2_5_vl"),
+        patch_embed_memory_format=model_config.get("patch_embed_memory_format", "native"),
     )
 
 
@@ -378,6 +415,8 @@ def main(argv: list[str] | None = None) -> None:
         default="semantic_items",
     )
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--num-shards", type=int, default=1)
+    parser.add_argument("--shard-index", type=int, default=0)
     parser.add_argument("--system-prompt-mode", choices=["english_fixed", "query_aligned"], default="english_fixed")
     parser.add_argument("--prompt-profile", default=None)
     parser.add_argument("--max-new-tokens", type=int, default=None)

@@ -1,0 +1,39 @@
+{
+  "schema": "qwen3-grounding-portable-v1",
+  "suite": "pilot",
+  "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+  "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "dtype": "bfloat16",
+  "attn_implementation": "sdpa",
+  "min_pixels": 262144,
+  "max_pixels": 2097152,
+  "patch_embed_memory_format": "channels_last_3d",
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "max_new_tokens": 64
+  },
+  "prompt_template": "Locate the GUI reference element marked by <ref>...</ref> in the text below. Use surrounding words to identify it. Do not answer a relation question.\nText: {text}\nReturn only one point as (x, y), with integer x and y from 0 to 1000 relative to the full screenshot. (0, 0) is the top-left and (1000, 1000) is the bottom-right. No explanation or code fence.",
+  "groups_sha256": "6b961b190432b757c4c8a142f6311f658d5e147063d48ee81ad5fded156dcf09",
+  "runner_sha256": "9e942efc428acbef3982383b8a53f2d0be4d3ad5eaad1fb4200dbf6ecdf20512",
+  "implementation_sha256": {
+    "benchmark_qwen3_runtime.py": "fac84e42d957715370ddb9245b496560ef92021fe099f344f83879003bb158e8",
+    "run_qwen3_prompt_pilot.py": "2ff9b2df162b125e504b12db4b0cadd0b5956862175807a73c8c2b8fb37aca4c",
+    "point_format.py": "9f1d2efd4c8ffede36308bcaae62c6feac964c502d920e63831d5deaa41b726b",
+    "qwen3_memory.py": "fe00351f368cdaca85418f7d0f3d03b638cffd4c61a86258a875e646ea66c4b6"
+  },
+  "num_shards": 1,
+  "shard_index": 0,
+  "expected_batches": 48,
+  "expected_responses": 144,
+  "torch_version": "2.9.1+cu130",
+  "transformers_version": "4.57.6",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "package_versions": {
+    "qwen-vl-utils": "0.0.14",
+    "tokenizers": "0.22.2",
+    "numpy": "2.5.4",
+    "pillow": "13.0.0",
+    "accelerate": "1.15.0"
+  }
+}

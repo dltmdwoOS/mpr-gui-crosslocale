@@ -1,0 +1,5 @@
+Wrote 13470 manifest rows to 01_code/data/manifests/mpr_gui_manifest.jsonl
+Wrote parallel index to 01_code/data/manifests/parallel_index.json
+Wrote 67350 cross-locale pair rows to 01_code/data/manifests/cross_locale_pairs.jsonl
+Wrote 13470 canonical input rows to 01_code/data/manifests/canonical_inputs.jsonl
+Wrote 67350 mismatch input rows to 01_code/data/manifests/mismatch_inputs.jsonl

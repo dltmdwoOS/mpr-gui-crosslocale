@@ -10,10 +10,14 @@ import time
 from collections import Counter
 from pathlib import Path
 
-from run_qwen3_prompt_pilot import (
-    HERE, MODEL_ID, PERSONAL_CACHE, PROMPT, REPO, REVISION, SNAPSHOT,
-    _score, _sha256,
-)
+if __package__:
+    from .run_qwen3_prompt_pilot import (
+        HERE, MODEL_ID, PERSONAL_CACHE, PROMPT, REPO, REVISION, SNAPSHOT, _score, _sha256,
+    )
+else:
+    from run_qwen3_prompt_pilot import (
+        HERE, MODEL_ID, PERSONAL_CACHE, PROMPT, REPO, REVISION, SNAPSHOT, _score, _sha256,
+    )
 
 
 PILOT_PAIRS = (("en", "zh"), ("zh", "th"), ("th", "ru"), ("ru", "en"))

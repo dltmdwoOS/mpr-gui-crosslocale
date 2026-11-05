@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "scope": "WF/WI/AU/AP/AEL/REL",
+  "manifest_rows": 13170,
+  "canonical_inputs": 13170,
+  "mismatch_inputs": 65850,
+  "errors": [],
+  "full_release_count_messages_not_applicable_to_core_scope": [
+    "canonical input file has 13170 rows",
+    "language en has 2195 rows",
+    "language fr has 2195 rows",
+    "language ja has 2195 rows",
+    "language ru has 2195 rows",
+    "language th has 2195 rows",
+    "language zh has 2195 rows",
+    "manifest has 13170 rows",
+    "mismatch input file has 65850 rows",
+    "parallel index has 2195 entries"
+  ],
+  "note": "Existing validators hard-code the full eight-dimension release counts. Core-scope counts were independently asserted; all remaining structure, option, image path and input linkage checks passed."
+}

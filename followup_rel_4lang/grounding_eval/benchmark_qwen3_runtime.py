@@ -13,8 +13,12 @@ from pathlib import Path
 from urllib.parse import quote
 from urllib.request import urlopen
 
-from run_qwen3_orc_element_pilot import CONDITIONS, _pairs
-from run_qwen3_prompt_pilot import MODEL_ID, PROMPT, REPO, REVISION, _score
+if __package__:
+    from .run_qwen3_orc_element_pilot import CONDITIONS, _pairs
+    from .run_qwen3_prompt_pilot import MODEL_ID, PROMPT, REPO, REVISION, _score
+else:
+    from run_qwen3_orc_element_pilot import CONDITIONS, _pairs
+    from run_qwen3_prompt_pilot import MODEL_ID, PROMPT, REPO, REVISION, _score
 
 
 DEFAULT_PAIR = "rel::1/booking_10.jpg::zh::th"
@@ -82,6 +86,10 @@ def main() -> None:
     parser.add_argument("--max-pixels", type=int, choices=(1048576, 2097152), default=2097152)
     parser.add_argument("--batch-size", type=int, choices=(1, 3), default=3)
     parser.add_argument("--preflight-only", action="store_true")
+    parser.add_argument("--profile-vision", action="store_true",
+                        help="Also time vision positions, patch embedding and individual blocks")
+    parser.add_argument("--patch-embed-memory-format", choices=("native", "channels_last_3d"),
+                        default="native")
     parser.add_argument("--output", type=Path, help="Fresh JSON path for measured results")
     args = parser.parse_args()
     if not args.preflight_only and args.output is None:
@@ -138,6 +146,7 @@ def main() -> None:
         "min_pixels": 262144, "max_pixels": args.max_pixels,
         "prompt_tokens": prompt_tokens, "preprocess_s": round(preprocess_s, 3),
         "dtype": "bfloat16", "attn_implementation": "sdpa",
+        "patch_embed_memory_format": args.patch_embed_memory_format,
         "torch_version": torch.__version__, "transformers_version": transformers.__version__,
     }
     if args.preflight_only:
@@ -156,6 +165,8 @@ def main() -> None:
     assert all(parameter.device.type == "cuda" for parameter in model.parameters())
     assert model.config._attn_implementation == "sdpa"
     model.eval()
+    from mpr_crosslocale.models.qwen3_memory import configure_patch_embed_memory_format
+    configure_patch_embed_memory_format(model, args.patch_embed_memory_format)
     inputs = inputs.to(model.device)
     torch.cuda.synchronize()
     torch.cuda.reset_peak_memory_stats()
@@ -177,6 +188,29 @@ def main() -> None:
     add_timing(model, "whole_forward")
     add_timing(model.model.visual, "vision_forward")
     add_timing(model.model.language_model, "language_forward")
+    restored_methods = []
+    if args.profile_vision:
+        visual = model.model.visual
+        add_timing(visual.patch_embed, "vision_patch_embed")
+        add_timing(visual.merger, "vision_merger")
+        for index, block in enumerate(visual.blocks):
+            add_timing(block, f"vision_block_{index:02d}")
+        for index, merger in enumerate(visual.deepstack_merger_list):
+            add_timing(merger, f"vision_deepstack_merger_{index}")
+        for name in ("fast_pos_embed_interpolate", "rot_pos_emb"):
+            original = getattr(visual, name)
+
+            def timed_method(*arguments, _original=original, _name=name, **kwargs):
+                torch.cuda.synchronize()
+                start = time.perf_counter()
+                try:
+                    return _original(*arguments, **kwargs)
+                finally:
+                    torch.cuda.synchronize()
+                    times[_name].append(time.perf_counter() - start)
+
+            restored_methods.append((visual, name, original))
+            setattr(visual, name, timed_method)
     generate_start = time.perf_counter()
     try:
         with torch.inference_mode():
@@ -184,6 +218,8 @@ def main() -> None:
     finally:
         for hook in hooks:
             hook.remove()
+        for module, name, original in restored_methods:
+            setattr(module, name, original)
     torch.cuda.synchronize()
     generate_s = time.perf_counter() - generate_start
     eos = model.generation_config.eos_token_id
@@ -210,6 +246,11 @@ def main() -> None:
         "peak_reserved_gib": round(torch.cuda.max_memory_reserved() / 2**30, 3),
         "results": rows,
     }
+    if args.profile_vision:
+        result["vision_detail_s"] = {
+            name: round(sum(values), 6) for name, values in times.items()
+            if name not in {"whole_forward", "vision_forward", "language_forward"}
+        }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(result, ensure_ascii=False, indent=2), flush=True)

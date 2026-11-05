@@ -1,0 +1,71 @@
+{
+  "expected_batches": 16,
+  "completed_batches": 16,
+  "complete": true,
+  "response_count": 16,
+  "conditions": {
+    "element_only": {
+      "count": 8,
+      "valid": 8,
+      "hit": 8
+    },
+    "query_informed": {
+      "count": 8,
+      "valid": 8,
+      "hit": 0
+    }
+  },
+  "by_gui": {
+    "en": {
+      "element_only": {
+        "count": 2,
+        "valid": 2,
+        "hit": 2
+      },
+      "query_informed": {
+        "count": 2,
+        "valid": 2,
+        "hit": 0
+      }
+    },
+    "zh": {
+      "element_only": {
+        "count": 2,
+        "valid": 2,
+        "hit": 2
+      },
+      "query_informed": {
+        "count": 2,
+        "valid": 2,
+        "hit": 0
+      }
+    },
+    "th": {
+      "element_only": {
+        "count": 2,
+        "valid": 2,
+        "hit": 2
+      },
+      "query_informed": {
+        "count": 2,
+        "valid": 2,
+        "hit": 0
+      }
+    },
+    "ru": {
+      "element_only": {
+        "count": 2,
+        "valid": 2,
+        "hit": 2
+      },
+      "query_informed": {
+        "count": 2,
+        "valid": 2,
+        "hit": 0
+      }
+    }
+  },
+  "generate_s_median_per_batch": 0.752239,
+  "generate_s_total": 12.770287,
+  "max_peak_reserved_gib": 17.175781
+}

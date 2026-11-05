@@ -1,0 +1,46 @@
+{
+  "revision": "c1edb808d424a2fa7bc4a2e601d39b431b04acd5",
+  "groups": {
+    ".gitattributes": {
+      "files": 1,
+      "bytes": 2504
+    },
+    "1": {
+      "files": 90,
+      "bytes": 51807564
+    },
+    "2": {
+      "files": 492,
+      "bytes": 1683041843
+    },
+    "3": {
+      "files": 452,
+      "bytes": 134342365
+    },
+    "4": {
+      "files": 187,
+      "bytes": 43144341
+    },
+    "5": {
+      "files": 637,
+      "bytes": 159602935
+    },
+    "6": {
+      "files": 362,
+      "bytes": 48593976
+    },
+    "README.md": {
+      "files": 1,
+      "bytes": 2570
+    },
+    "rich": {
+      "files": 986,
+      "bytes": 363457548
+    },
+    "sparse": {
+      "files": 477,
+      "bytes": 154322697
+    }
+  },
+  "root_1_to_6_bytes": 2120533024
+}

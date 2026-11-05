@@ -1,0 +1,83 @@
+{
+  "schema": "qwen3-first-real-sdpa-v1",
+  "backend_policy": "auto",
+  "query_shape": [
+    1,
+    16,
+    8040,
+    72
+  ],
+  "key_shape": [
+    1,
+    16,
+    8040,
+    72
+  ],
+  "value_shape": [
+    1,
+    16,
+    8040,
+    72
+  ],
+  "query_stride": [
+    1152,
+    72,
+    1152,
+    1
+  ],
+  "dtype": "torch.bfloat16",
+  "device": "cuda:0",
+  "is_causal": false,
+  "enable_gqa": true,
+  "events": [
+    {
+      "name": "aten::scaled_dot_product_attention",
+      "calls": 1,
+      "cpu_time_total_us": 8083.1939999999995,
+      "device_time_total_us": 0
+    },
+    {
+      "name": "aten::_scaled_dot_product_flash_attention",
+      "calls": 1,
+      "cpu_time_total_us": 7749.282,
+      "device_time_total_us": 0
+    },
+    {
+      "name": "aten::transpose",
+      "calls": 4,
+      "cpu_time_total_us": 74.83999999999969,
+      "device_time_total_us": 0
+    },
+    {
+      "name": "aten::as_strided",
+      "calls": 4,
+      "cpu_time_total_us": 14.419999999999618,
+      "device_time_total_us": 0
+    },
+    {
+      "name": "aten::_flash_attention_forward",
+      "calls": 1,
+      "cpu_time_total_us": 7432.861000000001,
+      "device_time_total_us": 0
+    },
+    {
+      "name": "aten::empty_like",
+      "calls": 1,
+      "cpu_time_total_us": 198.47099999999978,
+      "device_time_total_us": 0
+    },
+    {
+      "name": "aten::empty_strided",
+      "calls": 1,
+      "cpu_time_total_us": 26.439999999999827,
+      "device_time_total_us": 0
+    },
+    {
+      "name": "aten::empty",
+      "calls": 4,
+      "cpu_time_total_us": 33.80999999999926,
+      "device_time_total_us": 0
+    }
+  ],
+  "timing_includes_profiler_overhead": true
+}

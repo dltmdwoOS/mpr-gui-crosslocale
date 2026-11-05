@@ -1,5 +1,9 @@
 # Vast.ai RTX 4090 한 장에서 Qwen3 지연 확인
 
+**2026-11-05 실행 결과:** [4090 결과 보고서](QWEN3_RTX4090_RESULTS_KO.md).
+기본 경로 171.984초, 명시적 `channels_last_3d` 경로 2.421초였다. 아래 기본
+계측은 과거 지연 재현용이며, 새 런타임은 별도 옵션·계약·출력에 기록한다.
+
 목적: 기존 B200 MIG에서 `booking_10`의 Qwen3-VL-8B **O/R/C 배치 3·2MP가 161.289초** 걸린 이유를 4090에서 다시 측정한다. [기존 원시 예측](results/grounding_pilot_qwen3_8b_orc_element_only/predictions.jsonl)과 같은 모델 revision·프롬프트·이미지·BF16·SDPA·greedy를 쓴다. 새 [계측 도구](grounding_eval/benchmark_qwen3_runtime.py)는 총시간에 더해 vision encoder, 언어 모델 첫 처리, 이후 토큰 생성 시간을 나눠 기록한다. **계측 hook을 추가했으므로 이전 161.289초와 완전히 같은 실행 경로는 아니다.** 이미지 해시, 격자, 프롬프트 토큰 수를 함께 비교한다.
 
 ## 4090 인스턴스에서 준비
@@ -21,6 +25,8 @@ export OMP_NUM_THREADS=3 MKL_NUM_THREADS=3 OPENBLAS_NUM_THREADS=3
 
 python -m venv --system-site-packages .venv
 source .venv/bin/activate
+python -m pip install --no-cache-dir torch==2.9.1 torchvision==0.24.1 \
+  --index-url https://download.pytorch.org/whl/cu130
 cd 01_code
 bash scripts/setup_vast.sh
 python -m pip install 'transformers==4.57.6' 'qwen-vl-utils==0.0.14'
@@ -51,6 +57,17 @@ python followup_rel_4lang/grounding_eval/benchmark_qwen3_runtime.py \
 
 주요 필드는 `generate_s`(배치 3 전체), `prefill_forward_s`(첫 forward), `vision_forward_s`(이미지 인코딩), `language_prefill_s`(언어 모델 첫 처리), `language_decode_s`(후속 생성), `peak_allocated_gib`와 `peak_reserved_gib`다. `vision_forward_s`와 `language_prefill_s`의 합을 `prefill_forward_s`에서 빼면 나머지 첫 forward 작업과 계측 오버헤드가 남는다. **이 숫자로 처음으로 병목을 분리**할 수 있다. 기존 B200의 동일 배치 기록은 총 161.289초, 첫 forward 158.519초, 후속 forward 2.601초, 최대 allocated 18.208GiB였다. [기존 파일럿 설명](grounding_eval/QWEN3_ORC_ELEMENT_PILOT_KO.md#왜-느렸나).
 
+추가된 `--profile-vision`은 patch embedding·위치 계산·각 vision block을 나눈다.
+이번에 확인한 Conv3D 메모리 배치 변경은 다음처럼 **명시적으로** 지정한다.
+가중치 값은 유지하지만 BF16 중간 출력은 bitwise 동일하지 않으므로 기본 결과에 합치지 않는다.
+
+```bash
+python followup_rel_4lang/grounding_eval/benchmark_qwen3_runtime.py \
+  --model-path "$MODEL_SNAPSHOT" --batch-size 3 --max-pixels 2097152 \
+  --patch-embed-memory-format channels_last_3d --profile-vision \
+  --output followup_rel_4lang/results/runtime_probe/rtx4090_booking10_2mp_b3_channels_last.json
+```
+
 4090의 24GB에서 배치 3이 메모리 부족이면 `--batch-size 1`로 **O 조건 하나**를 먼저 계측한다. 이는 기존 3응답 배치와 직접 같은 시간 비교는 아니다.
 
 ```bash
@@ -77,8 +94,8 @@ JSON 출력은 Git에서 기본적으로 제외된다. 인스턴스를 정리하
 
 | 경로 | 현재 상태 | 8-GPU 본 실행 전에 필요한 것 |
 | --- | --- | --- |
-| [6×6 러너](../01_code/src/mpr_crosslocale/inference/run_cross_locale.py) | `--resume`은 있지만 배치·샤드 옵션 없음; Qwen3 구성은 4B만 있음 | Qwen3-8B 설정, 입력 분할, GPU별 출력·병합 검증 |
-| [REL O/R/C/F 러너](../01_code/src/mpr_crosslocale/inference/run_rel_followup.py) | Qwen2.5 배치 지원, Qwen3의 배치>1 차단; 샤드 옵션 없음 | Qwen3 배치 지원, 입력 분할, GPU별 출력·병합 검증 |
-| [grounding 파일럿](grounding_eval/run_qwen3_orc_element_pilot.py) | 12문항 중 최대 12쌍의 파일럿만 실행 | 158문항의 기준 설명 준비, 본 실행 러너와 분할 |
+| [6×6 러너](../01_code/src/mpr_crosslocale/inference/run_cross_locale.py) | Qwen3-8B 구성·계약·문항 단위 샤드·재개 지원; 생성은 배치 1 | GPU별 별도 출력과 생성 결과 병합 검증, 대표 과제 처리량 측정 |
+| [REL O/R/C/F 러너](../01_code/src/mpr_crosslocale/inference/run_rel_followup.py) | Qwen3 배치·문항 단위 샤드 지원; 실제 추론 80개 smoke 통과 | 전체 실행의 배치 고정, GPU별 출력·생성 결과 병합 검증 |
+| [새 grounding 러너](grounding_eval/run_qwen3_grounding.py) | 같은 언어 대조·48쌍 파일럿·158문항 main 입력 지원, 계약·샤드·재개 포함 | 632개 main 설명 초안의 의미 검수·최종 입력 잠금·통계 계획 |
 
 세 실험의 계획 입력은 합계 **103,140회**이고 8개 GPU에 균등하면 약 **12,893회/장**이다. 실제 총시간은 `가장 오래 걸린 GPU의 샤드 시간 + 설치·합치기 시간`이다. **정확히 8.00배를 보장할 수 없고**, 이미지·언어·배치별 처리량, 공유 CPU/RAM/SSD, 호스트의 전력 제한을 같은 시점에 1개·8개 프로세스로 측정해야 한다. 4090 한 장 계측은 모델 탑재와 단일 처리량을 검증하는 첫 단계다. [전체 런타임 분석](QWEN_RUNTIME_REPORT_KO.md).

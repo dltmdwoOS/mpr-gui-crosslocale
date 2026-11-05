@@ -1,0 +1,33 @@
+{
+  "schema": "qwen3-vl-runtime-probe-v1",
+  "timestamp_utc": "2026-11-05T06:25:14.065950+00:00",
+  "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+  "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "pair_id": "rel::1/booking_10.jpg::zh::th",
+  "image_sha256": "3f2fcbb5a3b1c3bfcde891117aa1ca15ec872e6d3529fdafe2c4ec4cdd3868b2",
+  "image_grid_thw": [
+    1,
+    134,
+    60
+  ],
+  "visual_tokens_per_image": 2010,
+  "conditions": [
+    "O",
+    "R",
+    "C"
+  ],
+  "batch_size": 3,
+  "min_pixels": 262144,
+  "max_pixels": 2097152,
+  "prompt_tokens": [
+    2131,
+    2141,
+    2129
+  ],
+  "preprocess_s": 0.611,
+  "dtype": "bfloat16",
+  "attn_implementation": "sdpa",
+  "torch_version": "2.9.1+cu130",
+  "transformers_version": "4.57.6",
+  "preflight_only": true
+}

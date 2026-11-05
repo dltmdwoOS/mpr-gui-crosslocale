@@ -1,0 +1,96 @@
+{
+  "expected_batches": 48,
+  "completed_batches": 48,
+  "complete": true,
+  "response_count": 144,
+  "conditions": {
+    "C": {
+      "count": 48,
+      "valid": 47,
+      "hit": 38
+    },
+    "O": {
+      "count": 48,
+      "valid": 48,
+      "hit": 40
+    },
+    "R": {
+      "count": 48,
+      "valid": 48,
+      "hit": 45
+    }
+  },
+  "by_gui": {
+    "en": {
+      "C": {
+        "count": 12,
+        "valid": 12,
+        "hit": 12
+      },
+      "O": {
+        "count": 12,
+        "valid": 12,
+        "hit": 11
+      },
+      "R": {
+        "count": 12,
+        "valid": 12,
+        "hit": 10
+      }
+    },
+    "zh": {
+      "C": {
+        "count": 12,
+        "valid": 11,
+        "hit": 10
+      },
+      "O": {
+        "count": 12,
+        "valid": 12,
+        "hit": 12
+      },
+      "R": {
+        "count": 12,
+        "valid": 12,
+        "hit": 11
+      }
+    },
+    "th": {
+      "C": {
+        "count": 12,
+        "valid": 12,
+        "hit": 6
+      },
+      "O": {
+        "count": 12,
+        "valid": 12,
+        "hit": 7
+      },
+      "R": {
+        "count": 12,
+        "valid": 12,
+        "hit": 12
+      }
+    },
+    "ru": {
+      "C": {
+        "count": 12,
+        "valid": 12,
+        "hit": 10
+      },
+      "O": {
+        "count": 12,
+        "valid": 12,
+        "hit": 10
+      },
+      "R": {
+        "count": 12,
+        "valid": 12,
+        "hit": 12
+      }
+    }
+  },
+  "generate_s_median_per_batch": 1.7960565000000002,
+  "generate_s_total": 86.463567,
+  "max_peak_reserved_gib": 18.541016
+}

@@ -1,0 +1,604 @@
+{
+  "schema": "qwen3-rtx4090-study-summary-v1",
+  "date": "2026-11-05",
+  "native_to_channels_last_speedup_one_batch": 71.03841387856258,
+  "same_booking10_coordinates": true,
+  "runtime_matrix": {
+    "rtx4090_booking10_1mp_b1_channels_last.json": {
+      "max_pixels": 1048576,
+      "batch_size": 1,
+      "generate_s": 1.301,
+      "vision_forward_s": 0.483,
+      "language_prefill_s": 0.269,
+      "peak_allocated_gib": 16.672,
+      "peak_reserved_gib": 16.766,
+      "patch_embed_memory_format": "channels_last_3d"
+    },
+    "rtx4090_booking10_1mp_b1_detail.json": {
+      "max_pixels": 1048576,
+      "batch_size": 1,
+      "generate_s": 29.973,
+      "vision_forward_s": 29.05,
+      "language_prefill_s": 0.277,
+      "peak_allocated_gib": 16.671,
+      "peak_reserved_gib": 16.756,
+      "patch_embed_memory_format": "native"
+    },
+    "rtx4090_booking10_1mp_b3_channels_last.json": {
+      "max_pixels": 1048576,
+      "batch_size": 3,
+      "generate_s": 1.764,
+      "vision_forward_s": 0.609,
+      "language_prefill_s": 0.556,
+      "peak_allocated_gib": 17.308,
+      "peak_reserved_gib": 17.492,
+      "patch_embed_memory_format": "channels_last_3d"
+    },
+    "rtx4090_booking10_1mp_b3_detail.json": {
+      "max_pixels": 1048576,
+      "batch_size": 3,
+      "generate_s": 83.453,
+      "vision_forward_s": 82.191,
+      "language_prefill_s": 0.604,
+      "peak_allocated_gib": 17.307,
+      "peak_reserved_gib": 17.525,
+      "patch_embed_memory_format": "native"
+    },
+    "rtx4090_booking10_2mp_b1_channels_last.json": {
+      "max_pixels": 2097152,
+      "batch_size": 1,
+      "generate_s": 1.297,
+      "vision_forward_s": 0.558,
+      "language_prefill_s": 0.365,
+      "peak_allocated_gib": 16.964,
+      "peak_reserved_gib": 17.176,
+      "patch_embed_memory_format": "channels_last_3d"
+    },
+    "rtx4090_booking10_2mp_b1_profiled.json": {
+      "max_pixels": 2097152,
+      "batch_size": 1,
+      "generate_s": 60.143,
+      "vision_forward_s": 59.302,
+      "language_prefill_s": 0.377,
+      "peak_allocated_gib": 16.963,
+      "peak_reserved_gib": 17.105,
+      "patch_embed_memory_format": "native"
+    },
+    "rtx4090_booking10_2mp_b3.json": {
+      "max_pixels": 2097152,
+      "batch_size": 3,
+      "generate_s": 171.984,
+      "vision_forward_s": 170.33,
+      "language_prefill_s": 1.011,
+      "peak_allocated_gib": 18.208,
+      "peak_reserved_gib": 18.492,
+      "patch_embed_memory_format": "native"
+    },
+    "rtx4090_booking10_2mp_b3_channels_last.json": {
+      "max_pixels": 2097152,
+      "batch_size": 3,
+      "generate_s": 2.421,
+      "vision_forward_s": 0.865,
+      "language_prefill_s": 0.984,
+      "peak_allocated_gib": 18.209,
+      "peak_reserved_gib": 18.541,
+      "patch_embed_memory_format": "channels_last_3d"
+    }
+  },
+  "suites": {
+    "controls_2mp_channels_last": {
+      "expected_batches": 16,
+      "completed_batches": 16,
+      "complete": true,
+      "response_count": 16,
+      "conditions": {
+        "element_only": {
+          "count": 8,
+          "valid": 8,
+          "hit": 8
+        },
+        "query_informed": {
+          "count": 8,
+          "valid": 8,
+          "hit": 0
+        }
+      },
+      "by_gui": {
+        "en": {
+          "element_only": {
+            "count": 2,
+            "valid": 2,
+            "hit": 2
+          },
+          "query_informed": {
+            "count": 2,
+            "valid": 2,
+            "hit": 0
+          }
+        },
+        "zh": {
+          "element_only": {
+            "count": 2,
+            "valid": 2,
+            "hit": 2
+          },
+          "query_informed": {
+            "count": 2,
+            "valid": 2,
+            "hit": 0
+          }
+        },
+        "th": {
+          "element_only": {
+            "count": 2,
+            "valid": 2,
+            "hit": 2
+          },
+          "query_informed": {
+            "count": 2,
+            "valid": 2,
+            "hit": 0
+          }
+        },
+        "ru": {
+          "element_only": {
+            "count": 2,
+            "valid": 2,
+            "hit": 2
+          },
+          "query_informed": {
+            "count": 2,
+            "valid": 2,
+            "hit": 0
+          }
+        }
+      },
+      "generate_s_median_per_batch": 0.752239,
+      "generate_s_total": 12.770287,
+      "max_peak_reserved_gib": 17.175781
+    },
+    "controls_1mp_channels_last": {
+      "expected_batches": 16,
+      "completed_batches": 16,
+      "complete": true,
+      "response_count": 16,
+      "conditions": {
+        "element_only": {
+          "count": 8,
+          "valid": 8,
+          "hit": 8
+        },
+        "query_informed": {
+          "count": 8,
+          "valid": 8,
+          "hit": 0
+        }
+      },
+      "by_gui": {
+        "en": {
+          "element_only": {
+            "count": 2,
+            "valid": 2,
+            "hit": 2
+          },
+          "query_informed": {
+            "count": 2,
+            "valid": 2,
+            "hit": 0
+          }
+        },
+        "zh": {
+          "element_only": {
+            "count": 2,
+            "valid": 2,
+            "hit": 2
+          },
+          "query_informed": {
+            "count": 2,
+            "valid": 2,
+            "hit": 0
+          }
+        },
+        "th": {
+          "element_only": {
+            "count": 2,
+            "valid": 2,
+            "hit": 2
+          },
+          "query_informed": {
+            "count": 2,
+            "valid": 2,
+            "hit": 0
+          }
+        },
+        "ru": {
+          "element_only": {
+            "count": 2,
+            "valid": 2,
+            "hit": 2
+          },
+          "query_informed": {
+            "count": 2,
+            "valid": 2,
+            "hit": 0
+          }
+        }
+      },
+      "generate_s_median_per_batch": 0.5562100000000001,
+      "generate_s_total": 9.733877,
+      "max_peak_reserved_gib": 16.765625
+    },
+    "pilot_2mp_channels_last": {
+      "expected_batches": 48,
+      "completed_batches": 48,
+      "complete": true,
+      "response_count": 144,
+      "conditions": {
+        "C": {
+          "count": 48,
+          "valid": 47,
+          "hit": 38
+        },
+        "O": {
+          "count": 48,
+          "valid": 48,
+          "hit": 40
+        },
+        "R": {
+          "count": 48,
+          "valid": 48,
+          "hit": 45
+        }
+      },
+      "by_gui": {
+        "en": {
+          "C": {
+            "count": 12,
+            "valid": 12,
+            "hit": 12
+          },
+          "O": {
+            "count": 12,
+            "valid": 12,
+            "hit": 11
+          },
+          "R": {
+            "count": 12,
+            "valid": 12,
+            "hit": 10
+          }
+        },
+        "zh": {
+          "C": {
+            "count": 12,
+            "valid": 11,
+            "hit": 10
+          },
+          "O": {
+            "count": 12,
+            "valid": 12,
+            "hit": 12
+          },
+          "R": {
+            "count": 12,
+            "valid": 12,
+            "hit": 11
+          }
+        },
+        "th": {
+          "C": {
+            "count": 12,
+            "valid": 12,
+            "hit": 6
+          },
+          "O": {
+            "count": 12,
+            "valid": 12,
+            "hit": 7
+          },
+          "R": {
+            "count": 12,
+            "valid": 12,
+            "hit": 12
+          }
+        },
+        "ru": {
+          "C": {
+            "count": 12,
+            "valid": 12,
+            "hit": 10
+          },
+          "O": {
+            "count": 12,
+            "valid": 12,
+            "hit": 10
+          },
+          "R": {
+            "count": 12,
+            "valid": 12,
+            "hit": 12
+          }
+        }
+      },
+      "generate_s_median_per_batch": 1.7960565000000002,
+      "generate_s_total": 86.463567,
+      "max_peak_reserved_gib": 18.541016
+    },
+    "pilot_1mp_channels_last": {
+      "expected_batches": 48,
+      "completed_batches": 48,
+      "complete": true,
+      "response_count": 144,
+      "conditions": {
+        "C": {
+          "count": 48,
+          "valid": 48,
+          "hit": 34
+        },
+        "O": {
+          "count": 48,
+          "valid": 48,
+          "hit": 36
+        },
+        "R": {
+          "count": 48,
+          "valid": 48,
+          "hit": 43
+        }
+      },
+      "by_gui": {
+        "en": {
+          "C": {
+            "count": 12,
+            "valid": 12,
+            "hit": 11
+          },
+          "O": {
+            "count": 12,
+            "valid": 12,
+            "hit": 10
+          },
+          "R": {
+            "count": 12,
+            "valid": 12,
+            "hit": 10
+          }
+        },
+        "zh": {
+          "C": {
+            "count": 12,
+            "valid": 12,
+            "hit": 10
+          },
+          "O": {
+            "count": 12,
+            "valid": 12,
+            "hit": 11
+          },
+          "R": {
+            "count": 12,
+            "valid": 12,
+            "hit": 11
+          }
+        },
+        "th": {
+          "C": {
+            "count": 12,
+            "valid": 12,
+            "hit": 3
+          },
+          "O": {
+            "count": 12,
+            "valid": 12,
+            "hit": 5
+          },
+          "R": {
+            "count": 12,
+            "valid": 12,
+            "hit": 12
+          }
+        },
+        "ru": {
+          "C": {
+            "count": 12,
+            "valid": 12,
+            "hit": 10
+          },
+          "O": {
+            "count": 12,
+            "valid": 12,
+            "hit": 10
+          },
+          "R": {
+            "count": 12,
+            "valid": 12,
+            "hit": 10
+          }
+        }
+      },
+      "generate_s_median_per_batch": 1.0498005,
+      "generate_s_total": 51.201515,
+      "max_peak_reserved_gib": 17.769531
+    }
+  },
+  "resolution_transitions": {
+    "O": {
+      "lost_at_1mp": 4,
+      "gained_at_1mp": 0
+    },
+    "R": {
+      "lost_at_1mp": 2,
+      "gained_at_1mp": 0
+    },
+    "C": {
+      "lost_at_1mp": 5,
+      "gained_at_1mp": 1
+    }
+  },
+  "legacy_b200_12_response_comparison": {
+    "count": 12,
+    "raw_equal": 7,
+    "hit_equal": 12
+  },
+  "cross_locale_smoke": {
+    "responses": 36,
+    "success": 36,
+    "parsed": 36,
+    "runtime_s_total": 24.26
+  },
+  "rel_smoke": {
+    "outcome": "generation_correct",
+    "batch_size": 3,
+    "execution_mode": "gpu",
+    "condition_rows": 128,
+    "statuses": {
+      "success": 128
+    },
+    "actual_successful_inferences": 80,
+    "source_issue_rows": 0,
+    "parse_failures": 0,
+    "primary_descriptive_summary": {
+      "dependent": {
+        "complete_unflagged_mismatch_quartets": 12,
+        "items": 1,
+        "generation_accuracy": {
+          "O": 0.3333333333333333,
+          "R": 0.0,
+          "C": 0.4166666666666667,
+          "F": 0.25
+        },
+        "paired_contrasts": {
+          "R-O": {
+            "difference_pp": -33.333333333333336,
+            "errors_corrected": 0,
+            "errors_introduced": 4
+          },
+          "F-C": {
+            "difference_pp": -16.666666666666668,
+            "errors_corrected": 2,
+            "errors_introduced": 4
+          },
+          "C-O": {
+            "difference_pp": 8.333333333333334,
+            "errors_corrected": 2,
+            "errors_introduced": 1
+          },
+          "F-R": {
+            "difference_pp": 25.0,
+            "errors_corrected": 3,
+            "errors_introduced": 0
+          }
+        },
+        "interaction_pp": 16.666666666666664
+      },
+      "independent": {
+        "complete_unflagged_mismatch_quartets": 12,
+        "items": 1,
+        "generation_accuracy": {
+          "O": 1.0,
+          "R": 1.0,
+          "C": 1.0,
+          "F": 1.0
+        },
+        "paired_contrasts": {
+          "R-O": {
+            "difference_pp": 0.0,
+            "errors_corrected": 0,
+            "errors_introduced": 0
+          },
+          "F-C": {
+            "difference_pp": 0.0,
+            "errors_corrected": 0,
+            "errors_introduced": 0
+          },
+          "C-O": {
+            "difference_pp": 0.0,
+            "errors_corrected": 0,
+            "errors_introduced": 0
+          },
+          "F-R": {
+            "difference_pp": 0.0,
+            "errors_corrected": 0,
+            "errors_introduced": 0
+          }
+        },
+        "interaction_pp": 0.0
+      }
+    },
+    "note": "Unadjusted descriptive estimates; no independent-sample inference or CI. Failures exclude the entire quartet; unparseable generated labels count as wrong."
+  },
+  "execution_plan": {
+    "schema": "qwen3-execution-plan-v1",
+    "num_shards": 8,
+    "cross_locale": {
+      "items": 2195,
+      "inferences": 79020,
+      "per_shard": [
+        10656,
+        9720,
+        9864,
+        10548,
+        8316,
+        10116,
+        9648,
+        10152
+      ]
+    },
+    "rel_orcf": {
+      "items": 366,
+      "condition_rows": 23424,
+      "inferences": 18432,
+      "per_shard": [
+        2356,
+        1916,
+        2056,
+        2720,
+        2090,
+        1762,
+        2544,
+        2988
+      ]
+    },
+    "grounding_main_draft": {
+      "items": 158,
+      "pairs": 1896,
+      "inferences": 5688,
+      "per_shard": [
+        756,
+        504,
+        684,
+        936,
+        612,
+        540,
+        612,
+        1044
+      ],
+      "descriptors_finalized": false
+    },
+    "total_planned_inferences": 103140,
+    "partition_checks": "All planned IDs covered exactly once; all conditions/languages of each item remain on the same shard."
+  },
+  "core_data_validation": {
+    "ok": true,
+    "scope": "WF/WI/AU/AP/AEL/REL",
+    "manifest_rows": 13170,
+    "canonical_inputs": 13170,
+    "mismatch_inputs": 65850,
+    "errors": [],
+    "full_release_count_messages_not_applicable_to_core_scope": [
+      "canonical input file has 13170 rows",
+      "language en has 2195 rows",
+      "language fr has 2195 rows",
+      "language ja has 2195 rows",
+      "language ru has 2195 rows",
+      "language th has 2195 rows",
+      "language zh has 2195 rows",
+      "manifest has 13170 rows",
+      "mismatch input file has 65850 rows",
+      "parallel index has 2195 entries"
+    ],
+    "note": "Existing validators hard-code the full eight-dimension release counts. Core-scope counts were independently asserted; all remaining structure, option, image path and input linkage checks passed."
+  },
+  "main_descriptors_finalized": false,
+  "interpretation": "Exploratory pilot on 12 items. Layout policy changes BF16 numerical outputs; keep separate contracts. Main inference was not run."
+}

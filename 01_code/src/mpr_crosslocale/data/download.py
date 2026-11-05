@@ -10,7 +10,6 @@ from pathlib import Path
 
 from huggingface_hub import HfApi, snapshot_download
 
-
 DEFAULT_HF_REPO = "chenruihan/MPR-GUI-Bench"
 DEFAULT_GITHUB_REPO = "https://github.com/chenruihan32/MPR-GUI-Bench.git"
 
@@ -19,7 +18,8 @@ def load_source_lock(path: Path) -> dict[str, object]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def download_hf_images(repo_id: str, images_dir: Path, revision: str | None) -> dict[str, object]:
+def download_hf_images(repo_id: str, images_dir: Path, revision: str | None, *,
+                       max_workers: int = 2, core_images_only: bool = False) -> dict[str, object]:
     api = HfApi()
     info = api.dataset_info(repo_id, revision=revision, files_metadata=True)
     images_dir.parent.mkdir(parents=True, exist_ok=True)
@@ -32,7 +32,7 @@ def download_hf_images(repo_id: str, images_dir: Path, revision: str | None) -> 
             repo_type="dataset",
             revision=revision,
             local_dir=staging_dir,
-            max_workers=4,
+            max_workers=max_workers,
             allow_patterns=[
                 "1/**",
                 "2/**",
@@ -40,11 +40,9 @@ def download_hf_images(repo_id: str, images_dir: Path, revision: str | None) -> 
                 "4/**",
                 "5/**",
                 "6/**",
-                "rich/**",
-                "sparse/**",
                 "README.md",
                 ".gitattributes",
-            ],
+            ] + ([] if core_images_only else ["rich/**", "sparse/**"]),
         )
     except Exception:
         print(f"Image download interrupted; partial files were left in {staging_dir}")
@@ -58,6 +56,7 @@ def download_hf_images(repo_id: str, images_dir: Path, revision: str | None) -> 
         "requested_revision": revision,
         "sha": info.sha,
         "siblings": len(info.siblings),
+        "image_scope": "core_1_to_6" if core_images_only else "all",
     }
 
 
@@ -109,7 +108,12 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--github-repo", default=DEFAULT_GITHUB_REPO)
     parser.add_argument("--github-ref", default=None)
     parser.add_argument("--source-lock", type=Path, default=None)
+    parser.add_argument("--download-workers", type=int, default=2)
+    parser.add_argument("--core-images-only", action="store_true",
+                        help="Fetch only the images used by WF/WI/AU/AP/AEL/REL")
     args = parser.parse_args(argv)
+    if args.download_workers < 1:
+        parser.error("--download-workers must be positive")
 
     if args.source_lock:
         lock = load_source_lock(args.source_lock)
@@ -119,7 +123,8 @@ def main(argv: list[str] | None = None) -> None:
         args.github_ref = lock.get("github", {}).get("commit", args.github_ref)
 
     args.root.mkdir(parents=True, exist_ok=True)
-    hf_meta = download_hf_images(args.hf_repo, args.root / "images", args.hf_revision)
+    hf_meta = download_hf_images(args.hf_repo, args.root / "images", args.hf_revision,
+                                 max_workers=args.download_workers, core_images_only=args.core_images_only)
     github_meta = download_github_qas(args.github_repo, args.root / "qas", args.github_ref)
     source_path = write_source_metadata(args.root, hf_meta, github_meta)
     print(f"Downloaded MPR-GUI-Bench into {args.root}")

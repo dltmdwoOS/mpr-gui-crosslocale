@@ -1,0 +1,29 @@
+{
+  "schema": "qwen3-patch-embed-layout-comparison-v1",
+  "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "torch_version": "2.9.1+cu130",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "dtype": "bfloat16",
+  "pixel_values_shape": [
+    8040,
+    1536
+  ],
+  "image_grid_thw": [
+    [
+      1,
+      134,
+      60
+    ]
+  ],
+  "native_backend": "_ConvBackend.SlowDilated3d",
+  "channels_last_backend": "_ConvBackend.Cudnn",
+  "native_s": 57.83849697513506,
+  "channels_last_s": 0.20684246299788356,
+  "weight_values_identical": true,
+  "outputs_bitwise_identical": false,
+  "output_elements": 9262080,
+  "different_elements": 2153983,
+  "max_abs_error": 0.03125,
+  "mean_abs_error": 0.00024033099180087447,
+  "allclose_rtol_1e_2_atol_1e_2": true
+}

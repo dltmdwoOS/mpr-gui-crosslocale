@@ -17,7 +17,10 @@ from pathlib import Path
 
 from PIL import Image
 
-from point_format import point_in_box
+if __package__:
+    from .point_format import point_in_box
+else:
+    from point_format import point_in_box
 
 
 REPO = Path(__file__).resolve().parents[2]

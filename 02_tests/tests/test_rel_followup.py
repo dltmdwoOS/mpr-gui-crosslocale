@@ -4,8 +4,6 @@ from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
-from PIL import Image
-
 from mpr_crosslocale.data.rel_followup import (
     CONDITIONS,
     DATA_DIR,
@@ -18,6 +16,7 @@ from mpr_crosslocale.data.rel_followup import (
     verify_bundle,
 )
 from mpr_crosslocale.inference import run_rel_followup as runner
+from PIL import Image
 
 
 def dataset(root: Path) -> list[dict]:
@@ -101,6 +100,20 @@ def args(root: Path, output: Path) -> Namespace:
         resume=True,
         no_score_labels=False,
     )
+
+
+def test_qwen3_accepts_batched_mock_execution(tmp_path):
+    root = tmp_path / "data"
+    dataset(root)
+    options = args(root, tmp_path / "out")
+    options.model_config = Path(__file__).resolve().parents[2] / "01_code/configs/models/qwen3_vl_8b_4090.yaml"
+    options.batch_size = 3
+    summary = runner.run(options)
+    assert summary["actual_successful_inferences"] > 0
+    assert summary["statuses"].get("failed", 0) == 0
+    contract = json.loads((options.output_dir / "run_contract.json").read_text())
+    assert contract["model_config"]["model_family"] == "qwen3_vl"
+    assert contract["batch_size"] == 3
 
 
 def test_mock_preserves_quartets_and_reuses_only_within_pair(tmp_path):

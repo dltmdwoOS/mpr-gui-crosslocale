@@ -1,0 +1,16 @@
+{
+  "cudnn_available": true,
+  "cudnn_enabled": true,
+  "cudnn_version": 91300,
+  "cudnn_benchmark": false,
+  "cudnn_deterministic": false,
+  "cudnn_allow_tf32": true,
+  "environment": {
+    "NV_CUDNN_PACKAGE_NAME": "libcudnn9-cuda-12",
+    "NV_CUDNN_PACKAGE": "libcudnn9-cuda-12=9.8.0.87-1",
+    "NV_CUDNN_VERSION": "9.8.0.87-1",
+    "NV_CUDNN_PACKAGE_DEV": "libcudnn9-dev-cuda-12=9.8.0.87-1"
+  },
+  "contiguous_backend": "_ConvBackend.SlowDilated3d",
+  "channels_last_3d_backend": "_ConvBackend.Cudnn"
+}

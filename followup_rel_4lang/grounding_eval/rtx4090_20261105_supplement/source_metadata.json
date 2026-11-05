@@ -1,0 +1,21 @@
+{
+  "downloaded_at_utc": "2026-11-05T06:53:54.088692+00:00",
+  "layout": {
+    "root": "01_code/data/raw/mpr_gui_bench",
+    "images_dir": "01_code/data/raw/mpr_gui_bench/images",
+    "qas_dir": "01_code/data/raw/mpr_gui_bench/qas"
+  },
+  "huggingface": {
+    "repo_id": "chenruihan/MPR-GUI-Bench",
+    "requested_revision": "c1edb808d424a2fa7bc4a2e601d39b431b04acd5",
+    "sha": "c1edb808d424a2fa7bc4a2e601d39b431b04acd5",
+    "siblings": 3685,
+    "image_scope": "core_1_to_6"
+  },
+  "github": {
+    "repo_url": "https://github.com/chenruihan32/MPR-GUI-Bench.git",
+    "requested_ref": "e4f1cfcd11ee0d0dfa8ee6a0a97c2c782ce21aba",
+    "commit": "e4f1cfcd11ee0d0dfa8ee6a0a97c2c782ce21aba",
+    "jsonl_files": 48
+  }
+}

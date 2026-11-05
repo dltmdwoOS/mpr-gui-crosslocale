@@ -26,7 +26,12 @@ from mpr_crosslocale.data.rel_followup import (
 from mpr_crosslocale.inference.answer_parser import parse_label
 from mpr_crosslocale.inference.label_scoring import deterministic_mock_label_score
 from mpr_crosslocale.inference.prompts import build_prompt_text
-from mpr_crosslocale.inference.runtime import git_commit, load_yaml, software_versions
+from mpr_crosslocale.inference.runtime import (
+    git_commit,
+    load_yaml,
+    select_item_shard,
+    software_versions,
+)
 from mpr_crosslocale.inference.system_prompts import build_system_prompt
 
 
@@ -125,6 +130,7 @@ def code_identity() -> dict:
     paths = (
         Path(__file__).resolve(),
         package / "models/qwen25vl.py",
+        package / "models/qwen3_memory.py",
         package / "models/internvl25.py",
         package / "inference/prompts.py",
         package / "inference/system_prompts.py",
@@ -384,14 +390,17 @@ def run(args) -> dict:
     elif not args.dry_run and not args.mock_model:
         raise ValueError("Unpack a checksummed data bundle before GPU inference")
     rows = select_rows(rows, args.population, args.max_items, args.seed)
+    num_shards = getattr(args, "num_shards", 1)
+    shard_index = getattr(args, "shard_index", 0)
+    rows = select_item_shard(rows, num_shards, shard_index)
     canonical, aliases = inference_plan(rows)
     config = load_yaml(args.model_config)
-    if args.batch_size > 1 and config.get("model_family") != "qwen2_5_vl":
-        raise ValueError("REL batched inference currently supports Qwen2.5-VL only")
-    if config.get("model_family") not in ("qwen2_5_vl", "internvl2_5") or not config.get(
+    if args.batch_size > 1 and config.get("model_family") not in ("qwen2_5_vl", "qwen3_vl"):
+        raise ValueError("REL batched inference currently supports Qwen VL models only")
+    if config.get("model_family") not in ("qwen2_5_vl", "qwen3_vl", "internvl2_5") or not config.get(
         "revision"
     ):
-        raise ValueError("Use a pinned Qwen2.5-VL or InternVL2.5 model configuration")
+        raise ValueError("Use a pinned Qwen VL or InternVL2.5 model configuration")
     if config.get("prompt_profile") != "mpr_label_only_v1":
         raise ValueError("This experiment uses mpr_label_only_v1")
     if config.get("dtype") != "bfloat16" or config.get("quantization") is not None:
@@ -419,6 +428,8 @@ def run(args) -> dict:
         "seed": args.seed,
         "population": args.population,
         "selected_input_ids_sha256": stable_hash([input_id(r) for r in rows]),
+        "num_shards": num_shards,
+        "shard_index": shard_index,
         "code_sha256": code_identity(),
         "software_versions": software_versions(),
     }
@@ -537,6 +548,8 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--population", choices=("all", "mismatch", "matched"), default="all")
     parser.add_argument("--max-items", type=int, help="Stratified item limit for a smoke test")
     parser.add_argument("--batch-size", type=int, default=1)
+    parser.add_argument("--num-shards", type=int, default=1)
+    parser.add_argument("--shard-index", type=int, default=0)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--mock-model", action="store_true")

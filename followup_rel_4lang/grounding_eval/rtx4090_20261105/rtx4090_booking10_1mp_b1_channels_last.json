@@ -1,0 +1,58 @@
+{
+  "schema": "qwen3-vl-runtime-probe-v1",
+  "timestamp_utc": "2026-11-05T06:41:08.383794+00:00",
+  "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+  "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "pair_id": "rel::1/booking_10.jpg::zh::th",
+  "image_sha256": "3f2fcbb5a3b1c3bfcde891117aa1ca15ec872e6d3529fdafe2c4ec4cdd3868b2",
+  "image_grid_thw": [
+    1,
+    94,
+    42
+  ],
+  "visual_tokens_per_image": 987,
+  "conditions": [
+    "O"
+  ],
+  "batch_size": 1,
+  "min_pixels": 262144,
+  "max_pixels": 1048576,
+  "prompt_tokens": [
+    1108
+  ],
+  "preprocess_s": 0.158,
+  "dtype": "bfloat16",
+  "attn_implementation": "sdpa",
+  "patch_embed_memory_format": "channels_last_3d",
+  "torch_version": "2.9.1+cu130",
+  "transformers_version": "4.57.6",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "model_load_s": 3.115,
+  "generate_s": 1.301,
+  "prefill_forward_s": 0.776,
+  "decode_forward_s": 0.368,
+  "vision_forward_s": 0.483,
+  "language_prefill_s": 0.269,
+  "language_decode_s": 0.351,
+  "forward_calls": 11,
+  "peak_allocated_gib": 16.672,
+  "peak_reserved_gib": 16.766,
+  "results": [
+    {
+      "condition": "O",
+      "raw_output": "(100, 140)",
+      "output_tokens": 11,
+      "stop_reason": "eos",
+      "valid_output": true,
+      "point_1000": [
+        100,
+        140
+      ],
+      "point_original_pixels": [
+        122.8,
+        378.0
+      ],
+      "point_in_gt_box": false
+    }
+  ]
+}

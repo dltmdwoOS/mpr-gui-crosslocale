@@ -1,0 +1,14 @@
+{
+  "core_manifest_rows": 13170,
+  "semantic_items": 2195,
+  "core_missing_assets": 0,
+  "dimensions": {
+    "ael": 2196,
+    "ap": 2196,
+    "au": 2196,
+    "rel": 2196,
+    "wf": 2190,
+    "wi": 2196
+  },
+  "scope": "WF/WI/AU/AP/AEL/REL; RI/SI images intentionally not fetched"
+}

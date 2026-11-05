@@ -50,6 +50,7 @@ class Qwen25VLAdapter:
         device_map: str | dict[str, Any] | None = "auto",
         processor_kwargs: dict[str, Any] | None = None,
         model_family: str = "qwen2_5_vl",
+        patch_embed_memory_format: str = "native",
     ) -> None:
         from transformers import AutoProcessor
 
@@ -78,6 +79,11 @@ class Qwen25VLAdapter:
             **model_kwargs,
         )
         self.model_family = model_family
+        if patch_embed_memory_format != "native":
+            if model_family != "qwen3_vl":
+                raise ValueError("The patch embedding memory-format option applies to Qwen3-VL")
+            from mpr_crosslocale.models.qwen3_memory import configure_patch_embed_memory_format
+            configure_patch_embed_memory_format(self.model, patch_embed_memory_format)
 
     @staticmethod
     def build_messages(

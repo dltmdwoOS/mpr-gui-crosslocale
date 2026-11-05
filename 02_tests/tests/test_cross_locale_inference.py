@@ -4,12 +4,15 @@ from pathlib import Path
 
 import pytest
 import torch
-
 from mpr_crosslocale.analysis.summarize_cross_locale import summarize
-from mpr_crosslocale.inference.label_scoring import summarize_label_logprobs
 from mpr_crosslocale.inference import run_cross_locale
+from mpr_crosslocale.inference.label_scoring import summarize_label_logprobs
 from mpr_crosslocale.inference.run_cross_locale import _build_model_adapter, main
-from mpr_crosslocale.inference.runtime import existing_success_ids, hardware_metadata
+from mpr_crosslocale.inference.runtime import (
+    existing_success_ids,
+    hardware_metadata,
+    select_item_shard,
+)
 from mpr_crosslocale.inference.system_prompts import build_system_prompt
 from mpr_crosslocale.models.internvl25 import (
     InternVL25Adapter,
@@ -17,7 +20,11 @@ from mpr_crosslocale.models.internvl25 import (
     dynamic_preprocess,
     ensure_generation_mixin,
 )
-from mpr_crosslocale.models.qwen25vl import Qwen25VLAdapter, _model_class, _vision_process_kwargs
+from mpr_crosslocale.models.qwen25vl import (
+    Qwen25VLAdapter,
+    _model_class,
+    _vision_process_kwargs,
+)
 
 
 def write_manifest(path: Path) -> None:
@@ -45,6 +52,50 @@ def write_manifest(path: Path) -> None:
         "\n".join(json.dumps(row) for row in rows) + "\n",
         encoding="utf-8",
     )
+
+
+def test_item_shards_keep_languages_and_conditions_together():
+    rows = [{"parallel_id": f"item-{i}", "input_id": f"{i}-{lang}-{condition}"}
+            for i in range(30) for lang in ("en", "zh") for condition in ("O", "R", "C", "F")]
+    shards = [select_item_shard(rows, 8, index) for index in range(8)]
+    flattened = [r["input_id"] for shard in shards for r in shard]
+    assert len(flattened) == len(set(flattened)) == len(rows)
+    assert set(flattened) == {r["input_id"] for r in rows}
+    for pid in {r["parallel_id"] for r in rows}:
+        assert sum(any(r["parallel_id"] == pid for r in shard) for shard in shards) == 1
+    with pytest.raises(ValueError):
+        select_item_shard(rows, 8, 8)
+
+
+def test_cross_locale_dry_run_shards_partition_the_full_plan(tmp_path):
+    manifest = tmp_path / "manifest.jsonl"
+    write_manifest(manifest)
+    all_ids = set()
+    seen = set()
+    for index in range(4):
+        output = tmp_path / f"shard-{index}.jsonl"
+        main(["--manifest", str(manifest), "--output", str(output), "--dry-run",
+              "--language-pairs", "en:ja", "ja:en", "--num-shards", "4", "--shard-index", str(index)])
+        rows = [json.loads(line) for line in output.read_text().splitlines()]
+        ids = {r["input_id"] for r in rows}
+        assert not seen & ids
+        seen |= ids
+        all_ids.update(ids)
+    full = tmp_path / "full.jsonl"
+    main(["--manifest", str(manifest), "--output", str(full), "--dry-run",
+          "--language-pairs", "en:ja", "ja:en"])
+    assert all_ids == {json.loads(line)["input_id"] for line in full.read_text().splitlines()}
+
+
+def test_cross_locale_rejects_changed_generation_contract(tmp_path):
+    manifest = tmp_path / "manifest.jsonl"
+    write_manifest(manifest)
+    output = tmp_path / "dry.jsonl"
+    options = ["--manifest", str(manifest), "--output", str(output), "--dry-run",
+               "--language-pairs", "en:ja"]
+    main(options + ["--max-new-tokens", "2"])
+    with pytest.raises(ValueError, match="different experiment contract"):
+        main(options + ["--max-new-tokens", "3"])
 
 
 def test_system_prompt_modes():

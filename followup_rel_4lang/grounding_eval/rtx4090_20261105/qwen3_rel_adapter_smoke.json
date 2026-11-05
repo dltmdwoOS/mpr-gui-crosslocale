@@ -1,0 +1,75 @@
+{
+  "schema": "qwen3-rel-label-scoring-smoke-v1",
+  "model_config": {
+    "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+    "model_family": "qwen3_vl",
+    "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+    "dtype": "bfloat16",
+    "quantization": null,
+    "attn_implementation": "sdpa",
+    "device_strategy": "cuda:0",
+    "patch_embed_memory_format": "channels_last_3d",
+    "processor_profile": "qwen_4090_2mp",
+    "min_pixels": 262144,
+    "max_pixels": 2097152,
+    "prompt_profile": "mpr_label_only_v1",
+    "generation": {
+      "do_sample": false,
+      "num_beams": 1,
+      "max_new_tokens": 2,
+      "temperature": null
+    }
+  },
+  "batch_size": 3,
+  "batch_generate_and_score_s": 2.6377399638295174,
+  "rows": [
+    {
+      "condition": "O",
+      "gold": "B",
+      "batch_output": "B",
+      "single_output": "B",
+      "same_generated_label": true,
+      "batch_scored_label": "B",
+      "single_scored_label": "B",
+      "label_logprobs": {
+        "A": -5.42831563949585,
+        "B": -0.17831560969352722,
+        "C": -4.30331563949585,
+        "D": -1.9283156394958496
+      },
+      "max_label_logprob_diff": 0.2151327133178711
+    },
+    {
+      "condition": "R",
+      "gold": "B",
+      "batch_output": "D",
+      "single_output": "D",
+      "same_generated_label": true,
+      "batch_scored_label": "D",
+      "single_scored_label": "D",
+      "label_logprobs": {
+        "A": -7.006150722503662,
+        "B": -5.506150722503662,
+        "C": -6.756150722503662,
+        "D": -0.006150722038000822
+      },
+      "max_label_logprob_diff": 0.49758434295654297
+    },
+    {
+      "condition": "C",
+      "gold": "B",
+      "batch_output": "B",
+      "single_output": "B",
+      "same_generated_label": true,
+      "batch_scored_label": "B",
+      "single_scored_label": "B",
+      "label_logprobs": {
+        "A": -2.2385365962982178,
+        "B": -0.23853665590286255,
+        "C": -3.8635365962982178,
+        "D": -2.4885365962982178
+      },
+      "max_label_logprob_diff": 0.22948908805847168
+    }
+  ]
+}

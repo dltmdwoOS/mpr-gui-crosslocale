@@ -1,0 +1,130 @@
+{
+  "schema": "qwen3-vl-runtime-probe-v1",
+  "timestamp_utc": "2026-11-05T06:39:52.021362+00:00",
+  "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+  "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "pair_id": "rel::1/booking_10.jpg::zh::th",
+  "image_sha256": "3f2fcbb5a3b1c3bfcde891117aa1ca15ec872e6d3529fdafe2c4ec4cdd3868b2",
+  "image_grid_thw": [
+    1,
+    134,
+    60
+  ],
+  "visual_tokens_per_image": 2010,
+  "conditions": [
+    "O",
+    "R",
+    "C"
+  ],
+  "batch_size": 3,
+  "min_pixels": 262144,
+  "max_pixels": 2097152,
+  "prompt_tokens": [
+    2131,
+    2141,
+    2129
+  ],
+  "preprocess_s": 0.561,
+  "dtype": "bfloat16",
+  "attn_implementation": "sdpa",
+  "patch_embed_memory_format": "channels_last_3d",
+  "torch_version": "2.9.1+cu130",
+  "transformers_version": "4.57.6",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "model_load_s": 2.599,
+  "generate_s": 2.421,
+  "prefill_forward_s": 1.864,
+  "decode_forward_s": 0.44,
+  "vision_forward_s": 0.865,
+  "language_prefill_s": 0.984,
+  "language_decode_s": 0.423,
+  "forward_calls": 11,
+  "peak_allocated_gib": 18.209,
+  "peak_reserved_gib": 18.541,
+  "results": [
+    {
+      "condition": "O",
+      "raw_output": "(0, 0)",
+      "output_tokens": 7,
+      "stop_reason": "eos",
+      "valid_output": true,
+      "point_1000": [
+        0,
+        0
+      ],
+      "point_original_pixels": [
+        0.0,
+        0.0
+      ],
+      "point_in_gt_box": false
+    },
+    {
+      "condition": "R",
+      "raw_output": "(247, 320)",
+      "output_tokens": 11,
+      "stop_reason": "eos",
+      "valid_output": true,
+      "point_1000": [
+        247,
+        320
+      ],
+      "point_original_pixels": [
+        303.316,
+        864.0
+      ],
+      "point_in_gt_box": true
+    },
+    {
+      "condition": "C",
+      "raw_output": "(0, 0)",
+      "output_tokens": 7,
+      "stop_reason": "eos",
+      "valid_output": true,
+      "point_1000": [
+        0,
+        0
+      ],
+      "point_original_pixels": [
+        0.0,
+        0.0
+      ],
+      "point_in_gt_box": false
+    }
+  ],
+  "vision_detail_s": {
+    "vision_patch_embed": 0.117425,
+    "fast_pos_embed_interpolate": 0.04708,
+    "rot_pos_emb": 0.034673,
+    "vision_block_00": 0.213537,
+    "vision_block_01": 0.016624,
+    "vision_block_02": 0.016592,
+    "vision_block_03": 0.016599,
+    "vision_block_04": 0.016628,
+    "vision_block_05": 0.016634,
+    "vision_block_06": 0.016634,
+    "vision_block_07": 0.016628,
+    "vision_block_08": 0.016629,
+    "vision_deepstack_merger_0": 0.00316,
+    "vision_block_09": 0.016712,
+    "vision_block_10": 0.016642,
+    "vision_block_11": 0.016644,
+    "vision_block_12": 0.016638,
+    "vision_block_13": 0.016617,
+    "vision_block_14": 0.016645,
+    "vision_block_15": 0.016624,
+    "vision_block_16": 0.016723,
+    "vision_deepstack_merger_1": 0.003154,
+    "vision_block_17": 0.016653,
+    "vision_block_18": 0.016686,
+    "vision_block_19": 0.016656,
+    "vision_block_20": 0.016653,
+    "vision_block_21": 0.016645,
+    "vision_block_22": 0.016675,
+    "vision_block_23": 0.016669,
+    "vision_block_24": 0.016671,
+    "vision_deepstack_merger_2": 0.003352,
+    "vision_block_25": 0.016668,
+    "vision_block_26": 0.016667,
+    "vision_merger": 0.003145
+  }
+}

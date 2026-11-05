@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import importlib.metadata
 import json
 import platform
@@ -7,6 +8,14 @@ import subprocess
 import sys
 from pathlib import Path
 from typing import Any
+
+
+def select_item_shard(rows: list[dict], num_shards: int = 1, shard_index: int = 0) -> list[dict]:
+    """Keep every language and condition for an item on the same GPU."""
+    if not 0 <= shard_index < num_shards:
+        raise ValueError("Require 0 <= shard_index < num_shards")
+    return [row for row in rows if int(hashlib.sha256(str(row["parallel_id"]).encode()).hexdigest(), 16)
+            % num_shards == shard_index]
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:

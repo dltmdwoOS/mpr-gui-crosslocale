@@ -2,10 +2,16 @@
 
 작성: 2026-11-04. 범위는 MPR-GUI 6×6, REL O/R/C/F, 기준 요소 위치 지정 파일럿의 **Qwen2.5-VL-7B-Instruct와 Qwen3-VL-8B-Instruct**다. 시간을 줄이는 방안을 논의하며 나온 수치 중 원시 결과로 재검산한 값과, 지난 대화의 단일 계측·외삽값을 구분한다. 이 보고서를 쓰기 위해 새 GPU 추론은 실행하지 않았다.
 
+**후속 계측(2026-11-05):** [RTX 4090 결과](QWEN3_RTX4090_RESULTS_KO.md)에서
+주된 병목은 BF16 patch Conv3D의 `SlowDilated3d` 경로로 확인됐다. weight를
+`channels_last_3d`로 배치해 cuDNN 경로를 사용하자 같은 2MP·배치 3이
+171.984초→2.421초였다. 아래의 attention 가설과 64일/28일 산술 예시는 당시
+기본 실행 경로에 대한 기록이며 **개선한 런타임의 처리 시간으로 사용하지 않는다.**
+
 ## 먼저 읽을 결론
 
 1. Qwen3 파일럿의 긴 시간은 **답을 한 토큰씩 생성하는 구간보다 첫 forward**에 몰려 있다. 계측한 배치 3에서 첫 forward가 생성 시간의 중앙 98.4%였고, 이미지·텍스트를 준비하는 CPU 단계의 중앙값은 0.61초였다.
-2. 유력한 구조적 이유는 **고해상도 이미지에 대한 vision encoder 계산 방식**이다. 현재 체크포인트와 Transformers 4.57.6 구현에서 Qwen2.5는 ViT 32층 중 4층만 전체 attention을 쓰지만, Qwen3는 ViT 27층 모두 이미지 전체에 attention을 쓴다. Qwen3에는 DeepStack도 있다. 실제 이미지 격자로 계산하면, 한 화면의 ViT attention 점수 쌍 수는 Qwen3가 약 3.7배다. 이는 **계산량 지표이지 실측 시간 비율이 아니다**. Vision과 언어 모델 prefill의 실제 시간은 아직 분리하지 않았다. [Qwen2.5 구현](https://github.com/huggingface/transformers/blob/v4.57.6/src/transformers/models/qwen2_5_vl/modeling_qwen2_5_vl.py), [Qwen3 구현](https://github.com/huggingface/transformers/blob/v4.57.6/src/transformers/models/qwen3_vl/modeling_qwen3_vl.py), [Qwen3 기술 보고서](https://arxiv.org/html/2511.21631v2)
+2. 당시에는 **고해상도 이미지의 전체 attention 계산량**을 유력한 가설로 검토했다. 아래의 구조 비교는 계산량 지표이며 실측 시간 비율이 아니다. 후속 4090 계측에서 1MP·배치 3의 patch Conv3D만 81.873초였고 27개 vision block은 합계 약 0.22초였다. 이 환경의 주된 지연 설명은 Conv3D fallback으로 수정한다. 구조 비교 자체는 아래에 역사적 근거로 남긴다.
 3. 이미지 최대 픽셀을 약 2MP에서 1MP로 줄인 **한 배치**에서는 161.3초→70.3초였다. 작은 GUI 글자와 요소 위치 정확도가 유지되는지는 한 사례로 판단할 수 없다. Qwen 공식 README도 이미지 토큰 예산을 조절하는 방법을 안내한다. [Qwen3-VL README](https://github.com/QwenLM/Qwen3-VL/blob/main/README.md#pixel-control-via-official-processor)
 4. RTX 4090 여러 대는 **모델을 나누는 방식이 아니라 입력을 나누는 방식**으로 사용한다. 같은 4090 한 대의 처리량이 유지되면 4대/8대는 완료 시간의 약 1/4·1/8을 목표로 할 수 있다. 현재 Qwen3의 4090 실측치가 없으므로 절대 완료일은 확정할 수 없다.
 
@@ -87,9 +93,9 @@ Qwen3 배치 4개의 세부 기록은 다음과 같다. 첫 배치를 제외한 
 
 해상도에 대한 강한 **속도 단서**지만 1배치뿐이다. GUI의 작은 글자, 얇은 bbox, 태국어·중국어 화면 등에서 정확도를 별도 확인해야 한다. Qwen3 공식 README는 `max_pixels`를 통해 이미지당 **256–1,280 visual token** 예산을 설정하는 예를 제공한다. 여기서 1MP 약 1,000토큰은 그 예시 범위 안에 있다. 이는 공식 예시와 **설정 가능성**의 근거이며 MPR-GUI 정확도 보장의 근거는 아니다. [Qwen3-VL README](https://github.com/QwenLM/Qwen3-VL/blob/main/README.md#pixel-control-via-official-processor).
 
-## 3. Qwen3가 왜 이렇게 느린가?
+## 3. Qwen3가 왜 이렇게 느린가? (11월 4일 시점의 가설)
 
-### 3.1 가장 설득력 있는 구조적 설명: 모든 vision 층의 전체 attention
+### 3.1 당시의 구조적 가설: 모든 vision 층의 전체 attention
 
 실제로 사용한 고정 [Qwen2.5 체크포인트 구성](https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct/blob/cc594898137f460bfe9f0759e9844b3ce807cfb5/config.json)과 [Qwen3 체크포인트 구성](https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct/blob/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/config.json)을 비교했다.
 

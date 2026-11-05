@@ -1,0 +1,93 @@
+{
+  "schema": "qwen3-vl-runtime-probe-v1",
+  "timestamp_utc": "2026-11-05T06:26:08.168659+00:00",
+  "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+  "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "pair_id": "rel::1/booking_10.jpg::zh::th",
+  "image_sha256": "3f2fcbb5a3b1c3bfcde891117aa1ca15ec872e6d3529fdafe2c4ec4cdd3868b2",
+  "image_grid_thw": [
+    1,
+    134,
+    60
+  ],
+  "visual_tokens_per_image": 2010,
+  "conditions": [
+    "O",
+    "R",
+    "C"
+  ],
+  "batch_size": 3,
+  "min_pixels": 262144,
+  "max_pixels": 2097152,
+  "prompt_tokens": [
+    2131,
+    2141,
+    2129
+  ],
+  "preprocess_s": 0.589,
+  "dtype": "bfloat16",
+  "attn_implementation": "sdpa",
+  "torch_version": "2.9.1+cu130",
+  "transformers_version": "4.57.6",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "model_load_s": 3.617,
+  "generate_s": 171.984,
+  "prefill_forward_s": 171.36,
+  "decode_forward_s": 0.453,
+  "vision_forward_s": 170.33,
+  "language_prefill_s": 1.011,
+  "language_decode_s": 0.436,
+  "forward_calls": 11,
+  "peak_allocated_gib": 18.208,
+  "peak_reserved_gib": 18.492,
+  "results": [
+    {
+      "condition": "O",
+      "raw_output": "(0, 0)",
+      "output_tokens": 7,
+      "stop_reason": "eos",
+      "valid_output": true,
+      "point_1000": [
+        0,
+        0
+      ],
+      "point_original_pixels": [
+        0.0,
+        0.0
+      ],
+      "point_in_gt_box": false
+    },
+    {
+      "condition": "R",
+      "raw_output": "(247, 320)",
+      "output_tokens": 11,
+      "stop_reason": "eos",
+      "valid_output": true,
+      "point_1000": [
+        247,
+        320
+      ],
+      "point_original_pixels": [
+        303.316,
+        864.0
+      ],
+      "point_in_gt_box": true
+    },
+    {
+      "condition": "C",
+      "raw_output": "(0, 0)",
+      "output_tokens": 7,
+      "stop_reason": "eos",
+      "valid_output": true,
+      "point_1000": [
+        0,
+        0
+      ],
+      "point_original_pixels": [
+        0.0,
+        0.0
+      ],
+      "point_in_gt_box": false
+    }
+  ]
+}

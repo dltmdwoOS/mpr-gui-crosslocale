@@ -1,0 +1,16 @@
+model_id: Qwen/Qwen3-VL-8B-Instruct
+model_family: qwen3_vl
+revision: 0c351dd01ed87e9c1b53cbc748cba10e6187ff3b
+dtype: bfloat16
+quantization: null
+attn_implementation: sdpa
+device_strategy: cuda:0
+processor_profile: qwen_4090_2mp
+min_pixels: 262144
+max_pixels: 2097152
+prompt_profile: mpr_label_only_v1
+generation:
+  do_sample: false
+  num_beams: 1
+  max_new_tokens: 2
+  temperature: null
