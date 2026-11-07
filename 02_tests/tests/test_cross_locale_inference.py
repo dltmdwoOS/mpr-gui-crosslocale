@@ -404,3 +404,31 @@ def test_aggregation_6x6_shape():
     assert summary["matched_mean"] == 1.0
     assert summary["mismatch_mean"] == 1.0
     assert summary["macro_f1"] == 0.25
+
+
+def test_cross_locale_real_batch_preserves_order_and_scores():
+    from types import SimpleNamespace
+    calls = []
+    class Adapter:
+        def generate_batch(self, rows, *args, **kwargs):
+            calls.append(len(rows))
+            return [r["input_id"] for r in rows]
+        def generate_one(self, row, *args, **kwargs):
+            calls.append(1)
+            return row["input_id"]
+    rows = [{"input_id":str(i),"question_language":"en"} for i in range(7)]
+    args = SimpleNamespace(batch_size=4, mock_model=False, system_prompt_mode="english_fixed",score_labels=True)
+    results = list(run_cross_locale.batch_outputs(rows,Adapter(),args,"mpr_label_only_v1",{}))
+    assert calls == [4,3]
+    assert [r[1] for r in results] == [str(i) for i in range(7)]
+    assert all(r[2] is None for r in results)
+
+
+def test_cross_locale_batch_size_is_part_of_resume_contract(tmp_path):
+    manifest = tmp_path / 'manifest.jsonl'
+    write_manifest(manifest)
+    output = tmp_path / 'predictions.jsonl'
+    options=['--manifest',str(manifest),'--output',str(output),'--dry-run','--language-pairs','en:ja']
+    main(options+['--batch-size','4'])
+    with pytest.raises(ValueError, match='different experiment contract'):
+        main(options+['--batch-size','3'])

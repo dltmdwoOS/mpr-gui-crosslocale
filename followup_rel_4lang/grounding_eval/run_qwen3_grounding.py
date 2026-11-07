@@ -22,7 +22,7 @@ else:
 
 LOCALES = ("en", "zh", "th", "ru")
 CYCLE = (("en", "zh"), ("zh", "th"), ("th", "ru"), ("ru", "en"))
-CONDITIONS = ("O", "R", "C")
+CONDITIONS = ("O", "R", "C", "F")
 
 
 def digest(value) -> str:
@@ -93,7 +93,7 @@ def build_groups(suite: str, descriptors_path: Path | None = None) -> list[dict]
             trials = []
             for condition in (("O",) if suite == "controls" else CONDITIONS):
                 context, ref_language = {"O": (source, source), "R": (source, gui),
-                                         "C": (gui, source)}[condition]
+                                         "C": (gui, source), "F": (gui, gui)}[condition]
                 template = descriptors[pid][context]
                 if template.count("{ref}") != 1:
                     raise ValueError(f"Expected one descriptor placeholder: {pid}/{context}")
@@ -120,6 +120,16 @@ def build_groups(suite: str, descriptors_path: Path | None = None) -> list[dict]
             if trials:
                 groups.append({"group_id": pair_id, "parallel_id": pid, "trials": trials})
     return groups
+
+
+def pack_groups(groups: list[dict], batch_size: int) -> list[dict]:
+    """Pack all trials in stable order; retain each trial ID for paired analysis."""
+    if batch_size not in (1, 3, 4):
+        raise ValueError("batch_size must be 1, 3 or 4")
+    trials = [r for g in groups for r in g["trials"]]
+    return [{"group_id": "batch::" + digest([r["trial_id"] for r in trials[i:i + batch_size]]),
+             "trials": trials[i:i + batch_size]}
+            for i in range(0, len(trials), batch_size)]
 
 
 def measure(model, inputs, torch) -> tuple[object, dict]:
@@ -186,6 +196,7 @@ def main() -> None:
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--suite", choices=("controls", "pilot", "main"), default="pilot")
     parser.add_argument("--descriptors", type=Path)
+    parser.add_argument("--batch-size", type=int, choices=(1, 3, 4), default=4)
     parser.add_argument("--max-pixels", type=int, choices=(1048576, 2097152), default=2097152)
     parser.add_argument("--patch-embed-memory-format", choices=("native", "channels_last_3d"),
                         default="native")
@@ -200,8 +211,10 @@ def main() -> None:
         parser.error("Expected the pinned Qwen3-VL-8B snapshot")
     groups = [g for g in build_groups(args.suite, args.descriptors)
               if shard_for(g["parallel_id"], args.num_shards) == args.shard_index]
+    groups = pack_groups(groups, args.batch_size)
     contract = {
-        "schema": "qwen3-grounding-portable-v1", "suite": args.suite,
+        "schema": "qwen3-grounding-portable-v2", "batch_size": args.batch_size,
+        "conditions": list(CONDITIONS), "suite": args.suite,
         "model_id": MODEL_ID, "revision": REVISION, "dtype": "bfloat16",
         "attn_implementation": "sdpa", "min_pixels": 262144, "max_pixels": args.max_pixels,
         "patch_embed_memory_format": args.patch_embed_memory_format,
@@ -269,12 +282,16 @@ def main() -> None:
         eos_ids = {eos} if isinstance(eos, int) else set(eos or [])
         for group in pending:
             trials = group["trials"]
-            image = _ensure_locked_image(trials[0]["pair_id"])
-            if hashlib.sha256(image.read_bytes()).hexdigest() != trials[0]["image_sha256"]:
-                raise ValueError("Image differs from annotation")
+            image_paths = {}
+            for trial in trials:
+                if trial["pair_id"] not in image_paths:
+                    image = _ensure_locked_image(trial["pair_id"])
+                    if hashlib.sha256(image.read_bytes()).hexdigest() != trial["image_sha256"]:
+                        raise ValueError("Image differs from annotation")
+                    image_paths[trial["pair_id"]] = image
             started = time.perf_counter()
             conversations = [[{"role": "user", "content": [
-                {"type": "image", "image": image.as_posix()},
+                {"type": "image", "image": image_paths[r["pair_id"]].as_posix()},
                 {"type": "text", "text": PROMPT.format(text=r["marked_text"])},
             ]}] for r in trials]
             rendered = [processor.apply_chat_template(c, tokenize=False, add_generation_prompt=True)

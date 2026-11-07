@@ -1,5 +1,8 @@
 # REL 4언어 O/R/C/F 추론
 
+**2026-11-07 전체 Qwen3 실행:** [RTX 4090 한 장 runbook](QWEN3_SINGLE_4090_RUNBOOK_KO.md).
+배치 4→3 검사, 6×6·REL과 grounding O/R/C/F 전체 실행·재개 절차를 포함한다.
+
 **2026-11-05 RTX 4090 실행 완료:** 기본 경로의 지연은 BF16 patch Conv3D의
 fallback에서 확인됐다. weight 메모리 배치 변경으로 같은 2MP·배치 3이
 171.984초→2.421초였다. 해상도 파일럿·원시 근거·현재 준비 상태는

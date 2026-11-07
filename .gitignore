@@ -14,3 +14,6 @@ __pycache__/
 /annotation/rel_grounding/outputs/
 *.download
 .DS_Store
+
+# Private package/model caches for the single-GPU runbook.
+/.cache/

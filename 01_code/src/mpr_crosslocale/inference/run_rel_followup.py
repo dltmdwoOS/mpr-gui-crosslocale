@@ -257,6 +257,8 @@ def predict_chunk(adapter, chunk: list[tuple], args, config: dict, system_prompt
     try:
         results = predict_batch(adapter, [row for _, row in chunk], args, config, system_prompt)
     except Exception as exc:
+        if cuda_memory_error_kind(exc) is not None and getattr(args, "strict_batch_size", False):
+            raise
         if cuda_memory_error_kind(exc) is not None and len(chunk) > 1:
             split = True
         else:
@@ -425,6 +427,7 @@ def run(args) -> dict:
         "score_labels": not args.no_score_labels,
         "batch_size": args.batch_size,
         "batching_policy": "ordered_left_padding_oom_split_v2",
+        "strict_batch_size": getattr(args, "strict_batch_size", False),
         "seed": args.seed,
         "population": args.population,
         "selected_input_ids_sha256": stable_hash([input_id(r) for r in rows]),
@@ -548,6 +551,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--population", choices=("all", "mismatch", "matched"), default="all")
     parser.add_argument("--max-items", type=int, help="Stratified item limit for a smoke test")
     parser.add_argument("--batch-size", type=int, default=1)
+    parser.add_argument("--strict-batch-size", action="store_true", help="Stop on CUDA OOM instead of splitting a batch")
     parser.add_argument("--num-shards", type=int, default=1)
     parser.add_argument("--shard-index", type=int, default=0)
     parser.add_argument("--seed", type=int, default=42)

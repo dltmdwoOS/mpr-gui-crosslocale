@@ -43,6 +43,9 @@ from mpr_crosslocale.models.qwen25vl import Qwen25VLAdapter
 
 
 def run(args: argparse.Namespace) -> None:
+    batch_size = getattr(args, "batch_size", 1)
+    if batch_size < 1:
+        raise ValueError("batch-size must be positive")
     repo_root = Path(args.repo_root).resolve()
     manifest_rows = read_jsonl(args.manifest)
     dimensions = set(args.dimensions) if args.dimensions else None
@@ -72,6 +75,8 @@ def run(args: argparse.Namespace) -> None:
                    missing=select_item_shard(plan.missing, num_shards, shard_index))
     rows = resolve_paths(plan.rows, repo_root)
     model_config = load_yaml(args.model_config)
+    if batch_size > 1 and model_config.get("model_family") not in {"qwen2_5_vl", "qwen3_vl"}:
+        raise ValueError("Batched cross-locale inference supports Qwen VL only")
     _reject_mixed_model_output(args.output, model_config["model_id"])
     _reject_mixed_model_output(args.failures_out, model_config["model_id"])
     prompt_profile = args.prompt_profile or model_config.get("prompt_profile", "mpr_label_only_v1")
@@ -85,6 +90,7 @@ def run(args: argparse.Namespace) -> None:
         effective_use_flash_attn = args.attn_implementation == "flash_attention_2"
     contract = {
         "schema": "cross-locale-run-contract-v1", "model_config": model_config,
+        "batch_size": batch_size,
         "manifest_sha256": hashlib.sha256(Path(args.manifest).read_bytes()).hexdigest(),
         "input_ids": [r["input_id"] for r in rows], "num_shards": num_shards,
         "shard_index": shard_index, "prompt_profile": prompt_profile,
@@ -135,11 +141,12 @@ def run(args: argparse.Namespace) -> None:
     done = existing_success_ids(args.output) if args.resume else set()
     pending = [row for row in rows if row["input_id"] not in done]
     adapter = None
-    if not args.mock_model:
+    if not args.mock_model and pending:
         adapter = _build_model_adapter(args, model_config)
 
     retry_counts: dict[str, int] = {}
-    for row in tqdm.tqdm(pending, desc="Processing cross-locale rows"):
+    for row, output, batch_error, elapsed, actual_batch in batch_outputs(
+            pending, adapter, args, prompt_profile, generation_config):
         base = _result_base(row, args, model_config, prompt_profile, run_metadata)
         try:
             started = time.perf_counter()
@@ -152,13 +159,8 @@ def run(args: argparse.Namespace) -> None:
                 visual_token_count = None
             else:
                 assert adapter is not None
-                output = adapter.generate_one(
-                    row,
-                    prompt_profile,
-                    generation_config,
-                    system_prompt=base["system_prompt"],
-                    score_labels=args.score_labels,
-                )
+                if batch_error is not None:
+                    raise batch_error
                 generated_text = output.raw_output
                 rendered_prompt = output.rendered_prompt
                 prompt_token_count = output.prompt_token_count
@@ -174,7 +176,7 @@ def run(args: argparse.Namespace) -> None:
                         row["gold_label"],
                         scoring_method="not_requested",
                     )
-            runtime_ms = int((time.perf_counter() - started) * 1000)
+            runtime_ms = int(elapsed * 1000 / actual_batch)
             parsed = parse_label(generated_text)
             scored = label_summary.scored_predicted_label
             result = {
@@ -202,6 +204,7 @@ def run(args: argparse.Namespace) -> None:
                 "inference_status": "success",
                 "status": "success",
                 "runtime_ms": runtime_ms,
+                "batch_size": actual_batch, "batch_runtime_ms": elapsed * 1000,
                 "timestamp": _utc_now(),
             }
         except Exception as exc:
@@ -214,12 +217,50 @@ def run(args: argparse.Namespace) -> None:
                 "error_message": str(exc),
                 "error_traceback": traceback.format_exc(),
                 "retry_count": retry_counts[row["input_id"]],
-                "runtime_ms": int((time.perf_counter() - started) * 1000),
+                "runtime_ms": int(elapsed * 1000 / actual_batch),
                 "timestamp": _utc_now(),
             }
             append_jsonl(args.failures_out, [result])
         append_jsonl(args.output, [result])
     print_plan(plan, args)
+    remaining = {r["input_id"] for r in rows} - existing_success_ids(args.output)
+    if remaining:
+        raise SystemExit(f"Incomplete inference: {len(remaining)} inputs remain; rerun with --resume")
+
+
+def batch_outputs(rows, adapter, args, prompt_profile, generation_config):
+    """Run real batches and preserve row order, including failures for resume."""
+    offset = 0
+    while offset < len(rows):
+        prompt = build_system_prompt(args.system_prompt_mode, rows[offset]["question_language"])[0]
+        count = min(getattr(args, "batch_size", 1), len(rows) - offset)
+        for i in range(1, count):
+            if build_system_prompt(args.system_prompt_mode, rows[offset+i]["question_language"])[0] != prompt:
+                count = i
+                break
+        chunk = rows[offset:offset+count]
+        started = time.perf_counter()
+        error, outputs = None, [None] * count
+        try:
+            if not args.mock_model:
+                if count == 1:
+                    outputs = [adapter.generate_one(chunk[0], prompt_profile, generation_config,
+                               system_prompt=prompt, score_labels=args.score_labels)]
+                else:
+                    outputs = adapter.generate_batch(chunk, prompt_profile, generation_config,
+                              system_prompt=prompt, score_labels=args.score_labels)
+                if len(outputs) != count:
+                    raise RuntimeError("Batch lost output rows")
+        except Exception as exc:
+            from mpr_crosslocale.inference.run_rel_followup import cuda_memory_error_kind
+            if cuda_memory_error_kind(exc) is not None:
+                raise
+            error = exc
+            outputs = [None] * count
+        elapsed = time.perf_counter() - started
+        for row, output in zip(chunk, outputs, strict=True):
+            yield row, output, error, elapsed, count
+        offset += count
 
 
 def write_sample_manifest(path: Path | None, plan, args: argparse.Namespace) -> None:
@@ -423,6 +464,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--device-map", default=None)
     parser.add_argument("--attn-implementation", default=None)
     parser.add_argument("--score-labels", action="store_true")
+    parser.add_argument("--batch-size", type=int, default=1)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--mock-model", action="store_true")

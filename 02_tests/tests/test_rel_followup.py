@@ -370,3 +370,15 @@ def test_oom_split_recovers_each_input_in_order(tmp_path, nvml_reporting_error):
 def test_memory_error_classifier_keeps_unrelated_errors_visible():
     assert runner.cuda_memory_error_kind(RuntimeError("invalid shape")) is None
     assert runner.cuda_memory_error_kind(RuntimeError("NVML_SUCCESS == r INTERNAL ASSERT FAILED in another file")) is None
+
+
+def test_strict_batch_stops_on_oom_instead_of_splitting(monkeypatch):
+    from types import SimpleNamespace
+    from mpr_crosslocale.inference import run_rel_followup as runner
+    def oom(*args, **kwargs):
+        import torch
+        raise torch.cuda.OutOfMemoryError('CUDA out of memory')
+    monkeypatch.setattr(runner, 'predict_batch', oom)
+    with pytest.raises(RuntimeError, match='out of memory'):
+        list(runner.predict_chunk(None, [('a',{}),('b',{})],
+                                  SimpleNamespace(strict_batch_size=True), {}, ''))
