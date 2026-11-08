@@ -1,0 +1,54 @@
+{
+  "checks_passed": true,
+  "batch_size": 4,
+  "cross_locale": {
+    "successful_unique_inputs": 216,
+    "label_parse_success": 216
+  },
+  "rel": {
+    "condition_rows": 128,
+    "actual_successful_inferences": 80,
+    "statuses": {
+      "success": 128
+    },
+    "parse_failures": 0
+  },
+  "grounding": {
+    "complete": true,
+    "response_count": 192,
+    "conditions": {
+      "C": {
+        "count": 48,
+        "valid": 47,
+        "hit": 38
+      },
+      "F": {
+        "count": 48,
+        "valid": 48,
+        "hit": 46
+      },
+      "O": {
+        "count": 48,
+        "valid": 48,
+        "hit": 40
+      },
+      "R": {
+        "count": 48,
+        "valid": 47,
+        "hit": 45
+      }
+    }
+  },
+  "grounding_invalid_outputs": [
+    {
+      "parallel_id": "rel::2/weather_3.png",
+      "condition": "R",
+      "raw_output": "499, 192"
+    },
+    {
+      "parallel_id": "rel::2/weather_3.png",
+      "condition": "C",
+      "raw_output": "492, 192"
+    }
+  ]
+}

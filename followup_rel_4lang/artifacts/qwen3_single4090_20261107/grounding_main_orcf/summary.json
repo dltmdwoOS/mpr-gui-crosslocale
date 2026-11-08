@@ -1,0 +1,121 @@
+{
+  "expected_batches": 1896,
+  "completed_batches": 1896,
+  "complete": true,
+  "response_count": 7584,
+  "conditions": {
+    "C": {
+      "count": 1896,
+      "valid": 1891,
+      "hit": 1329
+    },
+    "F": {
+      "count": 1896,
+      "valid": 1887,
+      "hit": 1791
+    },
+    "O": {
+      "count": 1896,
+      "valid": 1896,
+      "hit": 1385
+    },
+    "R": {
+      "count": 1896,
+      "valid": 1893,
+      "hit": 1798
+    }
+  },
+  "by_gui": {
+    "en": {
+      "C": {
+        "count": 474,
+        "valid": 474,
+        "hit": 429
+      },
+      "F": {
+        "count": 474,
+        "valid": 474,
+        "hit": 462
+      },
+      "O": {
+        "count": 474,
+        "valid": 474,
+        "hit": 418
+      },
+      "R": {
+        "count": 474,
+        "valid": 474,
+        "hit": 452
+      }
+    },
+    "zh": {
+      "C": {
+        "count": 474,
+        "valid": 469,
+        "hit": 366
+      },
+      "F": {
+        "count": 474,
+        "valid": 465,
+        "hit": 438
+      },
+      "O": {
+        "count": 474,
+        "valid": 474,
+        "hit": 377
+      },
+      "R": {
+        "count": 474,
+        "valid": 471,
+        "hit": 446
+      }
+    },
+    "th": {
+      "C": {
+        "count": 474,
+        "valid": 474,
+        "hit": 167
+      },
+      "F": {
+        "count": 474,
+        "valid": 474,
+        "hit": 441
+      },
+      "O": {
+        "count": 474,
+        "valid": 474,
+        "hit": 203
+      },
+      "R": {
+        "count": 474,
+        "valid": 474,
+        "hit": 442
+      }
+    },
+    "ru": {
+      "C": {
+        "count": 474,
+        "valid": 474,
+        "hit": 367
+      },
+      "F": {
+        "count": 474,
+        "valid": 474,
+        "hit": 450
+      },
+      "O": {
+        "count": 474,
+        "valid": 474,
+        "hit": 387
+      },
+      "R": {
+        "count": 474,
+        "valid": 474,
+        "hit": 458
+      }
+    }
+  },
+  "generate_s_median_per_batch": 2.1931985000000003,
+  "generate_s_total": 4150.191393,
+  "max_peak_reserved_gib": 19.267578
+}

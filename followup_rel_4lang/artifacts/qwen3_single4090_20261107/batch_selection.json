@@ -1,0 +1,110 @@
+{
+  "config_sha256": "2775bb6b981d35922c46545ef58af0ac8e8ded1a3615902c73ac141609adbc8b",
+  "manifest_sha256": "4dd919fc9ddfeee6b3b807bba79191614bf7a475bafebc401329497c2a61aa59",
+  "cross_locale_inputs": 79020,
+  "grounding_pilot_responses": 192,
+  "policy": "try 4; only memory failure permits trying 3; otherwise stop",
+  "software": {
+    "python": "3.12.15",
+    "platform": "Linux-6.8.0-142-generic-x86_64-with-glibc2.39",
+    "torch": "2.9.1+cu130",
+    "transformers": "4.57.6",
+    "accelerate": "1.15.0",
+    "qwen-vl-utils": "0.0.14",
+    "torchvision": "0.24.1+cu130",
+    "timm": "1.0.31",
+    "protobuf": "6.33.6",
+    "sentencepiece": "0.2.0",
+    "flash-attn": null
+  },
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "cases": [
+    {
+      "dimension": "wf",
+      "text_input_id": "cross_locale::wf::2/setting_7.png::q=th::gui=th",
+      "image_paths": [
+        "/workspace/mpr-gui-crosslocale/01_code/data/raw/mpr_gui_bench/images/1/en/booking_en_1.jpg"
+      ]
+    },
+    {
+      "dimension": "wi",
+      "text_input_id": "cross_locale::wi::5/file_10.jpg::q=th::gui=th",
+      "image_paths": [
+        "/workspace/mpr-gui-crosslocale/01_code/data/raw/mpr_gui_bench/images/1/en/booking_en_1.jpg"
+      ]
+    },
+    {
+      "dimension": "au",
+      "text_input_id": "cross_locale::au::1/booking_1.jpg::q=th::gui=th",
+      "image_paths": [
+        "/workspace/mpr-gui-crosslocale/01_code/data/raw/mpr_gui_bench/images/1/en/booking_en_1.jpg"
+      ]
+    },
+    {
+      "dimension": "ap",
+      "text_input_id": "cross_locale::ap::6/health_8.jpg::q=th::gui=th",
+      "image_paths": [
+        "/workspace/mpr-gui-crosslocale/01_code/data/raw/mpr_gui_bench/images/1/en/booking_en_1.jpg"
+      ]
+    },
+    {
+      "dimension": "ael",
+      "text_input_id": "cross_locale::ael::1/booking_5.jpg::q=th::gui=th",
+      "image_paths": [
+        "/workspace/mpr-gui-crosslocale/01_code/data/raw/mpr_gui_bench/images/1/en/booking_en_1.jpg"
+      ]
+    },
+    {
+      "dimension": "rel",
+      "text_input_id": "cross_locale::rel::6/wallet_3.jpg::q=th::gui=th",
+      "image_paths": [
+        "/workspace/mpr-gui-crosslocale/01_code/data/raw/mpr_gui_bench/images/1/en/booking_en_1.jpg"
+      ]
+    }
+  ],
+  "selected_batch_size": 4,
+  "attempts": [
+    {
+      "batch_size": 4,
+      "status": "passed",
+      "measurements": [
+        {
+          "case": "wf",
+          "seconds": 3.3752623172476888,
+          "peak_reserved_gib": 19.7421875
+        },
+        {
+          "case": "wi",
+          "seconds": 2.3857902330346406,
+          "peak_reserved_gib": 19.294921875
+        },
+        {
+          "case": "au",
+          "seconds": 2.4506269060075283,
+          "peak_reserved_gib": 19.517578125
+        },
+        {
+          "case": "ap",
+          "seconds": 2.4711206080392003,
+          "peak_reserved_gib": 19.52734375
+        },
+        {
+          "case": "ael",
+          "seconds": 2.39646821282804,
+          "peak_reserved_gib": 19.29296875
+        },
+        {
+          "case": "rel",
+          "seconds": 2.40998316090554,
+          "peak_reserved_gib": 19.5078125
+        },
+        {
+          "case": "grounding",
+          "seconds": 1.8582321126013994,
+          "peak_reserved_gib": 18.73828125
+        }
+      ]
+    }
+  ],
+  "note": "Memory functionality check, not a guarantee for every full-dataset input."
+}

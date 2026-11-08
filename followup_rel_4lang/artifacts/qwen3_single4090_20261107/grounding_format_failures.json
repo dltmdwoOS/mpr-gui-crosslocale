@@ -1,0 +1,172 @@
+[
+  {
+    "trial_id": "rel::2/clock_6.png::th::zh::R",
+    "parallel_id": "rel::2/clock_6.png",
+    "query_language": "th",
+    "gui_language": "zh",
+    "condition": "R",
+    "raw_output": "354, 493",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  },
+  {
+    "trial_id": "rel::2/clock_8.png::th::zh::R",
+    "parallel_id": "rel::2/clock_8.png",
+    "query_language": "th",
+    "gui_language": "zh",
+    "condition": "R",
+    "raw_output": "470, 203",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  },
+  {
+    "trial_id": "rel::2/weather_1.png::en::zh::F",
+    "parallel_id": "rel::2/weather_1.png",
+    "query_language": "en",
+    "gui_language": "zh",
+    "condition": "F",
+    "raw_output": "373, 638",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  },
+  {
+    "trial_id": "rel::2/weather_1.png::th::zh::R",
+    "parallel_id": "rel::2/weather_1.png",
+    "query_language": "th",
+    "gui_language": "zh",
+    "condition": "R",
+    "raw_output": "373, 639",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  },
+  {
+    "trial_id": "rel::2/weather_1.png::th::zh::F",
+    "parallel_id": "rel::2/weather_1.png",
+    "query_language": "th",
+    "gui_language": "zh",
+    "condition": "F",
+    "raw_output": "373, 638",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  },
+  {
+    "trial_id": "rel::2/weather_1.png::ru::zh::F",
+    "parallel_id": "rel::2/weather_1.png",
+    "query_language": "ru",
+    "gui_language": "zh",
+    "condition": "F",
+    "raw_output": "373, 638",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  },
+  {
+    "trial_id": "rel::3/homescreen_3.jpg::en::zh::F",
+    "parallel_id": "rel::3/homescreen_3.jpg",
+    "query_language": "en",
+    "gui_language": "zh",
+    "condition": "F",
+    "raw_output": "488, 432",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  },
+  {
+    "trial_id": "rel::3/homescreen_3.jpg::th::zh::F",
+    "parallel_id": "rel::3/homescreen_3.jpg",
+    "query_language": "th",
+    "gui_language": "zh",
+    "condition": "F",
+    "raw_output": "488, 430",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  },
+  {
+    "trial_id": "rel::3/homescreen_3.jpg::ru::zh::F",
+    "parallel_id": "rel::3/homescreen_3.jpg",
+    "query_language": "ru",
+    "gui_language": "zh",
+    "condition": "F",
+    "raw_output": "488, 432",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  },
+  {
+    "trial_id": "rel::5/camera_14.jpg::en::zh::C",
+    "parallel_id": "rel::5/camera_14.jpg",
+    "query_language": "en",
+    "gui_language": "zh",
+    "condition": "C",
+    "raw_output": "499, 735",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  },
+  {
+    "trial_id": "rel::5/camera_14.jpg::en::zh::F",
+    "parallel_id": "rel::5/camera_14.jpg",
+    "query_language": "en",
+    "gui_language": "zh",
+    "condition": "F",
+    "raw_output": "499, 735",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  },
+  {
+    "trial_id": "rel::5/camera_14.jpg::th::zh::C",
+    "parallel_id": "rel::5/camera_14.jpg",
+    "query_language": "th",
+    "gui_language": "zh",
+    "condition": "C",
+    "raw_output": "499, 735",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  },
+  {
+    "trial_id": "rel::5/camera_14.jpg::ru::zh::C",
+    "parallel_id": "rel::5/camera_14.jpg",
+    "query_language": "ru",
+    "gui_language": "zh",
+    "condition": "C",
+    "raw_output": "499, 735",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  },
+  {
+    "trial_id": "rel::5/camera_2.jpg::ru::zh::C",
+    "parallel_id": "rel::5/camera_2.jpg",
+    "query_language": "ru",
+    "gui_language": "zh",
+    "condition": "C",
+    "raw_output": "444, 735",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  },
+  {
+    "trial_id": "rel::5/file_10.jpg::en::zh::C",
+    "parallel_id": "rel::5/file_10.jpg",
+    "query_language": "en",
+    "gui_language": "zh",
+    "condition": "C",
+    "raw_output": "831, 530",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  },
+  {
+    "trial_id": "rel::5/file_10.jpg::th::zh::F",
+    "parallel_id": "rel::5/file_10.jpg",
+    "query_language": "th",
+    "gui_language": "zh",
+    "condition": "F",
+    "raw_output": "832, 530",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  },
+  {
+    "trial_id": "rel::5/file_10.jpg::ru::zh::F",
+    "parallel_id": "rel::5/file_10.jpg",
+    "query_language": "ru",
+    "gui_language": "zh",
+    "condition": "F",
+    "raw_output": "832, 530",
+    "stop_reason": "eos",
+    "output_tokens": 9
+  }
+]

@@ -1,0 +1,81 @@
+{
+  "outcome": "generation_correct",
+  "batch_size": 4,
+  "execution_mode": "gpu",
+  "condition_rows": 23424,
+  "statuses": {
+    "success": 23424
+  },
+  "actual_successful_inferences": 18432,
+  "source_issue_rows": 400,
+  "parse_failures": 0,
+  "primary_descriptive_summary": {
+    "dependent": {
+      "complete_unflagged_mismatch_quartets": 3576,
+      "items": 301,
+      "generation_accuracy": {
+        "O": 0.7016219239373602,
+        "R": 0.8078859060402684,
+        "C": 0.6705816554809844,
+        "F": 0.7883109619686801
+      },
+      "paired_contrasts": {
+        "R-O": {
+          "difference_pp": 10.626398210290828,
+          "errors_corrected": 511,
+          "errors_introduced": 131
+        },
+        "F-C": {
+          "difference_pp": 11.772930648769576,
+          "errors_corrected": 577,
+          "errors_introduced": 156
+        },
+        "C-O": {
+          "difference_pp": -3.1040268456375837,
+          "errors_corrected": 257,
+          "errors_introduced": 368
+        },
+        "F-R": {
+          "difference_pp": -1.9574944071588367,
+          "errors_corrected": 196,
+          "errors_introduced": 266
+        }
+      },
+      "interaction_pp": 1.1465324384787534
+    },
+    "independent": {
+      "complete_unflagged_mismatch_quartets": 716,
+      "items": 63,
+      "generation_accuracy": {
+        "O": 0.7905027932960894,
+        "R": 0.7793296089385475,
+        "C": 0.7835195530726257,
+        "F": 0.7863128491620112
+      },
+      "paired_contrasts": {
+        "R-O": {
+          "difference_pp": -1.1173184357541899,
+          "errors_corrected": 11,
+          "errors_introduced": 19
+        },
+        "F-C": {
+          "difference_pp": 0.27932960893854747,
+          "errors_corrected": 20,
+          "errors_introduced": 18
+        },
+        "C-O": {
+          "difference_pp": -0.6983240223463687,
+          "errors_corrected": 41,
+          "errors_introduced": 46
+        },
+        "F-R": {
+          "difference_pp": 0.6983240223463687,
+          "errors_corrected": 43,
+          "errors_introduced": 38
+        }
+      },
+      "interaction_pp": 1.3966480446927387
+    }
+  },
+  "note": "Unadjusted descriptive estimates; no independent-sample inference or CI. Failures exclude the entire quartet; unparseable generated labels count as wrong."
+}

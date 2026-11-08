@@ -1,0 +1,140 @@
+{
+  "validation_passed": true,
+  "six_by_six": {
+    "responses": 79020,
+    "score_accuracy": 0.8360415084788662,
+    "score_matched_accuracy": 0.851784358390281,
+    "score_mismatch_accuracy": 0.8328929384965832,
+    "generation": {
+      "overall": {
+        "n": 79020,
+        "correct": 66057,
+        "accuracy": 0.8359529233105543
+      },
+      "matched": {
+        "n": 13170,
+        "correct": 11218,
+        "accuracy": 0.851784358390281
+      },
+      "mismatch": {
+        "n": 65850,
+        "correct": 54839,
+        "accuracy": 0.8327866362946089
+      }
+    },
+    "parse_failures": 24,
+    "first_response_utc": "2026-11-07T04:31:09.137406+00:00",
+    "last_response_utc": "2026-11-07T17:37:30.985126+00:00"
+  },
+  "rel": {
+    "condition_rows": 23424,
+    "unique_inferences": 18432,
+    "source_issue_rows": 400,
+    "primary": {
+      "dependent": {
+        "complete_unflagged_mismatch_quartets": 3576,
+        "items": 301,
+        "generation_accuracy": {
+          "O": 0.7016219239373602,
+          "R": 0.8078859060402684,
+          "C": 0.6705816554809844,
+          "F": 0.7883109619686801
+        },
+        "paired_contrasts": {
+          "R-O": {
+            "difference_pp": 10.626398210290828,
+            "errors_corrected": 511,
+            "errors_introduced": 131
+          },
+          "F-C": {
+            "difference_pp": 11.772930648769576,
+            "errors_corrected": 577,
+            "errors_introduced": 156
+          },
+          "C-O": {
+            "difference_pp": -3.1040268456375837,
+            "errors_corrected": 257,
+            "errors_introduced": 368
+          },
+          "F-R": {
+            "difference_pp": -1.9574944071588367,
+            "errors_corrected": 196,
+            "errors_introduced": 266
+          }
+        },
+        "interaction_pp": 1.1465324384787534
+      },
+      "independent": {
+        "complete_unflagged_mismatch_quartets": 716,
+        "items": 63,
+        "generation_accuracy": {
+          "O": 0.7905027932960894,
+          "R": 0.7793296089385475,
+          "C": 0.7835195530726257,
+          "F": 0.7863128491620112
+        },
+        "paired_contrasts": {
+          "R-O": {
+            "difference_pp": -1.1173184357541899,
+            "errors_corrected": 11,
+            "errors_introduced": 19
+          },
+          "F-C": {
+            "difference_pp": 0.27932960893854747,
+            "errors_corrected": 20,
+            "errors_introduced": 18
+          },
+          "C-O": {
+            "difference_pp": -0.6983240223463687,
+            "errors_corrected": 41,
+            "errors_introduced": 46
+          },
+          "F-R": {
+            "difference_pp": 0.6983240223463687,
+            "errors_corrected": 43,
+            "errors_introduced": 38
+          }
+        },
+        "interaction_pp": 1.3966480446927387
+      }
+    },
+    "first_response_utc": "2026-11-07T17:37:56.235009+00:00",
+    "last_response_utc": "2026-11-07T20:43:37.943066+00:00"
+  },
+  "grounding": {
+    "responses": 7584,
+    "conditions": {
+      "O": {
+        "count": 1896,
+        "valid": 1896,
+        "hit": 1385,
+        "accuracy": 0.7304852320675106,
+        "invalid": 0
+      },
+      "R": {
+        "count": 1896,
+        "valid": 1893,
+        "hit": 1798,
+        "accuracy": 0.9483122362869199,
+        "invalid": 3
+      },
+      "C": {
+        "count": 1896,
+        "valid": 1891,
+        "hit": 1329,
+        "accuracy": 0.7009493670886076,
+        "invalid": 5
+      },
+      "F": {
+        "count": 1896,
+        "valid": 1887,
+        "hit": 1791,
+        "accuracy": 0.944620253164557,
+        "invalid": 9
+      }
+    },
+    "format_failures": 17,
+    "R_minus_O_pp": 21.782700421940927,
+    "F_minus_C_pp": 24.367088607594944
+  }
+}
