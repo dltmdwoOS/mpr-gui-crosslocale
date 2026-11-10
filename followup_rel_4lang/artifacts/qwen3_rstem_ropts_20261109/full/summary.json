@@ -1,0 +1,30 @@
+{
+  "rows": 7584,
+  "statuses": {
+    "success": 7584
+  },
+  "parse_failures": 0,
+  "accuracy": {
+    "main/O": {
+      "correct": 1330,
+      "n": 1896,
+      "rate": 0.7015
+    },
+    "main/R": {
+      "correct": 1592,
+      "n": 1896,
+      "rate": 0.8397
+    },
+    "main/R_opts": {
+      "correct": 1388,
+      "n": 1896,
+      "rate": 0.7321
+    },
+    "main/R_stem": {
+      "correct": 1473,
+      "n": 1896,
+      "rate": 0.7769
+    }
+  },
+  "complete": true
+}

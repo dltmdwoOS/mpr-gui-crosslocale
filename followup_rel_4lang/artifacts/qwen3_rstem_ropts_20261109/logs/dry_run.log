@@ -1,0 +1,13 @@
+{
+  "pairs": 1896,
+  "items": 158,
+  "inferences": 7584,
+  "batch_size": 4,
+  "by_condition": {
+    "O": 1896,
+    "R_stem": 1896,
+    "R_opts": 1896,
+    "R": 1896
+  },
+  "experiment_fingerprint": "bcc58beef83888298428dda291f16713cb6ef67aadf7e2b430003f1a813f4403"
+}

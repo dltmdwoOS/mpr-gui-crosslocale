@@ -1,5 +1,7 @@
 # REL 4언어 O/R/C/F 추론
 
+**2026-11-09 Qwen3 R_stem / R_opts 완료:** [원시 결과·검증·실행 기록](artifacts/qwen3_rstem_ropts_20261109/README_KO.md). 7,584행 모두 성공, 파싱 실패 0건.
+
 **2026-11-07 전체 Qwen3 실행:** [RTX 4090 한 장 runbook](QWEN3_SINGLE_4090_RUNBOOK_KO.md).
 배치 4→3 검사, 6×6·REL과 grounding O/R/C/F 전체 실행·재개 절차를 포함한다.
 

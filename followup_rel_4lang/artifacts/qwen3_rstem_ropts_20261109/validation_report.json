@@ -1,0 +1,51 @@
+{
+  "schema": "qwen3-rstem-ropts-validation-v1",
+  "validated_at": "2026-11-10T00:30:40.296164+00:00",
+  "rows": 7584,
+  "items": 158,
+  "pairs": 1896,
+  "batches": 1896,
+  "expected_ids_match": true,
+  "duplicate_ids": 0,
+  "failed_rows": 0,
+  "parse_failures": 0,
+  "prompts_and_gold_match_locked_inputs": true,
+  "accuracy_recomputed": {
+    "O": {
+      "correct": 1330,
+      "n": 1896,
+      "accuracy_percent": 70.14767932489451
+    },
+    "R_stem": {
+      "correct": 1473,
+      "n": 1896,
+      "accuracy_percent": 77.68987341772151
+    },
+    "R_opts": {
+      "correct": 1388,
+      "n": 1896,
+      "accuracy_percent": 73.20675105485232
+    },
+    "R": {
+      "correct": 1592,
+      "n": 1896,
+      "accuracy_percent": 83.96624472573839
+    }
+  },
+  "anchor_vs_20261107": {
+    "anchor_rows": 3792,
+    "label_agreement": 0.9953,
+    "by_condition": {
+      "O/diff": 13,
+      "O/same": 1883,
+      "R/diff": 5,
+      "R/same": 1891
+    },
+    "disagreements_old_correct_to_new_correct": {
+      "True->False": 5,
+      "False->False": 6,
+      "False->True": 7
+    }
+  },
+  "source_fingerprint": "e60574acf0226ce379574e1397c0c3f26415584b9be9b4724cefb16823381124"
+}

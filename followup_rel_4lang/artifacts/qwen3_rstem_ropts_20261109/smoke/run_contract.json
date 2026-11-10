@@ -1,0 +1,72 @@
+{
+  "schema": "rel-rstem-ropts-v1",
+  "conditions": [
+    "O",
+    "R_stem",
+    "R_opts",
+    "R"
+  ],
+  "dataset_sha256": "e5aa6cd0c426cc648322c8c7702b1b6985fddb09ad895d70a85d86c6a3de38ce",
+  "mixed_inputs_sha256": "a7fb09962989ead44c9e76184b5759aefb30bb34e4fd2f3eec091dffe2e54cbe",
+  "model_config": {
+    "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+    "model_family": "qwen3_vl",
+    "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+    "dtype": "bfloat16",
+    "quantization": null,
+    "attn_implementation": "sdpa",
+    "device_strategy": "cuda:0",
+    "patch_embed_memory_format": "channels_last_3d",
+    "processor_profile": "qwen_4090_2mp",
+    "min_pixels": 262144,
+    "max_pixels": 2097152,
+    "prompt_profile": "mpr_label_only_v1",
+    "generation": {
+      "do_sample": false,
+      "num_beams": 1,
+      "max_new_tokens": 2,
+      "temperature": null
+    }
+  },
+  "execution_mode": "gpu",
+  "system_prompt": "You are a GUI reasoning assistant. Inspect the GUI image and answer the multiple-choice question. Respond with exactly one label: A, B, C, or D.",
+  "prompt_template_version": "cross_locale_system_v1",
+  "score_labels": true,
+  "batch_size": 4,
+  "strict_batch_size": true,
+  "queue_order": "pair_id sorted; O, R_stem, R_opts, R adjacent",
+  "split": "main",
+  "max_items": 3,
+  "selected_input_ids_sha256": "284d7ce97a3915debf568e60c1586858d81a378b1eb751ec1a3c6d83d2d46468",
+  "code_sha256": {
+    "run_rel_followup.py": "75fee94f9f63856d746b29fcff2c1910b36600866dee9322f29692880d2e5d86",
+    "qwen25vl.py": "3f0e6a2f504488065fe799fc8aea0f75663ad0ea7e91e1ecb7c51781184bd3ad",
+    "qwen3_memory.py": "fe00351f368cdaca85418f7d0f3d03b638cffd4c61a86258a875e646ea66c4b6",
+    "internvl25.py": "4c063b465e65fa8f33ff1ff169347450a5ca7d9ec31e78d93e638c93238b4754",
+    "prompts.py": "5db5085c28e4f7b4495992008bdebe30f47f4809c307bacd47ffd22c91d73ba9",
+    "system_prompts.py": "afbfe2dc4ea3e69c6d90bb2b9f65490e266343ef6533468857b36fbb843bf554",
+    "run_cross_locale.py": "3e46e9300f6b4bbc503bebfab9f812dfc8c16b900fbf6bad201ccaa5da425ba4",
+    "answer_parser.py": "f13ffd717563ddc41f085c87b8dfceba9cf80c8151c8c3aed6da66a7523817a0",
+    "label_scoring.py": "b46e5c7e361030ef3cda661f2d8669942994a33626dafabbbfd3e4e74d00aecd",
+    "option_scoring.py": "f37979a48c5fe2f3e8450627ed7282e93135ab3de497df787e109da54a15727c",
+    "runtime.py": "42c831898441b8fa42d12a81003657489d0fe3a63a13eaaa9dbd3492e3ff1dd0",
+    "rel_followup.py": "67580d17f4bc099de2bfcc3e834552f8d18f14aaac090ed477cf5d7f1631a244",
+    "run_rel_mixed.py": "8060feea46758e2334acd5268f7e04468aee9737cc4359dcf388b016bbb609ee"
+  },
+  "software_versions": {
+    "python": "3.12.15",
+    "platform": "Linux-5.15.0-191-generic-x86_64-with-glibc2.39",
+    "torch": "2.9.1+cu130",
+    "transformers": "4.57.6",
+    "accelerate": "1.15.0",
+    "qwen-vl-utils": "0.0.14",
+    "torchvision": "0.24.1+cu130",
+    "timm": "1.0.31",
+    "protobuf": "6.33.6",
+    "sentencepiece": "0.2.0",
+    "flash-attn": null
+  },
+  "experiment_fingerprint": "12fd2718f93283600b4331d1580d80eec317e9353987ce993dc44af44c2859c5",
+  "code_commit": "d97d463fa094496318563a9460a779cd4e25f40b",
+  "created_at": "2026-11-09T15:10:36.412142+00:00"
+}
