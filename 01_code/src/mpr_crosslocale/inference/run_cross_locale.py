@@ -41,6 +41,8 @@ from mpr_crosslocale.inference.system_prompts import build_system_prompt
 from mpr_crosslocale.models.internvl25 import InternVL25Adapter
 from mpr_crosslocale.models.qwen25vl import Qwen25VLAdapter
 
+INTERNVL_FAMILIES = frozenset({"internvl2_5", "internvl3_5"})
+
 
 def run(args: argparse.Namespace) -> None:
     batch_size = getattr(args, "batch_size", 1)
@@ -86,7 +88,7 @@ def run(args: argparse.Namespace) -> None:
         generation_config["max_new_tokens"] = args.max_new_tokens
     attn_implementation = args.attn_implementation or model_config.get("attn_implementation")
     effective_use_flash_attn = model_config.get("use_flash_attn")
-    if model_config.get("model_family") == "internvl2_5" and args.attn_implementation:
+    if model_config.get("model_family") in INTERNVL_FAMILIES and args.attn_implementation:
         effective_use_flash_attn = args.attn_implementation == "flash_attention_2"
     contract = {
         "schema": "cross-locale-run-contract-v1", "model_config": model_config,
@@ -378,7 +380,7 @@ def _build_model_adapter(args: argparse.Namespace, model_config: dict[str, Any])
     model_family = model_config.get("model_family", "qwen2_5_vl")
     if model_family in {"qwen2_5_vl", "qwen3_vl"}:
         return _build_qwen_adapter(args, model_config)
-    if model_family == "internvl2_5":
+    if model_family in INTERNVL_FAMILIES:
         return _build_internvl_adapter(args, model_config)
     raise ValueError(f"Unsupported model_family: {model_family!r}")
 

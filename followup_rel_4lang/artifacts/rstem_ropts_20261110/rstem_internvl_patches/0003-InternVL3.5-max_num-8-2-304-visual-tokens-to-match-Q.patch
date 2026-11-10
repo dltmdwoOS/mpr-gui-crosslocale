@@ -1,0 +1,72 @@
+From ef3204a1357622604cdfaaa93ce887d0e6e56ca4 Mon Sep 17 00:00:00 2001
+From: prep <local@local>
+Date: Sun, 8 Nov 2026 15:31:13 +0900
+Subject: [PATCH 3/5] InternVL3.5: max_num 8 (2,304 visual tokens) to match
+ Qwen3 actual visual tokens
+
+---
+ 01_code/configs/models/internvl3_5_8b_4090.yaml     | 13 +++++++------
+ .../INTERNVL35_SINGLE_4090_RUNBOOK_KO.md            |  6 +++---
+ 2 files changed, 10 insertions(+), 9 deletions(-)
+
+diff --git a/01_code/configs/models/internvl3_5_8b_4090.yaml b/01_code/configs/models/internvl3_5_8b_4090.yaml
+index dfc214d..be074f7 100644
+--- a/01_code/configs/models/internvl3_5_8b_4090.yaml
++++ b/01_code/configs/models/internvl3_5_8b_4090.yaml
+@@ -13,15 +13,16 @@ attn_implementation: eager
+ use_flash_attn: false
+ device_strategy: cuda:0
+ 
+-# 448px tiles, at most 7 tiles + thumbnail = 8 x 256 = 2,048 visual tokens,
+-# the same visual-token cap as Qwen (max_pixels 2,097,152). The model card
+-# default is max_num 12; a max_num 12 subset is a separate sensitivity run.
+-processor_profile: internvl_dynamic_448_fixed_2048
++# Decided 2026-11-08: match Qwen3's ACTUAL visual tokens (median 1,998 on the
++# grounding screenshots), not only its cap. max_num 8 gives portrait phone
++# screens (75%) a 2x4 grid + thumbnail = 2,304 tokens and landscape 1,792.
++# max_num 7 would give portrait screens only 768 tokens (1x2 grid).
++processor_profile: internvl_dynamic_448_max8_2304
+ input_size: 448
+ min_num: 1
+-max_num: 7
++max_num: 8
+ use_thumbnail: true
+-vision_token_limit: 2048
++vision_token_limit: 2304
+ 
+ # Thinking mode stays off: it is enabled only by the R1 system prompt, and every
+ # runner passes the explicit english_fixed system prompt instead.
+diff --git a/followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md b/followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md
+index 42b0bb9..8fbf5f0 100644
+--- a/followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md
++++ b/followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md
+@@ -13,7 +13,7 @@
+ | 항목 | Qwen3 | InternVL3.5 | 이유 |
+ | --- | --- | --- | --- |
+ | 모델 | Qwen3-VL-8B `0c351dd` | InternVL3_5-8B `9bb6a56` | HF main(2025-08-29), 언어 모델 Qwen3ForCausalLM |
+-| 이미지 | max_pixels 2,097,152, 실제 1,620–2,010 시각 토큰(중앙값 1,998) | **결정 필요**: max_num 7이면 세로 폰 화면(75%)이 1×2 격자라 **768토큰**, 가로 화면 1,792토큰 | 아래 "실행 전 결정" 참고 |
++| 이미지 | max_pixels 2,097,152, 실제 1,620–2,010 시각 토큰(중앙값 1,998) | 448px 타일 max_num 8 + 썸네일: 세로 폰 화면 2,304, 가로 화면 1,792 시각 토큰(상한 2,304) | Qwen3의 실제 시각 토큰에 맞춘다(2026-11-08 결정) |
+ | 배치 | 4 | **1** | InternVL 어댑터는 배치 경로가 없다. 배치 4→3 검사 대신 3단계 점검을 쓴다 |
+ | attention | SDPA | eager | flash-attn 미설치 시 원격 코드가 eager로 고정한다(InternVL2.5 실행과 같음). 3단계에서 실제 값을 측정해 기록한다 |
+ | Grounding system 메시지 | 없음 | **빈 system 메시지** | InternVL 템플릿은 system 칸이 항상 있고, 비우지 않으면 중국어 기본 문구가 모든 조건에 붙는다 |
+@@ -21,7 +21,7 @@
+ 
+ 로컬에서 확인한 것: InternVL3.5 토크나이저에서 A/B/C/D가 각각 토큰 하나(32–35)다. 영어 고정 system 문구가 렌더링된 프롬프트 맨 앞에 들어간다. 빈 system은 `<|im_start|>system\n<|im_end|>`로 렌더링된다. 기존 테스트 80개가 통과한다(로컬 데이터가 없어 실패하는 5개는 변경 전과 같다).
+ 
+-## 실행 전 결정: 타일 상한
++## 타일 상한: max_num 8 (2026-11-08 결정)
+ 
+ `max_pixels`와 타일 상한은 "상한"만 같고 실제 시각 토큰은 다르다. 위치 지정 GT 이미지 680장으로 계산한 InternVL 시각 토큰은 다음과 같다(Qwen3 실제값 중앙값 1,998).
+ 
+@@ -31,7 +31,7 @@
+ | 8 | 2,304 | 1,792 |
+ | 12 (모델 카드 기본) | 2,304 또는 2,816 | 1,792 |
+ 
+-config의 `max_num`과 `vision_token_limit`(=(max_num+1)×256)를 정한 뒤 실행한다. 실행 계약에 config 해시가 들어가므로 실행 중에 바꿀 수 없다. 여름 InternVL2.5 결과도 max_num 7이었으므로 세로 화면은 768토큰으로 돌았다는 점을 논문에 적는다.
++Qwen3와 실제 시각 정보량을 맞추기 위해 8을 쓴다(`vision_token_limit` 2,304). 실행 계약에 config 해시가 들어가므로 실행 중에 바꾸지 않는다. 시각 토큰이 늘어 응답당 시간이 max_num 7보다 길어질 수 있다(미검증, 3단계에서 측정). 여름 InternVL2.5 결과도 max_num 7이었으므로 세로 화면은 768토큰으로 돌았다는 점을 논문에 적는다.
+ 
+ ## 1. 인스턴스와 환경
+ 
+-- 
+2.50.0
+

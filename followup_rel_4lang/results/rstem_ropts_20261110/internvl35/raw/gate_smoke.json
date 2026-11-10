@@ -1,0 +1,47 @@
+{
+  "rules": {
+    "smoke_max_parse_failures": 2,
+    "smoke_min_anchor_label_agreement": 0.97,
+    "complete_rows": 7584,
+    "complete_max_parse_failures": 20
+  },
+  "rows": 144,
+  "statuses": {
+    "success": 144
+  },
+  "parse_failures": 0,
+  "misaligned_batches": 0,
+  "accuracy": {
+    "main/O": {
+      "correct": 24,
+      "n": 36,
+      "rate": 0.6667
+    },
+    "main/R": {
+      "correct": 24,
+      "n": 36,
+      "rate": 0.6667
+    },
+    "main/R_opts": {
+      "correct": 24,
+      "n": 36,
+      "rate": 0.6667
+    },
+    "main/R_stem": {
+      "correct": 22,
+      "n": 36,
+      "rate": 0.6111
+    }
+  },
+  "anchor_vs_20261109": {
+    "anchor_rows": 72,
+    "label_agreement": 1.0,
+    "by_condition": {
+      "O/same": 36,
+      "R/same": 36
+    },
+    "disagreements_old_correct_to_new_correct": {}
+  },
+  "problems": [],
+  "status": "passed"
+}

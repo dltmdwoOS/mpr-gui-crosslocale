@@ -1,0 +1,82 @@
+{
+  "date": "2026-11-10",
+  "models": {
+    "qwen3": {
+      "rows": 7584,
+      "pairs": 1896,
+      "items": 158,
+      "parse_failures": 0,
+      "accuracy_pct": {
+        "O": 70.14767932489451,
+        "R_stem": 77.68987341772153,
+        "R_opts": 73.20675105485233,
+        "R": 83.96624472573839
+      },
+      "contrasts_pp": {
+        "R_minus_O": 13.81856540084388,
+        "Rstem_minus_O": 7.5421940928270175,
+        "Ropts_minus_O": 3.0590717299578216,
+        "stem_effect_S": 9.150843881856538,
+        "option_effect_P": 4.667721518987342,
+        "interaction_I": 3.217299578059041,
+        "S_minus_P": 4.483122362869196
+      },
+      "anchor_reproducibility": {
+        "O": {
+          "matches": 1883,
+          "total": 1896
+        },
+        "R": {
+          "matches": 1891,
+          "total": 1896
+        }
+      },
+      "glmm_rows_verified": 7584,
+      "source_files_byte_identical": 13
+    },
+    "internvl35": {
+      "rows": 7584,
+      "pairs": 1896,
+      "items": 158,
+      "parse_failures": 0,
+      "accuracy_pct": {
+        "O": 69.51476793248945,
+        "R_stem": 72.78481012658227,
+        "R_opts": 70.9915611814346,
+        "R": 75.05274261603375
+      },
+      "contrasts_pp": {
+        "R_minus_O": 5.537974683544306,
+        "Rstem_minus_O": 3.2700421940928237,
+        "Ropts_minus_O": 1.4767932489451567,
+        "stem_effect_S": 3.6656118143459864,
+        "option_effect_P": 1.8723628691983194,
+        "interaction_I": 0.7911392405063253,
+        "S_minus_P": 1.793248945147667
+      },
+      "anchor_reproducibility": {
+        "O": {
+          "matches": 1896,
+          "total": 1896
+        },
+        "R": {
+          "matches": 1896,
+          "total": 1896
+        }
+      },
+      "glmm_rows_verified": 7584,
+      "source_files_byte_identical": 12
+    }
+  },
+  "not_run": [
+    "pytest (dependencies unavailable; PyPI access failed)",
+    "bootstrap recomputation (NumPy unavailable)",
+    "GLMM refit (R not available)",
+    "GPU inference"
+  ],
+  "imported_files": 46,
+  "qwen3_matches_existing_predictions": true,
+  "internvl_contract_code_hashes_verified": 12,
+  "python_sources_syntax_checked": 10,
+  "status": "passed"
+}

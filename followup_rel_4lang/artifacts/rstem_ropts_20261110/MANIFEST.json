@@ -1,0 +1,324 @@
+{
+  "schema": "rstem-ropts-selected-archive-v1",
+  "date": "2026-11-10",
+  "reference_commits": [
+    "324654ce4717632c10f3c5c35e18b72293159385",
+    "d97d463fa094496318563a9460a779cd4e25f40b"
+  ],
+  "selection_policy": "All supplied completed Qwen3 and InternVL3.5 predictions, analysis outputs, gates, contracts, status and validation; locked inputs, runnable inference/analysis/support code and plans retained. No filtering by correctness. Redundant transfer tar.gz bundles, caches, environments, images and model weights excluded. Raw smoke predictions and full setup/runtime logs not supplied for the new InternVL run are not reconstructed. Existing Qwen3 gzip blob reused by Git.",
+  "dataset_derived_license": "CC-BY-NC-4.0; see 01_code/THIRD_PARTY_DATA.md",
+  "hash_policy": "gzip hashes are exact binary bytes; text hashes normalize CRLF to LF. This manifest excludes itself.",
+  "files": {
+    ".gitignore": {
+      "sha256": "63b490dd9b4c95af0b53f28e1aedc6ff8094927c0772c8a83718db3d3e4af122",
+      "bytes": 732,
+      "hash_mode": "lf_normalized_text"
+    },
+    "01_code/configs/models/internvl3_5_8b_4090.yaml": {
+      "sha256": "7fed517cf7905dd8158487e25754b716c48c31c55b91469381d0332e4beebf03",
+      "bytes": 1233,
+      "hash_mode": "lf_normalized_text"
+    },
+    "01_code/src/mpr_crosslocale/inference/run_cross_locale.py": {
+      "sha256": "c051c390642dd469674d80d533c20a3f7cf77946f08918c408e7cbf68cdde559",
+      "bytes": 22192,
+      "hash_mode": "lf_normalized_text"
+    },
+    "01_code/src/mpr_crosslocale/inference/run_rel_followup.py": {
+      "sha256": "fbdb1b46591ed9c88e3d6f76119876a864ed549b665057af8e25cf92233fae6f",
+      "bytes": 24446,
+      "hash_mode": "lf_normalized_text"
+    },
+    "01_code/src/mpr_crosslocale/models/internvl25.py": {
+      "sha256": "f618b729970e1567d8776e5757feaf6df59d07db24bf8f75973502e35fa1a095",
+      "bytes": 20075,
+      "hash_mode": "lf_normalized_text"
+    },
+    "02_tests/tests/test_cross_locale_inference.py": {
+      "sha256": "d6263c71b3a8c7a2dbff80e93d547bc236e44622dca919218b5579fe00c5b928",
+      "bytes": 16010,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md": {
+      "sha256": "63eb906b8331f64d7c67ff7acdbd95e69f38fa54fba34b88bb009338a66006ff",
+      "bytes": 11325,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/README_KO.md": {
+      "sha256": "9f16a71997195860ae8316fa7f01d94e0615fb6c2c71bd6ca175c08ed6629499",
+      "bytes": 10532,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/RSTEM_ROPTS_INTERNVL_RUNBOOK_KO.md": {
+      "sha256": "b189939a2e8aceff7c948788a8622e0d5097a5d286a6e32b9fe750b0742a8bb5",
+      "bytes": 6573,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/analysis/README_KO.md": {
+      "sha256": "cae2077e5e91d365496e3f34f8274b524b979bd176efdd67897414e64449bdc7",
+      "bytes": 5592,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/analysis/rstem_ropts/ANALYSIS_PLAN_INTERNVL_KO.md": {
+      "sha256": "3514b07e0500bb3d7ceffc97409478453bfb86599354d25dad5607205f549adf",
+      "bytes": 1984,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/analysis/rstem_ropts/ANALYSIS_PLAN_KO.md": {
+      "sha256": "760d8c7ad4de52a372b0de5b570f07646caa8ff05cb808d927ab15755cf41efe",
+      "bytes": 5345,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/analysis/rstem_ropts/README_KO.md": {
+      "sha256": "06068580c8a7311ac5b9a54da18a84f75d48b50f43c84dbcef6ab4132a8fd9b4",
+      "bytes": 4241,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/analysis/rstem_ropts/analyze_rstem.py": {
+      "sha256": "9fabb33b9b3f29311d6de2b2c68f5fe6049c2175cb526e28dd40c74fb610eb6c",
+      "bytes": 6995,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/analysis/rstem_ropts/glmm_rstem.R": {
+      "sha256": "5d6d9c4b9c85f29c44ad11584659bfc60b6b65ede466c6618775a6e950e1729d",
+      "bytes": 2484,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/artifacts/rstem_ropts_20261110/INTEGRATION_MANIFEST.json": {
+      "sha256": "15b8848061c61839c8c4606aa67ee8b99f40f7acde1225a57b0c3cc1bf315aba",
+      "bytes": 29570,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/artifacts/rstem_ropts_20261110/rstem_internvl_patches/0001-Add-InternVL3.5-8B-single-4090-run-path-config-adapt.patch": {
+      "sha256": "685bdd65ea36782027b8cc7ec92c2e90cb9fda269a22461599c19d0461a13ba5",
+      "bytes": 41491,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/artifacts/rstem_ropts_20261110/rstem_internvl_patches/0002-Apply-review-fixes-measure-attention-eos-set-repo-lo.patch": {
+      "sha256": "7dcffeeebc9c287b6bd7b1c0d834858639e498fe18af68a5b2eafa704c2b7b78",
+      "bytes": 13753,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/artifacts/rstem_ropts_20261110/rstem_internvl_patches/0003-InternVL3.5-max_num-8-2-304-visual-tokens-to-match-Q.patch": {
+      "sha256": "8a581371b72163025419492108a384ef0ec66434e92917c40dc32f53aa0f60f6",
+      "bytes": 4751,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/artifacts/rstem_ropts_20261110/rstem_internvl_patches/0004-Unattended-all-stage-preflight-ETA-smoke-gate-full-r.patch": {
+      "sha256": "c47e613f5777c071ba301ce3bf28ca9a61aa91adef9e16b3b5a0da2b36014330",
+      "bytes": 18526,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/artifacts/rstem_ropts_20261110/rstem_internvl_patches/0005-Runbook-time-estimate-anchored-on-Qwen3-measured-run.patch": {
+      "sha256": "2c6f2620abd5d9e3ef2cbe826923da1ad124307d31695b74bfc7af1bdb1afc0d",
+      "bytes": 1815,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/check_internvl_gates.py": {
+      "sha256": "24d19b28a7bd0ec26ed1b981005df56c5e925de5bae9894215a1bd232a71b4cb",
+      "bytes": 6602,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/check_internvl_preflight.py": {
+      "sha256": "b1b0a8368e3fdfecb7f84bb342b271c0e6213c3b90f26f07e385b51aa3c0402f",
+      "bytes": 8434,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/check_rstem_gate_internvl.py": {
+      "sha256": "37087e36b3513b53e6cec6693c2a8b8f7b189d163275772101826e6cdac0ae41",
+      "bytes": 4473,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/grounding_eval/run_internvl_grounding.py": {
+      "sha256": "9d98c8c397bbdef573e1dc49f0e963fc0acd7bf8e61764577b7d303fb6e57f69",
+      "bytes": 9609,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/internvl35_4090_env.sh": {
+      "sha256": "ceecc8f3216857a33e05ff7372adb48d212322534965862870ed7c3d5dde6c9b",
+      "bytes": 935,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/README_KO.md": {
+      "sha256": "d6c125893f1fe1d99be2ad02dfe6f2263e7d0fc9d42d2954cc65d9c4567efa75",
+      "bytes": 4301,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/integration_validation.json": {
+      "sha256": "83a4c8e4693ed7f196b5ecff34f12e9f5af00276c19dd389fdfe11b853acb3b0",
+      "bytes": 2191,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/analysis_out/by_gui.csv": {
+      "sha256": "50df4475755326a97872c63e25ae4ddd08ffdb562b0418cf61df7f3dc2021738",
+      "bytes": 677,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/analysis_out/contrasts.csv": {
+      "sha256": "02d152d08da05999c316546e0a2c75117c7e56847af0488ba45d5ab3ceb9d7bc",
+      "bytes": 936,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/analysis_out/glmm/glmm_diagnostics_correct.txt": {
+      "sha256": "c876f5c61cdb5e0e7f3036e9fc49f24c96195843331274abe782b3c868d46d2b",
+      "bytes": 113,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/analysis_out/glmm/glmm_lrt_correct.csv": {
+      "sha256": "e48550e9818fb1d5bca1f36c2543094b2b0bf81256ffe5ea3623a7a690a04933",
+      "bytes": 197,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/analysis_out/glmm/glmm_terms_correct.csv": {
+      "sha256": "1edf835eadfe3687977b9fe86a1232d22d16c85ff3f10ad3ee461ae8b483c34c",
+      "bytes": 353,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/analysis_out/glmm_rows.csv": {
+      "sha256": "752b8a5bf3961af3c785f42ec1d10afd4e6d0bdf03fdd59633dcc2b9e817fd62",
+      "bytes": 509418,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/analysis_out/summary.json": {
+      "sha256": "e5288a5261ef86ea9f8b7f998e7d637409fdc5888b24bd6493558be131ee2b3c",
+      "bytes": 3135,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/raw/STATUS": {
+      "sha256": "f6e832712481648780f90d6b215320c9262c74978e4d3166685ffd7890a55fa7",
+      "bytes": 191,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/raw/gate_complete.json": {
+      "sha256": "441ffecc1fd69fe91384deda5ab6de5fc21b6f3b536936740d21a65ea6587db9",
+      "bytes": 887,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/raw/gate_smoke.json": {
+      "sha256": "16a6edfccfffedc9ffb0a18216b02a10e4426b51e29a37bc9a54eefebf8d303e",
+      "bytes": 863,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/raw/predictions.jsonl.gz": {
+      "sha256": "0eaa1705e3b8b95277ab4f6e0915471233e11793d368b2aafeb65dc923a4a900",
+      "bytes": 1714455,
+      "hash_mode": "binary",
+      "uncompressed_sha256": "89c3a44c0422480e02b79a49ef76a5ba1fe861cf54d40a27be2a6008b465c8cb",
+      "uncompressed_bytes": 19812836,
+      "rows": 7584
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/raw/run_contract.json": {
+      "sha256": "9847f2f07c28f22d337b814cf6331ab6e8a66a4be09b4a360c9567cf829b9b64",
+      "bytes": 3292,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/analysis_out/by_gui.csv": {
+      "sha256": "30033a175e9b9e95f35ba9d706c9ac28d879ec2375b791253f66fb78e73ecc14",
+      "bytes": 674,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/analysis_out/contrasts.csv": {
+      "sha256": "4901972ef61c2749a48c5f5306ccb35ade541de3cd4976022dcd80f207a8bc89",
+      "bytes": 928,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/analysis_out/glmm/glmm_diagnostics_correct.txt": {
+      "sha256": "c876f5c61cdb5e0e7f3036e9fc49f24c96195843331274abe782b3c868d46d2b",
+      "bytes": 113,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/analysis_out/glmm/glmm_lrt_correct.csv": {
+      "sha256": "2a91aeb84d379af39c93095fc0f4ab1fe77a5be3f5f3e9213127f22b356c4d2b",
+      "bytes": 200,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/analysis_out/glmm/glmm_terms_correct.csv": {
+      "sha256": "f81c29230fbfcba3278ba299f96d3e1779bb24178cc42ecbf4e34fa7a656f934",
+      "bytes": 355,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/analysis_out/glmm_rows.csv": {
+      "sha256": "9ff904227da1d42ab4d613427749b4455559ef17885af7615748ed636283aab7",
+      "bytes": 509418,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/analysis_out/summary.json": {
+      "sha256": "f9999986eed67c74278469f0befc146bc0614474d348f3fe24e209b8e1aee8ce",
+      "bytes": 3122,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw/STATUS": {
+      "sha256": "c342988fe716e2f972832a14876bef0ef8fc8c8e7ea98a12b46f6987b760a257",
+      "bytes": 330,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw/gate_complete.json": {
+      "sha256": "aa18548b01aee0a7645cdfd267510e58782f556cf698052337b40e61d03e8722",
+      "bytes": 1005,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw/gate_smoke.json": {
+      "sha256": "57127d1d9c92075d36be3aef4ec52c5a6b1e7df8ffb90b2b4e29dfc552496d4e",
+      "bytes": 912,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw/predictions.jsonl.gz": {
+      "sha256": "6b9d07d95efcdddb93e345544e7df4a72c1c6374444848b3e1e210412b594575",
+      "bytes": 1393445,
+      "hash_mode": "binary",
+      "uncompressed_sha256": "350ebb981cc7fd00cfd24ad92eb77dbc2de4f0c7d9393a8504a5cbfa8ea9ccdb",
+      "uncompressed_bytes": 20097590,
+      "rows": 7584
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw/run_contract.json": {
+      "sha256": "ee1ef31c71262576a8a686150c7d31fe6dcbd20e0dcc5b564f5a483a66cceff7",
+      "bytes": 3199,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw/validation_report.json": {
+      "sha256": "3bfc0d3d5a2bb84c6748b56d9fb9d52f8d0638c72a1eac8a195edfa3647c517e",
+      "bytes": 1182,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/rstem_ropts_inputs/ADDON_INTERNVL_SHA256SUMS": {
+      "sha256": "9cbdecbb3b5097dd4d54dd9c87a4524ae58c9a3bc65ae10eca8f51faaa6b0f37",
+      "bytes": 2149,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/rstem_ropts_inputs/INPUT_REVIEW_SAMPLE_KO.md": {
+      "sha256": "d00007b39a288cb56f36460dd20e5db95d1cd0b93c3aa9e797d5aa12640ca9b8",
+      "bytes": 23776,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/rstem_ropts_inputs/internvl35_constraints_20261109.txt": {
+      "sha256": "a3d98e62728f07ad583335ae0b5eae76dd794abd9d8bb48c57fb25d7c8275c48",
+      "bytes": 1477,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/rstem_ropts_inputs/reference_internvl35_20261109_OR.jsonl": {
+      "sha256": "f53139a3010615e717cc3d72394cc05731206393c191629e793082b1b6620902",
+      "bytes": 2408453,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/rstem_ropts_inputs/run_contract_internvl35_rel_20261109.json": {
+      "sha256": "87fe63c7ee09f2b1b245f7c824dd1e0ea26185d059d56b2d11b98517252487fe",
+      "bytes": 3303,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/run_full_internvl35.sh": {
+      "sha256": "2e6ad1afeed4a8b1a68723173fffcc1bce59fd3f1c8f4589cb6fd6e51cff9b1e",
+      "bytes": 5030,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/run_rel_mixed_internvl.py": {
+      "sha256": "b14339f820be8beb791aa160947539cb00b532b319bab5f648f391982d857bf0",
+      "bytes": 14387,
+      "hash_mode": "lf_normalized_text"
+    },
+    "followup_rel_4lang/run_rstem_ropts_internvl.sh": {
+      "sha256": "583f1075c22f3e416d880bc69bd204ff89846ecd70519b74811f5aed14b4ea38",
+      "bytes": 4397,
+      "hash_mode": "lf_normalized_text"
+    }
+  }
+}

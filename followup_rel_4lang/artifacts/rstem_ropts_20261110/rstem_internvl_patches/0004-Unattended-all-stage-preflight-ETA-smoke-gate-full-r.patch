@@ -1,0 +1,344 @@
+From 68a434071a424baa178c6b79d0e1b3447c24d9c9 Mon Sep 17 00:00:00 2001
+From: prep <local@local>
+Date: Sun, 8 Nov 2026 15:34:05 +0900
+Subject: [PATCH 4/5] Unattended 'all' stage: preflight, ETA, smoke gate, full
+ runs, completion gate, packaging
+
+---
+ .../INTERNVL35_SINGLE_4090_RUNBOOK_KO.md      |  30 +++-
+ followup_rel_4lang/check_internvl_gates.py    | 131 ++++++++++++++++++
+ followup_rel_4lang/run_full_internvl35.sh     | 103 +++++++++-----
+ 3 files changed, 231 insertions(+), 33 deletions(-)
+ create mode 100644 followup_rel_4lang/check_internvl_gates.py
+
+diff --git a/followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md b/followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md
+index 8fbf5f0..e164c9c 100644
+--- a/followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md
++++ b/followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md
+@@ -58,6 +58,32 @@ hf download "$INTERNVL35_MODEL_ID" --revision "$INTERNVL35_REVISION"
+ df -h .   # 남은 디스크 확인. Qwen3 캐시(약 17GB)와 함께 들어가야 한다
+ ```
+ 
++## 한 번에 돌리기 (권장: 돌려 두고 나중에 확인)
++
++1–2단계(환경·체크포인트) 뒤에는 아래 한 줄로 사전 점검 → 예상 시간 계산 → smoke → 자동 판정 → 6×6 → REL → 위치 지정 → 완료 확인 → 결과 압축까지 사람 없이 진행한다. 각 판정에서 실패하면 그 자리에서 멈추고 `STATUS`에 이유를 남긴다. SSH가 끊겨도 돌도록 반드시 `tmux` 안에서 실행한다.
++
++```bash
++tmux new -s ivl35
++bash followup_rel_4lang/run_full_internvl35.sh all
++# Ctrl-b d 로 빠져나와도 계속 돈다. 다시 붙기: tmux attach -t ivl35
++```
++
++나중에 확인할 것:
++
++```bash
++cat followup_rel_4lang/results/internvl35_single4090/STATUS     # 단계별 시각, 예상 시간, 실패 위치
++cat followup_rel_4lang/results/internvl35_single4090/gate_eta.json
++tail -3 followup_rel_4lang/results/internvl35_single4090/logs/*.log
++```
++
++`STATUS` 마지막 줄이 `ALL DONE`이면 `followup_rel_4lang/results/internvl35_single4090_YYYYMMDD.tar.gz` 하나만 내려받으면 된다. `FAILED at stage ...`이면 로그를 확인하고, 원인을 고친 뒤 같은 명령을 다시 실행하면 끝난 부분은 건너뛰고 이어서 한다(단, 사전 점검이 실패했다면 `preflight.json`을 다른 이름으로 옮긴 뒤 재실행).
++
++자동 판정 기준(`check_internvl_gates.py`): smoke 6×6 216개 고유 성공·파싱 실패 2개 이하, REL smoke 128행 전부 성공·파싱 실패 2개 이하, 위치 지정 파일럿 192응답·조건별 유효 출력 85% 이상·64토큰 길이 종료 10건 이하. Qwen3 파일럿은 조건별 유효 출력 98–100%였다. 기준에 걸리면 본 실행을 시작하지 않는다.
++
++인스턴스는 끝나도 자동으로 끄지 않는다. Vast에서 인스턴스를 멈추면 같은 GPU가 다른 사람에게 대여된 동안 다시 켤 수 없어 결과를 꺼내지 못할 수 있기 때문이다. 대신 끝난 뒤 켜져 있는 시간만큼 비용이 나가므로 `STATUS`를 하루 한두 번 확인하고, 압축 파일을 내려받은 직후 인스턴스를 삭제한다.
++
++아래 3–5단계는 같은 과정을 손으로 나눠 실행할 때의 설명이다.
++
+ ## 3. 사전 점검 (필수, 약 5–10분)
+ 
+ 각 차원의 가장 긴 질문 6개와 가장 긴 grounding 시도 1개를 배치 1로 실제 생성한다. 출력이 A–D 한 글자가 아니거나, 영어 system이 빠졌거나, 시각 토큰이 상한을 넘으면 실패로 멈춘다. 시간·최대 메모리를 기록한다.
+@@ -75,7 +101,7 @@ python followup_rel_4lang/check_internvl_preflight.py \
+ ## 4. smoke (약 30분 안쪽, 추정)
+ 
+ ```bash
+-bash followup_rel_4lang/run_full_internvl35.sh smoke
++bash followup_rel_4lang/run_full_internvl35.sh smoke   # 사전 점검이 없으면 먼저 실행한다
+ ```
+ 
+ 6×6 216응답, REL 고유 80회/128행, grounding 파일럿 192응답이다. 실행 실패·파싱 실패·좌표 형식 실패 수를 확인한다. grounding `pilot_orcf/summary.json`의 `complete=true`, 조건별 48응답을 확인한다.
+@@ -85,7 +111,7 @@ bash followup_rel_4lang/run_full_internvl35.sh smoke
+ ## 5. 전체 실행
+ 
+ ```bash
+-bash followup_rel_4lang/run_full_internvl35.sh full
++bash followup_rel_4lang/run_full_internvl35.sh full    # 끝나면 완료 확인과 압축까지 한다
+ ```
+ 
+ 세 실험을 차례로 실행한다. 중단되면 같은 명령을 다시 실행하면 이어서 한다(6×6·REL은 `--resume`, grounding은 계약 확인 후 자동 재개). 설정·설명 파일을 바꿀 때는 `OUT`을 새 폴더로 바꾼다.
+diff --git a/followup_rel_4lang/check_internvl_gates.py b/followup_rel_4lang/check_internvl_gates.py
+new file mode 100644
+index 0000000..abf8498
+--- /dev/null
++++ b/followup_rel_4lang/check_internvl_gates.py
+@@ -0,0 +1,131 @@
++"""Automatic gates for the unattended InternVL run: ETA, smoke pass/fail, completion.
++
++  eta        <out>  : estimate full-run hours from preflight.json timings
++  smoke      <out>  : pass only if smoke outputs are complete and well-formed
++  complete   <out>  : pass only if all three full runs are complete
++
++Thresholds are written in SMOKE_RULES and recorded in the gate output so the
++decision is visible later. Exit code 0 = pass, 1 = fail.
++"""
++from __future__ import annotations
++
++import json
++import statistics
++import sys
++from pathlib import Path
++
++FULL = {"six_by_six": 79020, "rel_inferences": 18432, "rel_rows": 23424, "grounding": 7584}
++# Qwen3 pilot for reference: valid O 48/48, R 47/48, C 47/48, F 48/48.
++SMOKE_RULES = {
++    "six_by_six_unique_success": 216,
++    "six_by_six_max_parse_failures": 2,
++    "rel_condition_rows": 128,
++    "rel_max_parse_failures": 2,
++    "grounding_responses": 192,
++    "grounding_min_valid_rate_per_condition": 0.85,
++    "grounding_max_length_stops": 10,
++}
++
++
++def read_jsonl(path: Path) -> list[dict]:
++    rows = []
++    for line in path.read_text(encoding="utf-8").splitlines():
++        if line.strip():
++            try:
++                rows.append(json.loads(line))
++            except json.JSONDecodeError:
++                pass
++    return rows
++
++
++def last_success(rows: list[dict]) -> dict[str, dict]:
++    best = {}
++    for row in rows:
++        if row.get("status") == "success":
++            best[row["input_id"]] = row
++    return best
++
++
++def eta(out: Path) -> dict:
++    record = json.loads((out / "preflight.json").read_text())
++    mc = [m["seconds"] for m in record["measurements"] if m["case"] != "grounding"]
++    ground = [m["seconds"] for m in record["measurements"] if m["case"] == "grounding"]
++    # Preflight uses the LONGEST inputs, so these are upper-side estimates;
++    # the first call also includes warm-up.
++    per_mc = statistics.median(mc)
++    per_ground = ground[0] if ground else per_mc * 2
++    hours = {
++        "six_by_six": FULL["six_by_six"] * per_mc / 3600,
++        "rel": FULL["rel_inferences"] * per_mc / 3600,
++        "grounding": FULL["grounding"] * per_ground / 3600,
++    }
++    hours["total"] = sum(hours.values())
++    return {"seconds_per_mc_response_median_longest_inputs": per_mc,
++            "seconds_per_grounding_response_longest_input": per_ground,
++            "estimated_hours": {k: round(v, 1) for k, v in hours.items()},
++            "note": "Rough upper-side estimate from 7 preflight calls; excludes model loading."}
++
++
++def smoke(out: Path) -> dict:
++    problems = []
++    six = last_success(read_jsonl(out / "smoke_6x6.jsonl")) if (out / "smoke_6x6.jsonl").exists() else {}
++    six_parse = sum(1 for r in six.values() if not r.get("parse_success"))
++    if len(six) != SMOKE_RULES["six_by_six_unique_success"]:
++        problems.append(f"6x6 smoke unique successes {len(six)} != 216")
++    if six_parse > SMOKE_RULES["six_by_six_max_parse_failures"]:
++        problems.append(f"6x6 smoke parse failures {six_parse}")
++    rel = json.loads((out / "smoke_rel/summary.json").read_text()) if (out / "smoke_rel/summary.json").exists() else {}
++    if rel.get("condition_rows") != SMOKE_RULES["rel_condition_rows"] or set(rel.get("statuses", {})) != {"success"}:
++        problems.append(f"REL smoke incomplete: rows={rel.get('condition_rows')} statuses={rel.get('statuses')}")
++    if rel.get("parse_failures", 99) > SMOKE_RULES["rel_max_parse_failures"]:
++        problems.append(f"REL smoke parse failures {rel.get('parse_failures')}")
++    preds = out / "pilot_orcf/predictions.jsonl"
++    ground = read_jsonl(preds) if preds.exists() else []
++    if len(ground) != SMOKE_RULES["grounding_responses"]:
++        problems.append(f"grounding pilot responses {len(ground)} != 192")
++    rates = {}
++    for condition in ("O", "R", "C", "F"):
++        subset = [r for r in ground if r["condition"] == condition]
++        rates[condition] = sum(r["valid_output"] for r in subset) / len(subset) if subset else 0.0
++        if rates[condition] < SMOKE_RULES["grounding_min_valid_rate_per_condition"]:
++            problems.append(f"grounding {condition} valid rate {rates[condition]:.2f}")
++    length_stops = sum(1 for r in ground if r.get("stop_reason") == "length")
++    if length_stops > SMOKE_RULES["grounding_max_length_stops"]:
++        problems.append(f"grounding length stops {length_stops}")
++    invalid_examples = [r["raw_output"] for r in ground if not r["valid_output"]][:5]
++    return {"rules": SMOKE_RULES, "six_by_six_unique_success": len(six),
++            "six_by_six_parse_failures": six_parse, "rel": {k: rel.get(k) for k in
++            ("condition_rows", "statuses", "parse_failures")}, "grounding_valid_rate": rates,
++            "grounding_length_stops": length_stops, "grounding_invalid_examples": invalid_examples,
++            "problems": problems, "status": "passed" if not problems else "failed"}
++
++
++def complete(out: Path) -> dict:
++    problems = []
++    six = last_success(read_jsonl(out / "full_6x6.jsonl")) if (out / "full_6x6.jsonl").exists() else {}
++    if len(six) != FULL["six_by_six"]:
++        problems.append(f"6x6 unique successes {len(six)} != {FULL['six_by_six']}")
++    rel = json.loads((out / "full_rel/summary.json").read_text()) if (out / "full_rel/summary.json").exists() else {}
++    if rel.get("condition_rows") != FULL["rel_rows"] or rel.get("actual_successful_inferences") != FULL["rel_inferences"]:
++        problems.append(f"REL incomplete: {rel.get('condition_rows')} rows, {rel.get('actual_successful_inferences')} inferences")
++    ground = json.loads((out / "grounding_main_orcf/summary.json").read_text()) \
++        if (out / "grounding_main_orcf/summary.json").exists() else {}
++    if not ground.get("complete") or ground.get("response_count") != FULL["grounding"]:
++        problems.append(f"grounding incomplete: {ground.get('response_count')}")
++    return {"six_by_six_unique_success": len(six), "rel": {k: rel.get(k) for k in
++            ("condition_rows", "actual_successful_inferences", "parse_failures")},
++            "grounding": {k: ground.get(k) for k in ("complete", "response_count", "conditions")},
++            "problems": problems, "status": "passed" if not problems else "failed"}
++
++
++def main() -> None:
++    mode, out = sys.argv[1], Path(sys.argv[2])
++    result = {"eta": eta, "smoke": smoke, "complete": complete}[mode](out)
++    (out / f"gate_{mode}.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
++    print(json.dumps(result, ensure_ascii=False, indent=2), flush=True)
++    if result.get("status") == "failed":
++        sys.exit(1)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/followup_rel_4lang/run_full_internvl35.sh b/followup_rel_4lang/run_full_internvl35.sh
+index e20c24d..09a75a8 100644
+--- a/followup_rel_4lang/run_full_internvl35.sh
++++ b/followup_rel_4lang/run_full_internvl35.sh
+@@ -1,19 +1,30 @@
+ #!/usr/bin/env bash
+ # InternVL3.5-8B: 6x6, REL O/R/C/F and grounding O/R/C/F on ONE RTX 4090, batch 1.
+-# Usage (repo root, inside tmux, after the runbook's setup and preflight):
++# Usage (repo root, inside tmux, after runbook steps 1-2):
++#   bash followup_rel_4lang/run_full_internvl35.sh all     # unattended: preflight -> smoke -> full -> package
+ #   bash followup_rel_4lang/run_full_internvl35.sh smoke   # small checks only
+-#   bash followup_rel_4lang/run_full_internvl35.sh full    # full GPU inference
+-set -euo pipefail
+-STAGE="${1:?Give smoke or full}"
++#   bash followup_rel_4lang/run_full_internvl35.sh full    # full GPU inference only
++# Progress: cat $OUT/STATUS ; logs in $OUT/logs/. Rerunning the same command resumes.
++set -Eeuo pipefail
++STAGE="${1:?Give all, smoke or full}"
+ cd "$(dirname "$0")/.."
+-export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$PWD/.cache}"
+-export HF_HOME="${HF_HOME:-$XDG_CACHE_HOME/huggingface}"
+ export CUDA_VISIBLE_DEVICES=0 HF_HUB_DISABLE_XET=1
+ source .venv/bin/activate
+ source followup_rel_4lang/internvl35_4090_env.sh
+ mkdir -p "$OUT/logs"
+-test -s "$OUT/preflight.json" || { echo "Run the preflight first (runbook step 3)"; exit 1; }
+-python - <<'PY'
++MANIFEST=01_code/data/manifests/mpr_gui_manifest.jsonl
++
++status() { echo "$(date -u +%FT%TZ) $*" | tee -a "$OUT/STATUS"; }
++trap 'status "FAILED at stage ${CURRENT:-?} (exit $?). See $OUT/logs/"' ERR
++
++run_preflight() {
++  CURRENT=preflight
++  if [ ! -s "$OUT/preflight.json" ]; then
++    status "preflight started"
++    python followup_rel_4lang/check_internvl_preflight.py --manifest "$MANIFEST" \
++      --model-config "$MODEL_CONFIG" --output "$OUT/preflight.json" 2>&1 | tee "$OUT/logs/preflight.log"
++  fi
++  python - <<'PY'
+ import hashlib, json, os
+ from pathlib import Path
+ r = json.loads(Path(os.environ["OUT"], "preflight.json").read_text())
+@@ -21,12 +32,17 @@ assert r["status"] == "passed", "Preflight did not pass"
+ assert r["config_sha256"] == hashlib.sha256(Path(os.environ["MODEL_CONFIG"]).read_bytes()).hexdigest(), "Config changed since preflight"
+ assert r["manifest_sha256"] == hashlib.sha256(Path("01_code/data/manifests/mpr_gui_manifest.jsonl").read_bytes()).hexdigest(), "Manifest changed since preflight"
+ assert "4090" in r["gpu"]
+-print("Preflight record OK:", r["model_id"], r["revision"])
++print("Preflight record OK:", r["model_id"], r["revision"], r["measured_runtime"])
+ PY
++  python followup_rel_4lang/check_internvl_gates.py eta "$OUT" > "$OUT/logs/eta.log"
++  status "preflight passed; ETA $(python -c "import json;print(json.load(open('$OUT/gate_eta.json'))['estimated_hours'])") hours"
++}
+ 
+-if [ "$STAGE" = smoke ]; then
++run_smoke() {
++  CURRENT=smoke
++  status "smoke started"
+   python 01_code/run_cross_locale.py \
+-    --manifest 01_code/data/manifests/mpr_gui_manifest.jsonl --repo-root 01_code \
++    --manifest "$MANIFEST" --repo-root 01_code \
+     --model-config "$MODEL_CONFIG" --dimensions wf wi au ap ael rel \
+     --sample-size 6 --sample-unit semantic_items --seed 42 --batch-size 1 \
+     --score-labels --system-prompt-mode english_fixed --device-map cuda:0 --resume \
+@@ -38,26 +54,51 @@ if [ "$STAGE" = smoke ]; then
+   python followup_rel_4lang/grounding_eval/run_internvl_grounding.py \
+     --model-config "$MODEL_CONFIG" --suite pilot --output-dir "$OUT/pilot_orcf" \
+     2>&1 | tee -a "$OUT/logs/pilot_orcf.log"
+-  exit 0
+-fi
+-[ "$STAGE" = full ] || { echo "Unknown stage: $STAGE"; exit 1; }
++  CURRENT=smoke_gate
++  python followup_rel_4lang/check_internvl_gates.py smoke "$OUT" > "$OUT/logs/smoke_gate.log"
++  status "smoke passed"
++}
+ 
+-python 01_code/run_cross_locale.py \
+-  --manifest 01_code/data/manifests/mpr_gui_manifest.jsonl --repo-root 01_code \
+-  --model-config "$MODEL_CONFIG" --dimensions wf wi au ap ael rel \
+-  --sample-unit semantic_items --seed 42 --batch-size 1 \
+-  --score-labels --system-prompt-mode english_fixed --device-map cuda:0 --resume \
+-  --output "$OUT/full_6x6.jsonl" --failures-out "$OUT/full_6x6_failures.jsonl" \
+-  --sample-manifest-out "$OUT/full_6x6_plan.json" \
+-  2>&1 | tee -a "$OUT/logs/full_6x6.log"
+-python -m mpr_crosslocale.analysis.summarize_cross_locale \
+-  --input "$OUT/full_6x6.jsonl" \
+-  --json-out "$OUT/full_6x6_summary.json" --csv-out "$OUT/full_6x6_summary.csv"
++run_full() {
++  CURRENT=full_6x6
++  status "full 6x6 started"
++  python 01_code/run_cross_locale.py \
++    --manifest "$MANIFEST" --repo-root 01_code \
++    --model-config "$MODEL_CONFIG" --dimensions wf wi au ap ael rel \
++    --sample-unit semantic_items --seed 42 --batch-size 1 \
++    --score-labels --system-prompt-mode english_fixed --device-map cuda:0 --resume \
++    --output "$OUT/full_6x6.jsonl" --failures-out "$OUT/full_6x6_failures.jsonl" \
++    --sample-manifest-out "$OUT/full_6x6_plan.json" \
++    2>&1 | tee -a "$OUT/logs/full_6x6.log"
++  python -m mpr_crosslocale.analysis.summarize_cross_locale \
++    --input "$OUT/full_6x6.jsonl" \
++    --json-out "$OUT/full_6x6_summary.json" --csv-out "$OUT/full_6x6_summary.csv"
++  status "full 6x6 done"
++  CURRENT=full_rel
++  python followup_rel_4lang/run_inference.py \
++    --model-config "$MODEL_CONFIG" --batch-size 1 --resume \
++    --output-dir "$OUT/full_rel" 2>&1 | tee -a "$OUT/logs/full_rel.log"
++  status "full REL done"
++  CURRENT=full_grounding
++  python followup_rel_4lang/grounding_eval/run_internvl_grounding.py \
++    --model-config "$MODEL_CONFIG" --suite main --descriptors "$DESCRIPTORS" \
++    --output-dir "$OUT/grounding_main_orcf" 2>&1 | tee -a "$OUT/logs/grounding_main_orcf.log"
++  status "full grounding done"
++}
+ 
+-python followup_rel_4lang/run_inference.py \
+-  --model-config "$MODEL_CONFIG" --batch-size 1 --resume \
+-  --output-dir "$OUT/full_rel" 2>&1 | tee -a "$OUT/logs/full_rel.log"
++package() {
++  CURRENT=package
++  python followup_rel_4lang/check_internvl_gates.py complete "$OUT" > "$OUT/logs/complete_gate.log"
++  git rev-parse HEAD > "$OUT/git_commit.txt"
++  git status --short > "$OUT/git_status.txt"
++  python -m pip freeze > "$OUT/requirements.freeze.txt"
++  tar -czf "${OUT%/}_$(date -u +%Y%m%d).tar.gz" -C "$(dirname "$OUT")" "$(basename "$OUT")"
++  status "ALL DONE. Download ${OUT%/}_$(date -u +%Y%m%d).tar.gz"
++}
+ 
+-python followup_rel_4lang/grounding_eval/run_internvl_grounding.py \
+-  --model-config "$MODEL_CONFIG" --suite main --descriptors "$DESCRIPTORS" \
+-  --output-dir "$OUT/grounding_main_orcf" 2>&1 | tee -a "$OUT/logs/grounding_main_orcf.log"
++case "$STAGE" in
++  all) run_preflight; run_smoke; run_full; package ;;
++  smoke) run_preflight; run_smoke ;;
++  full) run_preflight; run_full; package ;;
++  *) echo "Unknown stage: $STAGE"; exit 1 ;;
++esac
+-- 
+2.50.0
+

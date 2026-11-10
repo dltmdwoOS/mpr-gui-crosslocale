@@ -1,0 +1,15 @@
+outcome,contrast,pp,ci95_lo,ci95_hi,p_boot,p_holm_primary3,items
+generation_correct,R_minus_O,5.538,2.637,8.544,0.0,,158
+generation_correct,Rstem_minus_O,3.27,1.424,5.169,0.0006,,158
+generation_correct,Ropts_minus_O,1.477,-0.686,3.639,0.1968,,158
+generation_correct,stem_effect_S,3.666,1.925,5.459,0.0,0.0,158
+generation_correct,option_effect_P,1.872,-0.264,4.035,0.0854,0.1708,158
+generation_correct,interaction_I,0.791,-1.266,2.901,0.4604,0.4604,158
+generation_correct,S_minus_P,1.793,-0.738,4.43,0.1816,,158
+scoring_correct,R_minus_O,5.538,2.637,8.544,0.0,,158
+scoring_correct,Rstem_minus_O,3.27,1.424,5.169,0.0006,,158
+scoring_correct,Ropts_minus_O,1.477,-0.686,3.639,0.1968,,158
+scoring_correct,stem_effect_S,3.666,1.925,5.459,0.0,0.0,158
+scoring_correct,option_effect_P,1.872,-0.264,4.035,0.0854,0.1708,158
+scoring_correct,interaction_I,0.791,-1.266,2.901,0.4604,0.4604,158
+scoring_correct,S_minus_P,1.793,-0.738,4.43,0.1816,,158

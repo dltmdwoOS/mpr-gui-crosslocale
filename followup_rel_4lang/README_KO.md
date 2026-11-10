@@ -1,5 +1,15 @@
 # REL 4언어 O/R/C/F 추론
 
+**2026-11-10 R_stem / R_opts 두 모델 분석 통합:** [Qwen3·InternVL3.5 결과](results/rstem_ropts_20261110/README_KO.md), [분석 코드·계획 및 재현 방법](analysis/rstem_ropts/README_KO.md).
+모델당 7,584행 완료, 파싱 실패 0건. 실행기는 이 폴더의 `run_rel_mixed.py`·`run_rel_mixed_internvl.py`, 잠긴 입력은 `rstem_ropts_inputs/`에 있다.
+
+진행한 실험은 ① Qwen2.5/InternVL2.5의 366문항·4언어 REL O/R/C/F와 GLMM,
+② grounding 형식·프롬프트 파일럿 및 기준 요소 위치 평가,
+③ Qwen3의 RTX 4090 속도·해상도 점검과 6×6·REL·grounding 전체 실행,
+④ 158문항에서 본문/보기 참조 표현을 분리한 Qwen3·InternVL3.5 R_stem/R_opts 비교다.
+InternVL3.5의 기존 전체 실행을 재현하는 지원 코드도 함께 통합했으며,
+이번에 추가된 원시 결과는 R_stem/R_opts 실행분이다.
+
 **2026-11-09 Qwen3 R_stem / R_opts 완료:** [원시 결과·검증·실행 기록](artifacts/qwen3_rstem_ropts_20261109/README_KO.md). 7,584행 모두 성공, 파싱 실패 0건.
 
 **2026-11-07 전체 Qwen3 실행:** [RTX 4090 한 장 runbook](QWEN3_SINGLE_4090_RUNBOOK_KO.md).

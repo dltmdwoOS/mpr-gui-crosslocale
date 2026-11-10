@@ -1,0 +1,5 @@
+outcome: correct
+random effects: item + pair random intercepts
+singular: FALSE
+nobs: 7584
+convergence messages: 

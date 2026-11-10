@@ -1,0 +1,788 @@
+From 265864d12b56f7890cae56bdb8a29a7fea8f59c0 Mon Sep 17 00:00:00 2001
+From: prep <local@local>
+Date: Sun, 8 Nov 2026 15:18:24 +0900
+Subject: [PATCH 1/5] Add InternVL3.5-8B single-4090 run path (config, adapter
+ compat, grounding runner, preflight, runbook)
+
+---
+ .../configs/models/internvl3_5_8b_4090.yaml   |  33 ++++
+ .../inference/run_cross_locale.py             |   6 +-
+ .../inference/run_rel_followup.py             |   4 +-
+ .../src/mpr_crosslocale/models/internvl25.py  |  73 +++++++-
+ 02_tests/tests/test_cross_locale_inference.py |  34 +++-
+ .../INTERNVL35_SINGLE_4090_RUNBOOK_KO.md      |  94 ++++++++++
+ .../check_internvl_preflight.py               | 144 ++++++++++++++
+ .../grounding_eval/run_internvl_grounding.py  | 177 ++++++++++++++++++
+ followup_rel_4lang/internvl35_4090_env.sh     |  12 ++
+ followup_rel_4lang/run_full_internvl35.sh     |  63 +++++++
+ 10 files changed, 633 insertions(+), 7 deletions(-)
+ create mode 100644 01_code/configs/models/internvl3_5_8b_4090.yaml
+ create mode 100644 followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md
+ create mode 100644 followup_rel_4lang/check_internvl_preflight.py
+ create mode 100644 followup_rel_4lang/grounding_eval/run_internvl_grounding.py
+ create mode 100644 followup_rel_4lang/internvl35_4090_env.sh
+ create mode 100644 followup_rel_4lang/run_full_internvl35.sh
+
+diff --git a/01_code/configs/models/internvl3_5_8b_4090.yaml b/01_code/configs/models/internvl3_5_8b_4090.yaml
+new file mode 100644
+index 0000000..dfc214d
+--- /dev/null
++++ b/01_code/configs/models/internvl3_5_8b_4090.yaml
+@@ -0,0 +1,33 @@
++model_id: OpenGVLab/InternVL3_5-8B
++model_family: internvl3_5
++# HF main as of 2025-08-29 (checked 2026-11-08). Language model: Qwen3ForCausalLM.
++revision: 9bb6a56ad9cc69db95e2d4eeb15a52bbcac4ef79
++dtype: bfloat16
++quantization: null
++trust_remote_code: true
++
++# Same backend as the InternVL2.5 runs: no flash-attn install, remote code
++# then sets the language model to eager attention. Qwen runs used SDPA; record
++# this difference in the paper's execution contract.
++attn_implementation: eager
++use_flash_attn: false
++device_strategy: cuda:0
++
++# 448px tiles, at most 7 tiles + thumbnail = 8 x 256 = 2,048 visual tokens,
++# the same visual-token cap as Qwen (max_pixels 2,097,152). The model card
++# default is max_num 12; a max_num 12 subset is a separate sensitivity run.
++processor_profile: internvl_dynamic_448_fixed_2048
++input_size: 448
++min_num: 1
++max_num: 7
++use_thumbnail: true
++vision_token_limit: 2048
++
++# Thinking mode stays off: it is enabled only by the R1 system prompt, and every
++# runner passes the explicit english_fixed system prompt instead.
++prompt_profile: mpr_label_only_v1
++generation:
++  do_sample: false
++  num_beams: 1
++  max_new_tokens: 2
++  temperature: null
+diff --git a/01_code/src/mpr_crosslocale/inference/run_cross_locale.py b/01_code/src/mpr_crosslocale/inference/run_cross_locale.py
+index 9ce357a..248b2d4 100644
+--- a/01_code/src/mpr_crosslocale/inference/run_cross_locale.py
++++ b/01_code/src/mpr_crosslocale/inference/run_cross_locale.py
+@@ -41,6 +41,8 @@ from mpr_crosslocale.inference.system_prompts import build_system_prompt
+ from mpr_crosslocale.models.internvl25 import InternVL25Adapter
+ from mpr_crosslocale.models.qwen25vl import Qwen25VLAdapter
+ 
++INTERNVL_FAMILIES = frozenset({"internvl2_5", "internvl3_5"})
++
+ 
+ def run(args: argparse.Namespace) -> None:
+     batch_size = getattr(args, "batch_size", 1)
+@@ -86,7 +88,7 @@ def run(args: argparse.Namespace) -> None:
+         generation_config["max_new_tokens"] = args.max_new_tokens
+     attn_implementation = args.attn_implementation or model_config.get("attn_implementation")
+     effective_use_flash_attn = model_config.get("use_flash_attn")
+-    if model_config.get("model_family") == "internvl2_5" and args.attn_implementation:
++    if model_config.get("model_family") in INTERNVL_FAMILIES and args.attn_implementation:
+         effective_use_flash_attn = args.attn_implementation == "flash_attention_2"
+     contract = {
+         "schema": "cross-locale-run-contract-v1", "model_config": model_config,
+@@ -378,7 +380,7 @@ def _build_model_adapter(args: argparse.Namespace, model_config: dict[str, Any])
+     model_family = model_config.get("model_family", "qwen2_5_vl")
+     if model_family in {"qwen2_5_vl", "qwen3_vl"}:
+         return _build_qwen_adapter(args, model_config)
+-    if model_family == "internvl2_5":
++    if model_family in INTERNVL_FAMILIES:
+         return _build_internvl_adapter(args, model_config)
+     raise ValueError(f"Unsupported model_family: {model_family!r}")
+ 
+diff --git a/01_code/src/mpr_crosslocale/inference/run_rel_followup.py b/01_code/src/mpr_crosslocale/inference/run_rel_followup.py
+index 54054b1..df55f27 100644
+--- a/01_code/src/mpr_crosslocale/inference/run_rel_followup.py
++++ b/01_code/src/mpr_crosslocale/inference/run_rel_followup.py
+@@ -399,10 +399,10 @@ def run(args) -> dict:
+     config = load_yaml(args.model_config)
+     if args.batch_size > 1 and config.get("model_family") not in ("qwen2_5_vl", "qwen3_vl"):
+         raise ValueError("REL batched inference currently supports Qwen VL models only")
+-    if config.get("model_family") not in ("qwen2_5_vl", "qwen3_vl", "internvl2_5") or not config.get(
++    if config.get("model_family") not in ("qwen2_5_vl", "qwen3_vl", "internvl2_5", "internvl3_5") or not config.get(
+         "revision"
+     ):
+-        raise ValueError("Use a pinned Qwen VL or InternVL2.5 model configuration")
++        raise ValueError("Use a pinned Qwen VL or InternVL2.5/3.5 model configuration")
+     if config.get("prompt_profile") != "mpr_label_only_v1":
+         raise ValueError("This experiment uses mpr_label_only_v1")
+     if config.get("dtype") != "bfloat16" or config.get("quantization") is not None:
+diff --git a/01_code/src/mpr_crosslocale/models/internvl25.py b/01_code/src/mpr_crosslocale/models/internvl25.py
+index 1a7a768..625fd48 100644
+--- a/01_code/src/mpr_crosslocale/models/internvl25.py
++++ b/01_code/src/mpr_crosslocale/models/internvl25.py
+@@ -50,9 +50,16 @@ def _clean_kwargs(config: dict[str, Any]) -> dict[str, Any]:
+ 
+ 
+ def ensure_generation_mixin(model: Any) -> bool:
+-    """Restore generation and legacy-cache support for pinned InternLM2 remote code."""
++    """Restore generation and legacy-cache support for pinned InternLM2 remote code.
++
++    Only the InternLM2 language model (InternVL2.5) needs this patch. Native
++    Transformers language models such as Qwen3ForCausalLM (InternVL3.5) are left
++    untouched so their default cache handling is unchanged.
++    """
+     language_model = model.language_model
+     original_class = language_model.__class__
++    if "InternLM2" not in original_class.__name__:
++        return False
+     has_generate = callable(getattr(language_model, "generate", None))
+     compatible_bases: tuple[type, ...]
+     if has_generate:
+@@ -353,8 +360,20 @@ class InternVL25Adapter:
+         num_patches_list: tuple[int, ...],
+     ):
+         question = self.build_question(input_row, prompt_profile)
++        return self._encode_question(question, system_prompt, num_patches_list)
++
++    def _encode_question(
++        self,
++        question: str,
++        system_prompt: str | None,
++        num_patches_list: tuple[int, ...],
++    ):
+         template = deepcopy(self.model.conv_template)
+-        template.system_message = system_prompt or self.model.system_message
++        # None keeps the checkpoint default (a Chinese identity message for the
++        # internvl2_5 template); an explicit string, including "", replaces it.
++        template.system_message = (
++            self.model.system_message if system_prompt is None else system_prompt
++        )
+         template.append_message(template.roles[0], question)
+         template.append_message(template.roles[1], None)
+         rendered_prompt = template.get_prompt()
+@@ -451,6 +470,56 @@ class InternVL25Adapter:
+             visual_token_count=visual_token_count,
+         )
+ 
++    def generate_freeform(
++        self,
++        image_paths: list[str],
++        text: str,
++        generation_config: dict[str, Any],
++        system_prompt: str | None,
++    ) -> dict[str, Any]:
++        """Generate free text for one image and one user text (grounding task)."""
++        import torch
++
++        if len(image_paths) != 1:
++            raise ValueError("Free-form InternVL generation expects exactly one image")
++        pixel_values, num_patches_list = self._prepare_images([str(image_paths[0])])
++        (
++            rendered_prompt,
++            input_ids,
++            attention_mask,
++            eos_token_id,
++            separator,
++        ) = self._encode_question("<image>\n" + text, system_prompt, num_patches_list)
++        generation_kwargs = _clean_kwargs(dict(generation_config))
++        generation_kwargs["eos_token_id"] = eos_token_id
++        if self.tokenizer.pad_token_id is not None:
++            generation_kwargs.setdefault("pad_token_id", self.tokenizer.pad_token_id)
++        with torch.inference_mode():
++            generated_ids = self.model.generate(
++                pixel_values=pixel_values,
++                input_ids=input_ids,
++                attention_mask=attention_mask,
++                **generation_kwargs,
++            )
++        # Remote-code generate() passes inputs_embeds, so the output holds only
++        # newly generated tokens.
++        tokens = generated_ids[0].detach().cpu().tolist()
++        stop = next((i for i, token in enumerate(tokens) if token == eos_token_id), None)
++        kept = tokens[: stop + 1] if stop is not None else tokens
++        decoded = self.tokenizer.decode(
++            kept, skip_special_tokens=True, clean_up_tokenization_spaces=False
++        )
++        return {
++            "raw_output": decoded.split(separator, 1)[0].strip(),
++            "rendered_prompt": rendered_prompt,
++            "prompt_tokens": int(input_ids.shape[1]),
++            "generated_token_ids": kept,
++            "output_tokens": len(kept),
++            "stop_reason": "eos" if stop is not None else "length",
++            "num_patches_list": list(num_patches_list),
++            "visual_token_count": int(sum(num_patches_list) * self.model.num_image_token),
++        }
++
+     def _summarize_label_logits(
+         self,
+         next_token_logits: Any,
+diff --git a/02_tests/tests/test_cross_locale_inference.py b/02_tests/tests/test_cross_locale_inference.py
+index 83e6118..6845481 100644
+--- a/02_tests/tests/test_cross_locale_inference.py
++++ b/02_tests/tests/test_cross_locale_inference.py
+@@ -147,7 +147,7 @@ def test_internvl_dynamic_preprocess_respects_visual_budget():
+ 
+ def test_internvl_generation_compatibility_is_noop_when_generate_exists():
+     language_model = type(
+-        "LanguageModel",
++        "InternLM2ForCausalLM",
+         (),
+         {
+             "generate": lambda self: None,
+@@ -160,6 +160,38 @@ def test_internvl_generation_compatibility_is_noop_when_generate_exists():
+     assert model.language_model._supports_default_dynamic_cache() is False
+ 
+ 
++def test_internvl35_native_language_model_is_left_untouched():
++    language_class = type(
++        "Qwen3ForCausalLM",
++        (),
++        {
++            "generate": lambda self: None,
++            "_supports_default_dynamic_cache": classmethod(lambda cls: True),
++        },
++    )
++    model = type("Model", (), {"language_model": language_class()})()
++
++    assert ensure_generation_mixin(model) is False
++    assert model.language_model.__class__ is language_class
++    assert model.language_model._supports_default_dynamic_cache() is True
++
++
++def test_model_factory_builds_internvl35_family(monkeypatch):
++    captured = {}
++    monkeypatch.setattr(run_cross_locale, "InternVL25Adapter", lambda **kwargs: captured.update(kwargs) or "ok")
++    config = {
++        "model_id": "OpenGVLab/InternVL3_5-8B", "model_family": "internvl3_5",
++        "revision": "9bb6a56ad9cc69db95e2d4eeb15a52bbcac4ef79", "attn_implementation": "eager",
++        "use_flash_attn": False, "max_num": 7,
++    }
++    adapter = run_cross_locale._build_model_adapter(Namespace(attn_implementation=None, device_map="cuda:0"), config)
++
++    assert adapter == "ok"
++    assert captured["model_id"] == "OpenGVLab/InternVL3_5-8B"
++    assert captured["use_flash_attn"] is False
++    assert captured["max_num"] == 7
++
++
+ def test_internvl_rejects_boolean_tokenizer_sentinel():
+     tokenizer = type(
+         "Tokenizer",
+diff --git a/followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md b/followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md
+new file mode 100644
+index 0000000..a742a7d
+--- /dev/null
++++ b/followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md
+@@ -0,0 +1,94 @@
++# InternVL3.5 전체 실험: RTX 4090 한 장 실행 안내
++
++작성: 2026-11-08. Qwen3 실행([안내](QWEN3_SINGLE_4090_RUNBOOK_KO.md))과 같은 입력·프롬프트·채점·순서로 InternVL3.5-8B를 돌린다. **이 문서와 코드는 로컬 점검만 거쳤고 GPU에서 실행하지 않았다(미검증).** 반드시 3단계 사전 점검과 4단계 smoke를 먼저 통과시킨다.
++
++| 실험 | 규모 | Qwen3와 같은 점 |
++| --- | ---: | --- |
++| 6×6, 6개 차원 | 79,020응답 | 같은 manifest·seed 42·영어 고정 system·A–D 최대 2토큰·first-token label score |
++| REL O/R/C/F | 23,424행, 고유 추론 18,432회 | 같은 bundle·프롬프트·채점 |
++| Grounding main O/R/C/F | 7,584응답 | 같은 158문항·설명 파일·사용자 프롬프트·0–1000 점 채점 (입력 7,584개가 Qwen3 실행과 동일함을 로컬에서 확인) |
++
++## Qwen3 실행과 다른 점 (논문 실행 계약에 적는다)
++
++| 항목 | Qwen3 | InternVL3.5 | 이유 |
++| --- | --- | --- | --- |
++| 모델 | Qwen3-VL-8B `0c351dd` | InternVL3_5-8B `9bb6a56` | HF main(2025-08-29), 언어 모델 Qwen3ForCausalLM |
++| 이미지 | max_pixels 2,097,152 | 448px 타일 최대 7 + 썸네일 = 최대 2,048 시각 토큰 | 시각 토큰 상한을 같게 맞춘다. 모델 카드 기본값은 12타일 |
++| 배치 | 4 | **1** | InternVL 어댑터는 배치 경로가 없다. 배치 4→3 검사 대신 3단계 점검을 쓴다 |
++| attention | SDPA | eager | flash-attn 미설치 시 원격 코드가 eager로 고정한다(InternVL2.5 실행과 같음) |
++| Grounding system 메시지 | 없음 | **빈 system 메시지** | InternVL 템플릿은 system 칸이 항상 있고, 비우지 않으면 중국어 기본 문구가 모든 조건에 붙는다 |
++| thinking | 없음 | 꺼짐 | R1 system 프롬프트를 넣을 때만 켜진다. 6×6·REL은 영어 고정 system을 명시한다 |
++
++로컬에서 확인한 것: InternVL3.5 토크나이저에서 A/B/C/D가 각각 토큰 하나(32–35)다. 영어 고정 system 문구가 렌더링된 프롬프트 맨 앞에 들어간다. 빈 system은 `<|im_start|>system\n<|im_end|>`로 렌더링된다. 기존 테스트 80개가 통과한다(로컬 데이터가 없어 실패하는 5개는 변경 전과 같다).
++
++## 1. 인스턴스와 환경
++
++Qwen3를 돌린 인스턴스를 그대로 쓰면 1단계를 건너뛴다. 같은 venv(torch 2.9.1+cu130, transformers 4.57.6, timm, einops)에서 돈다. 새 인스턴스라면 [Qwen3 안내 1단계](QWEN3_SINGLE_4090_RUNBOOK_KO.md#1-인스턴스와-환경)와 같다: RTX 4090 1장, RAM 48GB 이상, 디스크 80GB 이상, `tmux` 안에서 진행.
++
++이 브랜치의 변경 파일을 저장소에 반영한 뒤:
++
++```bash
++cd /workspace/mpr-gui-crosslocale
++source .venv/bin/activate
++export XDG_CACHE_HOME="$PWD/.cache" HF_HOME="$PWD/.cache/huggingface" CUDA_VISIBLE_DEVICES=0
++python -m pip install -e './01_code[models]'   # 코드가 바뀌었으므로 다시 설치
++source followup_rel_4lang/internvl35_4090_env.sh
++python -c 'import torch,transformers,timm,einops;print(torch.__version__,transformers.__version__);print(torch.cuda.get_device_name(0))'
++```
++
++## 2. 체크포인트 준비
++
++데이터·이미지는 Qwen3 실행 때 받은 것을 그대로 쓴다(`data_bundle.py verify`만 다시 실행). 모델은 약 17GB다.
++
++```bash
++python followup_rel_4lang/data_bundle.py verify
++hf download "$INTERNVL35_MODEL_ID" --revision "$INTERNVL35_REVISION"
++df -h .   # 남은 디스크 확인. Qwen3 캐시(약 17GB)와 함께 들어가야 한다
++```
++
++## 3. 사전 점검 (필수, 약 5–10분)
++
++각 차원의 가장 긴 질문 6개와 가장 긴 grounding 시도 1개를 배치 1로 실제 생성한다. 출력이 A–D 한 글자가 아니거나, 영어 system이 빠졌거나, 시각 토큰이 상한을 넘으면 실패로 멈춘다. 시간·최대 메모리를 기록한다.
++
++```bash
++python followup_rel_4lang/check_internvl_preflight.py \
++  --manifest 01_code/data/manifests/mpr_gui_manifest.jsonl \
++  --model-config "$MODEL_CONFIG" --output "$OUT/preflight.json" \
++  2>&1 | tee "$OUT/preflight.log"
++```
++
++`preflight.json`의 `measurements`에서 `seconds`로 전체 시간을 다시 어림한다. grounding의 `raw_output`이 `(x, y)` 형식인지 본다. 상자(`[[x1,y1,x2,y2]]`) 형식이면 채점에서 형식 실패가 되므로 본 실행 전에 상의한다.
++
++## 4. smoke (약 30분 안쪽, 추정)
++
++```bash
++bash followup_rel_4lang/run_full_internvl35.sh smoke
++```
++
++6×6 216응답, REL 고유 80회/128행, grounding 파일럿 192응답이다. 실행 실패·파싱 실패·좌표 형식 실패 수를 확인한다. grounding `pilot_orcf/summary.json`의 `complete=true`, 조건별 48응답을 확인한다.
++
++## 5. 전체 실행
++
++```bash
++bash followup_rel_4lang/run_full_internvl35.sh full
++```
++
++세 실험을 차례로 실행한다. 중단되면 같은 명령을 다시 실행하면 이어서 한다(6×6·REL은 `--resume`, grounding은 계약 확인 후 자동 재개). 설정·설명 파일을 바꿀 때는 `OUT`을 새 폴더로 바꾼다.
++
++예상 시간(미검증): 배치 1·eager라 응답당 0.5–1초로 보면 6×6 11–22시간, REL 2.5–5시간, grounding(최대 64토큰) 3–6시간, 합계 약 17–33시간이다. 3단계 측정값으로 다시 계산한다.
++
++## 6. 완료 확인과 보존
++
++Qwen3 안내 7단계와 같다. 6×6 성공 고유 입력 79,020개, REL `condition_rows=23424`·`actual_successful_inferences=18432`, grounding `complete=true`·`response_count=7584`를 확인한다. 인스턴스를 끄기 전에 `$OUT` 전체, `git rev-parse HEAD`, `python -m pip freeze`를 내려받는다.
++
++## 위험과 대처
++
++| 위험 | 크기 | 대처 |
++| --- | --- | --- |
++| 비용 | 4090 1장 약 1–1.5일 | 지원 후에는 직접 비용. 끝나면 인스턴스를 바로 끈다 |
++| 디스크 부족 | 모델 17GB + 결과 수 GB | 2단계 `df -h`. 부족하면 Qwen3 캐시를 지우기 전에 Qwen3 결과를 먼저 내려받는다 |
++| 메모리 부족 | 8.5B bf16 약 17GB + eager attention | 3단계에서 최대 길이 입력으로 확인. 본 실행 중 OOM은 멈추고 기록한다 |
++| 인스턴스 중단 | 진행분은 한 줄씩 저장 | 같은 명령으로 재개 |
++| 원격 코드 변경 | revision 고정 | `INTERNVL35_REVISION`을 바꾸지 않는다 |
++
++InternVL2.5-8B를 같은 방식으로 다시 돌리려면 `MODEL_CONFIG=01_code/configs/models/internvl2_5_8b.yaml OUT=followup_rel_4lang/results/internvl25_single4090`로 바꿔 2–5단계를 반복한다(revision `e9e4c0d`, InternLM2.5 언어 모델).
+diff --git a/followup_rel_4lang/check_internvl_preflight.py b/followup_rel_4lang/check_internvl_preflight.py
+new file mode 100644
+index 0000000..c909a9f
+--- /dev/null
++++ b/followup_rel_4lang/check_internvl_preflight.py
+@@ -0,0 +1,144 @@
++"""InternVL qualification check on one RTX 4090 before any full run (batch size 1).
++
++Runs the longest question of each 6x6 dimension and the longest grounding pilot
++trial once, and records time, peak memory, visual tokens and output form. It
++stops with a non-zero exit if a multiple-choice output is not a single A-D label,
++if label tokens are not single tokens, if the explicit English system prompt is
++not in the rendered prompt, or if visual tokens exceed the configured cap.
++It is a functionality check, not a guarantee for every full-dataset input.
++"""
++from __future__ import annotations
++
++import argparse
++import gc
++import hashlib
++import json
++import sys
++import time
++from pathlib import Path
++from types import SimpleNamespace
++
++REPO = Path(__file__).resolve().parents[1]
++sys.path.insert(0, str(REPO))
++sys.path.insert(0, str(REPO / "01_code/src"))
++sys.path.insert(0, str(REPO / "followup_rel_4lang/grounding_eval"))
++from mpr_crosslocale.data.cross_locale_sampling import build_cross_locale_plan, build_language_pairs  # noqa: E402
++from mpr_crosslocale.inference.answer_parser import parse_label  # noqa: E402
++from mpr_crosslocale.inference.run_cross_locale import INTERNVL_FAMILIES, _build_model_adapter  # noqa: E402
++from mpr_crosslocale.inference.runtime import load_yaml, read_jsonl, resolve_paths, software_versions  # noqa: E402
++from mpr_crosslocale.inference.system_prompts import build_system_prompt  # noqa: E402
++from run_internvl_grounding import GENERATION as GROUNDING_GENERATION, SYSTEM_MESSAGE  # noqa: E402
++from run_qwen3_grounding import build_groups  # noqa: E402
++from run_qwen3_prompt_pilot import PROMPT, _score  # noqa: E402
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--manifest", type=Path, required=True)
++    parser.add_argument("--model-config", type=Path, required=True)
++    parser.add_argument("--output", type=Path, required=True)
++    parser.add_argument("--plan-only", action="store_true")
++    args = parser.parse_args()
++    if args.output.exists():
++        parser.error("Use a fresh output path; do not overwrite a preflight record")
++    config = load_yaml(args.model_config)
++    if config.get("model_family") not in INTERNVL_FAMILIES:
++        parser.error("Use a pinned InternVL configuration")
++    manifest = read_jsonl(args.manifest)
++    plan = build_cross_locale_plan(manifest, build_language_pairs(None, None),
++                                   {"wf", "wi", "au", "ap", "ael", "rel"}, None, "semantic_items", 42)
++    rows = resolve_paths(plan.rows, REPO / "01_code")
++    trials = [t for g in build_groups("pilot") for t in g["trials"]]
++    record = {
++        "config_sha256": hashlib.sha256(args.model_config.read_bytes()).hexdigest(),
++        "manifest_sha256": hashlib.sha256(args.manifest.read_bytes()).hexdigest(),
++        "model_id": config["model_id"], "revision": config["revision"], "batch_size": 1,
++        "cross_locale_inputs": len(rows), "software": software_versions(),
++    }
++    if args.plan_only:
++        print(json.dumps(record, indent=2))
++        return
++
++    import torch
++
++    torch.set_num_threads(3)
++    if torch.cuda.device_count() != 1 or "4090" not in torch.cuda.get_device_name(0):
++        raise RuntimeError("Expose exactly one RTX 4090 with CUDA_VISIBLE_DEVICES")
++    record["gpu"] = torch.cuda.get_device_name(0)
++    adapter = _build_model_adapter(SimpleNamespace(attn_implementation=None, device_map="cuda:0"), config)
++    tokenizer = adapter.tokenizer
++    label_ids = adapter._label_token_ids()
++    record["label_token_ids"] = label_ids
++    problems = []
++    if any(len(ids) != 1 for ids in label_ids.values()):
++        problems.append("A-D labels are not single tokens")
++
++    cases = []
++    for dimension in ("wf", "wi", "au", "ap", "ael", "rel"):
++        candidates = [r for r in rows if r["dimension"] == dimension]
++        longest = max({r["question_raw"]: r for r in candidates}.values(),
++                      key=lambda r: len(tokenizer.encode(r["question_raw"])))
++        largest = max(candidates, key=lambda r: len(r["image_paths"]))
++        cases.append((dimension, {**longest, "image_paths": largest["image_paths"]}))
++    ground = max(trials, key=lambda r: len(tokenizer.encode(PROMPT.format(text=r["marked_text"]))))
++
++    cap = int(config.get("vision_token_limit", 2048))
++    measurements = []
++    for name, row in cases:
++        gc.collect()
++        torch.cuda.empty_cache()
++        torch.cuda.reset_peak_memory_stats()
++        system_prompt = build_system_prompt("english_fixed", row["question_language"])[0]
++        started = time.perf_counter()
++        output = adapter.generate_one(row, config["prompt_profile"], config["generation"],
++                                      system_prompt=system_prompt, score_labels=True)
++        torch.cuda.synchronize()
++        label = parse_label(output.raw_output)
++        scored = output.label_summary.scored_predicted_label if output.label_summary else None
++        per_image_cap = cap * len(row["image_paths"])
++        if label is None:
++            problems.append(f"{name}: output is not a single A-D label: {output.raw_output!r}")
++        if not output.rendered_prompt.startswith("<|im_start|>system\n" + system_prompt):
++            problems.append(f"{name}: explicit English system prompt missing")
++        if output.visual_token_count and output.visual_token_count > per_image_cap:
++            problems.append(f"{name}: visual tokens {output.visual_token_count} > {per_image_cap}")
++        measurements.append({
++            "case": name, "input_id": row["input_id"], "images": len(row["image_paths"]),
++            "seconds": time.perf_counter() - started,
++            "peak_reserved_gib": torch.cuda.max_memory_reserved() / 2**30,
++            "prompt_tokens": output.prompt_token_count, "visual_tokens": output.visual_token_count,
++            "num_patches": list(output.num_patches_list), "raw_output": output.raw_output,
++            "generated_label": label, "scored_label": scored,
++        })
++        print(f"case={name} {measurements[-1]['seconds']:.2f}s "
++              f"{measurements[-1]['peak_reserved_gib']:.2f}GiB raw={output.raw_output!r}", flush=True)
++
++    gc.collect()
++    torch.cuda.empty_cache()
++    torch.cuda.reset_peak_memory_stats()
++    image = REPO / "followup_rel_4lang" / ground["image_path"]
++    started = time.perf_counter()
++    result = adapter.generate_freeform([image.as_posix()], PROMPT.format(text=ground["marked_text"]),
++                                       GROUNDING_GENERATION, SYSTEM_MESSAGE)
++    torch.cuda.synchronize()
++    measurements.append({
++        "case": "grounding", "trial_id": ground["trial_id"],
++        "seconds": time.perf_counter() - started,
++        "peak_reserved_gib": torch.cuda.max_memory_reserved() / 2**30,
++        "prompt_tokens": result["prompt_tokens"], "visual_tokens": result["visual_token_count"],
++        "raw_output": result["raw_output"], "valid_point": _score(result["raw_output"], ground)["valid_output"],
++    })
++    print(f"case=grounding raw={result['raw_output']!r}", flush=True)
++
++    record.update(measurements=measurements, problems=problems,
++                  status="passed" if not problems else "failed",
++                  note="Functionality check at batch 1; not a guarantee for every input.")
++    args.output.parent.mkdir(parents=True, exist_ok=True)
++    args.output.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
++    if problems:
++        raise SystemExit("Preflight failed:\n- " + "\n- ".join(problems))
++    print("Preflight passed", flush=True)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/followup_rel_4lang/grounding_eval/run_internvl_grounding.py b/followup_rel_4lang/grounding_eval/run_internvl_grounding.py
+new file mode 100644
+index 0000000..2376501
+--- /dev/null
++++ b/followup_rel_4lang/grounding_eval/run_internvl_grounding.py
+@@ -0,0 +1,177 @@
++"""InternVL grounding O/R/C/F with the same inputs, prompt and scoring as the Qwen3 runner.
++
++Differences from run_qwen3_grounding.py are deliberate and recorded in the contract:
++- batch size is fixed at 1 (the InternVL adapter has no batched path);
++- InternVL's chat template always has a system turn. The Qwen3 runner sends no system
++  message, so this runner sends an EMPTY system message instead of the checkpoint's
++  default Chinese identity message (which would add Chinese text to every condition);
++- images use the InternVL 448px tiling from the model config (max 2,048 visual tokens).
++Inputs (build_groups), the user prompt (PROMPT) and hit scoring (_score) are imported
++unchanged from the Qwen3 runner.
++"""
++
++from __future__ import annotations
++
++import argparse
++import hashlib
++import importlib.metadata
++import json
++import os
++import sys
++import time
++from pathlib import Path
++
++HERE = Path(__file__).resolve().parent
++REPO = HERE.parents[1]
++sys.path.insert(0, str(HERE))
++sys.path.insert(0, str(REPO / "01_code/src"))
++
++from benchmark_qwen3_runtime import _ensure_locked_image  # noqa: E402
++from run_qwen3_grounding import (  # noqa: E402
++    CONDITIONS,
++    build_groups,
++    digest,
++    pack_groups,
++    read_jsonl,
++    shard_for,
++    summarize,
++    write_json,
++)
++from run_qwen3_prompt_pilot import PROMPT, _score  # noqa: E402
++
++SYSTEM_MESSAGE = ""  # see module docstring
++GENERATION = {"do_sample": False, "num_beams": 1, "max_new_tokens": 64}
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--model-config", type=Path, required=True)
++    parser.add_argument("--output-dir", type=Path, required=True)
++    parser.add_argument("--suite", choices=("controls", "pilot", "main"), default="pilot")
++    parser.add_argument("--descriptors", type=Path)
++    parser.add_argument("--num-shards", type=int, default=1)
++    parser.add_argument("--shard-index", type=int, default=0)
++    parser.add_argument("--dry-run", action="store_true")
++    args = parser.parse_args()
++    if not 0 <= args.shard_index < args.num_shards:
++        parser.error("Require 0 <= shard-index < num-shards")
++
++    from mpr_crosslocale.inference.run_cross_locale import INTERNVL_FAMILIES
++    from mpr_crosslocale.inference.runtime import load_yaml
++
++    config = load_yaml(args.model_config)
++    if config.get("model_family") not in INTERNVL_FAMILIES or not config.get("revision"):
++        parser.error("Use a pinned InternVL model configuration")
++    if config.get("dtype") != "bfloat16" or config.get("quantization") is not None:
++        parser.error("Use unquantized bfloat16")
++
++    groups = [g for g in build_groups(args.suite, args.descriptors)
++              if shard_for(g["parallel_id"], args.num_shards) == args.shard_index]
++    groups = pack_groups(groups, 1)
++    contract = {
++        "schema": "internvl-grounding-portable-v1", "batch_size": 1,
++        "conditions": list(CONDITIONS), "suite": args.suite,
++        "model_id": config["model_id"], "model_family": config["model_family"],
++        "revision": config["revision"], "dtype": "bfloat16",
++        "attn_implementation": config.get("attn_implementation"),
++        "use_flash_attn": bool(config.get("use_flash_attn", False)),
++        "tiling": {key: config.get(key) for key in
++                   ("input_size", "min_num", "max_num", "use_thumbnail", "vision_token_limit")},
++        "system_message": SYSTEM_MESSAGE, "generation": GENERATION,
++        "prompt_template": PROMPT, "groups_sha256": digest(groups),
++        "model_config_sha256": hashlib.sha256(args.model_config.read_bytes()).hexdigest(),
++        "runner_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
++        "implementation_sha256": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in (
++            HERE / "run_qwen3_grounding.py", HERE / "run_qwen3_prompt_pilot.py",
++            HERE / "point_format.py", HERE / "benchmark_qwen3_runtime.py",
++            REPO / "01_code/src/mpr_crosslocale/models/internvl25.py")},
++        "num_shards": args.num_shards, "shard_index": args.shard_index,
++        "expected_batches": len(groups), "expected_responses": len(groups),
++    }
++    if args.dry_run:
++        print(json.dumps(contract, ensure_ascii=False, indent=2))
++        return
++
++    for key in ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS"):
++        os.environ[key] = "3"
++    os.environ["TOKENIZERS_PARALLELISM"] = "false"
++    import torch
++    import transformers
++
++    contract.update(torch_version=torch.__version__, transformers_version=transformers.__version__,
++                    gpu=torch.cuda.get_device_name(0),
++                    package_versions={p: importlib.metadata.version(p) for p in
++                                      ("tokenizers", "numpy", "pillow", "accelerate", "timm", "einops")})
++    args.output_dir.mkdir(parents=True, exist_ok=True)
++    contract_path = args.output_dir / "run_contract.json"
++    if contract_path.exists():
++        if json.loads(contract_path.read_text()) != contract:
++            raise ValueError("Refusing to mix different experiment contracts")
++    else:
++        if (args.output_dir / "batches.jsonl").exists():
++            raise ValueError("Batch results exist without a run contract")
++        write_json(contract_path, contract)
++        write_json(args.output_dir / "input_plan.json", groups)
++    path = args.output_dir / "batches.jsonl"
++    batches = read_jsonl(path) if path.exists() else []
++    known = {b["group_id"] for b in batches}
++    expected = {g["group_id"]: g for g in groups}
++    if len(known) != len(batches) or not known <= set(expected):
++        raise ValueError("Duplicate or unexpected completed groups")
++    for batch in batches:
++        if batch["contract_sha256"] != digest(contract):
++            raise ValueError("Batch contract mismatch")
++    pending = [g for g in groups if g["group_id"] not in known]
++    print(json.dumps({"pending_batches": len(pending), "contract": contract}), flush=True)
++    if pending:
++        torch.set_num_threads(3)
++        from mpr_crosslocale.models.internvl25 import InternVL25Adapter
++
++        adapter = InternVL25Adapter(
++            model_id=config["model_id"], revision=config["revision"], dtype="bfloat16",
++            device_map=config.get("device_strategy") or "cuda:0",
++            trust_remote_code=bool(config.get("trust_remote_code", True)),
++            use_flash_attn=bool(config.get("use_flash_attn", False)),
++            input_size=int(config.get("input_size", 448)), min_num=int(config.get("min_num", 1)),
++            max_num=int(config.get("max_num", 7)),
++            use_thumbnail=bool(config.get("use_thumbnail", True)),
++        )
++        for group in pending:
++            (trial,) = group["trials"]
++            image = _ensure_locked_image(trial["pair_id"])
++            if hashlib.sha256(image.read_bytes()).hexdigest() != trial["image_sha256"]:
++                raise ValueError("Image differs from annotation")
++            torch.cuda.reset_peak_memory_stats()
++            torch.cuda.synchronize()
++            started = time.perf_counter()
++            output = adapter.generate_freeform([image.as_posix()],
++                                               PROMPT.format(text=trial["marked_text"]),
++                                               GENERATION, SYSTEM_MESSAGE)
++            torch.cuda.synchronize()
++            elapsed = time.perf_counter() - started
++            if output["visual_token_count"] > int(config.get("vision_token_limit", 2048)):
++                raise ValueError("Visual tokens exceed the configured cap")
++            result = {**trial, **output, **_score(output["raw_output"], trial)}
++            batch = {"group_id": group["group_id"], "contract_sha256": digest(contract),
++                     "batch_size": 1, "generate_s": round(elapsed, 6),
++                     "peak_reserved_gib": torch.cuda.max_memory_reserved() / 2**30,
++                     "results": [result]}
++            with path.open("a", encoding="utf-8") as handle:
++                handle.write(json.dumps(batch, ensure_ascii=False) + "\n")
++                handle.flush()
++            batches.append(batch)
++            if len(batches) % 50 == 0 or len(batches) == len(groups):
++                write_json(args.output_dir / "summary.json", summarize(batches, len(groups)))
++            print(f"{len(batches)}/{len(groups)} {trial['trial_id']} {elapsed:.3f}s "
++                  f"hit={int(result['point_in_gt_box'])} raw={output['raw_output']!r}", flush=True)
++    write_json(args.output_dir / "summary.json", summarize(batches, len(groups)))
++    predictions = args.output_dir / "predictions.jsonl"
++    temporary = predictions.with_suffix(".jsonl.tmp")
++    temporary.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n"
++                                 for b in batches for r in b["results"]), encoding="utf-8")
++    temporary.replace(predictions)
++    print(json.dumps(summarize(batches, len(groups)), ensure_ascii=False, indent=2), flush=True)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/followup_rel_4lang/internvl35_4090_env.sh b/followup_rel_4lang/internvl35_4090_env.sh
+new file mode 100644
+index 0000000..5a5ee1d
+--- /dev/null
++++ b/followup_rel_4lang/internvl35_4090_env.sh
+@@ -0,0 +1,12 @@
++#!/usr/bin/env bash
++# Source from any directory. No credentials or machine-specific cache is saved.
++INTERNVL35_REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
++export HF_HOME="${HF_HOME:-/workspace/.hf_home}"
++export OMP_NUM_THREADS=3 MKL_NUM_THREADS=3 OPENBLAS_NUM_THREADS=3
++export TOKENIZERS_PARALLELISM=false
++export PYTHON_BIN="${INTERNVL35_REPO_ROOT}/.venv/bin/python"
++export INTERNVL35_MODEL_ID=OpenGVLab/InternVL3_5-8B
++export INTERNVL35_REVISION=9bb6a56ad9cc69db95e2d4eeb15a52bbcac4ef79
++export MODEL_CONFIG="${MODEL_CONFIG:-01_code/configs/models/internvl3_5_8b_4090.yaml}"
++export OUT="${OUT:-followup_rel_4lang/results/internvl35_single4090}"
++export DESCRIPTORS="${DESCRIPTORS:-followup_rel_4lang/grounding_eval/rtx4090_20261105/main_descriptors_draft_v2.json}"
+diff --git a/followup_rel_4lang/run_full_internvl35.sh b/followup_rel_4lang/run_full_internvl35.sh
+new file mode 100644
+index 0000000..e20c24d
+--- /dev/null
++++ b/followup_rel_4lang/run_full_internvl35.sh
+@@ -0,0 +1,63 @@
++#!/usr/bin/env bash
++# InternVL3.5-8B: 6x6, REL O/R/C/F and grounding O/R/C/F on ONE RTX 4090, batch 1.
++# Usage (repo root, inside tmux, after the runbook's setup and preflight):
++#   bash followup_rel_4lang/run_full_internvl35.sh smoke   # small checks only
++#   bash followup_rel_4lang/run_full_internvl35.sh full    # full GPU inference
++set -euo pipefail
++STAGE="${1:?Give smoke or full}"
++cd "$(dirname "$0")/.."
++export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$PWD/.cache}"
++export HF_HOME="${HF_HOME:-$XDG_CACHE_HOME/huggingface}"
++export CUDA_VISIBLE_DEVICES=0 HF_HUB_DISABLE_XET=1
++source .venv/bin/activate
++source followup_rel_4lang/internvl35_4090_env.sh
++mkdir -p "$OUT/logs"
++test -s "$OUT/preflight.json" || { echo "Run the preflight first (runbook step 3)"; exit 1; }
++python - <<'PY'
++import hashlib, json, os
++from pathlib import Path
++r = json.loads(Path(os.environ["OUT"], "preflight.json").read_text())
++assert r["status"] == "passed", "Preflight did not pass"
++assert r["config_sha256"] == hashlib.sha256(Path(os.environ["MODEL_CONFIG"]).read_bytes()).hexdigest(), "Config changed since preflight"
++assert r["manifest_sha256"] == hashlib.sha256(Path("01_code/data/manifests/mpr_gui_manifest.jsonl").read_bytes()).hexdigest(), "Manifest changed since preflight"
++assert "4090" in r["gpu"]
++print("Preflight record OK:", r["model_id"], r["revision"])
++PY
++
++if [ "$STAGE" = smoke ]; then
++  python 01_code/run_cross_locale.py \
++    --manifest 01_code/data/manifests/mpr_gui_manifest.jsonl --repo-root 01_code \
++    --model-config "$MODEL_CONFIG" --dimensions wf wi au ap ael rel \
++    --sample-size 6 --sample-unit semantic_items --seed 42 --batch-size 1 \
++    --score-labels --system-prompt-mode english_fixed --device-map cuda:0 --resume \
++    --output "$OUT/smoke_6x6.jsonl" --failures-out "$OUT/smoke_6x6_failures.jsonl" \
++    2>&1 | tee -a "$OUT/logs/smoke_6x6.log"
++  python followup_rel_4lang/run_inference.py \
++    --model-config "$MODEL_CONFIG" --batch-size 1 --max-items 2 --resume \
++    --output-dir "$OUT/smoke_rel" 2>&1 | tee -a "$OUT/logs/smoke_rel.log"
++  python followup_rel_4lang/grounding_eval/run_internvl_grounding.py \
++    --model-config "$MODEL_CONFIG" --suite pilot --output-dir "$OUT/pilot_orcf" \
++    2>&1 | tee -a "$OUT/logs/pilot_orcf.log"
++  exit 0
++fi
++[ "$STAGE" = full ] || { echo "Unknown stage: $STAGE"; exit 1; }
++
++python 01_code/run_cross_locale.py \
++  --manifest 01_code/data/manifests/mpr_gui_manifest.jsonl --repo-root 01_code \
++  --model-config "$MODEL_CONFIG" --dimensions wf wi au ap ael rel \
++  --sample-unit semantic_items --seed 42 --batch-size 1 \
++  --score-labels --system-prompt-mode english_fixed --device-map cuda:0 --resume \
++  --output "$OUT/full_6x6.jsonl" --failures-out "$OUT/full_6x6_failures.jsonl" \
++  --sample-manifest-out "$OUT/full_6x6_plan.json" \
++  2>&1 | tee -a "$OUT/logs/full_6x6.log"
++python -m mpr_crosslocale.analysis.summarize_cross_locale \
++  --input "$OUT/full_6x6.jsonl" \
++  --json-out "$OUT/full_6x6_summary.json" --csv-out "$OUT/full_6x6_summary.csv"
++
++python followup_rel_4lang/run_inference.py \
++  --model-config "$MODEL_CONFIG" --batch-size 1 --resume \
++  --output-dir "$OUT/full_rel" 2>&1 | tee -a "$OUT/logs/full_rel.log"
++
++python followup_rel_4lang/grounding_eval/run_internvl_grounding.py \
++  --model-config "$MODEL_CONFIG" --suite main --descriptors "$DESCRIPTORS" \
++  --output-dir "$OUT/grounding_main_orcf" 2>&1 | tee -a "$OUT/logs/grounding_main_orcf.log"
+-- 
+2.50.0
+

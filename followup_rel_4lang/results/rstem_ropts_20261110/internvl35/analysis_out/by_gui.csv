@@ -1,0 +1,17 @@
+gui_language,contrast,pp,ci95_lo,ci95_hi,items
+en,stem_effect_S,3.903,1.899,6.013,158
+en,option_effect_P,2.848,0.0,5.802,158
+en,interaction_I,0.211,-2.532,2.954,158
+en,R_minus_O,6.751,3.165,10.549,158
+zh,stem_effect_S,7.384,4.43,10.443,158
+zh,option_effect_P,1.899,-0.949,4.855,158
+zh,interaction_I,2.954,-0.422,6.329,158
+zh,R_minus_O,9.283,4.852,13.924,158
+th,stem_effect_S,-3.797,-6.962,-0.633,158
+th,option_effect_P,-0.211,-4.855,4.43,158
+th,interaction_I,-0.844,-6.329,4.43,158
+th,R_minus_O,-4.008,-9.705,1.688,158
+ru,stem_effect_S,7.173,4.008,10.443,158
+ru,option_effect_P,2.954,-0.527,6.646,158
+ru,interaction_I,0.844,-2.748,4.43,158
+ru,R_minus_O,10.127,5.696,14.768,158

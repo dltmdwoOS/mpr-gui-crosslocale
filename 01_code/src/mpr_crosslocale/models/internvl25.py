@@ -50,9 +50,16 @@ def _clean_kwargs(config: dict[str, Any]) -> dict[str, Any]:
 
 
 def ensure_generation_mixin(model: Any) -> bool:
-    """Restore generation and legacy-cache support for pinned InternLM2 remote code."""
+    """Restore generation and legacy-cache support for pinned InternLM2 remote code.
+
+    Only the InternLM2 language model (InternVL2.5) needs this patch. Native
+    Transformers language models such as Qwen3ForCausalLM (InternVL3.5) are left
+    untouched so their default cache handling is unchanged.
+    """
     language_model = model.language_model
     original_class = language_model.__class__
+    if "InternLM2" not in original_class.__name__:
+        return False
     has_generate = callable(getattr(language_model, "generate", None))
     compatible_bases: tuple[type, ...]
     if has_generate:
@@ -353,8 +360,20 @@ class InternVL25Adapter:
         num_patches_list: tuple[int, ...],
     ):
         question = self.build_question(input_row, prompt_profile)
+        return self._encode_question(question, system_prompt, num_patches_list)
+
+    def _encode_question(
+        self,
+        question: str,
+        system_prompt: str | None,
+        num_patches_list: tuple[int, ...],
+    ):
         template = deepcopy(self.model.conv_template)
-        template.system_message = system_prompt or self.model.system_message
+        # None keeps the checkpoint default (a Chinese identity message for the
+        # internvl2_5 template); an explicit string, including "", replaces it.
+        template.system_message = (
+            self.model.system_message if system_prompt is None else system_prompt
+        )
         template.append_message(template.roles[0], question)
         template.append_message(template.roles[1], None)
         rendered_prompt = template.get_prompt()
@@ -450,6 +469,64 @@ class InternVL25Adapter:
             num_patches_list=num_patches_list,
             visual_token_count=visual_token_count,
         )
+
+    def generate_freeform(
+        self,
+        image_paths: list[str],
+        text: str,
+        generation_config: dict[str, Any],
+        system_prompt: str | None,
+    ) -> dict[str, Any]:
+        """Generate free text for one image and one user text (grounding task)."""
+        import torch
+
+        if len(image_paths) != 1:
+            raise ValueError("Free-form InternVL generation expects exactly one image")
+        pixel_values, num_patches_list = self._prepare_images([str(image_paths[0])])
+        (
+            rendered_prompt,
+            input_ids,
+            attention_mask,
+            eos_token_id,
+            separator,
+        ) = self._encode_question("<image>\n" + text, system_prompt, num_patches_list)
+        generation_kwargs = _clean_kwargs(dict(generation_config))
+        # Stop on the template separator and on the tokenizer's end-of-text token,
+        # like the Qwen runner's generation_config eos set.
+        stop_ids = {eos_token_id}
+        if self.tokenizer.eos_token_id is not None:
+            stop_ids.add(int(self.tokenizer.eos_token_id))
+        endoftext = self.tokenizer.convert_tokens_to_ids("<|endoftext|>")
+        if isinstance(endoftext, int) and endoftext != self.tokenizer.unk_token_id:
+            stop_ids.add(endoftext)
+        generation_kwargs["eos_token_id"] = sorted(stop_ids)
+        if self.tokenizer.pad_token_id is not None:
+            generation_kwargs.setdefault("pad_token_id", self.tokenizer.pad_token_id)
+        with torch.inference_mode():
+            generated_ids = self.model.generate(
+                pixel_values=pixel_values,
+                input_ids=input_ids,
+                attention_mask=attention_mask,
+                **generation_kwargs,
+            )
+        # Remote-code generate() passes inputs_embeds, so the output holds only
+        # newly generated tokens.
+        tokens = generated_ids[0].detach().cpu().tolist()
+        stop = next((i for i, token in enumerate(tokens) if token in stop_ids), None)
+        kept = tokens[: stop + 1] if stop is not None else tokens
+        decoded = self.tokenizer.decode(
+            kept, skip_special_tokens=True, clean_up_tokenization_spaces=False
+        )
+        return {
+            "raw_output": decoded.split(separator, 1)[0].strip(),
+            "rendered_prompt": rendered_prompt,
+            "prompt_tokens": int(input_ids.shape[1]),
+            "generated_token_ids": kept,
+            "output_tokens": len(kept),
+            "stop_reason": "eos" if stop is not None else "length",
+            "num_patches_list": list(num_patches_list),
+            "visual_token_count": int(sum(num_patches_list) * self.model.num_image_token),
+        }
 
     def _summarize_label_logits(
         self,

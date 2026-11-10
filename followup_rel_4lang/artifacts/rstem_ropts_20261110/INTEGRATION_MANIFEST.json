@@ -1,0 +1,468 @@
+{
+  "integrated_date": "2026-11-10",
+  "source_directory": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110",
+  "note": "sha256 is the original imported byte hash; documentation and analysis loader may subsequently receive integration edits. Identical existing Qwen/shared input files were retained. InternVL support patches 0001-0005 were applied in order to the working tree, without git am.",
+  "files": [
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/qwen3/analysis_out/by_gui.csv",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/analysis_out/by_gui.csv",
+      "sha256": "dc9ea7f326c5eeee494cf3b43711a652a5d57ebcfbe60a32a54d0dd5a15607a5",
+      "bytes": 691,
+      "integrated_sha256": "dc9ea7f326c5eeee494cf3b43711a652a5d57ebcfbe60a32a54d0dd5a15607a5",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "30033a175e9b9e95f35ba9d706c9ac28d879ec2375b791253f66fb78e73ecc14",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/qwen3/analysis_out/contrasts.csv",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/analysis_out/contrasts.csv",
+      "sha256": "6abd1d6b2ab8e91f86154197590e161a3fe4ad8275fd8e9834c3caa84d2fda99",
+      "bytes": 943,
+      "integrated_sha256": "6abd1d6b2ab8e91f86154197590e161a3fe4ad8275fd8e9834c3caa84d2fda99",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "4901972ef61c2749a48c5f5306ccb35ade541de3cd4976022dcd80f207a8bc89",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/qwen3/analysis_out/glmm_rows.csv",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/analysis_out/glmm_rows.csv",
+      "sha256": "0e40fbc616d76c1298b47a7a5815cbd8dfd1491893c41aa920d2cf5617420f51",
+      "bytes": 517003,
+      "integrated_sha256": "0e40fbc616d76c1298b47a7a5815cbd8dfd1491893c41aa920d2cf5617420f51",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "9ff904227da1d42ab4d613427749b4455559ef17885af7615748ed636283aab7",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/qwen3/analysis_out/summary.json",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/analysis_out/summary.json",
+      "sha256": "f9999986eed67c74278469f0befc146bc0614474d348f3fe24e209b8e1aee8ce",
+      "bytes": 3122,
+      "integrated_sha256": "f9999986eed67c74278469f0befc146bc0614474d348f3fe24e209b8e1aee8ce",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "f9999986eed67c74278469f0befc146bc0614474d348f3fe24e209b8e1aee8ce",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/qwen3/analysis_out/glmm/glmm_diagnostics_correct.txt",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/analysis_out/glmm/glmm_diagnostics_correct.txt",
+      "sha256": "c876f5c61cdb5e0e7f3036e9fc49f24c96195843331274abe782b3c868d46d2b",
+      "bytes": 113,
+      "integrated_sha256": "c876f5c61cdb5e0e7f3036e9fc49f24c96195843331274abe782b3c868d46d2b",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "c876f5c61cdb5e0e7f3036e9fc49f24c96195843331274abe782b3c868d46d2b",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/qwen3/analysis_out/glmm/glmm_lrt_correct.csv",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/analysis_out/glmm/glmm_lrt_correct.csv",
+      "sha256": "2a91aeb84d379af39c93095fc0f4ab1fe77a5be3f5f3e9213127f22b356c4d2b",
+      "bytes": 200,
+      "integrated_sha256": "2a91aeb84d379af39c93095fc0f4ab1fe77a5be3f5f3e9213127f22b356c4d2b",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "2a91aeb84d379af39c93095fc0f4ab1fe77a5be3f5f3e9213127f22b356c4d2b",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/qwen3/analysis_out/glmm/glmm_terms_correct.csv",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/analysis_out/glmm/glmm_terms_correct.csv",
+      "sha256": "f81c29230fbfcba3278ba299f96d3e1779bb24178cc42ecbf4e34fa7a656f934",
+      "bytes": 355,
+      "integrated_sha256": "f81c29230fbfcba3278ba299f96d3e1779bb24178cc42ecbf4e34fa7a656f934",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "f81c29230fbfcba3278ba299f96d3e1779bb24178cc42ecbf4e34fa7a656f934",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/qwen3/raw/gate_complete.json",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw/gate_complete.json",
+      "sha256": "aa18548b01aee0a7645cdfd267510e58782f556cf698052337b40e61d03e8722",
+      "bytes": 1005,
+      "integrated_sha256": "aa18548b01aee0a7645cdfd267510e58782f556cf698052337b40e61d03e8722",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "aa18548b01aee0a7645cdfd267510e58782f556cf698052337b40e61d03e8722",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/qwen3/raw/gate_smoke.json",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw/gate_smoke.json",
+      "sha256": "57127d1d9c92075d36be3aef4ec52c5a6b1e7df8ffb90b2b4e29dfc552496d4e",
+      "bytes": 912,
+      "integrated_sha256": "57127d1d9c92075d36be3aef4ec52c5a6b1e7df8ffb90b2b4e29dfc552496d4e",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "57127d1d9c92075d36be3aef4ec52c5a6b1e7df8ffb90b2b4e29dfc552496d4e",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/qwen3/raw/predictions.jsonl.gz",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw/predictions.jsonl.gz",
+      "sha256": "6b9d07d95efcdddb93e345544e7df4a72c1c6374444848b3e1e210412b594575",
+      "bytes": 1393445,
+      "integrated_sha256": "6b9d07d95efcdddb93e345544e7df4a72c1c6374444848b3e1e210412b594575",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "6b9d07d95efcdddb93e345544e7df4a72c1c6374444848b3e1e210412b594575",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/qwen3/raw/run_contract.json",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw/run_contract.json",
+      "sha256": "ee1ef31c71262576a8a686150c7d31fe6dcbd20e0dcc5b564f5a483a66cceff7",
+      "bytes": 3199,
+      "integrated_sha256": "ee1ef31c71262576a8a686150c7d31fe6dcbd20e0dcc5b564f5a483a66cceff7",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "ee1ef31c71262576a8a686150c7d31fe6dcbd20e0dcc5b564f5a483a66cceff7",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/qwen3/raw/STATUS",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw/STATUS",
+      "sha256": "c342988fe716e2f972832a14876bef0ef8fc8c8e7ea98a12b46f6987b760a257",
+      "bytes": 330,
+      "integrated_sha256": "c342988fe716e2f972832a14876bef0ef8fc8c8e7ea98a12b46f6987b760a257",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "c342988fe716e2f972832a14876bef0ef8fc8c8e7ea98a12b46f6987b760a257",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/qwen3/raw/validation_report.json",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw/validation_report.json",
+      "sha256": "3bfc0d3d5a2bb84c6748b56d9fb9d52f8d0638c72a1eac8a195edfa3647c517e",
+      "bytes": 1182,
+      "integrated_sha256": "3bfc0d3d5a2bb84c6748b56d9fb9d52f8d0638c72a1eac8a195edfa3647c517e",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "3bfc0d3d5a2bb84c6748b56d9fb9d52f8d0638c72a1eac8a195edfa3647c517e",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/internvl35/analysis_out/by_gui.csv",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/analysis_out/by_gui.csv",
+      "sha256": "fea8412a9318e5251340ef6815fbcbdaadbe3d00bf83cdbc926284abfb9f4631",
+      "bytes": 694,
+      "integrated_sha256": "fea8412a9318e5251340ef6815fbcbdaadbe3d00bf83cdbc926284abfb9f4631",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "50df4475755326a97872c63e25ae4ddd08ffdb562b0418cf61df7f3dc2021738",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/internvl35/analysis_out/contrasts.csv",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/analysis_out/contrasts.csv",
+      "sha256": "82b45d861b3f27ce489bd9bbc33bb3eba1da90537da2090af71eb0f453ef7cec",
+      "bytes": 951,
+      "integrated_sha256": "82b45d861b3f27ce489bd9bbc33bb3eba1da90537da2090af71eb0f453ef7cec",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "02d152d08da05999c316546e0a2c75117c7e56847af0488ba45d5ab3ceb9d7bc",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/internvl35/analysis_out/glmm_rows.csv",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/analysis_out/glmm_rows.csv",
+      "sha256": "06074a38c1ae32d895e264a9b0fc125aac8377569c43b7c9747c36287c92dc4b",
+      "bytes": 517003,
+      "integrated_sha256": "06074a38c1ae32d895e264a9b0fc125aac8377569c43b7c9747c36287c92dc4b",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "752b8a5bf3961af3c785f42ec1d10afd4e6d0bdf03fdd59633dcc2b9e817fd62",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/internvl35/analysis_out/summary.json",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/analysis_out/summary.json",
+      "sha256": "e5288a5261ef86ea9f8b7f998e7d637409fdc5888b24bd6493558be131ee2b3c",
+      "bytes": 3135,
+      "integrated_sha256": "e5288a5261ef86ea9f8b7f998e7d637409fdc5888b24bd6493558be131ee2b3c",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "e5288a5261ef86ea9f8b7f998e7d637409fdc5888b24bd6493558be131ee2b3c",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/internvl35/analysis_out/glmm/glmm_diagnostics_correct.txt",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/analysis_out/glmm/glmm_diagnostics_correct.txt",
+      "sha256": "c876f5c61cdb5e0e7f3036e9fc49f24c96195843331274abe782b3c868d46d2b",
+      "bytes": 113,
+      "integrated_sha256": "c876f5c61cdb5e0e7f3036e9fc49f24c96195843331274abe782b3c868d46d2b",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "c876f5c61cdb5e0e7f3036e9fc49f24c96195843331274abe782b3c868d46d2b",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/internvl35/analysis_out/glmm/glmm_lrt_correct.csv",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/analysis_out/glmm/glmm_lrt_correct.csv",
+      "sha256": "e48550e9818fb1d5bca1f36c2543094b2b0bf81256ffe5ea3623a7a690a04933",
+      "bytes": 197,
+      "integrated_sha256": "e48550e9818fb1d5bca1f36c2543094b2b0bf81256ffe5ea3623a7a690a04933",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "e48550e9818fb1d5bca1f36c2543094b2b0bf81256ffe5ea3623a7a690a04933",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/internvl35/analysis_out/glmm/glmm_terms_correct.csv",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/analysis_out/glmm/glmm_terms_correct.csv",
+      "sha256": "1edf835eadfe3687977b9fe86a1232d22d16c85ff3f10ad3ee461ae8b483c34c",
+      "bytes": 353,
+      "integrated_sha256": "1edf835eadfe3687977b9fe86a1232d22d16c85ff3f10ad3ee461ae8b483c34c",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "1edf835eadfe3687977b9fe86a1232d22d16c85ff3f10ad3ee461ae8b483c34c",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/internvl35/raw/gate_complete.json",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/raw/gate_complete.json",
+      "sha256": "441ffecc1fd69fe91384deda5ab6de5fc21b6f3b536936740d21a65ea6587db9",
+      "bytes": 887,
+      "integrated_sha256": "441ffecc1fd69fe91384deda5ab6de5fc21b6f3b536936740d21a65ea6587db9",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "441ffecc1fd69fe91384deda5ab6de5fc21b6f3b536936740d21a65ea6587db9",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/internvl35/raw/gate_smoke.json",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/raw/gate_smoke.json",
+      "sha256": "16a6edfccfffedc9ffb0a18216b02a10e4426b51e29a37bc9a54eefebf8d303e",
+      "bytes": 863,
+      "integrated_sha256": "16a6edfccfffedc9ffb0a18216b02a10e4426b51e29a37bc9a54eefebf8d303e",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "16a6edfccfffedc9ffb0a18216b02a10e4426b51e29a37bc9a54eefebf8d303e",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/internvl35/raw/predictions.jsonl.gz",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/raw/predictions.jsonl.gz",
+      "sha256": "0eaa1705e3b8b95277ab4f6e0915471233e11793d368b2aafeb65dc923a4a900",
+      "bytes": 1714455,
+      "integrated_sha256": "0eaa1705e3b8b95277ab4f6e0915471233e11793d368b2aafeb65dc923a4a900",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "0eaa1705e3b8b95277ab4f6e0915471233e11793d368b2aafeb65dc923a4a900",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/internvl35/raw/run_contract.json",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/raw/run_contract.json",
+      "sha256": "9847f2f07c28f22d337b814cf6331ab6e8a66a4be09b4a360c9567cf829b9b64",
+      "bytes": 3292,
+      "integrated_sha256": "9847f2f07c28f22d337b814cf6331ab6e8a66a4be09b4a360c9567cf829b9b64",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "9847f2f07c28f22d337b814cf6331ab6e8a66a4be09b4a360c9567cf829b9b64",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/internvl35/raw/STATUS",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/internvl35/raw/STATUS",
+      "sha256": "f6e832712481648780f90d6b215320c9262c74978e4d3166685ffd7890a55fa7",
+      "bytes": 191,
+      "integrated_sha256": "f6e832712481648780f90d6b215320c9262c74978e4d3166685ffd7890a55fa7",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "f6e832712481648780f90d6b215320c9262c74978e4d3166685ffd7890a55fa7",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/결과요약_KO.md",
+      "destination": "followup_rel_4lang/results/rstem_ropts_20261110/README_KO.md",
+      "sha256": "83855fec5b6dcdda7db848e0bc536b3fd9bd26fef3c15f932dbf3c216a4f4762",
+      "bytes": 4114,
+      "integrated_sha256": "d6c125893f1fe1d99be2ad02dfe6f2263e7d0fc9d42d2954cc65d9c4567efa75",
+      "modified_during_integration": true,
+      "integrated_sha256_lf_normalized": "d6c125893f1fe1d99be2ad02dfe6f2263e7d0fc9d42d2954cc65d9c4567efa75",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/입력검토_표본.md",
+      "destination": "followup_rel_4lang/rstem_ropts_inputs/INPUT_REVIEW_SAMPLE_KO.md",
+      "sha256": "d00007b39a288cb56f36460dd20e5db95d1cd0b93c3aa9e797d5aa12640ca9b8",
+      "bytes": 23776,
+      "integrated_sha256": "d00007b39a288cb56f36460dd20e5db95d1cd0b93c3aa9e797d5aa12640ca9b8",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "d00007b39a288cb56f36460dd20e5db95d1cd0b93c3aa9e797d5aa12640ca9b8",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/ANALYSIS_PLAN_KO.md",
+      "destination": "followup_rel_4lang/analysis/rstem_ropts/ANALYSIS_PLAN_KO.md",
+      "sha256": "55243bd9cc0dc2e4eb515cedf6de0a2819af53dd9a66c60b7c215ea988bfd3c4",
+      "bytes": 5308,
+      "integrated_sha256": "760d8c7ad4de52a372b0de5b570f07646caa8ff05cb808d927ab15755cf41efe",
+      "modified_during_integration": true,
+      "integrated_sha256_lf_normalized": "760d8c7ad4de52a372b0de5b570f07646caa8ff05cb808d927ab15755cf41efe",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/ANALYSIS_PLAN_INTERNVL_KO.md",
+      "destination": "followup_rel_4lang/analysis/rstem_ropts/ANALYSIS_PLAN_INTERNVL_KO.md",
+      "sha256": "25a5fc5fa675104312314f9dba162610a122e301319db75900682958b3f08e65",
+      "bytes": 1993,
+      "integrated_sha256": "3514b07e0500bb3d7ceffc97409478453bfb86599354d25dad5607205f549adf",
+      "modified_during_integration": true,
+      "integrated_sha256_lf_normalized": "3514b07e0500bb3d7ceffc97409478453bfb86599354d25dad5607205f549adf",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/code/analysis/analyze_rstem.py",
+      "destination": "followup_rel_4lang/analysis/rstem_ropts/analyze_rstem.py",
+      "sha256": "72981b20c7ea12f3055cb7a49964b810698adf7dfcf8d3fe327ec9391251b6b8",
+      "bytes": 6830,
+      "integrated_sha256": "9fabb33b9b3f29311d6de2b2c68f5fe6049c2175cb526e28dd40c74fb610eb6c",
+      "modified_during_integration": true,
+      "integrated_sha256_lf_normalized": "9fabb33b9b3f29311d6de2b2c68f5fe6049c2175cb526e28dd40c74fb610eb6c",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/code/analysis/glmm_rstem.R",
+      "destination": "followup_rel_4lang/analysis/rstem_ropts/glmm_rstem.R",
+      "sha256": "7178c31cee304a6cea0d20289d484068f11ff127e10461c7daacea8fa2a2144c",
+      "bytes": 2487,
+      "integrated_sha256": "5d6d9c4b9c85f29c44ad11584659bfc60b6b65ede466c6618775a6e950e1729d",
+      "modified_during_integration": true,
+      "integrated_sha256_lf_normalized": "5d6d9c4b9c85f29c44ad11584659bfc60b6b65ede466c6618775a6e950e1729d",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/code/rstem_ropts_addon_20261109.tar.gz",
+      "destination": "followup_rel_4lang/artifacts/rstem_ropts_20261110/code/rstem_ropts_addon_20261109.tar.gz",
+      "sha256": "421c3507a5cd26f9ab3e0c4a7d01dcb8da510cfe779919ac172c8b12fccf9c3a",
+      "bytes": 420991,
+      "integrated_sha256": "421c3507a5cd26f9ab3e0c4a7d01dcb8da510cfe779919ac172c8b12fccf9c3a",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "421c3507a5cd26f9ab3e0c4a7d01dcb8da510cfe779919ac172c8b12fccf9c3a",
+      "commit_selection": "excluded_redundant_transfer_bundle"
+    },
+    {
+      "source": "rstem_ropts_결과_20261110/rstem_ropts_결과_20261110/code/rstem_ropts_internvl_addon_20261110.tar.gz",
+      "destination": "followup_rel_4lang/artifacts/rstem_ropts_20261110/code/rstem_ropts_internvl_addon_20261110.tar.gz",
+      "sha256": "e898ff10f2fcc8ac65aa754f3281297d746043a1a2091af08818dd579ef36eb9",
+      "bytes": 448878,
+      "integrated_sha256": "e898ff10f2fcc8ac65aa754f3281297d746043a1a2091af08818dd579ef36eb9",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "e898ff10f2fcc8ac65aa754f3281297d746043a1a2091af08818dd579ef36eb9",
+      "commit_selection": "excluded_redundant_transfer_bundle"
+    },
+    {
+      "source": "rstem_ropts_internvl_addon_20261110.tar.gz::followup_rel_4lang/check_rstem_gate_internvl.py",
+      "destination": "followup_rel_4lang/check_rstem_gate_internvl.py",
+      "sha256": "37087e36b3513b53e6cec6693c2a8b8f7b189d163275772101826e6cdac0ae41",
+      "bytes": 4473,
+      "integrated_sha256": "37087e36b3513b53e6cec6693c2a8b8f7b189d163275772101826e6cdac0ae41",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "37087e36b3513b53e6cec6693c2a8b8f7b189d163275772101826e6cdac0ae41",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_internvl_addon_20261110.tar.gz::followup_rel_4lang/RSTEM_ROPTS_INTERNVL_RUNBOOK_KO.md",
+      "destination": "followup_rel_4lang/RSTEM_ROPTS_INTERNVL_RUNBOOK_KO.md",
+      "sha256": "169cb0a624d509ee127123b690797c6e3bf40b981646bd2ed53df0517cb0bc31",
+      "bytes": 5983,
+      "integrated_sha256": "b189939a2e8aceff7c948788a8622e0d5097a5d286a6e32b9fe750b0742a8bb5",
+      "modified_during_integration": true,
+      "integrated_sha256_lf_normalized": "b189939a2e8aceff7c948788a8622e0d5097a5d286a6e32b9fe750b0742a8bb5",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_internvl_addon_20261110.tar.gz::followup_rel_4lang/run_rel_mixed_internvl.py",
+      "destination": "followup_rel_4lang/run_rel_mixed_internvl.py",
+      "sha256": "b14339f820be8beb791aa160947539cb00b532b319bab5f648f391982d857bf0",
+      "bytes": 14387,
+      "integrated_sha256": "b14339f820be8beb791aa160947539cb00b532b319bab5f648f391982d857bf0",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "b14339f820be8beb791aa160947539cb00b532b319bab5f648f391982d857bf0",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_internvl_addon_20261110.tar.gz::followup_rel_4lang/run_rstem_ropts_internvl.sh",
+      "destination": "followup_rel_4lang/run_rstem_ropts_internvl.sh",
+      "sha256": "583f1075c22f3e416d880bc69bd204ff89846ecd70519b74811f5aed14b4ea38",
+      "bytes": 4397,
+      "integrated_sha256": "583f1075c22f3e416d880bc69bd204ff89846ecd70519b74811f5aed14b4ea38",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "583f1075c22f3e416d880bc69bd204ff89846ecd70519b74811f5aed14b4ea38",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_internvl_addon_20261110.tar.gz::followup_rel_4lang/rstem_ropts_inputs/ADDON_INTERNVL_SHA256SUMS",
+      "destination": "followup_rel_4lang/rstem_ropts_inputs/ADDON_INTERNVL_SHA256SUMS",
+      "sha256": "cfc0473cae049699961ef86e2e6f0ce526aa561b44bbe80d86ac04f09a88423e",
+      "bytes": 1899,
+      "integrated_sha256": "7f60f0320baf4fd7892a52cf3b47470ec6bccab638a3e749b6c1c5d8d3e71685",
+      "modified_during_integration": true,
+      "integrated_sha256_lf_normalized": "9cbdecbb3b5097dd4d54dd9c87a4524ae58c9a3bc65ae10eca8f51faaa6b0f37",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_internvl_addon_20261110.tar.gz::followup_rel_4lang/rstem_ropts_inputs/internvl35_constraints_20261109.txt",
+      "destination": "followup_rel_4lang/rstem_ropts_inputs/internvl35_constraints_20261109.txt",
+      "sha256": "a3d98e62728f07ad583335ae0b5eae76dd794abd9d8bb48c57fb25d7c8275c48",
+      "bytes": 1477,
+      "integrated_sha256": "a3d98e62728f07ad583335ae0b5eae76dd794abd9d8bb48c57fb25d7c8275c48",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "a3d98e62728f07ad583335ae0b5eae76dd794abd9d8bb48c57fb25d7c8275c48",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_internvl_addon_20261110.tar.gz::followup_rel_4lang/rstem_ropts_inputs/reference_internvl35_20261109_OR.jsonl",
+      "destination": "followup_rel_4lang/rstem_ropts_inputs/reference_internvl35_20261109_OR.jsonl",
+      "sha256": "f53139a3010615e717cc3d72394cc05731206393c191629e793082b1b6620902",
+      "bytes": 2408453,
+      "integrated_sha256": "f53139a3010615e717cc3d72394cc05731206393c191629e793082b1b6620902",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "f53139a3010615e717cc3d72394cc05731206393c191629e793082b1b6620902",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_internvl_addon_20261110.tar.gz::followup_rel_4lang/rstem_ropts_inputs/run_contract_internvl35_rel_20261109.json",
+      "destination": "followup_rel_4lang/rstem_ropts_inputs/run_contract_internvl35_rel_20261109.json",
+      "sha256": "87fe63c7ee09f2b1b245f7c824dd1e0ea26185d059d56b2d11b98517252487fe",
+      "bytes": 3303,
+      "integrated_sha256": "87fe63c7ee09f2b1b245f7c824dd1e0ea26185d059d56b2d11b98517252487fe",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "87fe63c7ee09f2b1b245f7c824dd1e0ea26185d059d56b2d11b98517252487fe",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_internvl_addon_20261110.tar.gz::rstem_internvl_patches/0001-Add-InternVL3.5-8B-single-4090-run-path-config-adapt.patch",
+      "destination": "followup_rel_4lang/artifacts/rstem_ropts_20261110/rstem_internvl_patches/0001-Add-InternVL3.5-8B-single-4090-run-path-config-adapt.patch",
+      "sha256": "685bdd65ea36782027b8cc7ec92c2e90cb9fda269a22461599c19d0461a13ba5",
+      "bytes": 41491,
+      "integrated_sha256": "685bdd65ea36782027b8cc7ec92c2e90cb9fda269a22461599c19d0461a13ba5",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "685bdd65ea36782027b8cc7ec92c2e90cb9fda269a22461599c19d0461a13ba5",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_internvl_addon_20261110.tar.gz::rstem_internvl_patches/0002-Apply-review-fixes-measure-attention-eos-set-repo-lo.patch",
+      "destination": "followup_rel_4lang/artifacts/rstem_ropts_20261110/rstem_internvl_patches/0002-Apply-review-fixes-measure-attention-eos-set-repo-lo.patch",
+      "sha256": "7dcffeeebc9c287b6bd7b1c0d834858639e498fe18af68a5b2eafa704c2b7b78",
+      "bytes": 13753,
+      "integrated_sha256": "7dcffeeebc9c287b6bd7b1c0d834858639e498fe18af68a5b2eafa704c2b7b78",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "7dcffeeebc9c287b6bd7b1c0d834858639e498fe18af68a5b2eafa704c2b7b78",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_internvl_addon_20261110.tar.gz::rstem_internvl_patches/0003-InternVL3.5-max_num-8-2-304-visual-tokens-to-match-Q.patch",
+      "destination": "followup_rel_4lang/artifacts/rstem_ropts_20261110/rstem_internvl_patches/0003-InternVL3.5-max_num-8-2-304-visual-tokens-to-match-Q.patch",
+      "sha256": "8a581371b72163025419492108a384ef0ec66434e92917c40dc32f53aa0f60f6",
+      "bytes": 4751,
+      "integrated_sha256": "8a581371b72163025419492108a384ef0ec66434e92917c40dc32f53aa0f60f6",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "8a581371b72163025419492108a384ef0ec66434e92917c40dc32f53aa0f60f6",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_internvl_addon_20261110.tar.gz::rstem_internvl_patches/0004-Unattended-all-stage-preflight-ETA-smoke-gate-full-r.patch",
+      "destination": "followup_rel_4lang/artifacts/rstem_ropts_20261110/rstem_internvl_patches/0004-Unattended-all-stage-preflight-ETA-smoke-gate-full-r.patch",
+      "sha256": "c47e613f5777c071ba301ce3bf28ca9a61aa91adef9e16b3b5a0da2b36014330",
+      "bytes": 18526,
+      "integrated_sha256": "c47e613f5777c071ba301ce3bf28ca9a61aa91adef9e16b3b5a0da2b36014330",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "c47e613f5777c071ba301ce3bf28ca9a61aa91adef9e16b3b5a0da2b36014330",
+      "commit_selection": "included"
+    },
+    {
+      "source": "rstem_ropts_internvl_addon_20261110.tar.gz::rstem_internvl_patches/0005-Runbook-time-estimate-anchored-on-Qwen3-measured-run.patch",
+      "destination": "followup_rel_4lang/artifacts/rstem_ropts_20261110/rstem_internvl_patches/0005-Runbook-time-estimate-anchored-on-Qwen3-measured-run.patch",
+      "sha256": "2c6f2620abd5d9e3ef2cbe826923da1ad124307d31695b74bfc7af1bdb1afc0d",
+      "bytes": 1815,
+      "integrated_sha256": "2c6f2620abd5d9e3ef2cbe826923da1ad124307d31695b74bfc7af1bdb1afc0d",
+      "modified_during_integration": false,
+      "integrated_sha256_lf_normalized": "2c6f2620abd5d9e3ef2cbe826923da1ad124307d31695b74bfc7af1bdb1afc0d",
+      "commit_selection": "included"
+    }
+  ],
+  "selection_note": "Redundant code/*.tar.gz are retained locally and excluded from Git, as in the prior Qwen3 archives. Expanded code and original support patches are included. Byte hashes describe local imported files; LF-normalized hashes allow checkout verification."
+}

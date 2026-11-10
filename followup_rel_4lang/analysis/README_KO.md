@@ -1,5 +1,8 @@
 # REL 4언어 GLMM 입력 준비
 
+158문항의 Qwen3·InternVL3.5 R_stem/R_opts 분석은 별도 설계다.
+[rstem_ropts/README_KO.md](rstem_ropts/README_KO.md)에 코드·사전 계획·결과 경로와 재현 명령을 정리했다.
+
 이 폴더의 `prepare_glmm.py`는 완료된 두 모델의 압축 full 결과를 검증하고,
 GLMM에 필요한 작은 CSV 두 개를 생성한다. 모델 추론이나 GLMM 적합은 실행하지 않는다.
 

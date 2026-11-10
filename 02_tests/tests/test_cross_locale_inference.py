@@ -147,7 +147,7 @@ def test_internvl_dynamic_preprocess_respects_visual_budget():
 
 def test_internvl_generation_compatibility_is_noop_when_generate_exists():
     language_model = type(
-        "LanguageModel",
+        "InternLM2ForCausalLM",
         (),
         {
             "generate": lambda self: None,
@@ -158,6 +158,38 @@ def test_internvl_generation_compatibility_is_noop_when_generate_exists():
 
     assert ensure_generation_mixin(model) is False
     assert model.language_model._supports_default_dynamic_cache() is False
+
+
+def test_internvl35_native_language_model_is_left_untouched():
+    language_class = type(
+        "Qwen3ForCausalLM",
+        (),
+        {
+            "generate": lambda self: None,
+            "_supports_default_dynamic_cache": classmethod(lambda cls: True),
+        },
+    )
+    model = type("Model", (), {"language_model": language_class()})()
+
+    assert ensure_generation_mixin(model) is False
+    assert model.language_model.__class__ is language_class
+    assert model.language_model._supports_default_dynamic_cache() is True
+
+
+def test_model_factory_builds_internvl35_family(monkeypatch):
+    captured = {}
+    monkeypatch.setattr(run_cross_locale, "InternVL25Adapter", lambda **kwargs: captured.update(kwargs) or "ok")
+    config = {
+        "model_id": "OpenGVLab/InternVL3_5-8B", "model_family": "internvl3_5",
+        "revision": "9bb6a56ad9cc69db95e2d4eeb15a52bbcac4ef79", "attn_implementation": "eager",
+        "use_flash_attn": False, "max_num": 7,
+    }
+    adapter = run_cross_locale._build_model_adapter(Namespace(attn_implementation=None, device_map="cuda:0"), config)
+
+    assert adapter == "ok"
+    assert captured["model_id"] == "OpenGVLab/InternVL3_5-8B"
+    assert captured["use_flash_attn"] is False
+    assert captured["max_num"] == 7
 
 
 def test_internvl_rejects_boolean_tokenizer_sentinel():

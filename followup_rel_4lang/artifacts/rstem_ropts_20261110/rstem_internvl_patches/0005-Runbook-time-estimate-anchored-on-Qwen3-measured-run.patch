@@ -1,0 +1,25 @@
+From 9e5a89858555406ca1d992af3665b9859d986063 Mon Sep 17 00:00:00 2001
+From: prep <local@local>
+Date: Sun, 8 Nov 2026 15:34:18 +0900
+Subject: [PATCH 5/5] Runbook: time estimate anchored on Qwen3 measured run
+
+---
+ followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md b/followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md
+index e164c9c..ea1f9b5 100644
+--- a/followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md
++++ b/followup_rel_4lang/INTERNVL35_SINGLE_4090_RUNBOOK_KO.md
+@@ -116,7 +116,7 @@ bash followup_rel_4lang/run_full_internvl35.sh full    # 끝나면 완료 확인
+ 
+ 세 실험을 차례로 실행한다. 중단되면 같은 명령을 다시 실행하면 이어서 한다(6×6·REL은 `--resume`, grounding은 계약 확인 후 자동 재개). 설정·설명 파일을 바꿀 때는 `OUT`을 새 폴더로 바꾼다.
+ 
+-예상 시간(미검증): 배치 1·eager라 응답당 0.5–1초로 보면 6×6 11–22시간, REL 2.5–5시간, grounding(최대 64토큰) 3–6시간, 합계 약 17–33시간이다. 3단계 측정값으로 다시 계산한다.
++예상 시간(미검증): 비교 기준은 Qwen3 실측이다. 같은 4090에서 배치 4로 6×6 79,020응답에 13.1시간(응답당 약 0.6초), REL에 3.1시간이 걸렸다. InternVL3.5는 배치 1·eager·시각 토큰 최대 2,304라 응답당 약 0.8–1.3초로 본다. 그러면 6×6 18–29시간, REL 4–7시간, 위치 지정(최대 64토큰) 2–4시간, 합계 약 24–40시간에 설치·다운로드·사전 점검·smoke 약 1–2시간이 더해진다. `all` 실행은 사전 점검 직후 `gate_eta.json`에 실측 기반 예상 시간을 남긴다.
+ 
+ ## 6. 완료 확인과 보존
+ 
+-- 
+2.50.0
+

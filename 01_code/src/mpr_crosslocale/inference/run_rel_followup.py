@@ -399,10 +399,10 @@ def run(args) -> dict:
     config = load_yaml(args.model_config)
     if args.batch_size > 1 and config.get("model_family") not in ("qwen2_5_vl", "qwen3_vl"):
         raise ValueError("REL batched inference currently supports Qwen VL models only")
-    if config.get("model_family") not in ("qwen2_5_vl", "qwen3_vl", "internvl2_5") or not config.get(
+    if config.get("model_family") not in ("qwen2_5_vl", "qwen3_vl", "internvl2_5", "internvl3_5") or not config.get(
         "revision"
     ):
-        raise ValueError("Use a pinned Qwen VL or InternVL2.5 model configuration")
+        raise ValueError("Use a pinned Qwen VL or InternVL2.5/3.5 model configuration")
     if config.get("prompt_profile") != "mpr_label_only_v1":
         raise ValueError("This experiment uses mpr_label_only_v1")
     if config.get("dtype") != "bfloat16" or config.get("quantization") is not None:

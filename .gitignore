@@ -9,7 +9,11 @@ __pycache__/
 /followup_rel_4lang/annotation/
 /followup_rel_4lang/bundles/*
 !/followup_rel_4lang/bundles/rel_all_366.tar.gz
-/followup_rel_4lang/results/
+!/followup_rel_4lang/results/
+/followup_rel_4lang/results/*
+!/followup_rel_4lang/results/rstem_ropts_20261110/
+# Expanded code and original patches are versioned; redundant transfer bundles stay local.
+/followup_rel_4lang/artifacts/rstem_ropts_20261110/code/*.tar.gz
 /followup_rel_4lang/bundle_manifest.json
 /annotation/rel_grounding/outputs/
 *.download
