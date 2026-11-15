@@ -2,9 +2,11 @@
 
 **2026-11-15 사용자 수정 반영:** 현재 inventory는 평가 VLM 자체를 사용한다. Qwen3용 새 설정은
 `configs/gcsa_qwen3_fixed_lm_v1.json`이며 참조 추출·번역은 고정 text-only Qwen3-8B다.
-Qwen3-8B 다운로드·SHA 검증은 완료됐다. 이전 v0 설정은 보존하며 현재 모델 준비 명령은 문서 마지막에 있다. [Smoke 재점검](reports/SMOKE_REAUDIT_KO.md)을 우선 참고한다.
+Qwen3-8B 다운로드·SHA 검증은 완료됐다. [실제 프롬프트 원문·한국어 해석·GO/NO-GO 검토](reports/PROMPTS_AND_GO_NO_GO_KO.md). 이전 v0 설정은 보존하며 현재 모델 준비 명령은 문서 마지막에 있다. [Smoke 재점검](reports/SMOKE_REAUDIT_KO.md)을 우선 참고한다.
 
 기준: `results-new-models-expA-20261115`, `e4aff7ace7248f1dd4e5a5dac0d4f679b33c6b5a`. 작업 브랜치 `method-selective-alignment-dev`. 기존 frozen 데이터·분석 규칙·원시 예측은 수정하지 않는다. [현재 결과와 blocker](reports/FINAL_DEV_REPORT_KO.md).
+
+[확대 파일럿·후보 탐색 설계 및 실행 명령](reports/SEARCH_DESIGN_KO.md): 기존 split을 보존한 32-item screen과 20-item selection, 추출 7조건·구조 9조건을 준비했다. 신규 GPU 평가는 아직 실행하지 않았다.
 
 ## 현재 상태
 

@@ -1,0 +1,20 @@
+{
+  "version": "gcsa-search-v1-unfrozen",
+  "seed": 20261115,
+  "screen_calibration_items": 20,
+  "probe_legacy_items": 8,
+  "max_new_tokens": 768,
+  "extractors": {
+    "cpu_quoted": {"model": "cpu", "prompt": "quoted_cpu"},
+    "fixed_original": {"model": "fixed", "prompt": "original"},
+    "fixed_minimal": {"model": "fixed", "prompt": "minimal"},
+    "fixed_contrastive": {"model": "fixed", "prompt": "contrastive"},
+    "vl_original": {"model": "vl_text", "prompt": "original"},
+    "vl_minimal": {"model": "vl_text", "prompt": "minimal"},
+    "vl_contrastive": {"model": "vl_text", "prompt": "contrastive"}
+  },
+  "recipes": ["TXT_SEL", "GUI_EXACT", "GUI_MATCH_LM", "GUI_TARGETED_VLM", "GUI_DIRECT_VLM", "TXT_DIRECT_LM", "TXT_DIRECT_VLM", "TXT_FULL", "GUI_FULL"],
+  "promotion": {"extractors_after_probe": 2, "structural_finalists": 2, "automatic_winner_selection": false},
+  "initial_batches": {"method": 1, "downstream": 3},
+  "note": "Inventory always uses evaluation VLM. vl_text uses the full VLM without image, not raw backbone surgery. CPU quoted is diagnostic. No new paid instances."
+}

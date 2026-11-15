@@ -11,3 +11,7 @@ __pycache__/
 !artifacts/fixed_lm_ready.json
 !artifacts/smoke_reaudit.tar.gz
 !artifacts/smoke_reaudit.tar.gz.sha256
+
+!artifacts/search_plan_v1/
+artifacts/search_plan_v1/*
+!artifacts/search_plan_v1/manifest.json

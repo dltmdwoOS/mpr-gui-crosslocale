@@ -22,7 +22,7 @@ class TransformersBackend:
         import torch
         from transformers import AutoProcessor,AutoTokenizer,AutoModelForCausalLM
         from transformers import Qwen2_5_VLForConditionalGeneration,Qwen3VLForConditionalGeneration
-        role='inventory' if stage=='inventory' else 'referent_extractor' if stage=='extract' and 'referent_extractor' in self.config['models'] else 'translator'
+        role='inventory' if stage in ('inventory','ground_match','direct_visual_edit','vl_text_edit') else 'referent_extractor' if stage=='extract' and 'referent_extractor' in self.config['models'] else 'translator'
         spec=self.config['models'][role]
         load_started=time.perf_counter();load_ms=0.0
         key=(spec['model_id'],spec['revision'])
@@ -53,11 +53,12 @@ class TransformersBackend:
             inputs=self.processor([text],return_tensors='pt').to('cuda:0');decoder=self.processor
         else:
             content=[]
-            if stage=='inventory':
+            if stage in ('inventory','ground_match','direct_visual_edit'):
                 path=self.repo/payload['image_path']
                 if hashlib.sha256(path.read_bytes()).hexdigest()!=payload['image_sha256']:raise ValueError('Image checksum differs')
                 content.append({'type':'image','image':str(path)})
-            content.append({'type':'text','text':'Transcribe visible screen strings.' if stage=='inventory' else json.dumps(payload,ensure_ascii=False)})
+            public_payload={k:v for k,v in payload.items() if k not in ('image_path','image_sha256')}
+            content.append({'type':'text','text':'Transcribe visible screen strings.' if stage=='inventory' else json.dumps(public_payload,ensure_ascii=False)})
             msgs=[{'role':'system','content':prompt},{'role':'user','content':content}]
             text=self.processor.apply_chat_template(msgs,tokenize=False,add_generation_prompt=True)
             from qwen_vl_utils import process_vision_info
