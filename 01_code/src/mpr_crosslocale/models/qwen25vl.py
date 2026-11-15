@@ -154,6 +154,9 @@ class Qwen25VLAdapter:
             padding=True,
             return_tensors="pt",
         )
+        limit = getattr(self, 'max_input_tokens', None)
+        if limit and inputs.input_ids.shape[1] > limit:
+            raise ValueError(f'Input token budget exceeded: {inputs.input_ids.shape[1]} > {limit}; no truncation')
         inputs = inputs.to(self.model.device)
         generation_kwargs = _clean_generation_kwargs(generation_config)
         if score_labels:

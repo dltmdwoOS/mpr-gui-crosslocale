@@ -23,7 +23,7 @@ class CachedBackend:
     def __call__(self,stage,prompt,payload):
         role='inventory' if stage in ('inventory','ground_match','direct_visual_edit','vl_text_edit') else 'referent_extractor' if stage=='extract' else 'translator'
         spec=self.config['models'][role]
-        key=digest({'stage':stage,'prompt':prompt,'payload':payload,'model':spec,'max_new_tokens':self.config['max_new_tokens'],
+        key=digest({'stage':stage,'prompt':prompt,'payload':payload,'model':spec,'max_new_tokens':self.config['max_new_tokens'],'max_input_tokens':self.config.get('max_input_tokens'),'record_memory':self.config.get('record_memory',False),
                     'backend':self.implementation_sha256,'software':self.software,'hardware':self.hardware,'mock':self.mock})
         path=self.cache/(key+'.json');cached=path.exists()
         if not self.mock and 'image_path' in payload:
@@ -55,15 +55,20 @@ class CachedBackend:
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--plan',type=Path,required=True);p.add_argument('--spec',type=Path,required=True);p.add_argument('--config',type=Path,required=True)
-    p.add_argument('--cohort',choices=['probe','screen','selection'],default='probe');p.add_argument('--extractor',required=True)
-    p.add_argument('--recipe',default='extraction');p.add_argument('--cache-dir',type=Path,required=True);p.add_argument('--output-dir',type=Path,required=True)
+    p.add_argument('--cohort',choices=['probe','screen','selection','internal_evaluation'],default='probe');p.add_argument('--extractor',required=True)
+    p.add_argument('--frozen-policy',type=Path);p.add_argument('--recipe',default='extraction');p.add_argument('--cache-dir',type=Path,required=True);p.add_argument('--output-dir',type=Path,required=True)
     mode=p.add_mutually_exclusive_group(required=True);mode.add_argument('--mock',action='store_true');mode.add_argument('--gpu',action='store_true')
     limits=p.add_mutually_exclusive_group();limits.add_argument('--limit-items',type=int,default=1);limits.add_argument('--all-items',action='store_true');a=p.parse_args()
     if a.output_dir.exists():raise ValueError('Fresh output required')
     spec=json.loads(a.spec.read_text());config=json.loads(a.config.read_text());choice=spec['extractors'][a.extractor]
     if a.recipe!='extraction' and a.recipe not in spec['recipes']:raise ValueError('Unregistered recipe')
     if a.limit_items<1:raise ValueError('Positive item limit required')
-    manifest=json.loads(a.plan.read_text());rows=[validate_input(json.loads(l)) for l in (a.plan.parent/(a.cohort+'.jsonl')).read_text().splitlines()]
+    manifest=json.loads(a.plan.read_text())
+    if a.cohort=='internal_evaluation':
+        if not a.frozen_policy:raise ValueError('Frozen selection policy required for internal evaluation')
+        frozen=json.loads(a.frozen_policy.read_text())
+        if frozen['plan_sha256']!=digest(manifest) or frozen['spec_sha256']!=digest(spec) or frozen['extractor']!=a.extractor or a.recipe not in frozen['evaluation_recipes']:raise ValueError('Frozen evaluation policy mismatch')
+    rows=[validate_input(json.loads(l)) for l in (a.plan.parent/(a.cohort+'.jsonl')).read_text().splitlines()]
     if digest(rows)!=manifest['cohorts'][a.cohort]['inputs_sha256'] or digest(spec)!=manifest['spec_sha256']:raise ValueError('Frozen search plan/input/spec mismatch')
     selected_ids=sorted({r['parallel_id'] for r in rows})
     if not a.all_items:selected_ids=selected_ids[:a.limit_items]
@@ -86,7 +91,7 @@ def main():
     contract={'execution_mode':'mock' if a.mock else 'gpu','cohort':a.cohort,'candidate_id':a.recipe,'extractor':a.extractor,'config':config,'spec_sha256':digest(spec),'plan_sha256':digest(manifest),
         'selected_item_ids':selected_ids,'input_sha256':digest(rows),'method_sha256':digest(Path(module.__file__).read_text()),'runner_sha256':digest(Path(__file__).read_text()),'backend_sha256':backend.implementation_sha256,'software':backend.software,
         'generation':'greedy, BF16, SDPA; method batch=1; non-thinking for fixed LM; no raw backbone surgery',
-        'unreviewed_visual_evidence':a.recipe in ('GUI_TARGETED_VLM','GUI_DIRECT_VLM'),'option_order':list('ABCD')}
+        'unreviewed_visual_evidence':a.recipe in ('GUI_TARGETED_VLM','GUI_DIRECT_VLM'),'option_order':list('ABCD'),'frozen_policy_sha256':digest(json.loads(a.frozen_policy.read_text())) if a.frozen_policy else None}
     (a.output_dir/'contract.json').write_text(json.dumps(contract,ensure_ascii=False,indent=2)+'\n')
     inventories={};extractions={};completed=False
     legacy=json.loads((REPO/'followup_rel_4lang/method_dev/configs/legacy_prompts.json').read_text())

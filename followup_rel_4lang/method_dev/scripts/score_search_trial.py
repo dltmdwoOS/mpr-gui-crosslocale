@@ -37,8 +37,8 @@ def main():
         return {**x,'precision':tp/pred if pred else None,'recall':tp/g if g else None,'f1':2*tp/(pred+g) if pred+g else None}
     result={'execution_mode':contract['execution_mode'],'empirical':contract['execution_mode']=='gpu','metrics':rates(totals),'by_source_language':{k:rates(v) for k,v in by_language.items()},
         'screen_matching_precision':None,'note':'Annotation span exactness is not screenshot matching accuracy. Direct methods expose edits only, not a complete extraction set. MOCK is not empirical evidence.'}
-    out.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     with (a.trial_dir/'edit_review.csv').open('w') as f:
         writer=csv.DictWriter(f,fieldnames=['pair_id','image_path','field','source','replacement','span_exact_annotation','screen_correspondence','wrong_gui_element','context_change','notes']);writer.writeheader();writer.writerows(review)
+    out.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(result,ensure_ascii=False,indent=2))
 if __name__=='__main__':main()

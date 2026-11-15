@@ -1,0 +1,40 @@
+{
+  "targeted_tests": 32,
+  "existing_qwen_batch_tests": "passed",
+  "full_cpu_mock_complete": true,
+  "idempotent_resume_verified": true,
+  "real_gpu_inference_executed": false,
+  "oom_preflight": {
+    "estimate_only": true,
+    "guaranteed_no_oom": false,
+    "models": [
+      {
+        "role": "translator",
+        "model_id": "Qwen/Qwen3-8B",
+        "weights_gib": 15.256433486938477,
+        "kv_bytes_per_token": 147456,
+        "method_kv_gib_at_cap": 0.66796875,
+        "downstream_kv_gib_at_cap_batch3": 1.688323974609375
+      },
+      {
+        "role": "inventory",
+        "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+        "weights_gib": 16.33004042506218,
+        "kv_bytes_per_token": 147456,
+        "method_kv_gib_at_cap": 0.66796875,
+        "downstream_kv_gib_at_cap_batch3": 1.688323974609375
+      }
+    ],
+    "method_batch": 1,
+    "downstream_batch": 3,
+    "max_input_tokens": 4096,
+    "image_pixels_max": 2097152,
+    "premerge_patches_max_per_image": 8192,
+    "merged_vision_tokens_max_per_image": 2048,
+    "model_residency": "one model at a time; one child process per trial; no concurrent GPU children",
+    "note": "Weights+KV are exact-size components, not peak-memory upper bounds. Attention/Conv3D workspaces, activations, CUDA context and allocator fragmentation remain. SDPA, inference_mode, channels_last_3d, logits_to_keep=1. No automatic batch reduction.",
+    "gpu": "NVIDIA B200 MIG 2g.45gb",
+    "total_gib": 44.25,
+    "free_gib": 44.04791259765625
+  }
+}

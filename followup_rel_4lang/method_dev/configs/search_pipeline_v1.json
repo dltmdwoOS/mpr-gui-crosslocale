@@ -1,0 +1,16 @@
+{
+  "version": "search-sequential-auto-v1",
+  "max_input_tokens": 4096,
+  "max_new_tokens": 768,
+  "min_free_gpu_gib": 40,
+  "extractor_f1_tolerance": 0.02,
+  "accuracy_tolerance_pp": 1.0,
+  "extractor_shortlist": 2,
+  "structural_shortlist": 2,
+  "screen_all_registered_recipes": true,
+  "internal_evaluation": true,
+  "bootstrap_replicates": 10000,
+  "seed": 20261115,
+  "selection_rule": "Highest selection accuracy; within 1pp choose lower standalone method runtime per pair. Unknown screen matching precision remains unknown.",
+  "scope": "Qwen3 only; probe, screen, selection, frozen internal evaluation and exploratory paired report. Pivot routing and additional VLMs excluded."
+}

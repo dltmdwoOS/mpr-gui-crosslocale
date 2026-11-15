@@ -8,6 +8,8 @@ Qwen3-8B 다운로드·SHA 검증은 완료됐다. [실제 프롬프트 원문·
 
 [확대 파일럿·후보 탐색 설계 및 실행 명령](reports/SEARCH_DESIGN_KO.md): 기존 split을 보존한 32-item screen과 20-item selection, 추출 7조건·구조 9조건을 준비했다. 신규 GPU 평가는 아직 실행하지 않았다.
 
+전체 순차 실행은 `bash followup_rel_4lang/method_dev/scripts/run_search_pipeline.sh` 한 줄이다. [OOM 검토·자동 선택·재개 설명](reports/PIPELINE_OOM_AUDIT_KO.md). 현재45GB MIG용이며 free40GiB를 요구한다.
+
 ## 현재 상태
 
 Gate 0/1은 실제 데이터·hash·T/R 재구성과 CPU mock 검사를 통과했다. Gate 2의 CPU 구성요소와 실제 화면 기능 검사는 실행했지만, 대체 모델의 referent extraction이 빈 목록을 내 **실제 selective editing 성공 게이트는 미통과**다. Calibration, 2×2 내부 평가, RFA 성능 평가는 실행하지 않았다. 이 상태를 method의 성능 검증 완료로 해석하면 안 된다.

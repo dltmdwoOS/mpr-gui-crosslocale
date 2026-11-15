@@ -50,7 +50,7 @@ class TransformersBackend:
             if stage=='inventory':raise ValueError('Inventory requires a vision model')
             msgs=[{'role':'system','content':prompt},{'role':'user','content':json.dumps(payload,ensure_ascii=False)}]
             text=self.processor.apply_chat_template(msgs,tokenize=False,add_generation_prompt=True,enable_thinking=False)
-            inputs=self.processor([text],return_tensors='pt').to('cuda:0');decoder=self.processor
+            inputs=self.processor([text],return_tensors='pt');decoder=self.processor
         else:
             content=[]
             if stage in ('inventory','ground_match','direct_visual_edit'):
@@ -63,7 +63,11 @@ class TransformersBackend:
             text=self.processor.apply_chat_template(msgs,tokenize=False,add_generation_prompt=True)
             from qwen_vl_utils import process_vision_info
             images,videos=process_vision_info(msgs,image_patch_size=16 if spec['family']=='qwen3_vl' else 14)
-            inputs=self.processor(text=[text],images=images,videos=videos,return_tensors='pt').to('cuda:0');decoder=self.processor
+            inputs=self.processor(text=[text],images=images,videos=videos,return_tensors='pt');decoder=self.processor
+        limit=self.config.get('max_input_tokens')
+        if limit and inputs.input_ids.shape[1]>limit:raise ValueError('Input token budget exceeded; no truncation: '+str(inputs.input_ids.shape[1]))
+        if 'image_grid_thw' in inputs and int(inputs['image_grid_thw'].prod(-1).sum())>8192:raise ValueError('Vision patch budget exceeded')
+        inputs=inputs.to('cuda:0')
         torch.cuda.synchronize()
         preprocessing_ms=(time.perf_counter()-started)*1000
         timings=defaultdict(list);starts=defaultdict(list);hooks=[];patch_metadata={}
@@ -89,9 +93,10 @@ class TransformersBackend:
                 instrument(self.model.model.visual.patch_embed,'patch')
                 instrument(self.model.model.language_model,'language')
             else:instrument(self.model.model,'language')
+        if self.config.get('record_memory',False):torch.cuda.reset_peak_memory_stats()
         generate_started=time.perf_counter()
         try:
-            with torch.inference_mode():out=self.model.generate(**inputs,do_sample=False,num_beams=1,max_new_tokens=self.config.get('max_new_tokens',768))
+            with torch.inference_mode():out=self.model.generate(**inputs,do_sample=False,num_beams=1,max_new_tokens=self.config.get('max_new_tokens',768),logits_to_keep=1)
             torch.cuda.synchronize()
         finally:
             for handle in hooks:handle.remove()
@@ -99,6 +104,8 @@ class TransformersBackend:
         tokens=out[0,inputs.input_ids.shape[1]:].detach().cpu().tolist()
         raw=decoder.decode(tokens,skip_special_tokens=True,clean_up_tokenization_spaces=False).strip()
         self.calls.append({'stage':stage,'model_role':role,'profiling_enabled':bool(self.config.get('profile_calls',False)),'model_id':spec['model_id'],'revision':spec['revision'],'runtime_ms':(time.perf_counter()-started)*1000,
+                           'peak_allocated_bytes':torch.cuda.max_memory_allocated() if self.config.get('record_memory',False) else None,
+                           'peak_reserved_bytes':torch.cuda.max_memory_reserved() if self.config.get('record_memory',False) else None,
                            'input_tokens':int(inputs.input_ids.shape[1]),'output_tokens':len(tokens),'raw_output':raw,
                            'rendered_prompt':text,'payload_sha256':hashlib.sha256(json.dumps(payload,ensure_ascii=False,sort_keys=True).encode()).hexdigest(),
                            'model_load_ms':load_ms,'preprocess_ms':preprocessing_ms,'generate_ms':generate_ms,
