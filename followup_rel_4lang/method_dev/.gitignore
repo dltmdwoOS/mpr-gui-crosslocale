@@ -17,3 +17,5 @@ artifacts/search_plan_v1/*
 !artifacts/search_plan_v1/manifest.json
 
 !artifacts/pipeline_readiness.json
+
+!artifacts/search_report_snapshot.json

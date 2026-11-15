@@ -4,11 +4,13 @@
 `configs/gcsa_qwen3_fixed_lm_v1.json`이며 참조 추출·번역은 고정 text-only Qwen3-8B다.
 Qwen3-8B 다운로드·SHA 검증은 완료됐다. [실제 프롬프트 원문·한국어 해석·GO/NO-GO 검토](reports/PROMPTS_AND_GO_NO_GO_KO.md). 이전 v0 설정은 보존하며 현재 모델 준비 명령은 문서 마지막에 있다. [Smoke 재점검](reports/SMOKE_REAUDIT_KO.md)을 우선 참고한다.
 
-기준: `results-new-models-expA-20261115`, `e4aff7ace7248f1dd4e5a5dac0d4f679b33c6b5a`. 작업 브랜치 `method-selective-alignment-dev`. 기존 frozen 데이터·분석 규칙·원시 예측은 수정하지 않는다. [현재 결과와 blocker](reports/FINAL_DEV_REPORT_KO.md).
+기준: `results-new-models-expA-20261115`, `e4aff7ace7248f1dd4e5a5dac0d4f679b33c6b5a`. 작업 브랜치 `method-selective-alignment-dev`. 기존 frozen 데이터·분석 규칙·원시 예측은 수정하지 않는다. [초기 준비 단계 보고](reports/FINAL_DEV_REPORT_KO.md).
 
-[확대 파일럿·후보 탐색 설계 및 실행 명령](reports/SEARCH_DESIGN_KO.md): 기존 split을 보존한 32-item screen과 20-item selection, 추출 7조건·구조 9조건을 준비했다. 신규 GPU 평가는 아직 실행하지 않았다.
+[확대 파일럿·후보 탐색 설계 및 실행 명령](reports/SEARCH_DESIGN_KO.md): 기존 split을 보존한 32-item screen과 20-item selection, 추출 7조건·구조 9조건을 준비했다. 실제 진행 결과는 위 누적 실측 보고서에서 확인한다.
 
 전체 순차 실행은 `bash followup_rel_4lang/method_dev/scripts/run_search_pipeline.sh` 한 줄이다. [OOM 검토·자동 선택·재개 설명](reports/PIPELINE_OOM_AUDIT_KO.md). 현재45GB MIG용이며 free40GiB를 요구한다.
+
+누적 실측 결과: [SEARCH_RESULTS_KO.md](reports/SEARCH_RESULTS_KO.md). 완료 조건만 집계하며 `.venv/bin/python followup_rel_4lang/method_dev/scripts/update_search_results_report.py`로 같은 보고서를 갱신한다. 아래 상태 설명은 초기 harness/smoke의 역사적 기록이다.
 
 ## 현재 상태
 
