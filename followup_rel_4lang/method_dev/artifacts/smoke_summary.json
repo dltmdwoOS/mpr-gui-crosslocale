@@ -1,0 +1,65 @@
+{
+  "scope": "one historically observed pilot pair; Qwen3-VL override for both extractor and translator, not the primary models",
+  "pair_id": "rel::1/booking_1.jpg::en::zh",
+  "mode": "actual_gpu_smoke",
+  "inventory_status": "success",
+  "visible_string_count": 34,
+  "extracted_referents": 0,
+  "span_gold_count_posthoc": 5,
+  "extraction_span_recall": 0,
+  "extraction_span_f1": 0,
+  "selective_edits": 0,
+  "pipeline_stage_ms": {
+    "inventory": 77211.32134832442,
+    "extract": 2221.4243868365884,
+    "TXT_FULL": 22292.663486674428,
+    "GUI_FULL": 25050.343491137028
+  },
+  "total_backend_ms": 126775.75271297246,
+  "input_tokens_total": 2985,
+  "output_tokens_total": 392,
+  "downstream_generated_labels": {
+    "O": "A",
+    "TXT_FULL": "A",
+    "GUI_FULL": "A",
+    "TXT_SEL": "A",
+    "GUI_SEL": "A"
+  },
+  "gold_answer_evaluation_only": "B",
+  "downstream_generation_correct": {
+    "O": false,
+    "TXT_FULL": false,
+    "GUI_FULL": false,
+    "TXT_SEL": false,
+    "GUI_SEL": false
+  },
+  "historical_same_pair_O_label": "A",
+  "historical_O_batch_size": 4,
+  "new_O_batch_size": 3,
+  "historical_O_matches": true,
+  "caution": "One matching anchor does not prove general batch composition equivalence; primary ExpA O/R same-pair anchor check still pending",
+  "primary_models_cached": false,
+  "missing_models": [
+    "Qwen/Qwen2.5-VL-7B-Instruct",
+    "Qwen/Qwen3-8B",
+    "OpenGVLab/InternVL3_5-8B"
+  ],
+  "gates": {
+    "0": "pass",
+    "1": "pass",
+    "2": "CPU pipeline pass; actual override smoke produced zero spans: selective-edit gate NOT passed",
+    "3": "not run",
+    "4": "not run",
+    "5": "code only; not run"
+  },
+  "artifacts_sha256": {
+    "gpu_smoke_override/contract.json": "75b7b06fc3157049dba63fd3bea678c5628bd4e860b55bdaf38cdd020ba13606",
+    "gpu_smoke_override/rewritten.jsonl": "7b10acdb9ff0e7706b0892e694d60714b142065f2cb56c71cae0daa0eb71c485",
+    "gpu_smoke_override/backend_calls.json": "11427b2f987968c07d88ad6792a65097e6e80c42ec700fdd1bcd3a6e9df6359f",
+    "gpu_smoke_override/inventories.json": "c5be86db3fb9bba0ffd77a2a8fb51038008f9d20d42756834771fe489a141502",
+    "downstream_smoke/contract.json": "3ccfefa74c47a94988f6b690b763ca23675abda9edc3852a04874dcdb50162df",
+    "downstream_smoke/predictions.jsonl": "acddda9f5809a68f0a4b203d2d5a92658001151eeaf2d851c0580f2fb2bbecea",
+    "smoke_quality/matching_review.csv": "138d53162e9daa55ee77ffc94ec059f2e9e97a07342975af037e1f2b71391b4b",
+    "smoke_quality/quality.json": "0ec5c32d81b58f4964a485ad9503ee80129a26e7978f6d326f72a9ab2281a9ef"
+  }
+}
