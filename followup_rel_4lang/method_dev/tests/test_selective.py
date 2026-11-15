@@ -157,3 +157,15 @@ def test_same_original_input_repeats_preserve_provenance():
     first=pipeline.run(row());second=pipeline.run(row())
     for a,b in zip(first,second):
         a.pop('runtime_ms');b.pop('runtime_ms');assert a==b
+
+
+def test_inventory_follows_evaluation_vlm_and_fixed_lm_is_separate(tmp_path):
+    from followup_rel_4lang.method_dev.scripts.materialize_config import materialize
+    cfg={'evaluation_vlm':{'model_id':'Qwen/VLM','revision':'vlrev'},'referent_extraction_strategy':'fixed_lm',
+         'models':{'inventory':{'model_id':'Qwen/VLM','revision':'vlrev','family':'qwen3_vl','path':'HF_HOME_SNAPSHOT'},
+                   'referent_extractor':{'model_id':'Qwen/LM','revision':'lmrev','family':'text','path':'HF_HOME_SNAPSHOT'}}}
+    actual=materialize(cfg,tmp_path)
+    assert actual['models']['inventory']['path'].endswith('models--Qwen--VLM/snapshots/vlrev')
+    assert actual['models']['referent_extractor']['path'].endswith('models--Qwen--LM/snapshots/lmrev')
+    cfg['evaluation_vlm']['revision']='wrong'
+    with pytest.raises(ValueError,match='Inventory'):materialize(cfg,tmp_path)

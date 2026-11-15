@@ -1,5 +1,9 @@
 # GCSA / RFA development harness
 
+**2026-11-15 사용자 수정 반영:** 현재 inventory는 평가 VLM 자체를 사용한다. Qwen3용 새 설정은
+`configs/gcsa_qwen3_fixed_lm_v1.json`이며 참조 추출·번역은 고정 text-only Qwen3-8B다.
+Qwen3-8B 다운로드·SHA 검증은 완료됐다. 이전 v0 설정은 보존하며 현재 모델 준비 명령은 문서 마지막에 있다. [Smoke 재점검](reports/SMOKE_REAUDIT_KO.md)을 우선 참고한다.
+
 기준: `results-new-models-expA-20261115`, `e4aff7ace7248f1dd4e5a5dac0d4f679b33c6b5a`. 작업 브랜치 `method-selective-alignment-dev`. 기존 frozen 데이터·분석 규칙·원시 예측은 수정하지 않는다. [현재 결과와 blocker](reports/FINAL_DEV_REPORT_KO.md).
 
 ## 현재 상태
@@ -54,11 +58,11 @@ python followup_rel_4lang/method_dev/scripts/run_pipeline.py \
 
 `audit_recheck/split.json`이 추적된 `artifacts/dataset_audit/split.json`과 동일해야 한다. audit의 680개 이미지 검증이 빠졌으면 `missing_images`에 표시되므로 이미지 확보 후 재검사한다. 저장된 bundle의 HF revision은 `c1edb808d424a2fa7bc4a2e601d39b431b04acd5`다.
 
-## 실제 기본 모델 준비
+## 실제 모델 준비
 
-기존 two-stage의 query-blind extractor는 **Qwen2.5-VL-7B**, translator는 **text-only Qwen3-8B**다. Qwen3-VL-8B와 다른 모델이다. 현재 캐시에 두 기본 모델이 없으므로 임의 다운로드 없이 중단했다. 이 환경에서 1쌍 smoke에 사용한 Qwen3-VL override는 primary method config와 분리했다. 다른 장비의 기존 snapshot을 재사용하거나 명시적으로 다운로드한 후 `configs/gcsa_v0.json`을 **새 artifact config로 복사**하고 두 `path`를 정확한 revision snapshot 디렉터리로 바꾼다. revision·모델·generation을 바꾸면 새 version으로 기록한다.
+현재는 평가 VLM인 **Qwen3-VL-8B**가 inventory를 만들고 **text-only Qwen3-8B**가 참조 추출·번역을 맡는다. 두 모델은 로컬 pinned snapshot이 준비됐다. 문서 마지막의 `materialize_config.py`로 `gcsa_qwen3_fixed_lm_v1.json`을 실행용 config로 변환한다. 아래 실행 예시의 `config_primary.json`에는 이 생성 config를 지정한다. Revision·모델·generation을 바꾸면 새 version으로 기록한다.
 
-필요한 고정 모델:
+현재 및 후속 모델의 고정 revision (Qwen2.5-VL/InternVL3.5는 이후 단계):
 
 - `Qwen/Qwen2.5-VL-7B-Instruct`, `cc594898137f460bfe9f0759e9844b3ce807cfb5`.
 - `Qwen/Qwen3-8B`, `47719a242beab8f9aecc40ce3928b034dd5dd559`.
@@ -123,3 +127,24 @@ Historical T/R은 별도 reference로 가져오고 새 O와 historical O의 labe
 ## 자료 보존
 
 작은 audit·분할·smoke 요약과 압축된 실제 smoke 원시 자료는 Git에 둔다. 그 외 method-only 입력, oracle 진단, 정답 label, 장시간 결과는 로컬 `artifacts/` 아래 분리한다. `scripts/audit.py`가 같은 lock에서 복원한다. `artifacts/smoke_archive.tar.gz`와 `.sha256`은 실제 한 화면 smoke·downstream·당시 소스 스냅샷을 포함하며 이미지는 포함하지 않는다. 어떤 결과도 mock 정확도를 실측처럼 보고하지 않는다.
+
+
+## Qwen3 고정 LM 준비 명령
+
+개인 캐시 환경변수를 위와 같이 설정하고 실행한다. `--download`를 생략하면 파일·용량·기존 캐시만 확인한다.
+
+```bash
+python followup_rel_4lang/method_dev/scripts/prepare_fixed_lm.py \
+  --hf-home "$HF_HOME" --download \
+  --manifest followup_rel_4lang/method_dev/artifacts/qwen3_8b_download_manifest.json
+python followup_rel_4lang/method_dev/scripts/materialize_config.py \
+  --template followup_rel_4lang/method_dev/configs/gcsa_qwen3_fixed_lm_v1.json \
+  --hf-home "$HF_HOME" \
+  --output followup_rel_4lang/method_dev/artifacts/fixed_lm_config.json
+# 다운로드 manifest의 verified=true를 확인한 뒤 기존 추출 지시로 한 호출만 검사:
+python followup_rel_4lang/method_dev/scripts/recheck_smoke.py \
+  --config followup_rel_4lang/method_dev/artifacts/fixed_lm_config.json --stages extract \
+  --output followup_rel_4lang/method_dev/artifacts/fixed_lm_extraction_probe.json
+```
+
+생성 config가 이미 있으면 새 경로를 사용한다. Snapshot의 모든 weight shard가 있어야 실제 pipeline preflight를 통과한다. 재점검용 `--extractor-prompt quoted_control`은 literal-copy 진단이며 primary extractor 조건이 아니다.

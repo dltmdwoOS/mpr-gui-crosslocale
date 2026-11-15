@@ -1,0 +1,16 @@
+{
+  "version": "gcsa-qwen3-self-inventory-fixed-lm-v1-uncalibrated",
+  "evaluation_vlm": {"model_id": "Qwen/Qwen3-VL-8B-Instruct", "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b"},
+  "referent_extraction_strategy": "fixed_lm",
+  "seed": 20261115,
+  "threshold": 1.0,
+  "margin": 0.05,
+  "retrieval": "translated_normalized_exact_only",
+  "fallback": "keep_original",
+  "max_new_tokens": 768,
+  "models": {
+    "inventory": {"model_id": "Qwen/Qwen3-VL-8B-Instruct", "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b", "family": "qwen3_vl", "path": "HF_HOME_SNAPSHOT"},
+    "referent_extractor": {"model_id": "Qwen/Qwen3-8B", "revision": "47719a242beab8f9aecc40ce3928b034dd5dd559", "family": "text", "path": "HF_HOME_SNAPSHOT"},
+    "translator": {"model_id": "Qwen/Qwen3-8B", "revision": "47719a242beab8f9aecc40ce3928b034dd5dd559", "family": "text", "path": "HF_HOME_SNAPSHOT"}
+  }
+}

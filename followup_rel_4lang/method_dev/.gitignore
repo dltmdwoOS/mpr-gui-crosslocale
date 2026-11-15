@@ -7,3 +7,7 @@ artifacts/dataset_audit/*
 __pycache__/
 !artifacts/smoke_archive.tar.gz
 !artifacts/smoke_archive.tar.gz.sha256
+!artifacts/smoke_reaudit_summary.json
+!artifacts/fixed_lm_ready.json
+!artifacts/smoke_reaudit.tar.gz
+!artifacts/smoke_reaudit.tar.gz.sha256

@@ -26,6 +26,13 @@ def main():
             path=Path(spec['path'])
             if not path.is_dir() or path.name!=spec['revision'] or not list(path.glob('*.safetensors')):
                 raise ValueError('Pinned model not locally cached: '+spec['model_id']+'; set path explicitly. No implicit download.')
+            index=path/'model.safetensors.index.json'
+            if not index.is_file() or any(not (path/name).is_file() for name in set(json.loads(index.read_text())['weight_map'].values())):
+                raise ValueError('Model snapshot has incomplete weight shards: '+spec['model_id'])
+    if config.get('evaluation_vlm'):
+        vlm=config['evaluation_vlm'];inv=config['models']['inventory']
+        if (vlm['model_id'],vlm['revision']) != (inv['model_id'],inv['revision']):
+            raise ValueError('Inventory must use the evaluation VLM itself')
     backend=MockBackend() if a.mock else TransformersBackend(config,REPO)
     scorer=None
     if config.get('retrieval')=='labse':

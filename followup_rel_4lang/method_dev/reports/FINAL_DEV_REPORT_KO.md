@@ -1,5 +1,7 @@
 # GCSA / RFA 개발 중간 보고: 구현·검증·실측 실패
 
+**후속 갱신:** [Smoke 재점검과 고정 LM 준비](SMOKE_REAUDIT_KO.md)에서 cuDNN patch 경로·decode 병목을 확인하고 Qwen3-8B 다운로드를 완료했다. 아래 내용은 첫 smoke 시점의 기록이며, inventory는 이후 사용자 결정에 따라 평가 VLM 자체를 사용한다.
+
 2026-11-15. 기준 커밋 `e4aff7ace7248f1dd4e5a5dac0d4f679b33c6b5a`, 작업 브랜치 `method-selective-alignment-dev`. **전체 method 개발 목표 중 데이터 하네스와 CPU pipeline, pilot 한 쌍의 실제 GPU 기능 검사를 수행했다. Calibration 및 내부 성능 평가 완료 보고서는 아니다.** GCSA가 R을 재현하거나 능가했다는 결과는 없다.
 
 | Gate | 상태 | 근거/남은 일 |
