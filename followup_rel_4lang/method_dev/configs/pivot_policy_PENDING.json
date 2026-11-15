@@ -1,0 +1,6 @@
+{
+  "calibration_frozen": false,
+  "chosen_from": "calibration",
+  "model_pivots": {"qwen3": "en", "internvl35": "en"},
+  "note": "Candidate fixed-EN extension only. No model-specific optimal pivot has been selected. Freeze after calibration; do not infer optimality from historical overlapping data."
+}

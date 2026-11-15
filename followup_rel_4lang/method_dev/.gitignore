@@ -1,0 +1,9 @@
+artifacts/*
+!artifacts/dataset_audit/
+artifacts/dataset_audit/*
+!artifacts/dataset_audit/audit.json
+!artifacts/dataset_audit/split.json
+!artifacts/smoke_summary.json
+__pycache__/
+!artifacts/smoke_archive.tar.gz
+!artifacts/smoke_archive.tar.gz.sha256
