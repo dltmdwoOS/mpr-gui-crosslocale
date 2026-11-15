@@ -1,0 +1,6 @@
+run_rel_T.py: OK
+check_T_gate.py: OK
+run_expA.sh: OK
+EXPA_RUNBOOK_KO.md: OK
+expA_inputs/T_conditions.jsonl: OK
+expA_inputs/expA_lock.json: OK

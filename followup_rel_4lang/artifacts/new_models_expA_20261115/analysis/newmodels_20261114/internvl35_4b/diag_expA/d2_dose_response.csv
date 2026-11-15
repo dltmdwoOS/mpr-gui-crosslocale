@@ -1,0 +1,33 @@
+model,gui,term,coef,ci_lo,ci_hi,n_pairs,units
+pooled_d_exact,all,intercept,-0.1390229931548051,-0.213231003372175,-0.06581479487505001,1895,dCorrect (0-1) per 1 unit of covariate (d_exact is a 0-1 fraction)
+pooled_d_exact,all,gui_zh,0.09647156311361271,0.036956608401350004,0.157215066269325,1895,dCorrect (0-1) per 1 unit of covariate (d_exact is a 0-1 fraction)
+pooled_d_exact,all,gui_th,0.12187460490511703,0.054796947474875,0.190058390164425,1895,dCorrect (0-1) per 1 unit of covariate (d_exact is a 0-1 fraction)
+pooled_d_exact,all,gui_ru,0.051690697956694634,-0.000706117058374999,0.10584193762572496,1895,dCorrect (0-1) per 1 unit of covariate (d_exact is a 0-1 fraction)
+pooled_d_exact,all,query_zh,0.013505894217494638,-0.043815846616150005,0.07114534603915,1895,dCorrect (0-1) per 1 unit of covariate (d_exact is a 0-1 fraction)
+pooled_d_exact,all,query_th,0.060427250945963976,-0.008446113044724996,0.12657220562879998,1895,dCorrect (0-1) per 1 unit of covariate (d_exact is a 0-1 fraction)
+pooled_d_exact,all,query_ru,0.028296351249169127,-0.023491094823874997,0.08178648250749997,1895,dCorrect (0-1) per 1 unit of covariate (d_exact is a 0-1 fraction)
+pooled_d_exact,all,d_exact,0.10443641365186623,0.027715388561075,0.18466000629352497,1895,dCorrect (0-1) per 1 unit of covariate (d_exact is a 0-1 fraction)
+per_gui_d_exact,en,d_exact,0.1870381315104002,0.04610776687782501,0.32595768757877497,474,"slope, query-language FE only"
+per_gui_d_exact,zh,d_exact,0.13790606129623695,-0.028705401334425,0.3113014785270499,474,"slope, query-language FE only"
+per_gui_d_exact,th,d_exact,0.05973627459268099,-0.12491799915935,0.23454611679115,474,"slope, query-language FE only"
+per_gui_d_exact,ru,d_exact,0.01848090310388655,-0.10359507159569999,0.14687611145702495,473,"slope, query-language FE only"
+pooled_d_chrf,all,intercept,-0.15751497035406237,-0.24965980873802499,-0.06964397845935001,1895,dCorrect (0-1) per 1 unit of covariate (d_chrf is in chrF points 0-100)
+pooled_d_chrf,all,gui_zh,0.10604571013414565,0.046766377739549995,0.16738797148777498,1895,dCorrect (0-1) per 1 unit of covariate (d_chrf is in chrF points 0-100)
+pooled_d_chrf,all,gui_th,0.12208848609556945,0.054591158750325004,0.19083131101042497,1895,dCorrect (0-1) per 1 unit of covariate (d_chrf is in chrF points 0-100)
+pooled_d_chrf,all,gui_ru,0.05391670976901357,0.0005600043862250002,0.10845770066224997,1895,dCorrect (0-1) per 1 unit of covariate (d_chrf is in chrF points 0-100)
+pooled_d_chrf,all,query_zh,0.008781518158220036,-0.048353219835925,0.06648932718657498,1895,dCorrect (0-1) per 1 unit of covariate (d_chrf is in chrF points 0-100)
+pooled_d_chrf,all,query_th,0.05770841209575155,-0.0111221196035,0.1240422382099,1895,dCorrect (0-1) per 1 unit of covariate (d_chrf is in chrF points 0-100)
+pooled_d_chrf,all,query_ru,0.025310016114056838,-0.02591523307345,0.07841545654149999,1895,dCorrect (0-1) per 1 unit of covariate (d_chrf is in chrF points 0-100)
+pooled_d_chrf,all,d_chrf,0.000970236561352618,0.00010493938427500002,0.00189297670515,1895,dCorrect (0-1) per 1 unit of covariate (d_chrf is in chrF points 0-100)
+per_gui_d_chrf,en,d_chrf,0.0023796368590848055,0.0005299311011,0.0043074483374,474,"slope, query-language FE only"
+per_gui_d_chrf,zh,d_chrf,0.002030892991659489,3.189857552500003e-05,0.00403917427,474,"slope, query-language FE only"
+per_gui_d_chrf,th,d_chrf,-0.000727398974269267,-0.002946765791075,0.0013530445442249998,474,"slope, query-language FE only"
+per_gui_d_chrf,ru,d_chrf,0.00018497665332148954,-0.0012722681431999998,0.0016563629003749994,473,"slope, query-language FE only"
+descriptive_mean,en,d_exact,0.3382559774964838,,,474,
+descriptive_mean,en,d_chrf,59.05233563550694,,,474,
+descriptive_mean,zh,d_exact,0.3666666666666667,,,474,
+descriptive_mean,zh,d_chrf,50.61951741375443,,,474,
+descriptive_mean,th,d_exact,0.33379043600562586,,,474,
+descriptive_mean,th,d_chrf,57.41714066480618,,,474,
+descriptive_mean,ru,d_exact,0.2963706835799859,,,473,
+descriptive_mean,ru,d_chrf,51.21862810789061,,,473,

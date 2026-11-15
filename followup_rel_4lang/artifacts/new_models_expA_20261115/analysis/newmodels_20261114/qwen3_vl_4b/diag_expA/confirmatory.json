@@ -1,0 +1,121 @@
+{
+ "label": "descriptive (same code, not part of the confirmatory set; plan v2)",
+ "n_pairs_th": 474,
+ "n_pairs_rest": 1421,
+ "n_items": 158,
+ "B": 10000,
+ "seed": 20261114,
+ "alpha_one_sided": 0.05,
+ "e2_ratio_max": 0.5,
+ "results": {
+  "P1": {
+   "statistic": "T-O(th) - T-O(rest)",
+   "direction": ">0",
+   "est_pp": 24.264127300854877,
+   "ci95_lo_pp": 18.0030059455275,
+   "ci95_hi_pp": 30.59428791161,
+   "valid_draws": 10000,
+   "p_one_sided": 9.999000099990002e-05,
+   "p_holm": 0.00029997000299970003,
+   "reject": true
+  },
+  "P2": {
+   "statistic": "T-O(th)",
+   "direction": ">0",
+   "est_pp": 20.67510548523207,
+   "ci95_lo_pp": 15.189873417700001,
+   "ci95_hi_pp": 26.160337552700003,
+   "valid_draws": 10000,
+   "p_one_sided": 9.999000099990002e-05,
+   "p_holm": 0.00029997000299970003,
+   "reject": true
+  },
+  "P3": {
+   "statistic": "T-O(rest)",
+   "direction": "<0",
+   "est_pp": -3.589021815622806,
+   "ci95_lo_pp": -6.4788732394,
+   "ci95_hi_pp": -0.7042253521,
+   "valid_draws": 10000,
+   "p_one_sided": 0.009599040095990401,
+   "p_holm": 0.009599040095990401,
+   "reject": true
+  },
+  "E1": {
+   "statistic": "R-O(th) - R-O(rest)",
+   "direction": "estimate",
+   "est_pp": 21.654240046083906,
+   "ci95_lo_pp": 14.6272855134,
+   "ci95_hi_pp": 28.546645851664998,
+   "valid_draws": 10000,
+   "ci90_lo_pp": 15.818620333295002,
+   "ci90_hi_pp": 27.28123506057
+  },
+  "E2": {
+   "statistic": "R-T(th) - R-T(rest)",
+   "direction": "estimate",
+   "est_pp": -2.6098872547709706,
+   "ci95_lo_pp": -8.0170669315,
+   "ci95_hi_pp": 2.723927828032499,
+   "valid_draws": 10000,
+   "ci90_lo_pp": -7.125962301849998,
+   "ci90_hi_pp": 1.8228630023199957,
+   "ratio_E2_over_E1": {
+    "est": -0.1205254605664612,
+    "ci95_lo": -0.467967266307575,
+    "ci95_hi": 0.11028469832634993,
+    "ci90_lo": -0.39540021744045,
+    "ci90_hi": 0.0767194198003999,
+    "valid_draws": 10000
+   }
+  }
+ },
+ "interpretation": "부호 뒤집힘이 재현됐다. E2가 작고 E1이 커서 뒤집힘이 주로 O 쪽에서 생긴다는 H-A의 형태와 맞는다",
+ "interpretation_code": "flip_replicated_H-A_consistent",
+ "secondary_goldprob_descriptive": {
+  "P1_goldprob_diff": {
+   "est_pp": 23.550826713738175,
+   "ci95_lo_pp": 18.1601461666175,
+   "ci95_hi_pp": 28.945370453949998
+  },
+  "E1_goldprob_diff": {
+   "est_pp": 23.443886863098935,
+   "ci95_lo_pp": 17.28051047031,
+   "ci95_hi_pp": 29.652206015005
+  },
+  "E2_goldprob_diff": {
+   "est_pp": -0.10693985063924272,
+   "ci95_lo_pp": -4.962852940009999,
+   "ci95_hi_pp": 4.718850250894998
+  },
+  "T-O(th)_goldprob": {
+   "est_pp": 19.69028072641594,
+   "ci95_lo_pp": 14.954593883880001,
+   "ci95_hi_pp": 24.3350519109
+  },
+  "T-O(rest)_goldprob": {
+   "est_pp": -3.860545987322239,
+   "ci95_lo_pp": -6.34846950267,
+   "ci95_hi_pp": -1.3015705643950002
+  }
+ },
+ "cells_pp": {
+  "th": {
+   "O": 48.31223628691983,
+   "T": 68.9873417721519,
+   "R": 77.63713080168776,
+   "T-O": 20.67510548523207,
+   "R-T": 8.64978902953586,
+   "R-O": 29.32489451476793
+  },
+  "rest": {
+   "O": 76.00281491907108,
+   "T": 72.41379310344827,
+   "R": 83.6734693877551,
+   "T-O": -3.589021815622806,
+   "R-T": 11.25967628430683,
+   "R-O": 7.670654468684024
+  }
+ },
+ "model": "qwen3_vl_4b"
+}

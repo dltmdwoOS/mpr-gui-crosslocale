@@ -1,0 +1,6 @@
+9694fff Runbook: time estimate anchored on Qwen3 measured run
+0e645c1 Unattended 'all' stage: preflight, ETA, smoke gate, full runs, completion gate, packaging
+e01b0d2 InternVL3.5: max_num 8 (2,304 visual tokens) to match Qwen3 actual visual tokens
+23018ad Apply review fixes: measure attention, eos set, repo-local HF cache, torn-line resume, runbook gates and tile decision
+267ba9f Add InternVL3.5-8B single-4090 run path (config, adapter compat, grounding runner, preflight, runbook)
+6664400 Prepare single RTX 4090 Qwen3 full runs with ORCF grounding

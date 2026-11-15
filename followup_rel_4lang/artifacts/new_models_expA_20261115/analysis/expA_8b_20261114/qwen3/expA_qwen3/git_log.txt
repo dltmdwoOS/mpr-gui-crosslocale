@@ -1,0 +1,6 @@
+6664400 Prepare single RTX 4090 Qwen3 full runs with ORCF grounding
+03cd236 Fix Qwen3 patch Conv3D performance and archive RTX 4090 study
+283375b Add Qwen runtime audit and 4090 profiling guide
+a25447b Replace Qwen raw output HTML with Markdown reports
+3c6f531 Add Qwen grounding raw output viewer and audit
+906adc5 Run paired Qwen grounding JSON versus tuple pilot

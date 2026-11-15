@@ -1,0 +1,9 @@
+{
+ "model_id": "mlx-community/gemma-3-12b-it-4bit",
+ "revision": "86cc6a8dedbc456dd0e4af01a9d09f396f77e558",
+ "decoding": "greedy (temp 0)",
+ "max_tokens": 512,
+ "mlx_lm": "0.32.2",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "instruction": "You translate names of elements shown in a mobile or desktop app interface from {src} to {tgt}.\nYou cannot see the screen. Translate each name the way it would most naturally appear in a {tgt} app.\nRules: keep numbers, times, dates written with digits, symbols, and brand or product names unchanged; do not add explanations, quotes, or punctuation that is not in the original; if a name has nothing to translate, return it unchanged.\nInput is a JSON list of {n} names. Output only a JSON list of exactly {n} strings in the same order.\n\n{items}"
+}

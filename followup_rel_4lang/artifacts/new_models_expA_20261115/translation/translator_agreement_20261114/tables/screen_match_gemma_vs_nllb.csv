@@ -1,0 +1,11 @@
+screen_lang,translator,spans,exact,normalized,different,exact_or_norm_pct
+all,gemma,8564,3027,311,5226,38.98
+all,nllb,8564,1273,187,7104,17.05
+en,gemma,2142,771,267,1104,48.46
+en,nllb,2142,141,72,1929,9.94
+zh,gemma,2142,818,1,1323,38.24
+zh,nllb,2142,393,5,1744,18.58
+th,gemma,2142,761,1,1380,35.57
+th,nllb,2142,454,11,1677,21.71
+ru,gemma,2138,677,42,1419,33.63
+ru,nllb,2138,285,99,1754,17.96

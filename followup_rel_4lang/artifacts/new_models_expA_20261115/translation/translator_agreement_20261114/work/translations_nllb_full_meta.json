@@ -1,0 +1,15 @@
+{
+ "model_id": "facebook/nllb-200-distilled-1.3B",
+ "revision": "7be3e24664b38ce1cac29b8aeed6911aa0cf0576",
+ "generation": {
+  "num_beams": 4,
+  "do_sample": false,
+  "max_new_tokens": 64
+ },
+ "torch": "2.9.1",
+ "transformers": "5.22.2",
+ "jobs_file": "/Users/baegihyeon/Desktop/CUAI/CUAI_\u1112\u1161\u1100\u1168 \u110f\u1165\u11ab\u1111\u1165\u1105\u1165\u11ab\u1109\u1173/expA_translation_20261112/work/translation_jobs.jsonl",
+ "batch_size": 16,
+ "device": "cpu",
+ "platform": "macOS-26.6.2-arm64-arm-64bit"
+}

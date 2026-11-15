@@ -1,0 +1,47 @@
+{
+ "pairs_written": 1944,
+ "pairs_skipped": 0,
+ "R_self_check": "all pairs reproduced",
+ "main_span_uses": 8568,
+ "match_main_all": {
+  "different": 5230,
+  "exact": 3027,
+  "normalized": 311
+ },
+ "match_main_stem": {
+  "different": 1288,
+  "exact": 552,
+  "normalized": 56
+ },
+ "untranslated_main": 232,
+ "match_main_by_gui": {
+  "en": {
+   "different": 1104,
+   "normalized": 267,
+   "exact": 771
+  },
+  "ru": {
+   "different": 1423,
+   "exact": 677,
+   "normalized": 42
+  },
+  "th": {
+   "exact": 761,
+   "different": 1380,
+   "normalized": 1
+  },
+  "zh": {
+   "different": 1323,
+   "exact": 818,
+   "normalized": 1
+  }
+ },
+ "reverted_collisions": [],
+ "pairs_T_options_not_distinct_while_O_distinct": [
+  "rel::5/forest_9.jpg::zh::ru"
+ ],
+ "translations_sha256": {
+  "work/translations_gemma.jsonl": "eaea771729d2339608f8d4c83bcc9ecee12340c415030429c68b5de745beb40a",
+  "work/translations_gemma_parsefail.jsonl": "0433243b2bada4c4643168c21c6b8be138b35947a3c4481b4ae070685ae70f94"
+ }
+}

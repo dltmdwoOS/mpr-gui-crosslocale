@@ -1,0 +1,1 @@
+verdict (one per case_id; fill on first row of each case): 번역 오류 / 번역은 맞지만 화면 용어와 다름 / 다른 요소 이름과 비슷함(near-miss) / 화면 글자와 같음 / 판단 불가

@@ -1,0 +1,6 @@
+model,label,id,statistic,direction,est_pp,ci95_lo_pp,ci95_hi_pp,valid_draws,p_one_sided,p_holm,reject,ci90_lo_pp,ci90_hi_pp,ratio_E2_over_E1
+uitars_15_7b,"descriptive (same code, not part of the confirmatory set; plan v2)",P1,T-O(th) - T-O(rest),>0,17.02283707022748,10.6300740208725,23.142194241285,10000,9.999000099990002e-05,0.00029997000299970003,True,,,
+uitars_15_7b,"descriptive (same code, not part of the confirmatory set; plan v2)",P2,T-O(th),>0,10.54852320675106,4.641350211,16.2447257384,10000,0.0004999500049995,0.0004999500049995,True,,,
+uitars_15_7b,"descriptive (same code, not part of the confirmatory set; plan v2)",P3,T-O(rest),<0,-6.4743138634764215,-9.9156118143,-2.9576944425425005,10000,9.999000099990002e-05,0.00029997000299970003,True,,,
+uitars_15_7b,"descriptive (same code, not part of the confirmatory set; plan v2)",E1,R-O(th) - R-O(rest),estimate,15.040813357206694,8.43195200385,21.229778904155,10000,,,,9.614574369635,20.323488044999998,
+uitars_15_7b,"descriptive (same code, not part of the confirmatory set; plan v2)",E2,R-T(th) - R-T(rest),estimate,-1.9820237130207863,-7.383966244700001,3.2348804501,10000,,,,-6.4697609001,2.421220344464991,"{'est': -0.13177636514391786, 'ci95_lo': -0.6821034619378, 'ci95_hi': 0.19385297271099997, 'ci90_lo': -0.5619819594437999, 'ci90_hi': 0.14158776895464992, 'valid_draws': 10000}"

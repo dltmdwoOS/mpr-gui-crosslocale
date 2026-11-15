@@ -1,0 +1,57 @@
+{
+  "model": "qwen3",
+  "rules": {
+    "reference": "rstem_ropts_inputs/reference_qwen3_20261107_OR.jsonl",
+    "smoke_min_anchor_agreement": 0.9,
+    "smoke_max_parse_failures": 2,
+    "complete_rows": 5688,
+    "complete_max_parse_failures": 20
+  },
+  "rows": 108,
+  "statuses": {
+    "success": 108
+  },
+  "parse_failures": 0,
+  "misaligned_batches": 0,
+  "accuracy": {
+    "main/O": {
+      "correct": 20,
+      "n": 36,
+      "rate": 0.5556
+    },
+    "main/R": {
+      "correct": 23,
+      "n": 36,
+      "rate": 0.6389
+    },
+    "main/T": {
+      "correct": 23,
+      "n": 36,
+      "rate": 0.6389
+    }
+  },
+  "anchor_vs_earlier_run": {
+    "anchor_rows": 72,
+    "label_agreement": 0.9861,
+    "by_condition": {
+      "O/diff": 1,
+      "O/same": 35,
+      "R/same": 36
+    }
+  },
+  "T_equals_R_same_input_check": {
+    "pairs_T_equals_R": 9,
+    "same_answer": 9
+  },
+  "software_versions_vs_earlier_run": {
+    "differences_except_platform": {
+      "python": [
+        "3.12.15",
+        "3.12.3"
+      ]
+    }
+  },
+  "note_anchor_below_0_99": true,
+  "problems": [],
+  "status": "passed"
+}

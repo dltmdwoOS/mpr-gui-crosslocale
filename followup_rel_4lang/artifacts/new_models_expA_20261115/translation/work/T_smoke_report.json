@@ -1,0 +1,37 @@
+{
+ "pairs_written": 20,
+ "pairs_skipped": 1924,
+ "R_self_check": "all pairs reproduced",
+ "main_span_uses": 60,
+ "match_main_all": {
+  "different": 27,
+  "exact": 26,
+  "normalized": 7
+ },
+ "match_main_stem": {
+  "different": 10,
+  "exact": 1,
+  "normalized": 1
+ },
+ "untranslated_main": 2,
+ "match_main_by_gui": {
+  "en": {
+   "different": 5,
+   "normalized": 7,
+   "exact": 3
+  },
+  "ru": {
+   "different": 8,
+   "exact": 7
+  },
+  "th": {
+   "exact": 7,
+   "different": 8
+  },
+  "zh": {
+   "different": 6,
+   "exact": 9
+  }
+ },
+ "translations_sha256": "ada80515fc720f33939841fb3753efb2d7bc863665eebc097bb5c5cf757f5905"
+}

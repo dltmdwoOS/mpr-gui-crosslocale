@@ -1,0 +1,43 @@
+{
+ "pairs_written": 1944,
+ "pairs_skipped": 0,
+ "R_self_check": "all pairs reproduced",
+ "main_span_uses": 8568,
+ "match_main_all": {
+  "different": 5245,
+  "exact": 3012,
+  "normalized": 311
+ },
+ "match_main_stem": {
+  "different": 1285,
+  "exact": 556,
+  "normalized": 55
+ },
+ "untranslated_main": 27,
+ "match_main_by_gui": {
+  "en": {
+   "different": 1103,
+   "normalized": 266,
+   "exact": 773
+  },
+  "ru": {
+   "different": 1442,
+   "exact": 657,
+   "normalized": 43
+  },
+  "th": {
+   "exact": 759,
+   "different": 1382,
+   "normalized": 1
+  },
+  "zh": {
+   "different": 1318,
+   "exact": 823,
+   "normalized": 1
+  }
+ },
+ "translations_sha256": {
+  "work/translations_gemma.jsonl": "eaea771729d2339608f8d4c83bcc9ecee12340c415030429c68b5de745beb40a",
+  "work/translations_gemma_retry.jsonl": "efd6c9ecaf6e22ca8353dd86f221a6e9b206a0b860c277ea6289daaea911f81c"
+ }
+}

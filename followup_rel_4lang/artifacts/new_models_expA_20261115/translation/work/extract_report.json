@@ -1,0 +1,28 @@
+{
+ "pairs": 1944,
+ "items": 170,
+ "span_uses": 8824,
+ "unique_jobs": 6917,
+ "jobs_by_direction": {
+  "en->zh": 602,
+  "ru->en": 617,
+  "th->ru": 599,
+  "zh->th": 599,
+  "en->ru": 562,
+  "en->th": 562,
+  "ru->th": 573,
+  "ru->zh": 573,
+  "th->en": 556,
+  "th->zh": 556,
+  "zh->en": 559,
+  "zh->ru": 559
+ },
+ "span_uses_by_field": {
+  "stem": 1944,
+  "option": 6880
+ },
+ "inputs": {
+  "reference_mappings_sha256": "04ff9cb438a2e40ea9e4bd92ab5053817d49bea970c1c36d28f87948d19d95e3",
+  "mixed_conditions_sha256": "a7fb09962989ead44c9e76184b5759aefb30bb34e4fd2f3eec091dffe2e54cbe"
+ }
+}

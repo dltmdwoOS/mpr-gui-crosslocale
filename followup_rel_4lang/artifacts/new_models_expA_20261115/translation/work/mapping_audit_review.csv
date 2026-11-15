@@ -1,0 +1,177 @@
+﻿no,parallel_id,ref_id,verdict,bad_langs,note,en,zh,th,ru,min_sim
+1,rel::1/booking_9.jpg,D:0,uncertain,ru,숙소 유형 이름이 다름,Bungalows,简易别墅,บังกะโล,Жилье для любого отдыха,0.076
+2,rel::2/calendar_3.png,A:0,mapping_error,th,"ทำประจำ=반복, Alert 자리",Alert,提醒,ทำประจำ,Напоминание,0.325
+3,rel::2/calendar_3.png,question_stem:0,mapping_error,th,"ทั้งวัน=하루 종일, Repeat 자리",Repeat,重复,ทั้งวัน,Повтор,0.289
+4,rel::2/calendar_6.png,A:0,ok_localization,,,Tuesday,周二,วันอังคาร,"Вт, 10",0.321
+5,rel::2/calendar_6.png,D:0,ok_localization,,,Sunday,周日,วันอาทิตย์,"Вс, 8",0.382
+6,rel::2/calendar_8.png,D:0,ok_localization,,,Edit,编辑,แก้ไข,Правка,0.442
+7,rel::2/calendar_9.png,D:0,ok_localization,,,Repeat,重复,ทำประจำ,Повтор,0.491
+8,rel::2/calendar_9.png,question_stem:0,ok_localization,,,New Event,新建日程,กิจกรรมใหม่,Событие,0.395
+9,rel::2/clock_1.png,A:0,ok_localization,,,Split,分段,รอบย่อย,Круг,0.343
+10,rel::2/clock_1.png,question_stem:0,ok_localization,,,LAP NO.,次数,รอบที่,№ КРУГА,0.159
+11,rel::2/clock_10.png,C:0,ok_localization,,,Timer,计时器,นาฬิกานับถอยหลัง,Таймер,0.425
+12,rel::2/clock_4.png,C:0,ok_localization,,,Ringtones,铃声,เสียงเรียกเข้า,Рингтоны,0.36
+13,rel::2/clock_5.png,C:0,annotation_artifact,,ru 'Вкладка'(탭) 설명어 포함,Stopwatch,秒表,จับเวลา,Вкладка Секундомер,0.123
+14,rel::2/clock_5.png,question_stem:0,ok_localization,,,When Timer Ends,计时结束时启用,เมื่อหมดเวลา,По окончании,0.487
+15,rel::2/clock_6.png,A:0,uncertain,"zh,th,ru","알람음 이름, 언어별 현지화인지 순서 어긋남인지 불명",Chimes,欢乐时光,กระดิ่งลม,Кристаллы,0.217
+16,rel::2/clock_6.png,B:0,uncertain,"zh,th,ru",같음,Circuit,缓慢上升,ค่อยๆ เกิด,Иллюминация,0.13
+17,rel::2/clock_6.png,C:0,uncertain,"zh,th,ru",같음,Constellation,急板,จ้องมอง,Космос,0.179
+18,rel::2/clock_6.png,D:0,uncertain,"zh,th,ru",같음,Cosmic,煮茶,จังหวะเร็ว,Грезы,0.125
+19,rel::2/clock_6.png,question_stem:0,ok_localization,,,By The Seaside,海边,คลื่น,Волны,0.152
+20,rel::2/clock_9.png,A:0,ok_localization,,,Snooze,稍后提醒,เลื่อนปลุก,Snooze,0.339
+21,rel::2/clock_9.png,B:0,ok_localization,,,Label,标签,ชื่อ,Название,0.459
+22,rel::2/freeform_10.png,B:0,ok_localization,,,Auto-minimize,自动最小化切换,สวิตช์สลับ ย่ออัตโนมัติ,Переключатель Автоматически убирать в Dock,0.354
+23,rel::2/map_9.png,question_stem:0,mapping_error,th,"เลี่ยงทางหลวง=고속도로 회피, 유료도로 회피 자리",Avoid Tolls,避开收费站,เลี่ยงทางหลวง,Избегать платных дорог,0.459
+24,rel::2/note_1.png,B:0,ok_localization,,,Auto-minimize,自动最小化,สวิตช์เปิดปิด ย่ออัตโนมัติ,Автоматически убирать в Dock,0.453
+25,rel::2/note_10.png,B:0,ok_localization,,,Move Note,移动备忘录,ย้ายโน้ต,Переместить заметку,0.474
+26,rel::2/note_11.png,A:0,ok_localization,,,Notes,备忘录,โน้ต,Заметки,0.353
+27,rel::2/note_11.png,question_stem:0,ok_localization,,,Folders,文件夹,โฟลเดอร์,Папки,0.336
+28,rel::2/note_2.png,question_stem:0,ok_localization,,,Markup,标记,ทำเครื่องหมาย,Добавить разметку,0.499
+29,rel::2/note_6.png,B:0,mapping_error,zh,"查看附件=첨부 보기, Select Notes 자리(zh 보기 순서 어긋남)",Select Notes,查看附件,เลือกโน้ต,Выбрать заметки,0.312
+30,rel::2/note_6.png,C:0,mapping_error,zh,"默认（编辑日期）, View Attachments 자리",View Attachments,默认（编辑日期）,ดูไฟล์แนบ,Просмотреть вложения,0.147
+31,rel::2/note_8.png,B:0,ok_localization,,,Reset,还原,รีเซ็ต,Сбросить,0.446
+32,rel::2/setting_1.png,A:0,ok_localization,,,Picture in Picture,画中画,หน้าต่างย่อยในหน้าต่างหลัก,Картинка в картинке,0.246
+33,rel::2/setting_1.png,C:0,ok_localization,,,Background App Refresh,后台App刷新,ดึงข้อมูลแอปอยู่เบื้องหลัง,Обновление контента,0.408
+34,rel::2/setting_11.png,question_stem:0,ok_localization,,,Ringtone,电话铃声,เสียงเรียกเข้า,Рингтон,0.343
+35,rel::2/setting_2.png,C:0,ok_localization,,,Focus,专注模式,โฟกัส,Фокусирование,0.432
+36,rel::2/setting_2.png,D:0,mapping_error,th,"ภาพพื้นหลัง=배경화면, Display & Brightness 자리",Display & Brightness,显示与亮度,ภาพพื้นหลัง,Экран и яркость,0.211
+37,rel::2/setting_3.png,question_stem:0,ok_localization,,,Handwrite,手写,เขียนข้อความ,Написание,0.441
+38,rel::2/setting_5.png,A:0,ok_localization,,,Recently Deleted,最近删除,ที่ลบล่าสุด,Недавно удаленные,0.413
+39,rel::2/setting_7.png,question_stem:0,ok_localization,,,Focus,专注模式,โฟกัส,Фокусирование,0.432
+40,rel::2/weather_1.png,question_stem:0,ok_localization,,,WIND,风,ลม,Ветер,0.457
+41,rel::2/weather_6.png,B:0,ok_localization,,,Celsius,摄氏度,เซลเซียส,Градусы Цельсия,0.261
+42,rel::2/weather_6.png,C:0,ok_localization,,,Fahrenheit,华氏度,ฟาเรนไฮต์,Градусы Фаренгейта,0.334
+43,rel::2/weather_9.png,B:0,ok_localization,,,Seems accurate,比较准确,น่าจะใช่,Прогноз был точным,0.398
+44,rel::2/weather_9.png,C:0,ok_localization,,,Clouds,多云,เมฆ,Облачно,0.44
+45,rel::3/backend_1.jpg,A:0,ok_localization,,,Security scan,安全扫描,สแกนด้านความปล...,Антивирус,0.232
+46,rel::3/backend_7.jpg,A:0,ok_localization,,,Security scan,安全扫描,สแกนด้านความปล...,Антивирус,0.232
+47,rel::3/backend_9.jpg,B:0,ok_localization,,,Mi Remote,万能遥控,รีโมท Mi,Mi Пульт,0.223
+48,rel::3/calendar_1.jpg,A:0,mapping_error,th,"ทั้งวัน=하루 종일, Repeat 자리",Repeat,重复,ทั้งวัน,Повтор,0.289
+49,rel::3/calendar_1.jpg,B:0,mapping_error,th,"การแจ้งเตือน=알림, All day 자리",All day,全天事件,การแจ้งเตือน,Весь день,0.245
+50,rel::3/calendar_1.jpg,C:0,mapping_error,th,"ทำซ้ำ=반복, Reminders 자리",Reminders,提醒,ทำซ้ำ,Напоминания,0.351
+51,rel::3/calendar_1.jpg,question_stem:0,ok_localization,,,To,结束时间,ถึง,Окончание,0.34
+52,rel::3/calendar_5.jpg,question_stem:0,ok_localization,,,Events,日程,กำหนดการ,Расписание,0.436
+53,rel::3/clock_2.jpg,B:0,ok_localization,,,Monday to Friday,周一至周五,จันทร์ - ศุกร์,По будням,0.431
+54,rel::3/clock_3.jpg,C:0,ok_localization,,,Ringtone,铃声,เสียงเรียกเข้า,Мелодия,0.48
+55,rel::3/clock_3.jpg,D:0,ok_localization,,,Label,备注,ป้ายชื่อ,Описание,0.36
+56,rel::3/clock_4.jpg,C:0,ok_localization,,,Weather alarm,天气动态铃声,เตือนสภาพอากาศ,Погода,0.496
+57,rel::3/clock_4.jpg,D:0,ok_localization,,,Nature alarm,元素动态铃声,เสียงปลุกธรรมชาติ,Звуки природы,0.399
+58,rel::3/clock_4.jpg,question_stem:0,uncertain,zh,"返回无, 뜻 불명확",Don't set ringtone,返回无,ไม่ตั้งเสียงเรียกเข้า,Не устанавливать мелодию,0.355
+59,rel::3/clock_5.jpg,A:0,ok_localization,,,Mon to Fri,周一至周五,จันทร์ถึงศุกร์,По будням,0.411
+60,rel::3/clock_5.jpg,C:0,ok_localization,,,Custom,自定义,ปรับแต่ง,Выбрать дни,0.175
+61,rel::3/clock_5.jpg,question_stem:0,ok_localization,,,Ringtone,铃声,เสียงเรียกเข้า,Мелодия,0.48
+62,rel::3/clock_7.jpg,C:0,ok_localization,,,Default,默认,ค่าเริ่มต้น,Стандарт,0.455
+63,rel::3/clock_9.jpg,A:0,ok_localization,,,Ringtone volume,响铃音量,ระดับเสียงเรียกเข้า,Громкость,0.218
+64,rel::3/clock_9.jpg,B:0,ok_localization,,,Timer ringtone,计时结束铃声,เสียงเรียกเข้า...,Мелодия таймера,0.339
+65,rel::3/clock_9.jpg,question_stem:0,uncertain,zh,"响铃时长=울림 시간, 같은 설정의 다른 이름일 수 있음",Auto-silence,响铃时长,ปิดเสียงอัตโนมัติ,Автоотключение си...,0.112
+66,rel::3/homescreen_5.jpg,A:0,ok_localization,,,Battery saver,省电模式,ตัวประหยัดแบตเตอรี,Экономия энергии,0.497
+67,rel::3/homescreen_5.jpg,C:0,ok_localization,,,Vibrate,振动,สั่นเตือน,Вибрация,0.439
+68,rel::3/homescreen_5.jpg,D:0,ok_localization,,,Floating window,迷你小窗,หน้าต่างลอย,Плавающие окн...,0.27
+69,rel::3/homescreen_5.jpg,question_stem:0,ok_localization,,,DND,勿扰模式,ห้ามรบกวน,Не беспокоить,0.195
+70,rel::3/homescreen_6.jpg,C:0,ok_localization,,,DND,勿扰模式,ห้ามรบกวน,Не беспокоить,0.195
+71,rel::3/homescreen_9.jpg,A:0,ok_localization,,,Security scan,安全扫描,สแกนด้านความปล...,Антивирус,0.232
+72,rel::3/map_2.jpg,C:0,ok_localization,,,Your Timeline,您的时间轴,ไทม์ไลน์ของคุณ,Хронология,0.342
+73,rel::3/map_2.jpg,D:0,ok_localization,,,Location sharing,位置信息分享,การแชร์ตำแหน่ง,Передача геоданных,0.355
+74,rel::3/map_3.jpg,B:0,ok_localization,,,Distance units,距离单位,หน่วยระยะทาง,Километры/мили,0.353
+75,rel::3/map_7.jpg,question_stem:0,ok_localization,,,Your Timeline,您的时间轴,ไทม์ไลน์ของคุณ,Хронология,0.342
+76,rel::3/map_8.jpg,B:0,ok_localization,,,Private,不公开,ส่วนตัว,Личный,0.452
+77,rel::3/music_3.jpg,D:0,ok_localization,,,Shuffle playback,随机播放,เล่นสลับ,В случайном порядке,0.218
+78,rel::3/music_4.jpg,D:0,ok_localization,,,Add to playlist,加歌,เพิ่มในรายการเพลง,Добавить в плейлист,0.339
+79,rel::3/music_4.jpg,question_stem:0,ok_localization,,,Shuffle playback,随机播放,เล่นสลับ,В случайном порядке,0.218
+80,rel::3/note_10.jpg,question_stem:0,ok_localization,,,Security scan,安全扫描,สแกนด้านความปล...,Антивирус,0.232
+81,rel::3/note_7.jpg,A:0,uncertain,zh,문장 전체가 들어감,Enter,回车即可连续添加待办,Enter,Ввод,0.243
+82,rel::3/note_9.jpg,C:0,ok_localization,,,Select how you want to sort your notes,选择排序方式,เลือกเรียงลำดับบันทึกย่อของคุณที่ต้องการ,Сортировка заметок,0.407
+83,rel::3/note_9.jpg,D:0,ok_localization,,,Delete using a gesture,快捷删除设置切换,ลบการใช้ท่าทาง,Удаление с помощью жеста,0.442
+84,rel::3/settings_3.jpg,A:0,ok_localization,,,Apps turning on Bluetooth,应用打开蓝牙行为记录,แอปเปิดบลูทูธ,Приложения включают Bluetooth,0.451
+85,rel::3/settings_5.jpg,A:0,ok_localization,,,Alarm,闹钟铃声,การปลุก,Будильник,0.286
+86,rel::3/settings_5.jpg,B:0,ok_localization,,,Silent/DND,静音/勿扰,ปิดเสียง/DND,Без звука | Не беспокоить,0.452
+87,rel::3/settings_5.jpg,question_stem:0,ok_localization,,,Ringtone,电话铃声,เสียงเรียกเข้า,Мелодия,0.48
+88,rel::3/settings_7.jpg,A:0,ok_localization,,,Manage Home screen shortcuts,桌面图标管理,จัดการทางลัดบนหน้าจอหลัก,Управление ярлыками на рабочем столе,0.471
+89,rel::3/settings_9.jpg,B:0,ok_localization,,,Second space,手机分身,พื้นที่ที่ซ่อน,Второе пространство,0.218
+90,rel::4/Gmail_4.jpg,B:0,ok_localization,,,Conversation view,会话视图,มุมมองการสนทนา,Просмотр в виде цепочек,0.491
+91,rel::4/Gmail_4.jpg,D:0,ok_localization,,,Swipe actions,滑动操作,การทำงานของการเลื่อน,Жесты пролистывания,0.369
+92,rel::4/Gmail_4.jpg,question_stem:0,ok_localization,,,Conversation list density,会话列表显示密度,ความหนาแน่นของรายการสนทนา,Режим для списка цепочек,0.321
+93,rel::4/Gmail_8.jpg,A:0,mapping_error,zh,"发件人=보낸 사람, To 자리",To,发件人,ฟิลด์ถึง,Поле Кому,0.38
+94,rel::4/Gmail_8.jpg,C:0,mapping_error,zh,"收件人=받는 사람, From 자리",From,收件人,ฟิลด์จาก,Поле От,0.35
+95,rel::4/Gmail_8.jpg,D:0,ok_localization,,,Subject,主题,ฟิลด์เรื่อง,Поле Тема,0.467
+96,rel::4/Youtube_2.jpg,question_stem:0,ok_localization,,,Handle,标识名,แฮนเดิล,Псевдоним,0.268
+97,rel::4/Youtube_7.jpg,D:0,ok_localization,,,Subscriptions,订阅,การติดตาม,Подписки,0.455
+98,rel::4/Youtube_9.jpg,B:0,ok_localization,,,Playback in feeds,浏览时自动播放视频,การเล่นในฟีด,Воспроизведение в фидах,0.398
+99,rel::4/google_play_10.jpg,question_stem:0,ok_localization,,,Learn more about personalization,详细了解个性化体验,ดูข้อมูลเพิ่มเติมเกี่ยวกับการปรับเปลี่ยนในแบบของคุณ,Подробнее о персонализации...,0.466
+100,rel::4/google_play_4.jpg,question_stem:0,ok_localization,,,Subscriptions,订阅,การสมัครใช้บริการ,Подписки,0.49
+101,rel::4/google_play_6.jpg,question_stem:0,ok_localization,,,Wishlist,心愿单,สิ่งที่อยากได้,Список желаний,0.461
+102,rel::4/twitter_6.jpg,B:0,ok_localization,,,Monetization,盈利,การสร้างเงิน,Монетизация,0.423
+103,rel::4/twitter_7.jpg,B:0,mapping_error,"zh,ru","비밀번호 변경, Deactivate Account 자리",Deactivate Account,随时更改你的密码,ปิดการใช้งานบัญชี,Изменение пароля,0.362
+104,rel::5/camera_10.jpg,A:0,mapping_error,zh,"微距=매크로, STICKER 자리",STICKER,微距,สติ๊กเกอร์,СТИКЕР,0.191
+105,rel::5/camera_10.jpg,B:0,ok_localization,,,PANORAMA,全景,พาโน,ПАНОРАМНАЯ,0.393
+106,rel::5/camera_10.jpg,C:0,ok_localization,,,TEXT SCANNER,超级文本,ระบบสแกนข้อความ,СКАНИРОВАНИЕ ТЕКСТА,0.364
+107,rel::5/camera_10.jpg,D:0,mapping_error,zh,"萌拍=스티커류, MACRO 자리",MACRO,萌拍,มาโคร,МАКРОСЪЕМКА,0.214
+108,rel::5/camera_12.jpg,A:0,ok_localization,,,Grid and guides,参考线,ช่องและเส้นบอกแนว,Сетка и направляющие,0.378
+109,rel::5/camera_12.jpg,B:0,ok_localization,,,Flip selfie,保存自拍镜像,เซลฟี่แบบพลิก,Перевернуть селфи,0.271
+110,rel::5/camera_12.jpg,question_stem:0,ok_localization,,,Add location tags,记录地理位置,เพิ่มแท็กตำแหน่ง,Добавить метки местоположения,0.482
+111,rel::5/camera_14.jpg,C:0,ok_localization,,,PORTRAIT,人像,รูปคน,ПОРТРЕТ,0.321
+112,rel::5/camera_2.jpg,B:0,ok_localization,,,PORTRAIT,人像,รูปคน,ПОРТРЕТ,0.321
+113,rel::5/camera_6.jpg,C:0,ok_localization,,,Tap anywhere in the viewfinder,点击预览画面拍摄照片,แตะที่ใดก็ได้ในช่องมองภาพ,Коснитесь в любом месте видоискателя,0.371
+114,rel::5/camera_6.jpg,question_stem:0,ok_localization,,,Show palm,手势拍照,แสดงฝ่ามือ,Показать ладонь,0.382
+115,rel::5/camera_9.jpg,C:0,ok_localization,,,Pro settings,专业拍摄,การตั้งค่าแบบมืออาชีพ,Настройки Pro,0.43
+116,rel::5/camera_9.jpg,D:0,ok_localization,,,Creative effects,美化效果,เอฟเฟกต์สร้างสรรค์,Художественные эффекты,0.499
+117,rel::5/camera_9.jpg,question_stem:0,ok_localization,,,Creative effects,美化效果,เอฟเฟกต์สร้างสรรค์,Художественные эффекты,0.499
+118,rel::5/file_1.jpg,A:0,ok_localization,,,Cache Junk,缓存垃圾,แคชที่ไม่มีประโยชน์,Очистка кэша,0.368
+119,rel::5/file_10.jpg,D:0,mapping_error,ru,"Предоставление=제공, Privacy 자리",Privacy,隐私,ความเป็นส่วนตัว,Предоставление,0.35
+120,rel::5/file_13.jpg,A:0,ok_localization,,,Storage cleanup,清理存储,การล้างไฟล์ที่ไม่จำเป็นในพื้นที่จัดเก็บ,Очистка памяти,0.489
+121,rel::5/file_13.jpg,question_stem:0,ok_localization,,,Cloud drive,云盘,ไดรฟ์ระบบคลาวด์,Облачное хранилище,0.423
+122,rel::5/file_2.jpg,C:0,ok_localization,,,Cloud drive,云盘,ไดรฟ์ระบบคลาวด์,Облачное хранили...,0.139
+123,rel::5/file_6.jpg,D:0,ok_localization,,,APKs,安装包,APK,Файлы APK,0.383
+124,rel::5/file_6.jpg,question_stem:0,ok_localization,,,Douyin Cleaner,抖音专清,ตัวล้างข้อมูล Douyin,Очистка Douyin,0.294
+125,rel::5/file_7.jpg,A:0,mapping_error,zh,"微信专清, Go 자리",Go,微信专清,ไป,Вперед!,0.094
+126,rel::5/file_7.jpg,A:1,mapping_error,zh,"前往=이동, WeChat Cleaner 자리",WeChat Cleaner,前往,ตัวล้าง WeChat,Программа очистки WeChat,0.032
+127,rel::5/file_7.jpg,question_stem:0,ok_localization,,,Douyin Cleaner,抖音专清,ตัวล้างข้อมูล Douyin,Очистка Douyin,0.294
+128,rel::5/forest_2.jpg,question_stem:0,uncertain,zh,"戴上草帽=밀짚모자 쓰기, 업적 이름 현지화 차이일 수 있음",Novice Planter,戴上草帽,นักปลูกมือใหม่,Начинающий планта...,0.175
+129,rel::5/forest_8.jpg,C:0,ok_localization,,,Real Forest,种植真树,ป่าจริง,Настоящий лес,0.391
+130,rel::5/forest_9.jpg,A:0,annotation_artifact,,ru 'button' 설명어 포함,Stopwatch,正计时,จับเวลา,Stopwatch button,0.379
+131,rel::5/forest_9.jpg,D:0,annotation_artifact,,ru 'text' 설명어 포함,Start planting,开始种植,เริ่มต้นปลูกต้นไม้,Посадить text,0.41
+132,rel::5/forest_9.jpg,question_stem:0,mapping_error,zh,"深度专注=딥 포커스, Current Allow List 자리",Current Allow List,深度专注,รายการอนุญาตปัจจุบัน,Текущий Список,0.023
+133,rel::5/manager_1.jpg,A:0,annotation_artifact,,zh/th/ru '부분 제목' 설명어 포함,App cleanup,应用专清部分标题,ชื่อส่วนการล้างข้อมูลแอพ,Заголовок раздела очистки приложений,0.347
+134,rel::5/manager_8.jpg,A:0,ok_localization,,,other partners. Final results determined by Smart Shield.,腾讯、安天等提供技术支持，智能护盾判定最终结果,พันธมิตรอื่น ๆ ผลลัพธ์สุดท้ายกำหนดโดยสมาร์ทชิลด์,Antiy и другими партнерами. Итоговые результаты определены функцией «Умная защита».,0.367
+135,rel::5/message_1.jpg,D:0,uncertain,ru,Значки=배지,Categories,类别,หมวดหมู่,Значки,0.353
+136,rel::5/message_10.jpg,C:0,ok_localization,,,Contacts,联系人,รายชื่อ,Контакты,0.43
+137,rel::5/message_11.jpg,A:0,ok_localization,,,Edit,编辑,แก้ไข,Измен.,0.394
+138,rel::5/message_11.jpg,C:0,ok_localization,,,Block & filter,骚扰拦截,ปิดกั้นและกรอง,Блокировка и фильтры,0.393
+139,rel::5/message_2.jpg,D:0,ok_localization,,,Send service messages to,接收服务信息的号码,ส่งข้อความบริการไปยัง,Отправить сервисные сообщения на,0.414
+140,rel::5/phone_13.jpg,B:0,ok_localization,,,Cloud sync paused,云同步暂停,หยุดซิงค์กับระบบคลาวด์ชั่วคราว,Синхронизация с облаком приостановлена,0.422
+141,rel::5/phone_13.jpg,question_stem:0,ok_localization,,,Contacts,联系人,รายชื่อ,Контакты,0.43
+142,rel::5/phone_18.jpg,C:0,uncertain,th,다른 기기에서 가져오기,Sync contacts from another account,同步其他账号联系人,นำเข้าจากอุปกรณ์อื่น,Синхронизировать контакты из другого аккаунта,0.378
+143,rel::5/phone_18.jpg,D:0,annotation_artifact,,en이 설명문(SIM error notification),SIM error notification,SIM 卡异常，请检查后重试,ข้อผิดพลาดเกี่ยวกับซิม กรุณาตรวจสอบซิมของคุณแล้วลองอีกครั้ง,Ошибка SIM-карты. Проверьте SIM-карту и повторите попыт...,0.409
+144,rel::5/phone_8.jpg,B:0,ok_localization,,,Can't talk now. What's up?,现在不方便接听，有什么事吗？,ตอนนี้คุยไม่ได้ มีอะไรไหม,Не могу говорить. Что случилось?,0.487
+145,rel::5/phone_8.jpg,C:0,ok_localization,,,I'll call you back later,现在不方便接听，稍后联系。,ฉันจะโทรกลับหาคุณในภายหลัง,Я перезвоню вам позже.,0.438
+146,rel::5/phone_9.jpg,D:0,ok_localization,,,When calls or messages are blocked,拦截时提醒,เมื่อมีการปิดกั้นการโทรหรือข้อความ,В каких случаях блокируются вызовы или сообщения,0.377
+147,rel::5/phone_9.jpg,question_stem:0,ok_localization,,,Enhanced blocking with National Anti-Fraud Center,国家反诈中心拦截服务,การปิดกั้นที่พัฒนาประสิทธิภาพโดย Anti-Fraud Center,Расширенные возможности блокировки в 'Центре защиты от мошенничества',0.491
+148,rel::5/record_1.jpg,D:0,ok_localization,,,Cloud sync for recordings,录音云同步,การซิงค์กับระบบคลาวด์สำหรับการอัดบันทึก,Синхронизация записей с облаком,0.386
+149,rel::5/record_16.jpg,D:0,annotation_artifact,,en/ru 'text' 설명어 포함,Filter recordings text,筛选录音文本,กรองไฟล์บันทึกเสียง,Фильтрация записей текст,0.468
+150,rel::5/record_17.jpg,D:0,ok_localization,,,Cloud sync for recordings,录音云同步,การซิงค์กับระบบคลาวด์สำหรับการอัดบันทึก,Облачная синхронизация записей,0.386
+151,rel::5/record_2.jpg,A:0,mapping_error,th,"메시지 벨소리, 통화 벨소리 자리",Set as call ringtone,设为电话铃声,ตั้งค่าเป็นริงโทนสำหรับข้อความ,Задать как рингтон вызова,0.422
+152,rel::5/record_5.jpg,A:0,ok_localization,,,Cloud sync for recordings,录音云同步,ซิงค์กับระบบคลาวด์สำหรับการ...,Синхронизация записей с облак...,0.176
+153,rel::5/record_8.jpg,C:0,ok_localization,,,Photo mark,图片标记,เครื่องหมา...,Отметка...,0.221
+154,rel::6/camera_1.jpg,D:0,ok_localization,,,Pano,全景,พาโน,Панорама,0.393
+155,rel::6/camera_6.jpg,A:0,ok_localization,,,PORTRAIT,人像,ภาพถ่ายบุคคล,ПОРТРЕТ,0.295
+156,rel::6/camera_6.jpg,question_stem:0,ok_localization,,,PANO,全景,พาโน,ПАНОРАМА,0.356
+157,rel::6/camera_8.jpg,B:0,ok_localization,,,PORTRAIT,人像,ภาพถ่ายบุคคล,ПОРТРЕТ,0.295
+158,rel::6/camera_8.jpg,D:0,ok_localization,,,PANO,全景,พาโน,ПАНОРАМА,0.356
+159,rel::6/phone_7.jpg,B:0,mapping_error,ru,"새 연락처 만들기, 긴급 연락처 추가 자리",Add to Emergency Contacts,添加到紧急联系人,เพิ่มไปยังรายชื่อติดต่อฉุกเฉิน,Создать новый контакт,0.368
+160,rel::6/phone_7.jpg,D:0,mapping_error,ru,"긴급 연락처 추가, 새 연락처 자리",Create New Contact,新建联系人,สร้างรายชื่อใหม่,Добавить в контакты на случай ЧП,0.3
+161,rel::6/phone_7.jpg,question_stem:0,ok_localization,,,Block Caller,屏蔽来电号码,ปิดกั้นผู้โทร,Заблокировать абонента,0.41
+162,rel::6/record_5.jpg,B:0,ok_localization,,,Recently Deleted,最近删除,ที่ลบล่าสุด,Недавно удаленные,0.413
+163,rel::6/record_5.jpg,question_stem:0,ok_localization,,,Voice Memos,语音备忘录,เสียงบันทึก,Диктофон,0.49
+164,rel::6/sport_1.jpg,question_stem:0,ok_localization,,,Sessions,训练与练习,เซสชั่น,Занятия,0.358
+165,rel::6/sport_10.jpg,A:0,ok_localization,,,Badminton,羽毛球,แบดมินตัน,Бадминтон,0.324
+166,rel::6/sport_10.jpg,question_stem:0,ok_localization,,,Outdoor Skating,户外滑冰/滑板,เล่นสเก็ตกลางแจ้ง,Скей...,0.182
+167,rel::6/sport_5.jpg,B:1,ok_localization,,,W,周,สัปดาห์,НЕД,0.298
+168,rel::6/sport_5.jpg,B:2,ok_localization,,,M,月,เดือน,МЕС,0.449
+169,rel::6/sport_5.jpg,B:3,ok_localization,,,Y,年,ปี,ГОД,0.424
+170,rel::6/sport_5.jpg,question_stem:0,ok_localization,,,DISTANCE,距离,ระยะทาง,ДИСТАНЦИЯ,0.416
+171,rel::6/sport_7.jpg,question_stem:0,ok_localization,,,Downhill Skiing,高山滑雪,สกีลงเขา,Горные лыжи,0.452
+172,rel::6/sport_9.jpg,A:0,annotation_artifact,,zh 'button' 설명어 포함,Summary,Summary button,สรุป,Сводка,0.369
+173,rel::6/sport_9.jpg,B:0,annotation_artifact,,ru 'вкладка' 설명어 포함,Badminton,羽毛球,แบดมินตัน,Бадминтон вкладка,0.324
+174,rel::6/sport_9.jpg,question_stem:0,mapping_error,zh,"摘要=요약, Sessions 자리",Sessions,摘要,เซสชั่น,Занятия,0.303
+175,rel::6/wallet_8.jpg,B:0,ok_localization,,,GET,获取,รับ,ЗАГРУЗИТЬ,0.402
+176,rel::6/wallet_8.jpg,C:0,ok_localization,,,Boarding Passes and Tickets,收纳登机牌和票券,บัตรขึ้นเครื่องและตั๋วหรือบัตรต่างๆในที่เดียวกัน,Все мои билеты и поса...,0.498

@@ -1,0 +1,15 @@
+{
+  "model": "qwen3",
+  "pairs": 1896,
+  "items": 158,
+  "inferences": 5688,
+  "batch_size": 3,
+  "by_condition": {
+    "O": 1896,
+    "T": 1896,
+    "R": 1896
+  },
+  "T_equals_O_pairs": 1,
+  "T_equals_R_pairs": 103,
+  "experiment_fingerprint": "5948932f2ffd442460d191c777c7da41afddce420350d04c00583d10f8f1d6e5"
+}
