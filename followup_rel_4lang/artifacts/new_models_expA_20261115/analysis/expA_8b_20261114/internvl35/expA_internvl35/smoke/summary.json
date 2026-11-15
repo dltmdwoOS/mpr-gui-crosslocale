@@ -1,0 +1,25 @@
+{
+  "rows": 108,
+  "statuses": {
+    "success": 108
+  },
+  "parse_failures": 0,
+  "accuracy": {
+    "main/O": {
+      "correct": 24,
+      "n": 36,
+      "rate": 0.6667
+    },
+    "main/R": {
+      "correct": 24,
+      "n": 36,
+      "rate": 0.6667
+    },
+    "main/T": {
+      "correct": 25,
+      "n": 36,
+      "rate": 0.6944
+    }
+  },
+  "complete": true
+}

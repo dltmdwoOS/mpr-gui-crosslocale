@@ -1,0 +1,6 @@
+file: DIAGNOSTIC_PLAN_THAI_KO.md (v2)
+sha256: a87dcf3d547f2abb88145cc1345b5061689380c25dae8e7e55817c4e15ecd28a
+frozen_at: 2026-11-14T14:32:24+0900
+note: InternVL3.5-8B Exp A results not opened at this time.
+addendum1: DIAGNOSTIC_PLAN_THAI_KO.ADDENDUM1.md sha256 d155c4113c0095767475045847f17f161ee06ed99e1687d051079968128163db at 2026-11-14T14:35:27+0900 (InternVL results still unopened)
+code: analysis/diag_expA.py sha256 39edf727df48c80a952538ab464afec621af8a46ac9b26f4deb23dc36582c708

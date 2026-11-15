@@ -1,0 +1,56 @@
+{
+  "model": "internvl35",
+  "rules": {
+    "reference": "rstem_ropts_inputs/reference_internvl35_20261109_OR.jsonl",
+    "smoke_min_anchor_agreement": 0.97,
+    "smoke_max_parse_failures": 2,
+    "complete_rows": 5688,
+    "complete_max_parse_failures": 20
+  },
+  "rows": 108,
+  "statuses": {
+    "success": 108
+  },
+  "parse_failures": 0,
+  "misaligned_batches": 0,
+  "accuracy": {
+    "main/O": {
+      "correct": 24,
+      "n": 36,
+      "rate": 0.6667
+    },
+    "main/R": {
+      "correct": 24,
+      "n": 36,
+      "rate": 0.6667
+    },
+    "main/T": {
+      "correct": 25,
+      "n": 36,
+      "rate": 0.6944
+    }
+  },
+  "anchor_vs_earlier_run": {
+    "anchor_rows": 72,
+    "label_agreement": 1.0,
+    "by_condition": {
+      "O/same": 36,
+      "R/same": 36
+    }
+  },
+  "T_equals_R_same_input_check": {
+    "pairs_T_equals_R": 9,
+    "same_answer": 9
+  },
+  "software_versions_vs_earlier_run": {
+    "differences_except_platform": {
+      "python": [
+        "3.12.15",
+        "3.12.3"
+      ]
+    }
+  },
+  "note_anchor_below_0_99": false,
+  "problems": [],
+  "status": "passed"
+}

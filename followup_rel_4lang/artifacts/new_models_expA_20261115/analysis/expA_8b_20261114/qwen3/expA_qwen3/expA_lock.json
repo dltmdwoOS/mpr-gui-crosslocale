@@ -1,0 +1,28 @@
+{
+ "schema": "rel-expA-T-inputs-v1",
+ "created": "2026-11-13",
+ "T_conditions.jsonl": "0ebbed0f2320a799ef609d97907eab2b62252ab04a421db9b5edf172049f0782",
+ "source_mixed_conditions.jsonl": "a7fb09962989ead44c9e76184b5759aefb30bb34e4fd2f3eec091dffe2e54cbe",
+ "source_reference_mappings.jsonl": "04ff9cb438a2e40ea9e4bd92ab5053817d49bea970c1c36d28f87948d19d95e3",
+ "translations": {
+  "work/translations_gemma.jsonl": "eaea771729d2339608f8d4c83bcc9ecee12340c415030429c68b5de745beb40a",
+  "work/translations_gemma_parsefail.jsonl": "0433243b2bada4c4643168c21c6b8be138b35947a3c4481b4ae070685ae70f94"
+ },
+ "builder": {
+  "build_T.py": "d295b81e1f63139a53332177daa50269b47426f00bd971b782799d0116a5bf90",
+  "translate_llm.py": "085b2c32bfa9e0f97fb9ea8b9c780f0593401a744097aaa586d05396439aaf12",
+  "retry_untranslated.py": "c5396a7cb8f09a833a45709cab892a5f0a772130bb155db610f9f1e5423dd923"
+ },
+ "translator": {
+  "model_id": "mlx-community/gemma-3-12b-it-4bit",
+  "revision": "86cc6a8dedbc456dd0e4af01a9d09f396f77e558",
+  "decoding": "greedy"
+ },
+ "rows": {
+  "main": 1896,
+  "pilot": 48
+ },
+ "preregistered_exclusions": [
+  "rel::5/forest_9.jpg::zh::ru"
+ ]
+}

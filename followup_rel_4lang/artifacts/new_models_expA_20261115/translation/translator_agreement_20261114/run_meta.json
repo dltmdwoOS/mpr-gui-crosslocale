@@ -1,0 +1,50 @@
+{
+ "nllb": {
+  "model_id": "facebook/nllb-200-distilled-1.3B",
+  "revision": "7be3e24664b38ce1cac29b8aeed6911aa0cf0576",
+  "generation": {
+   "num_beams": 4,
+   "do_sample": false,
+   "max_new_tokens": 64
+  },
+  "torch": "2.9.1",
+  "transformers": "5.22.2",
+  "jobs_file": "/Users/baegihyeon/Desktop/CUAI/CUAI_\u1112\u1161\u1100\u1168 \u110f\u1165\u11ab\u1111\u1165\u1105\u1165\u11ab\u1109\u1173/expA_translation_20261112/work/translation_jobs.jsonl",
+  "batch_size": 16,
+  "device": "cpu",
+  "platform": "macOS-26.6.2-arm64-arm-64bit"
+ },
+ "labse": {
+  "model": "sentence-transformers/LaBSE",
+  "revision": "836121a0533e5664b21c7aacc5d22951f2b8b25b",
+  "normalize": true
+ },
+ "timings": {
+  "forward_6917_jobs_sec": 5824,
+  "back_6993_jobs_sec": 6101,
+  "device": "cpu fp32, batch 16, beams 4, M3 Pro 18GB",
+  "peak_rss_gb_observed": "~4.4 (model process)",
+  "env": "HF_HUB_OFFLINE=1"
+ },
+ "bootstrap": {
+  "B": 10000,
+  "seed": 20261114,
+  "note": "analyze_expA.SEED (20261113) overridden in agreement_expA.py; analyze_expA.py unmodified"
+ },
+ "input_sha256": {
+  "work/translation_jobs.jsonl": "d9869545c04949b780ee3c4258b82e0aad9ef975e33819b449ef1e6d87117c30",
+  "work/T_gemma_first_spans.jsonl": "6dae7e83061d2bb143a37b96c980388b67cfbb03a8531717ed6f64a25e418bbd",
+  "work/span_inventory.jsonl": "3785466021cdcec83ba774270f514d3d49c3c473db7d70dce5cb6096d4833923",
+  "build_T.py": "d295b81e1f63139a53332177daa50269b47426f00bd971b782799d0116a5bf90",
+  "translate_nllb.py": "f852f2c9405e16b9114442a8a3d6874c809c2e105585cd023d769b5ba1f7cab3",
+  "analysis/analyze_expA.py": "66f6a897eca9d86edf133b925bc8935e4c1517e2540ca22dd286843a93c40d65",
+  "qwen3_predictions": "c6315c8938a1cd2a83242f8d40f262711372d48f6a7be3c203fd13bfac7375e8"
+ },
+ "output_sha256": {
+  "work/translations_nllb_full.jsonl": "b3ff5830aeee44b1a31ab187c1da162aebed88a07e147b250d128c69f89a3d3e",
+  "work/backtranslations_nllb_full.jsonl": "cd28d15e737e81c32bff6633daf19fb2ca43ffbb49f3c17fb8f232a08cab416d",
+  "work/backtrans_jobs.jsonl": "547f811ec1d1e1cf3887c75d8e8b118b9face12525d7b64d260737261a4bd24f",
+  "work/agreed_pairs.json": "ab80ac8828f9a8bbeacea2361467db8a2b11fca079a6431baf7466f97b8b94d6",
+  "work/agreement_spans.jsonl": "da3db3c68bae76eb678a2c7afed11c42da63a9875ae7b849bb01a62ccfd52ae3"
+ }
+}

@@ -1,0 +1,4 @@
+source_len,spans,span_agree_pct
+1-3 chars,1015,31.72
+4-10,3862,27.76
+>10,3687,17.79

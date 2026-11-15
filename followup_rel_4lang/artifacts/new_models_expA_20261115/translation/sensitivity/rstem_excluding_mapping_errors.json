@@ -1,0 +1,146 @@
+{
+ "qwen3|all": {
+  "pairs": 1896,
+  "items": 158,
+  "R_minus_O": [
+   13.82,
+   10.81,
+   16.88
+  ],
+  "stem_effect_S": [
+   9.15,
+   7.09,
+   11.26
+  ],
+  "option_effect_P": [
+   4.67,
+   2.32,
+   7.12
+  ],
+  "interaction_I": [
+   3.22,
+   0.9,
+   5.54
+  ]
+ },
+ "qwen3|drop_error": {
+  "pairs": 1814,
+  "items": 158,
+  "R_minus_O": [
+   13.24,
+   10.23,
+   16.3
+  ],
+  "stem_effect_S": [
+   8.86,
+   6.83,
+   10.94
+  ],
+  "option_effect_P": [
+   4.38,
+   2.06,
+   6.83
+  ],
+  "interaction_I": [
+   2.95,
+   0.69,
+   5.27
+  ]
+ },
+ "qwen3|drop_error_uncertain": {
+  "pairs": 1766,
+  "items": 157,
+  "R_minus_O": [
+   12.85,
+   9.77,
+   15.87
+  ],
+  "stem_effect_S": [
+   8.31,
+   6.26,
+   10.35
+  ],
+  "option_effect_P": [
+   4.54,
+   2.2,
+   6.95
+  ],
+  "interaction_I": [
+   2.92,
+   0.69,
+   5.25
+  ]
+ },
+ "internvl35|all": {
+  "pairs": 1896,
+  "items": 158,
+  "R_minus_O": [
+   5.54,
+   2.64,
+   8.54
+  ],
+  "stem_effect_S": [
+   3.67,
+   1.93,
+   5.46
+  ],
+  "option_effect_P": [
+   1.87,
+   -0.26,
+   4.03
+  ],
+  "interaction_I": [
+   0.79,
+   -1.27,
+   2.9
+  ]
+ },
+ "internvl35|drop_error": {
+  "pairs": 1814,
+  "items": 158,
+  "R_minus_O": [
+   5.85,
+   2.95,
+   8.81
+  ],
+  "stem_effect_S": [
+   3.67,
+   1.93,
+   5.43
+  ],
+  "option_effect_P": [
+   2.19,
+   -0.05,
+   4.4
+  ],
+  "interaction_I": [
+   0.05,
+   -2.43,
+   2.43
+  ]
+ },
+ "internvl35|drop_error_uncertain": {
+  "pairs": 1766,
+  "items": 157,
+  "R_minus_O": [
+   5.47,
+   2.55,
+   8.39
+  ],
+  "stem_effect_S": [
+   3.21,
+   1.43,
+   4.94
+  ],
+  "option_effect_P": [
+   2.26,
+   0.05,
+   4.46
+  ],
+  "interaction_I": [
+   -0.27,
+   -2.81,
+   2.18
+  ]
+ }
+}

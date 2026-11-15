@@ -1,0 +1,8 @@
+table,set,gui,n_pairs,n_items,acc_O,acc_T,acc_R,T-O,T-O_lo,T-O_hi,R-T,R-T_lo,R-T_hi,R-O,R-O_lo,R-O_hi,contrast,est,ci_lo,ci_hi,n_pairs_th,n_pairs_rest
+zero_match,sub1_zero_screen_match,en,57,38,82.456,68.421,92.982,-14.035,-24.528,-4.348,24.561,10.714,39.683,10.526,1.351,21.429,,,,,,
+zero_match,sub1_zero_screen_match,zh,93,53,70.968,62.366,82.796,-8.602,-19.101,1.409,20.43,8.081,33.333,11.828,2.353,21.687,,,,,,
+zero_match,sub1_zero_screen_match,th,104,57,43.269,65.385,79.808,22.115,12.037,31.746,14.423,1.923,26.744,36.538,23.009,49.505,,,,,,
+zero_match,sub1_zero_screen_match,ru,127,64,73.228,61.417,80.315,-11.811,-20.833,-3.225,18.898,6.603,31.093,7.087,-2.963,16.807,,,,,,
+zero_match,sub1_zero_screen_match,ALL,381,85,65.879,63.78,82.677,-2.1,-8.5,3.836,18.898,10.992,27.003,16.798,10.863,22.899,,,,,,
+zero_match_th_minus_rest,sub1_zero_screen_match,,,,,,,,,,,,,,,,T-O,33.30672035545682,21.8328542110075,44.508054934674995,104,277
+zero_match_th_minus_rest,sub1_zero_screen_match,,,,,,,,,,,,,,,,R-O,27.15217995001389,12.962068954965002,40.723621020405005,104,277

@@ -1,0 +1,4 @@
+file: 분석규칙_v1.md
+sha256: 784b89a59df48236f90a522982902e4395559da113084ab3b1976e4150d22119
+frozen_at: 2026-11-14T17:34:23+0900
+new-model results opened before freeze: none (only queue smoke lines: Qwen3-VL-4B REL 0.54/80, ExpA 0.68/108)

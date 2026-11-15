@@ -1,0 +1,15 @@
+{
+  "model": "internvl35",
+  "pairs": 1896,
+  "items": 158,
+  "inferences": 5688,
+  "batch_size": 1,
+  "by_condition": {
+    "O": 1896,
+    "T": 1896,
+    "R": 1896
+  },
+  "T_equals_O_pairs": 1,
+  "T_equals_R_pairs": 103,
+  "experiment_fingerprint": "ba8b7e0e883e10602fe0227042ed6e1d5863e5957916d92e244d2dfc5427cbe9"
+}

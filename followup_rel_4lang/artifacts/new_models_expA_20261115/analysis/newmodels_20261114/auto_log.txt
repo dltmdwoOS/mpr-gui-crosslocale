@@ -1,0 +1,10 @@
+2026-11-15 01:06:00 auto start pid 5027
+sizes_uitars_15_7b_20261114_2103.tar.gz: OK
+2026-11-15 06:16:02 uitars_15_7b sha ok
+2026-11-15 06:16:02 uitars_15_7b unpacked to /Users/baegihyeon/Desktop/CUAI/CUAI_하계 컨퍼런스/model_results_20261114/uitars_15_7b/unpacked/sizes_uitars_15_7b; analysis start
+2026-11-15 06:16:13 uitars_15_7b analysis done -> /Users/baegihyeon/Desktop/CUAI/CUAI_하계 컨퍼런스/analysis_newmodels_20261114/uitars_15_7b/tables_KO.md
+2026-11-15 10:37:31 auto start pid 76850
+2026-11-15 11:05:12 auto start pid 97195
+2026-11-15 14:44:41 internvl25_expA sha ok
+2026-11-15 14:44:41 internvl25_expA unpacked to /Users/baegihyeon/Desktop/CUAI/CUAI_하계 컨퍼런스/model_results_20261114/internvl25_expA/unpacked/expA_internvl25_8b; analysis start
+2026-11-15 14:44:41 internvl25_expA analysis FAILED (see auto_internvl25_expA_analysis.log); raw results kept in /Users/baegihyeon/Desktop/CUAI/CUAI_하계 컨퍼런스/model_results_20261114/internvl25_expA

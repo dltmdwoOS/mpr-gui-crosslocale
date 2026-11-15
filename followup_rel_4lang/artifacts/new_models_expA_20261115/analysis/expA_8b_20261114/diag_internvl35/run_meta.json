@@ -1,0 +1,51 @@
+{
+ "model": "internvl35",
+ "timestamp_utc": "2026-11-14T06:02:00.097638+00:00",
+ "seed": 20261114,
+ "B": 10000,
+ "alpha": 0.05,
+ "e2_ratio_max": 0.5,
+ "near_thresh": 0.5,
+ "d6_seed": 20261114,
+ "d6_n": 20,
+ "n_pairs": 1895,
+ "n_items": 158,
+ "n_complete_pairs_before_exclusion": 1896,
+ "d6_group_sizes": [
+  {
+   "group": "a_rest_Ocorrect_Twrong",
+   "population": 168,
+   "sampled": 20
+  },
+  {
+   "group": "b_th_Owrong_Tcorrect",
+   "population": 45,
+   "sampled": 20
+  },
+  {
+   "group": "c_rest_same_outcome",
+   "population": 1163,
+   "sampled": 20
+  },
+  {
+   "group": "d_th_same_outcome",
+   "population": 363,
+   "sampled": 20
+  }
+ ],
+ "label": "confirmatory",
+ "code_sha256": "39edf727df48c80a952538ab464afec621af8a46ac9b26f4deb23dc36582c708",
+ "input_sha256": {
+  "expA_results_20261114/internvl35/expA_internvl35/full/predictions.jsonl": "805d71562c512568636322df55b5553d2e9abdd467089f4ebbcc538d6a799a85",
+  "/Users/baegihyeon/Desktop/CUAI/CUAI_하계 컨퍼런스/expA_translation_20261112/diagnostics_inputs_20261114/per_pair_features.csv": "1925b011748b8ac50316b70741795e15c8347e857f4443929edb8ac576cc87e9",
+  "/Users/baegihyeon/Desktop/CUAI/CUAI_하계 컨퍼런스/expA_translation_20261112/work/T_gemma_first_spans.jsonl": "6dae7e83061d2bb143a37b96c980388b67cfbb03a8531717ed6f64a25e418bbd",
+  "/Users/baegihyeon/Desktop/CUAI/CUAI_하계 컨퍼런스/expA_translation_20261112/work/T_gemma_first_similarity.jsonl": "f21f6c67bf255d7ce35fd1ac0b2178d163804131c115bcb299d42738c037fa20",
+  "/Users/baegihyeon/Desktop/CUAI/CUAI_하계 컨퍼런스/expA_translation_20261112/spotcheck/spotcheck_judged_model.csv": "34e7f950954d56207b0b5f467faa4ad7fc6d579b268480ff15ee33cdaf9692b1",
+  "/Users/baegihyeon/Desktop/CUAI/CUAI_하계 컨퍼런스/expA_translation_20261112/spotcheck/spotcheck_key.jsonl": "045e57a4ad742f6e0c8099e3d9101548147ca2ce91aed29d1252e27a6b09bd73",
+  "/Users/baegihyeon/Desktop/CUAI/CUAI_하계 컨퍼런스/expA_translation_20261112/analysis/analyze_expA.py": "66f6a897eca9d86edf133b925bc8935e4c1517e2540ca22dd286843a93c40d65"
+ },
+ "python": "3.13.9",
+ "numpy": "2.3.5",
+ "pandas": "2.3.3",
+ "runtime_seconds": 1.7
+}

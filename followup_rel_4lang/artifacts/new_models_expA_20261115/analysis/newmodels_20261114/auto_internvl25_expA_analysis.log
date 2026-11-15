@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/baegihyeon/Desktop/CUAI/CUAI_하계 컨퍼런스/analysis_newmodels_20261114/run_frozen_analysis.py", line 368, in <module>
+    main()
+    ~~~~^^
+  File "/Users/baegihyeon/Desktop/CUAI/CUAI_하계 컨퍼런스/analysis_newmodels_20261114/run_frozen_analysis.py", line 202, in main
+    assert len(c) == 1, "cannot locate rel_full under unpacked_dir"
+           ^^^^^^^^^^^
+AssertionError: cannot locate rel_full under unpacked_dir

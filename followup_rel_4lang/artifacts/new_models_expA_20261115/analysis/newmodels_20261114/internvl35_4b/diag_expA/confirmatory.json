@@ -1,0 +1,121 @@
+{
+ "label": "descriptive (same code, not part of the confirmatory set; plan v2)",
+ "n_pairs_th": 474,
+ "n_pairs_rest": 1421,
+ "n_items": 158,
+ "B": 10000,
+ "seed": 20261114,
+ "alpha_one_sided": 0.05,
+ "e2_ratio_max": 0.5,
+ "results": {
+  "P1": {
+   "statistic": "T-O(th) - T-O(rest)",
+   "direction": ">0",
+   "est_pp": 5.697984125994354,
+   "ci95_lo_pp": -0.14064697610000002,
+   "ci95_hi_pp": 11.6033755274,
+   "valid_draws": 10000,
+   "p_one_sided": 0.028197180281971802,
+   "p_holm": 0.08459154084591541,
+   "reject": false
+  },
+  "P2": {
+   "statistic": "T-O(th)",
+   "direction": ">0",
+   "est_pp": 3.1645569620253164,
+   "ci95_lo_pp": -1.8987341772,
+   "ci95_hi_pp": 8.227848101300001,
+   "valid_draws": 10000,
+   "p_one_sided": 0.11448855114488551,
+   "p_holm": 0.11448855114488551,
+   "reject": false
+  },
+  "P3": {
+   "statistic": "T-O(rest)",
+   "direction": "<0",
+   "est_pp": -2.5334271639690376,
+   "ci95_lo_pp": -5.4852320675,
+   "ci95_hi_pp": 0.4222378607,
+   "valid_draws": 10000,
+   "p_one_sided": 0.04999500049995,
+   "p_holm": 0.0999900009999,
+   "reject": false
+  },
+  "E1": {
+   "statistic": "R-O(th) - R-O(rest)",
+   "direction": "estimate",
+   "est_pp": -8.23527141105242,
+   "ci95_lo_pp": -13.994560940962499,
+   "ci95_hi_pp": -2.6784687394575024,
+   "valid_draws": 10000,
+   "ci90_lo_pp": -13.0801687764,
+   "ci90_hi_pp": -3.5216181628
+  },
+  "E2": {
+   "statistic": "R-T(th) - R-T(rest)",
+   "direction": "estimate",
+   "est_pp": -13.933255537046774,
+   "ci95_lo_pp": -19.6905766526,
+   "ci95_hi_pp": -8.579465541500001,
+   "valid_draws": 10000,
+   "ci90_lo_pp": -18.64661927621,
+   "ci90_hi_pp": -9.361677014789999,
+   "ratio_E2_over_E1": {
+    "est": 1.6918999801691035,
+    "ci95_lo": 0.9810735652714749,
+    "ci95_hi": 4.371436345637024,
+    "ci90_lo": 1.06976744186,
+    "ci90_hi": 3.512195121951,
+    "valid_draws": 10000
+   }
+  }
+ },
+ "interpretation": "태국어 패턴은 Qwen3에서만 관찰됐다 (이후 크기 축·UI-TARS·MiniCPM은 같은 코드로 기술만)",
+ "interpretation_code": "P1_fail",
+ "secondary_goldprob_descriptive": {
+  "P1_goldprob_diff": {
+   "est_pp": 2.7676124053231774,
+   "ci95_lo_pp": -0.1590765085524997,
+   "ci95_hi_pp": 5.7854934788275
+  },
+  "E1_goldprob_diff": {
+   "est_pp": -11.28699583939658,
+   "ci95_lo_pp": -14.528759094302501,
+   "ci95_hi_pp": -8.1820129693675
+  },
+  "E2_goldprob_diff": {
+   "est_pp": -14.054608244719757,
+   "ci95_lo_pp": -17.24779791387,
+   "ci95_hi_pp": -11.01138339811
+  },
+  "T-O(th)_goldprob": {
+   "est_pp": 0.20320078430134392,
+   "ci95_lo_pp": -2.0902529094,
+   "ci95_hi_pp": 2.494156041967498
+  },
+  "T-O(rest)_goldprob": {
+   "est_pp": -2.5644116210218337,
+   "ci95_lo_pp": -4.5701486365949995,
+   "ci95_hi_pp": -0.56656710983
+  }
+ },
+ "cells_pp": {
+  "th": {
+   "O": 40.29535864978903,
+   "T": 43.459915611814345,
+   "R": 42.616033755274266,
+   "T-O": 3.1645569620253164,
+   "R-T": -0.8438818565400852,
+   "R-O": 2.3206751054852317
+  },
+  "rest": {
+   "O": 70.09148486980999,
+   "T": 67.55805770584095,
+   "R": 80.64743138634765,
+   "T-O": -2.5334271639690376,
+   "R-T": 13.08937368050669,
+   "R-O": 10.55594651653765
+  }
+ },
+ "model": "internvl35_4b"
+}

@@ -1,0 +1,121 @@
+{
+ "label": "descriptive (same code, not part of the confirmatory set; plan v2)",
+ "n_pairs_th": 474,
+ "n_pairs_rest": 1421,
+ "n_items": 158,
+ "B": 10000,
+ "seed": 20261114,
+ "alpha_one_sided": 0.05,
+ "e2_ratio_max": 0.5,
+ "results": {
+  "P1": {
+   "statistic": "T-O(th) - T-O(rest)",
+   "direction": ">0",
+   "est_pp": 17.02283707022748,
+   "ci95_lo_pp": 10.6300740208725,
+   "ci95_hi_pp": 23.142194241285,
+   "valid_draws": 10000,
+   "p_one_sided": 9.999000099990002e-05,
+   "p_holm": 0.00029997000299970003,
+   "reject": true
+  },
+  "P2": {
+   "statistic": "T-O(th)",
+   "direction": ">0",
+   "est_pp": 10.54852320675106,
+   "ci95_lo_pp": 4.641350211,
+   "ci95_hi_pp": 16.2447257384,
+   "valid_draws": 10000,
+   "p_one_sided": 0.0004999500049995,
+   "p_holm": 0.0004999500049995,
+   "reject": true
+  },
+  "P3": {
+   "statistic": "T-O(rest)",
+   "direction": "<0",
+   "est_pp": -6.4743138634764215,
+   "ci95_lo_pp": -9.9156118143,
+   "ci95_hi_pp": -2.9576944425425005,
+   "valid_draws": 10000,
+   "p_one_sided": 9.999000099990002e-05,
+   "p_holm": 0.00029997000299970003,
+   "reject": true
+  },
+  "E1": {
+   "statistic": "R-O(th) - R-O(rest)",
+   "direction": "estimate",
+   "est_pp": 15.040813357206694,
+   "ci95_lo_pp": 8.43195200385,
+   "ci95_hi_pp": 21.229778904155,
+   "valid_draws": 10000,
+   "ci90_lo_pp": 9.614574369635,
+   "ci90_hi_pp": 20.323488044999998
+  },
+  "E2": {
+   "statistic": "R-T(th) - R-T(rest)",
+   "direction": "estimate",
+   "est_pp": -1.9820237130207863,
+   "ci95_lo_pp": -7.383966244700001,
+   "ci95_hi_pp": 3.2348804501,
+   "valid_draws": 10000,
+   "ci90_lo_pp": -6.4697609001,
+   "ci90_hi_pp": 2.421220344464991,
+   "ratio_E2_over_E1": {
+    "est": -0.13177636514391786,
+    "ci95_lo": -0.6821034619378,
+    "ci95_hi": 0.19385297271099997,
+    "ci90_lo": -0.5619819594437999,
+    "ci90_hi": 0.14158776895464992,
+    "valid_draws": 10000
+   }
+  }
+ },
+ "interpretation": "부호 뒤집힘이 재현됐다. E2가 작고 E1이 커서 뒤집힘이 주로 O 쪽에서 생긴다는 H-A의 형태와 맞는다",
+ "interpretation_code": "flip_replicated_H-A_consistent",
+ "secondary_goldprob_descriptive": {
+  "P1_goldprob_diff": {
+   "est_pp": 15.276085170060677,
+   "ci95_lo_pp": 11.365366441252501,
+   "ci95_hi_pp": 19.123985587515
+  },
+  "E1_goldprob_diff": {
+   "est_pp": 11.335839835322131,
+   "ci95_lo_pp": 6.511763057997499,
+   "ci95_hi_pp": 15.95236364515
+  },
+  "E2_goldprob_diff": {
+   "est_pp": -3.9402453347385458,
+   "ci95_lo_pp": -7.59053808278,
+   "ci95_hi_pp": -0.47920457339500205
+  },
+  "T-O(th)_goldprob": {
+   "est_pp": 9.119533823877973,
+   "ci95_lo_pp": 5.66700261066,
+   "ci95_hi_pp": 12.587859989302498
+  },
+  "T-O(rest)_goldprob": {
+   "est_pp": -6.156551346182704,
+   "ci95_lo_pp": -8.3979276455325,
+   "ci95_hi_pp": -3.8669474050875023
+  }
+ },
+ "cells_pp": {
+  "th": {
+   "O": 49.15611814345991,
+   "T": 59.70464135021098,
+   "R": 76.16033755274262,
+   "T-O": 10.54852320675106,
+   "R-T": 16.455696202531644,
+   "R-O": 27.004219409282705
+  },
+  "rest": {
+   "O": 65.65798733286418,
+   "T": 59.183673469387756,
+   "R": 77.62139338494019,
+   "T-O": -6.4743138634764215,
+   "R-T": 18.43771991555243,
+   "R-O": 11.963406052076008
+  }
+ },
+ "model": "uitars_15_7b"
+}
