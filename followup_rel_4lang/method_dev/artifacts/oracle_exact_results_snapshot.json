@@ -1,0 +1,1497 @@
+{
+  "as_of_utc": "2026-11-16T05:49:54.864022+00:00",
+  "execution_mode": "gpu",
+  "diagnostic_only": true,
+  "gold_target_used_for_rewrite": false,
+  "source_run": "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1",
+  "reference_metadata": {
+    "definitions": {
+      "T_REF": "ExpA: gold span + Gemma referent translation; source context retained",
+      "R_REF": "ExpA: gold span + parallel GUI-language referents; source context retained",
+      "F_REF": "ORCF: parallel GUI-language context and referents; not automatic GUI_FULL"
+    },
+    "source_runs": {
+      "ExpA": {
+        "path": "followup_rel_4lang/artifacts/new_models_expA_20261115/analysis/expA_8b_20261114/qwen3/expA_qwen3/full",
+        "batch_size": 3,
+        "model_config": {
+          "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+          "model_family": "qwen3_vl",
+          "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+          "dtype": "bfloat16",
+          "quantization": null,
+          "attn_implementation": "sdpa",
+          "device_strategy": "cuda:0",
+          "patch_embed_memory_format": "channels_last_3d",
+          "processor_profile": "qwen_4090_2mp",
+          "min_pixels": 262144,
+          "max_pixels": 2097152,
+          "prompt_profile": "mpr_label_only_v1",
+          "generation": {
+            "do_sample": false,
+            "num_beams": 1,
+            "max_new_tokens": 2,
+            "temperature": null
+          }
+        },
+        "system_prompt": "You are a GUI reasoning assistant. Inspect the GUI image and answer the multiple-choice question. Respond with exactly one label: A, B, C, or D.",
+        "software_versions": {
+          "python": "3.12.3",
+          "platform": "Linux-5.15.0-161-generic-x86_64-with-glibc2.39",
+          "torch": "2.9.1+cu130",
+          "transformers": "4.57.6",
+          "accelerate": "1.15.0",
+          "qwen-vl-utils": "0.0.14",
+          "torchvision": "0.24.1+cu130",
+          "timm": "1.0.31",
+          "protobuf": "6.33.6",
+          "sentencepiece": "0.2.0",
+          "flash-attn": null
+        },
+        "fingerprint": "5948932f2ffd442460d191c777c7da41afddce420350d04c00583d10f8f1d6e5",
+        "hardware": {
+          "cuda_available": true,
+          "cuda_runtime_version": "13.0",
+          "gpu_count": 1,
+          "gpus": [
+            {
+              "index": 0,
+              "name": "NVIDIA GeForce RTX 4090",
+              "compute_capability": "8.9",
+              "total_memory_bytes": 25250627584
+            }
+          ]
+        }
+      },
+      "ORCF": {
+        "path": "followup_rel_4lang/artifacts/qwen3_single4090_20261107/full_rel",
+        "batch_size": 4,
+        "model_config": {
+          "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+          "model_family": "qwen3_vl",
+          "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+          "dtype": "bfloat16",
+          "quantization": null,
+          "attn_implementation": "sdpa",
+          "device_strategy": "cuda:0",
+          "patch_embed_memory_format": "channels_last_3d",
+          "processor_profile": "qwen_4090_2mp",
+          "min_pixels": 262144,
+          "max_pixels": 2097152,
+          "prompt_profile": "mpr_label_only_v1",
+          "generation": {
+            "do_sample": false,
+            "num_beams": 1,
+            "max_new_tokens": 2,
+            "temperature": null
+          }
+        },
+        "system_prompt": "You are a GUI reasoning assistant. Inspect the GUI image and answer the multiple-choice question. Respond with exactly one label: A, B, C, or D.",
+        "software_versions": {
+          "python": "3.12.15",
+          "platform": "Linux-6.8.0-142-generic-x86_64-with-glibc2.39",
+          "torch": "2.9.1+cu130",
+          "transformers": "4.57.6",
+          "accelerate": "1.15.0",
+          "qwen-vl-utils": "0.0.14",
+          "torchvision": "0.24.1+cu130",
+          "timm": "1.0.31",
+          "protobuf": "6.33.6",
+          "sentencepiece": "0.2.0",
+          "flash-attn": null
+        },
+        "fingerprint": "4b9bd340dcba8ca556e0110b0683570c578d6a3e03790b44e126b394c822ec5d",
+        "hardware": {
+          "cuda_available": true,
+          "cuda_runtime_version": "13.0",
+          "gpu_count": 1,
+          "gpus": [
+            {
+              "index": 0,
+              "name": "NVIDIA GeForce RTX 4090",
+              "compute_capability": "8.9",
+              "total_memory_bytes": 25252724736
+            }
+          ]
+        }
+      }
+    },
+    "identical_model_config_and_system": true,
+    "different_batch_and_queue": true,
+    "shared_dataset_sha256": "e5aa6cd0c426cc648322c8c7702b1b6985fddb09ad895d70a85d86c6a3de38ce",
+    "legacy_pilot_policy": "ExpA T/R cover main only; do not silently shrink or invent references for legacy pilot",
+    "row_identity_checks": [
+      "pair_id",
+      "parallel_id",
+      "source/GUI language",
+      "gold",
+      "option order",
+      "ORCF image path",
+      "F representative exact field equality"
+    ]
+  },
+  "cohorts": {
+    "screen": {
+      "executed_pairs": 288,
+      "primary_pairs": 240,
+      "items": 20,
+      "correct": {
+        "O": 162,
+        "Automatic": 161,
+        "Oracle": 162,
+        "T_REF": 162,
+        "R_REF": 194,
+        "F_REF": 192
+      },
+      "contrasts": {
+        "O": {
+          "pairs": 240,
+          "items": 20,
+          "difference": 0.0,
+          "ci95": [
+            -0.020833333333333332,
+            0.020833333333333332
+          ],
+          "exploratory_bootstrap_centered_p": 1.0,
+          "recovery": 4,
+          "regression": 4
+        },
+        "Automatic": {
+          "pairs": 240,
+          "items": 20,
+          "difference": 0.004166666666666667,
+          "ci95": [
+            -0.008333333333333333,
+            0.020833333333333332
+          ],
+          "exploratory_bootstrap_centered_p": 0.7638236176382361,
+          "recovery": 3,
+          "regression": 2
+        },
+        "T_REF": {
+          "pairs": 240,
+          "items": 20,
+          "difference": 0.0,
+          "ci95": [
+            -0.04583333333333333,
+            0.04583333333333333
+          ],
+          "exploratory_bootstrap_centered_p": 1.0,
+          "recovery": 21,
+          "regression": 21
+        },
+        "R_REF": {
+          "pairs": 240,
+          "items": 20,
+          "difference": -0.13333333333333333,
+          "ci95": [
+            -0.225,
+            -0.04583333333333333
+          ],
+          "exploratory_bootstrap_centered_p": 0.005099490050994901,
+          "recovery": 8,
+          "regression": 40
+        },
+        "F_REF": {
+          "pairs": 240,
+          "items": 20,
+          "difference": -0.125,
+          "ci95": [
+            -0.2375,
+            -0.020833333333333332
+          ],
+          "exploratory_bootstrap_centered_p": 0.024797520247975203,
+          "recovery": 15,
+          "regression": 45
+        }
+      },
+      "stages": {
+        "Automatic": {
+          "referents": 570,
+          "changed_pairs": 61,
+          "edits": 80,
+          "generation_status": {
+            "fallback_original": 34,
+            "no_op_no_edits": 145,
+            "success": 61
+          },
+          "match_reasons": {
+            "low_similarity_or_missing_evidence": 448,
+            "normalized_exact": 85,
+            "inventory_empty_or_failed": 33
+          },
+          "logged_match_decisions": 566,
+          "unlogged_referents": 4,
+          "source_span_tp": 465,
+          "source_span_fp": 105,
+          "source_span_fn": 579,
+          "annotation_recall": 0.4454022988505747,
+          "fallback_reasons": {
+            "Missing extraction": 30,
+            "Expecting ',' delimiter: line 2 column 40 (char 41)": 1,
+            "Expecting ',' delimiter: line 2 column 59 (char 60)": 1,
+            "Expecting ',' delimiter: line 2 column 52 (char 53)": 1,
+            "Expecting ',' delimiter: line 2 column 39 (char 40)": 1
+          }
+        },
+        "Oracle": {
+          "referents": 1044,
+          "changed_pairs": 128,
+          "edits": 225,
+          "generation_status": {
+            "no_op_no_edits": 110,
+            "success": 128,
+            "fallback_original": 2
+          },
+          "match_reasons": {
+            "low_similarity_or_missing_evidence": 746,
+            "normalized_exact": 237,
+            "inventory_empty_or_failed": 54
+          },
+          "logged_match_decisions": 1037,
+          "unlogged_referents": 7,
+          "source_span_tp": 1044,
+          "source_span_fp": 0,
+          "source_span_fn": 0,
+          "annotation_recall": 1.0,
+          "fallback_reasons": {
+            "Expecting ',' delimiter: line 5 column 37 (char 111)": 1,
+            "Expecting ',' delimiter: line 4 column 53 (char 111)": 1
+          }
+        }
+      },
+      "by_gui": {
+        "ru": {
+          "n": 60,
+          "correct": {
+            "O": 46,
+            "Automatic": 46,
+            "Oracle": 46,
+            "T_REF": 42,
+            "R_REF": 52,
+            "F_REF": 51
+          },
+          "recovery": 0,
+          "regression": 0
+        },
+        "th": {
+          "n": 60,
+          "correct": {
+            "O": 27,
+            "Automatic": 27,
+            "Oracle": 29,
+            "T_REF": 38,
+            "R_REF": 44,
+            "F_REF": 39
+          },
+          "recovery": 3,
+          "regression": 1
+        },
+        "zh": {
+          "n": 60,
+          "correct": {
+            "O": 44,
+            "Automatic": 43,
+            "Oracle": 43,
+            "T_REF": 43,
+            "R_REF": 49,
+            "F_REF": 48
+          },
+          "recovery": 0,
+          "regression": 0
+        },
+        "en": {
+          "n": 60,
+          "correct": {
+            "O": 45,
+            "Automatic": 45,
+            "Oracle": 44,
+            "T_REF": 39,
+            "R_REF": 49,
+            "F_REF": 54
+          },
+          "recovery": 0,
+          "regression": 1
+        }
+      },
+      "by_direction": {
+        "en→ru": {
+          "n": 20,
+          "correct": {
+            "O": 15,
+            "Automatic": 15,
+            "Oracle": 15,
+            "T_REF": 12,
+            "R_REF": 18,
+            "F_REF": 17
+          },
+          "recovery": 0,
+          "regression": 0
+        },
+        "en→th": {
+          "n": 20,
+          "correct": {
+            "O": 9,
+            "Automatic": 9,
+            "Oracle": 10,
+            "T_REF": 12,
+            "R_REF": 16,
+            "F_REF": 13
+          },
+          "recovery": 1,
+          "regression": 0
+        },
+        "en→zh": {
+          "n": 20,
+          "correct": {
+            "O": 16,
+            "Automatic": 16,
+            "Oracle": 16,
+            "T_REF": 17,
+            "R_REF": 18,
+            "F_REF": 16
+          },
+          "recovery": 0,
+          "regression": 0
+        },
+        "ru→en": {
+          "n": 20,
+          "correct": {
+            "O": 16,
+            "Automatic": 16,
+            "Oracle": 16,
+            "T_REF": 14,
+            "R_REF": 17,
+            "F_REF": 18
+          },
+          "recovery": 0,
+          "regression": 0
+        },
+        "ru→th": {
+          "n": 20,
+          "correct": {
+            "O": 8,
+            "Automatic": 8,
+            "Oracle": 9,
+            "T_REF": 17,
+            "R_REF": 14,
+            "F_REF": 13
+          },
+          "recovery": 1,
+          "regression": 0
+        },
+        "ru→zh": {
+          "n": 20,
+          "correct": {
+            "O": 15,
+            "Automatic": 14,
+            "Oracle": 14,
+            "T_REF": 15,
+            "R_REF": 17,
+            "F_REF": 16
+          },
+          "recovery": 0,
+          "regression": 0
+        },
+        "th→en": {
+          "n": 20,
+          "correct": {
+            "O": 13,
+            "Automatic": 13,
+            "Oracle": 12,
+            "T_REF": 12,
+            "R_REF": 15,
+            "F_REF": 18
+          },
+          "recovery": 0,
+          "regression": 1
+        },
+        "th→ru": {
+          "n": 20,
+          "correct": {
+            "O": 15,
+            "Automatic": 15,
+            "Oracle": 15,
+            "T_REF": 14,
+            "R_REF": 17,
+            "F_REF": 17
+          },
+          "recovery": 0,
+          "regression": 0
+        },
+        "th→zh": {
+          "n": 20,
+          "correct": {
+            "O": 13,
+            "Automatic": 13,
+            "Oracle": 13,
+            "T_REF": 11,
+            "R_REF": 14,
+            "F_REF": 16
+          },
+          "recovery": 0,
+          "regression": 0
+        },
+        "zh→en": {
+          "n": 20,
+          "correct": {
+            "O": 16,
+            "Automatic": 16,
+            "Oracle": 16,
+            "T_REF": 13,
+            "R_REF": 17,
+            "F_REF": 18
+          },
+          "recovery": 0,
+          "regression": 0
+        },
+        "zh→ru": {
+          "n": 20,
+          "correct": {
+            "O": 16,
+            "Automatic": 16,
+            "Oracle": 16,
+            "T_REF": 16,
+            "R_REF": 17,
+            "F_REF": 17
+          },
+          "recovery": 0,
+          "regression": 0
+        },
+        "zh→th": {
+          "n": 20,
+          "correct": {
+            "O": 10,
+            "Automatic": 10,
+            "Oracle": 10,
+            "T_REF": 9,
+            "R_REF": 14,
+            "F_REF": 13
+          },
+          "recovery": 1,
+          "regression": 1
+        }
+      },
+      "same_question": 155,
+      "same_question_label_changes": 0,
+      "R_gap": {
+        "old_gap": 43,
+        "new_gap": 40,
+        "recovered_old_gap": 3,
+        "remaining_old_gap": 40,
+        "newly_lost_R_correct": 0,
+        "old_gap_source_coverage": {
+          "추출 검증 실패": {
+            "n": 6,
+            "recovered": 2
+          },
+          "Annotation span 일부/전체 누락": {
+            "n": 31,
+            "recovered": 1
+          },
+          "Annotation span 전부 포함": {
+            "n": 6,
+            "recovered": 0
+          }
+        },
+        "remaining_observed_states": {
+          "Exact match 채택 없음": 15,
+          "편집 적용 후에도 오답": 24,
+          "Inventory 생성 실패": 1
+        },
+        "causal_attribution": false
+      },
+      "cost": {
+        "method_wall_seconds": 656.7075204607099,
+        "new_call_runtime_seconds": 622.8237758278847,
+        "new_model_load_seconds": 19.667091934010386,
+        "calls": 288,
+        "cache_hits": 46,
+        "inference_batch_seconds": 223.38571343943477,
+        "new_input_tokens": 50573,
+        "new_output_tokens": 18497,
+        "inference_input_tokens": 606942,
+        "inference_output_tokens": 576,
+        "inference_peak_reserved_gib": 18.541015625
+      },
+      "prediction_status": {
+        "success": 288
+      },
+      "attempts": {
+        "rewrite": 1,
+        "infer": 1
+      }
+    },
+    "selection": {
+      "executed_pairs": 240,
+      "primary_pairs": 239,
+      "items": 20,
+      "correct": {
+        "O": 171,
+        "Automatic": 173,
+        "Oracle": 174,
+        "T_REF": 169,
+        "R_REF": 196,
+        "F_REF": 197
+      },
+      "contrasts": {
+        "O": {
+          "pairs": 239,
+          "items": 20,
+          "difference": 0.012552301255230125,
+          "ci95": [
+            -0.016877637130801686,
+            0.04202123887529689
+          ],
+          "exploratory_bootstrap_centered_p": 0.48195180481951805,
+          "recovery": 8,
+          "regression": 5
+        },
+        "Automatic": {
+          "pairs": 239,
+          "items": 20,
+          "difference": 0.0041841004184100415,
+          "ci95": [
+            -0.029411764705882353,
+            0.0375
+          ],
+          "exploratory_bootstrap_centered_p": 0.8752124787521248,
+          "recovery": 7,
+          "regression": 6
+        },
+        "T_REF": {
+          "pairs": 239,
+          "items": 20,
+          "difference": 0.02092050209205021,
+          "ci95": [
+            -0.04602510460251046,
+            0.09624441826939967
+          ],
+          "exploratory_bootstrap_centered_p": 0.6007399260073992,
+          "recovery": 25,
+          "regression": 20
+        },
+        "R_REF": {
+          "pairs": 239,
+          "items": 20,
+          "difference": -0.09205020920502092,
+          "ci95": [
+            -0.18410041841004185,
+            0.004219856254022735
+          ],
+          "exploratory_bootstrap_centered_p": 0.06159384061593841,
+          "recovery": 17,
+          "regression": 39
+        },
+        "F_REF": {
+          "pairs": 239,
+          "items": 20,
+          "difference": -0.09623430962343096,
+          "ci95": [
+            -0.18565400843881857,
+            0.0
+          ],
+          "exploratory_bootstrap_centered_p": 0.047995200479952004,
+          "recovery": 19,
+          "regression": 42
+        }
+      },
+      "stages": {
+        "Automatic": {
+          "referents": 518,
+          "changed_pairs": 88,
+          "edits": 125,
+          "generation_status": {
+            "success": 88,
+            "no_op_no_edits": 117,
+            "fallback_original": 34
+          },
+          "match_reasons": {
+            "low_similarity_or_missing_evidence": 378,
+            "normalized_exact": 126,
+            "inventory_empty_or_failed": 13
+          },
+          "logged_match_decisions": 517,
+          "unlogged_referents": 1,
+          "source_span_tp": 429,
+          "source_span_fp": 89,
+          "source_span_fn": 671,
+          "annotation_recall": 0.39,
+          "fallback_reasons": {
+            "Missing extraction": 33,
+            "Expecting ',' delimiter: line 2 column 71 (char 72)": 1
+          }
+        },
+        "Oracle": {
+          "referents": 1100,
+          "changed_pairs": 166,
+          "edits": 308,
+          "generation_status": {
+            "success": 166,
+            "no_op_no_edits": 73
+          },
+          "match_reasons": {
+            "low_similarity_or_missing_evidence": 742,
+            "normalized_exact": 322,
+            "inventory_empty_or_failed": 36
+          },
+          "logged_match_decisions": 1100,
+          "unlogged_referents": 0,
+          "source_span_tp": 1100,
+          "source_span_fp": 0,
+          "source_span_fn": 0,
+          "annotation_recall": 1.0,
+          "fallback_reasons": {}
+        }
+      },
+      "by_gui": {
+        "ru": {
+          "n": 59,
+          "correct": {
+            "O": 48,
+            "Automatic": 48,
+            "Oracle": 47,
+            "T_REF": 47,
+            "R_REF": 48,
+            "F_REF": 47
+          },
+          "recovery": 0,
+          "regression": 1
+        },
+        "th": {
+          "n": 60,
+          "correct": {
+            "O": 30,
+            "Automatic": 31,
+            "Oracle": 35,
+            "T_REF": 37,
+            "R_REF": 47,
+            "F_REF": 42
+          },
+          "recovery": 6,
+          "regression": 2
+        },
+        "zh": {
+          "n": 60,
+          "correct": {
+            "O": 43,
+            "Automatic": 44,
+            "Oracle": 43,
+            "T_REF": 38,
+            "R_REF": 47,
+            "F_REF": 54
+          },
+          "recovery": 0,
+          "regression": 1
+        },
+        "en": {
+          "n": 60,
+          "correct": {
+            "O": 50,
+            "Automatic": 50,
+            "Oracle": 49,
+            "T_REF": 47,
+            "R_REF": 54,
+            "F_REF": 54
+          },
+          "recovery": 1,
+          "regression": 2
+        }
+      },
+      "by_direction": {
+        "en→ru": {
+          "n": 20,
+          "correct": {
+            "O": 18,
+            "Automatic": 18,
+            "Oracle": 18,
+            "T_REF": 16,
+            "R_REF": 16,
+            "F_REF": 16
+          },
+          "recovery": 0,
+          "regression": 0
+        },
+        "en→th": {
+          "n": 20,
+          "correct": {
+            "O": 10,
+            "Automatic": 10,
+            "Oracle": 12,
+            "T_REF": 14,
+            "R_REF": 16,
+            "F_REF": 14
+          },
+          "recovery": 2,
+          "regression": 0
+        },
+        "en→zh": {
+          "n": 20,
+          "correct": {
+            "O": 16,
+            "Automatic": 15,
+            "Oracle": 15,
+            "T_REF": 15,
+            "R_REF": 17,
+            "F_REF": 18
+          },
+          "recovery": 0,
+          "regression": 0
+        },
+        "ru→en": {
+          "n": 20,
+          "correct": {
+            "O": 15,
+            "Automatic": 16,
+            "Oracle": 14,
+            "T_REF": 15,
+            "R_REF": 18,
+            "F_REF": 18
+          },
+          "recovery": 0,
+          "regression": 2
+        },
+        "ru→th": {
+          "n": 20,
+          "correct": {
+            "O": 10,
+            "Automatic": 11,
+            "Oracle": 13,
+            "T_REF": 11,
+            "R_REF": 15,
+            "F_REF": 14
+          },
+          "recovery": 3,
+          "regression": 1
+        },
+        "ru→zh": {
+          "n": 20,
+          "correct": {
+            "O": 14,
+            "Automatic": 16,
+            "Oracle": 15,
+            "T_REF": 11,
+            "R_REF": 15,
+            "F_REF": 18
+          },
+          "recovery": 0,
+          "regression": 1
+        },
+        "th→en": {
+          "n": 20,
+          "correct": {
+            "O": 16,
+            "Automatic": 15,
+            "Oracle": 16,
+            "T_REF": 13,
+            "R_REF": 17,
+            "F_REF": 18
+          },
+          "recovery": 1,
+          "regression": 0
+        },
+        "th→ru": {
+          "n": 20,
+          "correct": {
+            "O": 13,
+            "Automatic": 13,
+            "Oracle": 13,
+            "T_REF": 15,
+            "R_REF": 16,
+            "F_REF": 16
+          },
+          "recovery": 0,
+          "regression": 0
+        },
+        "th→zh": {
+          "n": 20,
+          "correct": {
+            "O": 13,
+            "Automatic": 13,
+            "Oracle": 13,
+            "T_REF": 12,
+            "R_REF": 15,
+            "F_REF": 18
+          },
+          "recovery": 0,
+          "regression": 0
+        },
+        "zh→en": {
+          "n": 20,
+          "correct": {
+            "O": 19,
+            "Automatic": 19,
+            "Oracle": 19,
+            "T_REF": 19,
+            "R_REF": 19,
+            "F_REF": 18
+          },
+          "recovery": 0,
+          "regression": 0
+        },
+        "zh→ru": {
+          "n": 19,
+          "correct": {
+            "O": 17,
+            "Automatic": 17,
+            "Oracle": 16,
+            "T_REF": 16,
+            "R_REF": 16,
+            "F_REF": 15
+          },
+          "recovery": 0,
+          "regression": 1
+        },
+        "zh→th": {
+          "n": 20,
+          "correct": {
+            "O": 10,
+            "Automatic": 10,
+            "Oracle": 10,
+            "T_REF": 12,
+            "R_REF": 16,
+            "F_REF": 14
+          },
+          "recovery": 1,
+          "regression": 1
+        }
+      },
+      "same_question": 124,
+      "same_question_label_changes": 1,
+      "R_gap": {
+        "old_gap": 39,
+        "new_gap": 39,
+        "recovered_old_gap": 3,
+        "remaining_old_gap": 36,
+        "newly_lost_R_correct": 3,
+        "old_gap_source_coverage": {
+          "Annotation span 일부/전체 누락": {
+            "n": 27,
+            "recovered": 3
+          },
+          "Annotation span 전부 포함": {
+            "n": 10,
+            "recovered": 0
+          },
+          "추출 검증 실패": {
+            "n": 2,
+            "recovered": 0
+          }
+        },
+        "remaining_observed_states": {
+          "편집 적용 후에도 오답": 30,
+          "Exact match 채택 없음": 9
+        },
+        "causal_attribution": false
+      },
+      "cost": {
+        "method_wall_seconds": 457.1515884026885,
+        "new_call_runtime_seconds": 424.60864062141627,
+        "new_model_load_seconds": 19.122409847564995,
+        "calls": 240,
+        "cache_hits": 42,
+        "inference_batch_seconds": 181.38078292645514,
+        "new_input_tokens": 40989,
+        "new_output_tokens": 14929,
+        "inference_input_tokens": 506695,
+        "inference_output_tokens": 480,
+        "inference_peak_reserved_gib": 19.087890625
+      },
+      "prediction_status": {
+        "success": 240
+      },
+      "attempts": {
+        "rewrite": 1,
+        "infer": 1
+      }
+    },
+    "internal_evaluation": {
+      "executed_pairs": 1416,
+      "primary_pairs": 1416,
+      "items": 118,
+      "correct": {
+        "O": 997,
+        "Automatic": 985,
+        "Oracle": 1013,
+        "T_REF": 1004,
+        "R_REF": 1201,
+        "F_REF": 1162
+      },
+      "contrasts": {
+        "O": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": 0.011299435028248588,
+          "ci95": [
+            -0.007062146892655367,
+            0.03036723163841808
+          ],
+          "exploratory_bootstrap_centered_p": 0.24647535246475352,
+          "recovery": 60,
+          "regression": 44
+        },
+        "Automatic": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": 0.01977401129943503,
+          "ci95": [
+            0.00423728813559322,
+            0.03672316384180791
+          ],
+          "exploratory_bootstrap_centered_p": 0.0201979802019798,
+          "recovery": 52,
+          "regression": 24
+        },
+        "T_REF": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": 0.006355932203389831,
+          "ci95": [
+            -0.01977401129943503,
+            0.033192090395480225
+          ],
+          "exploratory_bootstrap_centered_p": 0.6537346265373463,
+          "recovery": 144,
+          "regression": 135
+        },
+        "R_REF": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": -0.1327683615819209,
+          "ci95": [
+            -0.16807909604519775,
+            -0.09745762711864407
+          ],
+          "exploratory_bootstrap_centered_p": 9.999000099990002e-05,
+          "recovery": 48,
+          "regression": 236
+        },
+        "F_REF": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": -0.10522598870056497,
+          "ci95": [
+            -0.1426553672316384,
+            -0.067090395480226
+          ],
+          "exploratory_bootstrap_centered_p": 9.999000099990002e-05,
+          "recovery": 94,
+          "regression": 243
+        }
+      },
+      "stages": {
+        "Automatic": {
+          "referents": 3375,
+          "changed_pairs": 496,
+          "edits": 759,
+          "generation_status": {
+            "fallback_original": 169,
+            "success": 496,
+            "no_op_no_edits": 751
+          },
+          "match_reasons": {
+            "normalized_exact": 783,
+            "low_similarity_or_missing_evidence": 2357,
+            "inventory_empty_or_failed": 217
+          },
+          "logged_match_decisions": 3357,
+          "unlogged_referents": 18,
+          "source_span_tp": 2868,
+          "source_span_fp": 507,
+          "source_span_fn": 3552,
+          "annotation_recall": 0.44672897196261685,
+          "fallback_reasons": {
+            "Missing extraction": 153,
+            "Expecting ',' delimiter: line 2 column 39 (char 40)": 2,
+            "Expecting ',' delimiter: line 4 column 20 (char 70)": 1,
+            "Expecting ',' delimiter: line 2 column 45 (char 46)": 1,
+            "Expecting ',' delimiter: line 2 column 38 (char 39)": 2,
+            "Expecting ',' delimiter: line 2 column 26 (char 27)": 1,
+            "Expecting ',' delimiter: line 2 column 53 (char 54)": 2,
+            "Expecting ',' delimiter: line 2 column 62 (char 63)": 1,
+            "Expecting ',' delimiter: line 2 column 52 (char 53)": 1,
+            "Expecting ',' delimiter: line 2 column 57 (char 58)": 1,
+            "Expecting ',' delimiter: line 2 column 73 (char 74)": 1,
+            "Expecting ',' delimiter: line 2 column 58 (char 59)": 1,
+            "Expecting ',' delimiter: line 2 column 44 (char 45)": 1,
+            "Expecting ',' delimiter: line 2 column 46 (char 47)": 1
+          }
+        },
+        "Oracle": {
+          "referents": 6420,
+          "changed_pairs": 948,
+          "edits": 1904,
+          "generation_status": {
+            "success": 948,
+            "no_op_no_edits": 467,
+            "fallback_original": 1
+          },
+          "match_reasons": {
+            "normalized_exact": 1966,
+            "low_similarity_or_missing_evidence": 4101,
+            "inventory_empty_or_failed": 348
+          },
+          "logged_match_decisions": 6415,
+          "unlogged_referents": 5,
+          "source_span_tp": 6420,
+          "source_span_fp": 0,
+          "source_span_fn": 0,
+          "annotation_recall": 1.0,
+          "fallback_reasons": {
+            "New duplicate options": 1
+          }
+        }
+      },
+      "by_gui": {
+        "ru": {
+          "n": 354,
+          "correct": {
+            "O": 265,
+            "Automatic": 265,
+            "Oracle": 268,
+            "T_REF": 248,
+            "R_REF": 301,
+            "F_REF": 309
+          },
+          "recovery": 9,
+          "regression": 6
+        },
+        "th": {
+          "n": 354,
+          "correct": {
+            "O": 172,
+            "Automatic": 169,
+            "Oracle": 193,
+            "T_REF": 239,
+            "R_REF": 296,
+            "F_REF": 240
+          },
+          "recovery": 31,
+          "regression": 7
+        },
+        "zh": {
+          "n": 354,
+          "correct": {
+            "O": 270,
+            "Automatic": 266,
+            "Oracle": 266,
+            "T_REF": 249,
+            "R_REF": 293,
+            "F_REF": 298
+          },
+          "recovery": 6,
+          "regression": 6
+        },
+        "en": {
+          "n": 354,
+          "correct": {
+            "O": 290,
+            "Automatic": 285,
+            "Oracle": 286,
+            "T_REF": 268,
+            "R_REF": 311,
+            "F_REF": 315
+          },
+          "recovery": 6,
+          "regression": 5
+        }
+      },
+      "by_direction": {
+        "en→ru": {
+          "n": 118,
+          "correct": {
+            "O": 98,
+            "Automatic": 96,
+            "Oracle": 98,
+            "T_REF": 92,
+            "R_REF": 102,
+            "F_REF": 103
+          },
+          "recovery": 2,
+          "regression": 0
+        },
+        "en→th": {
+          "n": 118,
+          "correct": {
+            "O": 60,
+            "Automatic": 61,
+            "Oracle": 65,
+            "T_REF": 88,
+            "R_REF": 99,
+            "F_REF": 80
+          },
+          "recovery": 8,
+          "regression": 4
+        },
+        "en→zh": {
+          "n": 118,
+          "correct": {
+            "O": 100,
+            "Automatic": 97,
+            "Oracle": 97,
+            "T_REF": 91,
+            "R_REF": 100,
+            "F_REF": 99
+          },
+          "recovery": 2,
+          "regression": 2
+        },
+        "ru→en": {
+          "n": 118,
+          "correct": {
+            "O": 105,
+            "Automatic": 102,
+            "Oracle": 101,
+            "T_REF": 94,
+            "R_REF": 105,
+            "F_REF": 105
+          },
+          "recovery": 0,
+          "regression": 1
+        },
+        "ru→th": {
+          "n": 118,
+          "correct": {
+            "O": 58,
+            "Automatic": 56,
+            "Oracle": 63,
+            "T_REF": 77,
+            "R_REF": 99,
+            "F_REF": 80
+          },
+          "recovery": 8,
+          "regression": 1
+        },
+        "ru→zh": {
+          "n": 118,
+          "correct": {
+            "O": 95,
+            "Automatic": 95,
+            "Oracle": 93,
+            "T_REF": 85,
+            "R_REF": 102,
+            "F_REF": 100
+          },
+          "recovery": 1,
+          "regression": 3
+        },
+        "th→en": {
+          "n": 118,
+          "correct": {
+            "O": 87,
+            "Automatic": 84,
+            "Oracle": 88,
+            "T_REF": 80,
+            "R_REF": 101,
+            "F_REF": 105
+          },
+          "recovery": 5,
+          "regression": 1
+        },
+        "th→ru": {
+          "n": 118,
+          "correct": {
+            "O": 77,
+            "Automatic": 77,
+            "Oracle": 80,
+            "T_REF": 75,
+            "R_REF": 96,
+            "F_REF": 103
+          },
+          "recovery": 4,
+          "regression": 1
+        },
+        "th→zh": {
+          "n": 118,
+          "correct": {
+            "O": 75,
+            "Automatic": 74,
+            "Oracle": 76,
+            "T_REF": 73,
+            "R_REF": 91,
+            "F_REF": 99
+          },
+          "recovery": 3,
+          "regression": 1
+        },
+        "zh→en": {
+          "n": 118,
+          "correct": {
+            "O": 98,
+            "Automatic": 99,
+            "Oracle": 97,
+            "T_REF": 94,
+            "R_REF": 105,
+            "F_REF": 105
+          },
+          "recovery": 1,
+          "regression": 3
+        },
+        "zh→ru": {
+          "n": 118,
+          "correct": {
+            "O": 90,
+            "Automatic": 92,
+            "Oracle": 90,
+            "T_REF": 81,
+            "R_REF": 103,
+            "F_REF": 103
+          },
+          "recovery": 3,
+          "regression": 5
+        },
+        "zh→th": {
+          "n": 118,
+          "correct": {
+            "O": 54,
+            "Automatic": 52,
+            "Oracle": 65,
+            "T_REF": 74,
+            "R_REF": 98,
+            "F_REF": 80
+          },
+          "recovery": 15,
+          "regression": 2
+        }
+      },
+      "same_question": 761,
+      "same_question_label_changes": 0,
+      "R_gap": {
+        "old_gap": 259,
+        "new_gap": 236,
+        "recovered_old_gap": 44,
+        "remaining_old_gap": 215,
+        "newly_lost_R_correct": 21,
+        "old_gap_source_coverage": {
+          "추출 검증 실패": {
+            "n": 30,
+            "recovered": 11
+          },
+          "Annotation span 일부/전체 누락": {
+            "n": 175,
+            "recovered": 33
+          },
+          "Annotation span 전부 포함": {
+            "n": 54,
+            "recovered": 0
+          }
+        },
+        "remaining_observed_states": {
+          "편집 적용 후에도 오답": 136,
+          "Inventory 생성 실패": 18,
+          "Exact match 채택 없음": 80,
+          "편집 검증 실패": 1,
+          "기타 원문 유지": 1
+        },
+        "causal_attribution": false
+      },
+      "cost": {
+        "method_wall_seconds": 2182.4333558995277,
+        "new_call_runtime_seconds": 2145.306777212769,
+        "new_model_load_seconds": 19.864702742546797,
+        "calls": 1416,
+        "cache_hits": 243,
+        "inference_batch_seconds": 886.055436716415,
+        "new_input_tokens": 242331,
+        "new_output_tokens": 87703,
+        "inference_input_tokens": 2988415,
+        "inference_output_tokens": 2832,
+        "inference_peak_reserved_gib": 18.541015625
+      },
+      "prediction_status": {
+        "success": 1416
+      },
+      "attempts": {
+        "rewrite": 1,
+        "infer": 1
+      }
+    }
+  },
+  "pooled_descriptive": {
+    "n": 1895,
+    "correct": {
+      "O": 1330,
+      "Automatic": 1319,
+      "Oracle": 1349,
+      "T_REF": 1335,
+      "R_REF": 1591,
+      "F_REF": 1551
+    }
+  },
+  "examples": [
+    {
+      "pair_id": "rel::2/freeform_10.png::ru::th",
+      "original_question": "Какой элемент находится прямо под переключателем 'Рисуйте пальцем'? A: Настройки карандаша... B: Переключатель Автоматически убирать в Dock C: Круг выбора цвета D: Кнопка отмены",
+      "automatic_question": "Какой элемент находится прямо под переключателем 'Рисуйте пальцем'? A: Настройки карандаша... B: Переключатель Автоматически убирать в Dock C: Круг выбора цвета D: Кнопка отмены",
+      "oracle_question": "Какой элемент находится прямо под переключателем 'Рисуйте пальцем'? A: การตั้งค่าดินสอ... B: Переключатель Автоматически убирать в Dock C: Круг выбора цвета D: Кнопка отмены",
+      "automatic_edits": [],
+      "oracle_edits": [
+        {
+          "field": "A",
+          "text": "Настройки карандаша...",
+          "replacement": "การตั้งค่าดินสอ..."
+        }
+      ],
+      "correct": {
+        "O": 0,
+        "Automatic": 0,
+        "Oracle": 1,
+        "T_REF": 1,
+        "R_REF": 1,
+        "F_REF": 1
+      },
+      "automatic_extraction_status": "success"
+    },
+    {
+      "pair_id": "rel::3/clock_2.jpg::en::th",
+      "original_question": "Which element is positioned directly above the 'Additional settings' button on the interface? A: The number 07 B: The toggle switch for 'Monday to Friday' C: The number 50 D: The clock icon at the top",
+      "automatic_question": "Which element is positioned directly above the 'Additional settings' button on the interface? A: The number 07 B: The toggle switch for 'Monday to Friday' C: The number 50 D: The clock icon at the top",
+      "oracle_question": "Which element is positioned directly above the 'การตั้งค่าเพิ่มเติม' button on the interface? A: The number 07 B: The toggle switch for 'Monday to Friday' C: The number 50 D: The clock icon at the top",
+      "automatic_edits": [],
+      "oracle_edits": [
+        {
+          "field": "question_stem",
+          "text": "Additional settings",
+          "replacement": "การตั้งค่าเพิ่มเติม"
+        }
+      ],
+      "correct": {
+        "O": 0,
+        "Automatic": 0,
+        "Oracle": 1,
+        "T_REF": 1,
+        "R_REF": 1,
+        "F_REF": 1
+      },
+      "automatic_extraction_status": "success"
+    },
+    {
+      "pair_id": "rel::2/clock_9.png::ru::th",
+      "original_question": "Какой элемент находится непосредственно под опцией 'Мелодия' в панели настроек будильника? A: Snooze B: Название C: Повтор D: Сохранить",
+      "automatic_question": "Какой элемент находится непосредственно под опцией 'Мелодия' в панели настроек будильника? A: Snooze B: Название C: Повтор D: Сохранить",
+      "oracle_question": "Какой элемент находится непосредственно под опцией 'Мелодия' в панели настроек будильника? A: Snooze B: Название C: Повтор D: บันทึก",
+      "automatic_edits": [],
+      "oracle_edits": [
+        {
+          "field": "D",
+          "text": "Сохранить",
+          "replacement": "บันทึก"
+        }
+      ],
+      "correct": {
+        "O": 1,
+        "Automatic": 1,
+        "Oracle": 0,
+        "T_REF": 0,
+        "R_REF": 1,
+        "F_REF": 1
+      },
+      "automatic_extraction_status": "success"
+    },
+    {
+      "pair_id": "rel::2/note_2.png::zh::th",
+      "original_question": "哪个元素位于分享菜单中“标记”选项的右侧？ A: 拷贝 B: 一个类似铅笔和纸的图标 C: 存储到“文件” D: 打印",
+      "automatic_question": "哪个元素位于分享菜单中“标记”选项的右侧？ A: คัดลอก B: 一个类似铅笔和纸的图标 C: 存储到“文件” D: พิมพ์",
+      "oracle_question": "哪个元素位于分享菜单中“标记”选项的右侧？ A: 拷贝 B: 一个类似铅笔和纸的图标 C: 存储到“文件” D: พิมพ์",
+      "automatic_edits": [
+        {
+          "field": "A",
+          "text": "拷贝",
+          "replacement": "คัดลอก"
+        },
+        {
+          "field": "D",
+          "text": "打印",
+          "replacement": "พิมพ์"
+        }
+      ],
+      "oracle_edits": [
+        {
+          "field": "D",
+          "text": "打印",
+          "replacement": "พิมพ์"
+        }
+      ],
+      "correct": {
+        "O": 1,
+        "Automatic": 1,
+        "Oracle": 0,
+        "T_REF": 1,
+        "R_REF": 0,
+        "F_REF": 0
+      },
+      "automatic_extraction_status": "success"
+    }
+  ],
+  "sources_sha256": {
+    "followup_rel_4lang/method_dev/scripts/analyze_oracle_exact.py": "1a60d341fdef873f84a37653a3efd331717065034743ca1e082c4b1b5e9fab79",
+    "followup_rel_4lang/method_dev/artifacts/dataset_audit/evaluation_labels_PRIVATE.jsonl": "82e29e2a57d1f361a1b13020fda34068f95bf5762c29a1c8d610d198aa3a7c6a",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/screen/plan.json": "b315db079f1ebb90bbb6db502eafe9a2fc80bb99348c2484987f532e201db515",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/selection/plan.json": "21ee863843800746fc1451311cab6175108d13167b3a70cbf45987ecdf00b147",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/internal_evaluation/plan.json": "87eefdd0ea1fe4dd72b89741161c4e099b3f1abd11fb7653a599bc2346bafee8",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/screen/inputs.jsonl": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/selection/inputs.jsonl": "7ab2900470258d91f877f3e309953ea24a8289830293bc408fbc57396a33be9a",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/internal_evaluation/inputs.jsonl": "1003321a9b8775e17ee8122cfd2f6dc6f0c474679cf45b553472461b1650302d",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/pipeline_contract.json": "bd21090250225d5a8f59720f2a3e77348ff993332821457608b6d91d3a2cefef",
+    "followup_rel_4lang/method_dev/scripts/search_pipeline.py": "26c7f163fc44ffac2889a2f016a5807781b272bfea0378eb5f958d6bdfff5b2c",
+    "followup_rel_4lang/method_dev/scripts/backend.py": "632d3cf733182ab7abe075c269b8709f387664b91fd064f652adebe098b17a30",
+    "followup_rel_4lang/method_dev/scripts/run_search_trial.py": "94f7256c31308eec543d61f98413ebadc3d3417e248c5d8b33af172bb14f171c",
+    "followup_rel_4lang/method_dev/scripts/score_search_trial.py": "bf9bfb0c602e628904e5bac188a360c0cd53650e87a1983e022fbc273d7cf164",
+    "followup_rel_4lang/method_dev/scripts/infer_search_trial.py": "e4edee5940af45e5d9a5c79a95a1efffd175c40d2e9db3a9461fdc2d28130bc4",
+    "followup_rel_4lang/method_dev/scripts/build_search_plan.py": "1d12c264d6cbfa3550b5c348e10deeecc3af4b782f1568145a52e2ab84128442",
+    "01_code/src/mpr_crosslocale/models/qwen25vl.py": "76485637ec7e2c908f0b00f372c111f5c70ccca275d8484d7ca4f49f17c14d0a",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/search.py": "762243aeb40a51772bbd7334e9a5d0f611b64a03b1b146988a99a70dbd7cb796",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/pipeline.py": "0c59c661862b2ba753f91e67c2826f08bc1c3e7c65466375d56fcc75b5f11e3a",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/referent_extractor.py": "661b6997f78a132efa2b9cdc372462ad4b6b7b3d712a977aa40bb9c518ca893d",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/schemas.py": "7ad47d91e16f2a117d90e8fddfe9d8404779172f755a9ec8aedc7dd89823cd94",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/validation.py": "fe00efd9f2bbbb537b183f6c181fc508ab57754fd69554c2bac6b6155d58019c",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/__init__.py": "7a0223f23ff564adb6991ec837a552873bdce9f0d47c98e138980294c4c18584",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/inventory.py": "0d252555796335baa01ce9f86cb7939afd9ceef21dcbf39057342bb503c8e81f",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/context_router.py": "f23fa1f72436f27a8110cdfd4f129313144ee4da73945a941308bbf2504bc28c",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/matcher.py": "5abc6c1181d7619e2951003e1229031ec6b7ee4c85f479eeea874bdea5d72a4c",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/rewriter.py": "ae8d2e351b79aec7fe2fe4cf5b6506707d79b75efe68d6f0ae4e1a7405b3d4d1",
+    "followup_rel_4lang/dataset_lock.json": "29ab8507a8a03aff89528441663a6fbb844147dda8a53585c3aee08666086a99",
+    "followup_rel_4lang/data/rel_all_366/conditions_4lang.jsonl": "e5aa6cd0c426cc648322c8c7702b1b6985fddb09ad895d70a85d86c6a3de38ce",
+    "followup_rel_4lang/artifacts/new_models_expA_20261115/analysis/expA_8b_20261114/qwen3/expA_qwen3/full/run_contract.json": "3e0786aeac65805578bf1bc8492b3fd3f0aa0da37655976ba63a8dd7ff676bf2",
+    "followup_rel_4lang/artifacts/qwen3_single4090_20261107/full_rel/run_contract.json": "228f3f54275926c6db67c72bdbdcb5cd5fa6c5b2bae60cfc571a69efbc6afd04",
+    "followup_rel_4lang/artifacts/new_models_expA_20261115/analysis/expA_8b_20261114/qwen3/expA_qwen3/full/predictions.jsonl": "c6315c8938a1cd2a83242f8d40f262711372d48f6a7be3c203fd13bfac7375e8",
+    "followup_rel_4lang/artifacts/qwen3_single4090_20261107/full_rel/predictions.jsonl.gz": "1b2adbd40058155ab3b44af5225137119030088e59de36eaffa9b2135e7558fc",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/screen/COMPLETE.json": "aeff7bd6b4466e6e12b7936e39bafb82dabf1c328c6c6e35554bcadd778f3b97",
+    "followup_rel_4lang/method_dev/scripts/run_oracle_exact.py": "bc07479b6b7d7ed6dfa379d7c6f08f82160286136c945563d84b0593e7c0e329",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/screen/rewrite/attempt_0001/contract.json": "1cc65d2c85c50d0ecd996b79c1ad8408e4fdb3221646d14ed19c9596e946876c",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/screen/infer/attempt_0001/contract.json": "eb204df4accd2cfcac6292535b5b887d8b32670e0c9e50af0ce9a49e17f999d6",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/screen/fixed_contrastive_GUI_EXACT/attempt_0001/rewritten.jsonl": "32e3d1d4469274e08caf0d530177b867c81bf724f4ef17bbd5fb62699ab9b62d",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/screen/pred_fixed_contrastive_GUI_EXACT/attempt_0001/predictions.jsonl": "ffdcdfaf6b2904e5e610802d73f914a082c36ff1fb4820e32131662a373c4798",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/screen/rewrite/attempt_0001/rewritten.jsonl": "3f953d037bb0f934a6e32b81ba2b6496f7b1f1fcb99bd4fd7306695390b2ea11",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/screen/infer/attempt_0001/predictions.jsonl": "72d8faf6631717d24acf79d1581f91efa23afb9d0bcb0dc070a539f82daf9509",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/screen/oracle_source_spans.jsonl": "fbc0fb48f5b1323ff3772cc9738f720582e468bc1cefc278c9055c70fabb5a53",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/screen/frozen_inventories.json": "bdf280742ca36156918edc18c79db393ded3eb1587cf4fb7aac0ff67d92e0847",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/screen/results.json": "fe7b8577d94bc1b7c6b2c79a171595184b784447535632e53d11118d6bf1018f",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/screen/rewrite/attempt_0001/calls.json": "f4c3aae7e6698d5978541e85a95f5213d14dac1a657f8bd6e2ea15e24dc676e2",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/screen/rewrite/attempt_0001/cost.json": "871ed8556f6b4cadfc730923323dd6260f21c2a05c716922fc5731fcd285225c",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/selection/COMPLETE.json": "a776c3dc6e1eac72231e6a45d872064c4a4bc6375fb7654f33afbaa0fa75cdec",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/selection/rewrite/attempt_0001/contract.json": "fa9800049467c80bf00f8a12a1861d5f590cd979125ca5541ab636fcf0da3eb2",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/selection/infer/attempt_0001/contract.json": "05073c029a469d95865823c687e3dbc52c08f8778124eacdc7d0d9988672bbb6",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/selection/fixed_contrastive_GUI_EXACT/attempt_0001/rewritten.jsonl": "0e181e56bc680f0e73552b59e5a95ec728d4538e1f31b0b4f2ba48f4954a98ef",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/selection/pred_fixed_contrastive_GUI_EXACT/attempt_0001/predictions.jsonl": "7fec520992bb75b986042c661e397f5b902cbbcbe7d43bf5c6eea5b954a76406",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/selection/rewrite/attempt_0001/rewritten.jsonl": "7248cd3e5b39e9d36af1660b5c2ba4a5aeed7cd9e0ec2c4fe6d9c295e0f6303e",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/selection/infer/attempt_0001/predictions.jsonl": "ca30c30cedc0ae8a69d668b4b0a679b6f0e648c6579ade185e3f8d978832a06f",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/selection/oracle_source_spans.jsonl": "de40030e0c9c8f45f0d9d1ca59036e6b9bbd3c040dae012e2553f9807cd75314",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/selection/frozen_inventories.json": "c7a51cfcafd8d985ab7f4d9ec81f231966621d9eef05a420207faf38a15ca7ea",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/selection/results.json": "59700eb51ff75fecdd2571bf765c0f77c6bfcad1c8bb6184ecadfb0762f203ef",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/selection/rewrite/attempt_0001/calls.json": "f4e92078548699b4c8694a27b9cc52ba07b9d97b2166f3f07de5b84361216839",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/selection/rewrite/attempt_0001/cost.json": "89db6155e804ef186188a33dff5ee762f46565965ec08e9a47fc215cabd7a4a4",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/internal_evaluation/COMPLETE.json": "0230475ac219f15ea4c93af821c954d4a249d004553a41eda25b510ced8c29d4",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/internal_evaluation/rewrite/attempt_0001/contract.json": "dd4b8bbddf1ca4680e1415d47890796430bdbd94c5c7ccedbe0c5b832de82641",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/internal_evaluation/infer/attempt_0001/contract.json": "bfd570411e6eaff436f231498e845decde8047a149b8be38e0cff0a3eebd9e0b",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_GUI_EXACT/attempt_0001/rewritten.jsonl": "680d9960678a566e735d08ed635bcd613c52ba004e2d790fe154a116417d8463",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/pred_fixed_contrastive_GUI_EXACT/attempt_0001/predictions.jsonl": "6ea5e6df907ce085298ab22d6b8d3428490ed79b904f909172e0d682cb0c3513",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/internal_evaluation/rewrite/attempt_0001/rewritten.jsonl": "9c5c3b983dff6ce041432c8ae17853e553b813735f980eb420fe01832077082c",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/internal_evaluation/infer/attempt_0001/predictions.jsonl": "6a67dd6d7759b031d02e3da91dcb81d84bfb2c34c5e5238c72cc0b00234e0e92",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/internal_evaluation/oracle_source_spans.jsonl": "5a4c5a218557a381992cc0fdf63b7688330aad273e89607bcd2e1ff1575655b8",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/internal_evaluation/frozen_inventories.json": "d1810dbf966eb1386cf526c1ceb958c1450e4394e1b13cd6b3bf447f681dfb8a",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/internal_evaluation/results.json": "5a968b75b7522d2d8fc76c61a0e3680a7fa2177049fb15d9accf9164f644a0d0",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/internal_evaluation/rewrite/attempt_0001/calls.json": "fef095553181ff5a7c3af466e592eaefa6cedaa24f899af65eddc7cf2f88200a",
+    "followup_rel_4lang/method_dev/artifacts/oracle_span_exact_v1/internal_evaluation/rewrite/attempt_0001/cost.json": "b2d06622002cad76c0d4ba500aed9a3147cae12a7df5c001fc9ba0ba93c3b485"
+  }
+}

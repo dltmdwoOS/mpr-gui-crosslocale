@@ -786,3 +786,19 @@ R이 맞히고 method가 틀린 사례에서 source 추출을 별도로 다시 �
 ## 검토 메모 — 자동 갱신 시 보존
 
 이 영역에는 추가 해석·질문·후속 분석 메모를 이어 적을 수 있다.
+
+### Oracle source-span 후속 진단 완료
+
+기존 탐색 조건을 다시 실행하지 않고, **자동 추출 span만 annotation으로 교체한 GUI_EXACT**를 세 cohort에서 실행했다. 실제 GPU 실행 1,944쌍, primary main 1,895쌍을 검증했다. 위 자동 생성 영역은 기존 automatic method 탐색 기록이며, 아래 Oracle은 별도 diagnostic이다.
+
+| Primary 집합 | N | Automatic | Oracle | Oracle − Automatic | O |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Screen main | 240 | 67.08% | 67.50% | +0.42pp | 67.50% |
+| Selection | 239 | 72.38% | 72.80% | +0.42pp | 71.55% |
+| Internal | 1,416 | 69.56% | 71.54% | +1.98pp | 70.41% |
+
+Internal의 Oracle−Automatic 95% CI는 [+0.42, +3.67]pp, 회복/회귀는 52/24다. Oracle−O는 +1.13pp이며 CI [-0.71, +3.04]pp는 0을 포함한다. Thai GUI에서 +24개의 순증가가 관찰됐다. 추출 교정은 유용했지만 R_REF 84.82%와의 차이 13.28pp는 남는다.
+
+기존 R 정답·Automatic 오답 259건 중 44건을 회복했고, R과 Automatic이 맞힌 21건을 새로 잃어 R 정답·Oracle 오답은 236건이었다. 편집 수가 759→1,904개로 늘어도 성능 이득은 제한적이었다. 다음 진단은 같은 Oracle span을 유지한 상태에서 번역과 inventory 표현의 불일치·OCR 누락·부분 치환을 구분하는 것이다. 추출 recall만이 원인이라고 확정하거나, Oracle을 automatic method 결과로 합치지 않는다.
+
+[상세 보고서: ORACLE_RESULTS_KO.md](ORACLE_RESULTS_KO.md)에 O/R/T/F 비교, 전체 CI·언어별 결과, 단계별 실패, raw 회복·회귀 예시와 비용을 정리했다. 이 메모는 기존 보고서 자동 갱신 시 유지된다.

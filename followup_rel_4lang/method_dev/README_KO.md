@@ -12,7 +12,7 @@ Qwen3-8B 다운로드·SHA 검증은 완료됐다. [실제 프롬프트 원문·
 
 누적 실측 결과: [SEARCH_RESULTS_KO.md](reports/SEARCH_RESULTS_KO.md). 완료 조건만 집계하며 `.venv/bin/python followup_rel_4lang/method_dev/scripts/update_search_results_report.py`로 같은 보고서를 갱신한다. 아래 상태 설명은 초기 harness/smoke의 역사적 기록이다.
 
-다음 진단: [Oracle source-span → 기존 GUI_EXACT 실행안](reports/ORACLE_SPAN_EXACT_KO.md). 자동 추출만 source annotation으로 바꾸고 나머지 설정·inventory 실패를 고정한다. `bash followup_rel_4lang/method_dev/scripts/run_oracle_exact.sh`로 세 cohort를 순차 실행하며 기존 결과는 보존한다. 준비·CPU mock 검증을 완료했고, 실제 Oracle 추론은 아직 실행하지 않았다.
+완료된 후속 진단: [Oracle 결과·실패 분석](reports/ORACLE_RESULTS_KO.md), [실행안](reports/ORACLE_SPAN_EXACT_KO.md). Source span만 교정한 실제 GPU 1,944쌍이 완료됐다. Internal에서 Automatic 69.56% → Oracle 71.54%(+1.98pp), O 대비 +1.13pp의 CI는 0을 포함한다. 추론 없이 `.venv/bin/python followup_rel_4lang/method_dev/scripts/analyze_oracle_exact.py`로 상세 보고서를 재생성한다. 기존 frozen 실행기와 예측은 보존한다.
 
 ## 현재 상태
 

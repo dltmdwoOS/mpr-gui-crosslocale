@@ -68,7 +68,7 @@ bash followup_rel_4lang/method_dev/scripts/run_oracle_exact.sh --mock
 
 기존 계산에서 BF16 가중치는 LM 약 15.26GiB, VLM 약 16.33GiB다. 입력 최대 4,096 token, 번역 출력 최대 768 token, MCQ 출력 최대 2 token을 유지한다. Downstream KV cache 성분은 batch 3에서 약 1.69GiB이나 activation·workspace를 포함한 peak 상한은 아니다. 기존과 같은 실행 profile이지만 새 질문 길이에 따라 peak가 달라질 수 있으며, OOM 발생 시 자동 batch 축소나 실패 표본 제외를 하지 않고 중단한다. 24GB RTX 4090에 그대로 적용하는 profile은 아니다.
 
-추가 계산은 새 Oracle referent 번역과 Oracle MCQ 평가뿐이다. O·Automatic·R·T·F는 기존 예측을 재사용한다. 새 소요 시간과 token 사용은 실행 후 raw calls/predictions에 기록되며, 아직 실측 소요 시간이나 Oracle 정확도를 제시하지 않는다.
+추가 계산은 새 Oracle referent 번역과 Oracle MCQ 평가뿐이다. O·Automatic·R·T·F는 기존 예측을 재사용한다. 실제 실행이 완료됐으며 소요 시간·token 사용·정확도는 [Oracle 결과 보고서](ORACLE_RESULTS_KO.md)와 snapshot에 정리했다.
 
 ## 결과 확인과 해석
 
@@ -86,4 +86,4 @@ bash followup_rel_4lang/method_dev/scripts/run_oracle_exact.sh --mock
 
 큰 개선은 현재 pipeline에서 추출 교정이 중요하다는 근거가 된다. 개선이 작다면 번역·exact match coverage·inventory 실패·후속 REL 오류를 확인해야 하며, 이것만으로 추출 문제가 중요하지 않다고 결론 내리지 않는다. Flexible matching, NER, inventory-free matching은 이번 진단 결과를 확인한 후 별도 변경으로 비교한다. 이번 데이터는 이미 관찰된 development set이므로 결과를 보고 method를 바꾸면 그 사실을 기록한다.
 
-준비 상태와 검증 기록: [`oracle_exact_readiness.json`](../artifacts/oracle_exact_readiness.json). 아직 실제 Oracle GPU inference 결과는 없다.
+초기 준비 상태와 검증 기록: [`oracle_exact_readiness.json`](../artifacts/oracle_exact_readiness.json). 이 파일은 준비 당시 기록으로 보존한다. 실제 GPU 완료 결과는 [ORACLE_RESULTS_KO.md](ORACLE_RESULTS_KO.md), 최신 집계는 [`oracle_exact_results_snapshot.json`](../artifacts/oracle_exact_results_snapshot.json)에서 확인한다.
