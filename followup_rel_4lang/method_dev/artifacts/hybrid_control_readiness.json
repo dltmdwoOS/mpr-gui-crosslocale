@@ -1,0 +1,38 @@
+{
+  "status": "prepared_cpu_verified_gpu_not_run",
+  "date_utc": "2026-11-16",
+  "new_controls": [
+    "TS_QSEL_OFULL_GUI_AUTO",
+    "TS_QSEL_OFULL_TXT_AUTO"
+  ],
+  "tests": "22 passed",
+  "mock_all_conditions": {
+    "source_pairs": 12,
+    "conditions_including_O": 9,
+    "prediction_rows": 108,
+    "empirical": false
+  },
+  "hybrid_only_mock": {
+    "source_pairs": 12,
+    "prediction_rows": 36,
+    "all_field_extraction_skipped": true
+  },
+  "verified": {
+    "GUI": {
+      "pairs": 12,
+      "full_options_exactly_shared": true,
+      "only_query_spans_used": true
+    },
+    "TXT": {
+      "pairs": 12,
+      "full_options_exactly_shared": true,
+      "only_query_spans_used": true
+    }
+  },
+  "query_extraction_exposes_options": false,
+  "full_recipe_cache_hits_during_rewrite": 48,
+  "new_gpu_inference_started": false,
+  "prior_v2_smoke_no_go_resolved": false,
+  "error_or_accuracy_reduction_measured": false,
+  "execution_contract_sha256": "39198ddddfbdb54660d29f40e5974c9ba6614ede44a7110d5fa06333452ba366"
+}

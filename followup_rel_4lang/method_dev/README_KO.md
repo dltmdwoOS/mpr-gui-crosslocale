@@ -1,6 +1,8 @@
 # GCSA / RFA development harness
 
-> **현재 실행 기준은 [Two-stage 재정비 프로토콜](reports/TWO_STAGE_V2_PROTOCOL_KO.md)이다.** 사용자 결정에 따라 이전 inventory 기반 방법의 결과는 유효한 방법 평가에서 제외하고 이력으로 보존한다. [처리 상태](configs/PROTOCOL_STATUS.json). 아래의 기존 탐색·Oracle 명령은 과거 실행 기록이며 새 방법 실행에는 사용하지 않는다.
+최신 추가 control: [Query 선택적 정렬 + Options 전체 번역](reports/HYBRID_CONTROL_KO.md). `TS_QSEL_OFULL_GUI_AUTO` / `TS_QSEL_OFULL_TXT_AUTO`를 추가했다. Query extractor는 stem만 입력받으며 options는 같은 Full recipe의 A–D를 사용한다. 현재 runner 기본값은 별도 `configs/two_stage_v2_hybrid.json`과 `artifacts/two_stage_v2_hybrid/`다. 이전 v2 단일 GPU smoke의 NO-GO가 해소됐다는 뜻은 아니며 새 control의 GPU 성능은 아직 미측정이다.
+
+> **공통 프롬프트 기준은 [Two-stage 재정비 프로토콜](reports/TWO_STAGE_V2_PROTOCOL_KO.md), 현재 추가 control과 실행 기준은 [Hybrid control](reports/HYBRID_CONTROL_KO.md)이다.** 사용자 결정에 따라 이전 inventory 기반 방법의 결과는 유효한 방법 평가에서 제외하고 이력으로 보존한다. [처리 상태](configs/PROTOCOL_STATUS.json). 아래의 기존 탐색·Oracle 명령은 과거 실행 기록이며 새 방법 실행에는 사용하지 않는다.
 
 새 준비 명령: `bash followup_rel_4lang/method_dev/scripts/run_two_stage_v2.sh` (CPU 준비만). 실제 실행 시 `--stage all --cohort screen`을 명시한다. 초기·repair·의미 repair 및 문제 풀이까지 모든 프롬프트와 inference config은 위 프로토콜 보고서에 있다.
 

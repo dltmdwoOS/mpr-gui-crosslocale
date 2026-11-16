@@ -3,8 +3,20 @@ import json
 from . import legacy
 from mpr_crosslocale.methods.selective_alignment.search import EXTRACT_PROMPTS
 
-CONDITIONS=('TS_FULL_GUI','TS_FULL_TXT','TS_SEL_GUI_AUTO','TS_SEL_TXT_AUTO','TS_SEL_GUI_ORACLE','TS_SEL_TXT_ORACLE')
+BASE_CONDITIONS=('TS_FULL_GUI','TS_FULL_TXT','TS_SEL_GUI_AUTO','TS_SEL_TXT_AUTO','TS_SEL_GUI_ORACLE','TS_SEL_TXT_ORACLE')
+HYBRID_CONDITIONS=('TS_QSEL_OFULL_GUI_AUTO','TS_QSEL_OFULL_TXT_AUTO')
+CONDITIONS=(*BASE_CONDITIONS,*HYBRID_CONDITIONS)
 EXTRACT_SYSTEM=EXTRACT_PROMPTS['contrastive']
+EXTRACT_STEM_SYSTEM=EXTRACT_PROMPTS['minimal'].replace(
+    'Find the written GUI names in all five MCQ fields.',
+    'Find the written GUI names ONLY in question_stem. Options are not supplied and must not be extracted.'
+).replace(
+    'A field can contain zero, one or multiple names. Check the stem and each option independently. Do not select the correct option.',
+    'The question stem can contain zero, one or multiple names. Process only question_stem. Do not infer or select an answer option.'
+).replace('"field":"A"','"field":"question_stem"').replace(
+    'Use question_stem,A,B,C,D as fields, exact source text, and zero-based occurrence within that field.',
+    'Use only question_stem as the field and exact source substrings. occurrence is the zero-based repetition count of that SAME substring within question_stem, not an item index. A substring appearing once has occurrence 0; different substrings each start at 0.'
+)
 
 # Each changed rule is explicit: full translation rules must never override selective edits.
 SELECTIVE_GUI_SYSTEM=legacy.LEXICAL_SYSTEM_PROMPT.replace(
@@ -43,8 +55,12 @@ def original(row,inventory=None):
     return out
 
 
-def extraction_user(row,previous=None,errors=None):
-    text=json.dumps({'source_language':row['source_language'],'fields':{'question_stem':row['question_stem'],**row['options']}},ensure_ascii=False)
+def extraction_payload(row,*,stem_only=False):
+    return {'source_language':row['source_language'],'fields':{'question_stem':row['question_stem'],**({} if stem_only else row['options'])}}
+
+
+def extraction_user(row,previous=None,errors=None,*,stem_only=False):
+    text=json.dumps(extraction_payload(row,stem_only=stem_only),ensure_ascii=False)
     if previous is not None:text+='\n\nThe previous output failed source-span validation for:\n- '+'\n- '.join(errors)+'\n\nPrevious output:\n'+previous+'\n\nReturn corrected referents JSON only. Use exact source substrings and the specified fields and occurrences; do not translate or answer.'
     return text
 

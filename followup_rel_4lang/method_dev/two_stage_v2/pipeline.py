@@ -23,17 +23,39 @@ def inventory(row,backend):
             'original_strings':strings,'attempts':attempts,'errors':errors,'query_content_exposed':False}
 
 
-def extract(row,backend):
+def extraction_failure_fields(row,raw,*,stem_only=False):
+    """Localize schema/offset validation failures without another model call."""
+    try:
+        response=json.loads(raw)
+        if not isinstance(response,dict) or set(response)!={'referents'} or not isinstance(response['referents'],list) or any(not isinstance(r,dict) for r in response['referents']):return ['schema']
+        failed=[]
+        for field in sorted({str(r.get('field','schema')) for r in response['referents']}):
+            group=[r for r in response['referents'] if str(r.get('field','schema'))==field]
+            try:
+                if stem_only and field!='question_stem':raise ValueError('Forbidden field')
+                resolve_referents(row,json.dumps({'referents':group},ensure_ascii=False))
+            except (ValueError,KeyError,TypeError):failed.append(field)
+        return failed or ['schema']
+    except (ValueError,KeyError,TypeError):return ['schema']
+
+
+def extract(row,backend,*,stem_only=False):
     validate_input(row);attempts=[];errors=[];raw=''
     for repair in [False,True]:
-        user=prompts.extraction_user(row,raw if repair else None,errors)
-        result=backend('extract_repair' if repair else 'extract','text',prompts.EXTRACT_SYSTEM,user)
+        user=prompts.extraction_user(row,raw if repair else None,errors,stem_only=stem_only)
+        stage=('extract_stem_repair' if repair else 'extract_stem') if stem_only else ('extract_repair' if repair else 'extract')
+        result=backend(stage,'text',prompts.EXTRACT_STEM_SYSTEM if stem_only else prompts.EXTRACT_SYSTEM,user)
         raw=result['raw_output']
-        try:refs=resolve_referents(row,raw);errors=[]
+        try:
+            if stem_only:
+                response=json.loads(raw)
+                if not isinstance(response,dict) or not isinstance(response.get('referents'),list) or any(not isinstance(r,dict) or r.get('field')!='question_stem' for r in response['referents']):raise ValueError('Stem-only extraction must return only question_stem referents')
+            refs=resolve_referents(row,raw);errors=[]
         except (ValueError,KeyError,TypeError) as exc:refs=None;errors=[str(exc)]
-        attempts.append({**result,'errors':errors})
+        failure_fields=extraction_failure_fields(row,raw,stem_only=stem_only) if errors else []
+        attempts.append({**result,'errors':errors,'failure_fields':failure_fields})
         if not errors:break
-    return {'status':'failed' if errors else 'success','referents':refs,'attempts':attempts,'errors':errors}
+    return {'status':'failed' if errors else 'success','referents':refs,'attempts':attempts,'errors':errors,'failure_fields':failure_fields}
 
 
 def full(row,backend,inv=None):
@@ -91,3 +113,26 @@ def selective(row,refs,backend,inv=None):
         attempts.append({**result,'errors':errors})
         if not errors:return {'output':out,'edits':edits,'status':'success' if edits else 'no_op_no_edits','attempts':attempts,'errors':[]}
     return {'output':fields(row),'edits':[],'status':'fallback_original','attempts':attempts,'errors':errors}
+
+
+def hybrid(row,stem_refs,backend,inv=None):
+    """Query selective + options from the exact shared Full recipe, without option spans."""
+    validate_input(row)
+    if stem_refs is not None and any(r['field']!='question_stem' for r in stem_refs):raise ValueError('Hybrid received option referents')
+    # Both stages receive the original MCQ, never each other's translated output.
+    stem=selective(row,stem_refs,backend,inv)
+    options=full(row,backend,inv)  # Identical prompt/payload; v2 backend reuses Full call cache.
+    stem_failed=stem['status']=='fallback_original';options_failed=options['status']=='fallback_original'
+    output={'question_stem':stem['output']['question_stem'],**{k:options['output'][k] for k in 'ABCD'}}
+    changed=output!=fields(row)
+    status='fallback_original' if stem_failed and options_failed else 'partial_fallback' if stem_failed or options_failed else 'success' if changed else 'no_op_no_edits'
+    return {'output':output,'edits':stem['edits'],'status':status,
+            'attempts':[{**a,'component':'stem_alignment'} for a in stem['attempts']]+[{**a,'component':'options_full_pipeline'} for a in options['attempts']],
+            'errors':['stem: '+e for e in stem['errors']]+['options_full: '+e for e in options['errors']],
+            'components':{'stem_extraction_failed':stem_refs is None,'stem_alignment_failed':stem_failed and stem_refs is not None,
+                          'options_full_pipeline_failed':options_failed,'stem_status':stem['status'],'options_status':options['status'],
+                          'stem_changed':output['question_stem']!=row['question_stem'],
+                          'options_changed':sum(output[k]!=row['options'][k] for k in 'ABCD'),
+                          'options_source_recipe':'TS_FULL_GUI' if inv is not None else 'TS_FULL_TXT',
+                          'full_generated_stem_discarded':True},
+            'options_diagnostics':options.get('diagnostics',[]),'options_semantic_reasons':options.get('semantic_reasons',[])}

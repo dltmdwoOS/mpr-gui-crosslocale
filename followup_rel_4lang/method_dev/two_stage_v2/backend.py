@@ -89,7 +89,7 @@ class Backend:
         data=json.JSONDecoder().raw_decode(user[user.index('{'):])[0]
         if stage.startswith('extract'):
             from mpr_crosslocale.methods.selective_alignment.search import quoted_referents
-            try:refs=quoted_referents({'question_stem':data['fields']['question_stem'],'options':{k:data['fields'][k] for k in 'ABCD'}})
+            try:refs=quoted_referents({'question_stem':data['fields']['question_stem'],'options':{k:data['fields'].get(k,'') for k in 'ABCD'}})
             except ValueError:refs=[]
             return json.dumps({'referents':[{k:r[k] for k in ('field','text','occurrence')} for r in refs]},ensure_ascii=False)
         if stage.startswith('selective'):return json.dumps({'translations':{r['span_id']:None for r in data['referents']}})

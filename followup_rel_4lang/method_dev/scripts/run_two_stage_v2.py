@@ -27,8 +27,8 @@ def write(path,data):
 def jsonl(path,rows):path.write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in rows))
 
 
-def resolved_config():
-    config=json.loads((ROOT/'configs/two_stage_v2.json').read_text())
+def resolved_config(path=None):
+    config=json.loads((path or ROOT/'configs/two_stage_v2.json').read_text())
     if (config['dtype'],config['attn_implementation'],config['processor_use_fast'],config['method_batch_size'])!=('bfloat16','sdpa',True,1):raise ValueError('Unsupported execution profile')
     hf=Path(os.environ.get('HF_HOME','/home/jovyan/seungjae/.cache/huggingface'))
     for model in config['models'].values():
@@ -49,10 +49,10 @@ def prepare(args):
         selected=(preferred+[i for i in ids if i not in preferred])[:args.limit_items]
         rows=[r for r in rows if r['parallel_id'] in selected]
     for row in rows:validate_input(row)
-    config=resolved_config();mode='mock' if args.mock else 'gpu'
+    config=resolved_config(args.config);mode='mock' if args.mock else 'gpu'
     if digest(json.loads((ROOT/'../artifacts/new_models_expA_20261115/analysis/expA_8b_20261114/qwen3/expA_qwen3/full/run_contract.json').read_text()))!=config['historical_baseline_contract_sha256']:raise ValueError('Historical baseline contract changed')
     if config['historical_baseline_contract_sha256']!=identity['baseline_contract']:raise ValueError('Dataset/baseline mismatch')
-    sources=list((ROOT/'two_stage_v2').glob('*.py'))+[Path(__file__),ROOT/'scripts/run_oracle_exact.py',ROOT/'configs/two_stage_v2.json',ROOT/'two_stage_v2/legacy_manifest.json',REPO/'01_code/src/mpr_crosslocale/models/qwen25vl.py',REPO/'01_code/src/mpr_crosslocale/models/qwen3_memory.py',REPO/'01_code/src/mpr_crosslocale/inference/prompts.py']
+    sources=list((ROOT/'two_stage_v2').glob('*.py'))+[Path(__file__),ROOT/'scripts/run_oracle_exact.py',args.config.resolve(),ROOT/'two_stage_v2/legacy_manifest.json',REPO/'01_code/src/mpr_crosslocale/models/qwen25vl.py',REPO/'01_code/src/mpr_crosslocale/models/qwen3_memory.py',REPO/'01_code/src/mpr_crosslocale/inference/prompts.py']
     sources+=list((REPO/'01_code/src/mpr_crosslocale/methods/selective_alignment').glob('*.py'))
     frozen={'version':config['version'],'mode':mode,'base_data_contract':identity,'config':config,'conditions':args.conditions,
             'source_hashes':{str(p.relative_to(REPO)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sources}}
@@ -99,32 +99,40 @@ def transform(args,work,config,rows):
                     record={'image_sha256':sha,**pipeline.inventory(row,backend)}
                     f.write(json.dumps(record,ensure_ascii=False)+'\n');f.flush()
                     if i==1 or i%10==0 or i==len(unique):print(f'INVENTORY {i}/{len(unique)} {record["status"]}',flush=True)
-        elif stage=='extract':
-            unique={digest({'source_language':r['source_language'],'fields':fields(r)}):r for r in rows}
+        elif stage in ('extract','extract_stem'):
+            stem_only=stage=='extract_stem'
+            unique={digest(prompts.extraction_payload(r,stem_only=stem_only)):r for r in rows}
             with (out/'extractions.jsonl').open('w') as f:
                 for i,(key,row) in enumerate(sorted(unique.items()),1):
-                    record={'source_key':key,**pipeline.extract(row,backend)}
+                    record={'source_key':key,'scope':'question_stem' if stem_only else 'all_fields',**pipeline.extract(row,backend,stem_only=stem_only)}
                     f.write(json.dumps(record,ensure_ascii=False)+'\n');f.flush()
                     if i==1 or i%20==0 or i==len(unique):print(f'EXTRACT {i}/{len(unique)} {record["status"]}',flush=True)
         elif stage=='rewrite':
             inv={r['image_sha256']:r for r in read(args.inventory_dir/'inventories.jsonl')} if args.inventory_dir else {}
             extracted={r['source_key']:r for r in read(args.extraction_dir/'extractions.jsonl')} if args.extraction_dir else {}
+            stem_extracted={r['source_key']:r for r in read(args.stem_extraction_dir/'extractions.jsonl')} if args.stem_extraction_dir else {}
             for condition in args.conditions:
                 # No automatic branch reads source annotation artifacts.
                 oracle={r['pair_id']:r['referents'] for r in read(work/'oracle_source_spans.jsonl')} if condition.endswith('_ORACLE') else None
                 with (out/(condition+'.jsonl')).open('w') as f:
                     for i,row in enumerate(rows,1):
                         inventory=inv[row['image_sha256']] if '_GUI' in condition else None
-                        refs=None
+                        refs=None;failure_fields=[]
                         if '_FULL_' in condition:result=pipeline.full(row,backend,inventory)
+                        elif condition in prompts.HYBRID_CONDITIONS:
+                            key=digest(prompts.extraction_payload(row,stem_only=True))
+                            refs=stem_extracted[key]['referents']
+                            failure_fields=stem_extracted[key].get('failure_fields',[])
+                            result=pipeline.hybrid(row,refs,backend,inventory)
                         else:
-                            key=digest({'source_language':row['source_language'],'fields':fields(row)})
+                            key=digest(prompts.extraction_payload(row))
                             refs=oracle[row['pair_id']] if oracle is not None else extracted[key]['referents']
+                            failure_fields=[] if oracle is not None else extracted[key].get('failure_fields',[])
                             result=pipeline.selective(row,refs,backend,inventory)
                         output=result.pop('output')
                         record={**row,'question_stem':output['question_stem'],'options':{k:output[k] for k in 'ABCD'},'modified_question':render(output),
                                 'condition':condition,'oracle_span':oracle is not None,'gold_target_used':False,'extracted_referents':refs,'inventory_status':None if inventory is None else inventory['status'],
-                                'execution_mode':mode,**result}
+                                'execution_mode':mode,'extraction_failure_fields':failure_fields,**result}
                         f.write(json.dumps(record,ensure_ascii=False)+'\n');f.flush()
                         if i==1 or i%20==0 or i==len(rows):print(f'{condition} {i}/{len(rows)}',flush=True)
         completed=True
@@ -183,7 +191,36 @@ def infer(args,work,config,rows):
     (args.attempt_dir/'COMPLETE').write_text('complete\n')
 
 
-def report(work,predictions,mock):
+def hybrid_comparisons(rewritten,values,labels):
+    """Paired evaluation only: no labels/predictions enter either transformation."""
+    comparisons={}
+    for condition in prompts.HYBRID_CONDITIONS:
+        if condition not in values:continue
+        gui='_GUI' in condition
+        selective='TS_SEL_GUI_AUTO' if gui else 'TS_SEL_TXT_AUTO'
+        full='TS_FULL_GUI' if gui else 'TS_FULL_TXT'
+        primary=values[condition]
+        rows={r['pair_id']:r for r in rewritten[condition]}
+        group={'primary_pairs':len(primary),'components':{key:sum(bool(rows[p]['components'][key]) for p in primary) for key in ['stem_extraction_failed','stem_alignment_failed','options_full_pipeline_failed']},
+               'stem_changed_pairs':sum(rows[p]['components']['stem_changed'] for p in primary),
+               'options_changed_fields':sum(rows[p]['components']['options_changed'] for p in primary),'contrasts':{},
+               'interpretation':'Pipeline-level control: extraction scope/prompt and option context language change; not a pure parser-only causal effect.'}
+        for baseline in (selective,full):
+            if baseline in values:group['contrasts'][baseline]=paired_bootstrap(primary,values[baseline],labels,20261115,10000)
+        if selective in rewritten:
+            before={r['pair_id']:r for r in rewritten[selective]}
+            group['extraction_comparison']={
+                'all_field_failed_pairs':sum(before[p]['extracted_referents'] is None for p in primary),
+                'all_field_failed_only_options_pairs':sum(before[p]['extracted_referents'] is None and bool(before[p].get('extraction_failure_fields')) and all(f in ('A','B','C','D') for f in before[p]['extraction_failure_fields']) for p in primary),
+                'all_field_failed_fields':dict(Counter(f for p in primary if before[p]['extracted_referents'] is None for f in before[p].get('extraction_failure_fields',[]))),
+                'stem_only_failed_pairs':sum(rows[p]['extracted_referents'] is None for p in primary),
+                'all_field_failed_stem_succeeded':sum(before[p]['extracted_referents'] is None and rows[p]['extracted_referents'] is not None for p in primary),
+                'all_field_succeeded_stem_failed':sum(before[p]['extracted_referents'] is not None and rows[p]['extracted_referents'] is None for p in primary)}
+        comparisons[condition]=group
+    return comparisons
+
+
+def report(work,predictions,mock,rewrite_dir=None):
     if mock:
         write(work/'results.json',{'execution_mode':'mock','empirical':False,'note':'CPU functionality only; no accuracy or timing claims.'});return
     labels={r['pair_id']:r for r in read(ROOT/'artifacts/dataset_audit/evaluation_labels_PRIVATE.jsonl')}
@@ -195,22 +232,30 @@ def report(work,predictions,mock):
         if r['pair_id'] in group:raise ValueError('Duplicate predictions')
         group[r['pair_id']]=int(r['status']=='success' and r['parsed_generated_label']==labels[r['pair_id']]['gold_answer'])
     results={c:{'n':len(v),'correct':sum(v.values()),'vs_O':paired_bootstrap(v,values['O'],labels,20261115,10000) if c!='O' else None} for c,v in values.items()}
-    write(work/'results.json',{'execution_mode':'gpu','development_only':True,'conditions':results})
+    transformations={c:read(rewrite_dir/(c+'.jsonl')) for c in values if c!='O'} if rewrite_dir else {}
+    hybrid=hybrid_comparisons(transformations,values,labels) if transformations else {}
+    write(work/'results.json',{'execution_mode':'gpu','development_only':True,'conditions':results,'hybrid_controls':hybrid})
     lines=['# Restored two-stage results','', '| Condition | Correct | Accuracy |','| --- | ---: | ---: |']
     for c,r in results.items():lines.append(f"| {c} | {r['correct']}/{r['n']} | {r['correct']/r['n']:.3%} |")
+    if hybrid:
+        lines+=['','| Hybrid control | Query 추출 실패 | Query 정렬 실패 | Options Full pipeline 실패 |','| --- | ---: | ---: | ---: |']
+        for c,r in hybrid.items():lines.append(f"| {c} | {r['components']['stem_extraction_failed']} | {r['components']['stem_alignment_failed']} | {r['components']['options_full_pipeline_failed']} |")
+        lines+=['','전체 필드 추출 대비 실패 수와 Full/Selective 대비 paired accuracy·회복/회귀·CI는 results.json의 hybrid_controls에 저장했다. Stem-only prompt와 options 문맥 언어도 달라지는 pipeline 수준의 비교다.']
     (work/'REPORT_KO.md').write_text('\n'.join(lines)+'\n')
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--stage',choices=['prepare','all','inventory','extract','rewrite','infer'],default='prepare')
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--stage',choices=['prepare','all','inventory','extract','extract_stem','rewrite','infer'],default='prepare')
     p.add_argument('--cohort',choices=['all',*COHORTS],default='all');p.add_argument('--base-run',type=Path,default=ROOT/'artifacts/search_pipeline_v1')
-    p.add_argument('--output-dir',type=Path);p.add_argument('--conditions',nargs='+',choices=prompts.CONDITIONS,default=list(prompts.CONDITIONS));p.add_argument('--limit-items',type=int)
-    p.add_argument('--mock',action='store_true');p.add_argument('--attempt-dir',type=Path);p.add_argument('--inventory-dir',type=Path);p.add_argument('--extraction-dir',type=Path);p.add_argument('--rewrite-dir',type=Path);args=p.parse_args()
+    p.add_argument('--config',type=Path,default=ROOT/'configs/two_stage_v2_hybrid.json')
+    p.add_argument('--output-dir',type=Path);p.add_argument('--conditions',nargs='+',choices=prompts.CONDITIONS);p.add_argument('--limit-items',type=int)
+    p.add_argument('--mock',action='store_true');p.add_argument('--attempt-dir',type=Path);p.add_argument('--inventory-dir',type=Path);p.add_argument('--extraction-dir',type=Path);p.add_argument('--stem-extraction-dir',type=Path);p.add_argument('--rewrite-dir',type=Path);args=p.parse_args()
+    if args.conditions is None:args.conditions=json.loads(args.config.read_text()).get('conditions',list(prompts.BASE_CONDITIONS))
     if len(set(args.conditions))!=len(args.conditions) or args.limit_items is not None and args.limit_items<1:raise ValueError('Invalid selection')
-    if args.output_dir is None:args.output_dir=ROOT/'artifacts'/('two_stage_v2_mock' if args.mock else 'two_stage_v2')
+    if args.output_dir is None:args.output_dir=ROOT/'artifacts'/(args.config.stem+('_mock' if args.mock else ''))
     args.output_dir=args.output_dir.resolve()
     def command(stage,cohort,extra=()):
-        return [sys.executable,'-u',str(Path(__file__)),'--stage',stage,'--cohort',cohort,'--base-run',str(args.base_run),'--output-dir',str(args.output_dir),
+        return [sys.executable,'-u',str(Path(__file__)),'--stage',stage,'--cohort',cohort,'--base-run',str(args.base_run),'--output-dir',str(args.output_dir),'--config',str(args.config.resolve()),
                 '--conditions',*args.conditions,*(['--limit-items',str(args.limit_items)] if args.limit_items else []),*(['--mock'] if args.mock else []),*extra]
     if args.cohort=='all':
         if args.stage not in ('prepare','all'):raise ValueError('Worker stage requires one cohort')
@@ -218,7 +263,7 @@ def main():
         return
     work,config,rows=prepare(args)
     if args.stage=='prepare':print(json.dumps({'prepared':str(work),**json.loads((work/'plan.json').read_text()),'conditions':args.conditions}),flush=True);return
-    if args.stage in ('inventory','extract','rewrite'):transform(args,work,config,rows);return
+    if args.stage in ('inventory','extract','extract_stem','rewrite'):transform(args,work,config,rows);return
     if args.stage=='infer':infer(args,work,config,rows);return
     lock=(ROOT/'artifacts'/('search_pipeline_mock.lock' if args.mock else 'search_pipeline_gpu.lock')).open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     def job(stage,extra=()):
@@ -232,11 +277,12 @@ def main():
         if not (attempt/'COMPLETE').exists():raise ValueError('Missing completion marker')
         return attempt
     inventory=job('inventory') if any('_GUI' in c for c in args.conditions) else None
-    extraction=job('extract') if any(c.endswith('_AUTO') for c in args.conditions) else None
-    dependencies=[*(['--inventory-dir',str(inventory)] if inventory else []),*(['--extraction-dir',str(extraction)] if extraction else [])]
+    extraction=job('extract') if any(c.startswith('TS_SEL_') and c.endswith('_AUTO') for c in args.conditions) else None
+    stem_extraction=job('extract_stem') if any(c in prompts.HYBRID_CONDITIONS for c in args.conditions) else None
+    dependencies=[*(['--inventory-dir',str(inventory)] if inventory else []),*(['--extraction-dir',str(extraction)] if extraction else []),*(['--stem-extraction-dir',str(stem_extraction)] if stem_extraction else [])]
     rewritten=job('rewrite',dependencies)
-    predictions=job('infer',['--rewrite-dir',str(rewritten)]);report(work,predictions,args.mock)
-    write(work/'COMPLETE.json',{'execution_mode':'mock' if args.mock else 'gpu','inventory':str(inventory) if inventory else None,'extract':str(extraction) if extraction else None,'rewrite':str(rewritten),'predictions':str(predictions)})
+    predictions=job('infer',['--rewrite-dir',str(rewritten)]);report(work,predictions,args.mock,rewritten)
+    write(work/'COMPLETE.json',{'execution_mode':'mock' if args.mock else 'gpu','inventory':str(inventory) if inventory else None,'extract':str(extraction) if extraction else None,'extract_stem':str(stem_extraction) if stem_extraction else None,'rewrite':str(rewritten),'predictions':str(predictions)})
     print('COMPLETE',work,flush=True)
 
 

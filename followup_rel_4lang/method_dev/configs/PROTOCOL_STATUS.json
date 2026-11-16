@@ -17,8 +17,8 @@
   ],
   "reason": "User rejected prior inventory-based protocols; restore historical extraction/localization/repair prompts and separately version selective adaptations.",
   "raw_artifacts_preserved": true,
-  "replacement_config": "configs/two_stage_v2.json",
-  "replacement_protocol": "reports/TWO_STAGE_V2_PROTOCOL_KO.md",
+  "replacement_config": "configs/two_stage_v2_hybrid.json",
+  "replacement_protocol": "reports/HYBRID_CONTROL_KO.md",
   "replacement_full_evaluation_started": false,
   "unaffected": "Dataset/splits/locks, R/T/F historical reference definitions and inventory-free raw results are preserved. No new performance claim."
 }

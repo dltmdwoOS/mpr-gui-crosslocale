@@ -1,0 +1,108 @@
+{
+  "version": "two-stage-legacy-prompts-v2-hybrid-control-v1",
+  "legacy_commit": "cdea4d1437f383f99f6b8dc63ecff38c364eb4d0",
+  "seed": 42,
+  "dtype": "bfloat16",
+  "attn_implementation": "sdpa",
+  "device_map": "cuda:0",
+  "method_batch_size": 1,
+  "min_free_gpu_gib": 40,
+  "max_input_tokens": 4096,
+  "min_pixels": 262144,
+  "max_pixels": 2097152,
+  "processor_use_fast": true,
+  "patch_embed_memory_format": "channels_last_3d",
+  "enable_thinking_text": false,
+  "output_tokens": {
+    "inventory": 768,
+    "inventory_repair": 3072,
+    "extract": 768,
+    "extract_repair": 768,
+    "full": 512,
+    "full_repair": 512,
+    "full_semantic_repair": 512,
+    "selective": 512,
+    "selective_repair": 512,
+    "extract_stem": 768,
+    "extract_stem_repair": 768
+  },
+  "inventory_structure_repairs": 1,
+  "translation_structure_repairs": 1,
+  "full_semantic_repairs": 1,
+  "selective_semantic_repairs": 0,
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "use_cache": true,
+    "logits_to_keep": 1
+  },
+  "models": {
+    "inventory": {
+      "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+      "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+      "family": "qwen3_vl",
+      "path": "HF_HOME_SNAPSHOT"
+    },
+    "text": {
+      "model_id": "Qwen/Qwen3-8B",
+      "revision": "47719a242beab8f9aecc40ce3928b034dd5dd559",
+      "family": "text",
+      "path": "HF_HOME_SNAPSHOT"
+    }
+  },
+  "downstream": {
+    "model_config": {
+      "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+      "model_family": "qwen3_vl",
+      "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+      "dtype": "bfloat16",
+      "quantization": null,
+      "attn_implementation": "sdpa",
+      "device_strategy": "cuda:0",
+      "patch_embed_memory_format": "channels_last_3d",
+      "processor_profile": "qwen_4090_2mp",
+      "min_pixels": 262144,
+      "max_pixels": 2097152,
+      "prompt_profile": "mpr_label_only_v1",
+      "generation": {
+        "do_sample": false,
+        "num_beams": 1,
+        "max_new_tokens": 2,
+        "temperature": null
+      }
+    },
+    "system_prompt": "You are a GUI reasoning assistant. Inspect the GUI image and answer the multiple-choice question. Respond with exactly one label: A, B, C, or D.",
+    "batch_size": 3,
+    "max_input_tokens": 4096,
+    "score_labels": true,
+    "processor_use_fast": true
+  },
+  "historical_baseline_contract_sha256": "99d41e549b1a0f9372afa60930fc993c277cdf1a1f7546d9a83cb885150bcaa5",
+  "legacy_deviations": [
+    "Inventory model: evaluation Qwen3-VL instead of historical Qwen2.5-VL",
+    "Method batch 1 instead of historical translator batch 2",
+    "Explicit 4096 input-token limit; stop without truncation",
+    "Failed full localization falls back to O for ITT",
+    "Selective/extraction repair prompts are explicit new adaptations; no historical selective equivalent"
+  ],
+  "cache_policy": "fresh namespace; no v1 inventories/translations imported",
+  "scope": "same 158-item development cohort plus legacy pilot; fixed cohorts; all six conditions, no winner filtering",
+  "conditions": [
+    "TS_FULL_GUI",
+    "TS_FULL_TXT",
+    "TS_SEL_GUI_AUTO",
+    "TS_SEL_TXT_AUTO",
+    "TS_SEL_GUI_ORACLE",
+    "TS_SEL_TXT_ORACLE",
+    "TS_QSEL_OFULL_GUI_AUTO",
+    "TS_QSEL_OFULL_TXT_AUTO"
+  ],
+  "hybrid_control": {
+    "stem_extraction_input": "question_stem only; no options",
+    "option_translation": "reuse identical Full MCQ translation A-D; discard generated stem",
+    "stem_alignment_context": "original complete MCQ; options are context only",
+    "fallback": "independent stem and options components",
+    "shared_full_calls": "same backend cache key; no additional full-localization calls when matching Full condition already ran",
+    "interpretation": "pipeline-level control; option context language and extraction prompt scope both change"
+  }
+}
