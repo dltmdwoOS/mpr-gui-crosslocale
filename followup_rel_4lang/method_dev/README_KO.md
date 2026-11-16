@@ -1,5 +1,7 @@
 # GCSA / RFA development harness
 
+추가 준비: [Stem-only GUI control](reports/STEM_ONLY_GUI_KO.md). 완료된 Hybrid stem + 원본 options를 조합해 새 추출·번역 없이 downstream만 비교한다. `bash followup_rel_4lang/method_dev/scripts/run_stem_only_gui.sh`는 CPU 준비만, `--run`을 붙이면 새 조건만 GPU 평가한다. Option-only는 추가하지 않았다.
+
 현재 결과: [TWO_STAGE_RESULTS_KO.md](reports/TWO_STAGE_RESULTS_KO.md). Screen 288쌍×9조건(O 포함)의 VLM 추론2,592행이 완료됐다. Main240쌍에서 O67.50%, 자동 Hybrid GUI74.17%, Oracle GUI75.00%이며 O 대비95% CI는 모두0을 포함하거나 경계가0이다. Selection·Internal은 아직 미실행이다. 추론 없이 `.venv/bin/python followup_rel_4lang/method_dev/scripts/update_two_stage_results.py`로 완료 조건만 갱신한다.
 
 최신 추가 control: [Query 선택적 정렬 + Options 전체 번역](reports/HYBRID_CONTROL_KO.md). `TS_QSEL_OFULL_GUI_AUTO` / `TS_QSEL_OFULL_TXT_AUTO`를 추가했다. Query extractor는 stem만 입력받으며 options는 같은 Full recipe의 A–D를 사용한다. 현재 runner 기본값은 별도 `configs/two_stage_v2_hybrid.json`과 `artifacts/two_stage_v2_hybrid/`다. Screen 성능과 남은 오류는 위 결과 보고서에 있으며, parser 통과가 의미 정확도를 보장한다는 뜻은 아니다.

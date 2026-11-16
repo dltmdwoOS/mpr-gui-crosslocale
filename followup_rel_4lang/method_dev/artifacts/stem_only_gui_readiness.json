@@ -1,0 +1,22 @@
+{
+  "status": "prepared_cpu_verified_gpu_not_run",
+  "condition": "TS_STEM_ONLY_GUI_AUTO",
+  "source_condition": "TS_QSEL_OFULL_GUI_AUTO",
+  "executed_pairs_prepared": 288,
+  "primary_pairs": 240,
+  "primary_items": 20,
+  "stem_changed_primary_pairs": 219,
+  "stem_failed_primary_pairs": 12,
+  "options_original_for_all_pairs": true,
+  "stem_identical_to_completed_hybrid_for_all_pairs": true,
+  "new_inventory_calls": 0,
+  "new_extraction_calls": 0,
+  "new_translation_calls": 0,
+  "new_gpu_inference_started": false,
+  "tests": "9 passed",
+  "mock_predictions": 288,
+  "mock_resume_reused_complete_attempt": true,
+  "source_raw_and_frozen_code_unchanged": true,
+  "option_only_added": false,
+  "composition_contract_sha256": "086b95a25ab8e9f21df31c02e122ff4ea107c56e1c95371abaeef47201280daf"
+}

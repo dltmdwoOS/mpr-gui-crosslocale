@@ -25,3 +25,4 @@ artifacts/search_plan_v1/*
 !artifacts/two_stage_v2_readiness.json
 !artifacts/hybrid_control_readiness.json
 !artifacts/two_stage_results_snapshot.json
+!artifacts/stem_only_gui_readiness.json
