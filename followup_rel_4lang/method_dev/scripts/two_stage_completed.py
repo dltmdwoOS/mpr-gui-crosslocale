@@ -154,6 +154,17 @@ def add_completed(snapshot,run,repo,root,labels,contract,read):
             for filename,sha in single['raw_manifest'].items():
                 if hashlib.sha256((repo/filename).read_bytes()).hexdigest()!=sha:raise ValueError('Single-pass raw output changed')
             snapshot['cohorts']['screen']['completed_evaluation']['single_pass']=single
+        all_path=root/'artifacts/single_pass_all_results_snapshot.json'
+        all_marker=root/'artifacts/single_pass_all_screen_v1/COMPLETE.json'
+        if all_path.exists() and all_marker.exists():
+            all_result=json.loads(use(all_path).read_text());done=json.loads(all_marker.read_text())
+            all_contract=json.loads((all_marker.parent/'contract.json').read_text())
+            if all_result['contract_sha256']!=digest(all_contract) or done['contract_sha256']!=digest(all_contract) or done['execution_mode']!='gpu':raise ValueError('All-field single-pass contract mismatch')
+            if Path(all_contract['source_cohort']).resolve()!=(run/'screen').resolve():raise ValueError('All-field single-pass source differs')
+            if all_result['results']['pair_ids_sha256']!=snapshot['cohorts']['screen']['completed_evaluation']['pair_ids_sha256']:raise ValueError('All-field single-pass pairs differ')
+            for filename,sha in all_result['raw_manifest'].items():
+                if hashlib.sha256((repo/filename).read_bytes()).hexdigest()!=sha:raise ValueError('All-field single-pass raw changed')
+            snapshot['cohorts']['screen']['completed_evaluation']['single_pass_all']=all_result
 
 
 def render_completed(snapshot):
@@ -175,6 +186,10 @@ def render_completed(snapshot):
         if single:
             q=single['results'];k=q['correct']['TS_STEM_SINGLE_PASS_GUI_AUTO'];c=q['contrasts']['O']
             out.append(f"| **Single-pass Stem GUI · 추출/정렬 통합** | **{k}/{n}** | **{k/n*100:.2f}%** | {c['difference']*100:+.2f}pp | [{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}] | {c['recovery']}/{c['regression']} |")
+        all_single=s.get('single_pass_all')
+        if all_single:
+            q=all_single['results'];k=q['correct']['TS_ALL_SINGLE_PASS_GUI_AUTO'];c=q['contrasts']['O']
+            out.append(f"| **Single-pass All GUI · Stem+Options referents 통합** | **{k}/{n}** | **{k/n*100:.2f}%** | {c['difference']*100:+.2f}pp | [{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}] | {c['recovery']}/{c['regression']} |")
         if 'R_stem_reference' in s:
             r=s['R_stem_reference'];out.append(f"| **R_stem · Stem-only 대응 reference** | **{r['correct']}/{n}** | **{r['correct']/n*100:.2f}%** | {(r['correct']-outcomes['O']['correct'])/n*100:+.2f}pp | — | — |")
         for name in ('R_REF','F_REF'):
@@ -183,6 +198,9 @@ def render_completed(snapshot):
         if single:
             c=single['results']['contrasts']['TS_STEM_ONLY_GUI_AUTO'];cost=single['cost_comparison']
             out+=['',f"추가 개발 조건인 **Single-pass−분리 Stem-only는{c['difference']*100:+.2f}pp**, CI[{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}]pp, 회복/회귀{c['recovery']}/{c['regression']}이다. 같은 main240쌍의 LM 변환 시간은{cost['separate_extraction_and_alignment_seconds']/60:.2f}분→{cost['single_pass_seconds']/60:.2f}분으로 늘었다. Options 범위 위반과 전체 응답 fallback의 영향은 [통합 실험 보고서](SINGLE_PASS_STEM_GUI_KO.md)에 정리했다. 현재 결과만으로 기존 분리 방식을 대체할 근거는 없다."]
+        if all_single:
+            c=all_single['contrasts']['TS_STEM_SINGLE_PASS_GUI_AUTO'];cost=all_single['main_lm_costs']
+            out+=['',f"Options referents까지 허용한 **All-field 통합−Stem 통합은{c['difference']*100:+.2f}pp**, CI[{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}]pp, 회복/회귀{c['recovery']}/{c['regression']}이다. Main의 LM 변환 시간은 Stem 통합{cost['Stem-only 통합']['total_seconds']/60:.2f}분, All-field 통합{cost['All-field 통합']['total_seconds']/60:.2f}분이다. 이는 options 전체 번역이 아니라 referent만의 치환이며 field 인터페이스도 바뀐다. [실제 프롬프트·전체 결과·비용·실패 추적](SINGLE_PASS_ALL_GUI_KO.md)."]
         if stem:
             c=stem['contrasts']['TS_QSEL_OFULL_GUI_AUTO']
             out+=['',f"Stem-only는 완료된 Hybrid stem을 그대로 쓰고 A–D만 원본으로 복원했다. 새 추출·번역 없이 추가 downstream288쌍을 평가했다. **Stem-only−Hybrid는 {c['difference']*100:+.2f}pp**, CI[{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}]pp, 회복/회귀{c['recovery']}/{c['regression']}이다. Options Full을 추가한 Hybrid가 정답3개 높은 점추정이지만 구간이 넓어 우위를 확정하지 않는다. R/F는 같은 primary pair의 기존 parallel reference이며 자동 method가 아니다."]

@@ -1,0 +1,12 @@
+{
+  "pairs": 288,
+  "primary_max_input_tokens": 1388,
+  "max_input_tokens": 4096,
+  "rows_over_limit": 0,
+  "conservative_repair_input_upper_bound_tokens": 2150,
+  "output_tokens_per_call": 512,
+  "lm_batch_size": 1,
+  "vlm_batch_size": 3,
+  "frozen_stem_lm_peak_reserved_gib": 15.83203125,
+  "frozen_stem_vlm_peak_reserved_gib": 18.69921875
+}
