@@ -2,11 +2,11 @@
 
 같은 Screen **20 semantic item·240 mismatch pair** 기준이다. Inventory는 고유 screenshot80개, source extraction은 고유 MCQ80개만 계산한다. 실패·repair를 포함하고 pilot48쌍은 주 비교에서 제외했다. 추가 추론은 실행하지 않았다.
 
-**총 처리시간 = inventory VLM + referent 추출 LM + 번역/정렬 LM + 문제 풀이 VLM.** 아래는 저장된 실제 처리 구간을 합산해 재구성한 값이다. 모델 적재·프로세스 전환·일부 CPU 검증·사전 수작업은 포함되지 않으므로, 시작부터 종료까지의 전체 wall time과 다르다. 일부 배치에 pilot이 함께 있어 VLM 시간은 문항 수 비율로 안분했다. 새로 독립 실행한 실측 wall로 오해하지 않는다.
+**총 처리시간 = inventory/직접 rewrite VLM + referent 추출 LM + 번역/정렬 LM + 문제 풀이 VLM.** 아래는 저장된 실제 처리 구간을 합산해 재구성한 값이다. 모델 적재·프로세스 전환·일부 CPU 검증·사전 수작업은 포함되지 않으므로, 시작부터 종료까지의 전체 wall time과 다르다. 일부 배치에 pilot이 함께 있어 VLM 시간은 문항 수 비율로 안분했다. 새로 독립 실행한 실측 wall로 오해하지 않는다.
 
 ## 현재 B200 MIG: 같은 분모 비교
 
-| 조건 | 정답 | 정확도 | Inventory VLM·분 | LM 합계·분 | 문제 풀이 VLM·분 | 처음부터 합계·분 | Inventory 재사용·분 |
+| 조건 | 정답 | 정확도 | Inventory/Rewrite VLM·분 | LM 합계·분 | 문제 풀이 VLM·분 | 처음부터 합계·분 | Inventory 재사용·분 |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | O · 원본 | 162/240 | 67.50% | 0.00 | 0.00 | 2.92 | **2.92** | 2.92 |
 | T형 · gold span+Qwen3 번역 | 158/240 | 65.83% | 0.00 | 8.10 | 2.07 | **10.17** | 10.17 |
@@ -20,6 +20,7 @@
 | Oracle span GUI · 진단 | 180/240 | 75.00% | 29.56 | 9.98 | 2.03 | **41.57** | 12.01 |
 | Stem 통합 GUI | 173/240 | 72.08% | 29.56 | 7.14 | 3.12 | **39.82** | 10.26 |
 | Stem+Options 통합 GUI | 179/240 | 74.58% | 29.56 | 17.87 | 3.05 | **50.49** | 20.93 |
+| Screenshot 직접 rewrite · 문맥 보존 별도 진단 | 171/240 | 71.25% | 9.56 | 0.00 | 3.18 | **12.74** | 12.74 |
 
 ### 주요 후보의 시간 증가와 정답 차이
 
@@ -50,6 +51,7 @@ Inventory 재사용 열은 inventory만 준비돼 있다고 가정한다. 추출
 | Oracle span GUI · 진단 | 0.00 | 9.98 |
 | Stem 통합 GUI | 0.00 | 7.14 |
 | Stem+Options 통합 GUI | 0.00 | 17.87 |
+| Screenshot 직접 rewrite · 문맥 보존 별도 진단 | 0.00 | 0.00 |
 
 Hybrid는 options를 얻으려고 수행한 Full 전체 호출도 포함한다. Full에서 생성했다가 버린 stem의 계산을 빼지 않았다. Stem-only 분리는 Hybrid에서 실제로 측정된 inventory·stem 추출·stem 정렬만 재구성했으며, 원래 실행 때 발생한 불필요한 options Full까지 이 방법의 필수 비용으로 부과하지 않았다.
 
@@ -68,20 +70,21 @@ R_REF는 parallel referent, F_REF는 parallel 전체 localization을 이미 보�
 
 ## 실제 새 실행에서 기록된 시간
 
-아래는 main+pilot288쌍이며 위240쌍 표와 분모가 다르다. Inventory는 이전에 준비돼 있었다. LM의 wall은 적재를 포함하지만 VLM 쪽은 batch 구간만 기록돼 있어 합계는 **전체 실행 시간의 하한**이다.
+아래는 main+pilot288쌍이며 위240쌍 표와 분모가 다르다. Inventory 기반 두 통합 실행은 inventory가 이미 준비돼 있었고, 변환 LM wall+문제 풀이 VLM batch만 기록돼 합계는 **전체 실행 시간의 하한**이다. 이미지 직접 rewrite는 inventory를 쓰지 않고 전체 worker 실행 wall도 추가로 기록했다.
 
-| 실행 | LM 단계 wall·분 | VLM batch 합·분 | 기록 구간 합·분 |
+| 실행 | 변환 단계 wall·분 | 문제 풀이 VLM batch 합·분 | 실행 시간·분 |
 | --- | ---: | ---: | ---: |
 | single_pass_stem_screen_v1 | 9.91 | 3.77 | ≥13.68 |
 | single_pass_all_screen_v1 | 30.08 | 3.73 | ≥33.82 |
+| visual_selective_rewrite_screen_v1 | 15.19 | 3.74 | 19.34 (실측 wall) |
 
-VLM 적재·입력 검사·프로세스 시작/종료 등이 추가되므로 이 하한을 정확한 전체 wall이라고 부르지 않는다. 기존9조건의 shared pipeline wall을 각 방법에 그대로 붙이는 것도 여러 방법의 공용 처리와 불필요한 단계를 중복 청구하므로 피했다.
+앞선 두 통합 실행의 하한에는 VLM 적재·입력 검사·프로세스 시작/종료 등이 추가된다. 이미지 직접 rewrite 행은 별도로 기록한 전체 worker 실행 wall이며 하한이 아니다. 기존9조건의 shared pipeline wall을 각 방법에 그대로 붙이는 것도 여러 방법의 공용 처리와 불필요한 단계를 중복 청구하므로 피했다.
 
 ## 비교를 읽는 법
 
 GUI 방법은 같은 inventory 비용 **29.56분**을 공유한다. 따라서 처음 실행할 때는 inventory가 큰 비중을 차지하고, 같은 화면의 inventory가 준비돼 있으면 방법 간 LM 차이가 더 크게 드러난다. 고유80개 화면에 한 번씩만 계산했고 문항·언어쌍240개마다 재추출한 것으로 세지 않았다.
 
-정확도는 이미 여러 번 관찰한 개발 Screen의 점추정이다. Hybrid와 Stem+Options 통합의 정답1개 차이를 안정적인 우위로 해석하지 않는다. 처리시간 역시 서로 다른 실행 시점·출력 길이·repair·배치의 영향을 포함하며 통제된 장비 성능 벤치마크가 아니다.
+정확도는 이미 여러 번 관찰한 개발 Screen의 점추정이다. Hybrid와 Stem+Options 통합의 정답1개 차이를 안정적인 우위로 해석하지 않는다. 이미지 직접 rewrite는 문맥까지 변경했을 수 있으므로 정확도만으로 selective alignment의 성공을 주장하지 않는다. [문맥 audit](VISUAL_SELECTIVE_REWRITE_KO.md)을 함께 본다. 처리시간 역시 서로 다른 실행 시점·출력 길이·repair·배치의 영향을 포함하며 통제된 장비 성능 벤치마크가 아니다.
 
 ## 집계 검증·재현
 

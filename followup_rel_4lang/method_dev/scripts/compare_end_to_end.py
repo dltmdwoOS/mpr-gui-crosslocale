@@ -123,7 +123,7 @@ def collect():
         inv_s = call_seconds(inventory_calls) if inv else 0.0
         comparisons.append({'condition': condition, 'name': name, 'device': 'B200 MIG45GB', 'n': len(ids),
             'correct': int(correct), 'accuracy': correct/len(ids), 'automatic': automatic, 'gold_span': gold,
-            'inventory_seconds': inv_s, 'extraction_seconds': source_s, 'localization_seconds': local_s,
+            'inventory_seconds': inv_s, 'editor_vlm_seconds': 0.0, 'extraction_seconds': source_s, 'localization_seconds': local_s,
             'lm_seconds': source_s+local_s, 'vlm_seconds': timing['seconds'],
             'cold_total_seconds': inv_s+source_s+local_s+timing['seconds'],
             'inventory_cached_total_seconds': source_s+local_s+timing['seconds'], 'vlm_batch_allocation': timing,
@@ -169,9 +169,29 @@ def collect():
         runtime = load(Path(marker['rewrite'])/'cost.json')
         all_vlm = batch_share(predictions, lambda r: True)
         runs[folder] = {'executed_pairs': len(predictions), 'inventory_preexisting': True,
-                       'lm_wall_seconds': runtime['wall_seconds'], 'vlm_batch_seconds': all_vlm['seconds'],
+                       'transformation_wall_seconds': runtime['wall_seconds'], 'transformation_role': 'LM', 'vlm_batch_seconds': all_vlm['seconds'],
                        'lower_bound_seconds': runtime['wall_seconds']+all_vlm['seconds'],
                        'missing_overheads': 'VLM model load, input checks, process startup/exit and orchestration not fully timed'}
+    visual_dir=ROOT/'artifacts/visual_selective_rewrite_screen_v1'
+    if (visual_dir/'COMPLETE.json').exists():
+        marker,profile=load(visual_dir/'COMPLETE.json'),load(visual_dir/'contract.json')
+        if marker['contract_sha256']!=digest(profile) or profile['downstream']!=parent['config']['downstream']:
+            raise ValueError('Visual rewrite profile differs')
+        for filename,sha in profile['source_sha256'].items():
+            if hashlib.sha256(Path(filename).read_bytes()).hexdigest()!=sha:raise ValueError('Visual rewrite source changed')
+        rewrite=rows(Path(marker['rewrite'])/'rewritten.jsonl');predictions=rows(Path(marker['infer'])/'predictions.jsonl')
+        add(profile['condition'],'Screenshot 직접 rewrite · 문맥 보존 별도 진단',False,{},{},predictions)
+        edit_seconds=call_seconds(call_map([r for r in rewrite if r['pair_id'] in ids]))
+        comparisons[-1]['editor_vlm_seconds']=edit_seconds
+        comparisons[-1]['cold_total_seconds']+=edit_seconds
+        comparisons[-1]['inventory_cached_total_seconds']+=edit_seconds
+        comparisons[-1]['selective_scope_verified']=False
+        rewrite_cost=load(Path(marker['rewrite'])/'cost.json')
+        all_vlm=batch_share(predictions,lambda r:True)
+        runs[visual_dir.name]={'executed_pairs':len(predictions),'inventory_preexisting':False,
+            'transformation_wall_seconds':rewrite_cost['wall_seconds'],'transformation_role':'VLM','vlm_batch_seconds':all_vlm['seconds'],
+            'lower_bound_seconds':rewrite_cost['wall_seconds']+all_vlm['seconds'],
+            'full_wall_seconds':marker['execution_wall_seconds'],'wall_scope':marker['wall_scope']}
     refs, ref_meta, _ = load_references(REPO, {p: labels[p] for p in ids}, {'screen': originals}, use,
         parent['config']['downstream']['model_config'], parent['config']['historical_baseline_contract_sha256'])
     for profile in ref_meta['source_runs'].values():
@@ -202,7 +222,7 @@ def collect():
         'reference_metadata': ref_meta, 'gemma_translation_metadata': gemma_meta,
         'actual_new_run_lower_bounds': runs, 'source_sha256': captures,
         'inventory': {'seconds': call_seconds(inventory_calls), 'failed_images': sum(r['status'] != 'success' for r in inventories), 'calls': len(inventory_calls)},
-        'methodology': {'total': 'Measured unique inventory+extraction+localization call runtimes + batch-apportioned VLM runtime',
+        'methodology': {'total': 'Measured unique inventory+direct visual rewrite+extraction+localization call runtimes + batch-apportioned final VLM runtime',
             'batch_allocation': 'Full batches collected first, then runtime * selected rows / declared actual batch size. Eight pilot/main mixed batches per current condition.',
             'cache_policy': 'Each standalone method charged all required original call runtimes, even if reused from a cache. Inventory-cached column excludes only inventory.',
             'exclusions': 'Manual/parallel annotation construction, download, model loads, process startup and unmeasured CPU/orchestration overhead. Not a single stopwatch end-to-end wall measurement.',
@@ -213,12 +233,12 @@ def collect():
 def render(data):
     lines = ['# 실험별 전체 처리시간과 정확도', '',
         f"같은 Screen **{data['semantic_items']} semantic item·{data['primary_pairs']} mismatch pair** 기준이다. Inventory는 고유 screenshot{data['images']}개, source extraction은 고유 MCQ{data['source_mcqs']}개만 계산한다. 실패·repair를 포함하고 pilot48쌍은 주 비교에서 제외했다. 추가 추론은 실행하지 않았다.", '',
-        '**총 처리시간 = inventory VLM + referent 추출 LM + 번역/정렬 LM + 문제 풀이 VLM.** 아래는 저장된 실제 처리 구간을 합산해 재구성한 값이다. 모델 적재·프로세스 전환·일부 CPU 검증·사전 수작업은 포함되지 않으므로, 시작부터 종료까지의 전체 wall time과 다르다. 일부 배치에 pilot이 함께 있어 VLM 시간은 문항 수 비율로 안분했다. 새로 독립 실행한 실측 wall로 오해하지 않는다.', '',
+        '**총 처리시간 = inventory/직접 rewrite VLM + referent 추출 LM + 번역/정렬 LM + 문제 풀이 VLM.** 아래는 저장된 실제 처리 구간을 합산해 재구성한 값이다. 모델 적재·프로세스 전환·일부 CPU 검증·사전 수작업은 포함되지 않으므로, 시작부터 종료까지의 전체 wall time과 다르다. 일부 배치에 pilot이 함께 있어 VLM 시간은 문항 수 비율로 안분했다. 새로 독립 실행한 실측 wall로 오해하지 않는다.', '',
         '## 현재 B200 MIG: 같은 분모 비교', '',
-        '| 조건 | 정답 | 정확도 | Inventory VLM·분 | LM 합계·분 | 문제 풀이 VLM·분 | 처음부터 합계·분 | Inventory 재사용·분 |',
+        '| 조건 | 정답 | 정확도 | Inventory/Rewrite VLM·분 | LM 합계·분 | 문제 풀이 VLM·분 | 처음부터 합계·분 | Inventory 재사용·분 |',
         '| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |']
     for r in data['current']:
-        lines.append(f"| {r['name']} | {r['correct']}/{r['n']} | {r['accuracy']:.2%} | {r['inventory_seconds']/60:.2f} | {r['lm_seconds']/60:.2f} | {r['vlm_seconds']/60:.2f} | **{r['cold_total_seconds']/60:.2f}** | {r['inventory_cached_total_seconds']/60:.2f} |")
+        lines.append(f"| {r['name']} | {r['correct']}/{r['n']} | {r['accuracy']:.2%} | {(r['inventory_seconds']+r['editor_vlm_seconds'])/60:.2f} | {r['lm_seconds']/60:.2f} | {r['vlm_seconds']/60:.2f} | **{r['cold_total_seconds']/60:.2f}** | {r['inventory_cached_total_seconds']/60:.2f} |")
     by_condition = {r['condition']: r for r in data['current']}
     lines += ['', '### 주요 후보의 시간 증가와 정답 차이', '',
               '| 비교 | 합계 시간 차이·분 | 정답 수 차이 |', '| --- | ---: | ---: |']
@@ -241,14 +261,15 @@ def render(data):
     lines += ['', 'R_REF는 parallel referent, F_REF는 parallel 전체 localization을 이미 보유한 reference다. 이 입력을 얻는 annotation·병렬 데이터 제작 비용을0으로 본 것이 아니다. 현재 B200에서 R/F240쌍을 다시 푼 기록은 없어 현재 장비의 전체 시간으로 환산하지 않았다. 같은 모델·revision·system과 pair/gold를 확인했지만 장비·배치·큐가 다르므로 위 B200 행과 직접적인 속도 경쟁으로 해석하지 않는다.', '',
         '기존 T_REF는 `mlx-community/gemma-3-12b-it-4bit`를 Mac에서 사용한 번역+RTX4090 VLM이다. 저장된 translation 파일에는 runtime이 없어 전체 시간을 복원할 수 없었다. 기존 T_REF와 현재 T형을 하나의 조건으로 합치지 않는다.', '',
         '## 실제 새 실행에서 기록된 시간', '',
-        '아래는 main+pilot288쌍이며 위240쌍 표와 분모가 다르다. Inventory는 이전에 준비돼 있었다. LM의 wall은 적재를 포함하지만 VLM 쪽은 batch 구간만 기록돼 있어 합계는 **전체 실행 시간의 하한**이다.', '',
-        '| 실행 | LM 단계 wall·분 | VLM batch 합·분 | 기록 구간 합·분 |', '| --- | ---: | ---: | ---: |']
+        '아래는 main+pilot288쌍이며 위240쌍 표와 분모가 다르다. Inventory 기반 두 통합 실행은 inventory가 이미 준비돼 있었고, 변환 LM wall+문제 풀이 VLM batch만 기록돼 합계는 **전체 실행 시간의 하한**이다. 이미지 직접 rewrite는 inventory를 쓰지 않고 전체 worker 실행 wall도 추가로 기록했다.', '',
+        '| 실행 | 변환 단계 wall·분 | 문제 풀이 VLM batch 합·분 | 실행 시간·분 |', '| --- | ---: | ---: | ---: |']
     for name,r in data['actual_new_run_lower_bounds'].items():
-        lines.append(f"| {name} | {r['lm_wall_seconds']/60:.2f} | {r['vlm_batch_seconds']/60:.2f} | ≥{r['lower_bound_seconds']/60:.2f} |")
-    lines += ['', 'VLM 적재·입력 검사·프로세스 시작/종료 등이 추가되므로 이 하한을 정확한 전체 wall이라고 부르지 않는다. 기존9조건의 shared pipeline wall을 각 방법에 그대로 붙이는 것도 여러 방법의 공용 처리와 불필요한 단계를 중복 청구하므로 피했다.', '',
+        total=f"{r['full_wall_seconds']/60:.2f} (실측 wall)" if 'full_wall_seconds' in r else f"≥{r['lower_bound_seconds']/60:.2f}"
+        lines.append(f"| {name} | {r['transformation_wall_seconds']/60:.2f} | {r['vlm_batch_seconds']/60:.2f} | {total} |")
+    lines += ['', '앞선 두 통합 실행의 하한에는 VLM 적재·입력 검사·프로세스 시작/종료 등이 추가된다. 이미지 직접 rewrite 행은 별도로 기록한 전체 worker 실행 wall이며 하한이 아니다. 기존9조건의 shared pipeline wall을 각 방법에 그대로 붙이는 것도 여러 방법의 공용 처리와 불필요한 단계를 중복 청구하므로 피했다.', '',
         '## 비교를 읽는 법', '',
         f"GUI 방법은 같은 inventory 비용 **{data['inventory']['seconds']/60:.2f}분**을 공유한다. 따라서 처음 실행할 때는 inventory가 큰 비중을 차지하고, 같은 화면의 inventory가 준비돼 있으면 방법 간 LM 차이가 더 크게 드러난다. 고유80개 화면에 한 번씩만 계산했고 문항·언어쌍240개마다 재추출한 것으로 세지 않았다.", '',
-        '정확도는 이미 여러 번 관찰한 개발 Screen의 점추정이다. Hybrid와 Stem+Options 통합의 정답1개 차이를 안정적인 우위로 해석하지 않는다. 처리시간 역시 서로 다른 실행 시점·출력 길이·repair·배치의 영향을 포함하며 통제된 장비 성능 벤치마크가 아니다.', '',
+        '정확도는 이미 여러 번 관찰한 개발 Screen의 점추정이다. Hybrid와 Stem+Options 통합의 정답1개 차이를 안정적인 우위로 해석하지 않는다. 이미지 직접 rewrite는 문맥까지 변경했을 수 있으므로 정확도만으로 selective alignment의 성공을 주장하지 않는다. [문맥 audit](VISUAL_SELECTIVE_REWRITE_KO.md)을 함께 본다. 처리시간 역시 서로 다른 실행 시점·출력 길이·repair·배치의 영향을 포함하며 통제된 장비 성능 벤치마크가 아니다.', '',
         '## 집계 검증·재현', '',
         '- 모델 호출은 cache key별 한 번만 합산하고 cache hit를0초로 처리하지 않음.',
         '- VLM은 행별 batch 시간을 그대로 더하지 않음. 전체 batch를 먼저 확인하고 선택된 문항 몫만 안분.',

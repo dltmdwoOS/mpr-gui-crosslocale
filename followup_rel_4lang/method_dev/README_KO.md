@@ -1,5 +1,7 @@
 # GCSA / RFA development harness
 
+새 이미지 직접 조건 완료: [완성형 selective rewrite](reports/VISUAL_SELECTIVE_REWRITE_KO.md). Screenshot과 원본 MCQ를 Qwen3-VL에 주고 stem·A–D 전체를 반환하게 했다. Inventory·별도 extractor·edit/occurrence 출력은 없다. Main240쌍은171정답(71.25%)·구조 실패0이며, source annotation 밖 문맥 경고가 형식 정규화 후에도174쌍에 남아 referent-only 방법으로 검증됐다고 볼 수 없다. Main 처리 합12.74분, 전체288쌍 실제 wall19.34분이다. [전체 예측](reports/VISUAL_SELECTIVE_REWRITE_CASES_KO.md)과 원문 prompt·문맥 audit을 보존했다. `bash followup_rel_4lang/method_dev/scripts/run_visual_selective_rewrite.sh --run`은 완료 결과를 재사용한다.
+
 전체 비용 비교: [Inventory·LM·VLM 합산 시간과 정확도](reports/END_TO_END_COST_KO.md). 같은 main240쌍의 기록 구간을 재구성하면 Stem 분리36.97분, Stem 통합39.82분, Hybrid GUI47.33분, Stem+Options 통합50.49분이다. 공통 inventory29.56분을 포함하며, 재사용 비용도 별도 표기했다. 모델 적재·일부 orchestration은 제외하고 VLM 배치 시간은 문항 수로 안분한 값이다. 과거 RTX4090 R/F·Mac Gemma T와 현재 B200 T형을 구분했다. 추가 추론은 없었다.
 
 추가 완료: [Stem+Options referents 통합](reports/SINGLE_PASS_ALL_GUI_KO.md). Stem뿐 아니라 A–D의 referents도 같은 LM 기본 호출1회에서 추출·정렬한다. Main240쌍에서179정답(74.58%)으로 Stem 전용 통합173개보다6개, Hybrid178개보다1개 높지만 CI가 넓다. Main LM 시간은17.87분이며 직전12개 범위 위반 중8개에 편집이 적용됐어도 그 subset의 정답 수는3개로 같았다. `bash followup_rel_4lang/method_dev/scripts/run_single_pass_all.sh --run`으로 완료 결과를 재사용하거나 중단 지점부터 재개한다. [전체288쌍 결과 표](reports/SINGLE_PASS_ALL_CASES_KO.md)와 prompt·비용·실패 추적을 보존했다.

@@ -1,0 +1,12 @@
+{
+  "pairs": 288,
+  "max_estimated_input_tokens_including_vision": 2833,
+  "max_source_complete_output_tokens": 254,
+  "max_vision_tokens": 2010,
+  "repair_upper_bound_tokens": 3801,
+  "output_token_limit": 768,
+  "input_token_limit": 4096,
+  "editor_batch": 1,
+  "downstream_batch": 3,
+  "estimation": "PIL dimensions + Qwen smart_resize factor32, image tokens=gridprod/4; actual backend rechecks tokens without truncation"
+}

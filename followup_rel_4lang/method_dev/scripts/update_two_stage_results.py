@@ -166,7 +166,7 @@ def collect(run):
 
 def markdown(s):
     out=['# Two-stage 재정비 실험 중간 결산','',
-        '후속 개발 실험: [Stem 추출·정렬 통합 조건](SINGLE_PASS_STEM_GUI_KO.md), [Stem+Options referents 통합 조건](SINGLE_PASS_ALL_GUI_KO.md). 기존 inventory·baseline을 재사용한 별도 실행이며, 아래 표의 기존 결과는 그대로 보존한다.','',
+        '후속 개발 실험: [Stem 추출·정렬 통합](SINGLE_PASS_STEM_GUI_KO.md), [Stem+Options referents 통합](SINGLE_PASS_ALL_GUI_KO.md), [Screenshot 직접 완성형 rewrite](VISUAL_SELECTIVE_REWRITE_KO.md). 아래 표의 기존 결과는 그대로 보존하고 완료된 조건만 추가한다.','',
         f"집계 시각: {s['as_of_utc']}. 실행: `{s['run']}`. 실행 중인 코드·config·캐시·출력 파일을 변경하거나 GPU 추론을 추가하지 않았다.",'',
         '**번역·변환 완료와 문제 풀이 완료를 구분한다.** 현재 pipeline은 각 cohort에서 모든 조건의 변환이 끝난 뒤 O와 각 조건의 VLM 문제 풀이를 수행한다. 아래 정확도는 전체 paired 출력이 완성된 조건에서만 표시한다.','',
         '## 진행 상태','', '| Cohort | 조건 | 변환 | 문제 풀이 출력 |','| --- | --- | ---: | ---: |']
