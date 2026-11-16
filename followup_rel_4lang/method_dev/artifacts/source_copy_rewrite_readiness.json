@@ -1,0 +1,12 @@
+{
+  "pairs": 288,
+  "max_primary_tokens_estimate": 2980,
+  "max_vision_tokens": 2010,
+  "repair_upper_estimate": 3928,
+  "max_input_tokens": 4096,
+  "prompt_sha256": "fbdc8bc746b42d1368cabf9efedcd4bd02f83413b02cd907b185e2dbde39d0f1",
+  "editor_batch_size": 1,
+  "answer_batch_size": 3,
+  "same_model_and_2mp_image_budget": true,
+  "validation": "dimension-based official smart_resize estimate; runtime backend checks actual input and stops without truncation"
+}

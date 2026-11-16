@@ -1,5 +1,7 @@
 # GCSA / RFA development harness
 
+최신 완료: [직접 rewrite 실패 분석과 원문 복사 강화 실험](reports/SOURCE_COPY_REWRITE_RESULTS_KO.md). 프롬프트를 한 차례 수정한 main240쌍은170정답(70.83%)으로 이전171개보다1개 줄었지만, 문맥 경고는174→13쌍으로 감소했다. 실제 수정164쌍·원문 유지76쌍이며 숫자 변화8쌍·보기 중복2쌍이 남았다. 정확도 개선이나 최종 method 완성을 주장하지 않는다. [기존 오답69쌍 분석](reports/VISUAL_REWRITE_FAILURES_KO.md), [원문/생성문](reports/VISUAL_REWRITE_FAILURE_CASES_KO.md), [새 전체288쌍 결과](reports/SOURCE_COPY_REWRITE_CASES_KO.md)를 보존했다. 전체 wall18.25분, 기존 전체 배치와 일치한27쌍의 풀이를 재사용했다. `bash followup_rel_4lang/method_dev/scripts/run_source_copy_rewrite.sh --run`은 완료 결과를 재사용한다. 남은138문항에서 새 조건+기존 Stem-only는 계산량 약5.60시간, 적재·변동 여유 포함6.44–7.00시간으로 추정하며 아직 실행하지 않았다.
+
 새 이미지 직접 조건 완료: [완성형 selective rewrite](reports/VISUAL_SELECTIVE_REWRITE_KO.md). Screenshot과 원본 MCQ를 Qwen3-VL에 주고 stem·A–D 전체를 반환하게 했다. Inventory·별도 extractor·edit/occurrence 출력은 없다. Main240쌍은171정답(71.25%)·구조 실패0이며, source annotation 밖 문맥 경고가 형식 정규화 후에도174쌍에 남아 referent-only 방법으로 검증됐다고 볼 수 없다. Main 처리 합12.74분, 전체288쌍 실제 wall19.34분이다. [전체 예측](reports/VISUAL_SELECTIVE_REWRITE_CASES_KO.md)과 원문 prompt·문맥 audit을 보존했다. `bash followup_rel_4lang/method_dev/scripts/run_visual_selective_rewrite.sh --run`은 완료 결과를 재사용한다.
 
 전체 비용 비교: [Inventory·LM·VLM 합산 시간과 정확도](reports/END_TO_END_COST_KO.md). 같은 main240쌍의 기록 구간을 재구성하면 Stem 분리36.97분, Stem 통합39.82분, Hybrid GUI47.33분, Stem+Options 통합50.49분이다. 공통 inventory29.56분을 포함하며, 재사용 비용도 별도 표기했다. 모델 적재·일부 orchestration은 제외하고 VLM 배치 시간은 문항 수로 안분한 값이다. 과거 RTX4090 R/F·Mac Gemma T와 현재 B200 T형을 구분했다. 추가 추론은 없었다.

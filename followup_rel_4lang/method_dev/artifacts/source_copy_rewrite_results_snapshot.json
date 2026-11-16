@@ -1,0 +1,594 @@
+{
+  "development_only": true,
+  "primary_pairs": 240,
+  "semantic_items": 20,
+  "executed_pairs": 288,
+  "correct": {
+    "VISUAL_SELECTIVE_REWRITE": 171,
+    "TS_ALL_SINGLE_PASS_GUI_AUTO": 179,
+    "O": 162,
+    "TS_STEM_SINGLE_PASS_GUI_AUTO": 173,
+    "TS_STEM_ONLY_GUI_AUTO": 175,
+    "TS_QSEL_OFULL_GUI_AUTO": 178,
+    "TS_FULL_GUI": 170,
+    "TS_SEL_GUI_AUTO": 169,
+    "T_REF": 162,
+    "R_REF": 194,
+    "F_REF": 192,
+    "GUI_DIRECT_VLM_OLD": 160,
+    "VISUAL_SOURCE_COPY_REWRITE": 170
+  },
+  "contrasts": {
+    "VISUAL_SELECTIVE_REWRITE": {
+      "pairs": 240,
+      "items": 20,
+      "difference": -0.004166666666666667,
+      "ci95": [
+        -0.08333333333333333,
+        0.07083333333333333
+      ],
+      "exploratory_bootstrap_centered_p": 0.9551044895510449,
+      "recovery": 24,
+      "regression": 25
+    },
+    "TS_ALL_SINGLE_PASS_GUI_AUTO": {
+      "pairs": 240,
+      "items": 20,
+      "difference": -0.0375,
+      "ci95": [
+        -0.10833333333333334,
+        0.020833333333333332
+      ],
+      "exploratory_bootstrap_centered_p": 0.2792720727927207,
+      "recovery": 18,
+      "regression": 27
+    },
+    "O": {
+      "pairs": 240,
+      "items": 20,
+      "difference": 0.03333333333333333,
+      "ci95": [
+        0.004166666666666667,
+        0.06666666666666667
+      ],
+      "exploratory_bootstrap_centered_p": 0.0484951504849515,
+      "recovery": 15,
+      "regression": 7
+    },
+    "TS_STEM_SINGLE_PASS_GUI_AUTO": {
+      "pairs": 240,
+      "items": 20,
+      "difference": -0.0125,
+      "ci95": [
+        -0.058333333333333334,
+        0.029166666666666667
+      ],
+      "exploratory_bootstrap_centered_p": 0.635036496350365,
+      "recovery": 14,
+      "regression": 17
+    },
+    "TS_STEM_ONLY_GUI_AUTO": {
+      "pairs": 240,
+      "items": 20,
+      "difference": -0.020833333333333332,
+      "ci95": [
+        -0.1,
+        0.05
+      ],
+      "exploratory_bootstrap_centered_p": 0.6239376062393761,
+      "recovery": 19,
+      "regression": 24
+    },
+    "TS_QSEL_OFULL_GUI_AUTO": {
+      "pairs": 240,
+      "items": 20,
+      "difference": -0.03333333333333333,
+      "ci95": [
+        -0.10833333333333334,
+        0.041666666666666664
+      ],
+      "exploratory_bootstrap_centered_p": 0.41205879412058793,
+      "recovery": 24,
+      "regression": 32
+    },
+    "TS_FULL_GUI": {
+      "pairs": 240,
+      "items": 20,
+      "difference": 0.0,
+      "ci95": [
+        -0.0875,
+        0.0875
+      ],
+      "exploratory_bootstrap_centered_p": 1.0,
+      "recovery": 27,
+      "regression": 27
+    },
+    "TS_SEL_GUI_AUTO": {
+      "pairs": 240,
+      "items": 20,
+      "difference": 0.004166666666666667,
+      "ci95": [
+        -0.05,
+        0.058333333333333334
+      ],
+      "exploratory_bootstrap_centered_p": 0.9405059494050595,
+      "recovery": 18,
+      "regression": 17
+    },
+    "T_REF": {
+      "pairs": 240,
+      "items": 20,
+      "difference": 0.03333333333333333,
+      "ci95": [
+        -0.016666666666666666,
+        0.0875
+      ],
+      "exploratory_bootstrap_centered_p": 0.2390760923907609,
+      "recovery": 29,
+      "regression": 21
+    },
+    "R_REF": {
+      "pairs": 240,
+      "items": 20,
+      "difference": -0.1,
+      "ci95": [
+        -0.17083333333333334,
+        -0.020833333333333332
+      ],
+      "exploratory_bootstrap_centered_p": 0.0100989901009899,
+      "recovery": 12,
+      "regression": 36
+    },
+    "F_REF": {
+      "pairs": 240,
+      "items": 20,
+      "difference": -0.09166666666666666,
+      "ci95": [
+        -0.1875,
+        0.0
+      ],
+      "exploratory_bootstrap_centered_p": 0.060693930606939304,
+      "recovery": 18,
+      "regression": 40
+    },
+    "GUI_DIRECT_VLM_OLD": {
+      "pairs": 240,
+      "items": 20,
+      "difference": 0.041666666666666664,
+      "ci95": [
+        0.0,
+        0.08333333333333333
+      ],
+      "exploratory_bootstrap_centered_p": 0.06369363063693631,
+      "recovery": 20,
+      "regression": 10
+    }
+  },
+  "audit_previous": {
+    "pairs": 240,
+    "changed_pairs": 240,
+    "literal_compatible": 65,
+    "format_compatible": 66,
+    "context_flagged": 174,
+    "digit_changed": 11,
+    "duplicate_options": 3
+  },
+  "audit_revised": {
+    "pairs": 240,
+    "changed_pairs": 164,
+    "literal_compatible": 219,
+    "format_compatible": 227,
+    "context_flagged": 13,
+    "digit_changed": 8,
+    "duplicate_options": 2
+  },
+  "by_language": {
+    "source_language": {
+      "en": {
+        "n": 60,
+        "correct": {
+          "VISUAL_SELECTIVE_REWRITE": 47,
+          "TS_ALL_SINGLE_PASS_GUI_AUTO": 46,
+          "O": 40,
+          "TS_STEM_SINGLE_PASS_GUI_AUTO": 44,
+          "TS_STEM_ONLY_GUI_AUTO": 46,
+          "TS_QSEL_OFULL_GUI_AUTO": 48,
+          "TS_FULL_GUI": 42,
+          "TS_SEL_GUI_AUTO": 43,
+          "T_REF": 41,
+          "R_REF": 52,
+          "F_REF": 46,
+          "GUI_DIRECT_VLM_OLD": 40,
+          "VISUAL_SOURCE_COPY_REWRITE": 42
+        },
+        "audit": {
+          "pairs": 60,
+          "changed_pairs": 32,
+          "literal_compatible": 56,
+          "format_compatible": 58,
+          "context_flagged": 2,
+          "digit_changed": 1,
+          "duplicate_options": 0
+        }
+      },
+      "zh": {
+        "n": 60,
+        "correct": {
+          "VISUAL_SELECTIVE_REWRITE": 40,
+          "TS_ALL_SINGLE_PASS_GUI_AUTO": 42,
+          "O": 42,
+          "TS_STEM_SINGLE_PASS_GUI_AUTO": 43,
+          "TS_STEM_ONLY_GUI_AUTO": 43,
+          "TS_QSEL_OFULL_GUI_AUTO": 45,
+          "TS_FULL_GUI": 43,
+          "TS_SEL_GUI_AUTO": 42,
+          "T_REF": 38,
+          "R_REF": 48,
+          "F_REF": 48,
+          "GUI_DIRECT_VLM_OLD": 39,
+          "VISUAL_SOURCE_COPY_REWRITE": 46
+        },
+        "audit": {
+          "pairs": 60,
+          "changed_pairs": 34,
+          "literal_compatible": 59,
+          "format_compatible": 59,
+          "context_flagged": 1,
+          "digit_changed": 3,
+          "duplicate_options": 0
+        }
+      },
+      "th": {
+        "n": 60,
+        "correct": {
+          "VISUAL_SELECTIVE_REWRITE": 43,
+          "TS_ALL_SINGLE_PASS_GUI_AUTO": 43,
+          "O": 41,
+          "TS_STEM_SINGLE_PASS_GUI_AUTO": 42,
+          "TS_STEM_ONLY_GUI_AUTO": 40,
+          "TS_QSEL_OFULL_GUI_AUTO": 38,
+          "TS_FULL_GUI": 41,
+          "TS_SEL_GUI_AUTO": 41,
+          "T_REF": 37,
+          "R_REF": 46,
+          "F_REF": 51,
+          "GUI_DIRECT_VLM_OLD": 42,
+          "VISUAL_SOURCE_COPY_REWRITE": 40
+        },
+        "audit": {
+          "pairs": 60,
+          "changed_pairs": 40,
+          "literal_compatible": 58,
+          "format_compatible": 58,
+          "context_flagged": 2,
+          "digit_changed": 1,
+          "duplicate_options": 1
+        }
+      },
+      "ru": {
+        "n": 60,
+        "correct": {
+          "VISUAL_SELECTIVE_REWRITE": 41,
+          "TS_ALL_SINGLE_PASS_GUI_AUTO": 48,
+          "O": 39,
+          "TS_STEM_SINGLE_PASS_GUI_AUTO": 44,
+          "TS_STEM_ONLY_GUI_AUTO": 46,
+          "TS_QSEL_OFULL_GUI_AUTO": 47,
+          "TS_FULL_GUI": 44,
+          "TS_SEL_GUI_AUTO": 43,
+          "T_REF": 46,
+          "R_REF": 48,
+          "F_REF": 47,
+          "GUI_DIRECT_VLM_OLD": 39,
+          "VISUAL_SOURCE_COPY_REWRITE": 42
+        },
+        "audit": {
+          "pairs": 60,
+          "changed_pairs": 58,
+          "literal_compatible": 46,
+          "format_compatible": 52,
+          "context_flagged": 8,
+          "digit_changed": 3,
+          "duplicate_options": 1
+        }
+      }
+    },
+    "gui_language": {
+      "en": {
+        "n": 60,
+        "correct": {
+          "VISUAL_SELECTIVE_REWRITE": 51,
+          "TS_ALL_SINGLE_PASS_GUI_AUTO": 49,
+          "O": 45,
+          "TS_STEM_SINGLE_PASS_GUI_AUTO": 45,
+          "TS_STEM_ONLY_GUI_AUTO": 46,
+          "TS_QSEL_OFULL_GUI_AUTO": 50,
+          "TS_FULL_GUI": 50,
+          "TS_SEL_GUI_AUTO": 44,
+          "T_REF": 39,
+          "R_REF": 49,
+          "F_REF": 54,
+          "GUI_DIRECT_VLM_OLD": 45,
+          "VISUAL_SOURCE_COPY_REWRITE": 45
+        },
+        "audit": {
+          "pairs": 60,
+          "changed_pairs": 53,
+          "literal_compatible": 59,
+          "format_compatible": 59,
+          "context_flagged": 1,
+          "digit_changed": 0,
+          "duplicate_options": 0
+        }
+      },
+      "zh": {
+        "n": 60,
+        "correct": {
+          "VISUAL_SELECTIVE_REWRITE": 46,
+          "TS_ALL_SINGLE_PASS_GUI_AUTO": 49,
+          "O": 44,
+          "TS_STEM_SINGLE_PASS_GUI_AUTO": 47,
+          "TS_STEM_ONLY_GUI_AUTO": 46,
+          "TS_QSEL_OFULL_GUI_AUTO": 47,
+          "TS_FULL_GUI": 42,
+          "TS_SEL_GUI_AUTO": 45,
+          "T_REF": 43,
+          "R_REF": 49,
+          "F_REF": 48,
+          "GUI_DIRECT_VLM_OLD": 45,
+          "VISUAL_SOURCE_COPY_REWRITE": 45
+        },
+        "audit": {
+          "pairs": 60,
+          "changed_pairs": 47,
+          "literal_compatible": 48,
+          "format_compatible": 56,
+          "context_flagged": 4,
+          "digit_changed": 2,
+          "duplicate_options": 0
+        }
+      },
+      "th": {
+        "n": 60,
+        "correct": {
+          "VISUAL_SELECTIVE_REWRITE": 29,
+          "TS_ALL_SINGLE_PASS_GUI_AUTO": 37,
+          "O": 27,
+          "TS_STEM_SINGLE_PASS_GUI_AUTO": 35,
+          "TS_STEM_ONLY_GUI_AUTO": 40,
+          "TS_QSEL_OFULL_GUI_AUTO": 41,
+          "TS_FULL_GUI": 33,
+          "TS_SEL_GUI_AUTO": 36,
+          "T_REF": 38,
+          "R_REF": 44,
+          "F_REF": 39,
+          "GUI_DIRECT_VLM_OLD": 25,
+          "VISUAL_SOURCE_COPY_REWRITE": 34
+        },
+        "audit": {
+          "pairs": 60,
+          "changed_pairs": 34,
+          "literal_compatible": 54,
+          "format_compatible": 54,
+          "context_flagged": 6,
+          "digit_changed": 3,
+          "duplicate_options": 1
+        }
+      },
+      "ru": {
+        "n": 60,
+        "correct": {
+          "VISUAL_SELECTIVE_REWRITE": 45,
+          "TS_ALL_SINGLE_PASS_GUI_AUTO": 44,
+          "O": 46,
+          "TS_STEM_SINGLE_PASS_GUI_AUTO": 46,
+          "TS_STEM_ONLY_GUI_AUTO": 43,
+          "TS_QSEL_OFULL_GUI_AUTO": 40,
+          "TS_FULL_GUI": 45,
+          "TS_SEL_GUI_AUTO": 44,
+          "T_REF": 42,
+          "R_REF": 52,
+          "F_REF": 51,
+          "GUI_DIRECT_VLM_OLD": 45,
+          "VISUAL_SOURCE_COPY_REWRITE": 46
+        },
+        "audit": {
+          "pairs": 60,
+          "changed_pairs": 30,
+          "literal_compatible": 58,
+          "format_compatible": 58,
+          "context_flagged": 2,
+          "digit_changed": 3,
+          "duplicate_options": 1
+        }
+      }
+    }
+  },
+  "status": {
+    "no_op_no_changes": 76,
+    "success": 164
+  },
+  "repairs": 0,
+  "cap_hits": 0,
+  "primary_time": {
+    "editor_seconds": 525.3697577966377,
+    "final_logical_seconds": 179.3980240613843,
+    "final_new_seconds": 161.39901017645994,
+    "total_standalone_seconds": 704.767781858022,
+    "total_new_compute_seconds": 686.7687679730976,
+    "previous_total_seconds": 764.4769871591901
+  },
+  "infer_cost": {
+    "wall_seconds": 238.72214384470135,
+    "execution_mode": "gpu",
+    "reused_batches": 9,
+    "reused_rows": 27,
+    "new_batches": 87,
+    "conflicting_cache_keys": 0
+  },
+  "rewrite_cost": {
+    "complete": true,
+    "wall_seconds": 850.2320698825642,
+    "calls": 288,
+    "cache_hits": 0,
+    "new_runtime_ms": 815845.0341932476
+  },
+  "execution_wall_seconds": 1094.8492361558601,
+  "prompt_sha256": "fbdc8bc746b42d1368cabf9efedcd4bd02f83413b02cd907b185e2dbde39d0f1",
+  "config_sha256": "f64b41ac8a817b9e63507c8de5244030bd2567c4e44e0c94ff6db5ed19fbbfec",
+  "contract_sha256": "b7842cebf47ef461a99a3013dbf2e7cf2f97df52a4b29bc79683c8017c497a68",
+  "config": {
+    "version": "visual-source-copy-rewrite-v1",
+    "legacy_commit": "cdea4d1437f383f99f6b8dc63ecff38c364eb4d0",
+    "seed": 42,
+    "dtype": "bfloat16",
+    "attn_implementation": "sdpa",
+    "device_map": "cuda:0",
+    "method_batch_size": 1,
+    "min_free_gpu_gib": 40,
+    "max_input_tokens": 4096,
+    "min_pixels": 262144,
+    "max_pixels": 2097152,
+    "processor_use_fast": true,
+    "patch_embed_memory_format": "channels_last_3d",
+    "enable_thinking_text": false,
+    "output_tokens": {
+      "visual_rewrite": 768,
+      "visual_rewrite_repair": 768
+    },
+    "inventory_structure_repairs": 1,
+    "translation_structure_repairs": 1,
+    "full_semantic_repairs": 1,
+    "selective_semantic_repairs": 0,
+    "generation": {
+      "do_sample": false,
+      "num_beams": 1,
+      "use_cache": true,
+      "logits_to_keep": 1
+    },
+    "models": {
+      "editor_vlm": {
+        "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+        "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+        "family": "qwen3_vl",
+        "path": "/home/jovyan/seungjae/.cache/huggingface/hub/models--Qwen--Qwen3-VL-8B-Instruct/snapshots/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b"
+      }
+    },
+    "downstream": {
+      "model_config": {
+        "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+        "model_family": "qwen3_vl",
+        "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+        "dtype": "bfloat16",
+        "quantization": null,
+        "attn_implementation": "sdpa",
+        "device_strategy": "cuda:0",
+        "patch_embed_memory_format": "channels_last_3d",
+        "processor_profile": "qwen_4090_2mp",
+        "min_pixels": 262144,
+        "max_pixels": 2097152,
+        "prompt_profile": "mpr_label_only_v1",
+        "generation": {
+          "do_sample": false,
+          "num_beams": 1,
+          "max_new_tokens": 2,
+          "temperature": null
+        }
+      },
+      "system_prompt": "You are a GUI reasoning assistant. Inspect the GUI image and answer the multiple-choice question. Respond with exactly one label: A, B, C, or D.",
+      "batch_size": 3,
+      "max_input_tokens": 4096,
+      "score_labels": true,
+      "processor_use_fast": true
+    },
+    "historical_baseline_contract_sha256": "99d41e549b1a0f9372afa60930fc993c277cdf1a1f7546d9a83cb885150bcaa5",
+    "legacy_deviations": [
+      "Inventory model: evaluation Qwen3-VL instead of historical Qwen2.5-VL",
+      "Method batch 1 instead of historical translator batch 2",
+      "Explicit 4096 input-token limit; stop without truncation",
+      "Failed full localization falls back to O for ITT",
+      "Selective/extraction repair prompts are explicit new adaptations; no historical selective equivalent"
+    ],
+    "cache_policy": "fresh namespace; no v1 inventories/translations imported",
+    "scope": "same 158-item development cohort plus legacy pilot; fixed cohorts; all six conditions, no winner filtering",
+    "conditions": [
+      "TS_FULL_GUI",
+      "TS_FULL_TXT",
+      "TS_SEL_GUI_AUTO",
+      "TS_SEL_TXT_AUTO",
+      "TS_SEL_GUI_ORACLE",
+      "TS_SEL_TXT_ORACLE",
+      "TS_QSEL_OFULL_GUI_AUTO",
+      "TS_QSEL_OFULL_TXT_AUTO"
+    ],
+    "hybrid_control": {
+      "stem_extraction_input": "question_stem only; no options",
+      "option_translation": "reuse identical Full MCQ translation A-D; discard generated stem",
+      "stem_alignment_context": "original complete MCQ; options are context only",
+      "fallback": "independent stem and options components",
+      "shared_full_calls": "same backend cache key; no additional full-localization calls when matching Full condition already ran",
+      "interpretation": "pipeline-level control; option context language and extraction prompt scope both change"
+    }
+  },
+  "captured_sources_sha256": {
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/scripts/run_source_copy_rewrite.py": "fab96335858dc509599326f0e1ebc0dd707d7c15b14fbb7e324823c33609557e",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/source_copy_rewrite.py": "3954698e282ae8f0332eb9cf084609afa08974e3056350fbd25a577db068ad9a",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/direct_selective_rewrite.py": "24614a5f21e41c0d00780e687ecb5976aff41c195d0ff20a44a77e0b2d14c8dc",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/exact_batch_reuse.py": "a3f21f45c5569ab2aaa35282b32995dc31bec7f67ca4add27d337726197f8efc",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/visual_rewrite_backend.py": "93bcf29fd81da1ed7a7e231e0f5367d2066250a9c6b57620bbf4a2dfd3c3d0e3",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/two_stage_v2/backend.py": "e3d3e5f4c73b6a4e3d72e3e83b72682304d25282e9f3235171a7b34556e9ffce",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/scripts/run_stem_only_gui.py": "d8987b4d21b0bc137a1ff3c40c2571e0f6820388220f4e53676dfe71c66c3d27",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/inputs.jsonl": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/COMPLETE.json": "fc3852b3615633287cce1734cad3fd9ef3a0ca424388d4c82a257b8f5d57c4aa",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/contract.json": "39198ddddfbdb54660d29f40e5974c9ba6614ede44a7110d5fa06333452ba366",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/infer/attempt_0001/contract.json": "fad7ae1d2bf93a8d6137835afc01b4f1aa94d4e5902f040f6f653dec494685bd",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/infer/attempt_0001/predictions.jsonl": "6f7e9009db90218352fa7a3110d6132deb40d6310be4346c9c5e68a4773721eb",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/stem_only_gui_screen_v1/COMPLETE.json": "f1057464e4cad42ebf5f437afc8c7fdf0f5ada074072a4e39bfb3e93777c35d5",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/stem_only_gui_screen_v1/contract.json": "086b95a25ab8e9f21df31c02e122ff4ea107c56e1c95371abaeef47201280daf",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/stem_only_gui_screen_v1/infer/attempt_0001/predictions.jsonl": "95129bbb8efc4be2b51625bb703d882eea845eb02f7f063a4612e0eaa312466b",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/single_pass_stem_screen_v1/COMPLETE.json": "a18cc58cacad48c2f96e8817fafb13a87c2d822de2ac338a6d0f12905851c2ca",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/single_pass_stem_screen_v1/contract.json": "e578d6ac6b2a18f6e5aa3c8bdc480c95e93154e4af392bb2114d7cd730b7a695",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/single_pass_stem_screen_v1/infer/attempt_0001/predictions.jsonl": "376ea8e29e196426e7cc6472dd24a670da808da5c7b2a4b01e8bb56b867a5f5b",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/single_pass_all_screen_v1/COMPLETE.json": "94a22116550c24fda87c30627c473decf4efe21da286d3860723d9b433bc219b",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/single_pass_all_screen_v1/contract.json": "f59e131f7c08afddac90eca6e0b5ab165dcc79ee67b3f18b345830507de43f65",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/single_pass_all_screen_v1/infer/attempt_0001/predictions.jsonl": "982af6be88eb55efd0f82e927fef8b3471e7646e1b18d1933efef2029cfdfa45",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/inventory/attempt_0001/calls.json": "16102ce819e00f6947e62697ddf409dc6c100390120abd355b41a41b401c0137",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/visual_selective_rewrite_screen_v1/infer/attempt_0001/predictions.jsonl": "9dfb68881c6880c8ea6d0af83e95d5e629c0f8d95ae3f4e64c47962668378e29",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/visual_selective_rewrite_screen_v1/infer/attempt_0001/contract.json": "1b1824c6d840b2c452370a8e708ffc9a7996b747b5e224def2d4cd7154273721",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/visual_selective_rewrite_screen_v1/rewrite/attempt_0001/calls.json": "eab5cb4ff0434eec3f32290df978c34c5ed0081a5127543ff3d494c710468986",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/stem_only_gui_screen_v1/infer/attempt_0001/contract.json": "fbd1ea152158f77ad12f94dd7d3db724402d3ae9c09905fa36265de5bb79c371",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/single_pass_stem_screen_v1/infer/attempt_0001/contract.json": "511ab6f75856e1cecda994268c3436ab1425f8c4ca073203085d1d06747dc51c",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/single_pass_stem_screen_v1/rewrite/attempt_0001/calls.json": "3c1d9ea9734576ba069eeaf7bc1976951a0765701164cd2b5a87ef9c6b3e075a",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/single_pass_all_screen_v1/infer/attempt_0001/contract.json": "93c49c323879b62fe69f29634576f1e7087cda5920f167c1f375e706b81e2c5e",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/single_pass_all_screen_v1/rewrite/attempt_0001/calls.json": "eff3b1ae9f7039543cfb7295a6105dc1efeae8180e149671421fbb03b23147fc"
+  },
+  "raw_manifest": {
+    "followup_rel_4lang/method_dev/artifacts/visual_source_copy_rewrite_screen_v1/rewrite/attempt_0001/rewritten.jsonl": "d6c3bf1f8dd35baff6259716b16a1e9f828015079567cd4f1f191353a9e00e17",
+    "followup_rel_4lang/method_dev/artifacts/visual_source_copy_rewrite_screen_v1/rewrite/attempt_0001/calls.json": "cb0079f5349ce0020f8786b44ec6c2581ffdd123fbc38577918560a151aacaa5",
+    "followup_rel_4lang/method_dev/artifacts/visual_source_copy_rewrite_screen_v1/infer/attempt_0001/predictions.jsonl": "a72b1b4b1135a419adcc09e36d3bb1888a63e0d093a4afcc87400785be14586d"
+  },
+  "remaining_eta": {
+    "remaining_items": 138,
+    "executed_pairs": 1656,
+    "primary_pairs": 1655,
+    "unique_images": 552,
+    "copy_first_direct_compute_hours": 1.3508049152278754,
+    "separate_stem_compute_hours": 4.251964358485382,
+    "inventory_all_joint_compute_hours": 5.805842111996401,
+    "direct_plus_stem_compute_hours": 5.602769273713257,
+    "direct_plus_stem_with_15_to_25pct_buffer_hours": [
+      6.443184664770245,
+      7.003461592141571
+    ],
+    "timing_source_sha256": "8f0d5916691ca00f1bb9bd620c12a30b4548943a7d69902a0772d5361e944d3d",
+    "assumptions": "Screen averages linearly extrapolated; cold inventories, no predicted cache savings, no new O/R/T/F inference, excludes hard guarantees; existing internal observed in v1."
+  },
+  "failure_diagnostics": {
+    "wrong_pairs": 70,
+    "wrong_no_change": 22,
+    "wrong_after_change": 48,
+    "changed_stem_pairs": 137,
+    "changed_options_pairs": 135,
+    "unchanged_prediction_difference_from_O": 0
+  }
+}
