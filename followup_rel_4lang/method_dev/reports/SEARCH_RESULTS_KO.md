@@ -1,3 +1,5 @@
+> **프로토콜 변경 — 2026-11-16:** 사용자 결정에 따라 이 문서의 기존 inventory 기반 결과는 의도한 two-stage 방법의 유효한 평가에서 제외하고 이력으로 보존합니다. 새 실행 기준은 [TWO_STAGE_V2_PROTOCOL_KO.md](TWO_STAGE_V2_PROTOCOL_KO.md)입니다. 과거 수치가 새 방법의 결과를 뜻하지 않습니다.
+
 # Qwen3 선택적 정렬 개발 실험 결과
 
 <!-- AUTO_RESULTS_START -->

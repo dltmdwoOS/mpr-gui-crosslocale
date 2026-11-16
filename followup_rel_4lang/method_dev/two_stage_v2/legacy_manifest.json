@@ -1,0 +1,204 @@
+{
+  "source_commit": "cdea4d1437f383f99f6b8dc63ecff38c364eb4d0",
+  "source_files_sha256": {
+    "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py": "643aee5c9df20e57558fc21a71489f4cdff90e2a97b1d294ff1d23035e38a033",
+    "01_code/src/mpr_crosslocale/interventions/rq4_gui_lexical.py": "0842020139fb03878c9aed9e4ddee16b25b4efa34f588fa2cdf5c69e2e7bc73f"
+  },
+  "symbols": {
+    "SYSTEM_PROMPT": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 32,
+      "sha256": "e0ecc10968a8f053d4f65fd2f2575b586c095a4e92f86e5a9b9f7fb1abf0cbe4"
+    },
+    "OUTPUT_SHAPE": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 52,
+      "sha256": "e5138629636d9e7f7a809439890bb22c01b5222f9c2cab5f8d6b0ea6a736e437"
+    },
+    "FILE_FORMAT_RE": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 57,
+      "sha256": "bcb85bdfc758622da99051efae9e870b992ea41b9d62f3ebb04c2f6f7c28628a"
+    },
+    "NUMBER_RE": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 60,
+      "sha256": "204b1c81d64d63064c75285ac028f14d27709f87ebfbf6a16cb7eef54271c093"
+    },
+    "QUOTED_ASCII_RE": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 61,
+      "sha256": "9d6e06351e4b1e9f86f5a49e2eb6e2565991f4f108c8783c321a9285d8ba3967"
+    },
+    "QUOTED_SPAN_RE": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 62,
+      "sha256": "0eb5fc31920b14bda7dadfdc6de5c0f43edf80ad08d181dcbc8ec024b9e08cc0"
+    },
+    "MONTH_NAME_PATTERNS": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 70,
+      "sha256": "b84831a145f73e0242716a98d3b8133b9bf3d0a88ab5c389c281cca83a69b1c5"
+    },
+    "OPPOSITE_PATTERNS": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 89,
+      "sha256": "4f4797382067e98ed984dfa2a383903d5aef2272afd3d9b590315f30b3b6237b"
+    },
+    "UNIT_RATE_PATTERNS": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 98,
+      "sha256": "6d5ef41d6fcb1cb0cfed946e5515600d5faacbd3290ca294955fc9238e8b083b"
+    },
+    "RELATION_PATTERNS": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 112,
+      "sha256": "bc1e37ee2ccf10753aaa3b620fbe73edc22229889ace71b6568a2bca4af6cd0b"
+    },
+    "NEGATION_PATTERNS": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 157,
+      "sha256": "885bc69997bbb3ca45ce1d7d4223a04a423bee5d06d3e002851582bf4170e524"
+    },
+    "translation_payload": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 383,
+      "sha256": "a78822f9ef95033e241f8c0c67987ad7ba2ea20bb9b8e7a3d384d7fad5b93a33"
+    },
+    "build_user_prompt": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 394,
+      "sha256": "a5d9a0b4c3afcb3cc1c5e9782a4e8dedf5fddff62cf1dda8d2ff7e62fb21c397"
+    },
+    "build_repair_prompt": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 404,
+      "sha256": "6b7afe6d5defe0c1556fffa5e1b559c44990a4f39bedbc8357542bc75cedcf0f"
+    },
+    "build_semantic_repair_prompt": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 421,
+      "sha256": "80157e7ecbf6d4c4bbda93572fd67c6edc013971200d55b62173b66cfa73a751"
+    },
+    "_normalize_unicode_digits": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 449,
+      "sha256": "e50df48e12f501aa75271e2d5cd1aa0e3d0ad90ad4089c357113cc513666fd67"
+    },
+    "_normalized_number_tokens": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 460,
+      "sha256": "686957676a20fddca94a21bc45150785abd3b3f7a8942239892f8f33453f39fa"
+    },
+    "_tokens_by_field": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 480,
+      "sha256": "ffb45afa2e5ac8cbec3e9770620d5e2f4f7335c418930bf1757e845006af2b3b"
+    },
+    "validate_structured_output": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 495,
+      "sha256": "c6a55e9f19dab35f24d78d7ec0d4834abdc41e46424e22d46811832af6422709"
+    },
+    "_detected_categories": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 540,
+      "sha256": "762ecc8ae8c05b380a34ed0c5d35091861f35aa03533acffc0267f3d86fcec0d"
+    },
+    "semantic_diagnostic_flags": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 548,
+      "sha256": "3008321903e2b9b6cc94802f7fcd2e1095f8c446483ae73ec0f9ceb3a8d3f7fa"
+    },
+    "semantic_repair_reasons": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 643,
+      "sha256": "70f19c31f4e762ed77860b00f09e0c982140650a2c49c20616009587bf9db974"
+    },
+    "semantic_repair_score": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 708,
+      "sha256": "5f28b84f6d6f4d456b0025b41015a58d8fc446f65e820c04b66fe91c2eccccd3"
+    },
+    "should_accept_semantic_repair": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_contextual.py",
+      "source_line": 722,
+      "sha256": "55aa3d22e12dd571974106c76ea59d6ce7c068fb1bae86b425637ac7d1208c25"
+    },
+    "INVENTORY_SYSTEM_PROMPT": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_gui_lexical.py",
+      "source_line": 36,
+      "sha256": "4b6cdbc5efa0f4f55bd2d550fc3549dcf8cdb36c7ebd3952b5f0391a779dd497"
+    },
+    "INVENTORY_USER_PROMPT": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_gui_lexical.py",
+      "source_line": 45,
+      "sha256": "bdc3824e7ef3311abf88e5c32808ddf56058857ffeee89bb427f89ff10ff0d41"
+    },
+    "INVENTORY_REPAIR_SYSTEM_PROMPT": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_gui_lexical.py",
+      "source_line": 50,
+      "sha256": "d6191b3b98012068f179621c819c71f11bcefe05e5a02710ac67010cbbe7733e"
+    },
+    "INVENTORY_REPAIR_SUFFIX": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_gui_lexical.py",
+      "source_line": 65,
+      "sha256": "0d7aac87557cb35c14677c66f810280de3bd6191ca6a0379bfa400816b6acceb"
+    },
+    "LEXICAL_SYSTEM_PROMPT": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_gui_lexical.py",
+      "source_line": 73,
+      "sha256": "5fa3c2186c68d39f84a5bdd9594eb0a2e6bbd801c3b8dfce51a3fe496ae74af6"
+    },
+    "canonicalize_visible_strings": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_gui_lexical.py",
+      "source_line": 174,
+      "sha256": "b614a83e14a37f7873376ca66be2a12c6933b4507358fbc81624333025e387c6"
+    },
+    "recover_truncated_repetition_prefix": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_gui_lexical.py",
+      "source_line": 187,
+      "sha256": "8e42a93d7641b6c4540cdfdac068f8484842658618b177fef8d05d9eb8729f7a"
+    },
+    "_escape_unquoted_inner_json_quotes": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_gui_lexical.py",
+      "source_line": 239,
+      "sha256": "8b0e0f3923cc6dc096b70b73e462bb0a14bc0eefd50b44c3d95963059be29678"
+    },
+    "parse_visible_string_output_detailed": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_gui_lexical.py",
+      "source_line": 328,
+      "sha256": "c8326970ddfb72cc0df8ea805656b0916e42214f4256dd0bff864e11c811b31b"
+    },
+    "lexical_payload": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_gui_lexical.py",
+      "source_line": 512,
+      "sha256": "80f2e3c2d9a605cb4e80153b7904c74067efc9b50b221a0998723c29bf8ad3b6"
+    },
+    "build_lexical_user_prompt": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_gui_lexical.py",
+      "source_line": 522,
+      "sha256": "2fad5a283db7bc9e7d359a934ebaa3b2c9be04545c6303502d321abfb594e2f0"
+    },
+    "build_lexical_repair_prompt": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_gui_lexical.py",
+      "source_line": 532,
+      "sha256": "a09045c63072537988670d3b716fbf0c92b110b533bbe556d921747c13cd5a87"
+    },
+    "build_lexical_semantic_repair_prompt": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_gui_lexical.py",
+      "source_line": 545,
+      "sha256": "65ca105621e09b18f79a68472ea2f871f89168ad02652f3490a4adec81874fee"
+    },
+    "validate_lexical_structured_output": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_gui_lexical.py",
+      "source_line": 563,
+      "sha256": "eba17e6bfef6fdfe5108638f43da0509ca3351f41123a93ffb05be027a319619"
+    },
+    "lexical_semantic_flags": {
+      "source_path": "01_code/src/mpr_crosslocale/interventions/rq4_gui_lexical.py",
+      "source_line": 596,
+      "sha256": "729d46dfbc84a6d20c550ee04c8b546829b42aeea7acffc01a83198657ca09f7"
+    }
+  }
+}

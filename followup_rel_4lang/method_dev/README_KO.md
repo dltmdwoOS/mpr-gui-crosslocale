@@ -1,5 +1,9 @@
 # GCSA / RFA development harness
 
+> **현재 실행 기준은 [Two-stage 재정비 프로토콜](reports/TWO_STAGE_V2_PROTOCOL_KO.md)이다.** 사용자 결정에 따라 이전 inventory 기반 방법의 결과는 유효한 방법 평가에서 제외하고 이력으로 보존한다. [처리 상태](configs/PROTOCOL_STATUS.json). 아래의 기존 탐색·Oracle 명령은 과거 실행 기록이며 새 방법 실행에는 사용하지 않는다.
+
+새 준비 명령: `bash followup_rel_4lang/method_dev/scripts/run_two_stage_v2.sh` (CPU 준비만). 실제 실행 시 `--stage all --cohort screen`을 명시한다. 초기·repair·의미 repair 및 문제 풀이까지 모든 프롬프트와 inference config은 위 프로토콜 보고서에 있다.
+
 **2026-11-15 사용자 수정 반영:** 현재 inventory는 평가 VLM 자체를 사용한다. Qwen3용 새 설정은
 `configs/gcsa_qwen3_fixed_lm_v1.json`이며 참조 추출·번역은 고정 text-only Qwen3-8B다.
 Qwen3-8B 다운로드·SHA 검증은 완료됐다. [실제 프롬프트 원문·한국어 해석·GO/NO-GO 검토](reports/PROMPTS_AND_GO_NO_GO_KO.md). 이전 v0 설정은 보존하며 현재 모델 준비 명령은 문서 마지막에 있다. [Smoke 재점검](reports/SMOKE_REAUDIT_KO.md)을 우선 참고한다.

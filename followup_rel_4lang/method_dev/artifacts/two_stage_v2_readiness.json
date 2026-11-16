@@ -1,0 +1,53 @@
+{
+  "status": "prepared_with_no_go_findings",
+  "date_utc": "2026-11-16",
+  "legacy_source_commit": "cdea4d1437f383f99f6b8dc63ecff38c364eb4d0",
+  "legacy_symbols_verbatim": 39,
+  "targeted_tests": "14 passed",
+  "cpu_mock": {
+    "source_pairs": 12,
+    "conditions_including_O": 7,
+    "prediction_rows": 84,
+    "empirical": false,
+    "resume_reused_all_complete_stages": true
+  },
+  "gpu_smoke": {
+    "pairs": 1,
+    "images": 1,
+    "pair_id": "rel::2/calendar_6.png::en::zh",
+    "overall_pass": false,
+    "inventory_status": "success",
+    "inventory_strings": 36,
+    "full_gui_status": "success",
+    "automatic_extraction_status": "failed",
+    "automatic_extraction_errors": [
+      "Span cannot be recovered from original text"
+    ],
+    "oracle_selective_schema_status": "success",
+    "oracle_selective_edits": 5,
+    "semantic_red_flag": "Tuesday was mapped to 11 周三 (Wednesday); membership/format success is not semantic correctness.",
+    "accuracy_measured": false,
+    "new_call_count": 5,
+    "peak_reserved_gib": 17.169921875,
+    "raw_results_path": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_gpu_smoke/results.json",
+    "raw_calls_sha256": "6d9ac021e1ae7c6e9743b9c64307f5eacd30c56537187b6af4fd127caf1a5734"
+  },
+  "full_gpu_experiment_started": false,
+  "old_pipeline_source_hashes_unchanged": true,
+  "old_results_reused_as_new_results": false,
+  "software_versions": {
+    "python": "3.11.11",
+    "platform": "Linux-6.8.0-87-generic-x86_64-with-glibc2.35",
+    "torch": "2.9.1+cu130",
+    "transformers": "4.57.6",
+    "accelerate": "1.15.0",
+    "qwen-vl-utils": "0.0.14",
+    "torchvision": "0.24.1+cu130",
+    "timm": "1.0.30",
+    "protobuf": "6.33.2",
+    "sentencepiece": "0.2.0",
+    "flash-attn": null
+  },
+  "config_sha256": "715a5a7282b64e34260cc9bf3cbdb0a145a8025ff792d17202fc1a083e92627d",
+  "execution_contract_sources_match": true
+}

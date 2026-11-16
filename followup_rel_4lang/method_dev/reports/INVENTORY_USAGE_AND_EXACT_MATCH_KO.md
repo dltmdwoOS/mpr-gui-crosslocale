@@ -1,3 +1,5 @@
+> **프로토콜 변경 — 2026-11-16:** 사용자 결정에 따라 이 문서의 기존 inventory 기반 결과는 의도한 two-stage 방법의 유효한 평가에서 제외하고 이력으로 보존합니다. 새 실행 기준은 [TWO_STAGE_V2_PROTOCOL_KO.md](TWO_STAGE_V2_PROTOCOL_KO.md)입니다. 과거 수치가 새 방법의 결과를 뜻하지 않습니다.
+
 # Inventory 사용 방식 점검과 Oracle exact-match coverage
 
 **과거 two-stage는 inventory를 번역 입력에 명시하고 화면 표현을 활용하도록 지시했다. 최근 GUI_FULL은 inventory를 제공했지만 과거 프롬프트를 그대로 재현하지 않았다. 현재 Oracle은 inventory를 번역기에 제공하지 않았다.**

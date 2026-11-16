@@ -1,3 +1,5 @@
+> **프로토콜 변경 — 2026-11-16:** 사용자 결정에 따라 이 문서의 기존 inventory 기반 결과는 의도한 two-stage 방법의 유효한 평가에서 제외하고 이력으로 보존합니다. 새 실행 기준은 [TWO_STAGE_V2_PROTOCOL_KO.md](TWO_STAGE_V2_PROTOCOL_KO.md)입니다. 과거 수치가 새 방법의 결과를 뜻하지 않습니다.
+
 # Qwen3 Oracle source-span 진단 결과
 
 **추출을 annotation으로 교정하면 기존 GUI_EXACT보다 개선되지만, 이것만으로 R의 효과를 재현하지는 못했다.** Internal 1,416쌍에서 69.56% → 71.54%(+1.98pp)였다. 원본 O 대비 +1.13pp의 95% CI는 0을 포함한다. 큰 시스템을 추가하기 전에 번역→화면 표현 대응의 coverage와 편집 후 회귀를 확인하는 것이 다음 과제다.

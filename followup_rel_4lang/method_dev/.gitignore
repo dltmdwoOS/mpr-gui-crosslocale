@@ -22,3 +22,4 @@ artifacts/search_plan_v1/*
 !artifacts/oracle_exact_readiness.json
 !artifacts/oracle_exact_results_snapshot.json
 !artifacts/inventory_usage_audit.json
+!artifacts/two_stage_v2_readiness.json
