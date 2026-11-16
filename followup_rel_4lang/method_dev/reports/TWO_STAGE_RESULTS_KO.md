@@ -1,6 +1,6 @@
 # Two-stage 재정비 실험 중간 결산
 
-집계 시각: 2026-11-16T09:29:26.566461+00:00. 실행: `followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid`. 실행 중인 코드·config·캐시·출력 파일을 변경하거나 GPU 추론을 추가하지 않았다.
+집계 시각: 2026-11-16T10:39:54.491286+00:00. 실행: `followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid`. 실행 중인 코드·config·캐시·출력 파일을 변경하거나 GPU 추론을 추가하지 않았다.
 
 **번역·변환 완료와 문제 풀이 완료를 구분한다.** 현재 pipeline은 각 cohort에서 모든 조건의 변환이 끝난 뒤 O와 각 조건의 VLM 문제 풀이를 수행한다. 아래 정확도는 전체 paired 출력이 완성된 조건에서만 표시한다.
 
@@ -8,14 +8,14 @@
 
 | Cohort | 조건 | 변환 | 문제 풀이 출력 |
 | --- | --- | ---: | ---: |
-| screen | TS_FULL_GUI | 288/288 | 0/288 |
-| screen | TS_FULL_TXT | 288/288 | 0/288 |
-| screen | TS_SEL_GUI_AUTO | 288/288 | 0/288 |
-| screen | TS_SEL_TXT_AUTO | 5/288 | 0/288 |
-| screen | TS_SEL_GUI_ORACLE | 0/288 | 0/288 |
-| screen | TS_SEL_TXT_ORACLE | 0/288 | 0/288 |
-| screen | TS_QSEL_OFULL_GUI_AUTO | 0/288 | 0/288 |
-| screen | TS_QSEL_OFULL_TXT_AUTO | 0/288 | 0/288 |
+| screen | TS_FULL_GUI | 288/288 | 288/288 |
+| screen | TS_FULL_TXT | 288/288 | 288/288 |
+| screen | TS_SEL_GUI_AUTO | 288/288 | 288/288 |
+| screen | TS_SEL_TXT_AUTO | 288/288 | 288/288 |
+| screen | TS_SEL_GUI_ORACLE | 288/288 | 288/288 |
+| screen | TS_SEL_TXT_ORACLE | 288/288 | 288/288 |
+| screen | TS_QSEL_OFULL_GUI_AUTO | 288/288 | 288/288 |
+| screen | TS_QSEL_OFULL_TXT_AUTO | 288/288 | 288/288 |
 | selection | TS_FULL_GUI | 0/240 | 0/240 |
 | selection | TS_FULL_TXT | 0/240 | 0/240 |
 | selection | TS_SEL_GUI_AUTO | 0/240 | 0/240 |
@@ -33,7 +33,111 @@
 | internal_evaluation | TS_QSEL_OFULL_GUI_AUTO | 0/1416 | 0/1416 |
 | internal_evaluation | TS_QSEL_OFULL_TXT_AUTO | 0/1416 | 0/1416 |
 
-**아직 완료된 downstream 정확도는 없다.** 번역 파일의 `status=success`는 JSON·변환 검증 결과이며 REL 정답을 맞혔다는 뜻이 아니다. 과거 O/R/T/F 예측을 대신 붙여 새 정확도를 만들지 않았다.
+| Cohort | 조건 | 정답 | O 정답 | ΔO | 95% CI | 회복/회귀 |
+| --- | --- | ---: | ---: | ---: | --- | ---: |
+| screen | TS_FULL_GUI | 170/240 | 162/240 | +3.33pp | [-6.25, +12.50] | 37/29 |
+| screen | TS_FULL_TXT | 161/240 | 162/240 | -0.42pp | [-5.42, +4.58] | 28/29 |
+| screen | TS_SEL_GUI_AUTO | 169/240 | 162/240 | +2.92pp | [-2.08, +8.33] | 19/12 |
+| screen | TS_SEL_TXT_AUTO | 159/240 | 162/240 | -1.25pp | [-7.08, +4.17] | 17/20 |
+| screen | TS_SEL_GUI_ORACLE | 180/240 | 162/240 | +7.50pp | [+0.00, +15.00] | 34/16 |
+| screen | TS_SEL_TXT_ORACLE | 158/240 | 162/240 | -1.67pp | [-5.83, +2.50] | 20/24 |
+| screen | TS_QSEL_OFULL_GUI_AUTO | 178/240 | 162/240 | +6.67pp | [-1.25, +15.00] | 39/23 |
+| screen | TS_QSEL_OFULL_TXT_AUTO | 163/240 | 162/240 | +0.42pp | [-5.42, +5.83] | 27/26 |
+
+## 완료된 cohort의 실제 문제 풀이 결과
+
+**완료 cohort: screen**. 아직 완료되지 않은 cohort: selection, internal_evaluation. Pilot과 사전 제외 pair는 primary에서 분리한다. 모든 조건의 실패 fallback도 분모에 유지했다.
+
+### screen: 정확도와 O 대비
+
+실행288pair 중 primary20개 semantic item의240pair다.
+
+| 조건 | 정답 | 정확도 | ΔO | Item bootstrap95% CI | 회복/회귀 |
+| --- | ---: | ---: | ---: | --- | ---: |
+| O | 162/240 | 67.50% | — | — | — |
+| 전체 GUI 번역 | 170/240 | 70.83% | +3.33pp | [-6.25, +12.50] | 37/29 |
+| 전체 TXT 번역 | 161/240 | 67.08% | -0.42pp | [-5.42, +4.58] | 28/29 |
+| 자동 Selective GUI | 169/240 | 70.42% | +2.92pp | [-2.08, +8.33] | 19/12 |
+| 자동 Selective TXT | 159/240 | 66.25% | -1.25pp | [-7.08, +4.17] | 17/20 |
+| Oracle Selective GUI | 180/240 | 75.00% | +7.50pp | [+0.00, +15.00] | 34/16 |
+| Oracle Selective TXT | 158/240 | 65.83% | -1.67pp | [-5.83, +2.50] | 20/24 |
+| Query 선택적 + Options 전체 GUI | 178/240 | 74.17% | +6.67pp | [-1.25, +15.00] | 39/23 |
+| Query 선택적 + Options 전체 TXT | 163/240 | 67.92% | +0.42pp | [-5.42, +5.83] | 27/26 |
+
+CI는 semantic item 단위 10,000회 bootstrap이다. 240개 pair를 독립 문제240개로 취급하지 않는다. O 대비 CI는 모두 0을 포함하거나 경계가0이다. Point estimate만으로 유의한 개선을 주장하지 않으며, 여러 탐색 대비에 대한 보정된 유의성도 주장하지 않는다.
+
+### 조건 간 주요 paired 비교
+
+| 비교 | 차이 | 95% CI | 회복/회귀 |
+| --- | ---: | --- | ---: |
+| 전체 GUI 번역 − 전체 TXT 번역 | +3.75pp | [-7.51, +15.83] | 34/25 |
+| 자동 Selective GUI − 자동 Selective TXT | +4.17pp | [-2.08, +10.43] | 22/12 |
+| Oracle Selective GUI − Oracle Selective TXT | +9.17pp | [-1.25, +19.17] | 38/16 |
+| Oracle Selective GUI − 자동 Selective GUI | +4.58pp | [-2.08, +11.67] | 21/10 |
+| Query 선택적 + Options 전체 GUI − Query 선택적 + Options 전체 TXT | +6.25pp | [-3.75, +17.08] | 36/21 |
+| Query 선택적 + Options 전체 GUI − 자동 Selective GUI | +3.75pp | [-2.50, +10.42] | 27/18 |
+| Query 선택적 + Options 전체 GUI − 전체 GUI 번역 | +3.33pp | [-2.92, +10.00] | 26/18 |
+
+여기서 GUI/TXT 차이는 inventory 사용뿐 아니라 서로 다른 system prompt·검증 경로도 포함한다. Hybrid는 stem-only 추출 prompt와 options context 언어가 달라지는 pipeline 수준의 비교다. 각 대비를 한 요인의 순수 인과 효과로 해석하지 않는다.
+
+### R/T/F reference와 같은 분모 비교
+
+| Reference | 정답 | 정확도 |
+| --- | ---: | ---: |
+| T_REF | 162/240 | 67.50% |
+| R_REF | 194/240 | 80.83% |
+| F_REF | 192/240 | 80.00% |
+
+T_REF는 annotation span+Gemma 번역, R_REF는 parallel referent alignment, F_REF는 parallel 전체 localization이다. 예전 잘못된 inventory method 결과를 재사용한 것이 아니라 독립적인 기존 reference다. 같은 pair ID·gold·모델 revision·system을 검사해 결합했지만 이전 RTX4090 batch/queue와 현재 B200 MIG의 차이가 남는다. 각 신규 method−reference CI와 회복/회귀는 snapshot에 있다.
+
+### 새 control에서 실패가 실제로 줄었나
+
+| 조건 | 전체 원문 fallback | 부분 fallback | 주요 오류 |
+| --- | ---: | ---: | --- |
+| 전체 GUI 번역 | 0 | 0 | 없음 |
+| 전체 TXT 번역 | 0 | 0 | 없음 |
+| 자동 Selective GUI | 37 | 0 | source_extraction_failed: 18; Target is not a verbatim inventory member: 19 |
+| 자동 Selective TXT | 18 | 0 | source_extraction_failed: 18 |
+| Oracle Selective GUI | 24 | 0 | Target is not a verbatim inventory member: 21; New duplicate options: 3 |
+| Oracle Selective TXT | 0 | 0 | 없음 |
+| Query 선택적 + Options 전체 GUI | 0 | 12 | stem: Target is not a verbatim inventory member: 9; stem: source_extraction_failed: 3 |
+| Query 선택적 + Options 전체 TXT | 0 | 3 | stem: source_extraction_failed: 3 |
+
+GUI Hybrid의 Query 추출 실패3쌍·정렬 실패9쌍을 별도 기록했다. Options Full pipeline 실패는0쌍이었다. 전체 원문 fallback과 부분 fallback을 같은 실패로 세지 않는다. 단계별 parser 검증 실패 감소가 의미 정확도 향상을 자동으로 보장하지 않는다.
+
+### GUI 언어별 결과
+
+| 조건 | EN | ZH | TH | RU |
+| --- | ---: | ---: | ---: | ---: |
+| O | 45/60 (75.00%) | 44/60 (73.33%) | 27/60 (45.00%) | 46/60 (76.67%) |
+| 전체 GUI 번역 | 50/60 (83.33%) | 42/60 (70.00%) | 33/60 (55.00%) | 45/60 (75.00%) |
+| 전체 TXT 번역 | 48/60 (80.00%) | 41/60 (68.33%) | 34/60 (56.67%) | 38/60 (63.33%) |
+| 자동 Selective GUI | 44/60 (73.33%) | 45/60 (75.00%) | 36/60 (60.00%) | 44/60 (73.33%) |
+| 자동 Selective TXT | 42/60 (70.00%) | 43/60 (71.67%) | 34/60 (56.67%) | 40/60 (66.67%) |
+| Oracle Selective GUI | 47/60 (78.33%) | 47/60 (78.33%) | 41/60 (68.33%) | 45/60 (75.00%) |
+| Oracle Selective TXT | 43/60 (71.67%) | 44/60 (73.33%) | 35/60 (58.33%) | 36/60 (60.00%) |
+| Query 선택적 + Options 전체 GUI | 50/60 (83.33%) | 47/60 (78.33%) | 41/60 (68.33%) | 40/60 (66.67%) |
+| Query 선택적 + Options 전체 TXT | 45/60 (75.00%) | 44/60 (73.33%) | 36/60 (60.00%) | 38/60 (63.33%) |
+
+GUI 언어별 결과도 같은 semantic item에서 나온 반복 관측이며 기술 통계로 본다. 전체 평균이 높아져도 모든 GUI 언어에 동일하게 이득이 생긴 것은 아니다.
+
+### 비용과 재현 검사
+
+| 단계 | Wall·분 | 호출 | cache hit |
+| --- | ---: | ---: | ---: |
+| inventory | 43.66 | 141 | 0 |
+| extract | 8.91 | 147 | 0 |
+| extract_stem | 2.73 | 129 | 0 |
+| rewrite | 70.61 | 3067 | 897 |
+
+Downstream batch 시간 합계는24.81분이며 모델 적재와 프로세스 기동은 제외한다. Peak reserved는18.70GiB, 전체 예측2,592행은 모두GPU mode였다. Attempt 수: inventory=1, extract=1, extract_stem=1, rewrite=1, infer=1. Hybrid options는 Full과 모든 실행 pair에서 정확히 같고, stem은 source span 밖이 보존되는 것을 재검증했다. 같은 자기 MCQ인데 O와 label이 바뀐 사례는 완료된 조건들에서0개였다. 이는 다른 batch 입력 효과가 일반적으로 불가능하다는 주장은 아니다.
+
+### 현재 판단
+
+- Inventory-conditioned 조건의 point estimate는 대응 text-only보다 일관되게 높았다. 다만 작은 Screen 표본에서 구간이 넓다.
+- 자동 method 중 Query 선택적+Options 전체 GUI가74.17%로 가장 높고, Oracle GUI는75.00%였다. Oracle은 gold source span을 사용하므로 자동 method 순위에 넣지 않는다.
+- 자동 Hybrid는 R_REF80.83%보다6.67pp, F_REF80.00%보다5.83pp 낮다. Oracle GUI도 R_REF보다5.83pp 낮다. 아직 R 효과를 재현했다고 말할 수 없다.
+- 이 수치는 Screen만의 결과다. Screen을 본 뒤 method를 바꾸면 새 development iteration으로 기록하고, 이 수치를158-item 전체 평가로 확대 해석하지 않는다.
 
 ## screen: 완료 단계 비용
 

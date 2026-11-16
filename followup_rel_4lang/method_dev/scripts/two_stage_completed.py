@@ -1,0 +1,162 @@
+"""Post-hoc checks and comparisons for fully completed restored two-stage cohorts."""
+import hashlib
+import json
+from collections import Counter
+from pathlib import Path
+from mpr_crosslocale.methods.selective_alignment.schemas import digest,fields,render
+from mpr_crosslocale.methods.selective_alignment.rewriter import apply_edits
+from mpr_crosslocale.inference.answer_parser import parse_label
+from search_pipeline import paired_bootstrap,EXCLUDED
+from reference_comparison import load_references
+
+CONTRASTS=[
+    ('TS_FULL_GUI','TS_FULL_TXT'),('TS_SEL_GUI_AUTO','TS_SEL_TXT_AUTO'),
+    ('TS_SEL_GUI_ORACLE','TS_SEL_TXT_ORACLE'),('TS_SEL_GUI_ORACLE','TS_SEL_GUI_AUTO'),
+    ('TS_QSEL_OFULL_GUI_AUTO','TS_QSEL_OFULL_TXT_AUTO'),
+    ('TS_QSEL_OFULL_GUI_AUTO','TS_SEL_GUI_AUTO'),('TS_QSEL_OFULL_GUI_AUTO','TS_FULL_GUI')]
+SHORT={'O':'O','TS_FULL_GUI':'전체 GUI 번역','TS_FULL_TXT':'전체 TXT 번역',
+    'TS_SEL_GUI_AUTO':'자동 Selective GUI','TS_SEL_TXT_AUTO':'자동 Selective TXT',
+    'TS_SEL_GUI_ORACLE':'Oracle Selective GUI','TS_SEL_TXT_ORACLE':'Oracle Selective TXT',
+    'TS_QSEL_OFULL_GUI_AUTO':'Query 선택적 + Options 전체 GUI','TS_QSEL_OFULL_TXT_AUTO':'Query 선택적 + Options 전체 TXT'}
+
+
+def completed_summary(work,contract,originals,labels,read,refs):
+    complete=json.loads((work/'COMPLETE.json').read_text())
+    if complete['execution_mode']!='gpu':raise ValueError('Mock cohort is not empirical')
+    rewrite=Path(complete['rewrite']);inference=Path(complete['predictions'])
+    if not (rewrite/'COMPLETE').exists() or not (inference/'COMPLETE').exists():raise ValueError('Incomplete cohort stages')
+    ic=json.loads((inference/'contract.json').read_text())
+    if ic['execution_mode']!='gpu' or ic['downstream']!=contract['config']['downstream'] or ic['input_sha256']!=digest(list(originals.values())) or ic['condition_order']!=['O',*contract['conditions']]:raise ValueError('Downstream contract mismatch')
+    predictions=read(inference/'predictions.jsonl');lookup={}
+    for row in predictions:
+        key=(row['condition'],row['pair_id'])
+        if key in lookup:raise ValueError('Duplicate prediction')
+        if row['execution_mode']!='gpu' or row['parallel_id']!=originals[row['pair_id']]['parallel_id']:raise ValueError('Prediction identity/mode mismatch')
+        if parse_label(row['generated_text'])!=row['parsed_generated_label']:raise ValueError('Raw answer parse mismatch')
+        lookup[key]=row
+    conditions=['O',*contract['conditions']]
+    if set(lookup)!={(c,p) for c in conditions for p in originals}:raise ValueError('Completed prediction set differs')
+    primary=sorted(p for p in originals if labels[p]['split']=='main' and p!=EXCLUDED)
+    values={c:{p:int(lookup[c,p]['status']=='success' and lookup[c,p]['parsed_generated_label']==labels[p]['gold_answer']) for p in primary} for c in conditions}
+    rewritten={c:{r['pair_id']:r for r in read(rewrite/(c+'.jsonl'))} for c in contract['conditions']}
+    saved=json.loads((work/'results.json').read_text())
+    outcomes={}
+    for condition in conditions:
+        v=values[condition];result={'n':len(primary),'correct':sum(v.values()),'by_gui':{},'by_direction':{}}
+        if saved['conditions'][condition]['n']!=len(primary) or saved['conditions'][condition]['correct']!=result['correct']:raise ValueError('Stored accuracy mismatch')
+        if condition!='O':
+            contrast=paired_bootstrap(v,values['O'],labels,20261115,10000)
+            if contrast!=saved['conditions'][condition]['vs_O']:raise ValueError('Stored paired CI mismatch')
+            result['vs_O']=contrast
+            rr=rewritten[condition]
+            if set(rr)!=set(originals):raise ValueError('Incomplete transformation')
+            result['status']=dict(Counter(rr[p]['status'] for p in primary))
+            result['fallback_errors']=dict(Counter(e for p in primary for e in rr[p]['errors']))
+            result['changed_pairs']=sum(fields(rr[p])!=fields(originals[p]) for p in primary)
+            same=[p for p in primary if render(fields(originals[p]))==rr[p]['modified_question']]
+            result['same_as_O_questions']=len(same)
+            result['label_changes_on_same_O_question']=sum(lookup[condition,p]['parsed_generated_label']!=lookup['O',p]['parsed_generated_label'] for p in same)
+        for gui in sorted({originals[p]['gui_language'] for p in primary}):
+            ids=[p for p in primary if originals[p]['gui_language']==gui]
+            result['by_gui'][gui]={'n':len(ids),'correct':sum(v[p] for p in ids)}
+        for direction in sorted({originals[p]['source_language']+'→'+originals[p]['gui_language'] for p in primary}):
+            ids=[p for p in primary if originals[p]['source_language']+'→'+originals[p]['gui_language']==direction]
+            result['by_direction'][direction]={'n':len(ids),'correct':sum(v[p] for p in ids)}
+        outcomes[condition]=result
+    contrasts={left+' − '+right:paired_bootstrap(values[left],values[right],labels,20261115,10000) for left,right in CONTRASTS if left in values and right in values}
+    hybrid={}
+    for gui in ('GUI','TXT'):
+        name=f'TS_QSEL_OFULL_{gui}_AUTO';full=f'TS_FULL_{gui}'
+        if name not in rewritten:continue
+        rr=rewritten[name]
+        if full in rewritten and any(rr[p]['options']!=rewritten[full][p]['options'] for p in originals):raise ValueError('Hybrid options differ from Full')
+        if any(r['field']!='question_stem' for row in rr.values() for r in row['extracted_referents'] or []):raise ValueError('Hybrid used option spans')
+        for pid in originals:
+            if apply_edits(originals[pid],rr[pid]['edits'])['question_stem']!=rr[pid]['question_stem']:raise ValueError('Hybrid changed nonreferent stem context')
+        hybrid[name]={'components':{key:sum(rr[p]['components'][key] for p in primary) for key in ('stem_extraction_failed','stem_alignment_failed','options_full_pipeline_failed')},
+            'partial_fallback_pairs':sum(rr[p]['status']=='partial_fallback' for p in primary),'options_equal_full':full in rewritten,
+            'options_changed_fields':sum(rr[p]['components']['options_changed'] for p in primary)}
+    historical={}
+    for name in ('T_REF','R_REF','F_REF'):
+        if not set(primary)<=set(refs[name]):raise ValueError('Missing historical reference pairs')
+        scores={p:int(refs[name][p].get('status')=='success' and refs[name][p].get('parsed_generated_label')==labels[p]['gold_answer']) for p in primary}
+        historical[name]={'n':len(primary),'correct':sum(scores.values()),'contrasts':{c:paired_bootstrap(values[c],scores,labels,20261115,10000) for c in values if c!='O'}}
+    stage_costs={}
+    for stage in ('inventory','extract','extract_stem','rewrite'):
+        directory=Path(complete[stage])
+        cost=json.loads((directory/'cost.json').read_text())
+        stage_costs[stage]={'wall_seconds':cost['wall_seconds'],'calls':cost['calls'],'cache_hits':cost['cache_hits'],'new_runtime_seconds':cost['new_runtime_ms']/1000}
+    batches={}
+    for row in predictions:
+        key=row['batch_id'];value=(row['batch_runtime_ms'],row['batch_size'])
+        if key in batches and batches[key]!=value:raise ValueError('Inconsistent inference batch accounting')
+        batches[key]=value
+    return {'executed_pairs':len(originals),'primary_pairs':len(primary),'items':len({labels[p]['parallel_id'] for p in primary}),
+        'prediction_rows':len(predictions),'prediction_status':dict(Counter(r['status'] for r in predictions)),
+        'outcomes':outcomes,'contrasts':contrasts,'hybrid':hybrid,'historical_references':historical,
+        'stage_costs':stage_costs,'inference_batch_seconds':sum(v[0] for v in batches.values())/1000,
+        'inference_peak_reserved_gib':max(r['peak_reserved_bytes'] for r in predictions)/2**30,
+        'attempts':{s:len(list((work/s).glob('attempt_*'))) for s in ('inventory','extract','extract_stem','rewrite','infer')},
+        'pair_ids_sha256':digest(primary),'checks':['raw answer parser','downstream model/system/input contract','saved accuracy and vs O CI','hybrid Full options identity','hybrid source-only edits','no duplicate/missing prediction']}
+
+
+def add_completed(snapshot,run,repo,root,labels,contract,read):
+    cohorts=[c for c in snapshot['cohorts'] if (run/c/'COMPLETE.json').exists()]
+    if not cohorts:return
+    originals={c:{r['pair_id']:r for r in read(run/c/'inputs.jsonl')} for c in snapshot['cohorts']}
+    # Pure historical reference join; no invalidated v1 automatic predictions enter this table.
+    def use(path):
+        snapshot['source_captures'][str(path.relative_to(repo))]={'path':str(path.relative_to(repo)),'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'captured_bytes':path.stat().st_size}
+        return path
+    refs,metadata,_=load_references(repo,labels,originals,use,contract['config']['downstream']['model_config'],contract['config']['historical_baseline_contract_sha256'])
+    for source in metadata['source_runs'].values():
+        if source['model_config']!=contract['config']['downstream']['model_config'] or source['system_prompt']!=contract['config']['downstream']['system_prompt']:raise ValueError('Historical model/system differs from current evaluation')
+    snapshot['reference_metadata']=metadata
+    for cohort in cohorts:snapshot['cohorts'][cohort]['completed_evaluation']=completed_summary(run/cohort,contract,originals[cohort],labels,read,refs)
+
+
+def render_completed(snapshot):
+    finished=[c for c,g in snapshot['cohorts'].items() if 'completed_evaluation' in g]
+    pending=[c for c in snapshot['cohorts'] if c not in finished]
+    out=['## 완료된 cohort의 실제 문제 풀이 결과','',
+         '**완료 cohort: '+', '.join(finished)+'**. '+('아직 완료되지 않은 cohort: '+', '.join(pending)+'. ' if pending else '')+'Pilot과 사전 제외 pair는 primary에서 분리한다. 모든 조건의 실패 fallback도 분모에 유지했다.']
+    for cohort,g in snapshot['cohorts'].items():
+        if 'completed_evaluation' not in g:continue
+        s=g['completed_evaluation'];outcomes=s['outcomes'];n=s['primary_pairs']
+        out+=['',f'### {cohort}: 정확도와 O 대비','',f"실행{s['executed_pairs']}pair 중 primary{s['items']}개 semantic item의{n}pair다.",'', '| 조건 | 정답 | 정확도 | ΔO | Item bootstrap95% CI | 회복/회귀 |','| --- | ---: | ---: | ---: | --- | ---: |']
+        for name,r in outcomes.items():
+            c=r.get('vs_O');out.append(f"| {SHORT.get(name,name)} | {r['correct']}/{n} | {r['correct']/n*100:.2f}% | "+(f"{c['difference']*100:+.2f}pp | [{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}] | {c['recovery']}/{c['regression']} |" if c else '— | — | — |'))
+        no_clear_effect=all(r['vs_O']['ci95'][0]<=0<=r['vs_O']['ci95'][1] for r in outcomes.values() if 'vs_O' in r)
+        out+=['',f"CI는 semantic item 단위 10,000회 bootstrap이다. {n}개 pair를 독립 문제{n}개로 취급하지 않는다. "+('O 대비 CI는 모두 0을 포함하거나 경계가0이다. ' if no_clear_effect else '')+'Point estimate만으로 유의한 개선을 주장하지 않으며, 여러 탐색 대비에 대한 보정된 유의성도 주장하지 않는다.','',
+              '### 조건 간 주요 paired 비교','', '| 비교 | 차이 | 95% CI | 회복/회귀 |','| --- | ---: | --- | ---: |']
+        for name,c in s['contrasts'].items():
+            left,right=name.split(' − ');out.append(f"| {SHORT[left]} − {SHORT[right]} | {c['difference']*100:+.2f}pp | [{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}] | {c['recovery']}/{c['regression']} |")
+        out+=['','여기서 GUI/TXT 차이는 inventory 사용뿐 아니라 서로 다른 system prompt·검증 경로도 포함한다. Hybrid는 stem-only 추출 prompt와 options context 언어가 달라지는 pipeline 수준의 비교다. 각 대비를 한 요인의 순수 인과 효과로 해석하지 않는다.','',
+              '### R/T/F reference와 같은 분모 비교','', '| Reference | 정답 | 정확도 |','| --- | ---: | ---: |']
+        for name,r in s['historical_references'].items():out.append(f"| {name} | {r['correct']}/{n} | {r['correct']/n*100:.2f}% |")
+        out+=['','T_REF는 annotation span+Gemma 번역, R_REF는 parallel referent alignment, F_REF는 parallel 전체 localization이다. 예전 잘못된 inventory method 결과를 재사용한 것이 아니라 독립적인 기존 reference다. 같은 pair ID·gold·모델 revision·system을 검사해 결합했지만 이전 RTX4090 batch/queue와 현재 B200 MIG의 차이가 남는다. 각 신규 method−reference CI와 회복/회귀는 snapshot에 있다.','',
+              '### 새 control에서 실패가 실제로 줄었나','', '| 조건 | 전체 원문 fallback | 부분 fallback | 주요 오류 |','| --- | ---: | ---: | --- |']
+        for name,r in outcomes.items():
+            if name=='O':continue
+            errors='; '.join(f'{e}: {v}' for e,v in r['fallback_errors'].items()) or '없음'
+            out.append(f"| {SHORT[name]} | {r['status'].get('fallback_original',0)} | {r['status'].get('partial_fallback',0)} | {errors} |")
+        if 'TS_QSEL_OFULL_GUI_AUTO' in s['hybrid']:
+            hybrid=s['hybrid']['TS_QSEL_OFULL_GUI_AUTO']['components']
+            out+=['',f"GUI Hybrid의 Query 추출 실패{hybrid['stem_extraction_failed']}쌍·정렬 실패{hybrid['stem_alignment_failed']}쌍을 별도 기록했다. Options Full pipeline 실패는{hybrid['options_full_pipeline_failed']}쌍이었다. 전체 원문 fallback과 부분 fallback을 같은 실패로 세지 않는다. 단계별 parser 검증 실패 감소가 의미 정확도 향상을 자동으로 보장하지 않는다."]
+        out+=['',
+              '### GUI 언어별 결과','', '| 조건 | EN | ZH | TH | RU |','| --- | ---: | ---: | ---: | ---: |']
+        for name,r in outcomes.items():out.append('| '+SHORT[name]+' | '+' | '.join(f"{r['by_gui'][gui]['correct']}/{r['by_gui'][gui]['n']} ({r['by_gui'][gui]['correct']/r['by_gui'][gui]['n']*100:.2f}%)" for gui in ('en','zh','th','ru'))+' |')
+        out+=['','GUI 언어별 결과도 같은 semantic item에서 나온 반복 관측이며 기술 통계로 본다. 전체 평균이 높아져도 모든 GUI 언어에 동일하게 이득이 생긴 것은 아니다.','',
+              '### 비용과 재현 검사','', '| 단계 | Wall·분 | 호출 | cache hit |','| --- | ---: | ---: | ---: |']
+        for name,cost in s['stage_costs'].items():out.append(f"| {name} | {cost['wall_seconds']/60:.2f} | {cost['calls']} | {cost['cache_hits']} |")
+        attempts=', '.join(f'{key}={value}' for key,value in s['attempts'].items())
+        shifts=sum(r.get('label_changes_on_same_O_question',0) for r in outcomes.values())
+        out+=['',f"Downstream batch 시간 합계는{s['inference_batch_seconds']/60:.2f}분이며 모델 적재와 프로세스 기동은 제외한다. Peak reserved는{s['inference_peak_reserved_gib']:.2f}GiB, 전체 예측{s['prediction_rows']:,}행은 모두GPU mode였다. Attempt 수: {attempts}. Hybrid options는 Full과 모든 실행 pair에서 정확히 같고, stem은 source span 밖이 보존되는 것을 재검증했다. 같은 자기 MCQ인데 O와 label이 바뀐 사례는 완료된 조건들에서{shifts}개였다. 이는 다른 batch 입력 효과가 일반적으로 불가능하다는 주장은 아니다."]
+        if cohort!='screen':continue
+        out+=['',
+              '### 현재 판단','',
+              '- Inventory-conditioned 조건의 point estimate는 대응 text-only보다 일관되게 높았다. 다만 작은 Screen 표본에서 구간이 넓다.',
+              '- 자동 method 중 Query 선택적+Options 전체 GUI가74.17%로 가장 높고, Oracle GUI는75.00%였다. Oracle은 gold source span을 사용하므로 자동 method 순위에 넣지 않는다.',
+              '- 자동 Hybrid는 R_REF80.83%보다6.67pp, F_REF80.00%보다5.83pp 낮다. Oracle GUI도 R_REF보다5.83pp 낮다. 아직 R 효과를 재현했다고 말할 수 없다.',
+              '- 이 수치는 Screen만의 결과다. Screen을 본 뒤 method를 바꾸면 새 development iteration으로 기록하고, 이 수치를158-item 전체 평가로 확대 해석하지 않는다.']
+    return '\n'.join(out)

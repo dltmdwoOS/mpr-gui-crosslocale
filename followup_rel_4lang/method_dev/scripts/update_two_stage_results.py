@@ -11,6 +11,7 @@ sys.path[:0]=[str(REPO),str(REPO/'01_code/src'),str(Path(__file__).parent)]
 from followup_rel_4lang.method_dev.two_stage_v2 import prompts
 from mpr_crosslocale.methods.selective_alignment.schemas import digest,fields,render
 from search_pipeline import EXCLUDED,paired_bootstrap
+from two_stage_completed import add_completed,render_completed
 
 COHORTS=('screen','selection','internal_evaluation')
 
@@ -104,7 +105,8 @@ def collect(run):
     if digest(labels)!=contract['base_data_contract']['labels'] or digest(annotated)!=contract['base_data_contract']['oracle']:raise ValueError('Evaluation artifacts changed')
     oracle={r['pair_id']:r['referents'] for r in annotated}
     result={'as_of_utc':datetime.now(timezone.utc).isoformat(),'run':str(run.relative_to(REPO)),'cohorts':{},'source_captures':sources,
-        'interpretation':'Completed transformation is not completed downstream inference. Historical invalidated results are not reused.'}
+        'interpretation':'Completed transformation is not completed downstream inference. Historical invalidated results are not reused.',
+        'analysis_source_sha256':{name:hashlib.sha256((Path(__file__).parent/name).read_bytes()).hexdigest() for name in ['update_two_stage_results.py','two_stage_completed.py','reference_comparison.py']}}
     for cohort in COHORTS:
         work=run/cohort
         if not (work/'inputs.jsonl').exists():continue
@@ -115,6 +117,7 @@ def collect(run):
                 'pilot':[r for r in original_rows if labels[r['pair_id']]['split']=='pilot']}
         group_ids={name:{r['pair_id'] for r in selected} for name,selected in groups.items()}
         progress={'pairs':len(original_rows),'primary_pairs':len(groups['main']),'stages':{},'transformations':{},'accuracies':{}}
+        progress['cohort_complete']=(work/'COMPLETE.json').exists()
         completed={}
         for stage,filename,key in [('inventory','inventories.jsonl','image_sha256'),('extract','extractions.jsonl','source_key'),('extract_stem','extractions.jsonl','source_key')]:
             attempt=latest(work/stage,True)
@@ -157,6 +160,7 @@ def collect(run):
             accuracy=accuracy_if_complete(pred,originals,labels,condition) if pred else None
             if accuracy:progress['accuracies'][condition]=accuracy
         result['cohorts'][cohort]=progress
+    add_completed(result,run,REPO,ROOT,labels,contract,read)
     return result
 
 
@@ -173,6 +177,7 @@ def markdown(s):
         for cohort,g in s['cohorts'].items():
             for name,a in g['accuracies'].items():
                 c=a['vs_O'];out.append(f"| {cohort} | {name} | {a['correct']}/{a['n']} | {a['O_correct']}/{a['n']} | {c['difference']*100:+.2f}pp | [{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}] | {c['recovery']}/{c['regression']} |")
+    if any('completed_evaluation' in g for g in s['cohorts'].values()):out+=['',render_completed(s)]
     for cohort,g in s['cohorts'].items():
         if 'inventory' not in g:continue
         out+=['',f'## {cohort}: 완료 단계 비용','', '| 단계 | 출력 수 | Wall·분 |','| --- | ---: | ---: |']

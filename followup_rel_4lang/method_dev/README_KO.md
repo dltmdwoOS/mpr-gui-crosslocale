@@ -1,8 +1,8 @@
 # GCSA / RFA development harness
 
-현재 실행 중간 결과: [TWO_STAGE_RESULTS_KO.md](reports/TWO_STAGE_RESULTS_KO.md). 변환 완료와 VLM 문제 풀이 완료를 분리하며, 추론 없이 `.venv/bin/python followup_rel_4lang/method_dev/scripts/update_two_stage_results.py`로 완료 조건만 갱신한다.
+현재 결과: [TWO_STAGE_RESULTS_KO.md](reports/TWO_STAGE_RESULTS_KO.md). Screen 288쌍×9조건(O 포함)의 VLM 추론2,592행이 완료됐다. Main240쌍에서 O67.50%, 자동 Hybrid GUI74.17%, Oracle GUI75.00%이며 O 대비95% CI는 모두0을 포함하거나 경계가0이다. Selection·Internal은 아직 미실행이다. 추론 없이 `.venv/bin/python followup_rel_4lang/method_dev/scripts/update_two_stage_results.py`로 완료 조건만 갱신한다.
 
-최신 추가 control: [Query 선택적 정렬 + Options 전체 번역](reports/HYBRID_CONTROL_KO.md). `TS_QSEL_OFULL_GUI_AUTO` / `TS_QSEL_OFULL_TXT_AUTO`를 추가했다. Query extractor는 stem만 입력받으며 options는 같은 Full recipe의 A–D를 사용한다. 현재 runner 기본값은 별도 `configs/two_stage_v2_hybrid.json`과 `artifacts/two_stage_v2_hybrid/`다. 이전 v2 단일 GPU smoke의 NO-GO가 해소됐다는 뜻은 아니며 새 control의 GPU 성능은 아직 미측정이다.
+최신 추가 control: [Query 선택적 정렬 + Options 전체 번역](reports/HYBRID_CONTROL_KO.md). `TS_QSEL_OFULL_GUI_AUTO` / `TS_QSEL_OFULL_TXT_AUTO`를 추가했다. Query extractor는 stem만 입력받으며 options는 같은 Full recipe의 A–D를 사용한다. 현재 runner 기본값은 별도 `configs/two_stage_v2_hybrid.json`과 `artifacts/two_stage_v2_hybrid/`다. Screen 성능과 남은 오류는 위 결과 보고서에 있으며, parser 통과가 의미 정확도를 보장한다는 뜻은 아니다.
 
 > **공통 프롬프트 기준은 [Two-stage 재정비 프로토콜](reports/TWO_STAGE_V2_PROTOCOL_KO.md), 현재 추가 control과 실행 기준은 [Hybrid control](reports/HYBRID_CONTROL_KO.md)이다.** 사용자 결정에 따라 이전 inventory 기반 방법의 결과는 유효한 방법 평가에서 제외하고 이력으로 보존한다. [처리 상태](configs/PROTOCOL_STATUS.json). 아래의 기존 탐색·Oracle 명령은 과거 실행 기록이며 새 방법 실행에는 사용하지 않는다.
 
