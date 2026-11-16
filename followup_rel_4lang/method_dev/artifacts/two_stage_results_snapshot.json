@@ -1,0 +1,1801 @@
+{
+  "as_of_utc": "2026-11-16T09:29:26.566461+00:00",
+  "run": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid",
+  "cohorts": {
+    "screen": {
+      "pairs": 288,
+      "primary_pairs": 240,
+      "stages": {
+        "inventory": {
+          "complete": true,
+          "rows": 128,
+          "attempt": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/inventory/attempt_0001",
+          "cost": {
+            "execution_mode": "gpu",
+            "stage": "inventory",
+            "wall_seconds": 2619.8716412773356,
+            "calls": 141,
+            "cache_hits": 0,
+            "new_runtime_ms": 2583752.209890634,
+            "complete": true
+          }
+        },
+        "extract": {
+          "complete": true,
+          "rows": 128,
+          "attempt": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/extract/attempt_0001",
+          "cost": {
+            "execution_mode": "gpu",
+            "stage": "extract",
+            "wall_seconds": 534.619776820764,
+            "calls": 147,
+            "cache_hits": 0,
+            "new_runtime_ms": 503213.85112404823,
+            "complete": true
+          }
+        },
+        "extract_stem": {
+          "complete": true,
+          "rows": 128,
+          "attempt": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/extract_stem/attempt_0001",
+          "cost": {
+            "execution_mode": "gpu",
+            "stage": "extract_stem",
+            "wall_seconds": 164.02586880978197,
+            "calls": 129,
+            "cache_hits": 0,
+            "new_runtime_ms": 149463.9260051772,
+            "complete": true
+          }
+        }
+      },
+      "transformations": {
+        "TS_FULL_GUI": {
+          "transformation_rows": 288,
+          "expected_rows": 288,
+          "transformation_complete": true,
+          "inference_rows": 0,
+          "groups": {
+            "all": {
+              "pairs": 288,
+              "status": {
+                "success": 288
+              },
+              "initial_calls": 288,
+              "structure_repairs": 0,
+              "semantic_repairs": 21,
+              "semantic_repairs_accepted": 14,
+              "remaining_semantic_pairs": 9,
+              "remaining_semantic_reasons": {
+                "spatial_core_relation_missing:below": 1,
+                "quoted_gui_label_may_be_untranslated:customize": 1,
+                "quoted_gui_label_may_be_untranslated:handwrite": 1,
+                "quoted_gui_label_may_be_untranslated:dnd": 3,
+                "quoted_gui_label_may_be_untranslated:choose on map": 1,
+                "spatial_opposition_introduced": 1,
+                "spatial_core_relation_missing:above": 2
+              },
+              "diagnostic_pairs": 7,
+              "diagnostics": {
+                "number_tokens_changed": 7
+              },
+              "inventory_failed_pairs": 9,
+              "changed_pairs": 288,
+              "new_call_runtime_seconds": 985.1338604204357,
+              "model_load_seconds": 9.453277200460434,
+              "peak_reserved_gib": 15.724609375,
+              "by_gui": {
+                "en": {
+                  "pairs": 72,
+                  "semantic_repairs": 1,
+                  "remaining_semantic_pairs": 1
+                },
+                "ru": {
+                  "pairs": 72,
+                  "semantic_repairs": 2,
+                  "remaining_semantic_pairs": 2
+                },
+                "th": {
+                  "pairs": 72,
+                  "semantic_repairs": 17,
+                  "remaining_semantic_pairs": 5
+                },
+                "zh": {
+                  "pairs": 72,
+                  "semantic_repairs": 1,
+                  "remaining_semantic_pairs": 1
+                }
+              }
+            },
+            "main": {
+              "pairs": 240,
+              "status": {
+                "success": 240
+              },
+              "initial_calls": 240,
+              "structure_repairs": 0,
+              "semantic_repairs": 16,
+              "semantic_repairs_accepted": 11,
+              "remaining_semantic_pairs": 7,
+              "remaining_semantic_reasons": {
+                "quoted_gui_label_may_be_untranslated:customize": 1,
+                "quoted_gui_label_may_be_untranslated:handwrite": 1,
+                "quoted_gui_label_may_be_untranslated:dnd": 3,
+                "quoted_gui_label_may_be_untranslated:choose on map": 1,
+                "spatial_opposition_introduced": 1,
+                "spatial_core_relation_missing:above": 1
+              },
+              "diagnostic_pairs": 4,
+              "diagnostics": {
+                "number_tokens_changed": 4
+              },
+              "inventory_failed_pairs": 9,
+              "changed_pairs": 240,
+              "new_call_runtime_seconds": 680.8157714707777,
+              "model_load_seconds": 0.0,
+              "peak_reserved_gib": 15.724609375,
+              "by_gui": {
+                "en": {
+                  "pairs": 60,
+                  "semantic_repairs": 0,
+                  "remaining_semantic_pairs": 0
+                },
+                "ru": {
+                  "pairs": 60,
+                  "semantic_repairs": 1,
+                  "remaining_semantic_pairs": 1
+                },
+                "th": {
+                  "pairs": 60,
+                  "semantic_repairs": 14,
+                  "remaining_semantic_pairs": 5
+                },
+                "zh": {
+                  "pairs": 60,
+                  "semantic_repairs": 1,
+                  "remaining_semantic_pairs": 1
+                }
+              }
+            },
+            "pilot": {
+              "pairs": 48,
+              "status": {
+                "success": 48
+              },
+              "initial_calls": 48,
+              "structure_repairs": 0,
+              "semantic_repairs": 5,
+              "semantic_repairs_accepted": 3,
+              "remaining_semantic_pairs": 2,
+              "remaining_semantic_reasons": {
+                "spatial_core_relation_missing:below": 1,
+                "spatial_core_relation_missing:above": 1
+              },
+              "diagnostic_pairs": 3,
+              "diagnostics": {
+                "number_tokens_changed": 3
+              },
+              "inventory_failed_pairs": 0,
+              "changed_pairs": 48,
+              "new_call_runtime_seconds": 304.318088949658,
+              "model_load_seconds": 9.453277200460434,
+              "peak_reserved_gib": 15.724609375,
+              "by_gui": {
+                "en": {
+                  "pairs": 12,
+                  "semantic_repairs": 1,
+                  "remaining_semantic_pairs": 1
+                },
+                "ru": {
+                  "pairs": 12,
+                  "semantic_repairs": 1,
+                  "remaining_semantic_pairs": 1
+                },
+                "th": {
+                  "pairs": 12,
+                  "semantic_repairs": 3,
+                  "remaining_semantic_pairs": 0
+                },
+                "zh": {
+                  "pairs": 12,
+                  "semantic_repairs": 0,
+                  "remaining_semantic_pairs": 0
+                }
+              }
+            }
+          },
+          "flagged_examples": [
+            {
+              "pair_id": "rel::2/calendar_6.png::ru::th",
+              "source_stem": "Какой день недели запланировано событие и каково его относительное положение по сравнению с \"Чт, 12\"?",
+              "target_stem": "วันในสัปดาห์ใดที่มีเหตุการณ์ที่วางแผนไว้ และมันอยู่ในตำแหน่งสัมพัทธ์อย่างไรเมื่อเทียบกับ \"พ. 12\"?",
+              "source_options": {
+                "A": "\"Вт, 10\", за один день до",
+                "B": "\"Ср, 11\", за один день до",
+                "C": "\"Пт, 13\", на один день позже",
+                "D": "\"Вс, 8\", за три дня до"
+              },
+              "target_options": {
+                "A": "\"จ. 9\", หนึ่งวันก่อน",
+                "B": "\"พ. 11\", หนึ่งวันก่อน",
+                "C": "\"ศ. 13\", หนึ่งวันหลัง",
+                "D": "\"อา. 8\", สามวันก่อน"
+              },
+              "semantic_reasons": [],
+              "diagnostics": [
+                "number_tokens_changed:A:['10']->['9']"
+              ]
+            },
+            {
+              "pair_id": "rel::2/note_8.png::en::th",
+              "source_stem": "Which element is located directly to the right of the 'Customize' option in the customization menu?",
+              "target_stem": "องค์ประกอบใดอยู่ด้านขวาของตัวเลือก 'Customize' ในเมนูการปรับแต่ง?",
+              "source_options": {
+                "A": "Done",
+                "B": "Reset",
+                "C": "Drag to remove items",
+                "D": "Camera icon"
+              },
+              "target_options": {
+                "A": "เสร็จสิ้น",
+                "B": "รีเซ็ต",
+                "C": "ลากเพื่อเอารายการออก",
+                "D": "ไอคอนกล้อง"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:customize"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::2/setting_3.png::en::th",
+              "source_stem": "Which element is located directly to the right of the 'Handwrite' button?",
+              "target_stem": "องค์ประกอบใดอยู่ด้านขวาของปุ่ม 'Handwrite'?",
+              "source_options": {
+                "A": "Delete",
+                "B": "Select",
+                "C": "Insert",
+                "D": "Join"
+              },
+              "target_options": {
+                "A": "ลบ",
+                "B": "เลือก",
+                "C": "แทรก",
+                "D": "เขียนกัน"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:handwrite"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::3/homescreen_5.jpg::en::ru",
+              "source_stem": "Which element is directly below the 'DND' option in the mobile UI interface?",
+              "target_stem": "Какой элемент находится непосредственно ниже опции 'DND' в интерфейсе мобильного приложения?",
+              "source_options": {
+                "A": "Battery saver",
+                "B": "Mi Share",
+                "C": "Vibrate",
+                "D": "Floating window"
+              },
+              "target_options": {
+                "A": "Экономия энер",
+                "B": "Mi Share",
+                "C": "Вибрация",
+                "D": "Плавающие ок"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:dnd"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::3/homescreen_5.jpg::en::th",
+              "source_stem": "Which element is directly below the 'DND' option in the mobile UI interface?",
+              "target_stem": "องค์ประกอบใดอยู่ตรงด้านล่างของตัวเลือก 'DND' ในอินเทอร์เฟซ UI ของมือถือ?",
+              "source_options": {
+                "A": "Battery saver",
+                "B": "Mi Share",
+                "C": "Vibrate",
+                "D": "Floating window"
+              },
+              "target_options": {
+                "A": "ตัวประยัดแบต",
+                "B": "Mi แชร์",
+                "C": "สั่นเตือน",
+                "D": "หน้าต่างลอย"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:dnd"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::3/homescreen_5.jpg::en::zh",
+              "source_stem": "Which element is directly below the 'DND' option in the mobile UI interface?",
+              "target_stem": "在移动界面中，'DND'选项直接下方的元素是什么？",
+              "source_options": {
+                "A": "Battery saver",
+                "B": "Mi Share",
+                "C": "Vibrate",
+                "D": "Floating window"
+              },
+              "target_options": {
+                "A": "省电模式",
+                "B": "小米互传",
+                "C": "振动",
+                "D": "迷你小窗"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:dnd"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::3/map_6.jpg::en::th",
+              "source_stem": "What is immediately to the right of the 'Choose on map' button?",
+              "target_stem": "อะไรอยู่ทางขวาของปุ่ม 'Choose on map' ทันที",
+              "source_options": {
+                "A": "The search box",
+                "B": "The 'Map' button",
+                "C": "The keyboard",
+                "D": "The back arrow icon"
+              },
+              "target_options": {
+                "A": "กล่องค้นหา",
+                "B": "ปุ่ม 'Map'",
+                "C": "คีย์บอร์ด",
+                "D": "ไอคอนลูกศรย้อนกลับ"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:choose on map"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::3/music_3.jpg::en::th",
+              "source_stem": "Which playlist is located directly above '#1 Total 5 songs'?",
+              "target_stem": "รายการเพลิงใดอยู่ตรงข้ามกับ '#1 ทั้งหมด 5 เพลง'?",
+              "source_options": {
+                "A": "#4 Total 8 songs",
+                "B": "#2 Total 6 songs",
+                "C": "#3 Total 4 songs",
+                "D": "Shuffle playback"
+              },
+              "target_options": {
+                "A": "#4 ทั้งหมด 8 เพลง",
+                "B": "#2 ทั้งหมด 6 เพลง",
+                "C": "#3 ทั้งหมด 4 เพลง",
+                "D": "เล่นสลับ"
+              },
+              "semantic_reasons": [
+                "spatial_opposition_introduced",
+                "spatial_core_relation_missing:above"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::5/forest_2.jpg::en::th",
+              "source_stem": "Which element is located directly below the \"Novice Planter\" achievement label?",
+              "target_stem": "องค์ประกอบใดอยู่ตรงด้านล่างของป้ายชื่อ \"ความสำเร็จ นักปลูกมือใหม่\"?",
+              "source_options": {
+                "A": "The back arrow icon",
+                "B": "The \"Reward Claimed\" text",
+                "C": "The \"Share\" button",
+                "D": "The time \"15:22\""
+              },
+              "target_options": {
+                "A": "ไอคอนลูกศรย้อนกลับ",
+                "B": "ข้อความ \"เคลมรางวัลแล้ว\"",
+                "C": "ปุ่ม \"แชร์\"",
+                "D": "เวลา \"15:02\""
+              },
+              "semantic_reasons": [],
+              "diagnostics": [
+                "number_tokens_changed:D:['15', '22']->['15', '02']"
+              ]
+            },
+            {
+              "pair_id": "rel::5/forest_2.jpg::ru::th",
+              "source_stem": "Какой элемент находится прямо под меткой достижения \"Начинающий планта...\"",
+              "target_stem": "องค์ประกอบใดอยู่ตรงด้านล่างของป้ายชื่อ \"ความสําเร็จ นักปลูกมือใหม่\"",
+              "source_options": {
+                "A": "Значок стрелки назад",
+                "B": "Текст \"Вы получили награду\"",
+                "C": "Кнопка \"Поделиться\"",
+                "D": "Время \"15:48\""
+              },
+              "target_options": {
+                "A": "ไอคอนลูกศรย้อนกลับ",
+                "B": "ข้อความ \"คุณได้รับรางวัลแล้ว\"",
+                "C": "ปุ่ม \"แชร์\"",
+                "D": "เวลา \"15:02\""
+              },
+              "semantic_reasons": [],
+              "diagnostics": [
+                "number_tokens_changed:D:['15', '48']->['15', '02']"
+              ]
+            },
+            {
+              "pair_id": "rel::5/forest_2.jpg::zh::th",
+              "source_stem": "哪个元素位于“戴上草帽”成就标签的正下方？",
+              "target_stem": "องค์ประกอบใดอยู่ตรงด้านล่างของป้ายชื่อความสำเร็จ \"สวมหมวกหญ้า\"?",
+              "source_options": {
+                "A": "返回箭头图标",
+                "B": "“奖励已领取”文本",
+                "C": "“分享”按钮",
+                "D": "时间“15:22”"
+              },
+              "target_options": {
+                "A": "ไอคอนลูกศรกลับ",
+                "B": "ข้อความ \"รางวัลได้รับแล้ว\"",
+                "C": "ปุ่ม \"แชร์\"",
+                "D": "เวลา \"15:02\""
+              },
+              "semantic_reasons": [],
+              "diagnostics": [
+                "number_tokens_changed:D:['15', '22']->['15', '02']"
+              ]
+            }
+          ]
+        },
+        "TS_FULL_TXT": {
+          "transformation_rows": 288,
+          "expected_rows": 288,
+          "transformation_complete": true,
+          "inference_rows": 0,
+          "groups": {
+            "all": {
+              "pairs": 288,
+              "status": {
+                "success": 288
+              },
+              "initial_calls": 288,
+              "structure_repairs": 0,
+              "semantic_repairs": 54,
+              "semantic_repairs_accepted": 27,
+              "remaining_semantic_pairs": 39,
+              "remaining_semantic_reasons": {
+                "quoted_gui_label_may_be_untranslated:alarm": 1,
+                "spatial_core_relation_missing:below": 8,
+                "spatial_core_relation_missing:right": 1,
+                "quoted_gui_label_may_be_untranslated:customize": 2,
+                "quoted_gui_label_may_be_untranslated:handwrite": 1,
+                "spatial_opposition_introduced": 3,
+                "quoted_gui_label_may_be_untranslated:dnd": 3,
+                "quoted_gui_label_may_be_untranslated:how you commute": 1,
+                "quoted_gui_label_may_be_untranslated:choose on map": 1,
+                "spatial_core_relation_missing:above": 3,
+                "translatable_options_unchanged:A,B,C,D": 6,
+                "quoted_gui_label_may_be_untranslated:wishlist": 1,
+                "quoted_gui_label_may_be_untranslated:photo": 1,
+                "quoted_gui_label_may_be_untranslated:novice planter": 2,
+                "quoted_gui_label_may_be_untranslated:smart message recognition": 1,
+                "quoted_gui_label_may_be_untranslated:delay auto answer": 1,
+                "quoted_gui_label_may_be_untranslated:web archive": 1,
+                "quoted_gui_label_may_be_untranslated:orders": 1,
+                "quoted_gui_label_may_be_untranslated:nearby": 1,
+                "quoted_gui_label_may_be_untranslated:find apps for wallet": 2
+              },
+              "diagnostic_pairs": 2,
+              "diagnostics": {
+                "number_tokens_changed": 3
+              },
+              "inventory_failed_pairs": null,
+              "changed_pairs": 288,
+              "new_call_runtime_seconds": 766.8355390867218,
+              "model_load_seconds": 0.0,
+              "peak_reserved_gib": 15.724609375,
+              "by_gui": {
+                "en": {
+                  "pairs": 72,
+                  "semantic_repairs": 1,
+                  "remaining_semantic_pairs": 1
+                },
+                "ru": {
+                  "pairs": 72,
+                  "semantic_repairs": 10,
+                  "remaining_semantic_pairs": 5
+                },
+                "th": {
+                  "pairs": 72,
+                  "semantic_repairs": 30,
+                  "remaining_semantic_pairs": 24
+                },
+                "zh": {
+                  "pairs": 72,
+                  "semantic_repairs": 13,
+                  "remaining_semantic_pairs": 9
+                }
+              }
+            },
+            "main": {
+              "pairs": 240,
+              "status": {
+                "success": 240
+              },
+              "initial_calls": 240,
+              "structure_repairs": 0,
+              "semantic_repairs": 46,
+              "semantic_repairs_accepted": 25,
+              "remaining_semantic_pairs": 32,
+              "remaining_semantic_reasons": {
+                "spatial_core_relation_missing:below": 7,
+                "spatial_core_relation_missing:right": 1,
+                "quoted_gui_label_may_be_untranslated:customize": 2,
+                "quoted_gui_label_may_be_untranslated:handwrite": 1,
+                "spatial_opposition_introduced": 2,
+                "quoted_gui_label_may_be_untranslated:dnd": 3,
+                "quoted_gui_label_may_be_untranslated:how you commute": 1,
+                "quoted_gui_label_may_be_untranslated:choose on map": 1,
+                "spatial_core_relation_missing:above": 2,
+                "translatable_options_unchanged:A,B,C,D": 6,
+                "quoted_gui_label_may_be_untranslated:wishlist": 1,
+                "quoted_gui_label_may_be_untranslated:novice planter": 2,
+                "quoted_gui_label_may_be_untranslated:smart message recognition": 1,
+                "quoted_gui_label_may_be_untranslated:delay auto answer": 1,
+                "quoted_gui_label_may_be_untranslated:nearby": 1,
+                "quoted_gui_label_may_be_untranslated:find apps for wallet": 2
+              },
+              "diagnostic_pairs": 1,
+              "diagnostics": {
+                "number_tokens_changed": 1
+              },
+              "inventory_failed_pairs": null,
+              "changed_pairs": 240,
+              "new_call_runtime_seconds": 612.1404959494248,
+              "model_load_seconds": 0.0,
+              "peak_reserved_gib": 15.724609375,
+              "by_gui": {
+                "en": {
+                  "pairs": 60,
+                  "semantic_repairs": 0,
+                  "remaining_semantic_pairs": 0
+                },
+                "ru": {
+                  "pairs": 60,
+                  "semantic_repairs": 9,
+                  "remaining_semantic_pairs": 4
+                },
+                "th": {
+                  "pairs": 60,
+                  "semantic_repairs": 28,
+                  "remaining_semantic_pairs": 23
+                },
+                "zh": {
+                  "pairs": 60,
+                  "semantic_repairs": 9,
+                  "remaining_semantic_pairs": 5
+                }
+              }
+            },
+            "pilot": {
+              "pairs": 48,
+              "status": {
+                "success": 48
+              },
+              "initial_calls": 48,
+              "structure_repairs": 0,
+              "semantic_repairs": 8,
+              "semantic_repairs_accepted": 2,
+              "remaining_semantic_pairs": 7,
+              "remaining_semantic_reasons": {
+                "quoted_gui_label_may_be_untranslated:alarm": 1,
+                "spatial_core_relation_missing:below": 1,
+                "quoted_gui_label_may_be_untranslated:photo": 1,
+                "spatial_opposition_introduced": 1,
+                "quoted_gui_label_may_be_untranslated:web archive": 1,
+                "quoted_gui_label_may_be_untranslated:orders": 1,
+                "spatial_core_relation_missing:above": 1
+              },
+              "diagnostic_pairs": 1,
+              "diagnostics": {
+                "number_tokens_changed": 2
+              },
+              "inventory_failed_pairs": null,
+              "changed_pairs": 48,
+              "new_call_runtime_seconds": 154.69504313729703,
+              "model_load_seconds": 0.0,
+              "peak_reserved_gib": 15.724609375,
+              "by_gui": {
+                "en": {
+                  "pairs": 12,
+                  "semantic_repairs": 1,
+                  "remaining_semantic_pairs": 1
+                },
+                "ru": {
+                  "pairs": 12,
+                  "semantic_repairs": 1,
+                  "remaining_semantic_pairs": 1
+                },
+                "th": {
+                  "pairs": 12,
+                  "semantic_repairs": 2,
+                  "remaining_semantic_pairs": 1
+                },
+                "zh": {
+                  "pairs": 12,
+                  "semantic_repairs": 4,
+                  "remaining_semantic_pairs": 4
+                }
+              }
+            }
+          },
+          "flagged_examples": [
+            {
+              "pair_id": "rel::2/map_9.png::ru::th",
+              "source_stem": "Какой элемент находится прямо под переключателем 'Избегать платных дорог'?",
+              "target_stem": "องค์ประกอบใดอยู่ต่ำกว่าสวิตช์ 'หลีกเลี่ยงทางหลวงเสียค่าใช้จ่าย'?",
+              "source_options": {
+                "A": "Избегать автомагистралей",
+                "B": "Избегать лестниц",
+                "C": "Электровелосипед",
+                "D": "Метро и трамвай"
+              },
+              "target_options": {
+                "A": "หลีกเลี่ยงทางหลวง",
+                "B": "หลีกเลี่ยงบันได",
+                "C": "จักรยานไฟฟ้า",
+                "D": "รถไฟฟ้าและรถราง"
+              },
+              "semantic_reasons": [
+                "spatial_core_relation_missing:below"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::2/note_8.png::en::th",
+              "source_stem": "Which element is located directly to the right of the 'Customize' option in the customization menu?",
+              "target_stem": "องค์ประกอบใดอยู่ติดกับตัวเลือก 'Customize' ในเมนูการปรับแต่ง?",
+              "source_options": {
+                "A": "Done",
+                "B": "Reset",
+                "C": "Drag to remove items",
+                "D": "Camera icon"
+              },
+              "target_options": {
+                "A": "เสร็จสิ้น",
+                "B": "รีเซ็ต",
+                "C": "ลากเพื่อเอาไอเทมออก",
+                "D": "ไอคอนกล้อง"
+              },
+              "semantic_reasons": [
+                "spatial_core_relation_missing:right",
+                "quoted_gui_label_may_be_untranslated:customize"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::2/note_8.png::en::zh",
+              "source_stem": "Which element is located directly to the right of the 'Customize' option in the customization menu?",
+              "target_stem": "在自定义菜单中，'Customize'选项的右侧直接是什么元素？",
+              "source_options": {
+                "A": "Done",
+                "B": "Reset",
+                "C": "Drag to remove items",
+                "D": "Camera icon"
+              },
+              "target_options": {
+                "A": "完成",
+                "B": "重置",
+                "C": "拖动以移除项目",
+                "D": "相机图标"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:customize"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::2/setting_3.png::en::th",
+              "source_stem": "Which element is located directly to the right of the 'Handwrite' button?",
+              "target_stem": "องค์ประกอบใดอยู่ทางด้านขวาโดยตรงของปุ่ม 'Handwrite'?",
+              "source_options": {
+                "A": "Delete",
+                "B": "Select",
+                "C": "Insert",
+                "D": "Join"
+              },
+              "target_options": {
+                "A": "ลบ",
+                "B": "เลือก",
+                "C": "แทรกลง",
+                "D": "รวม"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:handwrite"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::2/setting_3.png::ru::th",
+              "source_stem": "Какой элемент находится непосредственно справа от кнопки 'Написание'?",
+              "target_stem": "องค์ประกอบใดอยู่ทางขวาของปุ่ม 'การเขียน' อย่างตรงข้าม?",
+              "source_options": {
+                "A": "Удаление",
+                "B": "Выбор",
+                "C": "Вставка",
+                "D": "Соединение"
+              },
+              "target_options": {
+                "A": "การลบ",
+                "B": "การเลือก",
+                "C": "การแทรก",
+                "D": "การเชื่อมต่อ"
+              },
+              "semantic_reasons": [
+                "spatial_opposition_introduced"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::3/homescreen_5.jpg::en::ru",
+              "source_stem": "Which element is directly below the 'DND' option in the mobile UI interface?",
+              "target_stem": "Какой элемент находится непосредственно ниже опции 'DND' в интерфейсе мобильного приложения?",
+              "source_options": {
+                "A": "Battery saver",
+                "B": "Mi Share",
+                "C": "Vibrate",
+                "D": "Floating window"
+              },
+              "target_options": {
+                "A": "Экономия заряда",
+                "B": "Mi Share",
+                "C": "Вибрация",
+                "D": "Плавающее окно"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:dnd"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::3/homescreen_5.jpg::en::th",
+              "source_stem": "Which element is directly below the 'DND' option in the mobile UI interface?",
+              "target_stem": "องค์ประกอบใดอยู่ตรงด้านล่างของตัวเลือก 'DND' ในอินเทอร์เฟซ UI บนมือถือ?",
+              "source_options": {
+                "A": "Battery saver",
+                "B": "Mi Share",
+                "C": "Vibrate",
+                "D": "Floating window"
+              },
+              "target_options": {
+                "A": "โหมดประหยัดแบตเตอรี่",
+                "B": "Mi Share",
+                "C": "สั่น",
+                "D": "หน้าต่างลอย"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:dnd"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::3/homescreen_5.jpg::en::zh",
+              "source_stem": "Which element is directly below the 'DND' option in the mobile UI interface?",
+              "target_stem": "在移动界面中，'DND'选项直接下方的元素是什么？",
+              "source_options": {
+                "A": "Battery saver",
+                "B": "Mi Share",
+                "C": "Vibrate",
+                "D": "Floating window"
+              },
+              "target_options": {
+                "A": "省电模式",
+                "B": "小米分享",
+                "C": "震动",
+                "D": "悬浮窗口"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:dnd"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::3/homescreen_5.jpg::ru::th",
+              "source_stem": "Какой элемент находится прямо под опцией 'Не беспокоить' в интерфейсе мобильного устройства?",
+              "target_stem": "องค์ประกอบใดอยู่ต่ำกว่าตัวเลือก 'ไม่รบกวน' ในอินเทอร์เฟซของอุปกรณ์เคลื่อนที่?",
+              "source_options": {
+                "A": "Экономия энергии",
+                "B": "Mi Share",
+                "C": "Вибрация",
+                "D": "Плавающие окн..."
+              },
+              "target_options": {
+                "A": "การประหยัดพลังงาน",
+                "B": "Mi Share",
+                "C": "การสั่น",
+                "D": "หน้าต่างลอย..."
+              },
+              "semantic_reasons": [
+                "spatial_core_relation_missing:below"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::3/map_4.jpg::en::th",
+              "source_stem": "Which option is located directly beneath the 'How you commute' headline?",
+              "target_stem": "ตัวเลือกใดอยู่ตรงด้านล่างของหัวข้อ 'How you commute'?",
+              "source_options": {
+                "A": "Enter work address",
+                "B": "Let Maps improve your commute times accuracy by using Location History",
+                "C": "Choose transportation mode",
+                "D": "Not set up"
+              },
+              "target_options": {
+                "A": "ป้อนที่อยู่ทำงาน",
+                "B": "ให้ Maps ช่วยปรับปรุงความแม่นยำของเวลาเดินทางโดยใช้ประวัติตำแหน่ง",
+                "C": "เลือกโหมดการเดินทาง",
+                "D": "ยังไม่ตั้งค่า"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:how you commute"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::3/map_4.jpg::ru::th",
+              "source_stem": "Какой вариант находится прямо под заголовком 'Как вы добираетесь'?",
+              "target_stem": "ตัวเลือกใดอยู่ต่ำกว่าหัวข้อ 'คุณเดินทางอย่างไร'",
+              "source_options": {
+                "A": "Введите рабочий адрес",
+                "B": "Позвольте Картам улучшить точность времени в пути, используя Историю местоположений",
+                "C": "Выберите средство передвижения",
+                "D": "Не настроено"
+              },
+              "target_options": {
+                "A": "ป้อนที่อยู่ทำงาน",
+                "B": "อนุญาตให้แผนที่ปรับปรุงความแม่นยำของเวลาในการเดินทางโดยใช้ประวัติตำแหน่ง",
+                "C": "เลือกเครื่องมือการเดินทาง",
+                "D": "ไม่ตั้งค่า"
+              },
+              "semantic_reasons": [
+                "spatial_core_relation_missing:below"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::3/map_6.jpg::en::th",
+              "source_stem": "What is immediately to the right of the 'Choose on map' button?",
+              "target_stem": "อะไรอยู่ทางด้านขวาของปุ่ม 'Choose on map' ทันที",
+              "source_options": {
+                "A": "The search box",
+                "B": "The 'Map' button",
+                "C": "The keyboard",
+                "D": "The back arrow icon"
+              },
+              "target_options": {
+                "A": "กล่องค้นหา",
+                "B": "ปุ่ม 'Map'",
+                "C": "คีย์บอร์ด",
+                "D": "ไอคอนลูกศรย้อนกลับ"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:choose on map"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::3/music_10.jpg::en::th",
+              "source_stem": "Which element is located directly above the 'Update automatically' option in the given interface?",
+              "target_stem": "องค์ประกอบใดอยู่ตรงข้ามกับตัวเลือก 'อัปเดตอัตโนมัติ' ในอินเทอร์เฟซที่กำหนด?",
+              "source_options": {
+                "A": "Version",
+                "B": "User Agreement",
+                "C": "Privacy Policy",
+                "D": "Advanced settings"
+              },
+              "target_options": {
+                "A": "เวอร์ชัน",
+                "B": "ข้อตกลงผู้ใช้",
+                "C": "นโยบายความเป็นส่วนตัว",
+                "D": "ตั้งค่าขั้นสูง"
+              },
+              "semantic_reasons": [
+                "spatial_core_relation_missing:above",
+                "spatial_opposition_introduced"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::3/music_3.jpg::en::ru",
+              "source_stem": "Which playlist is located directly above '#1 Total 5 songs'?",
+              "target_stem": "Какая плейлист находится непосредственно выше '#1 Total 5 songs'?",
+              "source_options": {
+                "A": "#4 Total 8 songs",
+                "B": "#2 Total 6 songs",
+                "C": "#3 Total 4 songs",
+                "D": "Shuffle playback"
+              },
+              "target_options": {
+                "A": "#4 Total 8 songs",
+                "B": "#2 Total 6 songs",
+                "C": "#3 Total 4 songs",
+                "D": "Shuffle playback"
+              },
+              "semantic_reasons": [
+                "translatable_options_unchanged:A,B,C,D"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::3/music_3.jpg::en::th",
+              "source_stem": "Which playlist is located directly above '#1 Total 5 songs'?",
+              "target_stem": "เพลย์ลิสต์ใดอยู่ตรงข้างบน '#1 Total 5 songs'?",
+              "source_options": {
+                "A": "#4 Total 8 songs",
+                "B": "#2 Total 6 songs",
+                "C": "#3 Total 4 songs",
+                "D": "Shuffle playback"
+              },
+              "target_options": {
+                "A": "#4 Total 8 songs",
+                "B": "#2 Total 6 songs",
+                "C": "#3 Total 4 songs",
+                "D": "Shuffle playback"
+              },
+              "semantic_reasons": [
+                "translatable_options_unchanged:A,B,C,D"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::3/music_3.jpg::en::zh",
+              "source_stem": "Which playlist is located directly above '#1 Total 5 songs'?",
+              "target_stem": "哪一个播放列表直接位于 '#1 Total 5 songs' 的上方？",
+              "source_options": {
+                "A": "#4 Total 8 songs",
+                "B": "#2 Total 6 songs",
+                "C": "#3 Total 4 songs",
+                "D": "Shuffle playback"
+              },
+              "target_options": {
+                "A": "#4 Total 8 songs",
+                "B": "#2 Total 6 songs",
+                "C": "#3 Total 4 songs",
+                "D": "Shuffle playback"
+              },
+              "semantic_reasons": [
+                "translatable_options_unchanged:A,B,C,D"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::4/google_play_6.jpg::en::th",
+              "source_stem": "Which element is located directly below the 'Wishlist' section?",
+              "target_stem": "องค์ประกอบใดอยู่ตรงด้านล่างของส่วน 'Wishlist'?",
+              "source_options": {
+                "A": "A section for 'Books'",
+                "B": "iconAn for adding a new book",
+                "C": "A button to edit the list",
+                "D": "A settings menu"
+              },
+              "target_options": {
+                "A": "ส่วนสำหรับ 'Books'",
+                "B": "ไอคอนสำหรับเพิ่มหนังสือใหม่",
+                "C": "ปุ่มสำหรับแก้ไขรายการ",
+                "D": "เมนูตั้งค่า"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:wishlist"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::4/google_play_6.jpg::ru::th",
+              "source_stem": "Какой элемент находится непосредственно под разделом 'Список желаний'?",
+              "target_stem": "องค์ประกอบใดอยู่ต่ำกว่าส่วน 'รายการที่ต้องการ' อย่างตรงไปตรงมา",
+              "source_options": {
+                "A": "Раздел для 'Книги'",
+                "B": "Значок для добавления новой книги",
+                "C": "Кнопка для редактирования списка",
+                "D": "Меню настроек"
+              },
+              "target_options": {
+                "A": "ส่วนสำหรับ 'หนังสือ'",
+                "B": "ไอคอนสำหรับเพิ่มหนังสือใหม่",
+                "C": "ปุ่มสำหรับแก้ไขรายการ",
+                "D": "เมนูการตั้งค่า"
+              },
+              "semantic_reasons": [
+                "spatial_core_relation_missing:below"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::4/google_play_8.jpg::ru::th",
+              "source_stem": "Какой параметр находится непосредственно выше опции «Использовать данные о местоположении устройства» в меню настроек?",
+              "target_stem": "ตัวเลือกใดอยู่ติดกับตัวเลือก \"ใช้ข้อมูลตำแหน่งของอุปกรณ์\" ในเมนูตั้งค่า?",
+              "source_options": {
+                "A": "Отзывы в Google Play",
+                "B": "Google Play Instant",
+                "C": "Уведомления",
+                "D": "Настройки аккаунта и устройства"
+              },
+              "target_options": {
+                "A": "รีวิวใน Google Play",
+                "B": "Google Play Instant",
+                "C": "การแจ้งเตือน",
+                "D": "ตั้งค่าบัญชีและอุปกรณ์"
+              },
+              "semantic_reasons": [
+                "spatial_core_relation_missing:above"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::4/google_play_8.jpg::zh::ru",
+              "source_stem": "在设置菜单中，哪个设置位于“使用设备位置信息”选项的正上方？",
+              "target_stem": "В меню настроек, какой параметр находится непосредственно выше опции «Использовать информацию о местоположении устройства»?",
+              "source_options": {
+                "A": "Google Play 商店反馈",
+                "B": "Google Play 免安装体验",
+                "C": "通知",
+                "D": "账号和设备偏好设置"
+              },
+              "target_options": {
+                "A": "Обратная связь Google Play Маркета",
+                "B": "Опыт без установки Google Play",
+                "C": "Уведомления",
+                "D": "Аккаунт и предпочтения устройства"
+              },
+              "semantic_reasons": [],
+              "diagnostics": [
+                "number_tokens_changed:A:[]->['5']"
+              ]
+            },
+            {
+              "pair_id": "rel::5/forest_2.jpg::en::th",
+              "source_stem": "Which element is located directly below the \"Novice Planter\" achievement label?",
+              "target_stem": "องค์ประกอบใดอยู่ตรงด้านล่างของป้ายชื่อ \"Novice Planter\"?",
+              "source_options": {
+                "A": "The back arrow icon",
+                "B": "The \"Reward Claimed\" text",
+                "C": "The \"Share\" button",
+                "D": "The time \"15:22\""
+              },
+              "target_options": {
+                "A": "ไอคอนลูกศรย้อนกลับ",
+                "B": "ข้อความ \"Reward Claimed\"",
+                "C": "ปุ่ม \"Share\"",
+                "D": "เวลา \"15:22\""
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:novice planter"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::5/forest_2.jpg::en::zh",
+              "source_stem": "Which element is located directly below the \"Novice Planter\" achievement label?",
+              "target_stem": "以下哪个元素位于 \"Novice Planter\" 成就标签的正下方？",
+              "source_options": {
+                "A": "The back arrow icon",
+                "B": "The \"Reward Claimed\" text",
+                "C": "The \"Share\" button",
+                "D": "The time \"15:22\""
+              },
+              "target_options": {
+                "A": "返回箭头图标",
+                "B": " \"Reward Claimed\" 文本",
+                "C": " \"Share\" 按钮",
+                "D": "时间 \"15:22\""
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:novice planter"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::5/forest_2.jpg::ru::th",
+              "source_stem": "Какой элемент находится прямо под меткой достижения \"Начинающий планта...\"",
+              "target_stem": "องค์ประกอบใดอยู่ต่ำกว่าป้ายชื่อ \"ผู้เริ่มต้นปลูกต้นไม้...\" อย่างตรงไปตรงมา",
+              "source_options": {
+                "A": "Значок стрелки назад",
+                "B": "Текст \"Вы получили награду\"",
+                "C": "Кнопка \"Поделиться\"",
+                "D": "Время \"15:48\""
+              },
+              "target_options": {
+                "A": "ไอคอนลูกศรย้อนกลับ",
+                "B": "ข้อความ \"คุณได้รับรางวัล\"",
+                "C": "ปุ่ม \"แบ่งปัน\"",
+                "D": "เวลา \"15:48\""
+              },
+              "semantic_reasons": [
+                "spatial_core_relation_missing:below"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::5/message_2.jpg::en::th",
+              "source_stem": "Which toggle switch is located directly below the \"Smart message recognition\" option?",
+              "target_stem": "สวิตช์แบบทูดที่อยู่ตรงด้านล่างของตัวเลือก \"Smart message recognition\" คือตัวเลือกใด",
+              "source_options": {
+                "A": "Verification code protection",
+                "B": "Service messages",
+                "C": "Card view",
+                "D": "Send service messages to"
+              },
+              "target_options": {
+                "A": "การป้องกันรหัสยืนยัน",
+                "B": "ข้อความบริการ",
+                "C": "การมองเห็นแบบบัตร",
+                "D": "ส่งข้อความบริการไปยัง"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:smart message recognition"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::5/phone_4.jpg::en::th",
+              "source_stem": "Which option is directly below \"Delay auto answer\"?",
+              "target_stem": "ตัวเลือกใดอยู่ตรงด้านล่างของ \"Delay auto answer\"?",
+              "source_options": {
+                "A": "Press Power button to end calls",
+                "B": "Auto answer calls when connected to external audio device",
+                "C": "Answer/End calls",
+                "D": "Bluetooth or wired earphones, and other audio devices"
+              },
+              "target_options": {
+                "A": "กดปุ่ม Power เพื่อสิ้นสุดการโทร",
+                "B": "ตอบรับการโทรอัตโนมัติเมื่อเชื่อมต่อกับอุปกรณ์เสียงภายนอก",
+                "C": "ตอบรับ/สิ้นสุดการโทร",
+                "D": "หูฟัง Bluetooth หรือหูฟังสาย และอุปกรณ์เสียงอื่นๆ"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:delay auto answer"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::5/phone_4.jpg::ru::th",
+              "source_stem": "Какой вариант находится непосредственно под \"Задержка автоответа\"?",
+              "target_stem": "ตัวเลือกใดอยู่ต่ำกว่า \"การตั้งค่าการตอบกลับอัตโนมัติ\"?",
+              "source_options": {
+                "A": "Завершение вызова кнопкой питания",
+                "B": "Автоматически отвечать на вызовы при подключении к внешнему аудиоустройству",
+                "C": "Ответить на вызов / Завершить выз…",
+                "D": "Наушники проводные или Bluetooth и другие аудиоустройства"
+              },
+              "target_options": {
+                "A": "ปิดการเรียกใช้งานด้วยปุ่มปิดเครื่อง",
+                "B": "ตอบกลับอัตโนมัติเมื่อเชื่อมต่อกับอุปกรณ์เสียงภายนอก",
+                "C": "ตอบกลับการเรียกใช้งาน / ปิดการเรียกใช้งาน…",
+                "D": "หูฟังแบบสายหรือ Bluetooth และอุปกรณ์เสียงอื่นๆ"
+              },
+              "semantic_reasons": [
+                "spatial_core_relation_missing:below"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::6/camera_8.jpg::en::ru",
+              "source_stem": "Which mode is directly to the left of the PHOTO mode on this user interface?",
+              "target_stem": "Какой режим находится непосредственно слева от режима PHOTO в этом пользовательском интерфейсе?",
+              "source_options": {
+                "A": "VIDEO",
+                "B": "PORTRAIT",
+                "C": "CINEMATIC",
+                "D": "PANO"
+              },
+              "target_options": {
+                "A": "VIDEO",
+                "B": "PORTRAIT",
+                "C": "CINEMATIC",
+                "D": "PANO"
+              },
+              "semantic_reasons": [
+                "translatable_options_unchanged:A,B,C,D"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::6/camera_8.jpg::en::th",
+              "source_stem": "Which mode is directly to the left of the PHOTO mode on this user interface?",
+              "target_stem": "โหมดใดอยู่ทางด้านซ้ายของโหมด PHOTO บนอินเทอร์เฟซนี้โดยตรง?",
+              "source_options": {
+                "A": "VIDEO",
+                "B": "PORTRAIT",
+                "C": "CINEMATIC",
+                "D": "PANO"
+              },
+              "target_options": {
+                "A": "VIDEO",
+                "B": "PORTRAIT",
+                "C": "CINEMATIC",
+                "D": "PANO"
+              },
+              "semantic_reasons": [
+                "translatable_options_unchanged:A,B,C,D"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::6/camera_8.jpg::en::zh",
+              "source_stem": "Which mode is directly to the left of the PHOTO mode on this user interface?",
+              "target_stem": "以下哪种模式位于此用户界面的 PHOTO 模式左侧？",
+              "source_options": {
+                "A": "VIDEO",
+                "B": "PORTRAIT",
+                "C": "CINEMATIC",
+                "D": "PANO"
+              },
+              "target_options": {
+                "A": "VIDEO",
+                "B": "PORTRAIT",
+                "C": "CINEMATIC",
+                "D": "PANO"
+              },
+              "semantic_reasons": [
+                "translatable_options_unchanged:A,B,C,D"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::6/wallet_6.jpg::en::th",
+              "source_stem": "What element is located directly below the 'Nearby' label on the interface?",
+              "target_stem": "องค์ประกอบใดอยู่ตรงด้านล่างของป้ายชื่อ 'Nearby' บนอินเทอร์เฟซ?",
+              "source_options": {
+                "A": "Search field",
+                "B": "Jilin Transit Card",
+                "C": "Beijing T-Union Transit Card",
+                "D": "China label"
+              },
+              "target_options": {
+                "A": "ช่องค้นหา",
+                "B": "บัตรเดินทางจิลินทรานซิท",
+                "C": "บัตรเดินทางที-ยูเนียนเป่ย์จิง",
+                "D": "ป้ายชื่อจีน"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:nearby"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::6/wallet_6.jpg::ru::th",
+              "source_stem": "Какой элемент находится непосредственно под меткой 'Скоро' на интерфейсе?",
+              "target_stem": "องค์ประกอบใดอยู่ต่ำกว่าป้าย 'เร็วๆ นี้' บนอินเทอร์เฟซ?",
+              "source_options": {
+                "A": "Поле поиска",
+                "B": "Транспортная карта Jilin",
+                "C": "Beijing T-Union Transit Card",
+                "D": "China label"
+              },
+              "target_options": {
+                "A": "ช่องค้นหา",
+                "B": "แผนที่การเดินทาง Jilin",
+                "C": "บัตรเดินทาง Beijing T-Union",
+                "D": "ป้าย China"
+              },
+              "semantic_reasons": [
+                "spatial_core_relation_missing:below"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::6/wallet_8.jpg::en::ru",
+              "source_stem": "What is positioned immediately above the 'Find Apps for Wallet' text?",
+              "target_stem": "Что расположено непосредственно выше текста 'Find Apps for Wallet'?",
+              "source_options": {
+                "A": "The battery indicator",
+                "B": "The 'GET' button",
+                "C": "The 'Boarding Passes and Tickets' text",
+                "D": "The time display"
+              },
+              "target_options": {
+                "A": "Индикатор батареи",
+                "B": "Кнопка 'GET'",
+                "C": "Текст 'Boarding Passes and Tickets'",
+                "D": "Показатель времени"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:find apps for wallet"
+              ],
+              "diagnostics": []
+            },
+            {
+              "pair_id": "rel::6/wallet_8.jpg::en::th",
+              "source_stem": "What is positioned immediately above the 'Find Apps for Wallet' text?",
+              "target_stem": "สิ่งใดอยู่ทันทีข้างบนของข้อความ 'Find Apps for Wallet'?",
+              "source_options": {
+                "A": "The battery indicator",
+                "B": "The 'GET' button",
+                "C": "The 'Boarding Passes and Tickets' text",
+                "D": "The time display"
+              },
+              "target_options": {
+                "A": "ไอคอนแบตเตอรี่",
+                "B": "ปุ่ม 'GET'",
+                "C": "ข้อความ 'Boarding Passes and Tickets'",
+                "D": "การแสดงเวลา"
+              },
+              "semantic_reasons": [
+                "quoted_gui_label_may_be_untranslated:find apps for wallet"
+              ],
+              "diagnostics": []
+            }
+          ]
+        },
+        "TS_SEL_GUI_AUTO": {
+          "transformation_rows": 288,
+          "expected_rows": 288,
+          "transformation_complete": true,
+          "inference_rows": 0,
+          "groups": {
+            "all": {
+              "pairs": 288,
+              "status": {
+                "success": 234,
+                "fallback_original": 48,
+                "no_op_no_edits": 6
+              }
+            },
+            "main": {
+              "pairs": 240,
+              "status": {
+                "fallback_original": 37,
+                "success": 197,
+                "no_op_no_edits": 6
+              }
+            },
+            "pilot": {
+              "pairs": 48,
+              "status": {
+                "success": 37,
+                "fallback_original": 11
+              }
+            }
+          },
+          "flagged_examples": []
+        },
+        "TS_SEL_TXT_AUTO": {
+          "transformation_rows": 5,
+          "expected_rows": 288,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_SEL_GUI_ORACLE": {
+          "transformation_rows": 0,
+          "expected_rows": 288,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_SEL_TXT_ORACLE": {
+          "transformation_rows": 0,
+          "expected_rows": 288,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_QSEL_OFULL_GUI_AUTO": {
+          "transformation_rows": 0,
+          "expected_rows": 288,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_QSEL_OFULL_TXT_AUTO": {
+          "transformation_rows": 0,
+          "expected_rows": 288,
+          "transformation_complete": false,
+          "inference_rows": 0
+        }
+      },
+      "accuracies": {},
+      "inventory": {
+        "all": {
+          "images": 128,
+          "success": 125,
+          "repair_attempted": 13,
+          "repair_recovered": 10,
+          "failed": 3,
+          "affected_pairs": 9
+        },
+        "main": {
+          "images": 80,
+          "success": 77,
+          "repair_attempted": 6,
+          "repair_recovered": 3,
+          "failed": 3,
+          "affected_pairs": 9
+        },
+        "pilot": {
+          "images": 48,
+          "success": 48,
+          "repair_attempted": 7,
+          "repair_recovered": 7,
+          "failed": 0,
+          "affected_pairs": 0
+        }
+      },
+      "inventory_failures": [
+        {
+          "parallel_id": "rel::3/homescreen_5.jpg",
+          "gui_language": "en",
+          "errors": [
+            "invalid_json:Expecting value"
+          ]
+        },
+        {
+          "parallel_id": "rel::3/map_6.jpg",
+          "gui_language": "th",
+          "errors": [
+            "invalid_json:Unterminated string starting at"
+          ]
+        },
+        {
+          "parallel_id": "rel::4/google_play_6.jpg",
+          "gui_language": "zh",
+          "errors": [
+            "invalid_json:Unterminated string starting at"
+          ]
+        }
+      ],
+      "extraction": {
+        "all": {
+          "source_mcqs": 128,
+          "paired": {
+            "success->success": 112,
+            "failed->success": 15,
+            "success->failed": 1
+          },
+          "scopes": {
+            "all_fields": {
+              "failed": 15,
+              "repair_attempted": 19,
+              "repair_recovered": 4,
+              "valid_but_no_stem_ref": 30,
+              "option_only_failed": 9,
+              "failure_fields": {
+                "A": 8,
+                "B": 8,
+                "C": 4,
+                "D": 9,
+                "question_stem": 6
+              },
+              "stem_spans": {
+                "tp": 79,
+                "fp": 4,
+                "fn": 49,
+                "precision": 0.9518072289156626,
+                "recall": 0.6171875,
+                "f1": 0.7488151658767772
+              }
+            },
+            "stem_only": {
+              "failed": 1,
+              "repair_attempted": 1,
+              "repair_recovered": 0,
+              "valid_but_no_stem_ref": 0,
+              "option_only_failed": 0,
+              "failure_fields": {
+                "question_stem": 1
+              },
+              "stem_spans": {
+                "tp": 111,
+                "fp": 16,
+                "fn": 17,
+                "precision": 0.8740157480314961,
+                "recall": 0.8671875,
+                "f1": 0.8705882352941177
+              }
+            }
+          }
+        },
+        "main": {
+          "source_mcqs": 80,
+          "paired": {
+            "failed->success": 6,
+            "success->success": 73,
+            "success->failed": 1
+          },
+          "scopes": {
+            "all_fields": {
+              "failed": 6,
+              "repair_attempted": 10,
+              "repair_recovered": 4,
+              "valid_but_no_stem_ref": 20,
+              "option_only_failed": 2,
+              "failure_fields": {
+                "A": 1,
+                "B": 1,
+                "C": 1,
+                "D": 2,
+                "question_stem": 4
+              },
+              "stem_spans": {
+                "tp": 50,
+                "fp": 4,
+                "fn": 30,
+                "precision": 0.9259259259259259,
+                "recall": 0.625,
+                "f1": 0.746268656716418
+              }
+            },
+            "stem_only": {
+              "failed": 1,
+              "repair_attempted": 1,
+              "repair_recovered": 0,
+              "valid_but_no_stem_ref": 0,
+              "option_only_failed": 0,
+              "failure_fields": {
+                "question_stem": 1
+              },
+              "stem_spans": {
+                "tp": 64,
+                "fp": 15,
+                "fn": 16,
+                "precision": 0.810126582278481,
+                "recall": 0.8,
+                "f1": 0.8050314465408805
+              }
+            }
+          }
+        },
+        "pilot": {
+          "source_mcqs": 48,
+          "paired": {
+            "success->success": 39,
+            "failed->success": 9
+          },
+          "scopes": {
+            "all_fields": {
+              "failed": 9,
+              "repair_attempted": 9,
+              "repair_recovered": 0,
+              "valid_but_no_stem_ref": 10,
+              "option_only_failed": 7,
+              "failure_fields": {
+                "question_stem": 2,
+                "A": 7,
+                "B": 7,
+                "D": 7,
+                "C": 3
+              },
+              "stem_spans": {
+                "tp": 29,
+                "fp": 0,
+                "fn": 19,
+                "precision": 1.0,
+                "recall": 0.6041666666666666,
+                "f1": 0.7532467532467533
+              }
+            },
+            "stem_only": {
+              "failed": 0,
+              "repair_attempted": 0,
+              "repair_recovered": 0,
+              "valid_but_no_stem_ref": 0,
+              "failure_fields": {},
+              "stem_spans": {
+                "tp": 47,
+                "fp": 1,
+                "fn": 1,
+                "precision": 0.9791666666666666,
+                "recall": 0.9791666666666666,
+                "f1": 0.9791666666666666
+              }
+            }
+          }
+        }
+      },
+      "inference_rows": 0
+    },
+    "selection": {
+      "pairs": 240,
+      "primary_pairs": 239,
+      "stages": {
+        "inventory": {
+          "complete": false,
+          "started": false
+        },
+        "extract": {
+          "complete": false,
+          "started": false
+        },
+        "extract_stem": {
+          "complete": false,
+          "started": false
+        }
+      },
+      "transformations": {
+        "TS_FULL_GUI": {
+          "transformation_rows": 0,
+          "expected_rows": 240,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_FULL_TXT": {
+          "transformation_rows": 0,
+          "expected_rows": 240,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_SEL_GUI_AUTO": {
+          "transformation_rows": 0,
+          "expected_rows": 240,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_SEL_TXT_AUTO": {
+          "transformation_rows": 0,
+          "expected_rows": 240,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_SEL_GUI_ORACLE": {
+          "transformation_rows": 0,
+          "expected_rows": 240,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_SEL_TXT_ORACLE": {
+          "transformation_rows": 0,
+          "expected_rows": 240,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_QSEL_OFULL_GUI_AUTO": {
+          "transformation_rows": 0,
+          "expected_rows": 240,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_QSEL_OFULL_TXT_AUTO": {
+          "transformation_rows": 0,
+          "expected_rows": 240,
+          "transformation_complete": false,
+          "inference_rows": 0
+        }
+      },
+      "accuracies": {},
+      "inference_rows": 0
+    },
+    "internal_evaluation": {
+      "pairs": 1416,
+      "primary_pairs": 1416,
+      "stages": {
+        "inventory": {
+          "complete": false,
+          "started": false
+        },
+        "extract": {
+          "complete": false,
+          "started": false
+        },
+        "extract_stem": {
+          "complete": false,
+          "started": false
+        }
+      },
+      "transformations": {
+        "TS_FULL_GUI": {
+          "transformation_rows": 0,
+          "expected_rows": 1416,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_FULL_TXT": {
+          "transformation_rows": 0,
+          "expected_rows": 1416,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_SEL_GUI_AUTO": {
+          "transformation_rows": 0,
+          "expected_rows": 1416,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_SEL_TXT_AUTO": {
+          "transformation_rows": 0,
+          "expected_rows": 1416,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_SEL_GUI_ORACLE": {
+          "transformation_rows": 0,
+          "expected_rows": 1416,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_SEL_TXT_ORACLE": {
+          "transformation_rows": 0,
+          "expected_rows": 1416,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_QSEL_OFULL_GUI_AUTO": {
+          "transformation_rows": 0,
+          "expected_rows": 1416,
+          "transformation_complete": false,
+          "inference_rows": 0
+        },
+        "TS_QSEL_OFULL_TXT_AUTO": {
+          "transformation_rows": 0,
+          "expected_rows": 1416,
+          "transformation_complete": false,
+          "inference_rows": 0
+        }
+      },
+      "accuracies": {},
+      "inference_rows": 0
+    }
+  },
+  "source_captures": {
+    "followup_rel_4lang/method_dev/artifacts/dataset_audit/evaluation_labels_PRIVATE.jsonl": {
+      "path": "followup_rel_4lang/method_dev/artifacts/dataset_audit/evaluation_labels_PRIVATE.jsonl",
+      "captured_bytes": 281281,
+      "sha256": "82e29e2a57d1f361a1b13020fda34068f95bf5762c29a1c8d610d198aa3a7c6a",
+      "complete_lines": 1944
+    },
+    "followup_rel_4lang/method_dev/artifacts/dataset_audit/oracle_spans_DIAGNOSTIC_ONLY.jsonl": {
+      "path": "followup_rel_4lang/method_dev/artifacts/dataset_audit/oracle_spans_DIAGNOSTIC_ONLY.jsonl",
+      "captured_bytes": 1192231,
+      "sha256": "b6f1642a1d257d7f6aa92ff3724957cb4541b44910273ac452a1f502267614ff",
+      "complete_lines": 1944
+    },
+    "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/inputs.jsonl": {
+      "path": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/inputs.jsonl",
+      "captured_bytes": 181294,
+      "sha256": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a",
+      "complete_lines": 288
+    },
+    "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/inventory/attempt_0001/inventories.jsonl": {
+      "path": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/inventory/attempt_0001/inventories.jsonl",
+      "captured_bytes": 796767,
+      "sha256": "c0de661dfbff7f102b92797f5a2f013ca8081ae7d22be65ed05ad00a6474be7d",
+      "complete_lines": 128
+    },
+    "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/extract/attempt_0001/extractions.jsonl": {
+      "path": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/extract/attempt_0001/extractions.jsonl",
+      "captured_bytes": 974740,
+      "sha256": "941d3d63317e77b1d666a58b6f6ef8732a39546234eeaf94e17ead322c96a6c1",
+      "complete_lines": 128
+    },
+    "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/extract_stem/attempt_0001/extractions.jsonl": {
+      "path": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/extract_stem/attempt_0001/extractions.jsonl",
+      "captured_bytes": 574217,
+      "sha256": "41b535f3657ae038771c758e49a28df246c2cb853601efd07b918b15b47d6440",
+      "complete_lines": 128
+    },
+    "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/rewrite/attempt_0001/TS_FULL_GUI.jsonl": {
+      "path": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/rewrite/attempt_0001/TS_FULL_GUI.jsonl",
+      "captured_bytes": 3391658,
+      "sha256": "25391639d9724255986ff99e04252527819ced1c20284fa537a9e00085362bbf",
+      "complete_lines": 288
+    },
+    "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/rewrite/attempt_0001/TS_FULL_TXT.jsonl": {
+      "path": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/rewrite/attempt_0001/TS_FULL_TXT.jsonl",
+      "captured_bytes": 3192863,
+      "sha256": "f51129c93da35e8da4216442b86edd8efa61640f40f2d919d0974afad024e383",
+      "complete_lines": 288
+    },
+    "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/rewrite/attempt_0001/TS_SEL_GUI_AUTO.jsonl": {
+      "path": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/rewrite/attempt_0001/TS_SEL_GUI_AUTO.jsonl",
+      "captured_bytes": 3752174,
+      "sha256": "a5b27eaa1768deb39c841ef0aa53d817993f3c0da008a6698111f673f77707ae",
+      "complete_lines": 288
+    },
+    "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/rewrite/attempt_0001/TS_SEL_TXT_AUTO.jsonl": {
+      "path": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/rewrite/attempt_0001/TS_SEL_TXT_AUTO.jsonl",
+      "captured_bytes": 44556,
+      "sha256": "42fe96be3328ea1ac34b96eeec4fffdc4cbda74e5caa29ecd25645725bfb1981",
+      "complete_lines": 5
+    },
+    "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/selection/inputs.jsonl": {
+      "path": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/selection/inputs.jsonl",
+      "captured_bytes": 152607,
+      "sha256": "7ab2900470258d91f877f3e309953ea24a8289830293bc408fbc57396a33be9a",
+      "complete_lines": 240
+    },
+    "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/internal_evaluation/inputs.jsonl": {
+      "path": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/internal_evaluation/inputs.jsonl",
+      "captured_bytes": 895542,
+      "sha256": "1003321a9b8775e17ee8122cfd2f6dc6f0c474679cf45b553472461b1650302d",
+      "complete_lines": 1416
+    }
+  },
+  "interpretation": "Completed transformation is not completed downstream inference. Historical invalidated results are not reused."
+}
