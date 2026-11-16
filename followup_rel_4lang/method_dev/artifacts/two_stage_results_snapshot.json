@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-11-16T11:44:54.110103+00:00",
+  "as_of_utc": "2026-11-16T12:22:37.342995+00:00",
   "run": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid",
   "cohorts": {
     "screen": {
@@ -3270,6 +3270,410 @@
             "hardware": "historical RTX4090 vs current B200 MIG; batch4 mixed conditions vs batch3 separated conditions",
             "O_label_agreement": 239
           }
+        },
+        "single_pass": {
+          "results": {
+            "execution_mode": "gpu",
+            "development_only": true,
+            "executed_pairs": 288,
+            "primary_pairs": 240,
+            "semantic_items": 20,
+            "correct": {
+              "TS_STEM_SINGLE_PASS_GUI_AUTO": 173,
+              "O": 162,
+              "TS_STEM_ONLY_GUI_AUTO": 175,
+              "TS_QSEL_OFULL_GUI_AUTO": 178,
+              "TS_FULL_GUI": 170,
+              "TS_SEL_GUI_AUTO": 169
+            },
+            "contrasts": {
+              "O": {
+                "pairs": 240,
+                "items": 20,
+                "difference": 0.04583333333333333,
+                "ci95": [
+                  0.0,
+                  0.09583333333333334
+                ],
+                "exploratory_bootstrap_centered_p": 0.07189281071892811,
+                "recovery": 20,
+                "regression": 9
+              },
+              "TS_STEM_ONLY_GUI_AUTO": {
+                "pairs": 240,
+                "items": 20,
+                "difference": -0.008333333333333333,
+                "ci95": [
+                  -0.075,
+                  0.05
+                ],
+                "exploratory_bootstrap_centered_p": 0.8397160283971603,
+                "recovery": 8,
+                "regression": 10
+              },
+              "TS_QSEL_OFULL_GUI_AUTO": {
+                "pairs": 240,
+                "items": 20,
+                "difference": -0.020833333333333332,
+                "ci95": [
+                  -0.1,
+                  0.058333333333333334
+                ],
+                "exploratory_bootstrap_centered_p": 0.6457354264573543,
+                "recovery": 23,
+                "regression": 28
+              },
+              "TS_FULL_GUI": {
+                "pairs": 240,
+                "items": 20,
+                "difference": 0.0125,
+                "ci95": [
+                  -0.075,
+                  0.1
+                ],
+                "exploratory_bootstrap_centered_p": 0.8213178682131786,
+                "recovery": 32,
+                "regression": 29
+              },
+              "TS_SEL_GUI_AUTO": {
+                "pairs": 240,
+                "items": 20,
+                "difference": 0.016666666666666666,
+                "ci95": [
+                  -0.029166666666666667,
+                  0.0625
+                ],
+                "exploratory_bootstrap_centered_p": 0.5487451254874512,
+                "recovery": 15,
+                "regression": 11
+              }
+            },
+            "status": {
+              "no_op_no_edits": 28,
+              "success": 188,
+              "fallback_original": 24
+            },
+            "fallback_reasons": {
+              "Span cannot be recovered from original text": 14,
+              "inventory_failed_or_empty": 9,
+              "Replacement is not a verbatim inventory member": 1
+            },
+            "edits": 194,
+            "changed_pairs": 188,
+            "same_stem_as_separate_pipeline": 161,
+            "label_changes_without_input_change": 0,
+            "by_gui": {
+              "en": {
+                "n": 60,
+                "correct": {
+                  "TS_STEM_SINGLE_PASS_GUI_AUTO": 45,
+                  "O": 45,
+                  "TS_STEM_ONLY_GUI_AUTO": 46,
+                  "TS_QSEL_OFULL_GUI_AUTO": 50,
+                  "TS_FULL_GUI": 50,
+                  "TS_SEL_GUI_AUTO": 44
+                }
+              },
+              "zh": {
+                "n": 60,
+                "correct": {
+                  "TS_STEM_SINGLE_PASS_GUI_AUTO": 47,
+                  "O": 44,
+                  "TS_STEM_ONLY_GUI_AUTO": 46,
+                  "TS_QSEL_OFULL_GUI_AUTO": 47,
+                  "TS_FULL_GUI": 42,
+                  "TS_SEL_GUI_AUTO": 45
+                }
+              },
+              "th": {
+                "n": 60,
+                "correct": {
+                  "TS_STEM_SINGLE_PASS_GUI_AUTO": 35,
+                  "O": 27,
+                  "TS_STEM_ONLY_GUI_AUTO": 40,
+                  "TS_QSEL_OFULL_GUI_AUTO": 41,
+                  "TS_FULL_GUI": 33,
+                  "TS_SEL_GUI_AUTO": 36
+                }
+              },
+              "ru": {
+                "n": 60,
+                "correct": {
+                  "TS_STEM_SINGLE_PASS_GUI_AUTO": 46,
+                  "O": 46,
+                  "TS_STEM_ONLY_GUI_AUTO": 43,
+                  "TS_QSEL_OFULL_GUI_AUTO": 40,
+                  "TS_FULL_GUI": 45,
+                  "TS_SEL_GUI_AUTO": 44
+                }
+              }
+            },
+            "cost": {
+              "lm_calls": 306,
+              "repairs": 27,
+              "lm_runtime_seconds": 569.0676954546943,
+              "input_tokens": 264763,
+              "output_tokens": 10566,
+              "lm_peak_reserved_gib": 15.83203125,
+              "inference_seconds": 225.90799509361386,
+              "vlm_peak_reserved_gib": 18.69921875
+            },
+            "pair_ids_sha256": "db8f7d840e27cca56914762f5a9d377792104fa25d63db1455cd6b85a964226b",
+            "config_sha256": "7645da9049642941867e9ecf4f7e12e69930f9820b3357d0d637c67fbce1e92e",
+            "prompt_sha256": "02e74d931dd5b496766fe0e001a555129fe2520afb212570cf3f7c01405ff07d"
+          },
+          "R_stem": {
+            "correct": 185,
+            "contrast": {
+              "pairs": 240,
+              "items": 20,
+              "difference": -0.05,
+              "ci95": [
+                -0.075,
+                -0.025
+              ],
+              "exploratory_bootstrap_centered_p": 0.00019998000199980003,
+              "recovery": 4,
+              "regression": 16
+            }
+          },
+          "failure_diagnostics": {
+            "pairs_with_option_only_source_text": 12,
+            "pairs_with_source_text_absent_from_entire_MCQ": 2,
+            "pairs_with_valid_edits_discarded_by_whole_response_fallback": 12,
+            "individually_valid_edit_proposals_discarded": 12
+          },
+          "failure_examples": [
+            {
+              "pair_id": "rel::2/note_8.png::ru::zh",
+              "errors": [
+                "Span cannot be recovered from original text"
+              ],
+              "option_only_source_text": [
+                "Готово",
+                "Сбросить",
+                "Значок камеры"
+              ],
+              "source_text_absent_from_MCQ": [],
+              "individually_valid_edits_discarded": 1,
+              "raw_output": "{\"edits\":[{\"text\":\"Настройка\",\"occurrence\":0,\"replacement\":\"自定\"},{\"text\":\"Готово\",\"occurrence\":0,\"replacement\":\"完成\"},{\"text\":\"Сбросить\",\"occurrence\":0,\"replacement\":\"还原\"},{\"text\":\"Значок камеры\",\"occurrence\":0,\"replacement\":\"相机\"}]}"
+            },
+            {
+              "pair_id": "rel::3/music_3.jpg::en::ru",
+              "errors": [
+                "Span cannot be recovered from original text"
+              ],
+              "option_only_source_text": [
+                "#2",
+                "#3",
+                "#4",
+                "Total 8 songs",
+                "Total 6 songs",
+                "Total 4 songs"
+              ],
+              "source_text_absent_from_MCQ": [],
+              "individually_valid_edits_discarded": 1,
+              "raw_output": "{\"edits\":[{\"text\":\"#1\",\"occurrence\":0,\"replacement\":\"#1\"},{\"text\":\"#2\",\"occurrence\":0,\"replacement\":\"#2\"},{\"text\":\"#3\",\"occurrence\":0,\"replacement\":\"#3\"},{\"text\":\"#4\",\"occurrence\":0,\"replacement\":\"#4\"},{\"text\":\"Total 5 songs\",\"occurrence\":0,\"replacement\":\"Всего 5 треков\"},{\"text\":\"Total 8 songs\",\"occurrence\":0,\"replacement\":\"Всего 8 треков\"},{\"text\":\"Total 6 songs\",\"occurrence\":0,\"replacement\":\"Всего 6 треков\"},{\"text\":\"Total 4 songs\",\"occurrence\":0,\"replacement\":\"Всего 4 трека\"}]}"
+            },
+            {
+              "pair_id": "rel::3/music_3.jpg::en::th",
+              "errors": [
+                "Span cannot be recovered from original text"
+              ],
+              "option_only_source_text": [
+                "#2",
+                "#3",
+                "#4",
+                "Total 6 songs",
+                "Total 4 songs",
+                "Total 8 songs",
+                "Shuffle playback"
+              ],
+              "source_text_absent_from_MCQ": [],
+              "individually_valid_edits_discarded": 1,
+              "raw_output": "{\"edits\":[{\"text\":\"#1\",\"occurrence\":0,\"replacement\":\"#1\"},{\"text\":\"#2\",\"occurrence\":0,\"replacement\":\"#2\"},{\"text\":\"#3\",\"occurrence\":0,\"replacement\":\"#3\"},{\"text\":\"#4\",\"occurrence\":0,\"replacement\":\"#4\"},{\"text\":\"Total 5 songs\",\"occurrence\":0,\"replacement\":\"ทั้งหมด 5 เพลง\"},{\"text\":\"Total 6 songs\",\"occurrence\":0,\"replacement\":\"ทั้งหมด 6 เพลง\"},{\"text\":\"Total 4 songs\",\"occurrence\":0,\"replacement\":\"ทั้งหมด 4 เพลง\"},{\"text\":\"Total 8 songs\",\"occurrence\":0,\"replacement\":\"ทั้งหมด 8 เพลง\"},{\"text\":\"Shuffle playback\",\"occurrence\":0,\"replacement\":\"เล่นสลับ\"}]}"
+            },
+            {
+              "pair_id": "rel::3/music_3.jpg::en::zh",
+              "errors": [
+                "Span cannot be recovered from original text"
+              ],
+              "option_only_source_text": [
+                "#2",
+                "#3",
+                "#4"
+              ],
+              "source_text_absent_from_MCQ": [],
+              "individually_valid_edits_discarded": 1,
+              "raw_output": "{\"edits\":[{\"text\":\"#1\",\"occurrence\":0,\"replacement\":\"共5首歌\"},{\"text\":\"#2\",\"occurrence\":0,\"replacement\":\"共6首歌\"},{\"text\":\"#3\",\"occurrence\":0,\"replacement\":\"共4首歌\"},{\"text\":\"#4\",\"occurrence\":0,\"replacement\":\"共8首歌\"}]}"
+            },
+            {
+              "pair_id": "rel::3/music_3.jpg::ru::en",
+              "errors": [
+                "Span cannot be recovered from original text"
+              ],
+              "option_only_source_text": [
+                "#2",
+                "#3",
+                "#4",
+                "Всего 8 треков",
+                "Всего 6 треков",
+                "Всего 4 трека"
+              ],
+              "source_text_absent_from_MCQ": [],
+              "individually_valid_edits_discarded": 1,
+              "raw_output": "{\"edits\":[{\"text\":\"#1\",\"occurrence\":0,\"replacement\":\"#1\"},{\"text\":\"#2\",\"occurrence\":0,\"replacement\":\"#2\"},{\"text\":\"#3\",\"occurrence\":0,\"replacement\":\"#3\"},{\"text\":\"#4\",\"occurrence\":0,\"replacement\":\"#4\"},{\"text\":\"Всего 5 треков\",\"occurrence\":0,\"replacement\":\"Total 5 songs\"},{\"text\":\"Всего 8 треков\",\"occurrence\":0,\"replacement\":\"Total 8 songs\"},{\"text\":\"Всего 6 треков\",\"occurrence\":0,\"replacement\":\"Total 6 songs\"},{\"text\":\"Всего 4 трека\",\"occurrence\":0,\"replacement\":\"Total 4 songs\"}]}"
+            },
+            {
+              "pair_id": "rel::3/music_3.jpg::ru::th",
+              "errors": [
+                "Span cannot be recovered from original text"
+              ],
+              "option_only_source_text": [
+                "#2",
+                "#3",
+                "#4",
+                "Всего 8 треков",
+                "Всего 6 треков",
+                "Всего 4 трека"
+              ],
+              "source_text_absent_from_MCQ": [],
+              "individually_valid_edits_discarded": 1,
+              "raw_output": "{\"edits\":[{\"text\":\"#1\",\"occurrence\":0,\"replacement\":\"#1\"},{\"text\":\"#2\",\"occurrence\":0,\"replacement\":\"#2\"},{\"text\":\"#3\",\"occurrence\":0,\"replacement\":\"#3\"},{\"text\":\"#4\",\"occurrence\":0,\"replacement\":\"#4\"},{\"text\":\"Всего 5 треков\",\"occurrence\":0,\"replacement\":\"ทั้งหมด 5 เพลง\"},{\"text\":\"Всего 8 треков\",\"occurrence\":0,\"replacement\":\"ทั้งหมด 8 เพลง\"},{\"text\":\"Всего 6 треков\",\"occurrence\":0,\"replacement\":\"ทั้งหมด 6 เพลง\"},{\"text\":\"Всего 4 трека\",\"occurrence\":0,\"replacement\":\"ทั้งหมด 4 เพลง\"}]}"
+            },
+            {
+              "pair_id": "rel::3/music_3.jpg::ru::zh",
+              "errors": [
+                "Span cannot be recovered from original text"
+              ],
+              "option_only_source_text": [
+                "#2",
+                "#3",
+                "#4",
+                "Всего 8 треков",
+                "Всего 6 треков",
+                "Всего 4 трека"
+              ],
+              "source_text_absent_from_MCQ": [],
+              "individually_valid_edits_discarded": 1,
+              "raw_output": "{\"edits\":[{\"text\":\"#1\",\"occurrence\":0,\"replacement\":\"#1\"},{\"text\":\"#2\",\"occurrence\":0,\"replacement\":\"#2\"},{\"text\":\"#3\",\"occurrence\":0,\"replacement\":\"#3\"},{\"text\":\"#4\",\"occurrence\":0,\"replacement\":\"#4\"},{\"text\":\"Всего 5 треков\",\"occurrence\":0,\"replacement\":\"共5首歌\"},{\"text\":\"Всего 8 треков\",\"occurrence\":0,\"replacement\":\"共8首歌\"},{\"text\":\"Всего 6 треков\",\"occurrence\":0,\"replacement\":\"共6首歌\"},{\"text\":\"Всего 4 трека\",\"occurrence\":0,\"replacement\":\"共4首歌\"}]}"
+            },
+            {
+              "pair_id": "rel::3/music_3.jpg::th::en",
+              "errors": [
+                "Replacement is not a verbatim inventory member"
+              ],
+              "option_only_source_text": [],
+              "source_text_absent_from_MCQ": [],
+              "individually_valid_edits_discarded": 0,
+              "raw_output": "{\"edits\":[{\"text\":\"#1 ทั้งหมด 5 เพลง\",\"occurrence\":0,\"replacement\":\"#1 Total 5 songs\"}]}"
+            },
+            {
+              "pair_id": "rel::3/music_3.jpg::th::ru",
+              "errors": [
+                "Span cannot be recovered from original text"
+              ],
+              "option_only_source_text": [
+                "ทั้งหมด 8 เพลง",
+                "ทั้งหมด 6 เพลง",
+                "ทั้งหมด 4 เพลง"
+              ],
+              "source_text_absent_from_MCQ": [],
+              "individually_valid_edits_discarded": 1,
+              "raw_output": "{\"edits\":[{\"text\":\"#1\",\"occurrence\":0,\"replacement\":\"#1\"},{\"text\":\"ทั้งหมด 5 เพลง\",\"occurrence\":0,\"replacement\":\"Всего 5 треков\"},{\"text\":\"ทั้งหมด 8 เพลง\",\"occurrence\":0,\"replacement\":\"Всего 8 треков\"},{\"text\":\"ทั้งหมด 6 เพลง\",\"occurrence\":0,\"replacement\":\"Всего 6 треков\"},{\"text\":\"ทั้งหมด 4 เพลง\",\"occurrence\":0,\"replacement\":\"Всего 4 трека\"}]}"
+            },
+            {
+              "pair_id": "rel::3/music_3.jpg::zh::en",
+              "errors": [
+                "Span cannot be recovered from original text"
+              ],
+              "option_only_source_text": [
+                "#4 共8首歌",
+                "#2 共6首歌",
+                "#3 共4首歌"
+              ],
+              "source_text_absent_from_MCQ": [],
+              "individually_valid_edits_discarded": 1,
+              "raw_output": "{\"edits\":[{\"text\":\"#1 共5首歌\",\"occurrence\":0,\"replacement\":\"#1\"},{\"text\":\"#4 共8首歌\",\"occurrence\":0,\"replacement\":\"#4\"},{\"text\":\"#2 共6首歌\",\"occurrence\":0,\"replacement\":\"#2\"},{\"text\":\"#3 共4首歌\",\"occurrence\":0,\"replacement\":\"#3\"}]}"
+            },
+            {
+              "pair_id": "rel::3/music_3.jpg::zh::ru",
+              "errors": [
+                "Span cannot be recovered from original text"
+              ],
+              "option_only_source_text": [
+                "#4",
+                "共8首歌"
+              ],
+              "source_text_absent_from_MCQ": [],
+              "individually_valid_edits_discarded": 1,
+              "raw_output": "{\"edits\":[{\"text\":\"#1\",\"occurrence\":0,\"replacement\":\"#1\"},{\"text\":\"#4\",\"occurrence\":0,\"replacement\":\"#4\"},{\"text\":\"共5首歌\",\"occurrence\":0,\"replacement\":\"Всего 5 треков\"},{\"text\":\"共8首歌\",\"occurrence\":0,\"replacement\":\"Всего 8 треков\"}]}"
+            },
+            {
+              "pair_id": "rel::4/google_play_8.jpg::ru::th",
+              "errors": [
+                "Span cannot be recovered from original text"
+              ],
+              "option_only_source_text": [],
+              "source_text_absent_from_MCQ": [
+                "настройки"
+              ],
+              "individually_valid_edits_discarded": 1,
+              "raw_output": "{\"edits\":[{\"text\":\"настройки\",\"occurrence\":0,\"replacement\":\"การตั้งค่า\"},{\"text\":\"Использовать данные о местоположении устройства\",\"occurrence\":0,\"replacement\":\"ใช้ต่างหน้าของอุปกรณ์\"}]}"
+            },
+            {
+              "pair_id": "rel::5/forest_2.jpg::zh::en",
+              "errors": [
+                "Span cannot be recovered from original text"
+              ],
+              "option_only_source_text": [
+                "15:22"
+              ],
+              "source_text_absent_from_MCQ": [],
+              "individually_valid_edits_discarded": 0,
+              "raw_output": "{\"edits\":[{\"text\":\"15:22\",\"occurrence\":0,\"replacement\":\"15:22\"}]}"
+            },
+            {
+              "pair_id": "rel::6/camera_8.jpg::ru::zh",
+              "errors": [
+                "Span cannot be recovered from original text"
+              ],
+              "option_only_source_text": [
+                "ПАНОРАМА"
+              ],
+              "source_text_absent_from_MCQ": [],
+              "individually_valid_edits_discarded": 1,
+              "raw_output": "{\"edits\":[{\"text\":\"ФОТО\",\"occurrence\":0,\"replacement\":\"照片\"},{\"text\":\"ПАНОРАМА\",\"occurrence\":0,\"replacement\":\"全景\"}]}"
+            },
+            {
+              "pair_id": "rel::6/wallet_8.jpg::ru::zh",
+              "errors": [
+                "Span cannot be recovered from original text"
+              ],
+              "option_only_source_text": [],
+              "source_text_absent_from_MCQ": [
+                "查找钱包适用 App"
+              ],
+              "individually_valid_edits_discarded": 0,
+              "raw_output": "{\"edits\":[{\"text\":\"查找钱包适用 App\",\"occurrence\":0,\"replacement\":\"查找 App并开始积累凭证。\"}]}"
+            }
+          ],
+          "cost_comparison": {
+            "primary_pairs": 240,
+            "unique_sources": 80,
+            "separate_extraction_and_alignment_seconds": 260.9389955243096,
+            "single_pass_seconds": 428.11523604299873,
+            "single_pass_vs_separate_runtime_ratio": 1.6406717408518372,
+            "single_pass_calls": 251,
+            "single_pass_primary_repair_calls": 20,
+            "inventory_and_downstream_excluded": true
+          },
+          "contract_sha256": "137bf144a140c090287b0384ee22d79966ddd87aea31ad85f3acdb5ce2b41b46",
+          "raw_manifest": {
+            "followup_rel_4lang/method_dev/artifacts/single_pass_stem_screen_v1/rewrite/attempt_0001/rewritten.jsonl": "e5a1e3f9f598bf25e423aeb67615afbf54cf7885b3101220dcf42a1fb4df6be7",
+            "followup_rel_4lang/method_dev/artifacts/single_pass_stem_screen_v1/rewrite/attempt_0001/calls.json": "3c1d9ea9734576ba069eeaf7bc1976951a0765701164cd2b5a87ef9c6b3e075a",
+            "followup_rel_4lang/method_dev/artifacts/single_pass_stem_screen_v1/infer/attempt_0001/predictions.jsonl": "376ea8e29e196426e7cc6472dd24a670da808da5c7b2a4b01e8bb56b867a5f5b"
+          }
         }
       }
     },
@@ -3565,12 +3969,17 @@
       "path": "followup_rel_4lang/method_dev/artifacts/stem_only_diagnostic_snapshot.json",
       "sha256": "c4cdf50a9b75b87768efe21d8129370c541da041a5fd6994b5fc16dd005401fb",
       "captured_bytes": 269287
+    },
+    "followup_rel_4lang/method_dev/artifacts/single_pass_stem_results_snapshot.json": {
+      "path": "followup_rel_4lang/method_dev/artifacts/single_pass_stem_results_snapshot.json",
+      "sha256": "a2b2ea17cb3cba5e5d43ee0d865d812a0e57287681958c2a8f429a8a81682ae8",
+      "captured_bytes": 17079
     }
   },
   "interpretation": "Completed transformation is not completed downstream inference. Historical invalidated results are not reused.",
   "analysis_source_sha256": {
-    "update_two_stage_results.py": "91b8c5c32678ad16676ff4ea1cdfc00c48eb69e4aabd2e1199c82b7b5ff07043",
-    "two_stage_completed.py": "30ebae07499d3861e1b009c4db1c4a4e8e44673e00b501318286c3313ac78c0c",
+    "update_two_stage_results.py": "91a113f7395bf0a1ddf59aed4ea51028d19771210727bd85a39548850b9ec4b5",
+    "two_stage_completed.py": "c3a8babe83cfb9ff2fa896ababb9f22bde0b6b0ec9dd4496fa54a60874b3a4df",
     "reference_comparison.py": "97d858d982a24943577bcb9451ce4a60fc948f6aabacdf33368a07321329fb67"
   },
   "reference_metadata": {

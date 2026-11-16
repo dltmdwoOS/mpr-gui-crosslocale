@@ -1,5 +1,7 @@
 # GCSA / RFA development harness
 
+추가 완료: [Stem 추출·정렬 통합](reports/SINGLE_PASS_STEM_GUI_KO.md). 기존 Stem-only GUI의 별도 추출/정렬 호출을 고정 Qwen3-8B 기본 호출1회로 합쳤다. 원본 MCQ와 완료 inventory를 함께 제공하고 코드가 검증된 stem edit만 적용한다. Options는 원본이며 기존 inventory·baseline 예측은 재사용한다. Main240쌍에서173정답(72.08%)으로 기존 분리 방식175정답(72.92%)과 큰 차이가 없고, LM 변환 시간은4.35분→7.14분으로 늘었다. `bash followup_rel_4lang/method_dev/scripts/run_single_pass_stem.sh --run`으로 완료 결과를 재사용하거나 중단 지점부터 재개한다. 전체 config·원문 프롬프트·실패 원인은 링크의 보고서에 기록했다.
+
 후속 진단: [Stem-only vs R_stem·실패 단계·잔여 ETA](reports/STEM_ONLY_DIAGNOSTIC_KO.md). 같은 Screen240쌍의 R_stem77.08%와 Stem-only72.92%를 맞췄다. 차이−4.17pp의 CI는0을 포함한다. R_stem 정답·Stem-only 오답20쌍 중18쌍은 R 표현이 이미 inventory에 있었고, 기존 병렬 mapping 오류도 확인했다. 남은138개 개발 문항은 두 후보+O 약6.3시간, 전체 grid+Stem-only 약13.6시간의 실측 기반 추정이며 실행하지 않았다.
 
 추가 완료: [Stem-only GUI control](reports/STEM_ONLY_GUI_KO.md). 완료된 Hybrid stem + 원본 options를 조합해 새 추출·번역 없이 downstream만 비교한다. `bash followup_rel_4lang/method_dev/scripts/run_stem_only_gui.sh`는 CPU 준비만, `--run`을 붙이면 새 조건만 GPU 평가한다. Option-only는 추가하지 않았다. Stem-only main240쌍은175정답(72.92%)이며 동일 범위 R80.83%·F80.00%와 함께 위 결과 보고서에 반영했다.

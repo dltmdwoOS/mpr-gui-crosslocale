@@ -142,6 +142,18 @@ def add_completed(snapshot,run,repo,root,labels,contract,read):
             if diagnostic['pair_ids_sha256']!=cohort['pair_ids_sha256'] or diagnostic['correct']['Stem-only']!=correct:raise ValueError('R_stem diagnostic cohort differs')
             cohort['R_stem_reference']={'n':len(ids),'correct':diagnostic['correct']['R_stem'],'Stem_only_vs_R_stem':diagnostic['contrasts']['Stem-only − R_stem'],
                                        'historical_contract':diagnostic['historical_contract']}
+        single_path=root/'artifacts/single_pass_stem_results_snapshot.json'
+        single_marker=root/'artifacts/single_pass_stem_screen_v1/COMPLETE.json'
+        if single_path.exists() and single_marker.exists():
+            single=json.loads(use(single_path).read_text())
+            single_contract=json.loads((single_marker.parent/'contract.json').read_text())
+            done=json.loads(single_marker.read_text())
+            if single['contract_sha256']!=digest(single_contract) or done['contract_sha256']!=digest(single_contract) or done['execution_mode']!='gpu':raise ValueError('Single-pass contract mismatch')
+            if Path(single_contract['source_cohort']).resolve()!=(run/'screen').resolve():raise ValueError('Single-pass source differs')
+            if single['results']['pair_ids_sha256']!=snapshot['cohorts']['screen']['completed_evaluation']['pair_ids_sha256']:raise ValueError('Single-pass primary pair set differs')
+            for filename,sha in single['raw_manifest'].items():
+                if hashlib.sha256((repo/filename).read_bytes()).hexdigest()!=sha:raise ValueError('Single-pass raw output changed')
+            snapshot['cohorts']['screen']['completed_evaluation']['single_pass']=single
 
 
 def render_completed(snapshot):
@@ -159,11 +171,18 @@ def render_completed(snapshot):
         if stem:
             k=stem['correct']['TS_STEM_ONLY_GUI_AUTO'];c=stem['contrasts']['O']
             out.append(f"| **Stem-only GUI · Options 원본** | **{k}/{n}** | **{k/n*100:.2f}%** | {c['difference']*100:+.2f}pp | [{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}] | {c['recovery']}/{c['regression']} |")
+        single=s.get('single_pass')
+        if single:
+            q=single['results'];k=q['correct']['TS_STEM_SINGLE_PASS_GUI_AUTO'];c=q['contrasts']['O']
+            out.append(f"| **Single-pass Stem GUI · 추출/정렬 통합** | **{k}/{n}** | **{k/n*100:.2f}%** | {c['difference']*100:+.2f}pp | [{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}] | {c['recovery']}/{c['regression']} |")
         if 'R_stem_reference' in s:
             r=s['R_stem_reference'];out.append(f"| **R_stem · Stem-only 대응 reference** | **{r['correct']}/{n}** | **{r['correct']/n*100:.2f}%** | {(r['correct']-outcomes['O']['correct'])/n*100:+.2f}pp | — | — |")
         for name in ('R_REF','F_REF'):
             r=s['historical_references'][name]
             out.append(f"| {name} · parallel reference | {r['correct']}/{n} | {r['correct']/n*100:.2f}% | {(r['correct']-outcomes['O']['correct'])/n*100:+.2f}pp | — | — |")
+        if single:
+            c=single['results']['contrasts']['TS_STEM_ONLY_GUI_AUTO'];cost=single['cost_comparison']
+            out+=['',f"추가 개발 조건인 **Single-pass−분리 Stem-only는{c['difference']*100:+.2f}pp**, CI[{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}]pp, 회복/회귀{c['recovery']}/{c['regression']}이다. 같은 main240쌍의 LM 변환 시간은{cost['separate_extraction_and_alignment_seconds']/60:.2f}분→{cost['single_pass_seconds']/60:.2f}분으로 늘었다. Options 범위 위반과 전체 응답 fallback의 영향은 [통합 실험 보고서](SINGLE_PASS_STEM_GUI_KO.md)에 정리했다. 현재 결과만으로 기존 분리 방식을 대체할 근거는 없다."]
         if stem:
             c=stem['contrasts']['TS_QSEL_OFULL_GUI_AUTO']
             out+=['',f"Stem-only는 완료된 Hybrid stem을 그대로 쓰고 A–D만 원본으로 복원했다. 새 추출·번역 없이 추가 downstream288쌍을 평가했다. **Stem-only−Hybrid는 {c['difference']*100:+.2f}pp**, CI[{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}]pp, 회복/회귀{c['recovery']}/{c['regression']}이다. Options Full을 추가한 Hybrid가 정답3개 높은 점추정이지만 구간이 넓어 우위를 확정하지 않는다. R/F는 같은 primary pair의 기존 parallel reference이며 자동 method가 아니다."]

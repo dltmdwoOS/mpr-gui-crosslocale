@@ -1,0 +1,10 @@
+{
+  "pairs": 288,
+  "primary_max_input_tokens": 1258,
+  "max_input_tokens": 4096,
+  "rows_over_limit": 0,
+  "conservative_repair_input_upper_bound_tokens": 1970,
+  "primary_output_limit": 512,
+  "lm_batch": 1,
+  "vlm_batch": 3
+}
