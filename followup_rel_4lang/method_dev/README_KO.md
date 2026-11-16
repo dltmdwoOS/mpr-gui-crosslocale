@@ -14,6 +14,8 @@ Qwen3-8B 다운로드·SHA 검증은 완료됐다. [실제 프롬프트 원문·
 
 완료된 후속 진단: [Oracle 결과·실패 분석](reports/ORACLE_RESULTS_KO.md), [실행안](reports/ORACLE_SPAN_EXACT_KO.md). Source span만 교정한 실제 GPU 1,944쌍이 완료됐다. Internal에서 Automatic 69.56% → Oracle 71.54%(+1.98pp), O 대비 +1.13pp의 CI는 0을 포함한다. 추론 없이 `.venv/bin/python followup_rel_4lang/method_dev/scripts/analyze_oracle_exact.py`로 상세 보고서를 재생성한다. 기존 frozen 실행기와 예측은 보존한다.
 
+[Inventory 사용 방식·문항 전체 exact match 점검](reports/INVENTORY_USAGE_AND_EXACT_MATCH_KO.md): 최근 inventory 입력 조건은 GUI_FULL·GUI_MATCH_LM이며 Oracle GUI_EXACT는 독립 번역 후 필터링이다. 과거 전체 번역 prompt와의 차이를 실제 호출에서 확인했다. Internal의 모든 referent match는 68/1,416쌍(4.80%)이다.
+
 ## 현재 상태
 
 Gate 0/1은 실제 데이터·hash·T/R 재구성과 CPU mock 검사를 통과했다. Gate 2의 CPU 구성요소와 실제 화면 기능 검사는 실행했지만, 대체 모델의 referent extraction이 빈 목록을 내 **실제 selective editing 성공 게이트는 미통과**다. Calibration, 2×2 내부 평가, RFA 성능 평가는 실행하지 않았다. 이 상태를 method의 성능 검증 완료로 해석하면 안 된다.

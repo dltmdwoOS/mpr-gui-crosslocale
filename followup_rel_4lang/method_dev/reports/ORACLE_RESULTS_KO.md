@@ -2,7 +2,7 @@
 
 **추출을 annotation으로 교정하면 기존 GUI_EXACT보다 개선되지만, 이것만으로 R의 효과를 재현하지는 못했다.** Internal 1,416쌍에서 69.56% → 71.54%(+1.98pp)였다. 원본 O 대비 +1.13pp의 95% CI는 0을 포함한다. 큰 시스템을 추가하기 전에 번역→화면 표현 대응의 coverage와 편집 후 회귀를 확인하는 것이 다음 과제다.
 
-집계 시각: 2026-11-16T05:49:54.864022+00:00. 실제 GPU 실행 3 cohort 모두 완료, 총 1,944쌍. 아래 accuracy는 pilot 48쌍과 사전 제외 1쌍을 뺀 main 1,895쌍만 사용한다. 기존 예측과 hash·pair ID·span·inventory·deterministic edit를 재검증했고 저장된 정확도와 bootstrap CI를 독립 재계산해 일치시켰다. 추가 추론은 하지 않았다.
+집계 시각: 2026-11-16T06:09:29.150263+00:00. 실제 GPU 실행 3 cohort 모두 완료, 총 1,944쌍. 아래 accuracy는 pilot 48쌍과 사전 제외 1쌍을 뺀 main 1,895쌍만 사용한다. 기존 예측과 hash·pair ID·span·inventory·deterministic edit를 재검증했고 저장된 정확도와 bootstrap CI를 독립 재계산해 일치시켰다. 추가 추론은 하지 않았다.
 
 ## 1. 무엇을 바꾼 실험인가
 
@@ -57,6 +57,20 @@ Automatic fallback 169건 중 153건은 추출 검증 실패로 referent를 전�
 Oracle에서는 편집 대상과 실제 치환이 늘었지만, 저장된 match 판단 6,415개 중 1,966개(30.65%)만 exact match했다. 4,101개는 번역문과 inventory가 일치하지 않았고 348개는 inventory가 비거나 실패했다. 편집 검증 fallback에 걸린 5개 referent는 기존 로그가 중간 match 판단을 보존하지 않아 이 분모에서 빠진다. 이 수치는 **matching 정확도가 아니라 채택 coverage**다.
 
 자기 질문이 Automatic과 동일한 pair는 761/1416개이며, 이 중 출력 label이 바뀐 것은 0개였다. 실제 추가/변경 편집이 있는 사례에서 관찰된 회복과 회귀를 아래에서 본다. Batch 구성원을 유지했어도 동반 질문 길이와 padding은 달라질 수 있다.
+
+### 문항 전체가 exact match한 비율
+
+| 집합 | Referent별 확인된 match | 문항별 match 비율 평균 | 1개 이상 match | 모든 referent match |
+| --- | ---: | ---: | ---: | ---: |
+| screen | 237/1,044 (22.70%) | 23.05% | 130/240 (54.17%) | 5/240 (2.08%) |
+| selection | 322/1,100 (29.27%) | 29.04% | 169/239 (70.71%) | 7/239 (2.93%) |
+| internal_evaluation | 1,968/6,420 (30.65%) | 30.25% | 965/1416 (68.15%) | 68/1416 (4.80%) |
+
+Internal에서는 한 문항·언어쌍에 평균 4.53개의 annotation referent가 있고, 그중 평균 1.39개가 match했다. **전체 referent가 match한 것은 68/1416쌍(4.80%)**뿐이다. 일부만 match한 897쌍과 하나도 match하지 않은 451쌍을 구분한다. Referent가 없는 field는 분모에 억지로 넣지 않는다.
+
+위 표는 저장된 번역 JSON에서 matcher를 CPU로 재실행한 값이다. Internal의 보기 중복 fallback 1쌍에서 중간 로그가 빠졌던 5개 referent를 복원했고, 이 중 2개가 match했다. 따라서 전체 matching 단계 기준은 1,968/6,420이며, 앞의 저장된 match 로그 기준 1,966/6,415와 다르다. 최종 적용 edit 1,904개와도 다른 지표다. 이미 같은 숫자/이름도 exact match로 센다.
+
+Screen에서는 번역 JSON 실패 2쌍의 7개 referent를 판정할 수 없다. 표의 전체 분모에는 유지하되 확인된 match 분자에는 넣지 않았고, 실제 no-match와 구별한다. 전체 match는 모델이 제안한 번역과 inventory의 일치이며 R_REF와의 표현 동일성이나 실제 GUI 대응 정답률을 뜻하지 않는다.
 
 ### 기존 R gap 259건은 얼마나 회복됐나
 

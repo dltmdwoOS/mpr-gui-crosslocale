@@ -12,6 +12,7 @@ ROOT=Path(__file__).resolve().parent.parent
 sys.path[:0]=[str(REPO/'01_code/src'),str(Path(__file__).parent)]
 from mpr_crosslocale.methods.selective_alignment.schemas import digest,fields,render
 from mpr_crosslocale.methods.selective_alignment.rewriter import apply_edits
+from mpr_crosslocale.methods.selective_alignment.matcher import match
 from mpr_crosslocale.inference.answer_parser import parse_label
 from search_pipeline import paired_bootstrap,EXCLUDED
 from reference_comparison import load_references
@@ -50,6 +51,43 @@ def stage_metrics(rows,gold):
         match_reasons=dict(Counter(m['reason'] for m in matches)),logged_match_decisions=len(matches),unlogged_referents=refs-len(matches),
         source_span_tp=tp,source_span_fp=fp,source_span_fn=fn,annotation_recall=tp/(tp+fn) if tp+fn else None,
         fallback_reasons=dict(Counter(r['details'].get('error','unknown') for r in rows.values() if r['generation_status']=='fallback_original')))
+
+
+def matching_coverage(rows,*,include_pairs=False):
+    """Recompute matching from saved translations, including edits rejected downstream."""
+    counts=Counter();hist=Counter();ratios=[];records=[]
+    for row in rows:
+        refs=row['extracted_referents'];n=len(refs)
+        counts['pairs']+=1;counts['referents']+=n
+        if not n:
+            counts['no_referents']+=1;records.append({'pair_id':row['pair_id'],'referents':0,'matched':None,'state':'no_referents'});continue
+        try:
+            translated=json.loads(row['details']['raw_output'])
+            if not isinstance(translated,dict) or set(translated)!={r['span_id'] for r in refs} or any(not isinstance(t,str) or not t.strip() for t in translated.values()):raise ValueError('Invalid translation IDs/values')
+        except (ValueError,TypeError,KeyError):
+            counts['unknown_pairs']+=1;counts['unknown_referents']+=n
+            records.append({'pair_id':row['pair_id'],'referents':n,'matched':None,'state':'translation_invalid'});continue
+        computed=[match(r,translated[r['span_id']],row['inventory']['entries'],1.0,.05) for r in refs]
+        if 'matches' in row['details']:
+            if computed!=row['details']['matches']:raise ValueError('Stored matching differs from deterministic replay')
+        else:
+            counts['replayed_unlogged_pairs']+=1;counts['replayed_unlogged_referents']+=n
+            counts['replayed_unlogged_matches']+=sum(m['decision']=='match' for m in computed)
+        k=sum(m['decision']=='match' for m in computed)
+        counts['matched']+=k;counts['known_referents']+=n;counts['known_pairs']+=1;ratios.append(k/n)
+        state='all' if k==n else 'partial' if k else 'none'
+        counts[state]+=1;counts['any']+=k>0
+        hist[f'{k}/{n}']+=1
+        records.append({'pair_id':row['pair_id'],'referents':n,'matched':k,'state':state})
+    result=dict(counts)
+    for key in ['matched','known_pairs','known_referents','unknown_pairs','unknown_referents','no_referents','all','partial','none','any','replayed_unlogged_pairs','replayed_unlogged_referents','replayed_unlogged_matches']:result.setdefault(key,0)
+    result.update(micro_confirmed_ratio=counts['matched']/counts['referents'] if counts['referents'] else None,
+        macro_confirmed_ratio=sum(ratios)/counts['pairs'] if counts['pairs'] else None,
+        mean_matched_per_pair=counts['matched']/counts['pairs'] if counts['pairs'] else None,
+        mean_referents_per_pair=counts['referents']/counts['pairs'] if counts['pairs'] else None,
+        histogram=dict(sorted(hist.items())))
+    if include_pairs:result['pair_records']=records
+    return result
 
 
 def remaining_bucket(row):
@@ -156,6 +194,8 @@ def collect(run):
         same_question_label_changes=sum(oracle[p]['modified_question']==automatic[p]['modified_question'] and predictions[p]['parsed_generated_label']!=automatic_predictions[p,'GUI_EXACT']['parsed_generated_label'] for p in ids)
         group=dict(executed_pairs=len(original),primary_pairs=len(ids),items=len({labels[p]['parallel_id'] for p in ids}),correct=counts,contrasts=contrasts,
             stages={name:stage_metrics(rows,{p:golden[p]['referents'] for p in ids}) for name,rows in [('Automatic',automatic),('Oracle',oracle)]},
+            oracle_matching_coverage=matching_coverage(list(oracle.values())),
+            oracle_matching_by_gui={gui:matching_coverage([r for r in oracle.values() if r['gui_language']==gui]) for gui in by_gui},
             by_gui=by_gui,by_direction=by_direction,same_question=same_question,same_question_label_changes=same_question_label_changes,
             R_gap=gap_diagnostic(values,automatic,oracle),cost=dict(method_wall_seconds=cost['wall_ms']/1000,new_call_runtime_seconds=cost['new_runtime_ms']/1000,
                 new_model_load_seconds=cost['new_load_ms']/1000,calls=cost['calls'],cache_hits=cost['cache_hits'],
@@ -217,6 +257,15 @@ def markdown(s):
     out+=['',f"Automatic fallback {a['generation_status'].get('fallback_original',0)}건 중 {a['fallback_reasons'].get('Missing extraction',0)}건은 추출 검증 실패로 referent를 전달하지 못한 경우이고, 나머지는 번역 JSON 오류였다. Oracle에서는 이 경로가 제거됐고, 남은 fallback 1건은 **번역 후 보기 중복**으로 인한 편집 검증 실패였다. 이를 번역 JSON 실패로 분류하지 않는다.",'',
         f"Oracle에서는 편집 대상과 실제 치환이 늘었지만, 저장된 match 판단 {o['logged_match_decisions']:,}개 중 {o['match_reasons'].get('normalized_exact',0):,}개({o['match_reasons'].get('normalized_exact',0)/o['logged_match_decisions']*100:.2f}%)만 exact match했다. {o['match_reasons'].get('low_similarity_or_missing_evidence',0):,}개는 번역문과 inventory가 일치하지 않았고 {o['match_reasons'].get('inventory_empty_or_failed',0):,}개는 inventory가 비거나 실패했다. 편집 검증 fallback에 걸린 {o['unlogged_referents']}개 referent는 기존 로그가 중간 match 판단을 보존하지 않아 이 분모에서 빠진다. 이 수치는 **matching 정확도가 아니라 채택 coverage**다.",'',
         f"자기 질문이 Automatic과 동일한 pair는 {internal['same_question']}/{n}개이며, 이 중 출력 label이 바뀐 것은 {internal['same_question_label_changes']}개였다. 실제 추가/변경 편집이 있는 사례에서 관찰된 회복과 회귀를 아래에서 본다. Batch 구성원을 유지했어도 동반 질문 길이와 padding은 달라질 수 있다.",'',
+        '### 문항 전체가 exact match한 비율','',
+        '| 집합 | Referent별 확인된 match | 문항별 match 비율 평균 | 1개 이상 match | 모든 referent match |','| --- | ---: | ---: | ---: | ---: |']
+    for cohort,g in rows.items():
+        c=g['oracle_matching_coverage'];size=c['pairs']
+        out.append(f"| {cohort} | {c['matched']:,}/{c['referents']:,} ({c['micro_confirmed_ratio']*100:.2f}%) | {c['macro_confirmed_ratio']*100:.2f}% | {c['any']}/{size} ({c['any']/size*100:.2f}%) | {c['all']}/{size} ({c['all']/size*100:.2f}%) |")
+    c=internal['oracle_matching_coverage']
+    out+=['',f"Internal에서는 한 문항·언어쌍에 평균 {c['mean_referents_per_pair']:.2f}개의 annotation referent가 있고, 그중 평균 {c['mean_matched_per_pair']:.2f}개가 match했다. **전체 referent가 match한 것은 {c['all']}/{n}쌍({c['all']/n*100:.2f}%)**뿐이다. 일부만 match한 {c['partial']}쌍과 하나도 match하지 않은 {c['none']}쌍을 구분한다. Referent가 없는 field는 분모에 억지로 넣지 않는다.",'',
+        '위 표는 저장된 번역 JSON에서 matcher를 CPU로 재실행한 값이다. Internal의 보기 중복 fallback 1쌍에서 중간 로그가 빠졌던 5개 referent를 복원했고, 이 중 2개가 match했다. 따라서 전체 matching 단계 기준은 1,968/6,420이며, 앞의 저장된 match 로그 기준 1,966/6,415와 다르다. 최종 적용 edit 1,904개와도 다른 지표다. 이미 같은 숫자/이름도 exact match로 센다.','',
+        'Screen에서는 번역 JSON 실패 2쌍의 7개 referent를 판정할 수 없다. 표의 전체 분모에는 유지하되 확인된 match 분자에는 넣지 않았고, 실제 no-match와 구별한다. 전체 match는 모델이 제안한 번역과 inventory의 일치이며 R_REF와의 표현 동일성이나 실제 GUI 대응 정답률을 뜻하지 않는다.','',
         '### 기존 R gap 259건은 얼마나 회복됐나','',
         f"기존 R 정답·Automatic 오답 {gap['old_gap']}건 중 Oracle이 {gap['recovered_old_gap']}건을 회복했다. {gap['remaining_old_gap']}건은 여전히 오답이며, 반대로 R과 Automatic이 맞혔지만 Oracle이 새로 틀린 {gap['newly_lost_R_correct']}건이 생겼다. 그 결과 R 정답·Oracle 오답은 {gap['new_gap']}건이다.",'',
         '| 기존 R gap의 source span 상태 | 기존 N | Oracle 회복 |','| --- | ---: | ---: |']
