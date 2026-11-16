@@ -136,6 +136,12 @@ def add_completed(snapshot,run,repo,root,labels,contract,read):
         if saved['primary_pairs']!=len(ids) or saved['correct']['TS_STEM_ONLY_GUI_AUTO']!=correct:raise ValueError('Stem-only accuracy differs')
         saved['source_prediction_sha256']=hashlib.sha256((pred_dir/'predictions.jsonl').read_bytes()).hexdigest()
         snapshot['cohorts']['screen']['completed_evaluation']['stem_only']=saved
+        diagnostic_path=root/'artifacts/stem_only_diagnostic_snapshot.json'
+        if diagnostic_path.exists():
+            diagnostic=json.loads(use(diagnostic_path).read_text());cohort=snapshot['cohorts']['screen']['completed_evaluation']
+            if diagnostic['pair_ids_sha256']!=cohort['pair_ids_sha256'] or diagnostic['correct']['Stem-only']!=correct:raise ValueError('R_stem diagnostic cohort differs')
+            cohort['R_stem_reference']={'n':len(ids),'correct':diagnostic['correct']['R_stem'],'Stem_only_vs_R_stem':diagnostic['contrasts']['Stem-only − R_stem'],
+                                       'historical_contract':diagnostic['historical_contract']}
 
 
 def render_completed(snapshot):
@@ -153,12 +159,16 @@ def render_completed(snapshot):
         if stem:
             k=stem['correct']['TS_STEM_ONLY_GUI_AUTO'];c=stem['contrasts']['O']
             out.append(f"| **Stem-only GUI · Options 원본** | **{k}/{n}** | **{k/n*100:.2f}%** | {c['difference']*100:+.2f}pp | [{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}] | {c['recovery']}/{c['regression']} |")
+        if 'R_stem_reference' in s:
+            r=s['R_stem_reference'];out.append(f"| **R_stem · Stem-only 대응 reference** | **{r['correct']}/{n}** | **{r['correct']/n*100:.2f}%** | {(r['correct']-outcomes['O']['correct'])/n*100:+.2f}pp | — | — |")
         for name in ('R_REF','F_REF'):
             r=s['historical_references'][name]
             out.append(f"| {name} · parallel reference | {r['correct']}/{n} | {r['correct']/n*100:.2f}% | {(r['correct']-outcomes['O']['correct'])/n*100:+.2f}pp | — | — |")
         if stem:
             c=stem['contrasts']['TS_QSEL_OFULL_GUI_AUTO']
             out+=['',f"Stem-only는 완료된 Hybrid stem을 그대로 쓰고 A–D만 원본으로 복원했다. 새 추출·번역 없이 추가 downstream288쌍을 평가했다. **Stem-only−Hybrid는 {c['difference']*100:+.2f}pp**, CI[{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}]pp, 회복/회귀{c['recovery']}/{c['regression']}이다. Options Full을 추가한 Hybrid가 정답3개 높은 점추정이지만 구간이 넓어 우위를 확정하지 않는다. R/F는 같은 primary pair의 기존 parallel reference이며 자동 method가 아니다."]
+        if 'R_stem_reference' in s:
+            c=s['R_stem_reference']['Stem_only_vs_R_stem'];out+=['',f"조작 범위를 맞춘 **Stem-only−R_stem은{c['difference']*100:+.2f}pp**, CI[{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}]pp다. 과거 R_stem run의 O는163/240, 현재 O는162/240이며 label239/240일치했다. R 전체와의 격차를 stem만의 미회복분으로 해석하지 않는다. [실패 단계·병렬 mapping 점검·잔여 ETA](STEM_ONLY_DIAGNOSTIC_KO.md)."]
         no_clear_effect=all(r['vs_O']['ci95'][0]<=0<=r['vs_O']['ci95'][1] for r in outcomes.values() if 'vs_O' in r)
         out+=['',f"CI는 semantic item 단위 10,000회 bootstrap이다. {n}개 pair를 독립 문제{n}개로 취급하지 않는다. "+('O 대비 CI는 모두 0을 포함하거나 경계가0이다. ' if no_clear_effect else '')+'Point estimate만으로 유의한 개선을 주장하지 않으며, 여러 탐색 대비에 대한 보정된 유의성도 주장하지 않는다.','',
               '### 조건 간 주요 paired 비교','', '| 비교 | 차이 | 95% CI | 회복/회귀 |','| --- | ---: | --- | ---: |']

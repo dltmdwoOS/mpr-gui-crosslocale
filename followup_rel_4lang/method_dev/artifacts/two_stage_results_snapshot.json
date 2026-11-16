@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-11-16T11:07:55.943024+00:00",
+  "as_of_utc": "2026-11-16T11:44:54.110103+00:00",
   "run": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid",
   "cohorts": {
     "screen": {
@@ -3245,6 +3245,31 @@
           "label_changes_without_question_change": 0,
           "new_translation_calls": 0,
           "source_prediction_sha256": "95129bbb8efc4be2b51625bb703d882eea845eb02f7f063a4612e0eaa312466b"
+        },
+        "R_stem_reference": {
+          "n": 240,
+          "correct": 185,
+          "Stem_only_vs_R_stem": {
+            "pairs": 240,
+            "items": 20,
+            "difference": -0.041666666666666664,
+            "ci95": [
+              -0.11666666666666667,
+              0.0375
+            ],
+            "exploratory_bootstrap_centered_p": 0.29247075292470753,
+            "recovery": 10,
+            "regression": 20
+          },
+          "historical_contract": {
+            "path": "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw",
+            "batch_size": 4,
+            "queue_order": "pair_id sorted; O, R_stem, R_opts, R adjacent",
+            "experiment_fingerprint": "e60574acf0226ce379574e1397c0c3f26415584b9be9b4724cefb16823381124",
+            "model_and_system_identical": true,
+            "hardware": "historical RTX4090 vs current B200 MIG; batch4 mixed conditions vs batch3 separated conditions",
+            "O_label_agreement": 239
+          }
         }
       }
     },
@@ -3535,12 +3560,17 @@
       "captured_bytes": 285828,
       "sha256": "95129bbb8efc4be2b51625bb703d882eea845eb02f7f063a4612e0eaa312466b",
       "complete_lines": 288
+    },
+    "followup_rel_4lang/method_dev/artifacts/stem_only_diagnostic_snapshot.json": {
+      "path": "followup_rel_4lang/method_dev/artifacts/stem_only_diagnostic_snapshot.json",
+      "sha256": "c4cdf50a9b75b87768efe21d8129370c541da041a5fd6994b5fc16dd005401fb",
+      "captured_bytes": 269287
     }
   },
   "interpretation": "Completed transformation is not completed downstream inference. Historical invalidated results are not reused.",
   "analysis_source_sha256": {
     "update_two_stage_results.py": "91b8c5c32678ad16676ff4ea1cdfc00c48eb69e4aabd2e1199c82b7b5ff07043",
-    "two_stage_completed.py": "c4f8d8309574155c9d3f6183edbb8d324d20a6c3d546e8555658595b544cf1ac",
+    "two_stage_completed.py": "30ebae07499d3861e1b009c4db1c4a4e8e44673e00b501318286c3313ac78c0c",
     "reference_comparison.py": "97d858d982a24943577bcb9451ce4a60fc948f6aabacdf33368a07321329fb67"
   },
   "reference_metadata": {
