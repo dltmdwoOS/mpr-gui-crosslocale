@@ -33,3 +33,15 @@ def test_report_recomputes_primary_exclusion_and_requires_full_paired_set():
 def test_source_span_failure_is_not_misreported_as_json_syntax():
     assert error_kind('Span cannot be recovered from original text')=='원문 text/occurrence 복원 실패'
     assert error_kind("Expecting ',' delimiter: line 2")=='JSON 파싱'
+
+
+def test_method_narrative_adds_only_completed_scores_and_explains_controls():
+    from followup_rel_4lang.method_dev.scripts.update_search_results_report import method_explanation,METHOD_DETAILS,ORDER
+    assert set(METHOD_DETAILS)==set(ORDER)
+    snapshot={'records':{'screen':{'GUI_FULL':{'groups':{'main':{'correct':7,'n':10,'O_correct':6}}}},'selection':{},'internal_evaluation':{}},'decision':{'evaluation_recipes':['GUI_FULL']}}
+    text=method_explanation(snapshot,'GUI_FULL')
+    assert '7/10 (70.00%' in text and 'TXT_FULL' in text and '부분 출력' in text
+    snapshot['records']['internal_evaluation']['GUI_FULL']={'groups':{'main':{'correct':8,'n':10,'O_correct':6}},'main_changed':9,'main_fallback':1}
+    text=method_explanation(snapshot,'GUI_FULL')
+    assert '8/10 (80.00%' in text and '변경은 9/10쌍' in text and '오류 fallback은 1쌍' in text
+    assert '아직 완료되지' not in text

@@ -1,6 +1,6 @@
 {
-  "as_of_utc": "2026-11-15T23:01:27+00:00",
-  "cutoff_unix_seconds": 1794783687.720154,
+  "as_of_utc": "2026-11-16T02:51:01+00:00",
+  "cutoff_unix_seconds": 1794797461.233874,
   "run_dir": "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1",
   "pipeline_complete": false,
   "policy": {
@@ -4608,6 +4608,488 @@
         "method_peak_gib": 16.9751877784729,
         "downstream_peak_gib": 18.25292205810547,
         "transitions_without_own_edit": 2
+      },
+      "TXT_DIRECT_VLM": {
+        "groups": {
+          "main": {
+            "n": 1416,
+            "items": 118,
+            "correct": 978,
+            "O_correct": 997,
+            "recovery": 59,
+            "regression": 78
+          },
+          "all": {
+            "n": 1416,
+            "items": 118,
+            "correct": 978,
+            "O_correct": 997,
+            "recovery": 59,
+            "regression": 78
+          }
+        },
+        "by_gui": {
+          "en": {
+            "n": 354,
+            "correct": 282,
+            "O_correct": 290
+          },
+          "ru": {
+            "n": 354,
+            "correct": 255,
+            "O_correct": 265
+          },
+          "th": {
+            "n": 354,
+            "correct": 177,
+            "O_correct": 172
+          },
+          "zh": {
+            "n": 354,
+            "correct": 264,
+            "O_correct": 270
+          }
+        },
+        "by_direction": {
+          "en→ru": {
+            "n": 118,
+            "correct": 96,
+            "O_correct": 98
+          },
+          "en→th": {
+            "n": 118,
+            "correct": 56,
+            "O_correct": 60
+          },
+          "en→zh": {
+            "n": 118,
+            "correct": 98,
+            "O_correct": 100
+          },
+          "ru→en": {
+            "n": 118,
+            "correct": 99,
+            "O_correct": 105
+          },
+          "ru→th": {
+            "n": 118,
+            "correct": 57,
+            "O_correct": 58
+          },
+          "ru→zh": {
+            "n": 118,
+            "correct": 92,
+            "O_correct": 95
+          },
+          "th→en": {
+            "n": 118,
+            "correct": 87,
+            "O_correct": 87
+          },
+          "th→ru": {
+            "n": 118,
+            "correct": 76,
+            "O_correct": 77
+          },
+          "th→zh": {
+            "n": 118,
+            "correct": 74,
+            "O_correct": 75
+          },
+          "zh→en": {
+            "n": 118,
+            "correct": 96,
+            "O_correct": 98
+          },
+          "zh→ru": {
+            "n": 118,
+            "correct": 83,
+            "O_correct": 90
+          },
+          "zh→th": {
+            "n": 118,
+            "correct": 64,
+            "O_correct": 54
+          }
+        },
+        "trial": "jobs/internal_evaluation/fixed_contrastive_TXT_DIRECT_VLM/attempt_0001",
+        "predictions": "jobs/internal_evaluation/pred_fixed_contrastive_TXT_DIRECT_VLM/attempt_0001",
+        "quality": {
+          "execution_mode": "gpu",
+          "empirical": true,
+          "metrics": {
+            "pairs": 1416,
+            "fallback_original": 644,
+            "no_edit_pairs": 742,
+            "edits": 2830,
+            "edit_spans_exact_annotation": 1716,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "by_source_language": {},
+          "screen_matching_precision": null,
+          "note": "Annotation span exactness is not screenshot matching accuracy. Direct methods expose edits only, not a complete extraction set. MOCK is not empirical evidence."
+        },
+        "cost": {
+          "execution_mode": "gpu",
+          "wall_ms": 3913781.1548700556,
+          "calls": 1416,
+          "unique_calls": 1416,
+          "cache_hits": 0,
+          "acquired_runtime_ms": 3891594.109052792,
+          "acquired_model_load_ms": 9947.2268614918,
+          "standalone_unique_runtime_ms": 3891594.109052792,
+          "standalone_unique_input_tokens": 378102,
+          "standalone_unique_output_tokens": 177191,
+          "failed_calls": 0,
+          "unknown_token_calls": 0,
+          "complete": true,
+          "note": "Cached GPU timings are historical measurements, not a new trial measurement. Standalone sum omits scheduling/model-switch overhead. MOCK is not timing or accuracy evidence."
+        },
+        "main_changed": 673,
+        "main_fallback": 644,
+        "main_edits": 2830,
+        "main_exact_edit_spans": 1716,
+        "main_error_types": {
+          "원문 text/occurrence 복원 실패": 80,
+          "edit 필드/schema": 560,
+          "JSON 파싱": 4
+        },
+        "inventory_images": 0,
+        "inventory_failed_images": 0,
+        "inventory_failed_at_token_cap": 0,
+        "runtime_ms_distribution": {
+          "median": 2581.151360180229,
+          "p95": 4854.047697037458
+        },
+        "downstream_compute_seconds": 1518.8387663615867,
+        "method_wall_seconds": 3913.7811548700556,
+        "pred_wall_seconds": 1549.863297700882,
+        "method_peak_gib": 16.460479736328125,
+        "downstream_peak_gib": 18.253891468048096,
+        "transitions_without_own_edit": 0
+      },
+      "TXT_FULL": {
+        "groups": {
+          "main": {
+            "n": 1416,
+            "items": 118,
+            "correct": 912,
+            "O_correct": 997,
+            "recovery": 141,
+            "regression": 226
+          },
+          "all": {
+            "n": 1416,
+            "items": 118,
+            "correct": 912,
+            "O_correct": 997,
+            "recovery": 141,
+            "regression": 226
+          }
+        },
+        "by_gui": {
+          "en": {
+            "n": 354,
+            "correct": 276,
+            "O_correct": 290
+          },
+          "ru": {
+            "n": 354,
+            "correct": 253,
+            "O_correct": 265
+          },
+          "th": {
+            "n": 354,
+            "correct": 152,
+            "O_correct": 172
+          },
+          "zh": {
+            "n": 354,
+            "correct": 231,
+            "O_correct": 270
+          }
+        },
+        "by_direction": {
+          "en→ru": {
+            "n": 118,
+            "correct": 93,
+            "O_correct": 98
+          },
+          "en→th": {
+            "n": 118,
+            "correct": 39,
+            "O_correct": 60
+          },
+          "en→zh": {
+            "n": 118,
+            "correct": 84,
+            "O_correct": 100
+          },
+          "ru→en": {
+            "n": 118,
+            "correct": 93,
+            "O_correct": 105
+          },
+          "ru→th": {
+            "n": 118,
+            "correct": 60,
+            "O_correct": 58
+          },
+          "ru→zh": {
+            "n": 118,
+            "correct": 79,
+            "O_correct": 95
+          },
+          "th→en": {
+            "n": 118,
+            "correct": 83,
+            "O_correct": 87
+          },
+          "th→ru": {
+            "n": 118,
+            "correct": 77,
+            "O_correct": 77
+          },
+          "th→zh": {
+            "n": 118,
+            "correct": 68,
+            "O_correct": 75
+          },
+          "zh→en": {
+            "n": 118,
+            "correct": 100,
+            "O_correct": 98
+          },
+          "zh→ru": {
+            "n": 118,
+            "correct": 83,
+            "O_correct": 90
+          },
+          "zh→th": {
+            "n": 118,
+            "correct": 53,
+            "O_correct": 54
+          }
+        },
+        "trial": "jobs/internal_evaluation/fixed_contrastive_TXT_FULL/attempt_0001",
+        "predictions": "jobs/internal_evaluation/pred_fixed_contrastive_TXT_FULL/attempt_0001",
+        "quality": {
+          "execution_mode": "gpu",
+          "empirical": true,
+          "metrics": {
+            "pairs": 1416,
+            "fallback_original": 21,
+            "no_edit_pairs": 1416,
+            "edits": 0,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "by_source_language": {},
+          "screen_matching_precision": null,
+          "note": "Annotation span exactness is not screenshot matching accuracy. Direct methods expose edits only, not a complete extraction set. MOCK is not empirical evidence."
+        },
+        "cost": {
+          "execution_mode": "gpu",
+          "wall_ms": 2659235.0341416895,
+          "calls": 1416,
+          "unique_calls": 1416,
+          "cache_hits": 0,
+          "acquired_runtime_ms": 2621178.9638875052,
+          "acquired_model_load_ms": 16789.42469507456,
+          "standalone_unique_runtime_ms": 2621178.9638875052,
+          "standalone_unique_input_tokens": 259158,
+          "standalone_unique_output_tokens": 113039,
+          "failed_calls": 0,
+          "unknown_token_calls": 0,
+          "complete": true,
+          "note": "Cached GPU timings are historical measurements, not a new trial measurement. Standalone sum omits scheduling/model-switch overhead. MOCK is not timing or accuracy evidence."
+        },
+        "main_changed": 1395,
+        "main_fallback": 21,
+        "main_edits": 0,
+        "main_exact_edit_spans": 0,
+        "main_error_types": {
+          "Numeric values changed": 20,
+          "JSON 파싱": 1
+        },
+        "inventory_images": 0,
+        "inventory_failed_images": 0,
+        "inventory_failed_at_token_cap": 0,
+        "runtime_ms_distribution": {
+          "median": 1693.6165825463831,
+          "p95": 2797.535886988044
+        },
+        "downstream_compute_seconds": 1572.175856382586,
+        "method_wall_seconds": 2659.2350341416895,
+        "pred_wall_seconds": 1604.956773519516,
+        "method_peak_gib": 15.33057689666748,
+        "downstream_peak_gib": 18.26641273498535,
+        "transitions_without_own_edit": 1
+      },
+      "GUI_FULL": {
+        "groups": {
+          "main": {
+            "n": 1416,
+            "items": 118,
+            "correct": 1003,
+            "O_correct": 997,
+            "recovery": 168,
+            "regression": 162
+          },
+          "all": {
+            "n": 1416,
+            "items": 118,
+            "correct": 1003,
+            "O_correct": 997,
+            "recovery": 168,
+            "regression": 162
+          }
+        },
+        "by_gui": {
+          "en": {
+            "n": 354,
+            "correct": 294,
+            "O_correct": 290
+          },
+          "ru": {
+            "n": 354,
+            "correct": 274,
+            "O_correct": 265
+          },
+          "th": {
+            "n": 354,
+            "correct": 176,
+            "O_correct": 172
+          },
+          "zh": {
+            "n": 354,
+            "correct": 259,
+            "O_correct": 270
+          }
+        },
+        "by_direction": {
+          "en→ru": {
+            "n": 118,
+            "correct": 98,
+            "O_correct": 98
+          },
+          "en→th": {
+            "n": 118,
+            "correct": 53,
+            "O_correct": 60
+          },
+          "en→zh": {
+            "n": 118,
+            "correct": 91,
+            "O_correct": 100
+          },
+          "ru→en": {
+            "n": 118,
+            "correct": 101,
+            "O_correct": 105
+          },
+          "ru→th": {
+            "n": 118,
+            "correct": 63,
+            "O_correct": 58
+          },
+          "ru→zh": {
+            "n": 118,
+            "correct": 89,
+            "O_correct": 95
+          },
+          "th→en": {
+            "n": 118,
+            "correct": 93,
+            "O_correct": 87
+          },
+          "th→ru": {
+            "n": 118,
+            "correct": 85,
+            "O_correct": 77
+          },
+          "th→zh": {
+            "n": 118,
+            "correct": 79,
+            "O_correct": 75
+          },
+          "zh→en": {
+            "n": 118,
+            "correct": 100,
+            "O_correct": 98
+          },
+          "zh→ru": {
+            "n": 118,
+            "correct": 91,
+            "O_correct": 90
+          },
+          "zh→th": {
+            "n": 118,
+            "correct": 60,
+            "O_correct": 54
+          }
+        },
+        "trial": "jobs/internal_evaluation/fixed_contrastive_GUI_FULL/attempt_0001",
+        "predictions": "jobs/internal_evaluation/pred_fixed_contrastive_GUI_FULL/attempt_0001",
+        "quality": {
+          "execution_mode": "gpu",
+          "empirical": true,
+          "metrics": {
+            "pairs": 1416,
+            "inventory_failed_pairs": 84,
+            "inventory_empty_pairs": 0,
+            "fallback_original": 81,
+            "no_edit_pairs": 1416,
+            "edits": 0,
+            "precision": null,
+            "recall": null,
+            "f1": null
+          },
+          "by_source_language": {},
+          "screen_matching_precision": null,
+          "note": "Annotation span exactness is not screenshot matching accuracy. Direct methods expose edits only, not a complete extraction set. MOCK is not empirical evidence."
+        },
+        "cost": {
+          "execution_mode": "gpu",
+          "wall_ms": 3073067.099680193,
+          "calls": 1888,
+          "unique_calls": 1888,
+          "cache_hits": 472,
+          "acquired_runtime_ms": 3041609.850543551,
+          "acquired_model_load_ms": 17525.561983697116,
+          "standalone_unique_runtime_ms": 5562404.9239913,
+          "standalone_unique_input_tokens": 1469441,
+          "standalone_unique_output_tokens": 211847,
+          "failed_calls": 0,
+          "unknown_token_calls": 0,
+          "complete": true,
+          "note": "Cached GPU timings are historical measurements, not a new trial measurement. Standalone sum omits scheduling/model-switch overhead. MOCK is not timing or accuracy evidence."
+        },
+        "main_changed": 1335,
+        "main_fallback": 81,
+        "main_edits": 0,
+        "main_exact_edit_spans": 0,
+        "main_error_types": {
+          "전체 번역 필드/schema": 57,
+          "Numeric values changed": 23,
+          "JSON 파싱": 1
+        },
+        "inventory_images": 472,
+        "inventory_failed_images": 28,
+        "inventory_failed_at_token_cap": 22,
+        "runtime_ms_distribution": {
+          "median": 2100.51954863593,
+          "p95": 6717.0901298522895
+        },
+        "downstream_compute_seconds": 1555.303077859804,
+        "method_wall_seconds": 3073.0670996801928,
+        "pred_wall_seconds": 1583.1633348464966,
+        "method_peak_gib": 16.9751877784729,
+        "downstream_peak_gib": 18.26571273803711,
+        "transitions_without_own_edit": 1
       }
     }
   },
@@ -5624,7 +6106,14 @@
     "followup_rel_4lang/method_dev/artifacts/dataset_audit/oracle_spans_DIAGNOSTIC_ONLY.jsonl": "b6f1642a1d257d7f6aa92ff3724957cb4541b44910273ac452a1f502267614ff",
     "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/frozen_policy.json": "5d5d5b85b6ba0b58d7eebf95197c04eccf8df00dcd92a305fdfd7c8c7d74419f",
     "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_GUI_EXACT/attempt_0001/contract.json": "f228eba7dd178403e8053f0597053ea4f4c880937f8094b5f35c087f7b03077b",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_GUI_FULL/attempt_0001/contract.json": "1fd81eda21d0678b697ca328b68b7dea86e6e40e12049d404797c249175f3900",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_TXT_DIRECT_VLM/attempt_0001/contract.json": "fff7e397623c297689dba2fe1750a5e320690e565f734238310f99d6ad976e7c",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_TXT_FULL/attempt_0001/contract.json": "24af205b127fa392b3b13d02774ed7baadcebe2b8c984699e0c2d6305eafe5c8",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_TXT_SEL/attempt_0001/contract.json": "06d5fc2a2508b29217c1a4e0e7fb4526489d69abfcfffc813f9fd068d46602ba",
     "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/pred_fixed_contrastive_GUI_EXACT/attempt_0001/contract.json": "7d7bdd23aa57383e09a403c90e93b0125f6f185396b029d76d055d52f6367b8e",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/pred_fixed_contrastive_GUI_FULL/attempt_0001/contract.json": "c53ac78ff63b0143bcdfe48568df932ac2910bfefbca32859909ce1d19f3d695",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/pred_fixed_contrastive_TXT_DIRECT_VLM/attempt_0001/contract.json": "d06cf52c689c5edeb4bd1bd8ed8d8653764292693e837df115cb3d64667b023b",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/pred_fixed_contrastive_TXT_FULL/attempt_0001/contract.json": "4d1ffe3e9b35d3f197a5ae3348ab820d1357e0b45321f3656791642e8b564170",
     "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/probe/cpu_quoted_extraction/attempt_0001/contract.json": "d1fd60f785a133568769d3ebe9259a0134ed2fb03e477171f22bb83146050011",
     "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/probe/fixed_contrastive_GUI_DIRECT_VLM/attempt_0001/contract.json": "23d6ff07cd1686efd3735f813551cec9882be76ec0a30d2d464652b7c4c59184",
     "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/probe/fixed_contrastive_GUI_EXACT/attempt_0001/contract.json": "5dc43f631c02ad05301e5af92cff99fb2b58a7c04e61a1d74de2d3a26652b734",
@@ -5802,9 +6291,25 @@
     "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_GUI_EXACT/attempt_0001/rewritten.jsonl": "680d9960678a566e735d08ed635bcd613c52ba004e2d790fe154a116417d8463",
     "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/pred_fixed_contrastive_GUI_EXACT/attempt_0001/predictions.jsonl": "6ea5e6df907ce085298ab22d6b8d3428490ed79b904f909172e0d682cb0c3513",
     "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_GUI_EXACT/attempt_0001/calls.json": "3abc8dd3c0a117f785a250de200e98e6001aabd848eb02e5ba3b9c53b5d676ba",
-    "followup_rel_4lang/method_dev/scripts/update_search_results_report.py": "504b23bbe7e7feaa836e6496c89b377f39d65a5bf26b5ddf9f743c4d7aa90db0",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/tables/internal_evaluation/TXT_DIRECT_VLM.json": "9f10c2fbd5bf89f573393e83c6cc0cb36e0388b8a7caa7e57e8b12ba63e6f1ac",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_TXT_DIRECT_VLM/attempt_0001/rewritten.jsonl": "cd7569794413aea2d6947912cebfb8d09e86b30521676683d00addea5fc18bf1",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/pred_fixed_contrastive_TXT_DIRECT_VLM/attempt_0001/predictions.jsonl": "308fa17ba249deb1caecb0770df088fdfcf37151307c66de79eedd7f8767824e",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_TXT_DIRECT_VLM/attempt_0001/calls.json": "e289686521e184322641cf25c9f033162f980a5b9d4eeb619f5f09587bc06a5d",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/tables/internal_evaluation/TXT_FULL.json": "92710e7812c072cbe3b38fe50a7064a4f0824ba016ed10a9bc960d129223c595",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_TXT_FULL/attempt_0001/rewritten.jsonl": "b95e79f5f358f663f9054a73448b7511464f8a1bde58f81d7651e7b9e7c58e14",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/pred_fixed_contrastive_TXT_FULL/attempt_0001/predictions.jsonl": "e1341894b1714e85cb2c78e1facb4dc759f2ec01e26c822327ef469e8ed519b0",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_TXT_FULL/attempt_0001/calls.json": "eceb141fa3c904b224273ed6f87e69db31e45253d9dced08ed0d4d5203ab4c01",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/tables/internal_evaluation/GUI_FULL.json": "078df19ed57392f30601b2742158afc0e937a88dce9e0f32efe40cb69adfe9ed",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_GUI_FULL/attempt_0001/rewritten.jsonl": "25d0c84d486b3d343578ddd20b5c2f6392a35673ecb989b75137ddd67718d4b5",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/pred_fixed_contrastive_GUI_FULL/attempt_0001/predictions.jsonl": "bc59ba0dc85f94f66111bad2e7c7cea4b20b2afeb55a6960e6954d3700c07a62",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_GUI_FULL/attempt_0001/calls.json": "369086f32a67001fa729eca0212e886523b8bc6e7cfeb760522bd6b6c6be7fd5",
+    "followup_rel_4lang/method_dev/scripts/update_search_results_report.py": "efe6be60442495772ae019c3876ea666632888c4d039105749bcd5807524085d",
     "followup_rel_4lang/artifacts/new_models_expA_20261115/analysis/expA_8b_20261114/qwen3/expA_qwen3/full/predictions.jsonl": "c6315c8938a1cd2a83242f8d40f262711372d48f6a7be3c203fd13bfac7375e8",
     "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_GUI_EXACT/attempt_0001/cost.json": "80891d1826336c8df51c4fd50808535c6a02a9f65319cc9dcbf3fa69c90945d0",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_GUI_FULL/attempt_0001/cost.json": "56d32c584ee92eb92bfc7fc59638984b2d02fb78eb85472e08dcc7dea306fbaa",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_TXT_DIRECT_VLM/attempt_0001/cost.json": "c4253e39d6d563531671a237576eb2e9cbffde9be6c25b9b0ced1627ffd3ef8b",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_TXT_FULL/attempt_0001/cost.json": "626df4b1589d13d01289a8deb60719576b55ecdc0ac766bca83aba9877fe75c4",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/fixed_contrastive_TXT_SEL/attempt_0001/cost.json": "3dce77b9c1f9d513ab96bd22b1f8872f7f0329ad7c39691e9173c22cc83326e7",
     "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/probe/cpu_quoted_extraction/attempt_0001/cost.json": "47e7828d8f83c35fdaeefc268415a2522249fd5a3c51708f1160875f0893ef25",
     "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/probe/fixed_contrastive_GUI_DIRECT_VLM/attempt_0001/cost.json": "e08d2d099ae9160c272049b2238792b02145a3e50e53c0aa39c57ffa8306cd05",
     "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/probe/fixed_contrastive_GUI_EXACT/attempt_0001/cost.json": "288d4dbb88a846d7e85f02376b700fbda4a3aa8a8809a606736e4279dbbb48a8",
@@ -6446,6 +6951,33 @@
     "automatic_choice_is_provisional": true,
     "development_not_confirmatory": true
   },
+  "progress": {
+    "GUI_EXACT": {
+      "state": "변환·문제 풀이·집계 완료",
+      "prediction_lines": 2832,
+      "expected_lines": 2832
+    },
+    "GUI_FULL": {
+      "state": "변환·문제 풀이·집계 완료",
+      "prediction_lines": 2832,
+      "expected_lines": 2832
+    },
+    "TXT_DIRECT_VLM": {
+      "state": "변환·문제 풀이·집계 완료",
+      "prediction_lines": 2832,
+      "expected_lines": 2832
+    },
+    "TXT_FULL": {
+      "state": "변환·문제 풀이·집계 완료",
+      "prediction_lines": 2832,
+      "expected_lines": 2832
+    },
+    "TXT_SEL": {
+      "state": "문제 풀이 진행 중",
+      "prediction_lines": 120,
+      "expected_lines": 2832
+    }
+  },
   "O_anchor_agreement": {
     "probe": true,
     "screen": true,
@@ -6495,6 +7027,62 @@
         "exploratory_bootstrap_centered_p": 0.0400959904009599,
         "recovery": 23,
         "regression": 37
+      },
+      {
+        "left": "GUI_FULL",
+        "right": "O",
+        "pairs": 240,
+        "items": 20,
+        "difference": 0.05416666666666667,
+        "ci95": [
+          0.0,
+          0.10833333333333334
+        ],
+        "exploratory_bootstrap_centered_p": 0.0585941405859414,
+        "recovery": 37,
+        "regression": 24
+      },
+      {
+        "left": "TXT_DIRECT_VLM",
+        "right": "O",
+        "pairs": 240,
+        "items": 20,
+        "difference": -0.008333333333333333,
+        "ci95": [
+          -0.05,
+          0.029166666666666667
+        ],
+        "exploratory_bootstrap_centered_p": 0.7696230376962304,
+        "recovery": 8,
+        "regression": 10
+      },
+      {
+        "left": "TXT_FULL",
+        "right": "O",
+        "pairs": 240,
+        "items": 20,
+        "difference": -0.029166666666666667,
+        "ci95": [
+          -0.07916666666666666,
+          0.016666666666666666
+        ],
+        "exploratory_bootstrap_centered_p": 0.26587341265873415,
+        "recovery": 23,
+        "regression": 30
+      },
+      {
+        "left": "TXT_SEL",
+        "right": "O",
+        "pairs": 240,
+        "items": 20,
+        "difference": -0.0375,
+        "ci95": [
+          -0.07916666666666666,
+          0.004166666666666667
+        ],
+        "exploratory_bootstrap_centered_p": 0.10128987101289871,
+        "recovery": 13,
+        "regression": 22
       },
       {
         "left": "GUI_FULL",
@@ -6570,6 +7158,62 @@
       },
       {
         "left": "GUI_FULL",
+        "right": "O",
+        "pairs": 239,
+        "items": 20,
+        "difference": 0.008368200836820083,
+        "ci95": [
+          -0.058823529411764705,
+          0.0794979079497908
+        ],
+        "exploratory_bootstrap_centered_p": 0.845015498450155,
+        "recovery": 27,
+        "regression": 25
+      },
+      {
+        "left": "TXT_DIRECT_VLM",
+        "right": "O",
+        "pairs": 239,
+        "items": 20,
+        "difference": 0.029288702928870293,
+        "ci95": [
+          -0.029288702928870293,
+          0.10504201680672269
+        ],
+        "exploratory_bootstrap_centered_p": 0.41995800419958,
+        "recovery": 17,
+        "regression": 10
+      },
+      {
+        "left": "TXT_FULL",
+        "right": "O",
+        "pairs": 239,
+        "items": 20,
+        "difference": -0.06276150627615062,
+        "ci95": [
+          -0.16806722689075632,
+          0.04184100418410042
+        ],
+        "exploratory_bootstrap_centered_p": 0.2535746425357464,
+        "recovery": 20,
+        "regression": 35
+      },
+      {
+        "left": "TXT_SEL",
+        "right": "O",
+        "pairs": 239,
+        "items": 20,
+        "difference": 0.0041841004184100415,
+        "ci95": [
+          -0.0625,
+          0.075
+        ],
+        "exploratory_bootstrap_centered_p": 0.9357064293570643,
+        "recovery": 16,
+        "regression": 15
+      },
+      {
+        "left": "GUI_FULL",
         "right": "TXT_FULL",
         "pairs": 239,
         "items": 20,
@@ -6611,6 +7255,76 @@
         "exploratory_bootstrap_centered_p": 0.08759124087591241,
         "recovery": 17,
         "regression": 29
+      },
+      {
+        "left": "GUI_EXACT",
+        "right": "GUI_FULL",
+        "pairs": 1416,
+        "items": 118,
+        "difference": -0.012711864406779662,
+        "ci95": [
+          -0.0423728813559322,
+          0.01694915254237288
+        ],
+        "exploratory_bootstrap_centered_p": 0.40945905409459055,
+        "recovery": 155,
+        "regression": 173
+      },
+      {
+        "left": "GUI_FULL",
+        "right": "O",
+        "pairs": 1416,
+        "items": 118,
+        "difference": 0.00423728813559322,
+        "ci95": [
+          -0.024717514124293787,
+          0.03250353107344607
+        ],
+        "exploratory_bootstrap_centered_p": 0.7872212778722127,
+        "recovery": 168,
+        "regression": 162
+      },
+      {
+        "left": "TXT_DIRECT_VLM",
+        "right": "O",
+        "pairs": 1416,
+        "items": 118,
+        "difference": -0.013418079096045197,
+        "ci95": [
+          -0.03177966101694915,
+          0.00423728813559322
+        ],
+        "exploratory_bootstrap_centered_p": 0.1491850814918508,
+        "recovery": 59,
+        "regression": 78
+      },
+      {
+        "left": "TXT_FULL",
+        "right": "O",
+        "pairs": 1416,
+        "items": 118,
+        "difference": -0.06002824858757062,
+        "ci95": [
+          -0.09392655367231638,
+          -0.02824858757062147
+        ],
+        "exploratory_bootstrap_centered_p": 0.00029997000299970003,
+        "recovery": 141,
+        "regression": 226
+      },
+      {
+        "left": "GUI_FULL",
+        "right": "TXT_FULL",
+        "pairs": 1416,
+        "items": 118,
+        "difference": 0.06426553672316385,
+        "ci95": [
+          0.03389830508474576,
+          0.09533898305084745
+        ],
+        "exploratory_bootstrap_centered_p": 0.00039996000399960006,
+        "recovery": 167,
+        "regression": 76
       }
     ]
   },
@@ -6693,7 +7407,7 @@
       "raw_output": "{\n  \"matches\": {\n    \"A:1:3\": \"ผู้ใหญ่\",\n    \"B:1:3\": \"เด็ก\",\n    \"C:1:3\": \"ห้องพัก\",\n    \"D:1:5\": \"วันที่เช็คเอาท์\"\n  }\n}"
     }
   ],
-  "completed_jobs": 59,
-  "method_acquired_runtime_seconds": 20093.518623615615,
-  "method_load_seconds": 485.5661714542657
+  "completed_jobs": 66,
+  "method_acquired_runtime_seconds": 29647.901547099464,
+  "method_load_seconds": 529.8283849945292
 }
