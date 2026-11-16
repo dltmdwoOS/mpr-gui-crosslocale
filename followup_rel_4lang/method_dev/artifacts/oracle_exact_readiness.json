@@ -1,0 +1,61 @@
+{
+  "date_utc": "2026-11-16",
+  "status": "prepared_not_gpu_executed",
+  "diagnostic_only": true,
+  "condition": "oracle_span_selective",
+  "base_run": "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1",
+  "runner_sha256": "c4d2903d5410c3547c7dcbe963d739cec27634100af6c665ecb89e2cafd7ee4a",
+  "frozen_source_checks_passed": 17,
+  "frozen_automatic_predictions_unchanged": true,
+  "gold_target_used_for_rewrite": false,
+  "tests": {
+    "command": "PYTHONPATH=01_code/src:. .venv/bin/python -m pytest -q followup_rel_4lang/method_dev/tests/test_oracle_exact.py followup_rel_4lang/method_dev/tests/test_search.py",
+    "result": "21 passed"
+  },
+  "cohorts": {
+    "screen": {
+      "pairs": 288,
+      "semantic_items": 32,
+      "source_mcqs": 128,
+      "source_spans_pair_repeated": 1300,
+      "unique_images": 128,
+      "inventory_failed": 10,
+      "primary_pairs": 240,
+      "plan_sha256": "3294b650a5eeefdcb78003fc2496acbb26083696f6f52e483649825b004e0aae",
+      "automatic_prediction_sha256": "ffdcdfaf6b2904e5e610802d73f914a082c36ff1fb4820e32131662a373c4798",
+      "mock_complete": true,
+      "mock_resume_reused_complete_stages": true
+    },
+    "selection": {
+      "pairs": 240,
+      "semantic_items": 20,
+      "source_mcqs": 80,
+      "source_spans_pair_repeated": 1104,
+      "unique_images": 80,
+      "inventory_failed": 3,
+      "primary_pairs": 239,
+      "plan_sha256": "81b4536f885005c6ee0aea7a4088c50c1c133228cc67576e7f5f316b95c3203c",
+      "automatic_prediction_sha256": "7fec520992bb75b986042c661e397f5b902cbbcbe7d43bf5c6eea5b954a76406",
+      "mock_complete": true,
+      "mock_resume_reused_complete_stages": true
+    },
+    "internal_evaluation": {
+      "pairs": 1416,
+      "semantic_items": 118,
+      "source_mcqs": 472,
+      "source_spans_pair_repeated": 6420,
+      "unique_images": 472,
+      "inventory_failed": 28,
+      "primary_pairs": 1416,
+      "plan_sha256": "3fe1e6745c93c2b98f059adb6d7f82c65aca8ba82788bb41fddf1332b7c302e3",
+      "automatic_prediction_sha256": "6ea5e6df907ce085298ab22d6b8d3428490ed79b904f909172e0d682cb0c3513",
+      "mock_complete": true,
+      "mock_resume_reused_complete_stages": true
+    }
+  },
+  "total_executed_by_mock": 1944,
+  "total_primary_pairs": 1895,
+  "gpu_inference_started": false,
+  "new_model_downloads": false,
+  "new_gpu_measurements": false
+}

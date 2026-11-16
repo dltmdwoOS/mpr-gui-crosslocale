@@ -19,3 +19,4 @@ artifacts/search_plan_v1/*
 !artifacts/pipeline_readiness.json
 
 !artifacts/search_report_snapshot.json
+!artifacts/oracle_exact_readiness.json

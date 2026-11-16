@@ -12,6 +12,8 @@ Qwen3-8B 다운로드·SHA 검증은 완료됐다. [실제 프롬프트 원문·
 
 누적 실측 결과: [SEARCH_RESULTS_KO.md](reports/SEARCH_RESULTS_KO.md). 완료 조건만 집계하며 `.venv/bin/python followup_rel_4lang/method_dev/scripts/update_search_results_report.py`로 같은 보고서를 갱신한다. 아래 상태 설명은 초기 harness/smoke의 역사적 기록이다.
 
+다음 진단: [Oracle source-span → 기존 GUI_EXACT 실행안](reports/ORACLE_SPAN_EXACT_KO.md). 자동 추출만 source annotation으로 바꾸고 나머지 설정·inventory 실패를 고정한다. `bash followup_rel_4lang/method_dev/scripts/run_oracle_exact.sh`로 세 cohort를 순차 실행하며 기존 결과는 보존한다. 준비·CPU mock 검증을 완료했고, 실제 Oracle 추론은 아직 실행하지 않았다.
+
 ## 현재 상태
 
 Gate 0/1은 실제 데이터·hash·T/R 재구성과 CPU mock 검사를 통과했다. Gate 2의 CPU 구성요소와 실제 화면 기능 검사는 실행했지만, 대체 모델의 referent extraction이 빈 목록을 내 **실제 selective editing 성공 게이트는 미통과**다. Calibration, 2×2 내부 평가, RFA 성능 평가는 실행하지 않았다. 이 상태를 method의 성능 검증 완료로 해석하면 안 된다.
