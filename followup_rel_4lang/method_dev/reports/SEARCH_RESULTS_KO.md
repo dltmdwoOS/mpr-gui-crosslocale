@@ -1,21 +1,23 @@
 # Qwen3 선택적 정렬 개발 실험 결과
 
 <!-- AUTO_RESULTS_START -->
-집계 기준 (UTC): **2026-11-16T02:51:01+00:00**. 상태: **진행 중 — 완료 조건만 집계**.
+집계 기준 (UTC): **2026-11-16T03:22:12+00:00**. 상태: **전체 pipeline 완료**.
 
 이 문서는 실제 GPU 결과만 집계한다. 변환·문제 풀이에 모두 `COMPLETE`가 있는 조건만 정확도 표에 넣고, 진행 중인 출력은 분모에서 제외한다. 원시 결과는 수정하지 않았다. 수동 메모는 자동 생성 영역 밖에 보존한다.
 
 ## 1. 현재 핵심 결과
 
-- 내부 평가에서 `GUI_EXACT`: **985/1416 (69.56%)**, O: **997/1416 (70.41%)**. 차이는 **-0.85pp**, 회복17 / 회귀29다. 이 완료된 한 조건의 점추정은 개선을 보이지 않는다.
+- 내부 평가에서 `GUI_EXACT`: **985/1416 (69.56%)**, O: **997/1416 (70.41%)**. 차이는 **-0.85pp**, 회복17 / 회귀29다. 선택된 method의 점추정은 O 대비 개선을 보이지 않는다.
 - 완료된 내부 평가 `GUI_FULL`: **1003/1416 (70.83%)**, O 대비 **+0.42pp**, 회복168 / 회귀162.
 - 완료된 내부 평가 `TXT_DIRECT_VLM`: **978/1416 (69.07%)**, O 대비 **-1.34pp**, 회복59 / 회귀78.
 - 완료된 내부 평가 `TXT_FULL`: **912/1416 (64.41%)**, O 대비 **-6.00pp**, 회복141 / 회귀226.
+- 완료된 내부 평가 `TXT_SEL`: **946/1416 (66.81%)**, O 대비 **-3.60pp**, 회복81 / 회귀132.
 - GUI_FULL은 순증가가 작아도 많은 문항의 정오를 바꿨다. Selection에서 높았던 TXT_DIRECT_VLM도 내부 평가에서는 O를 넘지 못했다. 작은 선택 집합의 순위를 최종 성능으로 해석하면 안 된다.
 - Screen main240쌍: GUI_FULL **72.92%**, GUI_EXACT **67.08%**, O **67.50%**. 현재 selective 구현이 full localization보다 낫다는 결과는 아니다.
 - Selection의 최고 관측 대조는 `TXT_DIRECT_VLM` **178/239 (74.48%)**. 자동 선택 `GUI_EXACT`는 GUI 후보4개 안에서 고른 잠정 후보이며 전체9조건의 최고를 뜻하지 않는다.
 - 추출·matching·edit 프로토콜의 실패가 많이 남아 있다. 특히 원문 span 대신 번역문을 반환하거나 span ID를 잘못 반환하면 안전한 원문 fallback으로 처리됐다. 이를 화면 정보 자체가 효과 없다는 증거로 일반화하지 않는다.
 - 독립 화면 검수가 없어 **GUI matching precision은 미측정**이다. Annotation span 경계 일치율을 replacement 정답률로 부르지 않는다.
+- 같은 내부 평가1416쌍의 reference는 T_REF **70.90%**, R_REF **84.82%**, F_REF **82.06%**다. GUI_EXACT의 R 대비 차이는 **-15.25pp**, F 대비 차이는 **-12.50pp**다. 문항 범위는 같지만 과거 실행과의 batch/장비 차이는10절에 명시했다.
 
 현재 내부 평가 진행 상태(파일 진행 수는 집계 시 읽은 참고값):
 
@@ -25,7 +27,7 @@
 | GUI_FULL | 변환·문제 풀이·집계 완료 | 2832/2832 |
 | TXT_DIRECT_VLM | 변환·문제 풀이·집계 완료 | 2832/2832 |
 | TXT_FULL | 변환·문제 풀이·집계 완료 | 2832/2832 |
-| TXT_SEL | 문제 풀이 진행 중 | 120/2832 |
+| TXT_SEL | 변환·문제 풀이·집계 완료 | 2832/2832 |
 
 행 수는 O와 해당 조건을 합친 실행 진행량이다. 완료되지 않은 행에서 정답률을 계산하지 않았다.
 
@@ -120,9 +122,9 @@ GUI_EXACT와 같은 공통 추출 span과 같은 고정 Qwen3-8B의 표현별 �
 
 이는 화면 없이 참조만 번역하는 automatic selective 기준이다. GUI_EXACT와 비교하면 화면 문자열로 제한한 덕분에 생기는 이득과, 제한 때문에 못 바꾼 표현의 손실을 함께 볼 수 있다. 추출기가 문맥을 잘못 span에 포함하면 이 조건도 그 문맥을 번역할 수 있으며, 애초에 추출하지 못한 표현은 그대로 남는다. 역사적 T_REF는 gold span과 Gemma를 썼으므로 TXT_SEL과 같은 실험이 아니다.
 
-완료 결과를 따라 읽으면 screen 153/240 (63.75%, O 대비 -3.75pp), selection 172/239 (71.97%, O 대비 +0.42pp)다.
+완료 결과를 따라 읽으면 screen 153/240 (63.75%, O 대비 -3.75pp), selection 172/239 (71.97%, O 대비 +0.42pp), internal_evaluation 946/1416 (66.81%, O 대비 -3.60pp)다.
 
-이 조건의 내부 평가는 아직 완료되지 않았으므로 부분 출력의 정답률은 위 설명에 넣지 않았다.
+완료된 내부 평가에서 실제 MCQ 변경은 1242/1416쌍, 오류 fallback은 169쌍이었다. 이 결과는 실패와 무변경을 포함한 전체 pair 성능이며, 성공한 출력만 따로 골라 계산한 정확도가 아니다.
 
 #### TXT_DIRECT_LM — 고정 LM의 직접 edit
 
@@ -281,11 +283,12 @@ O: **997/1416 (70.41%)**. O anchor 조건 간 일치: 전부 일치.
 | 조건 | 정답/분모 | 정확도 | O 대비 | 회복 | 회귀 | method 초/쌍² |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | GUI_EXACT | 985/1416 | 69.56% | -0.85pp | 17 | 29 | 3.34 |
+| TXT_SEL | 946/1416 | 66.81% | -3.60pp | 81 | 132 | 1.56 |
 | TXT_DIRECT_VLM | 978/1416 | 69.07% | -1.34pp | 59 | 78 | 2.75 |
 | TXT_FULL | 912/1416 | 64.41% | -6.00pp | 141 | 226 | 1.85 |
 | GUI_FULL | 1003/1416 | 70.83% | +0.42pp | 168 | 162 | 3.93 |
 
-미완료로 제외한 조건: TXT_SEL. 부분 출력으로 정확도를 추정하지 않았다.
+미완료로 제외한 조건: 없음. 부분 출력으로 정확도를 추정하지 않았다.
 
 ² 각 stage 전체 pair에서 공유 가능한 inventory/extraction을 한 번씩 계산한 runtime/쌍이다. Screen 비용은288쌍 기준이지만 정확도 주요 표는 main240쌍이다. CPU 전처리+GPU 실행을 포함하고 모델 load·downstream은 제외한다. 단일 query cold latency도, 이번 실행에서 새로 쓴 시간도 아니다. Stage 간 sample·공유량·cached historical timing이 달라 직접적인 속도 순위로 해석하지 않는다.
 
@@ -328,11 +331,21 @@ Semantic item을10,000회 bootstrap한95% CI다. 탐색·선택에 사용한 scr
 | selection | GUI_FULL − TXT_FULL | +7.11pp | [+0.00pp, +15.00pp] | 20 / 239 |
 | selection | GUI_DIRECT_VLM − TXT_DIRECT_VLM | -2.09pp | [-8.82pp, +3.77pp] | 20 / 239 |
 | internal_evaluation | GUI_EXACT − O | -0.85pp | [-1.84pp, +0.07pp] | 118 / 1416 |
+| internal_evaluation | GUI_EXACT − TXT_SEL | +2.75pp | [+0.49pp, +5.16pp] | 118 / 1416 |
 | internal_evaluation | GUI_EXACT − GUI_FULL | -1.27pp | [-4.24pp, +1.69pp] | 118 / 1416 |
 | internal_evaluation | GUI_FULL − O | +0.42pp | [-2.47pp, +3.25pp] | 118 / 1416 |
 | internal_evaluation | TXT_DIRECT_VLM − O | -1.34pp | [-3.18pp, +0.42pp] | 118 / 1416 |
 | internal_evaluation | TXT_FULL − O | -6.00pp | [-9.39pp, -2.82pp] | 118 / 1416 |
+| internal_evaluation | TXT_SEL − O | -3.60pp | [-6.21pp, -1.06pp] | 118 / 1416 |
 | internal_evaluation | GUI_FULL − TXT_FULL | +6.43pp | [+3.39pp, +9.53pp] | 118 / 1416 |
+
+최종 pipeline 집계가 완료되어 다음 내부 평가 primary Holm 보정값을 추가했다. 선택 후 고정 대비의 탐색적 bootstrap p이며 confirmatory claim이 아니다.
+
+| 대비 | Bootstrap p | Holm p |
+| --- | ---: | ---: |
+| GUI_EXACT-O | 0.0876 | 0.1752 |
+| GUI_EXACT-TXT_SEL | 0.0222 | 0.0666 |
+| GUI_EXACT-GUI_FULL | 0.4095 | 0.4095 |
 
 ## 7. GUI 언어별 결과
 
@@ -356,12 +369,12 @@ Semantic item을10,000회 bootstrap한95% CI다. 탐색·선택에 사용한 scr
 
 ### internal_evaluation
 
-| GUI | 분모 | O | GUI_EXACT | GUI_FULL | TXT_DIRECT_VLM |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| EN | 354 | 81.92% | 80.51% | 83.05% | 79.66% |
-| ZH | 354 | 76.27% | 75.14% | 73.16% | 74.58% |
-| TH | 354 | 48.59% | 47.74% | 49.72% | 50.00% |
-| RU | 354 | 74.86% | 74.86% | 77.40% | 72.03% |
+| GUI | 분모 | O | GUI_EXACT | GUI_FULL | TXT_SEL | TXT_DIRECT_VLM |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| EN | 354 | 81.92% | 80.51% | 83.05% | 75.42% | 79.66% |
+| ZH | 354 | 76.27% | 75.14% | 73.16% | 72.60% | 74.58% |
+| TH | 354 | 48.59% | 47.74% | 49.72% | 52.26% | 50.00% |
+| RU | 354 | 74.86% | 74.86% | 77.40% | 66.95% | 72.03% |
 
 TH GUI는 여러 조건에서 낮지만 단일한 target-language 난이도 효과로 단정하지 않는다. 화면 OCR, 참조 추출, target 표현 선택, 모델의 GUI 이해가 함께 작용한다. Screen에서 GUI_FULL의 TH 개선이 보였지만 다른 집합에서 크기가 달라지고, 개별 언어 표본·CI를 고려해야 한다.
 
@@ -399,6 +412,7 @@ Full 조건의 `edits=[]`는 변환이 없다는 뜻이 아니다. 아래 변경
 | 조건 | 실제 MCQ 변경/주 분모 | 오류 fallback | 적용 edit 수 | Annotation과 경계 일치³ |
 | --- | ---: | ---: | ---: | ---: |
 | GUI_EXACT | 496/1416 | 169 | 759 | 746/759 |
+| TXT_SEL | 1242/1416 | 169 | 3286 | 2798/3286 |
 | TXT_DIRECT_VLM | 673/1416 | 644 | 2830 | 1716/2830 |
 | TXT_FULL | 1395/1416 | 21 | 전체 번역 | — |
 | GUI_FULL | 1335/1416 | 81 | 전체 번역 | — |
@@ -498,21 +512,201 @@ Screen main240쌍에서의 fallback 분류:
 | selection | TXT_FULL | 9.20 | 6.26 | 15.33 | 18.25 |
 | selection | GUI_FULL | 13.22 | 6.39 | 16.97 | 18.28 |
 | internal_evaluation | GUI_EXACT | 79.80 | 25.28 | 16.98 | 18.25 |
+| internal_evaluation | TXT_SEL | 0.05 | 26.79 | 15.41 | 18.25 |
 | internal_evaluation | TXT_DIRECT_VLM | 65.23 | 25.83 | 16.46 | 18.25 |
 | internal_evaluation | TXT_FULL | 44.32 | 26.75 | 15.33 | 18.27 |
 | internal_evaluation | GUI_FULL | 51.22 | 26.39 | 16.98 | 18.27 |
 
 Method wall은 cache·모델 교체를 포함한 해당 실행 시간이다. Peak는 generation 구간의 allocated memory이며 CUDA reserved/cold-load 전체 peak와 다르다. Cached call의 peak는 원래 측정값일 수 있다. GPU memory 수치만으로 다른 GPU/배치의 OOM 여부를 보장하지 않는다. 이번 관찰 속도를 이전 단건58–66초나RTX4090 결과와 직접 비교해 디바이스 속도 차이라고 해석하지 않는다.
 
-## 10. Historical O/T/R reference — 신규 자동 method와 분리
+## 10. O/R/T/F와 같은 범위에서 비교
 
-기존 ExpA의 완료 예측을 같은 pair ID·정답으로 결합했다. T는 Gemma와 gold span을, R은 parallel reference span을 사용한 역사적 조건이다. 현재 자동 Qwen3 extractor/translator와 정보량·백본이 달라 공정한 순수 모델 대조로 부르지 않는다.
+주 비교는 screen main240쌍, selection main239쌍, internal evaluation main1,416쌍으로 각각 고정한다. 모든 조건에 같은 pair ID·semantic item·source→GUI 언어·정답·보기 순서·원본 이미지 연결을 사용한다. 실패 예측은 오답으로 포함하고, 누락된 reference가 있으면 교집합으로 분모를 줄이지 않고 오류로 중단한다. 과거 ORCF 전체366문항의 요약치를 옮긴 것이 아니라 raw 예측을 현재 cohort와 ExpA의 사전 제외 규칙으로 다시 집계했다. Legacy pilot에는 ExpA T/R가 없어 별도 표를 유지하며 이4조건 비교에 섞지 않는다.
 
-| 집합 | 기존 O | T_REF | R_REF | 현재 O와 기존 O label 일치 |
-| --- | ---: | ---: | ---: | ---: |
-| screen | 160/240 (66.67%) | 162/240 (67.50%) | 194/240 (80.83%) | 238/240 |
-| selection | 169/239 (70.71%) | 169/239 (70.71%) | 196/239 (82.01%) | 233/239 |
-| internal_evaluation | 993/1416 (70.13%) | 1004/1416 (70.90%) | 1201/1416 (84.82%) | 1393/1416 |
+**Reference의 뜻:** T_REF는 annotation span을 Gemma로 번역한 과거 T, R_REF는 annotation span과 parallel 표현을 쓴 과거 R이다. 두 조건은 context를 source 언어로 유지한다. F_REF는 context와 referent 모두 GUI 언어인 parallel F다. 현재 자동 추출을 쓰는 TXT_SEL/GUI_EXACT 및 자동 전체 번역 GUI_FULL과 정보량·입력 생성 방식이 다르다. F_REF는 screenshot exact-label oracle이라고 보장된 조건도 아니다.
+
+### 같은 분모의 정확도
+
+| 조건 | screen (240) | selection (239) | internal evaluation (1,416) |
+| --- | ---: | ---: | ---: |
+| O_CURRENT | 162/240 (67.50%) | 171/239 (71.55%) | 997/1416 (70.41%) |
+| O_EXP_A | 160/240 (66.67%) | 169/239 (70.71%) | 993/1416 (70.13%) |
+| O_ORCF | 161/240 (67.08%) | 170/239 (71.13%) | 996/1416 (70.34%) |
+| T_REF | 162/240 (67.50%) | 169/239 (70.71%) | 1004/1416 (70.90%) |
+| R_REF | 194/240 (80.83%) | 196/239 (82.01%) | 1201/1416 (84.82%) |
+| R_ORCF | 194/240 (80.83%) | 196/239 (82.01%) | 1201/1416 (84.82%) |
+| F_REF | 192/240 (80.00%) | 197/239 (82.43%) | 1162/1416 (82.06%) |
+| GUI_EXACT | 161/240 (67.08%) | 173/239 (72.38%) | 985/1416 (69.56%) |
+| GUI_MATCH_LM | 158/240 (65.83%) | 미실행/미완료 | 미실행/미완료 |
+| GUI_TARGETED_VLM | 157/240 (65.42%) | 미실행/미완료 | 미실행/미완료 |
+| GUI_DIRECT_VLM | 160/240 (66.67%) | 173/239 (72.38%) | 미실행/미완료 |
+| TXT_SEL | 153/240 (63.75%) | 172/239 (71.97%) | 946/1416 (66.81%) |
+| TXT_DIRECT_LM | 162/240 (67.50%) | 미실행/미완료 | 미실행/미완료 |
+| TXT_DIRECT_VLM | 160/240 (66.67%) | 178/239 (74.48%) | 978/1416 (69.07%) |
+| TXT_FULL | 155/240 (64.58%) | 156/239 (65.27%) | 912/1416 (64.41%) |
+| GUI_FULL | 175/240 (72.92%) | 173/239 (72.38%) | 1003/1416 (70.83%) |
+
+O_CURRENT는 현재 method와 함께 재실행한 O다. O_EXP_A는 R/T와 같은 과거 실행, O_ORCF는 F와 같은 과거 실행의 O이며, 새 method가 아니다. R_REF의 기본 출처는 batch3 ExpA이고, R_ORCF는 F 실행과의 연결 확인용으로 별도 보존한다.
+
+### 각 method의 R/T/F 대비 paired 차이
+
+아래 Δ는 method − reference이며 같은 pair에서 계산했다. 회복/회귀와 item 단위10,000회 bootstrap95% CI는 snapshot JSON에 모든 완료 method에 대해 저장한다. 본문 CI는 선택된 GUI_EXACT와 전체 번역 GUI_FULL을 중심으로 제시한다. 실행 환경 차이로 생기는 변동은 bootstrap CI에 포함되지 않는다.
+
+#### screen
+
+| Method | 정확도 | ΔO_CURRENT | ΔT_REF | ΔR_REF | ΔF_REF |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| GUI_EXACT | 67.08% | -0.42pp | -0.42pp | -13.75pp | -12.92pp |
+| GUI_MATCH_LM | 65.83% | -1.67pp | -1.67pp | -15.00pp | -14.17pp |
+| GUI_TARGETED_VLM | 65.42% | -2.08pp | -2.08pp | -15.42pp | -14.58pp |
+| GUI_DIRECT_VLM | 66.67% | -0.83pp | -0.83pp | -14.17pp | -13.33pp |
+| TXT_SEL | 63.75% | -3.75pp | -3.75pp | -17.08pp | -16.25pp |
+| TXT_DIRECT_LM | 67.50% | +0.00pp | +0.00pp | -13.33pp | -12.50pp |
+| TXT_DIRECT_VLM | 66.67% | -0.83pp | -0.83pp | -14.17pp | -13.33pp |
+| TXT_FULL | 64.58% | -2.92pp | -2.92pp | -16.25pp | -15.42pp |
+| GUI_FULL | 72.92% | +5.42pp | +5.42pp | -7.92pp | -7.08pp |
+
+#### selection
+
+| Method | 정확도 | ΔO_CURRENT | ΔT_REF | ΔR_REF | ΔF_REF |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| GUI_EXACT | 72.38% | +0.84pp | +1.67pp | -9.62pp | -10.04pp |
+| GUI_DIRECT_VLM | 72.38% | +0.84pp | +1.67pp | -9.62pp | -10.04pp |
+| TXT_SEL | 71.97% | +0.42pp | +1.26pp | -10.04pp | -10.46pp |
+| TXT_DIRECT_VLM | 74.48% | +2.93pp | +3.77pp | -7.53pp | -7.95pp |
+| TXT_FULL | 65.27% | -6.28pp | -5.44pp | -16.74pp | -17.15pp |
+| GUI_FULL | 72.38% | +0.84pp | +1.67pp | -9.62pp | -10.04pp |
+
+#### internal_evaluation
+
+| Method | 정확도 | ΔO_CURRENT | ΔT_REF | ΔR_REF | ΔF_REF |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| GUI_EXACT | 69.56% | -0.85pp | -1.34pp | -15.25pp | -12.50pp |
+| TXT_SEL | 66.81% | -3.60pp | -4.10pp | -18.01pp | -15.25pp |
+| TXT_DIRECT_VLM | 69.07% | -1.34pp | -1.84pp | -15.75pp | -12.99pp |
+| TXT_FULL | 64.41% | -6.00pp | -6.50pp | -20.41pp | -17.66pp |
+| GUI_FULL | 70.83% | +0.42pp | -0.07pp | -13.98pp | -11.23pp |
+
+| 집합 | 대비 | 차이 | 95% CI | 회복 / 회귀 |
+| --- | --- | ---: | --- | ---: |
+| screen | GUI_EXACT − T_REF | -0.42pp | [-5.83pp, +4.58pp] | 23 / 24 |
+| screen | GUI_EXACT − R_REF | -13.75pp | [-22.92pp, -5.00pp] | 10 / 43 |
+| screen | GUI_EXACT − F_REF | -12.92pp | [-23.75pp, -2.92pp] | 16 / 47 |
+| screen | GUI_FULL − T_REF | +5.42pp | [-0.42pp, +12.08pp] | 38 / 25 |
+| screen | GUI_FULL − R_REF | -7.92pp | [-15.42pp, +0.83pp] | 17 / 36 |
+| screen | GUI_FULL − F_REF | -7.08pp | [-15.00pp, +1.67pp] | 14 / 31 |
+| selection | GUI_EXACT − T_REF | +1.67pp | [-6.67pp, +10.42pp] | 28 / 24 |
+| selection | GUI_EXACT − R_REF | -9.62pp | [-19.58pp, +0.42pp] | 16 / 39 |
+| selection | GUI_EXACT − F_REF | -10.04pp | [-19.33pp, -0.42pp] | 15 / 39 |
+| selection | GUI_FULL − T_REF | +1.67pp | [-4.60pp, +7.92pp] | 32 / 28 |
+| selection | GUI_FULL − R_REF | -9.62pp | [-18.91pp, +1.67pp] | 19 / 42 |
+| selection | GUI_FULL − F_REF | -10.04pp | [-18.83pp, +0.84pp] | 14 / 38 |
+| internal_evaluation | GUI_EXACT − T_REF | -1.34pp | [-4.31pp, +1.69pp] | 144 / 163 |
+| internal_evaluation | GUI_EXACT − R_REF | -15.25pp | [-18.64pp, -11.86pp] | 43 / 259 |
+| internal_evaluation | GUI_EXACT − F_REF | -12.50pp | [-16.17pp, -8.83pp] | 90 / 267 |
+| internal_evaluation | GUI_FULL − T_REF | -0.07pp | [-3.53pp, +3.53pp] | 193 / 194 |
+| internal_evaluation | GUI_FULL − R_REF | -13.98pp | [-17.37pp, -10.66pp] | 75 / 273 |
+| internal_evaluation | GUI_FULL − F_REF | -11.23pp | [-14.27pp, -8.19pp] | 52 / 211 |
+
+### 실행 계약과 비교의 한계
+
+모델 ID/revision·BF16·SDPA·2MP·system prompt·label-only/greedy/최대2token은 계약상 일치한다. 그러나 ExpA R/T는 batch3, ORCF F는 batch4이며 현재 method는 batch3다. 과거 RTX4090과 현재 B200 MIG, batch 동반 입력·queue와 소프트웨어 일부 버전도 다르다. 따라서 **문항 범위는 맞췄지만 동일 실행 조건으로 재측정한 대조는 아니다.** 작은 차이는 특히 조심해서 읽는다. 새 GPU 추론으로 reference를 재실행한 결과는 아니다.
+
+| 집합 | 현재 O vs ExpA O label 일치 | 현재 O vs ORCF O | ExpA R vs ORCF R | F 대표 조건 |
+| --- | ---: | ---: | ---: | --- |
+| screen | 238/240 | 237/240 | 240/240 | F: 238, R: 2 |
+| selection | 233/239 | 236/239 | 239/239 | F: 239 |
+| internal_evaluation | 1393/1416 | 1396/1416 | 1409/1416 | F: 1416 |
+
+ORCF는 동일 pair 안의 동일 질문을 한 번만 추론했다. F가 다른 조건과 정확히 같으면 frozen conditions의 `equivalent_to_condition`을 따라 **질문·보기·이미지·정답·순서가 모두 같은 대표 예측**을 사용했다. Screen의 F238개는 직접 F 예측,2개는 F와 동일한 R 예측이다. 이는 누락을 임의 보간하거나 다른 pair의 답을 복사한 것이 아니다.
+
+### GUI 언어별 reference 비교
+
+
+#### screen
+
+| GUI | N | O_CURRENT | T_REF | R_REF | F_REF | GUI_EXACT | GUI_FULL |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| EN | 60 | 75.00% | 65.00% | 81.67% | 90.00% | 75.00% | 85.00% |
+| RU | 60 | 76.67% | 70.00% | 86.67% | 85.00% | 76.67% | 75.00% |
+| TH | 60 | 45.00% | 63.33% | 73.33% | 65.00% | 45.00% | 61.67% |
+| ZH | 60 | 73.33% | 71.67% | 81.67% | 80.00% | 71.67% | 70.00% |
+
+#### selection
+
+| GUI | N | O_CURRENT | T_REF | R_REF | F_REF | GUI_EXACT | GUI_FULL |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| EN | 60 | 83.33% | 78.33% | 90.00% | 90.00% | 83.33% | 76.67% |
+| RU | 59 | 81.36% | 79.66% | 81.36% | 79.66% | 81.36% | 77.97% |
+| TH | 60 | 50.00% | 61.67% | 78.33% | 70.00% | 51.67% | 55.00% |
+| ZH | 60 | 71.67% | 63.33% | 78.33% | 90.00% | 73.33% | 80.00% |
+
+#### internal_evaluation
+
+| GUI | N | O_CURRENT | T_REF | R_REF | F_REF | GUI_EXACT | GUI_FULL |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| EN | 354 | 81.92% | 75.71% | 87.85% | 88.98% | 80.51% | 83.05% |
+| RU | 354 | 74.86% | 70.06% | 85.03% | 87.29% | 74.86% | 77.40% |
+| TH | 354 | 48.59% | 67.51% | 83.62% | 67.80% | 47.74% | 49.72% |
+| ZH | 354 | 76.27% | 70.34% | 82.77% | 84.18% | 75.14% | 73.16% |
+
+### R이 맞히지만 현재 GUI_EXACT가 놓치는 사례
+
+다음은 결과 차이에 대한 관찰적 분해다. 우선순위를 둔 상호 배타적 분류로 각 pair를 한 번만 센다. 예를 들어 추출과 inventory가 함께 실패해도 먼저 추출 실패로 분류한다. 이 표만으로 해당 단계가 오답의 단독 원인이라고 입증하지 않는다.
+
+| 집합 | R 정답·method 오답 | Method 정답·R 오답 | 그중 O도 오답이어서 회복을 놓친 수 |
+| --- | ---: | ---: | ---: |
+| screen | 43 | 10 | 41 |
+| selection | 39 | 16 | 38 |
+| internal_evaluation | 259 | 43 | 238 |
+
+| 집합 | 관찰된 상태 | Pair 수 |
+| --- | --- | ---: |
+| screen | 유효 처리·exact match 채택 없음 | 27 |
+| screen | 편집 적용 후에도 오답 | 7 |
+| screen | 추출 검증 실패 | 6 |
+| screen | 후속 번역/출력 검증 실패 | 2 |
+| screen | Inventory 생성 실패 | 1 |
+| selection | 편집 적용 후에도 오답 | 19 |
+| selection | 유효 처리·exact match 채택 없음 | 17 |
+| selection | 추출 검증 실패 | 2 |
+| selection | 후속 번역/출력 검증 실패 | 1 |
+| internal_evaluation | 유효 처리·exact match 채택 없음 | 131 |
+| internal_evaluation | 편집 적용 후에도 오답 | 75 |
+| internal_evaluation | Inventory 생성 실패 | 15 |
+| internal_evaluation | 후속 번역/출력 검증 실패 | 7 |
+| internal_evaluation | 추출 검증 실패 | 30 |
+| internal_evaluation | 유효 처리·최종 원문 유지 | 1 |
+
+R이 맞히고 method가 틀린 사례에서 source 추출을 별도로 다시 보면 다음과 같다. Annotation span 전부 포함은 recall에 대한 exact 진단이며 과다 추출이나 target matching의 정확성을 보장하지 않는다.
+
+| 집합 | Source span 관찰 | Pair 수 |
+| --- | --- | ---: |
+| screen | 유효 추출·annotation span 일부/전체 누락 | 31 |
+| screen | 유효 추출·annotation span 전부 포함 | 6 |
+| screen | 추출 검증 실패 | 6 |
+| selection | 유효 추출·annotation span 일부/전체 누락 | 27 |
+| selection | 유효 추출·annotation span 전부 포함 | 10 |
+| selection | 추출 검증 실패 | 2 |
+| internal_evaluation | 유효 추출·annotation span 일부/전체 누락 | 175 |
+| internal_evaluation | 유효 추출·annotation span 전부 포함 | 54 |
+| internal_evaluation | 추출 검증 실패 | 30 |
+
+### Method를 더 개발할 때 우선할 일
+
+현재 결과는 GCSA의 이득을 입증하지 못했고, R/F reference와의 격차가 크다. 여러 prompt를 실행했다는 사실만으로 구현이 충분히 성숙했다고 볼 수 없다. 일부 구조는 출력 계약과 coverage가 불안정한 상태로 큰 비교에 들어갔다. 다음 버전에서는 소규모 개발 표본에서 유효한 편집이 실제로 적용되는지 먼저 확인하고, 아래 병목을 분리해서 해결해야 한다.
+
+1. **출력 인터페이스를 단순화한다.** 정답 annotation이 아닌 자동으로 얻고 원문에서 검증한 source 후보와 screenshot inventory 후보에만 안정적인 ID를 부여하고, 모델은 source ID→target 후보 ID/null을 고르게 하는 후보를 검토한다. 모델이 원문을 번역해 `text`에 넣거나 literal span_id를 반환하는 문제를 줄이는 것이 목적이다. 올바른 edit까지 한 오류 때문에 모두 버리는 정책도 per-edit 유효성·중복 보기·문맥 보존을 유지하면서 별도 ablation으로 비교한다.
+
+2. **낮은 coverage의 원인을 나눈다.** 추출 recall, 원문 검증 실패, OCR 누락, 동의어 때문에 생긴 exact-match 거절, 실제 잘못된 label 선택을 따로 본다. Source 이름이 이미 주어진 뒤에도 matching이 실패하는지 oracle-span 진단으로 확인할 수 있지만, 이는 oracle_span 결과로 명시하고 automatic method 성능으로 합치지 않는다.
+
+3. **Inventory의 잘림을 먼저 해결한다.** 출력 상한에 걸린 JSON 실패가 확인됐다. Compact 출력·중복 억제·필요시 query-blind 분할 전사 또는 출력 budget 확장을 각각 분리된 버전으로 검증한다. 더 긴 출력이나 crop은 비용과 정보량도 바꾸므로 prompt 보정과 동시에 섞어 성능 원인을 흐리지 않는다.
+
+4. **Exact match를 넘어서는 대응을 안정화한다.** 단순 번역의 동의어를 화면 label에 연결하는 능력이 필요하다. ID 기반 inventory 선택과 독립 화면 검수를 우선하고, confidence는 확률처럼 취급하지 않는다. Span 경계 일치율이 높아도 target label이 틀릴 수 있다.
+
+5. **선택과 검증 범위를 정직하게 관리한다.** 현재118개 내부 평가 결과도 이미 관찰했다. 이를 보고 v2를 고치고 같은 집합을 다시 사용하면 untouched evaluation이 아니라 development iteration이다. 기존 frozen artifact는 유지하고 변경 버전을 새로 기록한다. 최종 일반화는 별도 단계다. GUI 후보 최선과 전체 실용 baseline 최선도 나눠 보고하며, TXT_DIRECT_VLM을 포함해 고르는 것만으로 문제가 해결된다고 가정하지 않는다.
+
+이 항목들은 현재 실패에 근거한 다음 개발 우선순위다. 새 method를 구현·실측해서 개선됐다는 결과가 아니며, 진행 중인 실험이나 reference artifact는 수정하지 않았다.
 
 ## 11. 이어서 채울 항목
 
@@ -522,8 +716,8 @@ Method wall은 cache·모델 교체를 포함한 해당 실행 시간이다. Pea
 .venv/bin/python followup_rel_4lang/method_dev/scripts/update_search_results_report.py
 ```
 
-- [ ] 내부 평가 winner + TXT_SEL/GUI_FULL/TXT_FULL/TXT_DIRECT_VLM 전 조건 완료 비교
-- [ ] 최종3 primary 대비·CI·Holm 결과와 최종 O anchor 확인
+- [x] 내부 평가 winner + TXT_SEL/GUI_FULL/TXT_FULL/TXT_DIRECT_VLM 전 조건 완료 비교
+- [x] 최종3 primary 대비·CI·Holm 결과와 최종 O anchor 확인
 - [ ] 독립 화면 matching 검수와 Thai GUI 실패의 단계별 분리
 - [ ] Finalist의 대표 회복·회귀 사례와 원문/최종 MCQ 대조
 - [ ] 최종 총 wall·신규 소비 비용·공유 비용·raw artifact 보존 manifest
@@ -569,20 +763,20 @@ Method wall은 cache·모델 교체를 포함한 해당 실행 시간이다. Pea
 
 ### internal_evaluation
 
-| 언어쌍 | N | O | GUI_EXACT | TXT_DIRECT_VLM | TXT_FULL | GUI_FULL |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| en→ru | 118 | 83.05% | 81.36% | 81.36% | 78.81% | 83.05% |
-| en→th | 118 | 50.85% | 51.69% | 47.46% | 33.05% | 44.92% |
-| en→zh | 118 | 84.75% | 82.20% | 83.05% | 71.19% | 77.12% |
-| ru→en | 118 | 88.98% | 86.44% | 83.90% | 78.81% | 85.59% |
-| ru→th | 118 | 49.15% | 47.46% | 48.31% | 50.85% | 53.39% |
-| ru→zh | 118 | 80.51% | 80.51% | 77.97% | 66.95% | 75.42% |
-| th→en | 118 | 73.73% | 71.19% | 73.73% | 70.34% | 78.81% |
-| th→ru | 118 | 65.25% | 65.25% | 64.41% | 65.25% | 72.03% |
-| th→zh | 118 | 63.56% | 62.71% | 62.71% | 57.63% | 66.95% |
-| zh→en | 118 | 83.05% | 83.90% | 81.36% | 84.75% | 84.75% |
-| zh→ru | 118 | 76.27% | 77.97% | 70.34% | 70.34% | 77.12% |
-| zh→th | 118 | 45.76% | 44.07% | 54.24% | 44.92% | 50.85% |
+| 언어쌍 | N | O | GUI_EXACT | TXT_SEL | TXT_DIRECT_VLM | TXT_FULL | GUI_FULL |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| en→ru | 118 | 83.05% | 81.36% | 76.27% | 81.36% | 78.81% | 83.05% |
+| en→th | 118 | 50.85% | 51.69% | 50.85% | 47.46% | 33.05% | 44.92% |
+| en→zh | 118 | 84.75% | 82.20% | 80.51% | 83.05% | 71.19% | 77.12% |
+| ru→en | 118 | 88.98% | 86.44% | 79.66% | 83.90% | 78.81% | 85.59% |
+| ru→th | 118 | 49.15% | 47.46% | 55.08% | 48.31% | 50.85% | 53.39% |
+| ru→zh | 118 | 80.51% | 80.51% | 73.73% | 77.97% | 66.95% | 75.42% |
+| th→en | 118 | 73.73% | 71.19% | 63.56% | 73.73% | 70.34% | 78.81% |
+| th→ru | 118 | 65.25% | 65.25% | 58.47% | 64.41% | 65.25% | 72.03% |
+| th→zh | 118 | 63.56% | 62.71% | 63.56% | 62.71% | 57.63% | 66.95% |
+| zh→en | 118 | 83.05% | 83.90% | 83.05% | 81.36% | 84.75% | 84.75% |
+| zh→ru | 118 | 76.27% | 77.97% | 66.10% | 70.34% | 70.34% | 77.12% |
+| zh→th | 118 | 45.76% | 44.07% | 50.85% | 54.24% | 44.92% | 50.85% |
 
 ## 부록 B. 재현·완료 판정
 

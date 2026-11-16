@@ -7,6 +7,7 @@ REPO=Path(__file__).resolve().parents[3];HERE=Path(__file__).parent;ROOT=HERE.pa
 sys.path[:0]=[str(REPO/'01_code/src'),str(HERE)]
 from mpr_crosslocale.methods.selective_alignment.schemas import digest,render,fields
 from search_pipeline import paired_bootstrap,EXCLUDED
+from reference_comparison import load_references,compare_cohorts,render_comparison
 
 START='<!-- AUTO_RESULTS_START -->';END='<!-- AUTO_RESULTS_END -->'
 ORDER=['GUI_EXACT','GUI_MATCH_LM','GUI_TARGETED_VLM','GUI_DIRECT_VLM','TXT_SEL','TXT_DIRECT_LM','TXT_DIRECT_VLM','TXT_FULL','GUI_FULL']
@@ -207,25 +208,11 @@ def collect(run,cutoff):
             if left in outcomes[stage] and right in outcomes[stage]:
                 cs.append({'left':left,'right':right,**paired_bootstrap(outcomes[stage][left],outcomes[stage][right],labels,meta['policy']['seed'],meta['policy']['bootstrap_replicates'])})
         snapshot['contrasts'][stage]=cs
-    # Historical reference results are post-hoc diagnostics, never candidate input.
-    history=REPO/'followup_rel_4lang/artifacts/new_models_expA_20261115/analysis/expA_8b_20261114/qwen3/expA_qwen3/full/predictions.jsonl'
-    historical={}
-    if history.exists():
-        use(history)
-        with history.open() as f:
-            for line in f:
-                r=json.loads(line)
-                if r['condition'] in ['O','T','R'] and r['pair_id'] in labels:
-                    if r['gold_answer']!=labels[r['pair_id']]['gold_answer']:raise ValueError('Historical label mismatch')
-                    historical[r['pair_id'],r['condition']]=r
-        snapshot['historical_reference']={}
-        for stage,values in outcomes.items():
-            if not values or stage=='probe':continue
-            ids=set(values['O']);summary={}
-            for condition in ['O','T','R']:
-                if all((p,condition) in historical for p in ids):summary[condition]={'n':len(ids),'correct':sum(historical[p,condition].get('status')=='success' and historical[p,condition].get('parsed_generated_label')==labels[p]['gold_answer'] for p in ids)}
-            summary['O_agreement']={'n':len(ids),'same':sum(historical[p,'O']['parsed_generated_label']==anchors[stage][0][p] for p in ids)}
-            snapshot['historical_reference'][stage]=summary
+    # Reference joins remain outside automatic method execution.
+    use(HERE/'reference_comparison.py')
+    data_contract=json.loads(use(run/'data_contract.json').read_text())
+    refs,reference_meta,aliases=load_references(REPO,labels,originals,use,meta['models']['evaluation_vlm'],data_contract['baseline_contract'])
+    snapshot['reference_comparison']=compare_cohorts(refs,reference_meta,aliases,outcomes,anchors,labels,snapshot['records'],run,originals,{**meta['policy'],'winner':winner},oracle)
     # Examples of protocol failures, not claimed GUI matching errors.
     snapshot['examples']=[]
     for condition in ['GUI_DIRECT_VLM','GUI_TARGETED_VLM','GUI_MATCH_LM']:
@@ -253,7 +240,7 @@ def markdown(snapshot):
     add('\n## 1. 현재 핵심 결과')
     screen=records['screen'];selection=records['selection'];internal=records['internal_evaluation']
     if winner in internal:
-        g=internal[winner]['groups']['main'];add(f"\n- 내부 평가에서 `{winner}`: **{g['correct']}/{g['n']} ({pct(g['correct'],g['n'])})**, O: **{g['O_correct']}/{g['n']} ({pct(g['O_correct'],g['n'])})**. 차이는 **{pp((g['correct']-g['O_correct'])/g['n'])}**, 회복{g['recovery']} / 회귀{g['regression']}다. 이 완료된 한 조건의 점추정은 개선을 보이지 않는다." if g['correct']<g['O_correct'] else f"\n- 완료된 내부 평가 `{winner}`: {pct(g['correct'],g['n'])}, O 대비 {pp((g['correct']-g['O_correct'])/g['n'])}.")
+        g=internal[winner]['groups']['main'];add(f"\n- 내부 평가에서 `{winner}`: **{g['correct']}/{g['n']} ({pct(g['correct'],g['n'])})**, O: **{g['O_correct']}/{g['n']} ({pct(g['O_correct'],g['n'])})**. 차이는 **{pp((g['correct']-g['O_correct'])/g['n'])}**, 회복{g['recovery']} / 회귀{g['regression']}다. 선택된 method의 점추정은 O 대비 개선을 보이지 않는다." if g['correct']<g['O_correct'] else f"\n- 완료된 내부 평가 `{winner}`: {pct(g['correct'],g['n'])}, O 대비 {pp((g['correct']-g['O_correct'])/g['n'])}.")
     for method in ['GUI_FULL','TXT_DIRECT_VLM','TXT_FULL','TXT_SEL']:
         if method in internal:
             g=internal[method]['groups']['main']
@@ -266,6 +253,11 @@ def markdown(snapshot):
         best=max(selection,key=lambda k:selection[k]['groups']['main']['correct']);g=selection[best]['groups']['main'];add(f"- Selection의 최고 관측 대조는 `{best}` **{g['correct']}/{g['n']} ({pct(g['correct'],g['n'])})**. 자동 선택 `{winner}`는 GUI 후보4개 안에서 고른 잠정 후보이며 전체9조건의 최고를 뜻하지 않는다.")
     add('- 추출·matching·edit 프로토콜의 실패가 많이 남아 있다. 특히 원문 span 대신 번역문을 반환하거나 span ID를 잘못 반환하면 안전한 원문 fallback으로 처리됐다. 이를 화면 정보 자체가 효과 없다는 증거로 일반화하지 않는다.')
     add('- 독립 화면 검수가 없어 **GUI matching precision은 미측정**이다. Annotation span 경계 일치율을 replacement 정답률로 부르지 않는다.')
+    rc=snapshot['reference_comparison']['cohorts'].get('internal_evaluation')
+    if rc and winner in rc['methods']:
+        values=rc['references'];r=rc['methods'][winner]
+        add(f"- 같은 내부 평가{rc['n']}쌍의 reference는 T_REF **{pct(values['T_REF']['correct'],rc['n'])}**, R_REF **{pct(values['R_REF']['correct'],rc['n'])}**, F_REF **{pct(values['F_REF']['correct'],rc['n'])}**다. {winner}의 R 대비 차이는 **{pp(r['contrasts']['R_REF']['difference'])}**, F 대비 차이는 **{pp(r['contrasts']['F_REF']['difference'])}**다. 문항 범위는 같지만 과거 실행과의 batch/장비 차이는10절에 명시했다.")
+
     if snapshot.get('progress'):
         add('\n현재 내부 평가 진행 상태(파일 진행 수는 집계 시 읽은 참고값):\n\n| 조건 | 상태 | 기록된 문제 풀이/O 행 |\n| --- | --- | ---: |')
         for method,state in snapshot['progress'].items():add(f"| {method} | {state['state']} | {state['prediction_lines']}/{state['expected_lines']} |")
@@ -373,10 +365,7 @@ def markdown(snapshot):
         if stage=='probe':continue
         for method,r in rows.items():add(f"| {stage} | {method} | {r['method_wall_seconds']/60:.2f} | {r['pred_wall_seconds']/60:.2f} | {r['method_peak_gib']:.2f} | {r['downstream_peak_gib']:.2f} |")
     add('\nMethod wall은 cache·모델 교체를 포함한 해당 실행 시간이다. Peak는 generation 구간의 allocated memory이며 CUDA reserved/cold-load 전체 peak와 다르다. Cached call의 peak는 원래 측정값일 수 있다. GPU memory 수치만으로 다른 GPU/배치의 OOM 여부를 보장하지 않는다. 이번 관찰 속도를 이전 단건58–66초나RTX4090 결과와 직접 비교해 디바이스 속도 차이라고 해석하지 않는다.')
-    add('\n## 10. Historical O/T/R reference — 신규 자동 method와 분리\n\n기존 ExpA의 완료 예측을 같은 pair ID·정답으로 결합했다. T는 Gemma와 gold span을, R은 parallel reference span을 사용한 역사적 조건이다. 현재 자동 Qwen3 extractor/translator와 정보량·백본이 달라 공정한 순수 모델 대조로 부르지 않는다.')
-    add('\n| 집합 | 기존 O | T_REF | R_REF | 현재 O와 기존 O label 일치 |\n| --- | ---: | ---: | ---: | ---: |')
-    for stage,h in snapshot.get('historical_reference',{}).items():
-        add('| '+stage+' | '+' | '.join(f"{h[c]['correct']}/{h[c]['n']} ({pct(h[c]['correct'],h[c]['n'])})" if c in h else '미확보' for c in ['O','T','R'])+' | '+f"{h['O_agreement']['same']}/{h['O_agreement']['n']}"+' |')
+    add('\n'+render_comparison(snapshot['reference_comparison'],ORDER))
     add('\n## 11. 이어서 채울 항목\n\n이 보고서는 아래 명령으로 동일 파일의 자동 생성 영역을 갱신한다. GPU 추론을 실행하지 않으며, 완료된 새 조건만 추가한다. 아래 수동 메모는 유지된다. Pipeline 자체가 만드는 `REPORT_KO.md`와 이 누적 보고서는 서로 다른 파일이다.')
     add('\n```bash\n.venv/bin/python followup_rel_4lang/method_dev/scripts/update_search_results_report.py\n```')
     all_done=set(decision.get('evaluation_recipes',[]))<=set(internal) and bool(decision)
