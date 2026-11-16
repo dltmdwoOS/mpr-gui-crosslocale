@@ -1,5 +1,7 @@
 # GCSA / RFA development harness
 
+전체 비용 비교: [Inventory·LM·VLM 합산 시간과 정확도](reports/END_TO_END_COST_KO.md). 같은 main240쌍의 기록 구간을 재구성하면 Stem 분리36.97분, Stem 통합39.82분, Hybrid GUI47.33분, Stem+Options 통합50.49분이다. 공통 inventory29.56분을 포함하며, 재사용 비용도 별도 표기했다. 모델 적재·일부 orchestration은 제외하고 VLM 배치 시간은 문항 수로 안분한 값이다. 과거 RTX4090 R/F·Mac Gemma T와 현재 B200 T형을 구분했다. 추가 추론은 없었다.
+
 추가 완료: [Stem+Options referents 통합](reports/SINGLE_PASS_ALL_GUI_KO.md). Stem뿐 아니라 A–D의 referents도 같은 LM 기본 호출1회에서 추출·정렬한다. Main240쌍에서179정답(74.58%)으로 Stem 전용 통합173개보다6개, Hybrid178개보다1개 높지만 CI가 넓다. Main LM 시간은17.87분이며 직전12개 범위 위반 중8개에 편집이 적용됐어도 그 subset의 정답 수는3개로 같았다. `bash followup_rel_4lang/method_dev/scripts/run_single_pass_all.sh --run`으로 완료 결과를 재사용하거나 중단 지점부터 재개한다. [전체288쌍 결과 표](reports/SINGLE_PASS_ALL_CASES_KO.md)와 prompt·비용·실패 추적을 보존했다.
 
 추가 완료: [Stem 추출·정렬 통합](reports/SINGLE_PASS_STEM_GUI_KO.md). 기존 Stem-only GUI의 별도 추출/정렬 호출을 고정 Qwen3-8B 기본 호출1회로 합쳤다. 원본 MCQ와 완료 inventory를 함께 제공하고 코드가 검증된 stem edit만 적용한다. Options는 원본이며 기존 inventory·baseline 예측은 재사용한다. Main240쌍에서173정답(72.08%)으로 기존 분리 방식175정답(72.92%)과 큰 차이가 없고, LM 변환 시간은4.35분→7.14분으로 늘었다. `bash followup_rel_4lang/method_dev/scripts/run_single_pass_stem.sh --run`으로 완료 결과를 재사용하거나 중단 지점부터 재개한다. 전체 config·원문 프롬프트·실패 원인은 링크의 보고서에 기록했다.
