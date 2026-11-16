@@ -1,6 +1,6 @@
 # GCSA / RFA development harness
 
-추가 준비: [Stem-only GUI control](reports/STEM_ONLY_GUI_KO.md). 완료된 Hybrid stem + 원본 options를 조합해 새 추출·번역 없이 downstream만 비교한다. `bash followup_rel_4lang/method_dev/scripts/run_stem_only_gui.sh`는 CPU 준비만, `--run`을 붙이면 새 조건만 GPU 평가한다. Option-only는 추가하지 않았다.
+추가 완료: [Stem-only GUI control](reports/STEM_ONLY_GUI_KO.md). 완료된 Hybrid stem + 원본 options를 조합해 새 추출·번역 없이 downstream만 비교한다. `bash followup_rel_4lang/method_dev/scripts/run_stem_only_gui.sh`는 CPU 준비만, `--run`을 붙이면 새 조건만 GPU 평가한다. Option-only는 추가하지 않았다. Stem-only main240쌍은175정답(72.92%)이며 동일 범위 R80.83%·F80.00%와 함께 위 결과 보고서에 반영했다.
 
 현재 결과: [TWO_STAGE_RESULTS_KO.md](reports/TWO_STAGE_RESULTS_KO.md). Screen 288쌍×9조건(O 포함)의 VLM 추론2,592행이 완료됐다. Main240쌍에서 O67.50%, 자동 Hybrid GUI74.17%, Oracle GUI75.00%이며 O 대비95% CI는 모두0을 포함하거나 경계가0이다. Selection·Internal은 아직 미실행이다. 추론 없이 `.venv/bin/python followup_rel_4lang/method_dev/scripts/update_two_stage_results.py`로 완료 조건만 갱신한다.
 

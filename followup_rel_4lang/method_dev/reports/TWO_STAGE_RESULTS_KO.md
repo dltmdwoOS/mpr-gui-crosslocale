@@ -1,6 +1,6 @@
 # Two-stage 재정비 실험 중간 결산
 
-집계 시각: 2026-11-16T10:39:54.491286+00:00. 실행: `followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid`. 실행 중인 코드·config·캐시·출력 파일을 변경하거나 GPU 추론을 추가하지 않았다.
+집계 시각: 2026-11-16T11:07:55.943024+00:00. 실행: `followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid`. 실행 중인 코드·config·캐시·출력 파일을 변경하거나 GPU 추론을 추가하지 않았다.
 
 **번역·변환 완료와 문제 풀이 완료를 구분한다.** 현재 pipeline은 각 cohort에서 모든 조건의 변환이 끝난 뒤 O와 각 조건의 VLM 문제 풀이를 수행한다. 아래 정확도는 전체 paired 출력이 완성된 조건에서만 표시한다.
 
@@ -63,6 +63,11 @@
 | Oracle Selective TXT | 158/240 | 65.83% | -1.67pp | [-5.83, +2.50] | 20/24 |
 | Query 선택적 + Options 전체 GUI | 178/240 | 74.17% | +6.67pp | [-1.25, +15.00] | 39/23 |
 | Query 선택적 + Options 전체 TXT | 163/240 | 67.92% | +0.42pp | [-5.42, +5.83] | 27/26 |
+| **Stem-only GUI · Options 원본** | **175/240** | **72.92%** | +5.42pp | [-1.67, +13.33] | 27/14 |
+| R_REF · parallel reference | 194/240 | 80.83% | +13.33pp | — | — |
+| F_REF · parallel reference | 192/240 | 80.00% | +12.50pp | — | — |
+
+Stem-only는 완료된 Hybrid stem을 그대로 쓰고 A–D만 원본으로 복원했다. 새 추출·번역 없이 추가 downstream288쌍을 평가했다. **Stem-only−Hybrid는 -1.25pp**, CI[-9.58, +7.50]pp, 회복/회귀19/22이다. Options Full을 추가한 Hybrid가 정답3개 높은 점추정이지만 구간이 넓어 우위를 확정하지 않는다. R/F는 같은 primary pair의 기존 parallel reference이며 자동 method가 아니다.
 
 CI는 semantic item 단위 10,000회 bootstrap이다. 240개 pair를 독립 문제240개로 취급하지 않는다. O 대비 CI는 모두 0을 포함하거나 경계가0이다. Point estimate만으로 유의한 개선을 주장하지 않으며, 여러 탐색 대비에 대한 보정된 유의성도 주장하지 않는다.
 
@@ -118,6 +123,7 @@ GUI Hybrid의 Query 추출 실패3쌍·정렬 실패9쌍을 별도 기록했다.
 | Oracle Selective TXT | 43/60 (71.67%) | 44/60 (73.33%) | 35/60 (58.33%) | 36/60 (60.00%) |
 | Query 선택적 + Options 전체 GUI | 50/60 (83.33%) | 47/60 (78.33%) | 41/60 (68.33%) | 40/60 (66.67%) |
 | Query 선택적 + Options 전체 TXT | 45/60 (75.00%) | 44/60 (73.33%) | 36/60 (60.00%) | 38/60 (63.33%) |
+| Stem-only GUI · Options 원본 | 46/60 (76.67%) | 46/60 (76.67%) | 40/60 (66.67%) | 43/60 (71.67%) |
 
 GUI 언어별 결과도 같은 semantic item에서 나온 반복 관측이며 기술 통계로 본다. 전체 평균이 높아져도 모든 GUI 언어에 동일하게 이득이 생긴 것은 아니다.
 

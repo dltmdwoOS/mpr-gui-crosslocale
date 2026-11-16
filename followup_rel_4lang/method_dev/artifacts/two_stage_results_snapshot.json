@@ -1,5 +1,5 @@
 {
-  "as_of_utc": "2026-11-16T10:39:54.491286+00:00",
+  "as_of_utc": "2026-11-16T11:07:55.943024+00:00",
   "run": "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid",
   "cohorts": {
     "screen": {
@@ -3131,7 +3131,121 @@
           "hybrid Full options identity",
           "hybrid source-only edits",
           "no duplicate/missing prediction"
-        ]
+        ],
+        "stem_only": {
+          "execution_mode": "gpu",
+          "development_only": true,
+          "pairs": 288,
+          "primary_pairs": 240,
+          "correct": {
+            "TS_STEM_ONLY_GUI_AUTO": 175,
+            "O": 162,
+            "TS_QSEL_OFULL_GUI_AUTO": 178,
+            "TS_FULL_GUI": 170,
+            "TS_SEL_GUI_AUTO": 169
+          },
+          "contrasts": {
+            "O": {
+              "pairs": 240,
+              "items": 20,
+              "difference": 0.05416666666666667,
+              "ci95": [
+                -0.016666666666666666,
+                0.13333333333333333
+              ],
+              "exploratory_bootstrap_centered_p": 0.17048295170482952,
+              "recovery": 27,
+              "regression": 14
+            },
+            "TS_QSEL_OFULL_GUI_AUTO": {
+              "pairs": 240,
+              "items": 20,
+              "difference": -0.0125,
+              "ci95": [
+                -0.09583333333333334,
+                0.075
+              ],
+              "exploratory_bootstrap_centered_p": 0.8136186381361864,
+              "recovery": 19,
+              "regression": 22
+            },
+            "TS_FULL_GUI": {
+              "pairs": 240,
+              "items": 20,
+              "difference": 0.020833333333333332,
+              "ci95": [
+                -0.09166666666666666,
+                0.12916666666666668
+              ],
+              "exploratory_bootstrap_centered_p": 0.7405259474052595,
+              "recovery": 37,
+              "regression": 32
+            },
+            "TS_SEL_GUI_AUTO": {
+              "pairs": 240,
+              "items": 20,
+              "difference": 0.025,
+              "ci95": [
+                -0.025,
+                0.08333333333333333
+              ],
+              "exploratory_bootstrap_centered_p": 0.40285971402859716,
+              "recovery": 17,
+              "regression": 11
+            }
+          },
+          "by_gui": {
+            "en": {
+              "n": 60,
+              "correct": {
+                "TS_STEM_ONLY_GUI_AUTO": 46,
+                "O": 45,
+                "TS_QSEL_OFULL_GUI_AUTO": 50,
+                "TS_FULL_GUI": 50,
+                "TS_SEL_GUI_AUTO": 44
+              }
+            },
+            "zh": {
+              "n": 60,
+              "correct": {
+                "TS_STEM_ONLY_GUI_AUTO": 46,
+                "O": 44,
+                "TS_QSEL_OFULL_GUI_AUTO": 47,
+                "TS_FULL_GUI": 42,
+                "TS_SEL_GUI_AUTO": 45
+              }
+            },
+            "th": {
+              "n": 60,
+              "correct": {
+                "TS_STEM_ONLY_GUI_AUTO": 40,
+                "O": 27,
+                "TS_QSEL_OFULL_GUI_AUTO": 41,
+                "TS_FULL_GUI": 33,
+                "TS_SEL_GUI_AUTO": 36
+              }
+            },
+            "ru": {
+              "n": 60,
+              "correct": {
+                "TS_STEM_ONLY_GUI_AUTO": 43,
+                "O": 46,
+                "TS_QSEL_OFULL_GUI_AUTO": 40,
+                "TS_FULL_GUI": 45,
+                "TS_SEL_GUI_AUTO": 44
+              }
+            }
+          },
+          "stem_status": {
+            "fallback_original": 12,
+            "success": 219,
+            "no_op_no_edits": 9
+          },
+          "same_as_O_question_pairs": 21,
+          "label_changes_without_question_change": 0,
+          "new_translation_calls": 0,
+          "source_prediction_sha256": "95129bbb8efc4be2b51625bb703d882eea845eb02f7f063a4612e0eaa312466b"
+        }
       }
     },
     "selection": {
@@ -3409,12 +3523,24 @@
       "path": "followup_rel_4lang/artifacts/qwen3_single4090_20261107/full_rel/predictions.jsonl.gz",
       "sha256": "1b2adbd40058155ab3b44af5225137119030088e59de36eaffa9b2135e7558fc",
       "captured_bytes": 3127668
+    },
+    "followup_rel_4lang/method_dev/artifacts/stem_only_gui_screen_v1/rewritten.jsonl": {
+      "path": "followup_rel_4lang/method_dev/artifacts/stem_only_gui_screen_v1/rewritten.jsonl",
+      "captured_bytes": 481412,
+      "sha256": "9d6261a4e0741ab353d8d9e54e62e5b2ef80aed40f7238612a9a0f199107f924",
+      "complete_lines": 288
+    },
+    "followup_rel_4lang/method_dev/artifacts/stem_only_gui_screen_v1/infer/attempt_0001/predictions.jsonl": {
+      "path": "followup_rel_4lang/method_dev/artifacts/stem_only_gui_screen_v1/infer/attempt_0001/predictions.jsonl",
+      "captured_bytes": 285828,
+      "sha256": "95129bbb8efc4be2b51625bb703d882eea845eb02f7f063a4612e0eaa312466b",
+      "complete_lines": 288
     }
   },
   "interpretation": "Completed transformation is not completed downstream inference. Historical invalidated results are not reused.",
   "analysis_source_sha256": {
     "update_two_stage_results.py": "91b8c5c32678ad16676ff4ea1cdfc00c48eb69e4aabd2e1199c82b7b5ff07043",
-    "two_stage_completed.py": "966c8542212479f35986bee67a605068440ccd54da19bd1b6d9843ebc59d8406",
+    "two_stage_completed.py": "c4f8d8309574155c9d3f6183edbb8d324d20a6c3d546e8555658595b544cf1ac",
     "reference_comparison.py": "97d858d982a24943577bcb9451ce4a60fc948f6aabacdf33368a07321329fb67"
   },
   "reference_metadata": {

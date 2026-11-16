@@ -77,4 +77,4 @@ CPU mock:
 bash followup_rel_4lang/method_dev/scripts/run_stem_only_gui.sh --run --mock
 ```
 
-Mock과 실제 결과는 별도 경로로 저장한다. 실제 실행 후 `REPORT_KO.md`, `results.json`, `infer/attempt_*/predictions.jsonl`에서 확인한다. 준비 검증 기록은 [stem_only_gui_readiness.json](../artifacts/stem_only_gui_readiness.json)에 있다. 현재 작업에서는 GPU 추론을 시작하지 않았으며 오류·정확도 변화는 아직 미측정이다.
+Mock과 실제 결과는 별도 경로로 저장한다. 실제 실행 후 `REPORT_KO.md`, `results.json`, `infer/attempt_*/predictions.jsonl`에서 확인한다. 준비 검증 기록은 [stem_only_gui_readiness.json](../artifacts/stem_only_gui_readiness.json)에 있다. 실제 GPU 평가가 완료됐다. Main240쌍에서175정답(72.92%), O 대비+5.42pp, Hybrid 대비−1.25pp다. CI와 같은 범위 R/F는 [누적 결과 보고서](TWO_STAGE_RESULTS_KO.md)에 반영했다. 준비 manifest는 준비 당시 기록으로 보존한다.

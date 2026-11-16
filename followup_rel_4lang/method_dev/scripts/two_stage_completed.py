@@ -113,6 +113,29 @@ def add_completed(snapshot,run,repo,root,labels,contract,read):
         if source['model_config']!=contract['config']['downstream']['model_config'] or source['system_prompt']!=contract['config']['downstream']['system_prompt']:raise ValueError('Historical model/system differs from current evaluation')
     snapshot['reference_metadata']=metadata
     for cohort in cohorts:snapshot['cohorts'][cohort]['completed_evaluation']=completed_summary(run/cohort,contract,originals[cohort],labels,read,refs)
+    stem_root=root/'artifacts/stem_only_gui_screen_v1'
+    if 'screen' in cohorts and (stem_root/'COMPLETE.json').exists():
+        marker=json.loads((stem_root/'COMPLETE.json').read_text());stem_contract=json.loads((stem_root/'contract.json').read_text())
+        if Path(stem_contract['source_cohort']).resolve()!=(run/'screen').resolve():return
+        if marker['execution_mode']!='gpu' or marker['contract_sha256']!=digest(stem_contract):raise ValueError('Stem-only contract mismatch')
+        for filename,sha in stem_contract['source_sha256'].items():
+            if hashlib.sha256(Path(filename).read_bytes()).hexdigest()!=sha:raise ValueError('Stem-only baseline changed')
+        stem_rows={r['pair_id']:r for r in read(stem_root/'rewritten.jsonl')}
+        if digest(list(stem_rows.values()))!=stem_contract['composed_sha256']:raise ValueError('Stem-only input changed')
+        pred_dir=Path(marker['predictions'])
+        if not (pred_dir/'COMPLETE').exists():raise ValueError('Stem-only incomplete')
+        predictions=read(pred_dir/'predictions.jsonl');pred={r['pair_id']:r for r in predictions}
+        if len(pred)!=len(predictions) or set(pred)!=set(originals['screen']):raise ValueError('Stem-only pair set mismatch')
+        ids=sorted(p for p in pred if labels[p]['split']=='main' and p!=EXCLUDED)
+        if any(r['execution_mode']!='gpu' or parse_label(r['generated_text'])!=r['parsed_generated_label'] for r in predictions):raise ValueError('Invalid Stem-only outputs')
+        for pid,row in stem_rows.items():
+            if row['options']!=originals['screen'][pid]['options']:raise ValueError('Stem-only options changed')
+            if apply_edits(originals['screen'][pid],row['edits'])['question_stem']!=row['question_stem']:raise ValueError('Stem-only context changed')
+        saved=json.loads((stem_root/'results.json').read_text())
+        correct=sum(r['status']=='success' and r['parsed_generated_label']==labels[p]['gold_answer'] for p,r in pred.items() if p in ids)
+        if saved['primary_pairs']!=len(ids) or saved['correct']['TS_STEM_ONLY_GUI_AUTO']!=correct:raise ValueError('Stem-only accuracy differs')
+        saved['source_prediction_sha256']=hashlib.sha256((pred_dir/'predictions.jsonl').read_bytes()).hexdigest()
+        snapshot['cohorts']['screen']['completed_evaluation']['stem_only']=saved
 
 
 def render_completed(snapshot):
@@ -126,6 +149,16 @@ def render_completed(snapshot):
         out+=['',f'### {cohort}: 정확도와 O 대비','',f"실행{s['executed_pairs']}pair 중 primary{s['items']}개 semantic item의{n}pair다.",'', '| 조건 | 정답 | 정확도 | ΔO | Item bootstrap95% CI | 회복/회귀 |','| --- | ---: | ---: | ---: | --- | ---: |']
         for name,r in outcomes.items():
             c=r.get('vs_O');out.append(f"| {SHORT.get(name,name)} | {r['correct']}/{n} | {r['correct']/n*100:.2f}% | "+(f"{c['difference']*100:+.2f}pp | [{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}] | {c['recovery']}/{c['regression']} |" if c else '— | — | — |'))
+        stem=s.get('stem_only')
+        if stem:
+            k=stem['correct']['TS_STEM_ONLY_GUI_AUTO'];c=stem['contrasts']['O']
+            out.append(f"| **Stem-only GUI · Options 원본** | **{k}/{n}** | **{k/n*100:.2f}%** | {c['difference']*100:+.2f}pp | [{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}] | {c['recovery']}/{c['regression']} |")
+        for name in ('R_REF','F_REF'):
+            r=s['historical_references'][name]
+            out.append(f"| {name} · parallel reference | {r['correct']}/{n} | {r['correct']/n*100:.2f}% | {(r['correct']-outcomes['O']['correct'])/n*100:+.2f}pp | — | — |")
+        if stem:
+            c=stem['contrasts']['TS_QSEL_OFULL_GUI_AUTO']
+            out+=['',f"Stem-only는 완료된 Hybrid stem을 그대로 쓰고 A–D만 원본으로 복원했다. 새 추출·번역 없이 추가 downstream288쌍을 평가했다. **Stem-only−Hybrid는 {c['difference']*100:+.2f}pp**, CI[{c['ci95'][0]*100:+.2f}, {c['ci95'][1]*100:+.2f}]pp, 회복/회귀{c['recovery']}/{c['regression']}이다. Options Full을 추가한 Hybrid가 정답3개 높은 점추정이지만 구간이 넓어 우위를 확정하지 않는다. R/F는 같은 primary pair의 기존 parallel reference이며 자동 method가 아니다."]
         no_clear_effect=all(r['vs_O']['ci95'][0]<=0<=r['vs_O']['ci95'][1] for r in outcomes.values() if 'vs_O' in r)
         out+=['',f"CI는 semantic item 단위 10,000회 bootstrap이다. {n}개 pair를 독립 문제{n}개로 취급하지 않는다. "+('O 대비 CI는 모두 0을 포함하거나 경계가0이다. ' if no_clear_effect else '')+'Point estimate만으로 유의한 개선을 주장하지 않으며, 여러 탐색 대비에 대한 보정된 유의성도 주장하지 않는다.','',
               '### 조건 간 주요 paired 비교','', '| 비교 | 차이 | 95% CI | 회복/회귀 |','| --- | ---: | --- | ---: |']
@@ -146,6 +179,7 @@ def render_completed(snapshot):
         out+=['',
               '### GUI 언어별 결과','', '| 조건 | EN | ZH | TH | RU |','| --- | ---: | ---: | ---: | ---: |']
         for name,r in outcomes.items():out.append('| '+SHORT[name]+' | '+' | '.join(f"{r['by_gui'][gui]['correct']}/{r['by_gui'][gui]['n']} ({r['by_gui'][gui]['correct']/r['by_gui'][gui]['n']*100:.2f}%)" for gui in ('en','zh','th','ru'))+' |')
+        if stem:out.append('| Stem-only GUI · Options 원본 | '+' | '.join(f"{stem['by_gui'][gui]['correct']['TS_STEM_ONLY_GUI_AUTO']}/{stem['by_gui'][gui]['n']} ({stem['by_gui'][gui]['correct']['TS_STEM_ONLY_GUI_AUTO']/stem['by_gui'][gui]['n']*100:.2f}%)" for gui in ('en','zh','th','ru'))+' |')
         out+=['','GUI 언어별 결과도 같은 semantic item에서 나온 반복 관측이며 기술 통계로 본다. 전체 평균이 높아져도 모든 GUI 언어에 동일하게 이득이 생긴 것은 아니다.','',
               '### 비용과 재현 검사','', '| 단계 | Wall·분 | 호출 | cache hit |','| --- | ---: | ---: | ---: |']
         for name,cost in s['stage_costs'].items():out.append(f"| {name} | {cost['wall_seconds']/60:.2f} | {cost['calls']} | {cost['cache_hits']} |")
