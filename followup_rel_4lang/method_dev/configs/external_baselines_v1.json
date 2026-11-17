@@ -1,0 +1,23 @@
+{
+  "version": "external-translate-test-clp-gui-v1",
+  "scope": "Same 158-item development cohort; 1895 main primary pairs, 1944 execution pairs including legacy companions",
+  "seed": 42,
+  "output_tokens": {"translate": 512, "translate_repair": 512, "alignment": 512},
+  "solver_max_new_tokens": 512,
+  "solver_batch_size": 3,
+  "translation_backbone": "Qwen/Qwen3-8B",
+  "clp_alignment_backbone": "Qwen/Qwen3-8B",
+  "evaluation_backbone": "Qwen/Qwen3-VL-8B-Instruct",
+  "translation_target_language": "en",
+  "translation_english_source_policy": "identity",
+  "translation_failure_policy": "one structural repair then original-MCQ fallback; retain all cases",
+  "clp_alignment_failure_policy": "retain original MCQ and explicit missing-alignment marker in solver dialogue",
+  "clp_solver_policy": "two-turn dialogue; stepwise English reasoning then final Answer: A-D; no label-only extraction call",
+  "decoding": "greedy for both methods; differs from original CLP stochastic temperatures 1.0/0.2",
+  "api_policy": "No paid API or new model download; fixed local LM replaces Google Translate/GPT-3.5",
+  "tuning_policy": "Frozen before first GPU smoke; no accuracy-based prompt selection",
+  "sources": [
+    {"method": "Translate-Test", "paper": "https://aclanthology.org/2025.findings-naacl.144/", "repo": "https://github.com/yueqis/Multilingual_Visual_Reasoning", "commit": "c326ad0eeb94c7a7eda76dff57225ad707451bf5"},
+    {"method": "CLP", "paper": "https://aclanthology.org/2023.emnlp-main.163/", "repo": "https://github.com/LightChen233/cross-lingual-prompting", "commit": "affd839ba89745cf181a405395a1b410c41871d5"}
+  ]
+}

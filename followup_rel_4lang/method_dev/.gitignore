@@ -29,3 +29,7 @@ artifacts/search_plan_v1/*
 !artifacts/stem_only_diagnostic_snapshot.json
 !artifacts/transfer_qwen3_vl_4b_results_snapshot.json
 !artifacts/transfer_qwen3_vl_4b_completed.tar.gz
+!artifacts/external_baselines_smoke_summary.json
+!artifacts/external_baselines_results_snapshot.json
+!artifacts/external_baselines_archive_manifest.json
+!artifacts/external_baselines_completed.tar.gz

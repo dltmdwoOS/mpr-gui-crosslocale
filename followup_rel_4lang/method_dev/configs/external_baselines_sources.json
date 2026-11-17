@@ -1,0 +1,28 @@
+{
+  "audited_utc": "2026-11-17",
+  "files": [
+    {
+      "url": "https://github.com/LightChen233/cross-lingual-prompting/blob/affd839ba89745cf181a405395a1b410c41871d5/request.py",
+      "capture": "followup_rel_4lang/method_dev/artifacts/external_baselines_upstream/clp_request.py.txt",
+      "capture_sha256": "9b056e59f9278c5d97afceaf3fc2d2f408ed1242786a033db889e56554157817",
+      "bytes": 4914
+    },
+    {
+      "url": "https://github.com/yueqis/Multilingual_Visual_Reasoning/blob/c326ad0eeb94c7a7eda76dff57225ad707451bf5/README.md",
+      "capture": "followup_rel_4lang/method_dev/artifacts/external_baselines_upstream/translate_test_README.md.txt",
+      "capture_sha256": "98f4aa6e991e059ecef649ac1ca6a3db8b4625767d029936b8e05f3fe26bc6f5",
+      "bytes": 4938
+    },
+    {
+      "url": "https://github.com/yueqis/Multilingual_Visual_Reasoning/blob/c326ad0eeb94c7a7eda76dff57225ad707451bf5/gpt4v/marvl/gpt4v.py",
+      "capture": "followup_rel_4lang/method_dev/artifacts/external_baselines_upstream/translate_test_gpt4v.py.txt",
+      "capture_sha256": "2ac002d8005c6483533d4a4cf10173c65033ed9202839a80555c380fc926d4b6",
+      "bytes": 5412
+    }
+  ],
+  "notes": [
+    "Translate-Test README and paper specify Google Translate; gpt4v.py consumes statement CSV rather than implementing translation itself.",
+    "Official CLP request.py uses user->assistant->solver dialogue, GPT-3.5 and temperatures 1.0/0.2. Adaptation preserves two-stage interaction, uses fixed local LM then VLM, greedy, GUI MCQ instead of arithmetic.",
+    "No upstream dependency installation or execution. Local raw source captures are ignored; only provenance manifest is tracked."
+  ]
+}

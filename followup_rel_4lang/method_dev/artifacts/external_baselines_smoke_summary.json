@@ -1,0 +1,106 @@
+{
+  "functionality_only": true,
+  "accuracy_not_evaluated": true,
+  "contract_sha256": "59e05127893ee0e1b12e7da35b1628a1876b19e00a0c50882ca91086857cddb3",
+  "translate": {
+    "sources": 3,
+    "status": {
+      "success": 2,
+      "english_identity": 1
+    },
+    "cap_hits": 0,
+    "peak_reserved_bytes": 16529752064,
+    "wall_seconds": 72.28189543355256
+  },
+  "alignment": {
+    "sources": 3,
+    "status": {
+      "success": 3
+    },
+    "cap_hits": 1,
+    "peak_reserved_bytes": 16596860928,
+    "wall_seconds": 205.20058353431523
+  },
+  "infer_tt": {
+    "rows": 3,
+    "valid_labels": 3,
+    "output_cap_hits": 0,
+    "output_tokens": [
+      2,
+      2,
+      2
+    ],
+    "peak_reserved_bytes": 19908263936,
+    "max_input_tokens": 2138
+  },
+  "infer_clp": {
+    "rows": 3,
+    "valid_labels": 3,
+    "output_cap_hits": 0,
+    "output_tokens": [
+      162,
+      114,
+      380
+    ],
+    "peak_reserved_bytes": 20745027584,
+    "max_input_tokens": 2782
+  },
+  "models": {
+    "text": {
+      "model_id": "Qwen/Qwen3-8B",
+      "revision": "47719a242beab8f9aecc40ce3928b034dd5dd559",
+      "family": "text",
+      "path": "/home/jovyan/seungjae/.cache/huggingface/hub/models--Qwen--Qwen3-8B/snapshots/47719a242beab8f9aecc40ce3928b034dd5dd559"
+    },
+    "editor_vlm": {
+      "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+      "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+      "family": "qwen3_vl",
+      "path": "/home/jovyan/seungjae/.cache/huggingface/hub/models--Qwen--Qwen3-VL-8B-Instruct/snapshots/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b"
+    }
+  },
+  "prompt_sha256": {
+    "TRANSLATE_SYSTEM": "cfdbdf9f2250afdf62e5f5eac34cc4445a0a8ff5f1bbfc1a3425ebb66323a82f",
+    "CLP_SOLVER_SYSTEM": "eea5398934f1ceeae14fca23b36fe28c68dfee544eac0d21e0481e70f74bc6a6",
+    "CLP_SOLVER_USER": "f95428959646729a398f65709195d6831152bf56828dfb7db2b4725e631fcb83"
+  },
+  "source_sha256": {
+    "followup_rel_4lang/method_dev/scripts/run_external_baselines.py": "bf84c43450c548160d7f9d927e1e7b4953723ad33b6821164a3334efe5ccffb2",
+    "followup_rel_4lang/method_dev/external_baselines.py": "f27a623ed3079422737a610ae59ab8f76ccce2d255b89bb0e8e560aa67483222",
+    "followup_rel_4lang/method_dev/configs/external_baselines_v1.json": "fab52c83313518e40850298b107003c6dc65ae97db1b03503895040d740c6623",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/contract.json": "1de9be63542e6d596623da319acdb56d06b9cd788da289c9f72a9691afbf198e",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/COMPLETE.json": "f9f15751cd54b6211708544d7592f3e8bd0195cf3fbdc654e2edec0dcb41498a",
+    "followup_rel_4lang/method_dev/configs/external_baselines_sources.json": "2f65ad337ccfb0d7454f22fd2472155e2937cfda22b4ea5ddb0885852a31e703",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/data_contract.json": "040abf379215e41057fbab6e97c4ffa4191966cd8f93424990118aee3a0458f5",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/plan/manifest.json": "d0d43daf78aad1b4e5ab16ec865250d83216c75f626c20aadb204632432335a0",
+    "followup_rel_4lang/method_dev/scripts/run_source_copy_rewrite.py": "fab96335858dc509599326f0e1ebc0dd707d7c15b14fbb7e324823c33609557e",
+    "followup_rel_4lang/method_dev/scripts/run_overnight_two.py": "fbddf468d6f477ffc58735ba04182e158c79eb6452f4281da774a0285614eebe",
+    "followup_rel_4lang/method_dev/scripts/run_two_stage_v2.py": "2ee1d4b3355c1d7c585c9f8243869f651fd48724c9b3065b170e2e738878ca70",
+    "followup_rel_4lang/method_dev/scripts/run_stem_refinement_2x2.py": "6ebdfdb9fbbc4059d0e06dfa34860a2a1823168c1ad33668956c30295dc73752",
+    "followup_rel_4lang/method_dev/scripts/run_stem_only_gui.py": "d8987b4d21b0bc137a1ff3c40c2571e0f6820388220f4e53676dfe71c66c3d27",
+    "followup_rel_4lang/method_dev/two_stage_v2/backend.py": "e3d3e5f4c73b6a4e3d72e3e83b72682304d25282e9f3235171a7b34556e9ffce",
+    "followup_rel_4lang/method_dev/visual_rewrite_backend.py": "93bcf29fd81da1ed7a7e231e0f5367d2066250a9c6b57620bbf4a2dfd3c3d0e3",
+    "followup_rel_4lang/method_dev/source_copy_rewrite.py": "3954698e282ae8f0332eb9cf084609afa08974e3056350fbd25a577db068ad9a",
+    "followup_rel_4lang/method_dev/direct_selective_rewrite.py": "24614a5f21e41c0d00780e687ecb5976aff41c195d0ff20a44a77e0b2d14c8dc",
+    "followup_rel_4lang/method_dev/exact_batch_reuse.py": "a3f21f45c5569ab2aaa35282b32995dc31bec7f67ca4add27d337726197f8efc",
+    "01_code/src/mpr_crosslocale/models/qwen25vl.py": "76485637ec7e2c908f0b00f372c111f5c70ccca275d8484d7ca4f49f17c14d0a",
+    "01_code/src/mpr_crosslocale/models/qwen3_memory.py": "fe00351f368cdaca85418f7d0f3d03b638cffd4c61a86258a875e646ea66c4b6",
+    "01_code/src/mpr_crosslocale/inference/prompts.py": "5db5085c28e4f7b4495992008bdebe30f47f4809c307bacd47ffd22c91d73ba9",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/search.py": "762243aeb40a51772bbd7334e9a5d0f611b64a03b1b146988a99a70dbd7cb796",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/pipeline.py": "0c59c661862b2ba753f91e67c2826f08bc1c3e7c65466375d56fcc75b5f11e3a",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/referent_extractor.py": "661b6997f78a132efa2b9cdc372462ad4b6b7b3d712a977aa40bb9c518ca893d",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/schemas.py": "7ad47d91e16f2a117d90e8fddfe9d8404779172f755a9ec8aedc7dd89823cd94",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/validation.py": "fe00efd9f2bbbb537b183f6c181fc508ab57754fd69554c2bac6b6155d58019c",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/__init__.py": "7a0223f23ff564adb6991ec837a552873bdce9f0d47c98e138980294c4c18584",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/inventory.py": "0d252555796335baa01ce9f86cb7939afd9ceef21dcbf39057342bb503c8e81f",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/context_router.py": "f23fa1f72436f27a8110cdfd4f129313144ee4da73945a941308bbf2504bc28c",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/matcher.py": "5abc6c1181d7619e2951003e1229031ec6b7ee4c85f479eeea874bdea5d72a4c",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/rewriter.py": "ae8d2e351b79aec7fe2fe4cf5b6506707d79b75efe68d6f0ae4e1a7405b3d4d1",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/plan/screen.jsonl": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M0/infer/attempt_0001/evaluation/predictions.jsonl": "ea045fc1f1e71d78e61f1340a0522739d35f86cfe5c342b352262a87e146d14a",
+    "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/infer/attempt_0001/predictions.jsonl": "6f7e9009db90218352fa7a3110d6132deb40d6310be4346c9c5e68a4773721eb",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/plan/selection.jsonl": "7ab2900470258d91f877f3e309953ea24a8289830293bc408fbc57396a33be9a",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/plan/internal_evaluation.jsonl": "1003321a9b8775e17ee8122cfd2f6dc6f0c474679cf45b553472461b1650302d"
+  },
+  "scope": "3-pair functionality check only; no accuracy selection"
+}
