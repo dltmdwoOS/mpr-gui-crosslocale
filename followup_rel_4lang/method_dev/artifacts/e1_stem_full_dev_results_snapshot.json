@@ -1,0 +1,1091 @@
+{
+  "results": {
+    "execution_mode": "gpu",
+    "development_only": true,
+    "summary": {
+      "screen": {
+        "n": 240,
+        "items": 20,
+        "correct": {
+          "E1_M0": 178,
+          "E0_M0": 175,
+          "O_B200": 162,
+          "R_stem": 185
+        },
+        "contrasts": {
+          "E0_M0": {
+            "pairs": 240,
+            "items": 20,
+            "difference": 0.0125,
+            "ci95": [
+              0.0,
+              0.025
+            ],
+            "exploratory_bootstrap_centered_p": 0.10638936106389361,
+            "recovery": 3,
+            "regression": 0
+          },
+          "O_B200": {
+            "pairs": 240,
+            "items": 20,
+            "difference": 0.06666666666666667,
+            "ci95": [
+              0.0,
+              0.14166666666666666
+            ],
+            "exploratory_bootstrap_centered_p": 0.0770922907709229,
+            "recovery": 28,
+            "regression": 12
+          },
+          "R_stem": {
+            "pairs": 240,
+            "items": 20,
+            "difference": -0.029166666666666667,
+            "ci95": [
+              -0.1,
+              0.04583333333333333
+            ],
+            "exploratory_bootstrap_centered_p": 0.46365363463653636,
+            "recovery": 12,
+            "regression": 19
+          }
+        },
+        "by_gui": {
+          "en": {
+            "n": 60,
+            "correct": {
+              "E1_M0": 47,
+              "E0_M0": 46,
+              "O_B200": 45,
+              "R_stem": 47
+            }
+          },
+          "zh": {
+            "n": 60,
+            "correct": {
+              "E1_M0": 47,
+              "E0_M0": 46,
+              "O_B200": 44,
+              "R_stem": 49
+            }
+          },
+          "th": {
+            "n": 60,
+            "correct": {
+              "E1_M0": 41,
+              "E0_M0": 40,
+              "O_B200": 27,
+              "R_stem": 37
+            }
+          },
+          "ru": {
+            "n": 60,
+            "correct": {
+              "E1_M0": 43,
+              "E0_M0": 43,
+              "O_B200": 46,
+              "R_stem": 52
+            }
+          }
+        }
+      },
+      "selection": {
+        "n": 239,
+        "items": 20,
+        "correct": {
+          "E1_M0": 175,
+          "E0_M0": 178,
+          "O_B200": 171,
+          "R_stem": 174
+        },
+        "contrasts": {
+          "E0_M0": {
+            "pairs": 239,
+            "items": 20,
+            "difference": -0.012552301255230125,
+            "ci95": [
+              -0.03333333333333333,
+              0.0
+            ],
+            "exploratory_bootstrap_centered_p": 0.21577842215778423,
+            "recovery": 0,
+            "regression": 3
+          },
+          "O_B200": {
+            "pairs": 239,
+            "items": 20,
+            "difference": 0.016736401673640166,
+            "ci95": [
+              -0.04201680672268908,
+              0.08368200836820083
+            ],
+            "exploratory_bootstrap_centered_p": 0.6348365163483651,
+            "recovery": 17,
+            "regression": 13
+          },
+          "R_stem": {
+            "pairs": 239,
+            "items": 20,
+            "difference": 0.0041841004184100415,
+            "ci95": [
+              -0.046218487394957986,
+              0.07916666666666666
+            ],
+            "exploratory_bootstrap_centered_p": 0.9281071892810719,
+            "recovery": 9,
+            "regression": 8
+          }
+        },
+        "by_gui": {
+          "en": {
+            "n": 60,
+            "correct": {
+              "E1_M0": 48,
+              "E0_M0": 48,
+              "O_B200": 50,
+              "R_stem": 46
+            }
+          },
+          "zh": {
+            "n": 60,
+            "correct": {
+              "E1_M0": 49,
+              "E0_M0": 50,
+              "O_B200": 43,
+              "R_stem": 46
+            }
+          },
+          "th": {
+            "n": 60,
+            "correct": {
+              "E1_M0": 31,
+              "E0_M0": 33,
+              "O_B200": 30,
+              "R_stem": 35
+            }
+          },
+          "ru": {
+            "n": 59,
+            "correct": {
+              "E1_M0": 47,
+              "E0_M0": 47,
+              "O_B200": 48,
+              "R_stem": 47
+            }
+          }
+        }
+      },
+      "internal_evaluation": {
+        "n": 1416,
+        "items": 118,
+        "correct": {
+          "E1_M0": 1051,
+          "E0_M0": 1049,
+          "O_B200": 997,
+          "R_stem": 1113
+        },
+        "contrasts": {
+          "E0_M0": {
+            "pairs": 1416,
+            "items": 118,
+            "difference": 0.0014124293785310734,
+            "ci95": [
+              -0.0049435028248587575,
+              0.007768361581920904
+            ],
+            "exploratory_bootstrap_centered_p": 0.7447255274472553,
+            "recovery": 11,
+            "regression": 9
+          },
+          "O_B200": {
+            "pairs": 1416,
+            "items": 118,
+            "difference": 0.038135593220338986,
+            "ci95": [
+              0.013418079096045197,
+              0.062146892655367235
+            ],
+            "exploratory_bootstrap_centered_p": 0.0031996800319968005,
+            "recovery": 123,
+            "regression": 69
+          },
+          "R_stem": {
+            "pairs": 1416,
+            "items": 118,
+            "difference": -0.043785310734463276,
+            "ci95": [
+              -0.06073446327683616,
+              -0.02754237288135593
+            ],
+            "exploratory_bootstrap_centered_p": 9.999000099990002e-05,
+            "recovery": 18,
+            "regression": 80
+          }
+        },
+        "by_gui": {
+          "en": {
+            "n": 354,
+            "correct": {
+              "E1_M0": 290,
+              "E0_M0": 290,
+              "O_B200": 290,
+              "R_stem": 300
+            }
+          },
+          "zh": {
+            "n": 354,
+            "correct": {
+              "E1_M0": 275,
+              "E0_M0": 276,
+              "O_B200": 270,
+              "R_stem": 293
+            }
+          },
+          "th": {
+            "n": 354,
+            "correct": {
+              "E1_M0": 214,
+              "E0_M0": 211,
+              "O_B200": 172,
+              "R_stem": 232
+            }
+          },
+          "ru": {
+            "n": 354,
+            "correct": {
+              "E1_M0": 272,
+              "E0_M0": 272,
+              "O_B200": 265,
+              "R_stem": 288
+            }
+          }
+        }
+      },
+      "all_158": {
+        "n": 1895,
+        "items": 158,
+        "correct": {
+          "E1_M0": 1404,
+          "E0_M0": 1402,
+          "O_B200": 1330,
+          "R_stem": 1472
+        },
+        "contrasts": {
+          "E0_M0": {
+            "pairs": 1895,
+            "items": 158,
+            "difference": 0.0010554089709762533,
+            "ci95": [
+              -0.004746835443037975,
+              0.006860158311345646
+            ],
+            "exploratory_bootstrap_centered_p": 0.7621237876212379,
+            "recovery": 14,
+            "regression": 12
+          },
+          "O_B200": {
+            "pairs": 1895,
+            "items": 158,
+            "difference": 0.03905013192612137,
+            "ci95": [
+              0.016904161444012872,
+              0.0617740232312566
+            ],
+            "exploratory_bootstrap_centered_p": 0.0006999300069993001,
+            "recovery": 168,
+            "regression": 94
+          },
+          "R_stem": {
+            "pairs": 1895,
+            "items": 158,
+            "difference": -0.035883905013192614,
+            "ci95": [
+              -0.05379746835443038,
+              -0.017932489451476793
+            ],
+            "exploratory_bootstrap_centered_p": 0.00029997000299970003,
+            "recovery": 39,
+            "regression": 107
+          }
+        },
+        "by_gui": {
+          "en": {
+            "n": 474,
+            "correct": {
+              "E1_M0": 385,
+              "E0_M0": 384,
+              "O_B200": 385,
+              "R_stem": 393
+            }
+          },
+          "zh": {
+            "n": 474,
+            "correct": {
+              "E1_M0": 371,
+              "E0_M0": 372,
+              "O_B200": 357,
+              "R_stem": 388
+            }
+          },
+          "th": {
+            "n": 474,
+            "correct": {
+              "E1_M0": 286,
+              "E0_M0": 284,
+              "O_B200": 229,
+              "R_stem": 304
+            }
+          },
+          "ru": {
+            "n": 473,
+            "correct": {
+              "E1_M0": 362,
+              "E0_M0": 362,
+              "O_B200": 359,
+              "R_stem": 387
+            }
+          }
+        }
+      }
+    },
+    "quality": {
+      "screen": {
+        "status": {
+          "success": 225,
+          "fallback_original": 6,
+          "no_op_no_edits": 9
+        },
+        "errors": {
+          "Target is not a verbatim inventory member": 6
+        },
+        "changed": 225,
+        "digit_changed": 17,
+        "new_duplicate_options": 0,
+        "source_extraction": {
+          "precision": 0.8375,
+          "recall": 0.8375,
+          "f1": 0.8375,
+          "gold": 240,
+          "predicted": 240,
+          "matched": 201
+        }
+      },
+      "selection": {
+        "status": {
+          "success": 218,
+          "fallback_original": 12,
+          "no_op_no_edits": 9
+        },
+        "errors": {
+          "Target is not a verbatim inventory member": 6,
+          "source_extraction_failed": 6
+        },
+        "changed": 218,
+        "digit_changed": 0,
+        "new_duplicate_options": 0,
+        "source_extraction": {
+          "precision": 0.9227467811158798,
+          "recall": 0.899581589958159,
+          "f1": 0.9110169491525424,
+          "gold": 239,
+          "predicted": 233,
+          "matched": 215
+        }
+      },
+      "internal_evaluation": {
+        "status": {
+          "fallback_original": 56,
+          "success": 1327,
+          "no_op_no_edits": 33
+        },
+        "errors": {
+          "Target is not a verbatim inventory member": 34,
+          "source_extraction_failed": 21,
+          "Extra data: line 3 column 1 (char 69)": 1
+        },
+        "changed": 1327,
+        "digit_changed": 2,
+        "new_duplicate_options": 0,
+        "source_extraction": {
+          "precision": 0.9419354838709677,
+          "recall": 0.9279661016949152,
+          "f1": 0.934898612593383,
+          "gold": 1416,
+          "predicted": 1395,
+          "matched": 1314
+        }
+      }
+    },
+    "new_stage_costs": {
+      "selection": {
+        "extract": {
+          "complete": true,
+          "wall_seconds": 157.13727998826653,
+          "calls": 82,
+          "cache_hits": 0,
+          "new_runtime_ms": 134502.90270335972
+        },
+        "rewrite": {
+          "complete": true,
+          "wall_seconds": 161.6856400836259,
+          "calls": 249,
+          "cache_hits": 198,
+          "new_runtime_ms": 147253.89573629946
+        },
+        "infer": {
+          "wall_seconds": 70.70284670125693,
+          "execution_mode": "gpu",
+          "reused_batches": 62,
+          "reused_rows": 186,
+          "new_batches": 18,
+          "conflicting_cache_keys": 0
+        }
+      },
+      "internal_evaluation": {
+        "extract": {
+          "complete": true,
+          "wall_seconds": 396.2959344619885,
+          "calls": 479,
+          "cache_hits": 1,
+          "new_runtime_ms": 378646.2718117982
+        },
+        "rewrite": {
+          "complete": true,
+          "wall_seconds": 402.8690075231716,
+          "calls": 1468,
+          "cache_hits": 1293,
+          "new_runtime_ms": 367813.3141910657
+        },
+        "infer": {
+          "wall_seconds": 187.91342808492482,
+          "execution_mode": "gpu",
+          "reused_batches": 412,
+          "reused_rows": 1236,
+          "new_batches": 60,
+          "conflicting_cache_keys": 0
+        }
+      }
+    },
+    "method": "E1_M0",
+    "prompt_sha256": {
+      "E1": "5c3d7f6459b991b778d36cebfc110877682ba03c4869828f97c04ff21bca087a",
+      "M0": "e70051309aaaebbde4c790acafad94b624d16fba0ed789b2e145ab6ef3a76202"
+    },
+    "contract_sha256": "c211e42669ce4aae953f1b58dc83457a324283030f74cc7924bcd3c75777c7f9"
+  },
+  "wall_seconds": 1401.8173487419263,
+  "incremental_costs": {
+    "selection": {
+      "extract": {
+        "complete": true,
+        "wall_seconds": 157.13727998826653,
+        "calls": 82,
+        "cache_hits": 0,
+        "new_runtime_ms": 134502.90270335972
+      },
+      "match": {
+        "complete": true,
+        "wall_seconds": 161.6856400836259,
+        "calls": 249,
+        "cache_hits": 198,
+        "new_runtime_ms": 147253.89573629946
+      },
+      "infer": {
+        "wall_seconds": 70.70284670125693,
+        "execution_mode": "gpu",
+        "reused_batches": 62,
+        "reused_rows": 186,
+        "new_batches": 18,
+        "conflicting_cache_keys": 0
+      },
+      "new_answer_seconds": 47.13861171063036
+    },
+    "internal_evaluation": {
+      "extract": {
+        "complete": true,
+        "wall_seconds": 396.2959344619885,
+        "calls": 479,
+        "cache_hits": 1,
+        "new_runtime_ms": 378646.2718117982
+      },
+      "match": {
+        "complete": true,
+        "wall_seconds": 402.8690075231716,
+        "calls": 1468,
+        "cache_hits": 1293,
+        "new_runtime_ms": 367813.3141910657
+      },
+      "infer": {
+        "wall_seconds": 187.91342808492482,
+        "execution_mode": "gpu",
+        "reused_batches": 412,
+        "reused_rows": 1236,
+        "new_batches": 60,
+        "conflicting_cache_keys": 0
+      },
+      "new_answer_seconds": 157.00943812727928
+    }
+  },
+  "logical_recipe_costs": {
+    "screen": {
+      "inventory_seconds": 1773.588974324055,
+      "extraction_seconds": 63.51239993982017,
+      "matching_seconds": 318.6465036896989,
+      "answer_seconds": 190.0594604546204,
+      "total_seconds": 2345.8073384081945
+    },
+    "selection": {
+      "inventory_seconds": 1714.9893674934283,
+      "extraction_seconds": 134.50290270335972,
+      "matching_seconds": 491.6959533309564,
+      "answer_seconds": 195.69710565824062,
+      "total_seconds": 2536.885329185985
+    },
+    "internal_evaluation": {
+      "inventory_seconds": 4830.024382928386,
+      "extraction_seconds": 379.1051655765623,
+      "matching_seconds": 1451.728220468387,
+      "answer_seconds": 892.5671210205182,
+      "total_seconds": 7553.424889993854
+    }
+  },
+  "reused_answer_rows_remaining": 1422,
+  "new_answer_rows_remaining": 234,
+  "transitions": [
+    {
+      "cohort": "screen",
+      "pair_id": "rel::2/calendar_6.png::en::th",
+      "transition": "recovery",
+      "gold": "B",
+      "old": "C",
+      "new": "B"
+    },
+    {
+      "cohort": "screen",
+      "pair_id": "rel::4/google_play_8.jpg::ru::en",
+      "transition": "recovery",
+      "gold": "A",
+      "old": "B",
+      "new": "A"
+    },
+    {
+      "cohort": "screen",
+      "pair_id": "rel::6/camera_8.jpg::th::zh",
+      "transition": "recovery",
+      "gold": "A",
+      "old": "C",
+      "new": "A"
+    },
+    {
+      "cohort": "selection",
+      "pair_id": "rel::5/message_12.jpg::ru::th",
+      "transition": "regression",
+      "gold": "A",
+      "old": "A",
+      "new": "B"
+    },
+    {
+      "cohort": "selection",
+      "pair_id": "rel::5/message_12.jpg::ru::zh",
+      "transition": "regression",
+      "gold": "A",
+      "old": "A",
+      "new": "C"
+    },
+    {
+      "cohort": "selection",
+      "pair_id": "rel::6/camera_1.jpg::en::th",
+      "transition": "regression",
+      "gold": "C",
+      "old": "C",
+      "new": "D"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::1/booking_8.jpg::th::en",
+      "transition": "regression",
+      "gold": "B",
+      "old": "B",
+      "new": "C"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::1/booking_8.jpg::zh::th",
+      "transition": "recovery",
+      "gold": "B",
+      "old": "A",
+      "new": "B"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::2/calendar_2.png::th::ru",
+      "transition": "recovery",
+      "gold": "A",
+      "old": "B",
+      "new": "A"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::2/calendar_2.png::th::zh",
+      "transition": "recovery",
+      "gold": "A",
+      "old": "B",
+      "new": "A"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::2/clock_7.png::zh::ru",
+      "transition": "recovery",
+      "gold": "A",
+      "old": "B",
+      "new": "A"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::2/clock_7.png::zh::th",
+      "transition": "recovery",
+      "gold": "A",
+      "old": "D",
+      "new": "A"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::2/freeform_4.png::th::zh",
+      "transition": "regression",
+      "gold": "C",
+      "old": "C",
+      "new": "A"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::2/note_2.png::zh::ru",
+      "transition": "regression",
+      "gold": "B",
+      "old": "B",
+      "new": "D"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::2/note_2.png::zh::th",
+      "transition": "recovery",
+      "gold": "B",
+      "old": "D",
+      "new": "B"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::2/note_9.png::th::ru",
+      "transition": "regression",
+      "gold": "D",
+      "old": "D",
+      "new": "C"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::2/note_9.png::th::zh",
+      "transition": "regression",
+      "gold": "D",
+      "old": "D",
+      "new": "C"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::2/setting_6.png::en::th",
+      "transition": "regression",
+      "gold": "A",
+      "old": "A",
+      "new": "C"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::2/weather_10.png::th::en",
+      "transition": "recovery",
+      "gold": "B",
+      "old": "A",
+      "new": "B"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::2/weather_10.png::th::zh",
+      "transition": "regression",
+      "gold": "B",
+      "old": "B",
+      "new": "D"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::3/settings_5.jpg::th::zh",
+      "transition": "recovery",
+      "gold": "A",
+      "old": "B",
+      "new": "A"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::4/Youtube_8.jpg::ru::th",
+      "transition": "recovery",
+      "gold": "D",
+      "old": "B",
+      "new": "D"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::4/Youtube_9.jpg::ru::en",
+      "transition": "recovery",
+      "gold": "C",
+      "old": "A",
+      "new": "C"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::6/message_10.jpg::zh::en",
+      "transition": "regression",
+      "gold": "C",
+      "old": "C",
+      "new": "A"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::6/message_10.jpg::zh::th",
+      "transition": "regression",
+      "gold": "C",
+      "old": "C",
+      "new": "A"
+    },
+    {
+      "cohort": "internal_evaluation",
+      "pair_id": "rel::6/sport_8.jpg::ru::th",
+      "transition": "recovery",
+      "gold": "B",
+      "old": "C",
+      "new": "B"
+    }
+  ],
+  "contract_sha256": "c211e42669ce4aae953f1b58dc83457a324283030f74cc7924bcd3c75777c7f9",
+  "raw_and_source_sha256": {
+    "followup_rel_4lang/method_dev/scripts/report_e1_stem_full_dev.py": "0e9003ca8366ab9e59de03214648eadc35a2f79fdf21440613ab886360a26a3f",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/contract.json": "1de9be63542e6d596623da319acdb56d06b9cd788da289c9f72a9691afbf198e",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/COMPLETE.json": "f9f15751cd54b6211708544d7592f3e8bd0195cf3fbdc654e2edec0dcb41498a",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/results.json": "052432b0e226a137744c298db88fdbd70a6b8a1ee68f677b4fc5e3f42e7ba900",
+    "followup_rel_4lang/method_dev/artifacts/dataset_audit/evaluation_labels_PRIVATE.jsonl": "82e29e2a57d1f361a1b13020fda34068f95bf5762c29a1c8d610d198aa3a7c6a",
+    "followup_rel_4lang/method_dev/artifacts/dataset_audit/oracle_spans_DIAGNOSTIC_ONLY.jsonl": "b6f1642a1d257d7f6aa92ff3724957cb4541b44910273ac452a1f502267614ff",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/inputs.jsonl": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M0/rewrite/attempt_0001/rewritten.jsonl": "571b017242606d0ffea52ebf58a4e6afc2853158e2f9be82d9daf67bf4b03f86",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M0/infer/attempt_0001/evaluation/predictions.jsonl": "ea045fc1f1e71d78e61f1340a0522739d35f86cfe5c342b352262a87e146d14a",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E0_M0/infer/attempt_import/evaluation/predictions.jsonl": "5afa402cc6bb402df2ae0cb2e97a9e645fc2db979f5e9367b4a267f4ea06f44a",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E0_M0/rewrite/attempt_import/rewritten.jsonl": "fac02dd8ad6e10208553f1cb13d4c447092e4502c88939c9d05abc0037442429",
+    "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/inventory/attempt_0001/inventories.jsonl": "c0de661dfbff7f102b92797f5a2f013ca8081ae7d22be65ed05ad00a6474be7d",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/selection/extraction/E1/attempt_0001/cost.json": "19ce8f37c39afb2d7ea395f8d67fa393b5b4259fc9e9d1928160f0e06b5d96bd",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/selection/E1_M0/rewrite/attempt_0001/cost.json": "c8812cb6725a760ed1ba2b4e67cba28625ac172092dfef9b0a8ad742002bef5f",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/selection/E1_M0/infer/attempt_0001/evaluation/cost.json": "ee3faaed5b0573793739c65186a3dd960fde45aa24d12ca2922f75bef7b831fb",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/selection/inputs.jsonl": "7ab2900470258d91f877f3e309953ea24a8289830293bc408fbc57396a33be9a",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/selection/E1_M0/rewrite/attempt_0001/rewritten.jsonl": "23663c7a3d4c649664a78d60c8f923ff7f39c42c77ae6a7086572ac7f29b9e53",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/selection/E1_M0/infer/attempt_0001/evaluation/predictions.jsonl": "09497c64e084a0315231d7b7417c12f6019b8f3d7c1ff7575554f5452eaa32dc",
+    "followup_rel_4lang/method_dev/artifacts/overnight_two_v1/selection/stem/infer/attempt_0001/evaluation/predictions.jsonl": "8af0f06eb29eb4b68cdf79a2132e567f6b3cc0ff0815f0a40a2b948493d38120",
+    "followup_rel_4lang/method_dev/artifacts/overnight_two_v1/selection/stem/rewrite/attempt_0001/rewritten.jsonl": "fc98d17d7f6723ee8f505400157feb0ad9368fdfc84656555f02aa9d1ec2df98",
+    "followup_rel_4lang/method_dev/artifacts/overnight_two_v1/selection/stem/inventory/attempt_0001/inventories.jsonl": "1eef48f014832ab7bdb9cf8e180c50d6d2d4e478f5941b7f3b81b3222c591c79",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/internal_evaluation/extraction/E1/attempt_0001/cost.json": "060c1c25db8de3dbc93aacaa609024aa1b02885f9a9551b7fc698fe507f0225a",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/internal_evaluation/E1_M0/rewrite/attempt_0001/cost.json": "60df7117369ae27a7fefb4c01aca671c2bbcb0f23edddd7db137ea97102b5c7e",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/internal_evaluation/E1_M0/infer/attempt_0001/evaluation/cost.json": "817977201a81c5e91121012b18a6f808c638d89e1814afc0539d693bb74ec5c5",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/internal_evaluation/inputs.jsonl": "1003321a9b8775e17ee8122cfd2f6dc6f0c474679cf45b553472461b1650302d",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/internal_evaluation/E1_M0/rewrite/attempt_0001/rewritten.jsonl": "1b426be59f267126a172a528a8199de67f30c7f5e731abf6064b82d455a73149",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/internal_evaluation/E1_M0/infer/attempt_0001/evaluation/predictions.jsonl": "808aa79c5011e4ed73be67371d9099576ba9cad4db10bceb8858774586e22e3f",
+    "followup_rel_4lang/method_dev/artifacts/overnight_two_v1/internal_evaluation/stem/infer/attempt_0001/evaluation/predictions.jsonl": "b4ffffd8fc6d98828a31560b2742b3d373a558398ab8c775cbee315a8b8f799f",
+    "followup_rel_4lang/method_dev/artifacts/overnight_two_v1/internal_evaluation/stem/rewrite/attempt_0001/rewritten.jsonl": "e6d3a29bb9853ffe30c6b1fc7e8621bfbf7733343f0055e1e1003713638fdf9a",
+    "followup_rel_4lang/method_dev/artifacts/overnight_two_v1/internal_evaluation/stem/inventory/attempt_0001/inventories.jsonl": "7b01e105b86e0b0aee8a41c2274fdc078eff74726049fc016964d5107100fcbf"
+  },
+  "export_manifest": {
+    "method": "E1_M0",
+    "main_items": 158,
+    "main_executed_pairs": 1896,
+    "main_primary_pairs": 1895,
+    "legacy_pilot_rows_reused": 48,
+    "inputs_path": "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/inputs_E1_M0_main1896.jsonl",
+    "inputs_sha256": "f9263aef0adb1454d4fac7d05358ceeb311a212fe844386955bfe161ceac8d15",
+    "excluded_primary_pair": "rel::5/forest_9.jpg::zh::ru",
+    "input_order": "pair_id sorted data export. Stored predictions retain original cohort batches including Screen pilot companions.",
+    "cohorts": {
+      "screen": {
+        "inputs": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/inputs.jsonl",
+        "rewrite": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M0/rewrite/attempt_0001",
+        "infer": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M0/infer/attempt_0001",
+        "baseline_rewrite": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E0_M0/rewrite/attempt_import/rewritten.jsonl",
+        "baseline_pred": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E0_M0/infer/attempt_import/evaluation/predictions.jsonl",
+        "O_pred": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/infer/attempt_0001/predictions.jsonl",
+        "reuse_only": true
+      },
+      "selection": {
+        "source_inputs": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/overnight_two_v1/selection/stem/inputs.jsonl",
+        "inventory_path": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/overnight_two_v1/selection/stem/inventory/attempt_0001/inventories.jsonl",
+        "legacy_extraction_path": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/overnight_two_v1/selection/stem/extract_stem/attempt_0001/extractions.jsonl",
+        "baseline_rewrite": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/overnight_two_v1/selection/stem/rewrite/attempt_0001/rewritten.jsonl",
+        "baseline_pred": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/overnight_two_v1/selection/stem/infer/attempt_0001/evaluation/predictions.jsonl",
+        "O_pred": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/selection/pred_fixed_contrastive_GUI_EXACT/attempt_0001/predictions.jsonl",
+        "legacy_reuse_sources": [
+          {
+            "path": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/overnight_two_v1/selection/stem/infer/attempt_0001/evaluation/predictions.jsonl",
+            "downstream": {
+              "model_config": {
+                "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+                "model_family": "qwen3_vl",
+                "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+                "dtype": "bfloat16",
+                "quantization": null,
+                "attn_implementation": "sdpa",
+                "device_strategy": "cuda:0",
+                "patch_embed_memory_format": "channels_last_3d",
+                "processor_profile": "qwen_4090_2mp",
+                "min_pixels": 262144,
+                "max_pixels": 2097152,
+                "prompt_profile": "mpr_label_only_v1",
+                "generation": {
+                  "do_sample": false,
+                  "num_beams": 1,
+                  "max_new_tokens": 2,
+                  "temperature": null
+                }
+              },
+              "system_prompt": "You are a GUI reasoning assistant. Inspect the GUI image and answer the multiple-choice question. Respond with exactly one label: A, B, C, or D.",
+              "batch_size": 3,
+              "max_input_tokens": 4096,
+              "score_labels": true,
+              "processor_use_fast": true
+            },
+            "seed": 42,
+            "environment": {
+              "software": {
+                "python": "3.11.11",
+                "platform": "Linux-6.8.0-87-generic-x86_64-with-glibc2.35",
+                "torch": "2.9.1+cu130",
+                "transformers": "4.57.6",
+                "accelerate": "1.15.0",
+                "qwen-vl-utils": "0.0.14",
+                "torchvision": "0.24.1+cu130",
+                "timm": "1.0.30",
+                "protobuf": "6.33.2",
+                "sentencepiece": "0.2.0",
+                "flash-attn": null
+              },
+              "hardware": {
+                "name": "NVIDIA B200 MIG 2g.45gb",
+                "multiprocessors": 36,
+                "memory_bytes": 47513075712
+              }
+            }
+          },
+          {
+            "path": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/overnight_two_v1/selection/direct/infer/attempt_0001/evaluation/predictions.jsonl",
+            "downstream": {
+              "model_config": {
+                "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+                "model_family": "qwen3_vl",
+                "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+                "dtype": "bfloat16",
+                "quantization": null,
+                "attn_implementation": "sdpa",
+                "device_strategy": "cuda:0",
+                "patch_embed_memory_format": "channels_last_3d",
+                "processor_profile": "qwen_4090_2mp",
+                "min_pixels": 262144,
+                "max_pixels": 2097152,
+                "prompt_profile": "mpr_label_only_v1",
+                "generation": {
+                  "do_sample": false,
+                  "num_beams": 1,
+                  "max_new_tokens": 2,
+                  "temperature": null
+                }
+              },
+              "system_prompt": "You are a GUI reasoning assistant. Inspect the GUI image and answer the multiple-choice question. Respond with exactly one label: A, B, C, or D.",
+              "batch_size": 3,
+              "max_input_tokens": 4096,
+              "score_labels": true,
+              "processor_use_fast": true
+            },
+            "seed": 42,
+            "environment": {
+              "software": {
+                "python": "3.11.11",
+                "platform": "Linux-6.8.0-87-generic-x86_64-with-glibc2.35",
+                "torch": "2.9.1+cu130",
+                "transformers": "4.57.6",
+                "accelerate": "1.15.0",
+                "qwen-vl-utils": "0.0.14",
+                "torchvision": "0.24.1+cu130",
+                "timm": "1.0.30",
+                "protobuf": "6.33.2",
+                "sentencepiece": "0.2.0",
+                "flash-attn": null
+              },
+              "hardware": {
+                "name": "NVIDIA B200 MIG 2g.45gb",
+                "multiprocessors": 36,
+                "memory_bytes": 47513075712
+              }
+            }
+          }
+        ],
+        "pairs": 240,
+        "baseline_replayed_pairs": 240
+      },
+      "internal_evaluation": {
+        "source_inputs": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/overnight_two_v1/internal_evaluation/stem/inputs.jsonl",
+        "inventory_path": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/overnight_two_v1/internal_evaluation/stem/inventory/attempt_0001/inventories.jsonl",
+        "legacy_extraction_path": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/overnight_two_v1/internal_evaluation/stem/extract_stem/attempt_0001/extractions.jsonl",
+        "baseline_rewrite": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/overnight_two_v1/internal_evaluation/stem/rewrite/attempt_0001/rewritten.jsonl",
+        "baseline_pred": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/overnight_two_v1/internal_evaluation/stem/infer/attempt_0001/evaluation/predictions.jsonl",
+        "O_pred": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/pred_fixed_contrastive_GUI_EXACT/attempt_0001/predictions.jsonl",
+        "legacy_reuse_sources": [
+          {
+            "path": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/overnight_two_v1/internal_evaluation/stem/infer/attempt_0001/evaluation/predictions.jsonl",
+            "downstream": {
+              "model_config": {
+                "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+                "model_family": "qwen3_vl",
+                "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+                "dtype": "bfloat16",
+                "quantization": null,
+                "attn_implementation": "sdpa",
+                "device_strategy": "cuda:0",
+                "patch_embed_memory_format": "channels_last_3d",
+                "processor_profile": "qwen_4090_2mp",
+                "min_pixels": 262144,
+                "max_pixels": 2097152,
+                "prompt_profile": "mpr_label_only_v1",
+                "generation": {
+                  "do_sample": false,
+                  "num_beams": 1,
+                  "max_new_tokens": 2,
+                  "temperature": null
+                }
+              },
+              "system_prompt": "You are a GUI reasoning assistant. Inspect the GUI image and answer the multiple-choice question. Respond with exactly one label: A, B, C, or D.",
+              "batch_size": 3,
+              "max_input_tokens": 4096,
+              "score_labels": true,
+              "processor_use_fast": true
+            },
+            "seed": 42,
+            "environment": {
+              "software": {
+                "python": "3.11.11",
+                "platform": "Linux-6.8.0-87-generic-x86_64-with-glibc2.35",
+                "torch": "2.9.1+cu130",
+                "transformers": "4.57.6",
+                "accelerate": "1.15.0",
+                "qwen-vl-utils": "0.0.14",
+                "torchvision": "0.24.1+cu130",
+                "timm": "1.0.30",
+                "protobuf": "6.33.2",
+                "sentencepiece": "0.2.0",
+                "flash-attn": null
+              },
+              "hardware": {
+                "name": "NVIDIA B200 MIG 2g.45gb",
+                "multiprocessors": 36,
+                "memory_bytes": 47513075712
+              }
+            }
+          },
+          {
+            "path": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/overnight_two_v1/internal_evaluation/direct/infer/attempt_0001/evaluation/predictions.jsonl",
+            "downstream": {
+              "model_config": {
+                "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+                "model_family": "qwen3_vl",
+                "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+                "dtype": "bfloat16",
+                "quantization": null,
+                "attn_implementation": "sdpa",
+                "device_strategy": "cuda:0",
+                "patch_embed_memory_format": "channels_last_3d",
+                "processor_profile": "qwen_4090_2mp",
+                "min_pixels": 262144,
+                "max_pixels": 2097152,
+                "prompt_profile": "mpr_label_only_v1",
+                "generation": {
+                  "do_sample": false,
+                  "num_beams": 1,
+                  "max_new_tokens": 2,
+                  "temperature": null
+                }
+              },
+              "system_prompt": "You are a GUI reasoning assistant. Inspect the GUI image and answer the multiple-choice question. Respond with exactly one label: A, B, C, or D.",
+              "batch_size": 3,
+              "max_input_tokens": 4096,
+              "score_labels": true,
+              "processor_use_fast": true
+            },
+            "seed": 42,
+            "environment": {
+              "software": {
+                "python": "3.11.11",
+                "platform": "Linux-6.8.0-87-generic-x86_64-with-glibc2.35",
+                "torch": "2.9.1+cu130",
+                "transformers": "4.57.6",
+                "accelerate": "1.15.0",
+                "qwen-vl-utils": "0.0.14",
+                "torchvision": "0.24.1+cu130",
+                "timm": "1.0.30",
+                "protobuf": "6.33.2",
+                "sentencepiece": "0.2.0",
+                "flash-attn": null
+              },
+              "hardware": {
+                "name": "NVIDIA B200 MIG 2g.45gb",
+                "multiprocessors": 36,
+                "memory_bytes": 47513075712
+              }
+            }
+          }
+        ],
+        "pairs": 1416,
+        "baseline_replayed_pairs": 1416
+      }
+    },
+    "prompt_sha256": {
+      "E1": "5c3d7f6459b991b778d36cebfc110877682ba03c4869828f97c04ff21bca087a",
+      "M0": "e70051309aaaebbde4c790acafad94b624d16fba0ed789b2e145ab6ef3a76202"
+    }
+  },
+  "combined_source_extraction": {
+    "E0": {
+      "gold": 1895,
+      "predicted": 1886,
+      "matched": 1649,
+      "precision": 0.8743372216330859,
+      "recall": 0.8701846965699208,
+      "f1": 0.8722560169267389
+    },
+    "E1": {
+      "gold": 1895,
+      "predicted": 1868,
+      "matched": 1730,
+      "precision": 0.9261241970021413,
+      "recall": 0.9129287598944591,
+      "f1": 0.9194791389848526
+    }
+  },
+  "input_agreement": {
+    "screen": {
+      "unchanged_MCQs": 190,
+      "changed_MCQs": 50,
+      "unchanged_MCQs_label_differences": 0,
+      "format_only_correctness_transitions": [
+        "rel::4/google_play_8.jpg::ru::en"
+      ]
+    },
+    "selection": {
+      "unchanged_MCQs": 188,
+      "changed_MCQs": 51,
+      "unchanged_MCQs_label_differences": 0,
+      "format_only_correctness_transitions": []
+    },
+    "internal_evaluation": {
+      "unchanged_MCQs": 1238,
+      "changed_MCQs": 178,
+      "unchanged_MCQs_label_differences": 0,
+      "format_only_correctness_transitions": []
+    }
+  }
+}
