@@ -1,6 +1,6 @@
 # GCSA / RFA development harness
 
-Qwen3-VL-4B 완료 범위: [Screen·Selection 결과](reports/QWEN3_VL_4B_TRANSFER_RESULTS_KO.md). Screen240쌍에서 O72.50%→method75.42%, Selection239쌍에서74.90%→76.15%다. 합계479쌍은73.70%→75.78%(+2.09pp, item bootstrap CI[−2.08,+7.32])이며 개선을 확정하지 않는다. Internal은 아직 미완료다. 고정 Qwen3-8B LM과 E1/M0를 유지하고 inventory·최종 풀이만 4B로 수행했다. [고정 프로토콜·실행 명령](reports/QWEN3_VL_4B_TRANSFER_PROTOCOL_KO.md). 완료 원시·설정·체크섬 archive와 비용 snapshot을 보존했다.
+Qwen3-VL-4B 전체158문항 완료: [전체 개발 결과](reports/QWEN3_VL_4B_TRANSFER_RESULTS_KO.md). 주 분석1,895쌍에서 O1,308정답(69.02%)→E1/M0 1,378정답(72.72%), +3.69pp(CI[+1.32,+6.23])다. Internal1,416쌍은67.44%→71.68%, +4.24pp(CI[+1.48,+7.06])였다. 고정 Qwen3-8B LM·E1/M0를 유지하고 inventory·최종 풀이만4B로 수행했다. 반복 관찰한 development set의 탐색 결과다. 전체 invocation wall187.70분(다운로드·재사용 E1 추출 제외), main 단독 recipe 계산 구간4.699초/pair이며 시간 분모를 보고서에 구분했다. [고정 프로토콜](reports/QWEN3_VL_4B_TRANSFER_PROTOCOL_KO.md), 전체 완료 원시 archive·설정·비용·checksum을 보존했다.
 
 선택한 E1/M0 전체 개발 집합 완료: [158문항 결과](reports/E1_STEM_FULL_DEV_RESULTS_KO.md). 수정 extractor와 기존 matcher를 고정했고 Screen은 재사용, 남은1,656쌍을 실행했다. 전체 주 분석1,895쌍에서 기존1402정답(73.98%)→새1404정답(74.09%), 차이+0.11pp의CI[−0.47,+0.69]pp로 정확도 개선은 확인되지 않았다. Source extraction F1은87.23%→91.95%로 올랐다. 실제 추가 wall23.36분, 풀이1,422행 재사용·234행 신규 계산이며 새 inventory 생성은0회다. 새 main MCQ1,896쌍은 `artifacts/e1_stem_full_dev_v1/inputs_E1_M0_main1896.jsonl`과 checksum manifest로 제공한다. [전체1,944행 예측 표](reports/E1_STEM_FULL_DEV_CASES_KO.md). 전체366문항 확장은 수행하지 않았다. `bash followup_rel_4lang/method_dev/scripts/run_e1_stem_full_dev.sh --run`은 완료 결과를 재사용한다.
 

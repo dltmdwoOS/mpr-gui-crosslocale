@@ -1,5 +1,7 @@
 # Qwen3-VL-4B: 수정 추출 E1 + 기존 정렬 M0 전이 평가
 
+2026-11-17: 전체158문항 실행이 완료됐다. [최종 개발 결과](QWEN3_VL_4B_TRANSFER_RESULTS_KO.md)에 정확도·실패·비용과8B 비교를 기록했다. 아래는 실행 전에 고정한 설정이며 변경하지 않았다.
+
 8B에서 선택한 방법을 수정 없이 4B에 적용한다. 4B 결과를 보고 prompt나 언어별 정책을 조정하지 않는다. 다른 모델·문항 영역 확장은 이번 결과를 확인한 뒤 결정한다.
 
 ## 무엇을 유지하고 바꾸는가
@@ -70,4 +72,4 @@ nohup bash followup_rel_4lang/method_dev/scripts/run_model_transfer.sh --cohorts
 
 같은 output-dir·cohorts로 재실행하면 완료 stage와 동일 cache를 재사용한다. Screen 전용 실행과 전체 실행은 별도 고정 계약이다. 둘을 연이어 실행하면 새 디렉터리에서 Screen을 재실행하므로 **처음에 범위를 선택하고 해당 명령 하나를 사용한다**. Screen 완료 후 확대할 경우에는 `--cohorts selection internal_evaluation`과 별도 output-dir를 지정해 나머지만 수행하면 된다. 전체 합산 보고서는 그 두 실행의 계약을 대조한 뒤 작성한다.
 
-결과는 해당 output-dir의 `REPORT_KO.md`, `results.json` 및 각 cohort의 `inventory/`, `rewrite/`, `infer_O/`, `infer_E1_M0/`에 저장한다. 중단 시 같은 명령으로 재개한다. 기존 artifact는 수정하지 않는다. 현재 실행 시간은 미측정이며, 8B의 inventory 재사용 실행 시간을 4B 전체 ETA로 사용하지 않는다.
+결과는 해당 output-dir의 `REPORT_KO.md`, `results.json` 및 각 cohort의 `inventory/`, `rewrite/`, `infer_O/`, `infer_E1_M0/`에 저장한다. 중단 시 같은 명령으로 재개한다. 2026-11-17 완료 실행의 invocation wall은187.70분이었다. O와method·신규inventory·정렬·적재·worker 기동을 포함하고 다운로드·재사용 E1 추출은 제외한다. Method 단독 비용은 최종 결과 보고서에 분모별로 구분했다. 기존8B의 inventory 재사용 실행 시간을4B 전체 수행 ETA로 사용하지 않는다.
