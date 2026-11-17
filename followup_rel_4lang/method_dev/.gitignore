@@ -43,3 +43,7 @@ artifacts/search_plan_v1/*
 !artifacts/ocr_qwen3_vl_4b_results_snapshot.json
 !artifacts/ocr_completed_8b_4b.tar.gz
 !artifacts/ocr_completed_archive_manifest.json
+!artifacts/gpu_ocr_screen_readiness.json
+!artifacts/gpu_ocr_screen_results_snapshot.json
+!artifacts/gpu_ocr_screen_completed.tar.gz
+!artifacts/gpu_ocr_screen_archive_manifest.json

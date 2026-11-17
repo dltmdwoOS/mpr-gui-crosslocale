@@ -1,5 +1,7 @@
 # GCSA / RFA development harness
 
+GPU OCR Screen 네 조건 완료: [결과·정확도·총 시간](reports/GPU_OCR_SCREEN_RESULTS_KO.md), [실행 안내](reports/GPU_OCR_SCREEN_RUNBOOK_KO.md). Main20문항·240쌍에서 8B는 EasyOCR CUDA75.42%·PP-OCRv5 75.83%, 4B는 두 방법 모두73.75%다. 전처리+풀이 recipe는 각각 약10분으로 CPU OCR의약24분보다 줄었다. GPU OCR끼리의 정확도 차이는 불확실하며 Selection/Internal GPU OCR은 아직 실행하지 않았다. 기존 CPU OCR 전체158문항 결과와 범위를 구분한다. 완료 raw·SHA manifest도 결과 보고서에 첨부했다.
+
 OCR 8B·4B 전체 완료: [최종 결과와 효율](reports/OCR_FINAL_RESULTS_KO.md). 각main158문항·1,895pair에서8B는VLM inventory74.09%→OCR73.83%, 4B는72.72%→72.45%로 모두정답5개 감소였다. OCR−VLM의CI는각각[-1.32,+0.74]pp와[-1.42,+0.90]pp여서 우월성·동등성·비열등성을 주장하지 않는다. 전체 호출 시간은8B207.26→179.91분(13.2%감소), 4B148.43→177.70분(19.7%증가)이다. CPU OCR114.68분을 두solver가 공유하며, GPU 호출 구간 시간은크게 줄었지만 항상총시간까지 줄어들지는 않았다. [8B 상세](reports/OCR_INVENTORY_FULL_DEV_RESULTS_KO.md), [4B 상세](reports/OCR_QWEN3_VL_4B_RESULTS_KO.md).
 
 OCR 실행·재현: [8B→4B 연속 실행](reports/OCR_8B_4B_CHAIN_PROTOCOL_KO.md), [Selection/Internal 고정 확장](reports/OCR_INVENTORY_FULL_DEV_PROTOCOL_KO.md). Screen의OCR·E1/M0 설정을 유지했고4B는8B와 동일한 전처리 MCQ를 사용했다. 완료 상태에서 `bash followup_rel_4lang/method_dev/scripts/run_ocr_8b_then_4b.sh`는 추론을 반복하지 않고 보고서를 갱신한다. [완료 원시 archive](artifacts/ocr_completed_8b_4b.tar.gz), [manifest·checksum·복원 범위](artifacts/ocr_completed_archive_manifest.json)를 제공한다. 모델 weights·이미지와 private labels는 별도다.

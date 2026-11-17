@@ -1,0 +1,195 @@
+{
+  "ready": true,
+  "full_screen_gpu_inference_started": false,
+  "primary_items": 20,
+  "primary_pairs_per_condition": 240,
+  "executed_pairs_per_condition": 288,
+  "ocr_images_per_backend": 128,
+  "conditions": [
+    "easyocr_cuda/8B",
+    "easyocr_cuda/4B",
+    "ppocrv5_cuda/8B",
+    "ppocrv5_cuda/4B"
+  ],
+  "gpu_smoke": {
+    "easyocr_cuda": {
+      "status": "passed",
+      "source": "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/smoke/attempt_0001",
+      "contract_sha256": "df2ba96aef3df6273624edb2eaacdc32e71960beb785229abdb3218828f879da",
+      "software": {
+        "easyocr": "1.7.2",
+        "torch": "2.9.1+cu130",
+        "torchvision": "0.24.1+cu130",
+        "numpy": "1.26.4",
+        "opencv-python-headless": "4.11.0.86"
+      },
+      "images": [
+        {
+          "language": "en",
+          "image_sha256": "04048a839dfd12851fa5c14f41b31635126d6f7278b2b4c0b9e7df4c2326f7b5",
+          "strings": 15,
+          "runtime_ms_not_benchmark": 571.3910525664687,
+          "gpu_provenance": {
+            "device": "cuda:0",
+            "package_version": "1.7.2",
+            "component_devices": {
+              "detector": "cuda:0",
+              "recognizer": "cuda:0"
+            }
+          }
+        },
+        {
+          "language": "zh",
+          "image_sha256": "0119830a93cea372abd4e89078cc32411e3b92e2ea063b25c31857e77e5cdb3d",
+          "strings": 13,
+          "runtime_ms_not_benchmark": 314.05807472765446,
+          "gpu_provenance": {
+            "device": "cuda:0",
+            "package_version": "1.7.2",
+            "component_devices": {
+              "detector": "cuda:0",
+              "recognizer": "cuda:0"
+            }
+          }
+        },
+        {
+          "language": "th",
+          "image_sha256": "0a96a535ebe253699eedb5e19ed47a424f813757b3250ebd25232b73b3407e61",
+          "strings": 13,
+          "runtime_ms_not_benchmark": 241.2475235760212,
+          "gpu_provenance": {
+            "device": "cuda:0",
+            "package_version": "1.7.2",
+            "component_devices": {
+              "detector": "cuda:0",
+              "recognizer": "cuda:0"
+            }
+          }
+        },
+        {
+          "language": "ru",
+          "image_sha256": "0aa35b5d15e824025eb4dc4ec769323320b3d2a3c82e5231161db242c8d250c3",
+          "strings": 30,
+          "runtime_ms_not_benchmark": 420.7058157771826,
+          "gpu_provenance": {
+            "device": "cuda:0",
+            "package_version": "1.7.2",
+            "component_devices": {
+              "detector": "cuda:0",
+              "recognizer": "cuda:0"
+            }
+          }
+        }
+      ]
+    },
+    "ppocrv5_cuda": {
+      "status": "passed",
+      "source": "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/smoke/attempt_0001",
+      "contract_sha256": "a03915a49e8c8bcabccce41f42909520261b740e5ac8a83fdf74a755d8029909",
+      "software": {
+        "rapidocr": "3.10.0",
+        "paddlepaddle-gpu": "3.3.0",
+        "torch": "2.9.1+cu130",
+        "numpy": "1.26.4",
+        "opencv-python-headless": "4.11.0.86",
+        "omegaconf": "2.4.0",
+        "shapely": "2.2.0",
+        "pyclipper": "1.4.0",
+        "opt-einsum": "3.3.0",
+        "nvidia-cudnn-cu13": "9.13.0.50"
+      },
+      "images": [
+        {
+          "language": "en",
+          "image_sha256": "04048a839dfd12851fa5c14f41b31635126d6f7278b2b4c0b9e7df4c2326f7b5",
+          "strings": 17,
+          "runtime_ms_not_benchmark": 800.1436172053218,
+          "gpu_provenance": {
+            "device": "cuda:0",
+            "package_version": "3.10.0",
+            "paddle_version": "3.3.0",
+            "paddle_device": "gpu:0",
+            "detector_gpu": true,
+            "recognizer_gpu": true
+          }
+        },
+        {
+          "language": "zh",
+          "image_sha256": "0119830a93cea372abd4e89078cc32411e3b92e2ea063b25c31857e77e5cdb3d",
+          "strings": 13,
+          "runtime_ms_not_benchmark": 237.18814086169004,
+          "gpu_provenance": {
+            "device": "cuda:0",
+            "package_version": "3.10.0",
+            "paddle_version": "3.3.0",
+            "paddle_device": "gpu:0",
+            "detector_gpu": true,
+            "recognizer_gpu": true
+          }
+        },
+        {
+          "language": "th",
+          "image_sha256": "0a96a535ebe253699eedb5e19ed47a424f813757b3250ebd25232b73b3407e61",
+          "strings": 15,
+          "runtime_ms_not_benchmark": 186.74895074218512,
+          "gpu_provenance": {
+            "device": "cuda:0",
+            "package_version": "3.10.0",
+            "paddle_version": "3.3.0",
+            "paddle_device": "gpu:0",
+            "detector_gpu": true,
+            "recognizer_gpu": true
+          }
+        },
+        {
+          "language": "ru",
+          "image_sha256": "0aa35b5d15e824025eb4dc4ec769323320b3d2a3c82e5231161db242c8d250c3",
+          "strings": 31,
+          "runtime_ms_not_benchmark": 310.55587623268366,
+          "gpu_provenance": {
+            "device": "cuda:0",
+            "package_version": "3.10.0",
+            "paddle_version": "3.3.0",
+            "paddle_device": "gpu:0",
+            "detector_gpu": true,
+            "recognizer_gpu": true
+          }
+        }
+      ],
+      "cuda_kernel_events": [
+        1221,
+        924,
+        919,
+        1517
+      ]
+    }
+  },
+  "mock": {
+    "easyocr_cuda": {
+      "8B": {
+        "pairs": 288,
+        "status": "complete"
+      },
+      "4B": {
+        "pairs": 288,
+        "status": "complete"
+      }
+    },
+    "ppocrv5_cuda": {
+      "8B": {
+        "pairs": 288,
+        "status": "complete"
+      },
+      "4B": {
+        "pairs": 288,
+        "status": "complete"
+      }
+    }
+  },
+  "targeted_tests": {
+    "passed": 21
+  },
+  "frozen_source_sha256_verified": true,
+  "run_command": "bash followup_rel_4lang/method_dev/scripts/run_gpu_ocr_screen.sh",
+  "output_dir": "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1"
+}

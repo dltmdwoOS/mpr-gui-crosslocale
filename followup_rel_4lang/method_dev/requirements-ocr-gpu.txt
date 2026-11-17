@@ -1,0 +1,6 @@
+# PP-OCRv5 Paddle execution, separate from the frozen VLM environment.
+# paddlepaddle-gpu==3.3.0 is installed from the official CUDA13 index by setup_gpu_ocr.sh.
+rapidocr==3.10.0
+numpy==1.26.4
+opencv-python-headless==4.11.0.86
+opt-einsum==3.3.0

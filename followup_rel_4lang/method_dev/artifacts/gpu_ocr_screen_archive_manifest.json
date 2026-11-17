@@ -1,0 +1,606 @@
+{
+  "as_of_utc": "2026-11-17T23:27:46.993768+00:00",
+  "archive": "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_completed.tar.gz",
+  "bytes": 2367684,
+  "sha256": "6254b31cbb8610291d308233918729680b904d9d8486c1be6ce15b8db6d0554d",
+  "files": {
+    "01_code/src/mpr_crosslocale/inference/prompts.py": {
+      "bytes": 670,
+      "sha256": "5db5085c28e4f7b4495992008bdebe30f47f4809c307bacd47ffd22c91d73ba9"
+    },
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/__init__.py": {
+      "bytes": 87,
+      "sha256": "7a0223f23ff564adb6991ec837a552873bdce9f0d47c98e138980294c4c18584"
+    },
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/context_router.py": {
+      "bytes": 1535,
+      "sha256": "f23fa1f72436f27a8110cdfd4f129313144ee4da73945a941308bbf2504bc28c"
+    },
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/inventory.py": {
+      "bytes": 1320,
+      "sha256": "0d252555796335baa01ce9f86cb7939afd9ceef21dcbf39057342bb503c8e81f"
+    },
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/matcher.py": {
+      "bytes": 1702,
+      "sha256": "5abc6c1181d7619e2951003e1229031ec6b7ee4c85f479eeea874bdea5d72a4c"
+    },
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/pipeline.py": {
+      "bytes": 6369,
+      "sha256": "0c59c661862b2ba753f91e67c2826f08bc1c3e7c65466375d56fcc75b5f11e3a"
+    },
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/referent_extractor.py": {
+      "bytes": 2801,
+      "sha256": "661b6997f78a132efa2b9cdc372462ad4b6b7b3d712a977aa40bb9c518ca893d"
+    },
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/rewriter.py": {
+      "bytes": 1247,
+      "sha256": "ae8d2e351b79aec7fe2fe4cf5b6506707d79b75efe68d6f0ae4e1a7405b3d4d1"
+    },
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/schemas.py": {
+      "bytes": 1212,
+      "sha256": "7ad47d91e16f2a117d90e8fddfe9d8404779172f755a9ec8aedc7dd89823cd94"
+    },
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/search.py": {
+      "bytes": 10484,
+      "sha256": "762243aeb40a51772bbd7334e9a5d0f611b64a03b1b146988a99a70dbd7cb796"
+    },
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/validation.py": {
+      "bytes": 698,
+      "sha256": "fe00efd9f2bbbb537b183f6c181fc508ab57754fd69554c2bac6b6155d58019c"
+    },
+    "01_code/src/mpr_crosslocale/models/qwen25vl.py": {
+      "bytes": 11849,
+      "sha256": "76485637ec7e2c908f0b00f372c111f5c70ccca275d8484d7ca4f49f17c14d0a"
+    },
+    "01_code/src/mpr_crosslocale/models/qwen3_memory.py": {
+      "bytes": 592,
+      "sha256": "fe00351f368cdaca85418f7d0f3d03b638cffd4c61a86258a875e646ea66c4b6"
+    },
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_results_snapshot.json": {
+      "bytes": 39153,
+      "sha256": "8e0f360b39d024f7d8776a3ffa214ab20d025682a4bb83641157b8260049d553"
+    },
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/contract.json": {
+      "bytes": 35587,
+      "sha256": "1de9be63542e6d596623da319acdb56d06b9cd788da289c9f72a9691afbf198e"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/COMPLETE.json": {
+      "bytes": 227,
+      "sha256": "ee230e72b1b6e147745585a8b4ab50da83f7707785a1f82c6c2ee2b5eb62d36f"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/REPORT_KO.md": {
+      "bytes": 3591,
+      "sha256": "85d0e6528036e7ec4138dd9a329cd4659b334e1fc7bab9370ffe7acf621755fb"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/COMPLETE.json": {
+      "bytes": 119,
+      "sha256": "e023c1cadad6c226946534de267a5a798e80ff2263675283dc76517327a04047"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/contract.json": {
+      "bytes": 54907,
+      "sha256": "a1d19afff8579ea777a9b8c7e6c0721fae9815139d942281d0c87c48488b16c1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_4B/attempt_0001/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_4B/attempt_0001/environment.json": {
+      "bytes": 485,
+      "sha256": "307cd784fc61b23ba498512395bbac3d758194a68379d9dac26b566c9b0f8923"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_4B/attempt_0001/evaluation/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_4B/attempt_0001/evaluation/contract.json": {
+      "bytes": 1227,
+      "sha256": "b63005b746c1a14b1acecd3f8f48e3ee6cd9c5ea5b9a3e9b776f0ffffade2eb5"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_4B/attempt_0001/evaluation/cost.json": {
+      "bytes": 164,
+      "sha256": "e31588e2a4f1d898728493afa88f43aa21d56e93d26ea2244569e0787b100a86"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_4B/attempt_0001/evaluation/predictions.jsonl": {
+      "bytes": 362961,
+      "sha256": "e0f08e74a97b9984b699468bf4757c1920c19d9e4364c05dff87aa273932c5df"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_4B/attempt_0001/view/contract.json": {
+      "bytes": 10487,
+      "sha256": "3bb07db1ec98d8636301d304983b620951db26c9ae471e4211103f4f863e97b6"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_4B/attempt_0001/view/inputs.jsonl": {
+      "bytes": 181294,
+      "sha256": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_8B/attempt_0001/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_8B/attempt_0001/environment.json": {
+      "bytes": 485,
+      "sha256": "307cd784fc61b23ba498512395bbac3d758194a68379d9dac26b566c9b0f8923"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_8B/attempt_0001/evaluation/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_8B/attempt_0001/evaluation/contract.json": {
+      "bytes": 1227,
+      "sha256": "efc39b00ca59f51024084b878c1a23a8487c0336f8a4befec4a9a7017d7e9efb"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_8B/attempt_0001/evaluation/cost.json": {
+      "bytes": 164,
+      "sha256": "e2a09f463581e18039e1b0cdd0ebe075ce949de57f698276e2fb734ab5641de0"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_8B/attempt_0001/evaluation/predictions.jsonl": {
+      "bytes": 361098,
+      "sha256": "a186368ffd7ae7f7e360db1d6e93e5048f8e5997eef1d527d28b4d24ccbdc15c"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_8B/attempt_0001/view/contract.json": {
+      "bytes": 17897,
+      "sha256": "e1bd8779910cd3dab6a3a7c12ea0964992bbfdbc46ee94bfbe64f062f8558d60"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_8B/attempt_0001/view/inputs.jsonl": {
+      "bytes": 181294,
+      "sha256": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/inputs.jsonl": {
+      "bytes": 181294,
+      "sha256": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/ocr/attempt_0001/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/ocr/attempt_0001/cost.json": {
+      "bytes": 415,
+      "sha256": "2de137f6d174cb727f8f543f2bf5702010c3e3457b7ddf10710742c630dff8c9"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/ocr/attempt_0001/inventories.jsonl": {
+      "bytes": 656180,
+      "sha256": "7d6335bf9e9559e7d69b19e93fa7e5a787949bff37a1132b2fbf38e0e82f87b7"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/rewrite/attempt_0001/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/rewrite/attempt_0001/calls.json": {
+      "bytes": 3125596,
+      "sha256": "a11295f9e59723ea7fcabdaeeaa7df39339af35027f9148007128f42c376be59"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/rewrite/attempt_0001/cost.json": {
+      "bytes": 134,
+      "sha256": "d422120739c03df4e804210227e3e67a709fcdedc28f59f16cee1dee46f75aa7"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/rewrite/attempt_0001/rewritten.jsonl": {
+      "bytes": 3603084,
+      "sha256": "d0660a2c393a102736db6fb353dd26bbb946f713f8be9c532353c9feedf2d74d"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/smoke/attempt_0001/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/smoke/attempt_0001/cost.json": {
+      "bytes": 407,
+      "sha256": "1c0aed08ef33eefb5822abaeed8801c4dd90bf2d645c747e3fdba95f3e7a7b9a"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/smoke/attempt_0001/inventories.jsonl": {
+      "bytes": 16961,
+      "sha256": "19496befb375dbe816f1fcc9398270f67077c456305ec569d6da5cb6b0e3235c"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/COMPLETE.json": {
+      "bytes": 119,
+      "sha256": "d6622cab3558336618670b22c148e83c134c26a5eecbb3d088cb3cdd6f137a53"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/contract.json": {
+      "bytes": 60656,
+      "sha256": "10ab5831fc0b093b0d290b3440c9caa01a1999218cc2b408d4055ec5fce2ba90"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_4B/attempt_0001/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_4B/attempt_0001/environment.json": {
+      "bytes": 485,
+      "sha256": "307cd784fc61b23ba498512395bbac3d758194a68379d9dac26b566c9b0f8923"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_4B/attempt_0001/evaluation/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_4B/attempt_0001/evaluation/contract.json": {
+      "bytes": 1227,
+      "sha256": "7a9fc78a4b2cd666e8d9a91a0e2efb6b538924d3179dca9c67cf7f64de9749f7"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_4B/attempt_0001/evaluation/cost.json": {
+      "bytes": 165,
+      "sha256": "71b585e8dbd755250e29b4476de1e0a6e326865916f4ddb560a8cc3ce56f19a4"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_4B/attempt_0001/evaluation/predictions.jsonl": {
+      "bytes": 348016,
+      "sha256": "240de80b88d85861a80c9cb6ef14be6e43b22ad391fdc7f70dab7c730afaea85"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_4B/attempt_0001/view/contract.json": {
+      "bytes": 12366,
+      "sha256": "2e0c46e07d47b7bd3f9f8ba09fc5fc4fa4c55d15114af6eaa51b36a97cbede34"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_4B/attempt_0001/view/inputs.jsonl": {
+      "bytes": 181294,
+      "sha256": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_4B/attempt_0001/view/reuse_0003.jsonl": {
+      "bytes": 362961,
+      "sha256": "e0f08e74a97b9984b699468bf4757c1920c19d9e4364c05dff87aa273932c5df"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_8B/attempt_0001/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_8B/attempt_0001/environment.json": {
+      "bytes": 485,
+      "sha256": "307cd784fc61b23ba498512395bbac3d758194a68379d9dac26b566c9b0f8923"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_8B/attempt_0001/evaluation/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_8B/attempt_0001/evaluation/contract.json": {
+      "bytes": 1227,
+      "sha256": "3aca411de8da981332e6e4072991e91a6ddffc1537dec1438a4891b8525f754b"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_8B/attempt_0001/evaluation/cost.json": {
+      "bytes": 166,
+      "sha256": "f46e69b6c9a67ec88bd16d47c148ba7777c36fd71268d1767d60fd1c2c7ebc06"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_8B/attempt_0001/evaluation/predictions.jsonl": {
+      "bytes": 346369,
+      "sha256": "30024f0fe51abf3afc4cd0aabed12864721313c2edd9b2dc2a86c243d6249547"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_8B/attempt_0001/view/contract.json": {
+      "bytes": 19776,
+      "sha256": "449a1610237f883c446cc0a09a5fd01c305ad9e8e0b939842ea207d819ffc2a1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_8B/attempt_0001/view/inputs.jsonl": {
+      "bytes": 181294,
+      "sha256": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_8B/attempt_0001/view/reuse_0007.jsonl": {
+      "bytes": 361098,
+      "sha256": "a186368ffd7ae7f7e360db1d6e93e5048f8e5997eef1d527d28b4d24ccbdc15c"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/inputs.jsonl": {
+      "bytes": 181294,
+      "sha256": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/ocr/attempt_0001/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/ocr/attempt_0001/cost.json": {
+      "bytes": 419,
+      "sha256": "5d2595469075592617cefbd443de882f9319df1702417cb9d51c201b2cb87433"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/ocr/attempt_0001/inventories.jsonl": {
+      "bytes": 766975,
+      "sha256": "b6c1c52ed0ed523dfb9d577cb07354bee6d26b241665623242842d79853770c8"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/rewrite/attempt_0001/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/rewrite/attempt_0001/calls.json": {
+      "bytes": 3105051,
+      "sha256": "f47b92e9e09b4bba7cef143634b660977c3aa00e863f2ef7e2ab23d986c4bccb"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/rewrite/attempt_0001/cost.json": {
+      "bytes": 134,
+      "sha256": "66df16ddd14477d4195a38cf674effbbdb9cb03c96e64ebe16d886fbcc088156"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/rewrite/attempt_0001/rewritten.jsonl": {
+      "bytes": 3584111,
+      "sha256": "f64b85216eff2b3d25935fa09fcc67633d41d1390ca173bf55d20028ee03b5be"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/smoke/attempt_0001/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/smoke/attempt_0001/cost.json": {
+      "bytes": 414,
+      "sha256": "ff66a0c96bff198dccd887b5cbcbca48944340d6e125e203144fcd12c0ae45c7"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/smoke/attempt_0001/cuda_kernel_verification.json": {
+      "bytes": 1169,
+      "sha256": "4f6cc224ddb6674e9e96ff26b9698b726adac3beef3c34e2e11669011567a5e3"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/smoke/attempt_0001/inventories.jsonl": {
+      "bytes": 19918,
+      "sha256": "4f0d26f19a354e8b6275341b9478e00e8e35ae973913aa7354de2eb5d5e96091"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/results.json": {
+      "bytes": 14235,
+      "sha256": "9a7ef112beb9a14335e6e5f78456d7a1d11a7c2527d20fb164ec180997355124"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_readiness.json": {
+      "bytes": 5981,
+      "sha256": "f3387d129fd8b81692f094ad42232fb7ab7e35d391718b690b0234b1372cabe7"
+    },
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_results_snapshot.json": {
+      "bytes": 17576,
+      "sha256": "5c73225e3a7d10bdf9b436515469367bf1cf626e4aa5cc85a9dc0034829513ba"
+    },
+    "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/COMPLETE.json": {
+      "bytes": 281,
+      "sha256": "fd63d204c414b20fad37895628b79c8aed5ba79b1343c793eb13da1ad3466f37"
+    },
+    "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/contract.json": {
+      "bytes": 28786,
+      "sha256": "c2a5a4d717e17b45ac5c543362abb97ea6e72927fe7b2ca747ee037380378d6a"
+    },
+    "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/infer/attempt_0001/evaluation/contract.json": {
+      "bytes": 1219,
+      "sha256": "83b2c1a1d31beee7d63c4ad368d99da336d633d7382e0d32d48eafca76a1d18a"
+    },
+    "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/infer/attempt_0001/evaluation/predictions.jsonl": {
+      "bytes": 331395,
+      "sha256": "6023bf0fc61c38656a5e6a43c7df95dfb9ed18bd07617d1c6ab9abb07906e313"
+    },
+    "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/ocr/attempt_0001/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/ocr/attempt_0001/cost.json": {
+      "bytes": 548,
+      "sha256": "8c6846920af7fcc99fdb517e70d9f32c081301f5efce3e5465100d71eb9b2621"
+    },
+    "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/ocr/attempt_0001/inventories.jsonl": {
+      "bytes": 625233,
+      "sha256": "09b65f1cff100be6313f588f37d04aee83a27c758f768610b95a1b3ce5a68174"
+    },
+    "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/rewrite/attempt_0001/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/rewrite/attempt_0001/cost.json": {
+      "bytes": 135,
+      "sha256": "c135c30d718cb5bf6198af017ff8c2c4bdad8a4f58ffe253d513d30a809b6c66"
+    },
+    "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/rewrite/attempt_0001/rewritten.jsonl": {
+      "bytes": 3580584,
+      "sha256": "803d831650f5572229b766540495011795370abc5efd2998d47c7a1839630f9c"
+    },
+    "followup_rel_4lang/method_dev/artifacts/ocr_qwen3_vl_4b_v1/COMPLETE.json": {
+      "bytes": 172,
+      "sha256": "c8b04e20fa7aa39e78e89f316f9d14922b91cd5e05817cfeffb518b322a38a82"
+    },
+    "followup_rel_4lang/method_dev/artifacts/ocr_qwen3_vl_4b_v1/contract.json": {
+      "bytes": 33879,
+      "sha256": "5b01898cde99d782d9f8e07708e57b21b01a13d5c6f62076c006b59322665ed1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/ocr_qwen3_vl_4b_v1/screen/infer/attempt_0001/environment.json": {
+      "bytes": 485,
+      "sha256": "307cd784fc61b23ba498512395bbac3d758194a68379d9dac26b566c9b0f8923"
+    },
+    "followup_rel_4lang/method_dev/artifacts/ocr_qwen3_vl_4b_v1/screen/infer/attempt_0001/evaluation/contract.json": {
+      "bytes": 1222,
+      "sha256": "305e9b52dab85c005aa1cfbd896097e4c6fd1b50167a18ac4a7396de159336cb"
+    },
+    "followup_rel_4lang/method_dev/artifacts/ocr_qwen3_vl_4b_v1/screen/infer/attempt_0001/evaluation/predictions.jsonl": {
+      "bytes": 332118,
+      "sha256": "2574171bcb05715e6079adcac711e3ef120cdb06ebce06047b0156571920f5a9"
+    },
+    "followup_rel_4lang/method_dev/artifacts/single_pass_all_screen_v1/infer/attempt_0001/predictions.jsonl": {
+      "bytes": 290207,
+      "sha256": "982af6be88eb55efd0f82e927fef8b3471e7646e1b18d1933efef2029cfdfa45"
+    },
+    "followup_rel_4lang/method_dev/artifacts/single_pass_stem_screen_v1/infer/attempt_0001/predictions.jsonl": {
+      "bytes": 290092,
+      "sha256": "376ea8e29e196426e7cc6472dd24a670da808da5c7b2a4b01e8bb56b867a5f5b"
+    },
+    "followup_rel_4lang/method_dev/artifacts/stem_only_gui_screen_v1/infer/attempt_0001/predictions.jsonl": {
+      "bytes": 285828,
+      "sha256": "95129bbb8efc4be2b51625bb703d882eea845eb02f7f063a4612e0eaa312466b"
+    },
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/COMPLETE.json": {
+      "bytes": 157,
+      "sha256": "3adb044b12f9f2717c5eda13f68cb13455d55a3d68b4772368ce00d77957e10f"
+    },
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M0/infer/attempt_0001/environment.json": {
+      "bytes": 485,
+      "sha256": "307cd784fc61b23ba498512395bbac3d758194a68379d9dac26b566c9b0f8923"
+    },
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M0/infer/attempt_0001/evaluation/contract.json": {
+      "bytes": 1211,
+      "sha256": "8bfb165855581c9b04edffd161b734da48f6fc414bca6590e1ba32d96b2a8eb3"
+    },
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M0/infer/attempt_0001/evaluation/predictions.jsonl": {
+      "bytes": 340638,
+      "sha256": "ea045fc1f1e71d78e61f1340a0522739d35f86cfe5c342b352262a87e146d14a"
+    },
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/contract.json": {
+      "bytes": 28792,
+      "sha256": "b5a481fcd6b228b2b1fed7720aced674477dedb1022cc1759ee0bc020838bf72"
+    },
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/extraction/E1/attempt_0001/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/extraction/E1/attempt_0001/extractions.jsonl": {
+      "bytes": 854396,
+      "sha256": "58411672e0d0d384e85a88ac7a05bcd00480dd49e09e206ed9c5b2ddeb32344f"
+    },
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/inputs.jsonl": {
+      "bytes": 181294,
+      "sha256": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a"
+    },
+    "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/COMPLETE.json": {
+      "bytes": 175,
+      "sha256": "20cf78bd4eceb5669fd00a93da5149829eddfe66411d7c04f93bdbfe9db44858"
+    },
+    "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/contract.json": {
+      "bytes": 12423,
+      "sha256": "62d47e00c092ff08f55d62cc6faf400788f208c3a7a459cb7be983498735fca3"
+    },
+    "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/screen/infer_E1_M0/attempt_0001/evaluation/predictions.jsonl": {
+      "bytes": 302827,
+      "sha256": "5573468e6d2fd0dc5cd95f36d2e2e5a4ab4f2e79b347b942f9a8703e973d3d0c"
+    },
+    "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/screen/infer_O/attempt_0001/evaluation/predictions.jsonl": {
+      "bytes": 300658,
+      "sha256": "1b2f83e65f0ed0095e1f31ad2ead3b0a2b886ef876e6ee0b3226db922ddb5ed4"
+    },
+    "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/screen/rewrite/attempt_0001/COMPLETE": {
+      "bytes": 9,
+      "sha256": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1"
+    },
+    "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/screen/rewrite/attempt_0001/cost.json": {
+      "bytes": 135,
+      "sha256": "975999b032e1be957d60312045735ebab3c5c801693a3f380c0493bce68c4c5e"
+    },
+    "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/screen/rewrite/attempt_0001/rewritten.jsonl": {
+      "bytes": 3508292,
+      "sha256": "eafad1e51ab22a1b300d7af46402e19121aad25daf25ffb964db1481107b3419"
+    },
+    "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_results_snapshot.json": {
+      "bytes": 46308,
+      "sha256": "af81abb317f919481a3bf93f122496d8c7c97d8dcc236b05326f5e357f4f6800"
+    },
+    "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/infer/attempt_0001/predictions.jsonl": {
+      "bytes": 2540259,
+      "sha256": "6f7e9009db90218352fa7a3110d6132deb40d6310be4346c9c5e68a4773721eb"
+    },
+    "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/inventory/attempt_0001/inventories.jsonl": {
+      "bytes": 796767,
+      "sha256": "c0de661dfbff7f102b92797f5a2f013ca8081ae7d22be65ed05ad00a6474be7d"
+    },
+    "followup_rel_4lang/method_dev/artifacts/visual_selective_rewrite_screen_v1/infer/attempt_0001/predictions.jsonl": {
+      "bytes": 280311,
+      "sha256": "9dfb68881c6880c8ea6d0af83e95d5e629c0f8d95ae3f4e64c47962668378e29"
+    },
+    "followup_rel_4lang/method_dev/configs/gpu_ocr_screen_v1.json": {
+      "bytes": 6471,
+      "sha256": "53635d81d044b358dfa377ec505e0a60a93b168d3de3c57aa50208bc3dcb66cd"
+    },
+    "followup_rel_4lang/method_dev/configs/ocr_inventory_easyocr_v1.json": {
+      "bytes": 953,
+      "sha256": "eb6f39341b57c5353c38c94c71280bb282139c479c9bdfe3ca38cc02d862149a"
+    },
+    "followup_rel_4lang/method_dev/configs/ppocrv5_paddle_models.json": {
+      "bytes": 3290,
+      "sha256": "7468e6369437806783b812729da7d1a1653b6729dece4be0b93e84394a082ccf"
+    },
+    "followup_rel_4lang/method_dev/exact_batch_reuse.py": {
+      "bytes": 2063,
+      "sha256": "a3f21f45c5569ab2aaa35282b32995dc31bec7f67ca4add27d337726197f8efc"
+    },
+    "followup_rel_4lang/method_dev/gpu_ocr_inventory.py": {
+      "bytes": 7235,
+      "sha256": "681794550b2a06a41a10aef63820c766612175b4501bb35d3f85dd0dd5ac1ce4"
+    },
+    "followup_rel_4lang/method_dev/ocr_inventory.py": {
+      "bytes": 2870,
+      "sha256": "60a5fc1ddf129b1ca409f0797230bfc6f3f758b061fc2afb82b47116510eb37c"
+    },
+    "followup_rel_4lang/method_dev/reports/GPU_OCR_SCREEN_RESULTS_KO.md": {
+      "bytes": 7485,
+      "sha256": "1596d50fbf9dab83087d63d4e5997ad77cc28916e61171497fe47d19b0a53757"
+    },
+    "followup_rel_4lang/method_dev/reports/GPU_OCR_SCREEN_RUNBOOK_KO.md": {
+      "bytes": 8539,
+      "sha256": "f2460c5bc2f9d88650d166f0df944e2b054c3821ebdfea6fa2f239f6677c6a69"
+    },
+    "followup_rel_4lang/method_dev/requirements-ocr-gpu.txt": {
+      "bytes": 245,
+      "sha256": "f946a443be46c41ad419a950eb4243feb7bbc47c8909be69d68fa14624b53007"
+    },
+    "followup_rel_4lang/method_dev/requirements-ocr.txt": {
+      "bytes": 223,
+      "sha256": "f2d0f65b1fc25339edf6236d3f0ebc6d13d6d59ce834d305338f8b50411db021"
+    },
+    "followup_rel_4lang/method_dev/scripts/compare_end_to_end.py": {
+      "bytes": 24099,
+      "sha256": "b431da938161d1636bb8b2b138c61089e29108c0bffdbeeef69bd1f36f60cf87"
+    },
+    "followup_rel_4lang/method_dev/scripts/finalize_gpu_ocr_screen.py": {
+      "bytes": 20208,
+      "sha256": "5de3991a6f82ab148422bb4af3429944287f562aede5844b4d16043860ec52c0"
+    },
+    "followup_rel_4lang/method_dev/scripts/prepare_gpu_ocr_models.py": {
+      "bytes": 1834,
+      "sha256": "2df47b56559d8f57b8d248d738a9b79e71c9d7f2f67a72157b50b65435b00520"
+    },
+    "followup_rel_4lang/method_dev/scripts/report_gpu_ocr_screen.py": {
+      "bytes": 10892,
+      "sha256": "89536bce0de627856679110157193d3451f01920ffd5dd1297edc153015c6b57"
+    },
+    "followup_rel_4lang/method_dev/scripts/report_ocr_4b.py": {
+      "bytes": 11873,
+      "sha256": "af576d7b8b1792a25b836ea47184d2c116abbfac1d1abbf146658ef84e6b9eb6"
+    },
+    "followup_rel_4lang/method_dev/scripts/report_ocr_inventory.py": {
+      "bytes": 10455,
+      "sha256": "95744b8ad9f2807d5027df676b6be3e1262191cf4c0fdf750c358f0bcc99887a"
+    },
+    "followup_rel_4lang/method_dev/scripts/run_gpu_ocr_screen.py": {
+      "bytes": 17706,
+      "sha256": "1a5b48f24b9196fb1aeaeafaa6bbeeff87da4e16dfe64519f6f1a3ee5b183044"
+    },
+    "followup_rel_4lang/method_dev/scripts/run_gpu_ocr_screen.sh": {
+      "bytes": 491,
+      "sha256": "386d71b7621542350f9c58c0a1f5869afeb310352bd75268eb21ad0a7dc8d43f"
+    },
+    "followup_rel_4lang/method_dev/scripts/run_ocr_4b.py": {
+      "bytes": 13052,
+      "sha256": "23c66304a7fc03371793e01aaf99b87803005ebaf17642beb6ddf7c892b94ef5"
+    },
+    "followup_rel_4lang/method_dev/scripts/run_ocr_inventory.py": {
+      "bytes": 16204,
+      "sha256": "2d99baf4e3790c8150659e04423abb4ce4cdb5807456fb8d94606c14c5d784c8"
+    },
+    "followup_rel_4lang/method_dev/scripts/run_overnight_two.py": {
+      "bytes": 15312,
+      "sha256": "fbddf468d6f477ffc58735ba04182e158c79eb6452f4281da774a0285614eebe"
+    },
+    "followup_rel_4lang/method_dev/scripts/run_source_copy_rewrite.py": {
+      "bytes": 26536,
+      "sha256": "fab96335858dc509599326f0e1ebc0dd707d7c15b14fbb7e324823c33609557e"
+    },
+    "followup_rel_4lang/method_dev/scripts/run_stem_refinement_2x2.py": {
+      "bytes": 29125,
+      "sha256": "6ebdfdb9fbbc4059d0e06dfa34860a2a1823168c1ad33668956c30295dc73752"
+    },
+    "followup_rel_4lang/method_dev/scripts/search_pipeline.py": {
+      "bytes": 22346,
+      "sha256": "26c7f163fc44ffac2889a2f016a5807781b272bfea0378eb5f958d6bdfff5b2c"
+    },
+    "followup_rel_4lang/method_dev/scripts/setup_gpu_ocr.sh": {
+      "bytes": 1831,
+      "sha256": "f4fea94e98eb595a0dfbae713708a899be11f2a46c53e09e5da25d3691a916d5"
+    },
+    "followup_rel_4lang/method_dev/tests/test_gpu_ocr_inventory.py": {
+      "bytes": 3865,
+      "sha256": "dcc12a87d9c9f80fee182c36b4f46c34bd89b1d686916ec3829ff659ff993ae9"
+    },
+    "followup_rel_4lang/method_dev/two_stage_v2/backend.py": {
+      "bytes": 7255,
+      "sha256": "e3d3e5f4c73b6a4e3d72e3e83b72682304d25282e9f3235171a7b34556e9ffce"
+    },
+    "followup_rel_4lang/method_dev/two_stage_v2/legacy.py": {
+      "bytes": 38711,
+      "sha256": "1bfa3c156cdd5a236d9020faacf9b4a24b71393cce4ceed63b50368cd2e11627"
+    },
+    "followup_rel_4lang/method_dev/two_stage_v2/pipeline.py": {
+      "bytes": 10109,
+      "sha256": "c712136315b7629325b3307ea92035dc49bba2e230d395800f4ff59fdfa1e50b"
+    },
+    "followup_rel_4lang/method_dev/two_stage_v2/prompts.py": {
+      "bytes": 7267,
+      "sha256": "e8bb96278ea87cc0eea27e97e3b874106f3e5e84458e7107fbdbc0e0a1a9d482"
+    },
+    "followup_rel_4lang/method_dev/visual_rewrite_backend.py": {
+      "bytes": 4717,
+      "sha256": "93bcf29fd81da1ed7a7e231e0f5367d2066250a9c6b57620bbf4a2dfd3c3d0e3"
+    }
+  },
+  "scope": "Completed two GPU OCR inventories, raw matcher responses/rewrites, 8B/4B predictions, contracts, costs, environment, smoke summaries, reports and frozen repository dependencies. No weights, screenshots, private label file, incomplete/mock attempts, redundant caches or large profiler traces.",
+  "restore": "Extract from repository root in a clean checkout; paths are overwritten. Use dataset/model locks and runbook to restore images, checkpoints and OCR weights. Historical contracts contain lab-specific absolute paths; archive does not include private evaluation labels."
+}

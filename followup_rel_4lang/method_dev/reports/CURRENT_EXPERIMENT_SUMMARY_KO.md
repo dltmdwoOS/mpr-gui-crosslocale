@@ -1,5 +1,7 @@
 # 선택적 정렬 개발 실험: 현재까지의 정리
 
+후속 GPU OCR Screen 네 조건도 완료했다. [별도 결과와 시간 비교](GPU_OCR_SCREEN_RESULTS_KO.md): main20문항·240쌍에서 8B는 EasyOCR CUDA75.42%, PP-OCRv5 75.83%, 4B는 모두73.75%다. 총 recipe는 약10분이며 CPU OCR 대비 크게 줄었지만 GPU OCR의 Selection/Internal은 아직 없다. 아래 158문항 표의 OCR는 기존 CPU EasyOCR 결과다.
+
 정리 시점(UTC): 2026-11-17T22:16:05.556265+00:00. **TT·CLP 전체 완료, OCR 8B·4B 전체158문항 완료.** 이 보고서는 최근 158문항 method 개발 실험을 정리하며, 과거 전체 cross-locale benchmark의 새 재실행 결과가 아니다.
 
 현재 주력은 **E1/M0 Stem-only GUI**다. 8B에서 O 70.18% → 74.09%, 4B에서 69.02% → 72.72%였다. TT는 8B에서 71.13%로 비용이 적다. Inventory 없는 이미지 직접 rewrite는 71.72%였다. **CLP의 저장된 규칙 기준 accuracy는 65.96%지만 출력 길이와 최종 답 표기 문제가 많아, CLP 자체의 유효성을 부정하는 결과로 읽으면 안 된다.**
