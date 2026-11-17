@@ -1,0 +1,1646 @@
+{
+  "saved_results": {
+    "execution_mode": "gpu",
+    "development_only": true,
+    "primary_pairs": 240,
+    "items": 20,
+    "correct": {
+      "E0_M0": 175,
+      "E1_M0": 178,
+      "E0_M1": 171,
+      "E1_M1": 177
+    },
+    "contrasts_vs_baseline": {
+      "E1_M0": {
+        "pairs": 240,
+        "items": 20,
+        "difference": 0.0125,
+        "ci95": [
+          0.0,
+          0.025
+        ],
+        "exploratory_bootstrap_centered_p": 0.10638936106389361,
+        "recovery": 3,
+        "regression": 0
+      },
+      "E0_M1": {
+        "pairs": 240,
+        "items": 20,
+        "difference": -0.016666666666666666,
+        "ci95": [
+          -0.041666666666666664,
+          0.008333333333333333
+        ],
+        "exploratory_bootstrap_centered_p": 0.2420757924207579,
+        "recovery": 6,
+        "regression": 10
+      },
+      "E1_M1": {
+        "pairs": 240,
+        "items": 20,
+        "difference": 0.008333333333333333,
+        "ci95": [
+          -0.016666666666666666,
+          0.0375
+        ],
+        "exploratory_bootstrap_centered_p": 0.6641335866413358,
+        "recovery": 8,
+        "regression": 6
+      }
+    },
+    "factorial": {
+      "extractor_main_effect": {
+        "pairs": 240,
+        "items": 20,
+        "difference": 0.01875,
+        "ci95": [
+          0.004166666666666667,
+          0.0375
+        ],
+        "exploratory_bootstrap_centered_p": 0.032596740325967405,
+        "recovery": 7,
+        "regression": 0
+      },
+      "matcher_main_effect": {
+        "pairs": 240,
+        "items": 20,
+        "difference": -0.010416666666666666,
+        "ci95": [
+          -0.03125,
+          0.014583333333333334
+        ],
+        "exploratory_bootstrap_centered_p": 0.42085791420857915,
+        "recovery": 6,
+        "regression": 10
+      },
+      "interaction": {
+        "pairs": 240,
+        "items": 20,
+        "difference": 0.0125,
+        "ci95": [
+          -0.004166666666666667,
+          0.029166666666666667
+        ],
+        "exploratory_bootstrap_centered_p": 0.23577642235776422,
+        "recovery": 4,
+        "regression": 1
+      }
+    },
+    "quality": {
+      "E0_M0": {
+        "changed": 219,
+        "status": {
+          "fallback_original": 12,
+          "success": 219,
+          "no_op_no_edits": 9
+        },
+        "errors": {
+          "Target is not a verbatim inventory member": 9,
+          "source_extraction_failed": 3
+        }
+      },
+      "E1_M0": {
+        "changed": 225,
+        "status": {
+          "success": 225,
+          "fallback_original": 6,
+          "no_op_no_edits": 9
+        },
+        "errors": {
+          "Target is not a verbatim inventory member": 6
+        }
+      },
+      "E0_M1": {
+        "changed": 228,
+        "status": {
+          "success": 228,
+          "fallback_original": 7,
+          "no_op_no_edits": 5
+        },
+        "errors": {
+          "source_extraction_failed": 3,
+          "Unknown candidate ID": 4
+        }
+      },
+      "E1_M1": {
+        "changed": 231,
+        "status": {
+          "success": 231,
+          "no_op_no_edits": 5,
+          "fallback_original": 4
+        },
+        "errors": {
+          "Unknown candidate ID": 4
+        }
+      }
+    },
+    "logical_recipe_cost": {
+      "E0_M0": {
+        "inventory_seconds": 1773.588974324055,
+        "extraction_seconds": 96.73608349636197,
+        "matching_seconds": 164.2029120279476,
+        "answer_seconds": 183.88821718748656,
+        "cold_total_seconds": 2218.416187035851,
+        "answer_reused_pairs_all": 288
+      },
+      "E1_M0": {
+        "inventory_seconds": 1773.588974324055,
+        "extraction_seconds": 63.51239993982017,
+        "matching_seconds": 318.6465036896989,
+        "answer_seconds": 190.0594604546204,
+        "cold_total_seconds": 2345.8073384081945,
+        "answer_reused_pairs_all": 216
+      },
+      "E0_M1": {
+        "inventory_seconds": 1773.588974324055,
+        "extraction_seconds": 96.73608349636197,
+        "matching_seconds": 399.85813301056623,
+        "answer_seconds": 195.8866526267181,
+        "cold_total_seconds": 2466.069843457701,
+        "answer_reused_pairs_all": 186
+      },
+      "E1_M1": {
+        "inventory_seconds": 1773.588974324055,
+        "extraction_seconds": 63.51239993982017,
+        "matching_seconds": 512.6615573894233,
+        "answer_seconds": 205.44284337262312,
+        "cold_total_seconds": 2555.2057750259214,
+        "answer_reused_pairs_all": 246
+      }
+    },
+    "contract_sha256": "3e1fdb10cdefaf931e3ea59e9aae3c07438f7719b6a12042b618cda1e0ac338e",
+    "source_extraction_quality": {
+      "E0": {
+        "precision": 0.810126582278481,
+        "recall": 0.8,
+        "f1": 0.8050314465408804,
+        "gold_spans": 240,
+        "predicted_spans": 237,
+        "matched_spans": 192,
+        "scope": "pair-weighted source stem exact-boundary diagnostic; never method input"
+      },
+      "E1": {
+        "precision": 0.8375,
+        "recall": 0.8375,
+        "f1": 0.8375,
+        "gold_spans": 240,
+        "predicted_spans": 240,
+        "matched_spans": 201,
+        "scope": "pair-weighted source stem exact-boundary diagnostic; never method input"
+      }
+    },
+    "reference_correct": {
+      "R_stem": 185,
+      "O": 162
+    },
+    "contrasts_vs_R_stem": {
+      "E0_M0": {
+        "pairs": 240,
+        "items": 20,
+        "difference": -0.041666666666666664,
+        "ci95": [
+          -0.11666666666666667,
+          0.0375
+        ],
+        "exploratory_bootstrap_centered_p": 0.29247075292470753,
+        "recovery": 10,
+        "regression": 20
+      },
+      "E1_M0": {
+        "pairs": 240,
+        "items": 20,
+        "difference": -0.029166666666666667,
+        "ci95": [
+          -0.1,
+          0.04583333333333333
+        ],
+        "exploratory_bootstrap_centered_p": 0.46365363463653636,
+        "recovery": 12,
+        "regression": 19
+      },
+      "E0_M1": {
+        "pairs": 240,
+        "items": 20,
+        "difference": -0.058333333333333334,
+        "ci95": [
+          -0.125,
+          0.016666666666666666
+        ],
+        "exploratory_bootstrap_centered_p": 0.11868813118688132,
+        "recovery": 10,
+        "regression": 24
+      },
+      "E1_M1": {
+        "pairs": 240,
+        "items": 20,
+        "difference": -0.03333333333333333,
+        "ci95": [
+          -0.10416666666666667,
+          0.041666666666666664
+        ],
+        "exploratory_bootstrap_centered_p": 0.40655934406559346,
+        "recovery": 12,
+        "regression": 20
+      }
+    },
+    "by_gui": {
+      "en": {
+        "n": 60,
+        "correct": {
+          "E0_M0": 46,
+          "E1_M0": 47,
+          "E0_M1": 44,
+          "E1_M1": 45
+        }
+      },
+      "zh": {
+        "n": 60,
+        "correct": {
+          "E0_M0": 46,
+          "E1_M0": 47,
+          "E0_M1": 46,
+          "E1_M1": 46
+        }
+      },
+      "th": {
+        "n": 60,
+        "correct": {
+          "E0_M0": 40,
+          "E1_M0": 41,
+          "E0_M1": 38,
+          "E1_M1": 39
+        }
+      },
+      "ru": {
+        "n": 60,
+        "correct": {
+          "E0_M0": 43,
+          "E1_M0": 43,
+          "E0_M1": 43,
+          "E1_M1": 47
+        }
+      }
+    }
+  },
+  "verified_pairs_per_cell": 288,
+  "primary_pairs": 240,
+  "semantic_items": 20,
+  "wall_seconds": 1503.4907887857407,
+  "details": {
+    "E0_M0": {
+      "input_changed_vs_baseline": 0,
+      "unchanged_input_changed_label": 0,
+      "primary_status": {
+        "fallback_original": 12,
+        "success": 219,
+        "no_op_no_edits": 9
+      },
+      "string_null_fallbacks": []
+    },
+    "E1_M0": {
+      "input_changed_vs_baseline": 50,
+      "unchanged_input_changed_label": 0,
+      "primary_status": {
+        "success": 225,
+        "fallback_original": 6,
+        "no_op_no_edits": 9
+      },
+      "string_null_fallbacks": []
+    },
+    "E0_M1": {
+      "input_changed_vs_baseline": 39,
+      "unchanged_input_changed_label": 0,
+      "primary_status": {
+        "success": 228,
+        "fallback_original": 7,
+        "no_op_no_edits": 5
+      },
+      "string_null_fallbacks": [
+        "rel::3/homescreen_5.jpg::th::en",
+        "rel::3/map_6.jpg::zh::th",
+        "rel::4/google_play_6.jpg::ru::zh",
+        "rel::4/google_play_6.jpg::th::zh"
+      ]
+    },
+    "E1_M1": {
+      "input_changed_vs_baseline": 73,
+      "unchanged_input_changed_label": 0,
+      "primary_status": {
+        "success": 231,
+        "no_op_no_edits": 5,
+        "fallback_original": 4
+      },
+      "string_null_fallbacks": [
+        "rel::3/homescreen_5.jpg::th::en",
+        "rel::3/map_6.jpg::zh::th",
+        "rel::4/google_play_6.jpg::ru::zh",
+        "rel::4/google_play_6.jpg::th::zh"
+      ]
+    }
+  },
+  "transitions_vs_baseline": {
+    "E0_M0": [],
+    "E1_M0": [
+      {
+        "pair_id": "rel::2/calendar_6.png::en::th",
+        "transition": "recovery",
+        "gold": "B",
+        "source": "Which day of the week has a scheduled event, and what is its relative position compared to Thursday?",
+        "baseline": "Which วัน has a scheduled event, and what is its relative position compared to Thursday?",
+        "new": "Which day of the week has a scheduled event, and what is its relative position compared to พฤ. 12?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:6:21",
+            "field": "question_stem",
+            "text": "day of the week",
+            "start": 6,
+            "end": 21,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 6,
+            "utf8_end": 21
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:91:99",
+            "field": "question_stem",
+            "text": "Thursday",
+            "start": 91,
+            "end": 99,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 91,
+            "utf8_end": 99
+          }
+        ],
+        "baseline_label": "C",
+        "new_label": "B"
+      },
+      {
+        "pair_id": "rel::4/google_play_8.jpg::ru::en",
+        "transition": "recovery",
+        "gold": "A",
+        "source": "Какой параметр находится непосредственно выше опции «Использовать данные о местоположении устройства» в меню настроек?",
+        "baseline": "Какой параметр находится непосредственно выше опции «Use device location» в меню настроек?",
+        "new": "Какой параметр находится непосредственно выше опции Use device location в меню настроек?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:53:100",
+            "field": "question_stem",
+            "text": "Использовать данные о местоположении устройства",
+            "start": 53,
+            "end": 100,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 100,
+            "utf8_end": 190
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:52:101",
+            "field": "question_stem",
+            "text": "«Использовать данные о местоположении устройства»",
+            "start": 52,
+            "end": 101,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 98,
+            "utf8_end": 192
+          }
+        ],
+        "baseline_label": "B",
+        "new_label": "A"
+      },
+      {
+        "pair_id": "rel::6/camera_8.jpg::th::zh",
+        "transition": "recovery",
+        "gold": "A",
+        "source": "โหมดใดอยู่ทางซ้ายของโหมด \"รูปภาพ\" ในอินเทอร์เฟซผู้ใช้นี้?",
+        "baseline": "โหมดใดอยู่ทางซ้ายของ视频 ในอินเทอร์เฟซผู้ใช้นี้?",
+        "new": "โหมดใดอยู่ทางซ้ายของโหมด \"照片\" ในอินเทอร์เฟซผู้ใช้นี้?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:20:33",
+            "field": "question_stem",
+            "text": "โหมด \"รูปภาพ\"",
+            "start": 20,
+            "end": 33,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 60,
+            "utf8_end": 93
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:26:32",
+            "field": "question_stem",
+            "text": "รูปภาพ",
+            "start": 26,
+            "end": 32,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 74,
+            "utf8_end": 92
+          }
+        ],
+        "baseline_label": "C",
+        "new_label": "A"
+      }
+    ],
+    "E0_M1": [
+      {
+        "pair_id": "rel::2/calendar_6.png::en::ru",
+        "transition": "regression",
+        "gold": "B",
+        "source": "Which day of the week has a scheduled event, and what is its relative position compared to Thursday?",
+        "baseline": "Which day of the week has a scheduled event, and what is its relative position compared to Thursday?",
+        "new": "Which Неделя has a scheduled event, and what is its relative position compared to Thursday?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:6:21",
+            "field": "question_stem",
+            "text": "day of the week",
+            "start": 6,
+            "end": 21,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 6,
+            "utf8_end": 21
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:6:21",
+            "field": "question_stem",
+            "text": "day of the week",
+            "start": 6,
+            "end": 21,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 6,
+            "utf8_end": 21
+          }
+        ],
+        "baseline_label": "B",
+        "new_label": "C"
+      },
+      {
+        "pair_id": "rel::2/map_9.png::ru::zh",
+        "transition": "regression",
+        "gold": "A",
+        "source": "Какой элемент находится прямо под переключателем 'Избегать платных дорог'?",
+        "baseline": "Какой элемент находится прямо под переключателем '避开收费站'?",
+        "new": "Какой элемент находится прямо под переключателем '避开高速公路'?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:50:72",
+            "field": "question_stem",
+            "text": "Избегать платных дорог",
+            "start": 50,
+            "end": 72,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 93,
+            "utf8_end": 135
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:50:72",
+            "field": "question_stem",
+            "text": "Избегать платных дорог",
+            "start": 50,
+            "end": 72,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 93,
+            "utf8_end": 135
+          }
+        ],
+        "baseline_label": "A",
+        "new_label": "B"
+      },
+      {
+        "pair_id": "rel::2/note_8.png::th::ru",
+        "transition": "regression",
+        "gold": "A",
+        "source": "องค์ประกอบใดอยู่ทางขวาของตัวเลือก 'กำหนดเอง' ในเมนูการปรับแต่ง?",
+        "baseline": "องค์ประกอบใดอยู่ทางขวาของНастройка ในเมนูการปรับแต่ง?",
+        "new": "องค์ประกอบใดอยู่ทางขวาของAa ในเมนูการปรับแต่ง?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:25:44",
+            "field": "question_stem",
+            "text": "ตัวเลือก 'กำหนดเอง'",
+            "start": 25,
+            "end": 44,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 75,
+            "utf8_end": 126
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:25:44",
+            "field": "question_stem",
+            "text": "ตัวเลือก 'กำหนดเอง'",
+            "start": 25,
+            "end": 44,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 75,
+            "utf8_end": 126
+          }
+        ],
+        "baseline_label": "A",
+        "new_label": "D"
+      },
+      {
+        "pair_id": "rel::2/setting_3.png::en::ru",
+        "transition": "recovery",
+        "gold": "A",
+        "source": "Which element is located directly to the right of the 'Handwrite' button?",
+        "baseline": "Which element is located directly to the right of the 'написать от руки' button?",
+        "new": "Which element is located directly to the right of the 'Написание' button?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:55:64",
+            "field": "question_stem",
+            "text": "Handwrite",
+            "start": 55,
+            "end": 64,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 55,
+            "utf8_end": 64
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:55:64",
+            "field": "question_stem",
+            "text": "Handwrite",
+            "start": 55,
+            "end": 64,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 55,
+            "utf8_end": 64
+          }
+        ],
+        "baseline_label": "C",
+        "new_label": "A"
+      },
+      {
+        "pair_id": "rel::2/setting_3.png::ru::zh",
+        "transition": "regression",
+        "gold": "A",
+        "source": "Какой элемент находится непосредственно справа от кнопки 'Написание'?",
+        "baseline": "Какой элемент находится непосредственно справа от кнопки '手写'?",
+        "new": "Какой элемент находится непосредственно справа от кнопки '插入'?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:58:67",
+            "field": "question_stem",
+            "text": "Написание",
+            "start": 58,
+            "end": 67,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 108,
+            "utf8_end": 126
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:58:67",
+            "field": "question_stem",
+            "text": "Написание",
+            "start": 58,
+            "end": 67,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 108,
+            "utf8_end": 126
+          }
+        ],
+        "baseline_label": "A",
+        "new_label": "D"
+      },
+      {
+        "pair_id": "rel::2/setting_3.png::th::ru",
+        "transition": "recovery",
+        "gold": "A",
+        "source": "องค์ประกอบใดอยู่ทางขวาของปุ่ม 'เขียนข้อความ' โดยตรง?",
+        "baseline": "องค์ประกอบใดอยู่ทางขวาของปุ่ม 'Вставка' โดยตรง?",
+        "new": "องค์ประกอบใดอยู่ทางขวาของปุ่ม 'Написание' โดยตรง?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:31:43",
+            "field": "question_stem",
+            "text": "เขียนข้อความ",
+            "start": 31,
+            "end": 43,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 89,
+            "utf8_end": 125
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:31:43",
+            "field": "question_stem",
+            "text": "เขียนข้อความ",
+            "start": 31,
+            "end": 43,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 89,
+            "utf8_end": 125
+          }
+        ],
+        "baseline_label": "D",
+        "new_label": "A"
+      },
+      {
+        "pair_id": "rel::2/setting_3.png::zh::ru",
+        "transition": "recovery",
+        "gold": "A",
+        "source": "哪个元素位于“手写”按钮的右侧？",
+        "baseline": "哪个元素位于“написать от руки”按钮的右侧？",
+        "new": "哪个元素位于“Написание”按钮的右侧？",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:7:9",
+            "field": "question_stem",
+            "text": "手写",
+            "start": 7,
+            "end": 9,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 21,
+            "utf8_end": 27
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:7:9",
+            "field": "question_stem",
+            "text": "手写",
+            "start": 7,
+            "end": 9,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 21,
+            "utf8_end": 27
+          }
+        ],
+        "baseline_label": "C",
+        "new_label": "A"
+      },
+      {
+        "pair_id": "rel::3/homescreen_5.jpg::en::th",
+        "transition": "regression",
+        "gold": "B",
+        "source": "Which element is directly below the 'DND' option in the mobile UI interface?",
+        "baseline": "Which element is directly below the 'หามรบกวน' option in the mobile UI interface?",
+        "new": "Which element is directly below the 'สั่นเตือน' option in the mobile UI interface?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:37:40",
+            "field": "question_stem",
+            "text": "DND",
+            "start": 37,
+            "end": 40,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 37,
+            "utf8_end": 40
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:37:40",
+            "field": "question_stem",
+            "text": "DND",
+            "start": 37,
+            "end": 40,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 37,
+            "utf8_end": 40
+          }
+        ],
+        "baseline_label": "B",
+        "new_label": "C"
+      },
+      {
+        "pair_id": "rel::3/map_6.jpg::ru::en",
+        "transition": "regression",
+        "gold": "B",
+        "source": "Что находится сразу справа от кнопки 'Выбрать на карте'?",
+        "baseline": "Что находится сразу справа от кнопки 'Choose on map'?",
+        "new": "Что находится сразу справа от кнопки 'Map'?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:38:54",
+            "field": "question_stem",
+            "text": "Выбрать на карте",
+            "start": 38,
+            "end": 54,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 69,
+            "utf8_end": 99
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:38:54",
+            "field": "question_stem",
+            "text": "Выбрать на карте",
+            "start": 38,
+            "end": 54,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 69,
+            "utf8_end": 99
+          }
+        ],
+        "baseline_label": "B",
+        "new_label": "C"
+      },
+      {
+        "pair_id": "rel::3/music_10.jpg::th::ru",
+        "transition": "regression",
+        "gold": "A",
+        "source": "องค์ประกอบใดอยู่เหนือ \"อัปเดตโดยอัตโนมัติ\" ในอินเทอร์เฟซที่ให้มา?",
+        "baseline": "องค์ประกอบใดอยู่เหนือ \"อัปเดตโดยอัตโนมัติ\" ในАккаунт и настройки?",
+        "new": "องค์ประกอบใดอยู่เหนือ \"อัปเดตโดยอัตโนมัติ\" ในНАСТРОЙКИ?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:45:64",
+            "field": "question_stem",
+            "text": "อินเทอร์เฟซที่ให้มา",
+            "start": 45,
+            "end": 64,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 127,
+            "utf8_end": 184
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:45:64",
+            "field": "question_stem",
+            "text": "อินเทอร์เฟซที่ให้มา",
+            "start": 45,
+            "end": 64,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 127,
+            "utf8_end": 184
+          }
+        ],
+        "baseline_label": "A",
+        "new_label": "C"
+      },
+      {
+        "pair_id": "rel::4/google_play_8.jpg::en::ru",
+        "transition": "regression",
+        "gold": "A",
+        "source": "Which setting is located directly above the 'Use device location' option in the settings menu?",
+        "baseline": "Which setting is located directly above the 'Use device location' option in the Настройки?",
+        "new": "Which setting is located directly above the 'Use device location' option in the Настройки аккаунта и устройства?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:80:93",
+            "field": "question_stem",
+            "text": "settings menu",
+            "start": 80,
+            "end": 93,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 80,
+            "utf8_end": 93
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:80:93",
+            "field": "question_stem",
+            "text": "settings menu",
+            "start": 80,
+            "end": 93,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 80,
+            "utf8_end": 93
+          }
+        ],
+        "baseline_label": "A",
+        "new_label": "B"
+      },
+      {
+        "pair_id": "rel::4/google_play_8.jpg::th::ru",
+        "transition": "recovery",
+        "gold": "A",
+        "source": "ตัวเลือกใดอยู่เหนือ \"ใช้ตำแหน่งของอุปกรณ์\" ในเมนูการตั้งค่า?",
+        "baseline": "ตัวเลือกใดอยู่เหนือ \"ใช้ตำแหน่งของอุปกรณ์\" ในНастройки аккаунта и устройства?",
+        "new": "ตัวเลือกใดอยู่เหนือ \"ใช้ตำแหน่งของอุปกรณ์\" ในНастройки?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:45:59",
+            "field": "question_stem",
+            "text": "เมนูการตั้งค่า",
+            "start": 45,
+            "end": 59,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 127,
+            "utf8_end": 169
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:45:59",
+            "field": "question_stem",
+            "text": "เมนูการตั้งค่า",
+            "start": 45,
+            "end": 59,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 127,
+            "utf8_end": 169
+          }
+        ],
+        "baseline_label": "B",
+        "new_label": "A"
+      },
+      {
+        "pair_id": "rel::5/record_2.jpg::th::zh",
+        "transition": "recovery",
+        "gold": "C",
+        "source": "ตัวเลือกใดอยู่ด้านล่างทันทีของ \"ตั้งเป็นเสียงเรียกเข้า\" ในอินเทอร์เฟซ?",
+        "baseline": "ตัวเลือกใดอยู่ด้านล่างทันทีของ \"设为联系人铃声\" ในอินเทอร์เฟซ?",
+        "new": "ตัวเลือกใดอยู่ด้านล่างทันทีของ \"设为闹钟铃声\" ในอินเทอร์เฟซ?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:32:54",
+            "field": "question_stem",
+            "text": "ตั้งเป็นเสียงเรียกเข้า",
+            "start": 32,
+            "end": 54,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 92,
+            "utf8_end": 158
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:32:54",
+            "field": "question_stem",
+            "text": "ตั้งเป็นเสียงเรียกเข้า",
+            "start": 32,
+            "end": 54,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 92,
+            "utf8_end": 158
+          }
+        ],
+        "baseline_label": "D",
+        "new_label": "C"
+      },
+      {
+        "pair_id": "rel::5/record_2.jpg::zh::en",
+        "transition": "regression",
+        "gold": "C",
+        "source": "哪个选项位于界面上“设为闹钟铃声”正下方？",
+        "baseline": "哪个选项位于界面上“Set as alarm ringtone”正下方？",
+        "new": "哪个选项位于界面上“Set as call ringtone”正下方？",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:10:16",
+            "field": "question_stem",
+            "text": "设为闹钟铃声",
+            "start": 10,
+            "end": 16,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 30,
+            "utf8_end": 48
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:10:16",
+            "field": "question_stem",
+            "text": "设为闹钟铃声",
+            "start": 10,
+            "end": 16,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 30,
+            "utf8_end": 48
+          }
+        ],
+        "baseline_label": "C",
+        "new_label": "B"
+      },
+      {
+        "pair_id": "rel::6/camera_8.jpg::th::zh",
+        "transition": "recovery",
+        "gold": "A",
+        "source": "โหมดใดอยู่ทางซ้ายของโหมด \"รูปภาพ\" ในอินเทอร์เฟซผู้ใช้นี้?",
+        "baseline": "โหมดใดอยู่ทางซ้ายของ视频 ในอินเทอร์เฟซผู้ใช้นี้?",
+        "new": "โหมดใดอยู่ทางซ้ายของ照片 ในอินเทอร์เฟซผู้ใช้นี้?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:20:33",
+            "field": "question_stem",
+            "text": "โหมด \"รูปภาพ\"",
+            "start": 20,
+            "end": 33,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 60,
+            "utf8_end": 93
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:20:33",
+            "field": "question_stem",
+            "text": "โหมด \"รูปภาพ\"",
+            "start": 20,
+            "end": 33,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 60,
+            "utf8_end": 93
+          }
+        ],
+        "baseline_label": "C",
+        "new_label": "A"
+      },
+      {
+        "pair_id": "rel::6/camera_8.jpg::zh::th",
+        "transition": "regression",
+        "gold": "A",
+        "source": "在此用户界面中，哪个模式直接位于“照片”模式的左侧？",
+        "baseline": "在此用户界面中，哪个模式直接位于“รูปภาพ”模式的左侧？",
+        "new": "在此用户界面中，哪个模式直接位于“วิดีโอ”模式的左侧？",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:17:19",
+            "field": "question_stem",
+            "text": "照片",
+            "start": 17,
+            "end": 19,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 51,
+            "utf8_end": 57
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:17:19",
+            "field": "question_stem",
+            "text": "照片",
+            "start": 17,
+            "end": 19,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 51,
+            "utf8_end": 57
+          }
+        ],
+        "baseline_label": "A",
+        "new_label": "B"
+      }
+    ],
+    "E1_M1": [
+      {
+        "pair_id": "rel::2/calendar_6.png::en::th",
+        "transition": "recovery",
+        "gold": "B",
+        "source": "Which day of the week has a scheduled event, and what is its relative position compared to Thursday?",
+        "baseline": "Which วัน has a scheduled event, and what is its relative position compared to Thursday?",
+        "new": "Which day of the week has a scheduled event, and what is its relative position compared to พฤ. 12?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:6:21",
+            "field": "question_stem",
+            "text": "day of the week",
+            "start": 6,
+            "end": 21,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 6,
+            "utf8_end": 21
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:91:99",
+            "field": "question_stem",
+            "text": "Thursday",
+            "start": 91,
+            "end": 99,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 91,
+            "utf8_end": 99
+          }
+        ],
+        "baseline_label": "C",
+        "new_label": "B"
+      },
+      {
+        "pair_id": "rel::2/map_9.png::ru::zh",
+        "transition": "regression",
+        "gold": "A",
+        "source": "Какой элемент находится прямо под переключателем 'Избегать платных дорог'?",
+        "baseline": "Какой элемент находится прямо под переключателем '避开收费站'?",
+        "new": "Какой элемент находится прямо под переключателем '避开高速公路'?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:50:72",
+            "field": "question_stem",
+            "text": "Избегать платных дорог",
+            "start": 50,
+            "end": 72,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 93,
+            "utf8_end": 135
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:50:72",
+            "field": "question_stem",
+            "text": "Избегать платных дорог",
+            "start": 50,
+            "end": 72,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 93,
+            "utf8_end": 135
+          }
+        ],
+        "baseline_label": "A",
+        "new_label": "B"
+      },
+      {
+        "pair_id": "rel::2/setting_3.png::en::ru",
+        "transition": "recovery",
+        "gold": "A",
+        "source": "Which element is located directly to the right of the 'Handwrite' button?",
+        "baseline": "Which element is located directly to the right of the 'написать от руки' button?",
+        "new": "Which element is located directly to the right of the 'Написание' button?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:55:64",
+            "field": "question_stem",
+            "text": "Handwrite",
+            "start": 55,
+            "end": 64,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 55,
+            "utf8_end": 64
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:55:64",
+            "field": "question_stem",
+            "text": "Handwrite",
+            "start": 55,
+            "end": 64,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 55,
+            "utf8_end": 64
+          }
+        ],
+        "baseline_label": "C",
+        "new_label": "A"
+      },
+      {
+        "pair_id": "rel::2/setting_3.png::ru::zh",
+        "transition": "regression",
+        "gold": "A",
+        "source": "Какой элемент находится непосредственно справа от кнопки 'Написание'?",
+        "baseline": "Какой элемент находится непосредственно справа от кнопки '手写'?",
+        "new": "Какой элемент находится непосредственно справа от кнопки '插入'?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:58:67",
+            "field": "question_stem",
+            "text": "Написание",
+            "start": 58,
+            "end": 67,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 108,
+            "utf8_end": 126
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:58:67",
+            "field": "question_stem",
+            "text": "Написание",
+            "start": 58,
+            "end": 67,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 108,
+            "utf8_end": 126
+          }
+        ],
+        "baseline_label": "A",
+        "new_label": "D"
+      },
+      {
+        "pair_id": "rel::2/setting_3.png::th::ru",
+        "transition": "recovery",
+        "gold": "A",
+        "source": "องค์ประกอบใดอยู่ทางขวาของปุ่ม 'เขียนข้อความ' โดยตรง?",
+        "baseline": "องค์ประกอบใดอยู่ทางขวาของปุ่ม 'Вставка' โดยตรง?",
+        "new": "องค์ประกอบใดอยู่ทางขวาของปุ่ม 'Написание' โดยตรง?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:31:43",
+            "field": "question_stem",
+            "text": "เขียนข้อความ",
+            "start": 31,
+            "end": 43,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 89,
+            "utf8_end": 125
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:31:43",
+            "field": "question_stem",
+            "text": "เขียนข้อความ",
+            "start": 31,
+            "end": 43,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 89,
+            "utf8_end": 125
+          }
+        ],
+        "baseline_label": "D",
+        "new_label": "A"
+      },
+      {
+        "pair_id": "rel::2/setting_3.png::zh::ru",
+        "transition": "recovery",
+        "gold": "A",
+        "source": "哪个元素位于“手写”按钮的右侧？",
+        "baseline": "哪个元素位于“написать от руки”按钮的右侧？",
+        "new": "哪个元素位于“Написание”按钮的右侧？",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:7:9",
+            "field": "question_stem",
+            "text": "手写",
+            "start": 7,
+            "end": 9,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 21,
+            "utf8_end": 27
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:7:9",
+            "field": "question_stem",
+            "text": "手写",
+            "start": 7,
+            "end": 9,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 21,
+            "utf8_end": 27
+          }
+        ],
+        "baseline_label": "C",
+        "new_label": "A"
+      },
+      {
+        "pair_id": "rel::3/homescreen_5.jpg::en::th",
+        "transition": "regression",
+        "gold": "B",
+        "source": "Which element is directly below the 'DND' option in the mobile UI interface?",
+        "baseline": "Which element is directly below the 'หามรบกวน' option in the mobile UI interface?",
+        "new": "Which element is directly below the 'สั่นเตือน' option in the mobile UI interface?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:37:40",
+            "field": "question_stem",
+            "text": "DND",
+            "start": 37,
+            "end": 40,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 37,
+            "utf8_end": 40
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:37:40",
+            "field": "question_stem",
+            "text": "DND",
+            "start": 37,
+            "end": 40,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 37,
+            "utf8_end": 40
+          }
+        ],
+        "baseline_label": "B",
+        "new_label": "C"
+      },
+      {
+        "pair_id": "rel::3/map_6.jpg::ru::en",
+        "transition": "regression",
+        "gold": "B",
+        "source": "Что находится сразу справа от кнопки 'Выбрать на карте'?",
+        "baseline": "Что находится сразу справа от кнопки 'Choose on map'?",
+        "new": "Что находится сразу справа от кнопки 'Map'?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:38:54",
+            "field": "question_stem",
+            "text": "Выбрать на карте",
+            "start": 38,
+            "end": 54,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 69,
+            "utf8_end": 99
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:38:54",
+            "field": "question_stem",
+            "text": "Выбрать на карте",
+            "start": 38,
+            "end": 54,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 69,
+            "utf8_end": 99
+          }
+        ],
+        "baseline_label": "B",
+        "new_label": "C"
+      },
+      {
+        "pair_id": "rel::4/google_play_8.jpg::ru::en",
+        "transition": "recovery",
+        "gold": "A",
+        "source": "Какой параметр находится непосредственно выше опции «Использовать данные о местоположении устройства» в меню настроек?",
+        "baseline": "Какой параметр находится непосредственно выше опции «Use device location» в меню настроек?",
+        "new": "Какой параметр находится непосредственно выше опции Use device location в меню настроек?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:53:100",
+            "field": "question_stem",
+            "text": "Использовать данные о местоположении устройства",
+            "start": 53,
+            "end": 100,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 100,
+            "utf8_end": 190
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:52:101",
+            "field": "question_stem",
+            "text": "«Использовать данные о местоположении устройства»",
+            "start": 52,
+            "end": 101,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 98,
+            "utf8_end": 192
+          }
+        ],
+        "baseline_label": "B",
+        "new_label": "A"
+      },
+      {
+        "pair_id": "rel::4/google_play_8.jpg::th::ru",
+        "transition": "recovery",
+        "gold": "A",
+        "source": "ตัวเลือกใดอยู่เหนือ \"ใช้ตำแหน่งของอุปกรณ์\" ในเมนูการตั้งค่า?",
+        "baseline": "ตัวเลือกใดอยู่เหนือ \"ใช้ตำแหน่งของอุปกรณ์\" ในНастройки аккаунта и устройства?",
+        "new": "ตัวเลือกใดอยู่เหนือ \"ใช้ตำแหน่งของอุปกรณ์\" ในНастройки?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:45:59",
+            "field": "question_stem",
+            "text": "เมนูการตั้งค่า",
+            "start": 45,
+            "end": 59,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 127,
+            "utf8_end": 169
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:45:59",
+            "field": "question_stem",
+            "text": "เมนูการตั้งค่า",
+            "start": 45,
+            "end": 59,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 127,
+            "utf8_end": 169
+          }
+        ],
+        "baseline_label": "B",
+        "new_label": "A"
+      },
+      {
+        "pair_id": "rel::5/record_2.jpg::th::zh",
+        "transition": "recovery",
+        "gold": "C",
+        "source": "ตัวเลือกใดอยู่ด้านล่างทันทีของ \"ตั้งเป็นเสียงเรียกเข้า\" ในอินเทอร์เฟซ?",
+        "baseline": "ตัวเลือกใดอยู่ด้านล่างทันทีของ \"设为联系人铃声\" ในอินเทอร์เฟซ?",
+        "new": "ตัวเลือกใดอยู่ด้านล่างทันทีของ \"设为闹钟铃声\" ในอินเทอร์เฟซ?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:32:54",
+            "field": "question_stem",
+            "text": "ตั้งเป็นเสียงเรียกเข้า",
+            "start": 32,
+            "end": 54,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 92,
+            "utf8_end": 158
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:32:54",
+            "field": "question_stem",
+            "text": "ตั้งเป็นเสียงเรียกเข้า",
+            "start": 32,
+            "end": 54,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 92,
+            "utf8_end": 158
+          }
+        ],
+        "baseline_label": "D",
+        "new_label": "C"
+      },
+      {
+        "pair_id": "rel::5/record_2.jpg::zh::en",
+        "transition": "regression",
+        "gold": "C",
+        "source": "哪个选项位于界面上“设为闹钟铃声”正下方？",
+        "baseline": "哪个选项位于界面上“Set as alarm ringtone”正下方？",
+        "new": "哪个选项位于界面上“Set as call ringtone”正下方？",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:10:16",
+            "field": "question_stem",
+            "text": "设为闹钟铃声",
+            "start": 10,
+            "end": 16,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 30,
+            "utf8_end": 48
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:10:16",
+            "field": "question_stem",
+            "text": "设为闹钟铃声",
+            "start": 10,
+            "end": 16,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 30,
+            "utf8_end": 48
+          }
+        ],
+        "baseline_label": "C",
+        "new_label": "B"
+      },
+      {
+        "pair_id": "rel::6/camera_8.jpg::th::zh",
+        "transition": "recovery",
+        "gold": "A",
+        "source": "โหมดใดอยู่ทางซ้ายของโหมด \"รูปภาพ\" ในอินเทอร์เฟซผู้ใช้นี้?",
+        "baseline": "โหมดใดอยู่ทางซ้ายของ视频 ในอินเทอร์เฟซผู้ใช้นี้?",
+        "new": "โหมดใดอยู่ทางซ้ายของโหมด \"照片\" ในอินเทอร์เฟซผู้ใช้นี้?",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:20:33",
+            "field": "question_stem",
+            "text": "โหมด \"รูปภาพ\"",
+            "start": 20,
+            "end": 33,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 60,
+            "utf8_end": 93
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:26:32",
+            "field": "question_stem",
+            "text": "รูปภาพ",
+            "start": 26,
+            "end": 32,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 74,
+            "utf8_end": 92
+          }
+        ],
+        "baseline_label": "C",
+        "new_label": "A"
+      },
+      {
+        "pair_id": "rel::6/camera_8.jpg::zh::th",
+        "transition": "regression",
+        "gold": "A",
+        "source": "在此用户界面中，哪个模式直接位于“照片”模式的左侧？",
+        "baseline": "在此用户界面中，哪个模式直接位于“รูปภาพ”模式的左侧？",
+        "new": "在此用户界面中，哪个模式直接位于“วิดีโอ”模式的左侧？",
+        "baseline_spans": [
+          {
+            "span_id": "question_stem:17:19",
+            "field": "question_stem",
+            "text": "照片",
+            "start": 17,
+            "end": 19,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 51,
+            "utf8_end": 57
+          }
+        ],
+        "new_spans": [
+          {
+            "span_id": "question_stem:17:19",
+            "field": "question_stem",
+            "text": "照片",
+            "start": 17,
+            "end": 19,
+            "occurrence": 0,
+            "kind": "label",
+            "utf8_start": 51,
+            "utf8_end": 57
+          }
+        ],
+        "baseline_label": "A",
+        "new_label": "B"
+      }
+    ]
+  },
+  "incremental_costs": {
+    "E1_M0": {
+      "rewrite": {
+        "complete": true,
+        "wall_seconds": 212.70906313043088,
+        "calls": 299,
+        "cache_hits": 244,
+        "new_runtime_ms": 189590.0048390031
+      },
+      "infer": {
+        "wall_seconds": 109.58317505288869,
+        "execution_mode": "gpu",
+        "reused_batches": 72,
+        "reused_rows": 216,
+        "new_batches": 24,
+        "conflicting_cache_keys": 0
+      },
+      "new_answer_seconds": 71.72424976341426
+    },
+    "E0_M1": {
+      "rewrite": {
+        "complete": true,
+        "wall_seconds": 559.73598567117,
+        "calls": 289,
+        "cache_hits": 0,
+        "new_runtime_ms": 527865.7937441021
+      },
+      "infer": {
+        "wall_seconds": 129.70767394453287,
+        "execution_mode": "gpu",
+        "reused_batches": 62,
+        "reused_rows": 186,
+        "new_batches": 34,
+        "conflicting_cache_keys": 0
+      },
+      "new_answer_seconds": 96.06962920445949
+    },
+    "E1_M1": {
+      "rewrite": {
+        "complete": true,
+        "wall_seconds": 233.02010627370328,
+        "calls": 291,
+        "cache_hits": 239,
+        "new_runtime_ms": 202590.27672559023
+      },
+      "infer": {
+        "wall_seconds": 75.42902765516192,
+        "execution_mode": "gpu",
+        "reused_batches": 82,
+        "reused_rows": 246,
+        "new_batches": 14,
+        "conflicting_cache_keys": 0
+      },
+      "new_answer_seconds": 43.112588866613805
+    }
+  },
+  "E1_extraction_cost": {
+    "complete": true,
+    "wall_seconds": 156.88243587873876,
+    "calls": 129,
+    "cache_hits": 0,
+    "new_runtime_ms": 132310.92172209173
+  },
+  "new_LM_calls": 525,
+  "new_answer_rows": 216,
+  "reused_answer_rows_new_cells": 648,
+  "reused_rows_verified_including_baseline": 936,
+  "source_extraction_changes": {
+    "unique_main_stems": 80,
+    "changed_unique_main_spans": 17,
+    "E0": {
+      "failed_main_stems": 1
+    },
+    "E1": {
+      "failed_main_stems": 0
+    }
+  },
+  "contract_sha256": "3e1fdb10cdefaf931e3ea59e9aae3c07438f7719b6a12042b618cda1e0ac338e",
+  "source_and_raw_sha256": {
+    "followup_rel_4lang/method_dev/scripts/report_stem_refinement_2x2.py": "97547210b809053b1245e21c52a59ab2d119b484374162b8d47355e7696a5238",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/contract.json": "b5a481fcd6b228b2b1fed7720aced674477dedb1022cc1759ee0bc020838bf72",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/COMPLETE.json": "3adb044b12f9f2717c5eda13f68cb13455d55a3d68b4772368ce00d77957e10f",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/results.json": "f2ce559c3649ee51e361070a5cca618e789a087c2a8e8cc50968be6e0caf05ce",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/inputs.jsonl": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a",
+    "followup_rel_4lang/method_dev/artifacts/dataset_audit/evaluation_labels_PRIVATE.jsonl": "82e29e2a57d1f361a1b13020fda34068f95bf5762c29a1c8d610d198aa3a7c6a",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E0_M0/rewrite/attempt_import/rewritten.jsonl": "fac02dd8ad6e10208553f1cb13d4c447092e4502c88939c9d05abc0037442429",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E0_M0/infer/attempt_import/evaluation/predictions.jsonl": "5afa402cc6bb402df2ae0cb2e97a9e645fc2db979f5e9367b4a267f4ea06f44a",
+    "followup_rel_4lang/method_dev/artifacts/stem_only_gui_screen_v1/infer/attempt_0001/predictions.jsonl": "95129bbb8efc4be2b51625bb703d882eea845eb02f7f063a4612e0eaa312466b",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M0/rewrite/attempt_0001/rewritten.jsonl": "571b017242606d0ffea52ebf58a4e6afc2853158e2f9be82d9daf67bf4b03f86",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M0/infer/attempt_0001/evaluation/predictions.jsonl": "ea045fc1f1e71d78e61f1340a0522739d35f86cfe5c342b352262a87e146d14a",
+    "followup_rel_4lang/method_dev/artifacts/single_pass_stem_screen_v1/infer/attempt_0001/predictions.jsonl": "376ea8e29e196426e7cc6472dd24a670da808da5c7b2a4b01e8bb56b867a5f5b",
+    "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/infer/attempt_0001/predictions.jsonl": "6f7e9009db90218352fa7a3110d6132deb40d6310be4346c9c5e68a4773721eb",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M0/rewrite/attempt_0001/cost.json": "c8efe83b9bb6db27d09e1868dbf21435fbac7f70da620db0d3c2c1eeb047dc4c",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M0/infer/attempt_0001/evaluation/cost.json": "ace2df4c313f4b9dcb37d6449ec71b89ef7757616c9fd9657c251734a223bd32",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E0_M1/rewrite/attempt_0001/rewritten.jsonl": "756e7250a47f6a91ffb28011930a5d6b9a911959d74d6faf2656aa05d101a4f1",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E0_M1/infer/attempt_0001/evaluation/predictions.jsonl": "52d772c7dc1414f433925ff119f37fc877efad5380d872effbc31c908a920d5c",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E0_M1/rewrite/attempt_0001/cost.json": "35f8d5424c94859858ea356a9bb35ee5cce2ce36246998794ccc8d4fb91ab4a2",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E0_M1/infer/attempt_0001/evaluation/cost.json": "b3278ed18d2f5086fade02bb1aef42101ceb30e975819347405d73feb65b6fe1",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M1/rewrite/attempt_0001/rewritten.jsonl": "ac50d84d9418c416d487ea14e49179114f5633cb9de8ed56d3c5ae74c086dcd6",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M1/infer/attempt_0001/evaluation/predictions.jsonl": "c0f748af105be980d3c680baf27061a4a9aff0724622604cdca246fbc2e28bef",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M1/infer/attempt_0001/view/reuse_0005.jsonl": "ea045fc1f1e71d78e61f1340a0522739d35f86cfe5c342b352262a87e146d14a",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M1/infer/attempt_0001/view/reuse_0006.jsonl": "52d772c7dc1414f433925ff119f37fc877efad5380d872effbc31c908a920d5c",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M1/rewrite/attempt_0001/cost.json": "5d84496c4c946eae492c8a2022a98eca19dcb6a8f29d3041115029d50890bf73",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M1/infer/attempt_0001/evaluation/cost.json": "0357bea41f8ce168ce8c220196d103653f7a091be0856bc7488bdfbd9927b1a9",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/extraction/E1/attempt_0001/cost.json": "f44226bb2dd9eba6160716df083d3467a762de69ec2bb65aae26299c237fe019"
+  },
+  "empirical": true,
+  "development_only": true
+}

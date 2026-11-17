@@ -1,6 +1,8 @@
 # GCSA / RFA development harness
 
-다음 실험 준비 완료: [Stem extractor × matcher 2×2 프로토콜](reports/STEM_REFINEMENT_2X2_PROTOCOL_KO.md). Screen main240쌍에서 E0/E1(기존/이름 추출 강화)과 M0/M1(기존/후보 ID matcher)을 조합한다. 기존 inventory와 E0_M0 예측을 재사용하며 baseline288쌍 raw replay가 원래 결과와 일치한다. E1 출력은 두 matcher가 공유하고 동일 LM 호출·완전한 풀이 배치도 재사용한다. CPU mock·표적 테스트17개와 입력/메모리 사전 검증을 통과했으며 실제 GPU 추론은 미실행이다. `bash followup_rel_4lang/method_dev/scripts/run_stem_refinement_2x2.sh --run`으로 신규 조건만 순차 실행한다.
+2×2 실행 완료: [추출 수정·후보 ID matcher 결과](reports/STEM_REFINEMENT_2X2_RESULTS_KO.md). Screen240쌍에서 E0_M0 175정답, E1_M0 178정답(74.17%), E0_M1 171정답, E1_M1 177정답이다. 추출 수정만 적용한 조건은3쌍 회복·0쌍 회귀였지만 한 건은 이름이 같고 따옴표만 달라 의미 대응 개선으로 단정하지 않는다. 추출F1은80.50%→83.75%였고, R_stem185개와의 차이는10→7개로 줄었다. 전체 wall25.06분, 신규3조건864풀이 중648행 재사용·216행 신규 계산이다. [전체288쌍과 회복·회귀 원문](reports/STEM_REFINEMENT_2X2_CASES_KO.md)을 보존했다. 기존 inventory·baseline·실험 코드는 변경하지 않았다. 다음 후보는E1_M0이며 더 넓은 개발 cohort 실행은 아직 시작하지 않았다.
+
+실행 전 준비 기록: [Stem extractor × matcher 2×2 프로토콜](reports/STEM_REFINEMENT_2X2_PROTOCOL_KO.md). Screen main240쌍에서 E0/E1(기존/이름 추출 강화)과 M0/M1(기존/후보 ID matcher)을 조합한다. 기존 inventory와 E0_M0 예측을 재사용하며 baseline288쌍 raw replay가 원래 결과와 일치한다. E1 출력은 두 matcher가 공유하고 동일 LM 호출·완전한 풀이 배치도 재사용한다. CPU mock·표적 테스트17개와 입력/메모리 사전 검증을 통과했다. `bash followup_rel_4lang/method_dev/scripts/run_stem_refinement_2x2.sh --run`은 완료 결과를 재사용한다.
 
 밤샘 실행 완료: [잔여138문항·두 고정 방법 결과](reports/OVERNIGHT_TWO_RESULTS_KO.md). 조건별1,656쌍 실행·주 분석1,655쌍이며 전체 wall4시간17분이다. Internal1,416쌍에서 기존 O70.41%, 이미지 직접 rewrite71.75%, Stem-only74.08%였다. Stem-only−O는+3.67pp(CI[+1.20,+6.07]), 두 자동 방법 차이+2.33pp의 CI는0을 조금 포함한다. 범위를 맞춘 R_stem78.60%와는4.52pp 격차가 남는다. 전체 계산 구간은 직접87.38분·Stem-only163.56분이며 reference를 재추론하지 않았다. [전체1,656쌍 예측 표](reports/OVERNIGHT_TWO_CASES_KO.md)와 단계별 실패·비용·checksum을 보존했다. 기존에 관찰한 development set의 탐색 결과다. `.venv/bin/python followup_rel_4lang/method_dev/scripts/report_overnight_two.py`로 GPU 없이 보고서를 재생성한다.
 
