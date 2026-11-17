@@ -33,3 +33,13 @@ artifacts/search_plan_v1/*
 !artifacts/external_baselines_results_snapshot.json
 !artifacts/external_baselines_archive_manifest.json
 !artifacts/external_baselines_completed.tar.gz
+!artifacts/tt_efficiency_comparison_snapshot.json
+!artifacts/ocr_inventory_readiness.json
+!artifacts/ocr_inventory_results_snapshot.json
+!artifacts/current_experiment_summary_snapshot.json
+!artifacts/ocr_inventory_full_dev_readiness.json
+!artifacts/ocr_inventory_full_dev_results_snapshot.json
+!artifacts/ocr_8b_4b_chain_readiness.json
+!artifacts/ocr_qwen3_vl_4b_results_snapshot.json
+!artifacts/ocr_completed_8b_4b.tar.gz
+!artifacts/ocr_completed_archive_manifest.json

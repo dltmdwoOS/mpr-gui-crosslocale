@@ -1,0 +1,8 @@
+# Preserve installed Torch/NumPy/Transformers through setup_ocr.sh constraints.
+easyocr==1.7.2
+opencv-python-headless==4.11.0.86
+scikit-image==0.25.2
+python-bidi==0.6.6
+Shapely==2.0.7
+pyclipper==1.3.0.post6
+ninja==1.11.1.4

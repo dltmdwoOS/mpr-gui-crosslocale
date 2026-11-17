@@ -1,0 +1,908 @@
+{
+  "as_of_utc": "2026-11-17T13:13:31.203984+00:00",
+  "development_only": true,
+  "summary": {
+    "screen": {
+      "n": 240,
+      "items": 20,
+      "correct": {
+        "O": 162,
+        "E1_M0": 178,
+        "TRANSLATE_TEST_EN_QWEN3": 171,
+        "CLP_GUI_LM_VLM": 166
+      },
+      "versus_O": {
+        "E1_M0": {
+          "pairs": 240,
+          "items": 20,
+          "difference": 0.06666666666666667,
+          "ci95": [
+            0.0,
+            0.14166666666666666
+          ],
+          "exploratory_bootstrap_centered_p": 0.0770922907709229,
+          "recovery": 28,
+          "regression": 12
+        },
+        "TRANSLATE_TEST_EN_QWEN3": {
+          "pairs": 240,
+          "items": 20,
+          "difference": 0.0375,
+          "ci95": [
+            -0.03333333333333333,
+            0.1125
+          ],
+          "exploratory_bootstrap_centered_p": 0.33826617338266174,
+          "recovery": 25,
+          "regression": 16
+        },
+        "CLP_GUI_LM_VLM": {
+          "pairs": 240,
+          "items": 20,
+          "difference": 0.016666666666666666,
+          "ci95": [
+            -0.07083333333333333,
+            0.10833333333333334
+          ],
+          "exploratory_bootstrap_centered_p": 0.7514248575142486,
+          "recovery": 41,
+          "regression": 37
+        }
+      },
+      "E1_versus_external": {
+        "TRANSLATE_TEST_EN_QWEN3": {
+          "pairs": 240,
+          "items": 20,
+          "difference": 0.029166666666666667,
+          "ci95": [
+            -0.07083333333333333,
+            0.125
+          ],
+          "exploratory_bootstrap_centered_p": 0.5811418858114189,
+          "recovery": 31,
+          "regression": 24
+        },
+        "CLP_GUI_LM_VLM": {
+          "pairs": 240,
+          "items": 20,
+          "difference": 0.05,
+          "ci95": [
+            -0.0625,
+            0.1459374999999985
+          ],
+          "exploratory_bootstrap_centered_p": 0.36896310368963103,
+          "recovery": 47,
+          "regression": 35
+        }
+      },
+      "by_gui": {
+        "en": {
+          "n": 60,
+          "correct": {
+            "O": 45,
+            "E1_M0": 47,
+            "TRANSLATE_TEST_EN_QWEN3": 46,
+            "CLP_GUI_LM_VLM": 43
+          }
+        },
+        "zh": {
+          "n": 60,
+          "correct": {
+            "O": 44,
+            "E1_M0": 47,
+            "TRANSLATE_TEST_EN_QWEN3": 50,
+            "CLP_GUI_LM_VLM": 43
+          }
+        },
+        "th": {
+          "n": 60,
+          "correct": {
+            "O": 27,
+            "E1_M0": 41,
+            "TRANSLATE_TEST_EN_QWEN3": 31,
+            "CLP_GUI_LM_VLM": 36
+          }
+        },
+        "ru": {
+          "n": 60,
+          "correct": {
+            "O": 46,
+            "E1_M0": 43,
+            "TRANSLATE_TEST_EN_QWEN3": 44,
+            "CLP_GUI_LM_VLM": 44
+          }
+        }
+      }
+    },
+    "selection": {
+      "n": 239,
+      "items": 20,
+      "correct": {
+        "O": 171,
+        "E1_M0": 175,
+        "TRANSLATE_TEST_EN_QWEN3": 170,
+        "CLP_GUI_LM_VLM": 147
+      },
+      "versus_O": {
+        "E1_M0": {
+          "pairs": 239,
+          "items": 20,
+          "difference": 0.016736401673640166,
+          "ci95": [
+            -0.04201680672268908,
+            0.08368200836820083
+          ],
+          "exploratory_bootstrap_centered_p": 0.6348365163483651,
+          "recovery": 17,
+          "regression": 13
+        },
+        "TRANSLATE_TEST_EN_QWEN3": {
+          "pairs": 239,
+          "items": 20,
+          "difference": -0.0041841004184100415,
+          "ci95": [
+            -0.07083333333333333,
+            0.06694560669456066
+          ],
+          "exploratory_bootstrap_centered_p": 0.9345065493450655,
+          "recovery": 16,
+          "regression": 17
+        },
+        "CLP_GUI_LM_VLM": {
+          "pairs": 239,
+          "items": 20,
+          "difference": -0.100418410041841,
+          "ci95": [
+            -0.23628691983122363,
+            0.016736401673640166
+          ],
+          "exploratory_bootstrap_centered_p": 0.1304869513048695,
+          "recovery": 22,
+          "regression": 46
+        }
+      },
+      "E1_versus_external": {
+        "TRANSLATE_TEST_EN_QWEN3": {
+          "pairs": 239,
+          "items": 20,
+          "difference": 0.02092050209205021,
+          "ci95": [
+            -0.058333333333333334,
+            0.10416666666666667
+          ],
+          "exploratory_bootstrap_centered_p": 0.6321367863213678,
+          "recovery": 27,
+          "regression": 22
+        },
+        "CLP_GUI_LM_VLM": {
+          "pairs": 239,
+          "items": 20,
+          "difference": 0.11715481171548117,
+          "ci95": [
+            0.0,
+            0.24267782426778242
+          ],
+          "exploratory_bootstrap_centered_p": 0.06109389061093891,
+          "recovery": 48,
+          "regression": 20
+        }
+      },
+      "by_gui": {
+        "en": {
+          "n": 60,
+          "correct": {
+            "O": 50,
+            "E1_M0": 48,
+            "TRANSLATE_TEST_EN_QWEN3": 46,
+            "CLP_GUI_LM_VLM": 41
+          }
+        },
+        "zh": {
+          "n": 60,
+          "correct": {
+            "O": 43,
+            "E1_M0": 49,
+            "TRANSLATE_TEST_EN_QWEN3": 43,
+            "CLP_GUI_LM_VLM": 37
+          }
+        },
+        "th": {
+          "n": 60,
+          "correct": {
+            "O": 30,
+            "E1_M0": 31,
+            "TRANSLATE_TEST_EN_QWEN3": 30,
+            "CLP_GUI_LM_VLM": 27
+          }
+        },
+        "ru": {
+          "n": 59,
+          "correct": {
+            "O": 48,
+            "E1_M0": 47,
+            "TRANSLATE_TEST_EN_QWEN3": 51,
+            "CLP_GUI_LM_VLM": 42
+          }
+        }
+      }
+    },
+    "internal_evaluation": {
+      "n": 1416,
+      "items": 118,
+      "correct": {
+        "O": 997,
+        "E1_M0": 1051,
+        "TRANSLATE_TEST_EN_QWEN3": 1007,
+        "CLP_GUI_LM_VLM": 937
+      },
+      "versus_O": {
+        "E1_M0": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": 0.038135593220338986,
+          "ci95": [
+            0.013418079096045197,
+            0.062146892655367235
+          ],
+          "exploratory_bootstrap_centered_p": 0.0031996800319968005,
+          "recovery": 123,
+          "regression": 69
+        },
+        "TRANSLATE_TEST_EN_QWEN3": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": 0.007062146892655367,
+          "ci95": [
+            -0.020480225988700564,
+            0.0346045197740113
+          ],
+          "exploratory_bootstrap_centered_p": 0.6299370062993701,
+          "recovery": 116,
+          "regression": 106
+        },
+        "CLP_GUI_LM_VLM": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": -0.0423728813559322,
+          "ci95": [
+            -0.08615819209039548,
+            0.00211864406779661
+          ],
+          "exploratory_bootstrap_centered_p": 0.0627937206279372,
+          "recovery": 174,
+          "regression": 234
+        }
+      },
+      "E1_versus_external": {
+        "TRANSLATE_TEST_EN_QWEN3": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": 0.031073446327683617,
+          "ci95": [
+            -0.00211864406779661,
+            0.06497175141242938
+          ],
+          "exploratory_bootstrap_centered_p": 0.06879312068793121,
+          "recovery": 163,
+          "regression": 119
+        },
+        "CLP_GUI_LM_VLM": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": 0.08050847457627118,
+          "ci95": [
+            0.03531073446327684,
+            0.125
+          ],
+          "exploratory_bootstrap_centered_p": 0.0007999200079992001,
+          "recovery": 266,
+          "regression": 152
+        }
+      },
+      "by_gui": {
+        "en": {
+          "n": 354,
+          "correct": {
+            "O": 290,
+            "E1_M0": 290,
+            "TRANSLATE_TEST_EN_QWEN3": 273,
+            "CLP_GUI_LM_VLM": 282
+          }
+        },
+        "zh": {
+          "n": 354,
+          "correct": {
+            "O": 270,
+            "E1_M0": 275,
+            "TRANSLATE_TEST_EN_QWEN3": 275,
+            "CLP_GUI_LM_VLM": 240
+          }
+        },
+        "th": {
+          "n": 354,
+          "correct": {
+            "O": 172,
+            "E1_M0": 214,
+            "TRANSLATE_TEST_EN_QWEN3": 179,
+            "CLP_GUI_LM_VLM": 190
+          }
+        },
+        "ru": {
+          "n": 354,
+          "correct": {
+            "O": 265,
+            "E1_M0": 272,
+            "TRANSLATE_TEST_EN_QWEN3": 280,
+            "CLP_GUI_LM_VLM": 225
+          }
+        }
+      }
+    },
+    "combined": {
+      "n": 1895,
+      "items": 158,
+      "correct": {
+        "CLP_GUI_LM_VLM": 1250,
+        "E1_M0": 1404,
+        "O": 1330,
+        "TRANSLATE_TEST_EN_QWEN3": 1348
+      },
+      "versus_O": {
+        "CLP_GUI_LM_VLM": {
+          "pairs": 1895,
+          "items": 158,
+          "difference": -0.04221635883905013,
+          "ci95": [
+            -0.0812664907651715,
+            -0.004221635883905013
+          ],
+          "exploratory_bootstrap_centered_p": 0.0321967803219678,
+          "recovery": 237,
+          "regression": 317
+        },
+        "E1_M0": {
+          "pairs": 1895,
+          "items": 158,
+          "difference": 0.03905013192612137,
+          "ci95": [
+            0.016904161444012872,
+            0.0617740232312566
+          ],
+          "exploratory_bootstrap_centered_p": 0.0006999300069993001,
+          "recovery": 168,
+          "regression": 94
+        },
+        "TRANSLATE_TEST_EN_QWEN3": {
+          "pairs": 1895,
+          "items": 158,
+          "difference": 0.00949868073878628,
+          "ci95": [
+            -0.015303430079155673,
+            0.03382061743130905
+          ],
+          "exploratory_bootstrap_centered_p": 0.4510548945105489,
+          "recovery": 157,
+          "regression": 139
+        }
+      },
+      "E1_versus_external": {
+        "TRANSLATE_TEST_EN_QWEN3": {
+          "pairs": 1895,
+          "items": 158,
+          "difference": 0.02955145118733509,
+          "ci95": [
+            0.0,
+            0.06065400843881857
+          ],
+          "exploratory_bootstrap_centered_p": 0.055394460553944605,
+          "recovery": 221,
+          "regression": 165
+        },
+        "CLP_GUI_LM_VLM": {
+          "pairs": 1895,
+          "items": 158,
+          "difference": 0.0812664907651715,
+          "ci95": [
+            0.043248945147679324,
+            0.12091812808825546
+          ],
+          "exploratory_bootstrap_centered_p": 9.999000099990002e-05,
+          "recovery": 361,
+          "regression": 207
+        }
+      },
+      "by_gui": {
+        "en": {
+          "n": 474,
+          "correct": {
+            "CLP_GUI_LM_VLM": 366,
+            "E1_M0": 385,
+            "O": 385,
+            "TRANSLATE_TEST_EN_QWEN3": 365
+          }
+        },
+        "zh": {
+          "n": 474,
+          "correct": {
+            "CLP_GUI_LM_VLM": 320,
+            "E1_M0": 371,
+            "O": 357,
+            "TRANSLATE_TEST_EN_QWEN3": 368
+          }
+        },
+        "th": {
+          "n": 474,
+          "correct": {
+            "CLP_GUI_LM_VLM": 253,
+            "E1_M0": 286,
+            "O": 229,
+            "TRANSLATE_TEST_EN_QWEN3": 240
+          }
+        },
+        "ru": {
+          "n": 473,
+          "correct": {
+            "CLP_GUI_LM_VLM": 311,
+            "E1_M0": 362,
+            "O": 359,
+            "TRANSLATE_TEST_EN_QWEN3": 375
+          }
+        }
+      }
+    }
+  },
+  "costs": {
+    "screen": {
+      "TRANSLATE_TEST_EN_QWEN3": {
+        "primary_pairs": 240,
+        "items": 20,
+        "source_mcqs": 80,
+        "LM_seconds": 142.90743041876704,
+        "answer_seconds": 162.38931951268265,
+        "total_seconds": 305.29674993144965,
+        "seconds_per_pair": 1.2720697913810401,
+        "inference_new_wall": {
+          "wall_seconds": 234.14133714977652,
+          "execution_mode": "gpu",
+          "reused_batches": 0,
+          "reused_rows": 0,
+          "new_batches": 96,
+          "conflicting_cache_keys": 0
+        },
+        "shared_transform_wall_all_sources": 970.914477811195
+      },
+      "CLP_GUI_LM_VLM": {
+        "primary_pairs": 240,
+        "items": 20,
+        "source_mcqs": 80,
+        "LM_seconds": 1004.5896679768339,
+        "answer_seconds": 1720.0582295882825,
+        "total_seconds": 2724.647897565116,
+        "seconds_per_pair": 11.352699573187984,
+        "inference_new_wall": {
+          "wall_seconds": 2283.163904803805,
+          "new_rows": 288,
+          "reused_rows": 0,
+          "conflicting_keys": 0
+        },
+        "shared_transform_wall_all_sources": 7378.895168908872
+      }
+    },
+    "selection": {
+      "TRANSLATE_TEST_EN_QWEN3": {
+        "primary_pairs": 239,
+        "items": 20,
+        "source_mcqs": 80,
+        "LM_seconds": 104.94248666521162,
+        "answer_seconds": 150.8232300716142,
+        "total_seconds": 255.76571673682582,
+        "seconds_per_pair": 1.0701494424134972,
+        "inference_new_wall": {
+          "wall_seconds": 181.39127460774034,
+          "execution_mode": "gpu",
+          "reused_batches": 0,
+          "reused_rows": 0,
+          "new_batches": 80,
+          "conflicting_cache_keys": 0
+        },
+        "shared_transform_wall_all_sources": 970.914477811195
+      },
+      "CLP_GUI_LM_VLM": {
+        "primary_pairs": 239,
+        "items": 20,
+        "source_mcqs": 80,
+        "LM_seconds": 842.9261664971709,
+        "answer_seconds": 1378.479093953967,
+        "total_seconds": 2221.405260451138,
+        "seconds_per_pair": 9.294582679711874,
+        "inference_new_wall": {
+          "wall_seconds": 1421.3843329483643,
+          "new_rows": 240,
+          "reused_rows": 0,
+          "conflicting_keys": 0
+        },
+        "shared_transform_wall_all_sources": 7378.895168908872
+      }
+    },
+    "internal_evaluation": {
+      "TRANSLATE_TEST_EN_QWEN3": {
+        "primary_pairs": 1416,
+        "items": 118,
+        "source_mcqs": 472,
+        "LM_seconds": 672.1102874008939,
+        "answer_seconds": 692.9362411424518,
+        "total_seconds": 1365.0465285433456,
+        "seconds_per_pair": 0.9640159099882384,
+        "inference_new_wall": {
+          "wall_seconds": 728.5262677595019,
+          "execution_mode": "gpu",
+          "reused_batches": 0,
+          "reused_rows": 0,
+          "new_batches": 472,
+          "conflicting_cache_keys": 0
+        },
+        "shared_transform_wall_all_sources": 970.914477811195
+      },
+      "CLP_GUI_LM_VLM": {
+        "primary_pairs": 1416,
+        "items": 118,
+        "source_mcqs": 472,
+        "LM_seconds": 4989.856260923669,
+        "answer_seconds": 6272.216221122071,
+        "total_seconds": 11262.07248204574,
+        "seconds_per_pair": 7.953441018393884,
+        "inference_new_wall": {
+          "wall_seconds": 6304.352873038501,
+          "new_rows": 1416,
+          "reused_rows": 0,
+          "conflicting_keys": 0
+        },
+        "shared_transform_wall_all_sources": 7378.895168908872
+      }
+    }
+  },
+  "quality": {
+    "screen": {
+      "TRANSLATE_TEST_EN_QWEN3": {
+        "source_status": {
+          "success": 60,
+          "english_identity": 20
+        },
+        "LM_cap_hits_unique_sources": 0,
+        "invalid_final_label_pairs": 0,
+        "solver_cap_hits_pairs": 0,
+        "generated_output_tokens": 480,
+        "digit_change_pairs": 0,
+        "duplicate_option_pairs": 0,
+        "fallback_pairs": 0,
+        "surface_direction_or_negation_cue_flags": 15,
+        "unchanged_MCQs_label_changes": 0
+      },
+      "CLP_GUI_LM_VLM": {
+        "source_status": {
+          "success": 80
+        },
+        "LM_cap_hits_unique_sources": 51,
+        "invalid_final_label_pairs": 46,
+        "solver_cap_hits_pairs": 43,
+        "generated_output_tokens": 73973
+      }
+    },
+    "selection": {
+      "TRANSLATE_TEST_EN_QWEN3": {
+        "source_status": {
+          "success": 60,
+          "english_identity": 20
+        },
+        "LM_cap_hits_unique_sources": 0,
+        "invalid_final_label_pairs": 0,
+        "solver_cap_hits_pairs": 0,
+        "generated_output_tokens": 478,
+        "digit_change_pairs": 3,
+        "duplicate_option_pairs": 0,
+        "fallback_pairs": 0,
+        "surface_direction_or_negation_cue_flags": 12,
+        "unchanged_MCQs_label_changes": 0
+      },
+      "CLP_GUI_LM_VLM": {
+        "source_status": {
+          "success": 80
+        },
+        "LM_cap_hits_unique_sources": 49,
+        "invalid_final_label_pairs": 66,
+        "solver_cap_hits_pairs": 57,
+        "generated_output_tokens": 80048
+      }
+    },
+    "internal_evaluation": {
+      "TRANSLATE_TEST_EN_QWEN3": {
+        "source_status": {
+          "success": 354,
+          "english_identity": 118
+        },
+        "LM_cap_hits_unique_sources": 0,
+        "invalid_final_label_pairs": 0,
+        "solver_cap_hits_pairs": 0,
+        "generated_output_tokens": 2832,
+        "digit_change_pairs": 6,
+        "duplicate_option_pairs": 0,
+        "fallback_pairs": 0,
+        "surface_direction_or_negation_cue_flags": 84,
+        "unchanged_MCQs_label_changes": 0
+      },
+      "CLP_GUI_LM_VLM": {
+        "source_status": {
+          "success": 472
+        },
+        "LM_cap_hits_unique_sources": 259,
+        "invalid_final_label_pairs": 284,
+        "solver_cap_hits_pairs": 239,
+        "generated_output_tokens": 446006
+      }
+    }
+  },
+  "config": {
+    "version": "external-translate-test-clp-gui-v1",
+    "legacy_commit": "cdea4d1437f383f99f6b8dc63ecff38c364eb4d0",
+    "seed": 42,
+    "dtype": "bfloat16",
+    "attn_implementation": "sdpa",
+    "device_map": "cuda:0",
+    "method_batch_size": 1,
+    "min_free_gpu_gib": 40,
+    "max_input_tokens": 4096,
+    "min_pixels": 262144,
+    "max_pixels": 2097152,
+    "processor_use_fast": true,
+    "patch_embed_memory_format": "channels_last_3d",
+    "enable_thinking_text": false,
+    "output_tokens": {
+      "translate": 512,
+      "translate_repair": 512,
+      "alignment": 512
+    },
+    "inventory_structure_repairs": 1,
+    "translation_structure_repairs": 1,
+    "full_semantic_repairs": 1,
+    "selective_semantic_repairs": 0,
+    "generation": {
+      "do_sample": false,
+      "num_beams": 1,
+      "use_cache": true,
+      "logits_to_keep": 1
+    },
+    "models": {
+      "text": {
+        "model_id": "Qwen/Qwen3-8B",
+        "revision": "47719a242beab8f9aecc40ce3928b034dd5dd559",
+        "family": "text",
+        "path": "/home/jovyan/seungjae/.cache/huggingface/hub/models--Qwen--Qwen3-8B/snapshots/47719a242beab8f9aecc40ce3928b034dd5dd559"
+      },
+      "editor_vlm": {
+        "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+        "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+        "family": "qwen3_vl",
+        "path": "/home/jovyan/seungjae/.cache/huggingface/hub/models--Qwen--Qwen3-VL-8B-Instruct/snapshots/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b"
+      }
+    },
+    "downstream": {
+      "model_config": {
+        "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+        "model_family": "qwen3_vl",
+        "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+        "dtype": "bfloat16",
+        "quantization": null,
+        "attn_implementation": "sdpa",
+        "device_strategy": "cuda:0",
+        "patch_embed_memory_format": "channels_last_3d",
+        "processor_profile": "qwen_4090_2mp",
+        "min_pixels": 262144,
+        "max_pixels": 2097152,
+        "prompt_profile": "mpr_label_only_v1",
+        "generation": {
+          "do_sample": false,
+          "num_beams": 1,
+          "max_new_tokens": 2,
+          "temperature": null
+        }
+      },
+      "system_prompt": "You are a GUI reasoning assistant. Inspect the GUI image and answer the multiple-choice question. Respond with exactly one label: A, B, C, or D.",
+      "batch_size": 3,
+      "max_input_tokens": 4096,
+      "score_labels": true,
+      "processor_use_fast": true
+    },
+    "historical_baseline_contract_sha256": "99d41e549b1a0f9372afa60930fc993c277cdf1a1f7546d9a83cb885150bcaa5",
+    "legacy_deviations": [
+      "Inventory model: evaluation Qwen3-VL instead of historical Qwen2.5-VL",
+      "Method batch 1 instead of historical translator batch 2",
+      "Explicit 4096 input-token limit; stop without truncation",
+      "Failed full localization falls back to O for ITT",
+      "Selective/extraction repair prompts are explicit new adaptations; no historical selective equivalent"
+    ],
+    "cache_policy": "fresh namespace; no v1 inventories/translations imported",
+    "scope": "same 158-item development cohort plus legacy pilot; fixed cohorts; all six conditions, no winner filtering",
+    "conditions": [
+      "TS_FULL_GUI",
+      "TS_FULL_TXT",
+      "TS_SEL_GUI_AUTO",
+      "TS_SEL_TXT_AUTO",
+      "TS_SEL_GUI_ORACLE",
+      "TS_SEL_TXT_ORACLE",
+      "TS_QSEL_OFULL_GUI_AUTO",
+      "TS_QSEL_OFULL_TXT_AUTO"
+    ],
+    "hybrid_control": {
+      "stem_extraction_input": "question_stem only; no options",
+      "option_translation": "reuse identical Full MCQ translation A-D; discard generated stem",
+      "stem_alignment_context": "original complete MCQ; options are context only",
+      "fallback": "independent stem and options components",
+      "shared_full_calls": "same backend cache key; no additional full-localization calls when matching Full condition already ran",
+      "interpretation": "pipeline-level control; option context language and extraction prompt scope both change"
+    }
+  },
+  "clp_profile": {
+    "model_config": {
+      "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+      "model_family": "qwen3_vl",
+      "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+      "dtype": "bfloat16",
+      "quantization": null,
+      "attn_implementation": "sdpa",
+      "device_strategy": "cuda:0",
+      "patch_embed_memory_format": "channels_last_3d",
+      "processor_profile": "qwen_4090_2mp",
+      "min_pixels": 262144,
+      "max_pixels": 2097152,
+      "prompt_profile": "external_clp_dialogue",
+      "generation": {
+        "do_sample": false,
+        "num_beams": 1,
+        "max_new_tokens": 512,
+        "temperature": null,
+        "use_cache": true,
+        "logits_to_keep": 1
+      }
+    },
+    "system_prompt": "You are a GUI reasoning assistant. Inspect the GUI image and solve the multiple-choice question in the dialogue. The previous text-only response is an interpretation, not verified visual evidence. Reason in English and finish with exactly one line in the form Answer: A, Answer: B, Answer: C, or Answer: D.",
+    "batch_size": 3,
+    "max_input_tokens": 4096,
+    "score_labels": false,
+    "processor_use_fast": true
+  },
+  "adaptations": {
+    "version": "external-translate-test-clp-gui-v1",
+    "scope": "Same 158-item development cohort; 1895 main primary pairs, 1944 execution pairs including legacy companions",
+    "seed": 42,
+    "output_tokens": {
+      "translate": 512,
+      "translate_repair": 512,
+      "alignment": 512
+    },
+    "solver_max_new_tokens": 512,
+    "solver_batch_size": 3,
+    "translation_backbone": "Qwen/Qwen3-8B",
+    "clp_alignment_backbone": "Qwen/Qwen3-8B",
+    "evaluation_backbone": "Qwen/Qwen3-VL-8B-Instruct",
+    "translation_target_language": "en",
+    "translation_english_source_policy": "identity",
+    "translation_failure_policy": "one structural repair then original-MCQ fallback; retain all cases",
+    "clp_alignment_failure_policy": "retain original MCQ and explicit missing-alignment marker in solver dialogue",
+    "clp_solver_policy": "two-turn dialogue; stepwise English reasoning then final Answer: A-D; no label-only extraction call",
+    "decoding": "greedy for both methods; differs from original CLP stochastic temperatures 1.0/0.2",
+    "api_policy": "No paid API or new model download; fixed local LM replaces Google Translate/GPT-3.5",
+    "tuning_policy": "Frozen before first GPU smoke; no accuracy-based prompt selection",
+    "sources": [
+      {
+        "method": "Translate-Test",
+        "paper": "https://aclanthology.org/2025.findings-naacl.144/",
+        "repo": "https://github.com/yueqis/Multilingual_Visual_Reasoning",
+        "commit": "c326ad0eeb94c7a7eda76dff57225ad707451bf5"
+      },
+      {
+        "method": "CLP",
+        "paper": "https://aclanthology.org/2023.emnlp-main.163/",
+        "repo": "https://github.com/LightChen233/cross-lingual-prompting",
+        "commit": "affd839ba89745cf181a405395a1b410c41871d5"
+      }
+    ]
+  },
+  "contract_sha256": "85824abbabc6adb8f768ecb3b55429020b97847a99db82b6a9abf1d0b1bf6d1d",
+  "complete": {
+    "execution_mode": "gpu",
+    "smoke": false,
+    "contract_sha256": "85824abbabc6adb8f768ecb3b55429020b97847a99db82b6a9abf1d0b1bf6d1d",
+    "latest_invocation_wall_seconds": 19534.13597266469
+  },
+  "source_and_raw_sha256": {
+    "01_code/src/mpr_crosslocale/inference/prompts.py": "5db5085c28e4f7b4495992008bdebe30f47f4809c307bacd47ffd22c91d73ba9",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/__init__.py": "7a0223f23ff564adb6991ec837a552873bdce9f0d47c98e138980294c4c18584",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/context_router.py": "f23fa1f72436f27a8110cdfd4f129313144ee4da73945a941308bbf2504bc28c",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/inventory.py": "0d252555796335baa01ce9f86cb7939afd9ceef21dcbf39057342bb503c8e81f",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/matcher.py": "5abc6c1181d7619e2951003e1229031ec6b7ee4c85f479eeea874bdea5d72a4c",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/pipeline.py": "0c59c661862b2ba753f91e67c2826f08bc1c3e7c65466375d56fcc75b5f11e3a",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/referent_extractor.py": "661b6997f78a132efa2b9cdc372462ad4b6b7b3d712a977aa40bb9c518ca893d",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/rewriter.py": "ae8d2e351b79aec7fe2fe4cf5b6506707d79b75efe68d6f0ae4e1a7405b3d4d1",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/schemas.py": "7ad47d91e16f2a117d90e8fddfe9d8404779172f755a9ec8aedc7dd89823cd94",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/search.py": "762243aeb40a51772bbd7334e9a5d0f611b64a03b1b146988a99a70dbd7cb796",
+    "01_code/src/mpr_crosslocale/methods/selective_alignment/validation.py": "fe00efd9f2bbbb537b183f6c181fc508ab57754fd69554c2bac6b6155d58019c",
+    "01_code/src/mpr_crosslocale/models/qwen25vl.py": "76485637ec7e2c908f0b00f372c111f5c70ccca275d8484d7ca4f49f17c14d0a",
+    "01_code/src/mpr_crosslocale/models/qwen3_memory.py": "fe00351f368cdaca85418f7d0f3d03b638cffd4c61a86258a875e646ea66c4b6",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/COMPLETE.json": "99394f14143b4fb1ad043fae83d83a296babba3836497e544479b0f084fc57f6",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/alignment/attempt_0001/COMPLETE": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/alignment/attempt_0001/cost.json": "d4a37516ffa466b5692fa9b3336bed3ce6c254c24eb4944f377cffee2117cb63",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/alignment/attempt_0001/transformations.jsonl": "fc43ac286fbaa162f2dcaf4687c9c946f061a5c13ce8ec6df1ab9e5131478a73",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/contract.json": "d2ab6425e1f5d5d218d66749eda8aaefd645ca2cc839400a6864e7a16dbb6db0",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/comparison_references.jsonl": "61cd1f62ac095fb2e88b87215874d0ed2d692f5c13e77e362a83dc3ad51febeb",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_clp/attempt_0001/COMPLETE": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_clp/attempt_0001/environment.json": "307cd784fc61b23ba498512395bbac3d758194a68379d9dac26b566c9b0f8923",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_clp/attempt_0001/evaluation/COMPLETE": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_clp/attempt_0001/evaluation/contract.json": "1eb274850cb2d1e7c0d8e9626f509d0a16a8a7c05839efbbcb67d4e5a874bfca",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_clp/attempt_0001/evaluation/cost.json": "086c48c438b35aed4a4a30350cabebf953d0cd07b7fd1cf64ccff1433f83cfff",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_clp/attempt_0001/evaluation/predictions.jsonl": "3e3a2e1fd058ea22dae559c32c550f9ace16a1a311f2db1906f5578fd6012e65",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_tt/attempt_0001/COMPLETE": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_tt/attempt_0001/environment.json": "307cd784fc61b23ba498512395bbac3d758194a68379d9dac26b566c9b0f8923",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_tt/attempt_0001/evaluation/COMPLETE": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_tt/attempt_0001/evaluation/contract.json": "029462065e1baf08545d815ae36c2c870f3bf8c3b5c82b4faf15cdb776924c1b",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_tt/attempt_0001/evaluation/cost.json": "cefc571d8379e6a32cca0c81b0523530fb7361677f184a34b63a274760d0b38c",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_tt/attempt_0001/evaluation/predictions.jsonl": "d29b2683d66894aba63e8bd0d65c165d3c44f63c11ab487476692e964b628330",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_tt/attempt_0001/view/contract.json": "b396c2e4c3adcabd8111dc3766cc920a3d565fb55b12bf4b11dfc5f9163da3a6",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_tt/attempt_0001/view/inputs.jsonl": "1003321a9b8775e17ee8122cfd2f6dc6f0c474679cf45b553472461b1650302d",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_tt/attempt_0001/view/rewrite/rewritten.jsonl": "399721df2b25875b9c654f59efa4ebe25b1a476abf1ce4d4c4105f44db6e14ac",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/inputs.jsonl": "1003321a9b8775e17ee8122cfd2f6dc6f0c474679cf45b553472461b1650302d",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/comparison_references.jsonl": "26ea59b46495d64256fd1934acbca94c2899a0183436f1343d6db98c0b90a814",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_clp/attempt_0001/COMPLETE": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_clp/attempt_0001/environment.json": "307cd784fc61b23ba498512395bbac3d758194a68379d9dac26b566c9b0f8923",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_clp/attempt_0001/evaluation/COMPLETE": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_clp/attempt_0001/evaluation/contract.json": "8337f8ceb669f11c038a7547a054119bc2d4d3279cf5a1c675e5109d1b002f97",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_clp/attempt_0001/evaluation/cost.json": "550e501591f6ac6e22f34dc18fb08a8ac4c0c6356a141dcd158d4b3ff0fe98f0",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_clp/attempt_0001/evaluation/predictions.jsonl": "2b189b5353526374491c8336190d73bb7c61fb49728c13bd3bba3b278f6b3445",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_tt/attempt_0001/COMPLETE": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_tt/attempt_0001/environment.json": "307cd784fc61b23ba498512395bbac3d758194a68379d9dac26b566c9b0f8923",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_tt/attempt_0001/evaluation/COMPLETE": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_tt/attempt_0001/evaluation/contract.json": "0db64e7a63d5c8e8923a75737e358bcb1e662b354ceaf02715958993fea0c973",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_tt/attempt_0001/evaluation/cost.json": "2c99e29a0a65c804c59d9e278e3b91f2af071ae6bdc8ef719ab1f652bcae05a5",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_tt/attempt_0001/evaluation/predictions.jsonl": "def8757113843c560b926b8a997acee8c3a84d147a45f0d1b9694e894578d27a",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_tt/attempt_0001/view/contract.json": "69380c80ef54202826b30e32210da3ad973147351c67797cde3f5f6d9952e4f0",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_tt/attempt_0001/view/inputs.jsonl": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_tt/attempt_0001/view/rewrite/rewritten.jsonl": "ea3ef9b2962f02c08662b821972f7a64fb4dce2361a5812e9fab34f67f934471",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/inputs.jsonl": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/comparison_references.jsonl": "c15dff71e1ef3adbcc1db3080d6a089d9ef4a7234c3d59076e011d20ef940e4b",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_clp/attempt_0001/COMPLETE": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_clp/attempt_0001/environment.json": "307cd784fc61b23ba498512395bbac3d758194a68379d9dac26b566c9b0f8923",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_clp/attempt_0001/evaluation/COMPLETE": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_clp/attempt_0001/evaluation/contract.json": "d3354e5e9d59f6317914dce8317c31cce8de4c14296a93dbd51a4571552a94ed",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_clp/attempt_0001/evaluation/cost.json": "486832228f630220c74c1ac32f71eb3d54759072c6f866bc6756aec394036c76",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_clp/attempt_0001/evaluation/predictions.jsonl": "619a6d2124b60e313c30411737bdcd2996ccc6f2454b56877cb02c59f6fbe90c",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_tt/attempt_0001/COMPLETE": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_tt/attempt_0001/environment.json": "307cd784fc61b23ba498512395bbac3d758194a68379d9dac26b566c9b0f8923",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_tt/attempt_0001/evaluation/COMPLETE": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_tt/attempt_0001/evaluation/contract.json": "b3d10ef9491d3d3b30b29ccfad6eb205c6d374124cf1faae85f5392fe3440d22",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_tt/attempt_0001/evaluation/cost.json": "3686314194236e24142e943e235dd5a7198738d0e050ad147ed07706b5ff074c",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_tt/attempt_0001/evaluation/predictions.jsonl": "4429b9b9ba66589b6be70a3bb74b7b6caf6b3a56a11dbdf14f7d13bf1a1ea68d",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_tt/attempt_0001/view/contract.json": "e8f94601cd3cb7da196d838efc4c5451b77eee303359e89f7a450a40cd56d766",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_tt/attempt_0001/view/inputs.jsonl": "7ab2900470258d91f877f3e309953ea24a8289830293bc408fbc57396a33be9a",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_tt/attempt_0001/view/rewrite/rewritten.jsonl": "eedfc6a9dad1ab0c1fcf94a783b47ff61f4645e0c188f0aca2fd395a43fcf961",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/inputs.jsonl": "7ab2900470258d91f877f3e309953ea24a8289830293bc408fbc57396a33be9a",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/translate/attempt_0002/COMPLETE": "37a40f08d8548dba289b9b0bb35bcf63b359f6d37ee86044ebc6b6da080b9ec1",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/translate/attempt_0002/cost.json": "1993edfad4df3f4226016976bf643557528d444ed138af5a193b18d4226ba61b",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/translate/attempt_0002/transformations.jsonl": "6a27c2146cdd4142ae1f94ebd183b0a10c9356766bb4dc19e70071891854a5e5",
+    "followup_rel_4lang/method_dev/configs/external_baselines_sources.json": "2f65ad337ccfb0d7454f22fd2472155e2937cfda22b4ea5ddb0885852a31e703",
+    "followup_rel_4lang/method_dev/configs/external_baselines_v1.json": "fab52c83313518e40850298b107003c6dc65ae97db1b03503895040d740c6623",
+    "followup_rel_4lang/method_dev/direct_selective_rewrite.py": "24614a5f21e41c0d00780e687ecb5976aff41c195d0ff20a44a77e0b2d14c8dc",
+    "followup_rel_4lang/method_dev/exact_batch_reuse.py": "a3f21f45c5569ab2aaa35282b32995dc31bec7f67ca4add27d337726197f8efc",
+    "followup_rel_4lang/method_dev/external_baselines.py": "f27a623ed3079422737a610ae59ab8f76ccce2d255b89bb0e8e560aa67483222",
+    "followup_rel_4lang/method_dev/reports/EXTERNAL_BASELINES_PROTOCOL_KO.md": "0174db725a1baad8713318e850c5fc58d101a375b876783206fe4f08d46b411c",
+    "followup_rel_4lang/method_dev/scripts/report_external_baselines.py": "40175058f4342482e127de32ad363d641d7c7d6b1deb477008282f2b22af1bd2",
+    "followup_rel_4lang/method_dev/scripts/run_external_baselines.py": "bf84c43450c548160d7f9d927e1e7b4953723ad33b6821164a3334efe5ccffb2",
+    "followup_rel_4lang/method_dev/scripts/run_overnight_two.py": "fbddf468d6f477ffc58735ba04182e158c79eb6452f4281da774a0285614eebe",
+    "followup_rel_4lang/method_dev/scripts/run_source_copy_rewrite.py": "fab96335858dc509599326f0e1ebc0dd707d7c15b14fbb7e324823c33609557e",
+    "followup_rel_4lang/method_dev/scripts/run_stem_only_gui.py": "d8987b4d21b0bc137a1ff3c40c2571e0f6820388220f4e53676dfe71c66c3d27",
+    "followup_rel_4lang/method_dev/scripts/run_stem_refinement_2x2.py": "6ebdfdb9fbbc4059d0e06dfa34860a2a1823168c1ad33668956c30295dc73752",
+    "followup_rel_4lang/method_dev/scripts/run_two_stage_v2.py": "2ee1d4b3355c1d7c585c9f8243869f651fd48724c9b3065b170e2e738878ca70",
+    "followup_rel_4lang/method_dev/source_copy_rewrite.py": "3954698e282ae8f0332eb9cf084609afa08974e3056350fbd25a577db068ad9a",
+    "followup_rel_4lang/method_dev/two_stage_v2/backend.py": "e3d3e5f4c73b6a4e3d72e3e83b72682304d25282e9f3235171a7b34556e9ffce",
+    "followup_rel_4lang/method_dev/visual_rewrite_backend.py": "93bcf29fd81da1ed7a7e231e0f5367d2066250a9c6b57620bbf4a2dfd3c3d0e3"
+  },
+  "interpretation": "GUI task adaptations, not original-paper reproduction. CLP has longer solver budget; comparison is pipeline-level. No independent confirmatory claim."
+}

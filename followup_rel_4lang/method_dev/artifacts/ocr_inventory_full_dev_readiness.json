@@ -1,0 +1,50 @@
+{
+  "as_of_utc": "2026-11-17T14:06:17.199516+00:00",
+  "ready": true,
+  "real_inference_started": false,
+  "contract_sha256": "5053d49e6588f88f8161db05f4d3a6027705e5fab850979a64dd416ea76d66bb",
+  "counts": {
+    "selection": {
+      "executed_pairs": 240,
+      "primary_pairs": 239,
+      "items": 20,
+      "images": 80
+    },
+    "internal_evaluation": {
+      "executed_pairs": 1416,
+      "primary_pairs": 1416,
+      "items": 118,
+      "images": 472
+    }
+  },
+  "source_screen_reused": true,
+  "screen_primary_pairs": 240,
+  "new_executed_pairs": 1656,
+  "new_primary_pairs": 1655,
+  "full_primary_pairs_after_completion": 1895,
+  "ocr_images_new": 552,
+  "frozen_screen_config_reused": true,
+  "existing_E1_extraction_reused": true,
+  "targeted_tests_passed": 25,
+  "full_remaining_mock_passed": true,
+  "completed_mock_resume_passed": true,
+  "real_screen_report_check": {
+    "n": 240,
+    "O": 162,
+    "VLM_E1_M0": 178,
+    "OCR_E1_M0": 179
+  },
+  "cpu_threads": 3,
+  "ocr_device": "cpu",
+  "matching_batch_size": 1,
+  "solver_batch_size": 3,
+  "screen_frozen_sources_verified": true,
+  "model_weights_sha256": {
+    "craft_mlt_25k.pth": "4a5efbfb48b4081100544e75e1e2b57f8de3d84f213004b14b85fd4b3748db17",
+    "cyrillic_g2.pth": "48d0f3b58f28aa64651ab1032cc2d498c4de25135829668e87c14e7a07529f29",
+    "english_g2.pth": "e2272681d9d67a04e2dff396b6e95077bc19001f8f6d3593c307b9852e1c29e8",
+    "thai.pth": "3ebbb9321b9c7c694e169cd23cc37f3c0bd2a160f5b539602bbef80e663e0a17",
+    "zh_sim_g2.pth": "cb678fdef09d651e7763ca551ad790dc89f0b2e3d2a640484330e338fb574c7a"
+  },
+  "command": "nohup bash followup_rel_4lang/method_dev/scripts/run_ocr_remaining.sh --run > followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1.log 2>&1 < /dev/null &"
+}

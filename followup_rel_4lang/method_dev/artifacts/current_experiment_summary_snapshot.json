@@ -1,0 +1,5798 @@
+{
+  "as_of_utc": "2026-11-17T22:16:05.556265+00:00",
+  "development_only": true,
+  "summary": {
+    "screen": {
+      "n": 240,
+      "items": 20,
+      "correct": {
+        "O": 162,
+        "TT": 171,
+        "CLP": 166,
+        "DIRECT_COPY": 170,
+        "E1_M0": 178
+      },
+      "contrasts": {
+        "TT_minus_O": {
+          "pairs": 240,
+          "items": 20,
+          "difference": 0.0375,
+          "ci95": [
+            -0.03333333333333333,
+            0.1125
+          ],
+          "exploratory_bootstrap_centered_p": 0.33826617338266174,
+          "recovery": 25,
+          "regression": 16
+        },
+        "CLP_minus_O": {
+          "pairs": 240,
+          "items": 20,
+          "difference": 0.016666666666666666,
+          "ci95": [
+            -0.07083333333333333,
+            0.10833333333333334
+          ],
+          "exploratory_bootstrap_centered_p": 0.7514248575142486,
+          "recovery": 41,
+          "regression": 37
+        },
+        "DIRECT_COPY_minus_O": {
+          "pairs": 240,
+          "items": 20,
+          "difference": 0.03333333333333333,
+          "ci95": [
+            0.004166666666666667,
+            0.06666666666666667
+          ],
+          "exploratory_bootstrap_centered_p": 0.0484951504849515,
+          "recovery": 15,
+          "regression": 7
+        },
+        "E1_M0_minus_O": {
+          "pairs": 240,
+          "items": 20,
+          "difference": 0.06666666666666667,
+          "ci95": [
+            0.0,
+            0.14166666666666666
+          ],
+          "exploratory_bootstrap_centered_p": 0.0770922907709229,
+          "recovery": 28,
+          "regression": 12
+        },
+        "DIRECT_COPY_minus_TT": {
+          "pairs": 240,
+          "items": 20,
+          "difference": -0.004166666666666667,
+          "ci95": [
+            -0.075,
+            0.06666666666666667
+          ],
+          "exploratory_bootstrap_centered_p": 0.9542045795420458,
+          "recovery": 22,
+          "regression": 23
+        },
+        "E1_M0_minus_TT": {
+          "pairs": 240,
+          "items": 20,
+          "difference": 0.029166666666666667,
+          "ci95": [
+            -0.07083333333333333,
+            0.125
+          ],
+          "exploratory_bootstrap_centered_p": 0.5811418858114189,
+          "recovery": 31,
+          "regression": 24
+        },
+        "E1_M0_minus_CLP": {
+          "pairs": 240,
+          "items": 20,
+          "difference": 0.05,
+          "ci95": [
+            -0.0625,
+            0.1459374999999985
+          ],
+          "exploratory_bootstrap_centered_p": 0.36896310368963103,
+          "recovery": 47,
+          "regression": 35
+        },
+        "E1_M0_minus_DIRECT_COPY": {
+          "pairs": 240,
+          "items": 20,
+          "difference": 0.03333333333333333,
+          "ci95": [
+            -0.0375,
+            0.1125
+          ],
+          "exploratory_bootstrap_centered_p": 0.4012598740125987,
+          "recovery": 25,
+          "regression": 17
+        }
+      },
+      "by_gui": {
+        "en": {
+          "n": 60,
+          "correct": {
+            "O": 45,
+            "TT": 46,
+            "CLP": 43,
+            "DIRECT_COPY": 45,
+            "E1_M0": 47
+          }
+        },
+        "zh": {
+          "n": 60,
+          "correct": {
+            "O": 44,
+            "TT": 50,
+            "CLP": 43,
+            "DIRECT_COPY": 45,
+            "E1_M0": 47
+          }
+        },
+        "th": {
+          "n": 60,
+          "correct": {
+            "O": 27,
+            "TT": 31,
+            "CLP": 36,
+            "DIRECT_COPY": 34,
+            "E1_M0": 41
+          }
+        },
+        "ru": {
+          "n": 60,
+          "correct": {
+            "O": 46,
+            "TT": 44,
+            "CLP": 44,
+            "DIRECT_COPY": 46,
+            "E1_M0": 43
+          }
+        }
+      }
+    },
+    "selection": {
+      "n": 239,
+      "items": 20,
+      "correct": {
+        "O": 171,
+        "TT": 170,
+        "CLP": 147,
+        "DIRECT_COPY": 173,
+        "E1_M0": 175
+      },
+      "contrasts": {
+        "TT_minus_O": {
+          "pairs": 239,
+          "items": 20,
+          "difference": -0.0041841004184100415,
+          "ci95": [
+            -0.07083333333333333,
+            0.06694560669456066
+          ],
+          "exploratory_bootstrap_centered_p": 0.9345065493450655,
+          "recovery": 16,
+          "regression": 17
+        },
+        "CLP_minus_O": {
+          "pairs": 239,
+          "items": 20,
+          "difference": -0.100418410041841,
+          "ci95": [
+            -0.23628691983122363,
+            0.016736401673640166
+          ],
+          "exploratory_bootstrap_centered_p": 0.1304869513048695,
+          "recovery": 22,
+          "regression": 46
+        },
+        "DIRECT_COPY_minus_O": {
+          "pairs": 239,
+          "items": 20,
+          "difference": 0.008368200836820083,
+          "ci95": [
+            -0.02092050209205021,
+            0.041666666666666664
+          ],
+          "exploratory_bootstrap_centered_p": 0.6602339766023397,
+          "recovery": 10,
+          "regression": 8
+        },
+        "E1_M0_minus_O": {
+          "pairs": 239,
+          "items": 20,
+          "difference": 0.016736401673640166,
+          "ci95": [
+            -0.04201680672268908,
+            0.08368200836820083
+          ],
+          "exploratory_bootstrap_centered_p": 0.6348365163483651,
+          "recovery": 17,
+          "regression": 13
+        },
+        "DIRECT_COPY_minus_TT": {
+          "pairs": 239,
+          "items": 20,
+          "difference": 0.012552301255230125,
+          "ci95": [
+            -0.07112970711297072,
+            0.08823529411764706
+          ],
+          "exploratory_bootstrap_centered_p": 0.7836216378362164,
+          "recovery": 24,
+          "regression": 21
+        },
+        "E1_M0_minus_TT": {
+          "pairs": 239,
+          "items": 20,
+          "difference": 0.02092050209205021,
+          "ci95": [
+            -0.058333333333333334,
+            0.10416666666666667
+          ],
+          "exploratory_bootstrap_centered_p": 0.6321367863213678,
+          "recovery": 27,
+          "regression": 22
+        },
+        "E1_M0_minus_CLP": {
+          "pairs": 239,
+          "items": 20,
+          "difference": 0.11715481171548117,
+          "ci95": [
+            0.0,
+            0.24267782426778242
+          ],
+          "exploratory_bootstrap_centered_p": 0.06109389061093891,
+          "recovery": 48,
+          "regression": 20
+        },
+        "E1_M0_minus_DIRECT_COPY": {
+          "pairs": 239,
+          "items": 20,
+          "difference": 0.008368200836820083,
+          "ci95": [
+            -0.05042016806722689,
+            0.08333333333333333
+          ],
+          "exploratory_bootstrap_centered_p": 0.8476152384761524,
+          "recovery": 16,
+          "regression": 14
+        }
+      },
+      "by_gui": {
+        "en": {
+          "n": 60,
+          "correct": {
+            "O": 50,
+            "TT": 46,
+            "CLP": 41,
+            "DIRECT_COPY": 50,
+            "E1_M0": 48
+          }
+        },
+        "zh": {
+          "n": 60,
+          "correct": {
+            "O": 43,
+            "TT": 43,
+            "CLP": 37,
+            "DIRECT_COPY": 46,
+            "E1_M0": 49
+          }
+        },
+        "th": {
+          "n": 60,
+          "correct": {
+            "O": 30,
+            "TT": 30,
+            "CLP": 27,
+            "DIRECT_COPY": 30,
+            "E1_M0": 31
+          }
+        },
+        "ru": {
+          "n": 59,
+          "correct": {
+            "O": 48,
+            "TT": 51,
+            "CLP": 42,
+            "DIRECT_COPY": 47,
+            "E1_M0": 47
+          }
+        }
+      }
+    },
+    "internal_evaluation": {
+      "n": 1416,
+      "items": 118,
+      "correct": {
+        "O": 997,
+        "TT": 1007,
+        "CLP": 937,
+        "DIRECT_COPY": 1016,
+        "E1_M0": 1051
+      },
+      "contrasts": {
+        "TT_minus_O": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": 0.007062146892655367,
+          "ci95": [
+            -0.020480225988700564,
+            0.0346045197740113
+          ],
+          "exploratory_bootstrap_centered_p": 0.6299370062993701,
+          "recovery": 116,
+          "regression": 106
+        },
+        "CLP_minus_O": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": -0.0423728813559322,
+          "ci95": [
+            -0.08615819209039548,
+            0.00211864406779661
+          ],
+          "exploratory_bootstrap_centered_p": 0.0627937206279372,
+          "recovery": 174,
+          "regression": 234
+        },
+        "DIRECT_COPY_minus_O": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": 0.013418079096045197,
+          "ci95": [
+            -0.00847457627118644,
+            0.036016949152542374
+          ],
+          "exploratory_bootstrap_centered_p": 0.24527547245275472,
+          "recovery": 90,
+          "regression": 71
+        },
+        "E1_M0_minus_O": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": 0.038135593220338986,
+          "ci95": [
+            0.013418079096045197,
+            0.062146892655367235
+          ],
+          "exploratory_bootstrap_centered_p": 0.0031996800319968005,
+          "recovery": 123,
+          "regression": 69
+        },
+        "DIRECT_COPY_minus_TT": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": 0.006355932203389831,
+          "ci95": [
+            -0.026129943502824857,
+            0.03954802259887006
+          ],
+          "exploratory_bootstrap_centered_p": 0.7193280671932807,
+          "recovery": 146,
+          "regression": 137
+        },
+        "E1_M0_minus_TT": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": 0.031073446327683617,
+          "ci95": [
+            -0.00211864406779661,
+            0.06497175141242938
+          ],
+          "exploratory_bootstrap_centered_p": 0.06879312068793121,
+          "recovery": 163,
+          "regression": 119
+        },
+        "E1_M0_minus_CLP": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": 0.08050847457627118,
+          "ci95": [
+            0.03531073446327684,
+            0.125
+          ],
+          "exploratory_bootstrap_centered_p": 0.0007999200079992001,
+          "recovery": 266,
+          "regression": 152
+        },
+        "E1_M0_minus_DIRECT_COPY": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": 0.024717514124293787,
+          "ci95": [
+            0.0,
+            0.05014124293785311
+          ],
+          "exploratory_bootstrap_centered_p": 0.05549445055494451,
+          "recovery": 129,
+          "regression": 94
+        }
+      },
+      "by_gui": {
+        "en": {
+          "n": 354,
+          "correct": {
+            "O": 290,
+            "TT": 273,
+            "CLP": 282,
+            "DIRECT_COPY": 288,
+            "E1_M0": 290
+          }
+        },
+        "zh": {
+          "n": 354,
+          "correct": {
+            "O": 270,
+            "TT": 275,
+            "CLP": 240,
+            "DIRECT_COPY": 270,
+            "E1_M0": 275
+          }
+        },
+        "th": {
+          "n": 354,
+          "correct": {
+            "O": 172,
+            "TT": 179,
+            "CLP": 190,
+            "DIRECT_COPY": 186,
+            "E1_M0": 214
+          }
+        },
+        "ru": {
+          "n": 354,
+          "correct": {
+            "O": 265,
+            "TT": 280,
+            "CLP": 225,
+            "DIRECT_COPY": 272,
+            "E1_M0": 272
+          }
+        }
+      }
+    },
+    "combined": {
+      "n": 1895,
+      "items": 158,
+      "correct": {
+        "O": 1330,
+        "TT": 1348,
+        "CLP": 1250,
+        "DIRECT_COPY": 1359,
+        "E1_M0": 1404
+      },
+      "contrasts": {
+        "TT_minus_O": {
+          "pairs": 1895,
+          "items": 158,
+          "difference": 0.00949868073878628,
+          "ci95": [
+            -0.015303430079155673,
+            0.03382061743130905
+          ],
+          "exploratory_bootstrap_centered_p": 0.4510548945105489,
+          "recovery": 157,
+          "regression": 139
+        },
+        "CLP_minus_O": {
+          "pairs": 1895,
+          "items": 158,
+          "difference": -0.04221635883905013,
+          "ci95": [
+            -0.0812664907651715,
+            -0.004221635883905013
+          ],
+          "exploratory_bootstrap_centered_p": 0.0321967803219678,
+          "recovery": 237,
+          "regression": 317
+        },
+        "DIRECT_COPY_minus_O": {
+          "pairs": 1895,
+          "items": 158,
+          "difference": 0.015303430079155673,
+          "ci95": [
+            -0.002109704641350211,
+            0.03273495248152059
+          ],
+          "exploratory_bootstrap_centered_p": 0.08959104089591041,
+          "recovery": 115,
+          "regression": 86
+        },
+        "E1_M0_minus_O": {
+          "pairs": 1895,
+          "items": 158,
+          "difference": 0.03905013192612137,
+          "ci95": [
+            0.016904161444012872,
+            0.0617740232312566
+          ],
+          "exploratory_bootstrap_centered_p": 0.0006999300069993001,
+          "recovery": 168,
+          "regression": 94
+        },
+        "DIRECT_COPY_minus_TT": {
+          "pairs": 1895,
+          "items": 158,
+          "difference": 0.005804749340369393,
+          "ci95": [
+            -0.02270327349524815,
+            0.0337909186906019
+          ],
+          "exploratory_bootstrap_centered_p": 0.6895310468953104,
+          "recovery": 192,
+          "regression": 181
+        },
+        "E1_M0_minus_TT": {
+          "pairs": 1895,
+          "items": 158,
+          "difference": 0.02955145118733509,
+          "ci95": [
+            0.0,
+            0.06065400843881857
+          ],
+          "exploratory_bootstrap_centered_p": 0.055394460553944605,
+          "recovery": 221,
+          "regression": 165
+        },
+        "E1_M0_minus_CLP": {
+          "pairs": 1895,
+          "items": 158,
+          "difference": 0.0812664907651715,
+          "ci95": [
+            0.043248945147679324,
+            0.12091812808825546
+          ],
+          "exploratory_bootstrap_centered_p": 9.999000099990002e-05,
+          "recovery": 361,
+          "regression": 207
+        },
+        "E1_M0_minus_DIRECT_COPY": {
+          "pairs": 1895,
+          "items": 158,
+          "difference": 0.023746701846965697,
+          "ci95": [
+            0.0015830925820780868,
+            0.0469409282700422
+          ],
+          "exploratory_bootstrap_centered_p": 0.0420957904209579,
+          "recovery": 170,
+          "regression": 125
+        }
+      },
+      "by_gui": {
+        "en": {
+          "n": 474,
+          "correct": {
+            "O": 385,
+            "TT": 365,
+            "CLP": 366,
+            "DIRECT_COPY": 383,
+            "E1_M0": 385
+          }
+        },
+        "zh": {
+          "n": 474,
+          "correct": {
+            "O": 357,
+            "TT": 368,
+            "CLP": 320,
+            "DIRECT_COPY": 361,
+            "E1_M0": 371
+          }
+        },
+        "th": {
+          "n": 474,
+          "correct": {
+            "O": 229,
+            "TT": 240,
+            "CLP": 253,
+            "DIRECT_COPY": 250,
+            "E1_M0": 286
+          }
+        },
+        "ru": {
+          "n": 473,
+          "correct": {
+            "O": 359,
+            "TT": 375,
+            "CLP": 311,
+            "DIRECT_COPY": 365,
+            "E1_M0": 362
+          }
+        }
+      }
+    }
+  },
+  "costs": {
+    "screen": {
+      "O": {
+        "stages_seconds": {},
+        "answer_seconds": 175.1673963656649,
+        "preprocessing_seconds": 0,
+        "total_seconds": 175.1673963656649,
+        "n": 240,
+        "batch_allocation": {
+          "seconds": 175.1673963656649,
+          "selected_rows": 240,
+          "touched_batches": 84,
+          "mixed_batches": 8,
+          "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+        }
+      },
+      "TT": {
+        "stages_seconds": {
+          "translation": 142.90743041876704
+        },
+        "answer_seconds": 162.38931951268265,
+        "preprocessing_seconds": 142.90743041876704,
+        "total_seconds": 305.29674993144965,
+        "n": 240,
+        "batch_allocation": {
+          "seconds": 162.38931951268265,
+          "selected_rows": 240,
+          "touched_batches": 84,
+          "mixed_batches": 8,
+          "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+        }
+      },
+      "CLP": {
+        "stages_seconds": {
+          "alignment": 1004.5896679768339
+        },
+        "answer_seconds": 1720.0582295882825,
+        "preprocessing_seconds": 1004.5896679768339,
+        "total_seconds": 2724.647897565116,
+        "n": 240,
+        "batch_allocation": {
+          "seconds": 1720.0582295882825,
+          "selected_rows": 240,
+          "touched_batches": 84,
+          "mixed_batches": 8,
+          "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+        }
+      },
+      "DIRECT_COPY": {
+        "stages_seconds": {
+          "visual_edit": 525.3697577966377
+        },
+        "answer_seconds": 179.3980240613843,
+        "preprocessing_seconds": 525.3697577966377,
+        "total_seconds": 704.767781858022,
+        "n": 240,
+        "batch_allocation": {
+          "seconds": 179.3980240613843,
+          "selected_rows": 240,
+          "touched_batches": 84,
+          "mixed_batches": 8,
+          "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+        }
+      },
+      "E1_M0": {
+        "stages_seconds": {
+          "inventory": 1773.588974324055,
+          "extraction": 63.51239993982017,
+          "matching": 318.6465036896989
+        },
+        "answer_seconds": 190.0594604546204,
+        "preprocessing_seconds": 2155.747877953574,
+        "total_seconds": 2345.8073384081945,
+        "n": 240,
+        "batch_allocation": {
+          "seconds": 190.0594604546204,
+          "selected_rows": 240,
+          "touched_batches": 84,
+          "mixed_batches": 8,
+          "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+        }
+      }
+    },
+    "selection": {
+      "O": {
+        "stages_seconds": {},
+        "answer_seconds": 155.27177227723104,
+        "preprocessing_seconds": 0,
+        "total_seconds": 155.27177227723104,
+        "n": 239,
+        "batch_allocation": {
+          "seconds": 155.27177227723104,
+          "selected_rows": 239,
+          "touched_batches": 80,
+          "mixed_batches": 1,
+          "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+        }
+      },
+      "TT": {
+        "stages_seconds": {
+          "translation": 104.94248666521162
+        },
+        "answer_seconds": 150.8232300716142,
+        "preprocessing_seconds": 104.94248666521162,
+        "total_seconds": 255.76571673682582,
+        "n": 239,
+        "batch_allocation": {
+          "seconds": 150.8232300716142,
+          "selected_rows": 239,
+          "touched_batches": 80,
+          "mixed_batches": 1,
+          "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+        }
+      },
+      "CLP": {
+        "stages_seconds": {
+          "alignment": 842.9261664971709
+        },
+        "answer_seconds": 1378.479093953967,
+        "preprocessing_seconds": 842.9261664971709,
+        "total_seconds": 2221.405260451138,
+        "n": 239,
+        "batch_allocation": {
+          "seconds": 1378.479093953967,
+          "selected_rows": 239,
+          "touched_batches": 80,
+          "mixed_batches": 1,
+          "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+        }
+      },
+      "DIRECT_COPY": {
+        "stages_seconds": {
+          "visual_edit": 695.6727864574641
+        },
+        "answer_seconds": 199.00359157752246,
+        "preprocessing_seconds": 695.6727864574641,
+        "total_seconds": 894.6763780349866,
+        "n": 239,
+        "batch_allocation": {
+          "seconds": 199.00359157752246,
+          "selected_rows": 239,
+          "touched_batches": 80,
+          "mixed_batches": 1,
+          "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+        }
+      },
+      "E1_M0": {
+        "stages_seconds": {
+          "inventory": 1714.9893674934283,
+          "extraction": 134.50290270335972,
+          "matching": 491.6959533309564
+        },
+        "answer_seconds": 195.69710565824062,
+        "preprocessing_seconds": 2341.1882235277444,
+        "total_seconds": 2536.885329185985,
+        "n": 239,
+        "batch_allocation": {
+          "seconds": 195.69710565824062,
+          "selected_rows": 239,
+          "touched_batches": 80,
+          "mixed_batches": 1,
+          "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+        }
+      }
+    },
+    "internal_evaluation": {
+      "O": {
+        "stages_seconds": {},
+        "answer_seconds": 727.1900730160996,
+        "preprocessing_seconds": 0,
+        "total_seconds": 727.1900730160996,
+        "n": 1416,
+        "batch_allocation": {
+          "seconds": 727.1900730160996,
+          "selected_rows": 1416,
+          "touched_batches": 472,
+          "mixed_batches": 0,
+          "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+        }
+      },
+      "TT": {
+        "stages_seconds": {
+          "translation": 672.1102874008939
+        },
+        "answer_seconds": 692.9362411424518,
+        "preprocessing_seconds": 672.1102874008939,
+        "total_seconds": 1365.0465285433456,
+        "n": 1416,
+        "batch_allocation": {
+          "seconds": 692.9362411424518,
+          "selected_rows": 1416,
+          "touched_batches": 472,
+          "mixed_batches": 0,
+          "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+        }
+      },
+      "CLP": {
+        "stages_seconds": {
+          "alignment": 4989.856260923669
+        },
+        "answer_seconds": 6272.216221122071,
+        "preprocessing_seconds": 4989.856260923669,
+        "total_seconds": 11262.07248204574,
+        "n": 1416,
+        "batch_allocation": {
+          "seconds": 6272.216221122071,
+          "selected_rows": 1416,
+          "touched_batches": 472,
+          "mixed_batches": 0,
+          "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+        }
+      },
+      "DIRECT_COPY": {
+        "stages_seconds": {
+          "visual_edit": 3471.834989630617
+        },
+        "answer_seconds": 873.185298319906,
+        "preprocessing_seconds": 3471.834989630617,
+        "total_seconds": 4345.020287950523,
+        "n": 1416,
+        "batch_allocation": {
+          "seconds": 873.185298319906,
+          "selected_rows": 1416,
+          "touched_batches": 472,
+          "mixed_batches": 0,
+          "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+        }
+      },
+      "E1_M0": {
+        "stages_seconds": {
+          "inventory": 4830.024382928386,
+          "extraction": 379.1051655765623,
+          "matching": 1451.728220468387
+        },
+        "answer_seconds": 892.5671210205182,
+        "preprocessing_seconds": 6660.857768973336,
+        "total_seconds": 7553.424889993854,
+        "n": 1416,
+        "batch_allocation": {
+          "seconds": 892.5671210205182,
+          "selected_rows": 1416,
+          "touched_batches": 472,
+          "mixed_batches": 0,
+          "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+        }
+      }
+    },
+    "combined": {
+      "O": {
+        "stages_seconds": {},
+        "answer_seconds": 1057.6292416589956,
+        "preprocessing_seconds": 0,
+        "total_seconds": 1057.6292416589956,
+        "cohort_total_sum_seconds": 1057.6292416589956,
+        "n": 1895,
+        "unique_preprocessing_calls": {}
+      },
+      "TT": {
+        "stages_seconds": {
+          "translation": 919.9602044848725
+        },
+        "answer_seconds": 1006.1487907267486,
+        "preprocessing_seconds": 919.9602044848725,
+        "total_seconds": 1926.1089952116213,
+        "cohort_total_sum_seconds": 1926.108995211621,
+        "n": 1895,
+        "unique_preprocessing_calls": {
+          "translation": 474
+        }
+      },
+      "CLP": {
+        "stages_seconds": {
+          "alignment": 6837.372095397674
+        },
+        "answer_seconds": 9370.75354466432,
+        "preprocessing_seconds": 6837.372095397674,
+        "total_seconds": 16208.125640061993,
+        "cohort_total_sum_seconds": 16208.125640061993,
+        "n": 1895,
+        "unique_preprocessing_calls": {
+          "alignment": 632
+        }
+      },
+      "DIRECT_COPY": {
+        "stages_seconds": {
+          "visual_edit": 4692.877533884719
+        },
+        "answer_seconds": 1251.5869139588126,
+        "preprocessing_seconds": 4692.877533884719,
+        "total_seconds": 5944.464447843531,
+        "cohort_total_sum_seconds": 5944.464447843531,
+        "n": 1895,
+        "unique_preprocessing_calls": {
+          "visual_edit": 1902
+        }
+      },
+      "E1_M0": {
+        "stages_seconds": {
+          "inventory": 8318.60272474587,
+          "extraction": 576.6615744549781,
+          "matching": 2262.0706774890423
+        },
+        "answer_seconds": 1278.3236871333793,
+        "preprocessing_seconds": 11157.33497668989,
+        "total_seconds": 12435.65866382327,
+        "cohort_total_sum_seconds": 12436.117557588033,
+        "n": 1895,
+        "unique_preprocessing_calls": {
+          "inventory": 676,
+          "extraction": 640,
+          "matching": 1968
+        }
+      }
+    }
+  },
+  "clp_diagnostics": {
+    "counts": {
+      "n": 1895,
+      "valid": 1499,
+      "cap_hit": 339,
+      "invalid_cap": 338,
+      "invalid_without_cap": 58,
+      "output_tokens": 600027,
+      "correct": 1250,
+      "E1_correct_on_same_valid_subset": 1168,
+      "posthoc_explicit_final_format": 54,
+      "posthoc_format_correct": 50
+    },
+    "by_cohort": {
+      "screen": {
+        "n": 240,
+        "valid": 194,
+        "cap_hit": 43,
+        "invalid_cap": 43,
+        "invalid_without_cap": 3,
+        "output_tokens": 73973,
+        "correct": 166,
+        "E1_correct_on_same_valid_subset": 150,
+        "posthoc_explicit_final_format": 3,
+        "posthoc_format_correct": 3
+      },
+      "selection": {
+        "n": 239,
+        "valid": 173,
+        "cap_hit": 57,
+        "invalid_cap": 57,
+        "invalid_without_cap": 9,
+        "output_tokens": 80048,
+        "correct": 147,
+        "E1_correct_on_same_valid_subset": 141,
+        "posthoc_explicit_final_format": 8,
+        "posthoc_format_correct": 7
+      },
+      "internal_evaluation": {
+        "n": 1416,
+        "valid": 1132,
+        "cap_hit": 239,
+        "invalid_cap": 238,
+        "invalid_without_cap": 46,
+        "output_tokens": 446006,
+        "correct": 937,
+        "E1_correct_on_same_valid_subset": 877,
+        "posthoc_explicit_final_format": 43,
+        "posthoc_format_correct": 40
+      }
+    },
+    "posthoc_regex": "(?:#{1,6}\\s*)?(?:✅\\s*)?(?:Final\\s+)?Answer\\s*:\\s*\\[?([ABCD])\\]?\\.?",
+    "posthoc_not_primary": true,
+    "posthoc_correct_with_decorated_final_line": 1300,
+    "posthoc_format_cases": [
+      {
+        "pair_id": "rel::3/homescreen_5.jpg::en::th",
+        "last_line": "### ✅ Final Answer: B",
+        "frozen_label": null,
+        "diagnostic_label": "B",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::4/google_play_6.jpg::en::th",
+        "last_line": "### ✅ Final Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::6/camera_8.jpg::en::th",
+        "last_line": "### ✅ Final Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::3/map_3.jpg::ru::th",
+        "last_line": "✅ Final Answer: B",
+        "frozen_label": null,
+        "diagnostic_label": "B",
+        "correct": false,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::3/map_7.jpg::en::ru",
+        "last_line": "### ✅ Final Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::3/map_7.jpg::en::zh",
+        "last_line": "✅ Final Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::3/map_7.jpg::ru::zh",
+        "last_line": "✅ Final Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/camera_14.jpg::en::th",
+        "last_line": "### ✅ Final Answer: B",
+        "frozen_label": null,
+        "diagnostic_label": "B",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/camera_14.jpg::zh::th",
+        "last_line": "### ✅ Final Answer: B",
+        "frozen_label": null,
+        "diagnostic_label": "B",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/file_10.jpg::en::ru",
+        "last_line": "### ✅ Final Answer: B",
+        "frozen_label": null,
+        "diagnostic_label": "B",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/file_10.jpg::en::th",
+        "last_line": "✅ Answer: B",
+        "frozen_label": null,
+        "diagnostic_label": "B",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::2/calendar_10.png::zh::ru",
+        "last_line": "### ✅ Final Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::2/clock_7.png::th::ru",
+        "last_line": "✅ Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::2/map_8.png::en::zh",
+        "last_line": "### ✅ Final Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::2/setting_6.png::zh::ru",
+        "last_line": "✅ Final Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::2/weather_1.png::en::zh",
+        "last_line": "### ✅ Final Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::3/clock_4.jpg::en::ru",
+        "last_line": "### ✅ Final Answer: C",
+        "frozen_label": null,
+        "diagnostic_label": "C",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::3/clock_4.jpg::en::th",
+        "last_line": "### ✅ Final Answer: C",
+        "frozen_label": null,
+        "diagnostic_label": "C",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::3/homescreen_6.jpg::en::ru",
+        "last_line": "### ✅ Final Answer: B",
+        "frozen_label": null,
+        "diagnostic_label": "B",
+        "correct": false,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::3/homescreen_6.jpg::en::th",
+        "last_line": "### ✅ Final Answer: B",
+        "frozen_label": null,
+        "diagnostic_label": "B",
+        "correct": false,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::3/homescreen_6.jpg::en::zh",
+        "last_line": "### ✅ Final Answer: C",
+        "frozen_label": null,
+        "diagnostic_label": "C",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::3/note_10.jpg::en::ru",
+        "last_line": "### ✅ Final Answer: B",
+        "frozen_label": null,
+        "diagnostic_label": "B",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::4/Gmail_9.jpg::en::th",
+        "last_line": "### ✅ Final Answer: D",
+        "frozen_label": null,
+        "diagnostic_label": "D",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::4/Gmail_9.jpg::en::zh",
+        "last_line": "✅ Final Answer: D",
+        "frozen_label": null,
+        "diagnostic_label": "D",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::4/Gmail_9.jpg::ru::zh",
+        "last_line": "✅ Final Answer: D",
+        "frozen_label": null,
+        "diagnostic_label": "D",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::4/Youtube_7.jpg::th::ru",
+        "last_line": "### ✅ Final Answer: C",
+        "frozen_label": null,
+        "diagnostic_label": "C",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::4/Youtube_8.jpg::en::ru",
+        "last_line": "### ✅ Final Answer: D",
+        "frozen_label": null,
+        "diagnostic_label": "D",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::4/Youtube_8.jpg::en::th",
+        "last_line": "### ✅ Final Answer: D",
+        "frozen_label": null,
+        "diagnostic_label": "D",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::4/Youtube_8.jpg::en::zh",
+        "last_line": "### ✅ Final Answer: D",
+        "frozen_label": null,
+        "diagnostic_label": "D",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::4/Youtube_8.jpg::zh::th",
+        "last_line": "### ✅ Final Answer: D",
+        "frozen_label": null,
+        "diagnostic_label": "D",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::4/Youtube_9.jpg::en::ru",
+        "last_line": "### ✅ Final Answer: C",
+        "frozen_label": null,
+        "diagnostic_label": "C",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::4/google_play_4.jpg::en::ru",
+        "last_line": "### ✅ Final Answer: D",
+        "frozen_label": null,
+        "diagnostic_label": "D",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::4/google_play_4.jpg::en::th",
+        "last_line": "### ✅ Final Answer: D",
+        "frozen_label": null,
+        "diagnostic_label": "D",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/camera_9.jpg::en::ru",
+        "last_line": "### ✅ Final Answer: C",
+        "frozen_label": null,
+        "diagnostic_label": "C",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/camera_9.jpg::en::th",
+        "last_line": "### ✅ Final Answer: C",
+        "frozen_label": null,
+        "diagnostic_label": "C",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/camera_9.jpg::en::zh",
+        "last_line": "### ✅ Final Answer: C",
+        "frozen_label": null,
+        "diagnostic_label": "C",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/file_15.jpg::ru::th",
+        "last_line": "### ✅ Final Answer: D",
+        "frozen_label": null,
+        "diagnostic_label": "D",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/file_6.jpg::en::th",
+        "last_line": "### ✅ Final Answer: C",
+        "frozen_label": null,
+        "diagnostic_label": "C",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/manager_9.jpg::ru::zh",
+        "last_line": "### ✅ Final Answer: C",
+        "frozen_label": null,
+        "diagnostic_label": "C",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/manager_9.jpg::th::ru",
+        "last_line": "### ✅ Final Answer: C",
+        "frozen_label": null,
+        "diagnostic_label": "C",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/manager_9.jpg::zh::ru",
+        "last_line": "### ✅ Final Answer: C",
+        "frozen_label": null,
+        "diagnostic_label": "C",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/message_10.jpg::zh::ru",
+        "last_line": "### ✅ Final Answer: B",
+        "frozen_label": null,
+        "diagnostic_label": "B",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/message_11.jpg::en::ru",
+        "last_line": "### ✅ Final Answer: C",
+        "frozen_label": null,
+        "diagnostic_label": "C",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/message_11.jpg::en::zh",
+        "last_line": "### ✅ Final Answer: C",
+        "frozen_label": null,
+        "diagnostic_label": "C",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/message_4.jpg::en::th",
+        "last_line": "### ✅ Final Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/message_4.jpg::ru::th",
+        "last_line": "✅ Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/phone_1.jpg::en::zh",
+        "last_line": "### ✅ Final Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": false,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/phone_12.jpg::en::ru",
+        "last_line": "### ✅ Final Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/phone_12.jpg::en::th",
+        "last_line": "### ✅ Final Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/phone_7.jpg::en::th",
+        "last_line": "### ✅ Final Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/phone_7.jpg::en::zh",
+        "last_line": "✅ Final Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::5/record_8.jpg::zh::th",
+        "last_line": "### ✅ Final Answer: B",
+        "frozen_label": null,
+        "diagnostic_label": "B",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::6/health_1.jpg::zh::ru",
+        "last_line": "✅ Answer: A",
+        "frozen_label": null,
+        "diagnostic_label": "A",
+        "correct": true,
+        "output_cap_hit": false
+      },
+      {
+        "pair_id": "rel::6/phone_5.jpg::zh::ru",
+        "last_line": "### ✅ Final Answer: C",
+        "frozen_label": null,
+        "diagnostic_label": "C",
+        "correct": true,
+        "output_cap_hit": false
+      }
+    ],
+    "other_noncap_examples": [
+      {
+        "pair_id": "rel::3/settings_3.jpg::ru::th",
+        "last_line": "Answer: None of the options can be determined from the provided screenshot."
+      },
+      {
+        "pair_id": "rel::2/clock_6.png::zh::th",
+        "last_line": "Answer: None of the above"
+      },
+      {
+        "pair_id": "rel::2/note_10.png::en::th",
+        "last_line": "### ✅ Final Answer: A: Delete"
+      },
+      {
+        "pair_id": "rel::5/record_8.jpg::en::th",
+        "last_line": "### ✅ Final Answer: B: Pause"
+      }
+    ],
+    "raw_sha256": {
+      "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_clp/attempt_0001/evaluation/predictions.jsonl": "2b189b5353526374491c8336190d73bb7c61fb49728c13bd3bba3b278f6b3445",
+      "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_clp/attempt_0001/evaluation/predictions.jsonl": "619a6d2124b60e313c30411737bdcd2996ccc6f2454b56877cb02c59f6fbe90c",
+      "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_clp/attempt_0001/evaluation/predictions.jsonl": "3e3a2e1fd058ea22dae559c32c550f9ace16a1a311f2db1906f5578fd6012e65"
+    }
+  },
+  "external_quality": {
+    "screen": {
+      "TRANSLATE_TEST_EN_QWEN3": {
+        "source_status": {
+          "success": 60,
+          "english_identity": 20
+        },
+        "LM_cap_hits_unique_sources": 0,
+        "invalid_final_label_pairs": 0,
+        "solver_cap_hits_pairs": 0,
+        "generated_output_tokens": 480,
+        "digit_change_pairs": 0,
+        "duplicate_option_pairs": 0,
+        "fallback_pairs": 0,
+        "surface_direction_or_negation_cue_flags": 15,
+        "unchanged_MCQs_label_changes": 0
+      },
+      "CLP_GUI_LM_VLM": {
+        "source_status": {
+          "success": 80
+        },
+        "LM_cap_hits_unique_sources": 51,
+        "invalid_final_label_pairs": 46,
+        "solver_cap_hits_pairs": 43,
+        "generated_output_tokens": 73973
+      }
+    },
+    "selection": {
+      "TRANSLATE_TEST_EN_QWEN3": {
+        "source_status": {
+          "success": 60,
+          "english_identity": 20
+        },
+        "LM_cap_hits_unique_sources": 0,
+        "invalid_final_label_pairs": 0,
+        "solver_cap_hits_pairs": 0,
+        "generated_output_tokens": 478,
+        "digit_change_pairs": 3,
+        "duplicate_option_pairs": 0,
+        "fallback_pairs": 0,
+        "surface_direction_or_negation_cue_flags": 12,
+        "unchanged_MCQs_label_changes": 0
+      },
+      "CLP_GUI_LM_VLM": {
+        "source_status": {
+          "success": 80
+        },
+        "LM_cap_hits_unique_sources": 49,
+        "invalid_final_label_pairs": 66,
+        "solver_cap_hits_pairs": 57,
+        "generated_output_tokens": 80048
+      }
+    },
+    "internal_evaluation": {
+      "TRANSLATE_TEST_EN_QWEN3": {
+        "source_status": {
+          "success": 354,
+          "english_identity": 118
+        },
+        "LM_cap_hits_unique_sources": 0,
+        "invalid_final_label_pairs": 0,
+        "solver_cap_hits_pairs": 0,
+        "generated_output_tokens": 2832,
+        "digit_change_pairs": 6,
+        "duplicate_option_pairs": 0,
+        "fallback_pairs": 0,
+        "surface_direction_or_negation_cue_flags": 84,
+        "unchanged_MCQs_label_changes": 0
+      },
+      "CLP_GUI_LM_VLM": {
+        "source_status": {
+          "success": 472
+        },
+        "LM_cap_hits_unique_sources": 259,
+        "invalid_final_label_pairs": 284,
+        "solver_cap_hits_pairs": 239,
+        "generated_output_tokens": 446006
+      }
+    }
+  },
+  "historical_references": {
+    "n": 1895,
+    "correct": {
+      "O": 1330,
+      "Automatic": 1319,
+      "Oracle": 1349,
+      "T_REF": 1335,
+      "R_REF": 1591,
+      "F_REF": 1551
+    }
+  },
+  "R_stem": 1472,
+  "transfer_4b": {
+    "summary": {
+      "screen": {
+        "n": 240,
+        "items": 20,
+        "correct": {
+          "O": 174,
+          "E1_M0": 181
+        },
+        "contrast": {
+          "pairs": 240,
+          "items": 20,
+          "difference": 0.029166666666666667,
+          "ci95": [
+            -0.02927083333333324,
+            0.11666666666666667
+          ],
+          "exploratory_bootstrap_centered_p": 0.5228477152284772,
+          "recovery": 20,
+          "regression": 13
+        },
+        "by_gui": {
+          "en": {
+            "n": 60,
+            "correct": {
+              "O": 49,
+              "E1_M0": 53
+            }
+          },
+          "zh": {
+            "n": 60,
+            "correct": {
+              "O": 48,
+              "E1_M0": 44
+            }
+          },
+          "th": {
+            "n": 60,
+            "correct": {
+              "O": 30,
+              "E1_M0": 34
+            }
+          },
+          "ru": {
+            "n": 60,
+            "correct": {
+              "O": 47,
+              "E1_M0": 50
+            }
+          }
+        }
+      },
+      "selection": {
+        "n": 239,
+        "items": 20,
+        "correct": {
+          "O": 179,
+          "E1_M0": 182
+        },
+        "contrast": {
+          "pairs": 239,
+          "items": 20,
+          "difference": 0.012552301255230125,
+          "ci95": [
+            -0.0375,
+            0.06722689075630252
+          ],
+          "exploratory_bootstrap_centered_p": 0.6797320267973203,
+          "recovery": 17,
+          "regression": 14
+        },
+        "by_gui": {
+          "en": {
+            "n": 60,
+            "correct": {
+              "O": 51,
+              "E1_M0": 49
+            }
+          },
+          "zh": {
+            "n": 60,
+            "correct": {
+              "O": 45,
+              "E1_M0": 52
+            }
+          },
+          "th": {
+            "n": 60,
+            "correct": {
+              "O": 32,
+              "E1_M0": 31
+            }
+          },
+          "ru": {
+            "n": 59,
+            "correct": {
+              "O": 51,
+              "E1_M0": 50
+            }
+          }
+        }
+      },
+      "internal_evaluation": {
+        "n": 1416,
+        "items": 118,
+        "correct": {
+          "O": 955,
+          "E1_M0": 1015
+        },
+        "contrast": {
+          "pairs": 1416,
+          "items": 118,
+          "difference": 0.0423728813559322,
+          "ci95": [
+            0.014830508474576272,
+            0.07062146892655367
+          ],
+          "exploratory_bootstrap_centered_p": 0.0032996700329967,
+          "recovery": 140,
+          "regression": 80
+        },
+        "by_gui": {
+          "en": {
+            "n": 354,
+            "correct": {
+              "O": 277,
+              "E1_M0": 286
+            }
+          },
+          "zh": {
+            "n": 354,
+            "correct": {
+              "O": 251,
+              "E1_M0": 258
+            }
+          },
+          "th": {
+            "n": 354,
+            "correct": {
+              "O": 167,
+              "E1_M0": 181
+            }
+          },
+          "ru": {
+            "n": 354,
+            "correct": {
+              "O": 260,
+              "E1_M0": 290
+            }
+          }
+        }
+      },
+      "combined": {
+        "n": 1895,
+        "items": 158,
+        "correct": {
+          "O": 1308,
+          "E1_M0": 1378
+        },
+        "contrast": {
+          "pairs": 1895,
+          "items": 158,
+          "difference": 0.036939313984168866,
+          "ci95": [
+            0.013192612137203167,
+            0.062269129287598944
+          ],
+          "exploratory_bootstrap_centered_p": 0.0031996800319968005,
+          "recovery": 177,
+          "regression": 107
+        },
+        "by_gui": {
+          "en": {
+            "n": 474,
+            "correct": {
+              "O": 377,
+              "E1_M0": 388
+            }
+          },
+          "zh": {
+            "n": 474,
+            "correct": {
+              "O": 344,
+              "E1_M0": 354
+            }
+          },
+          "th": {
+            "n": 474,
+            "correct": {
+              "O": 229,
+              "E1_M0": 246
+            }
+          },
+          "ru": {
+            "n": 473,
+            "correct": {
+              "O": 358,
+              "E1_M0": 390
+            }
+          }
+        }
+      }
+    },
+    "total_cost": {
+      "primary_pairs": 1895,
+      "executed_pairs": 1944,
+      "primary_logical_recipe": {
+        "inventory_seconds": 5234.342757392675,
+        "extraction_seconds": 576.6615744549781,
+        "matching_seconds": 1966.4989758413285,
+        "answer_seconds": 1128.0129516643162,
+        "total_seconds": 8905.516259353297
+      },
+      "method_stage_wall_seconds": 10125.252606121823,
+      "all_stages_wall_seconds": 11208.921875088476,
+      "full_run_latest_invocation_wall_seconds": 11262.158312218264
+    }
+  },
+  "factorial_screen": {
+    "execution_mode": "gpu",
+    "development_only": true,
+    "primary_pairs": 240,
+    "items": 20,
+    "correct": {
+      "E0_M0": 175,
+      "E1_M0": 178,
+      "E0_M1": 171,
+      "E1_M1": 177
+    },
+    "contrasts_vs_baseline": {
+      "E1_M0": {
+        "pairs": 240,
+        "items": 20,
+        "difference": 0.0125,
+        "ci95": [
+          0.0,
+          0.025
+        ],
+        "exploratory_bootstrap_centered_p": 0.10638936106389361,
+        "recovery": 3,
+        "regression": 0
+      },
+      "E0_M1": {
+        "pairs": 240,
+        "items": 20,
+        "difference": -0.016666666666666666,
+        "ci95": [
+          -0.041666666666666664,
+          0.008333333333333333
+        ],
+        "exploratory_bootstrap_centered_p": 0.2420757924207579,
+        "recovery": 6,
+        "regression": 10
+      },
+      "E1_M1": {
+        "pairs": 240,
+        "items": 20,
+        "difference": 0.008333333333333333,
+        "ci95": [
+          -0.016666666666666666,
+          0.0375
+        ],
+        "exploratory_bootstrap_centered_p": 0.6641335866413358,
+        "recovery": 8,
+        "regression": 6
+      }
+    },
+    "factorial": {
+      "extractor_main_effect": {
+        "pairs": 240,
+        "items": 20,
+        "difference": 0.01875,
+        "ci95": [
+          0.004166666666666667,
+          0.0375
+        ],
+        "exploratory_bootstrap_centered_p": 0.032596740325967405,
+        "recovery": 7,
+        "regression": 0
+      },
+      "matcher_main_effect": {
+        "pairs": 240,
+        "items": 20,
+        "difference": -0.010416666666666666,
+        "ci95": [
+          -0.03125,
+          0.014583333333333334
+        ],
+        "exploratory_bootstrap_centered_p": 0.42085791420857915,
+        "recovery": 6,
+        "regression": 10
+      },
+      "interaction": {
+        "pairs": 240,
+        "items": 20,
+        "difference": 0.0125,
+        "ci95": [
+          -0.004166666666666667,
+          0.029166666666666667
+        ],
+        "exploratory_bootstrap_centered_p": 0.23577642235776422,
+        "recovery": 4,
+        "regression": 1
+      }
+    },
+    "quality": {
+      "E0_M0": {
+        "changed": 219,
+        "status": {
+          "fallback_original": 12,
+          "success": 219,
+          "no_op_no_edits": 9
+        },
+        "errors": {
+          "Target is not a verbatim inventory member": 9,
+          "source_extraction_failed": 3
+        }
+      },
+      "E1_M0": {
+        "changed": 225,
+        "status": {
+          "success": 225,
+          "fallback_original": 6,
+          "no_op_no_edits": 9
+        },
+        "errors": {
+          "Target is not a verbatim inventory member": 6
+        }
+      },
+      "E0_M1": {
+        "changed": 228,
+        "status": {
+          "success": 228,
+          "fallback_original": 7,
+          "no_op_no_edits": 5
+        },
+        "errors": {
+          "source_extraction_failed": 3,
+          "Unknown candidate ID": 4
+        }
+      },
+      "E1_M1": {
+        "changed": 231,
+        "status": {
+          "success": 231,
+          "no_op_no_edits": 5,
+          "fallback_original": 4
+        },
+        "errors": {
+          "Unknown candidate ID": 4
+        }
+      }
+    },
+    "logical_recipe_cost": {
+      "E0_M0": {
+        "inventory_seconds": 1773.588974324055,
+        "extraction_seconds": 96.73608349636197,
+        "matching_seconds": 164.2029120279476,
+        "answer_seconds": 183.88821718748656,
+        "cold_total_seconds": 2218.416187035851,
+        "answer_reused_pairs_all": 288
+      },
+      "E1_M0": {
+        "inventory_seconds": 1773.588974324055,
+        "extraction_seconds": 63.51239993982017,
+        "matching_seconds": 318.6465036896989,
+        "answer_seconds": 190.0594604546204,
+        "cold_total_seconds": 2345.8073384081945,
+        "answer_reused_pairs_all": 216
+      },
+      "E0_M1": {
+        "inventory_seconds": 1773.588974324055,
+        "extraction_seconds": 96.73608349636197,
+        "matching_seconds": 399.85813301056623,
+        "answer_seconds": 195.8866526267181,
+        "cold_total_seconds": 2466.069843457701,
+        "answer_reused_pairs_all": 186
+      },
+      "E1_M1": {
+        "inventory_seconds": 1773.588974324055,
+        "extraction_seconds": 63.51239993982017,
+        "matching_seconds": 512.6615573894233,
+        "answer_seconds": 205.44284337262312,
+        "cold_total_seconds": 2555.2057750259214,
+        "answer_reused_pairs_all": 246
+      }
+    },
+    "contract_sha256": "3e1fdb10cdefaf931e3ea59e9aae3c07438f7719b6a12042b618cda1e0ac338e",
+    "source_extraction_quality": {
+      "E0": {
+        "precision": 0.810126582278481,
+        "recall": 0.8,
+        "f1": 0.8050314465408804,
+        "gold_spans": 240,
+        "predicted_spans": 237,
+        "matched_spans": 192,
+        "scope": "pair-weighted source stem exact-boundary diagnostic; never method input"
+      },
+      "E1": {
+        "precision": 0.8375,
+        "recall": 0.8375,
+        "f1": 0.8375,
+        "gold_spans": 240,
+        "predicted_spans": 240,
+        "matched_spans": 201,
+        "scope": "pair-weighted source stem exact-boundary diagnostic; never method input"
+      }
+    },
+    "reference_correct": {
+      "R_stem": 185,
+      "O": 162
+    },
+    "contrasts_vs_R_stem": {
+      "E0_M0": {
+        "pairs": 240,
+        "items": 20,
+        "difference": -0.041666666666666664,
+        "ci95": [
+          -0.11666666666666667,
+          0.0375
+        ],
+        "exploratory_bootstrap_centered_p": 0.29247075292470753,
+        "recovery": 10,
+        "regression": 20
+      },
+      "E1_M0": {
+        "pairs": 240,
+        "items": 20,
+        "difference": -0.029166666666666667,
+        "ci95": [
+          -0.1,
+          0.04583333333333333
+        ],
+        "exploratory_bootstrap_centered_p": 0.46365363463653636,
+        "recovery": 12,
+        "regression": 19
+      },
+      "E0_M1": {
+        "pairs": 240,
+        "items": 20,
+        "difference": -0.058333333333333334,
+        "ci95": [
+          -0.125,
+          0.016666666666666666
+        ],
+        "exploratory_bootstrap_centered_p": 0.11868813118688132,
+        "recovery": 10,
+        "regression": 24
+      },
+      "E1_M1": {
+        "pairs": 240,
+        "items": 20,
+        "difference": -0.03333333333333333,
+        "ci95": [
+          -0.10416666666666667,
+          0.041666666666666664
+        ],
+        "exploratory_bootstrap_centered_p": 0.40655934406559346,
+        "recovery": 12,
+        "regression": 20
+      }
+    },
+    "by_gui": {
+      "en": {
+        "n": 60,
+        "correct": {
+          "E0_M0": 46,
+          "E1_M0": 47,
+          "E0_M1": 44,
+          "E1_M1": 45
+        }
+      },
+      "zh": {
+        "n": 60,
+        "correct": {
+          "E0_M0": 46,
+          "E1_M0": 47,
+          "E0_M1": 46,
+          "E1_M1": 46
+        }
+      },
+      "th": {
+        "n": 60,
+        "correct": {
+          "E0_M0": 40,
+          "E1_M0": 41,
+          "E0_M1": 38,
+          "E1_M1": 39
+        }
+      },
+      "ru": {
+        "n": 60,
+        "correct": {
+          "E0_M0": 43,
+          "E1_M0": 43,
+          "E0_M1": 43,
+          "E1_M1": 47
+        }
+      }
+    }
+  },
+  "screen_history": [
+    {
+      "condition": "O",
+      "name": "O · 원본",
+      "device": "B200 MIG45GB",
+      "n": 240,
+      "correct": 162,
+      "accuracy": 0.675,
+      "automatic": true,
+      "gold_span": false,
+      "inventory_seconds": 0.0,
+      "editor_vlm_seconds": 0.0,
+      "extraction_seconds": 0.0,
+      "localization_seconds": 0.0,
+      "lm_seconds": 0.0,
+      "vlm_seconds": 175.1673963656649,
+      "cold_total_seconds": 175.1673963656649,
+      "inventory_cached_total_seconds": 175.1673963656649,
+      "vlm_batch_allocation": {
+        "seconds": 175.1673963656649,
+        "selected_rows": 240,
+        "touched_batches": 84,
+        "mixed_batches": 8,
+        "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+      },
+      "required_call_counts": {
+        "inventory": 0,
+        "source_extraction": 0,
+        "localization": 0
+      }
+    },
+    {
+      "condition": "TS_SEL_TXT_ORACLE",
+      "name": "T형 · gold span+Qwen3 번역",
+      "device": "B200 MIG45GB",
+      "n": 240,
+      "correct": 158,
+      "accuracy": 0.6583333333333333,
+      "automatic": false,
+      "gold_span": true,
+      "inventory_seconds": 0.0,
+      "editor_vlm_seconds": 0.0,
+      "extraction_seconds": 0.0,
+      "localization_seconds": 485.7701272703707,
+      "lm_seconds": 485.7701272703707,
+      "vlm_seconds": 124.20214578167847,
+      "cold_total_seconds": 609.9722730520492,
+      "inventory_cached_total_seconds": 609.9722730520492,
+      "vlm_batch_allocation": {
+        "seconds": 124.20214578167847,
+        "selected_rows": 240,
+        "touched_batches": 84,
+        "mixed_batches": 8,
+        "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+      },
+      "required_call_counts": {
+        "inventory": 0,
+        "source_extraction": 0,
+        "localization": 240
+      }
+    },
+    {
+      "condition": "TS_SEL_TXT_AUTO",
+      "name": "참조 표현 텍스트 번역 · 자동",
+      "device": "B200 MIG45GB",
+      "n": 240,
+      "correct": 159,
+      "accuracy": 0.6625,
+      "automatic": true,
+      "gold_span": false,
+      "inventory_seconds": 0.0,
+      "editor_vlm_seconds": 0.0,
+      "extraction_seconds": 200.5118974056095,
+      "localization_seconds": 333.9687409373,
+      "lm_seconds": 534.4806383429095,
+      "vlm_seconds": 127.98336941810945,
+      "cold_total_seconds": 662.4640077610189,
+      "inventory_cached_total_seconds": 662.4640077610189,
+      "vlm_batch_allocation": {
+        "seconds": 127.98336941810945,
+        "selected_rows": 240,
+        "touched_batches": 84,
+        "mixed_batches": 8,
+        "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+      },
+      "required_call_counts": {
+        "inventory": 0,
+        "source_extraction": 90,
+        "localization": 222
+      }
+    },
+    {
+      "condition": "TS_FULL_TXT",
+      "name": "전체 텍스트 번역",
+      "device": "B200 MIG45GB",
+      "n": 240,
+      "correct": 161,
+      "accuracy": 0.6708333333333333,
+      "automatic": true,
+      "gold_span": false,
+      "inventory_seconds": 0.0,
+      "editor_vlm_seconds": 0.0,
+      "extraction_seconds": 0.0,
+      "localization_seconds": 612.1404959494248,
+      "lm_seconds": 612.1404959494248,
+      "vlm_seconds": 146.4899784109245,
+      "cold_total_seconds": 758.6304743603494,
+      "inventory_cached_total_seconds": 758.6304743603494,
+      "vlm_batch_allocation": {
+        "seconds": 146.4899784109245,
+        "selected_rows": 240,
+        "touched_batches": 84,
+        "mixed_batches": 8,
+        "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+      },
+      "required_call_counts": {
+        "inventory": 0,
+        "source_extraction": 0,
+        "localization": 286
+      }
+    },
+    {
+      "condition": "TS_QSEL_OFULL_TXT_AUTO",
+      "name": "Hybrid TXT",
+      "device": "B200 MIG45GB",
+      "n": 240,
+      "correct": 163,
+      "accuracy": 0.6791666666666667,
+      "automatic": true,
+      "gold_span": false,
+      "inventory_seconds": 0.0,
+      "editor_vlm_seconds": 0.0,
+      "extraction_seconds": 96.73608349636197,
+      "localization_seconds": 795.1911449264735,
+      "lm_seconds": 891.9272284228355,
+      "vlm_seconds": 126.91955497519423,
+      "cold_total_seconds": 1018.8467833980297,
+      "inventory_cached_total_seconds": 1018.8467833980297,
+      "vlm_batch_allocation": {
+        "seconds": 126.91955497519423,
+        "selected_rows": 240,
+        "touched_batches": 84,
+        "mixed_batches": 8,
+        "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+      },
+      "required_call_counts": {
+        "inventory": 0,
+        "source_extraction": 81,
+        "localization": 523
+      }
+    },
+    {
+      "condition": "TS_FULL_GUI",
+      "name": "Full GUI",
+      "device": "B200 MIG45GB",
+      "n": 240,
+      "correct": 170,
+      "accuracy": 0.7083333333333334,
+      "automatic": true,
+      "gold_span": false,
+      "inventory_seconds": 1773.588974324055,
+      "editor_vlm_seconds": 0.0,
+      "extraction_seconds": 0.0,
+      "localization_seconds": 680.8157714707777,
+      "lm_seconds": 680.8157714707777,
+      "vlm_seconds": 165.28730860352513,
+      "cold_total_seconds": 2619.692054398358,
+      "inventory_cached_total_seconds": 846.1030800743029,
+      "vlm_batch_allocation": {
+        "seconds": 165.28730860352513,
+        "selected_rows": 240,
+        "touched_batches": 84,
+        "mixed_batches": 8,
+        "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+      },
+      "required_call_counts": {
+        "inventory": 86,
+        "source_extraction": 0,
+        "localization": 256
+      }
+    },
+    {
+      "condition": "TS_SEL_GUI_AUTO",
+      "name": "Stem+Options 선택적 정렬 · 분리",
+      "device": "B200 MIG45GB",
+      "n": 240,
+      "correct": 169,
+      "accuracy": 0.7041666666666667,
+      "automatic": true,
+      "gold_span": false,
+      "inventory_seconds": 1773.588974324055,
+      "editor_vlm_seconds": 0.0,
+      "extraction_seconds": 200.5118974056095,
+      "localization_seconds": 397.9382814252749,
+      "lm_seconds": 598.4501788308844,
+      "vlm_seconds": 123.3638295189788,
+      "cold_total_seconds": 2495.4029826739184,
+      "inventory_cached_total_seconds": 721.8140083498632,
+      "vlm_batch_allocation": {
+        "seconds": 123.3638295189788,
+        "selected_rows": 240,
+        "touched_batches": 84,
+        "mixed_batches": 8,
+        "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+      },
+      "required_call_counts": {
+        "inventory": 86,
+        "source_extraction": 90,
+        "localization": 253
+      }
+    },
+    {
+      "condition": "TS_STEM_ONLY_GUI_AUTO",
+      "name": "Stem-only GUI · 분리",
+      "device": "B200 MIG45GB",
+      "n": 240,
+      "correct": 175,
+      "accuracy": 0.7291666666666666,
+      "automatic": true,
+      "gold_span": false,
+      "inventory_seconds": 1773.588974324055,
+      "editor_vlm_seconds": 0.0,
+      "extraction_seconds": 96.73608349636197,
+      "localization_seconds": 164.2029120279476,
+      "lm_seconds": 260.9389955243096,
+      "vlm_seconds": 183.88821718748656,
+      "cold_total_seconds": 2218.416187035851,
+      "inventory_cached_total_seconds": 444.82721271179616,
+      "vlm_batch_allocation": {
+        "seconds": 183.88821718748656,
+        "selected_rows": 240,
+        "touched_batches": 84,
+        "mixed_batches": 8,
+        "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+      },
+      "required_call_counts": {
+        "inventory": 86,
+        "source_extraction": 81,
+        "localization": 254
+      }
+    },
+    {
+      "condition": "TS_QSEL_OFULL_GUI_AUTO",
+      "name": "Hybrid GUI",
+      "device": "B200 MIG45GB",
+      "n": 240,
+      "correct": 178,
+      "accuracy": 0.7416666666666667,
+      "automatic": true,
+      "gold_span": false,
+      "inventory_seconds": 1773.588974324055,
+      "editor_vlm_seconds": 0.0,
+      "extraction_seconds": 96.73608349636197,
+      "localization_seconds": 845.0186834987253,
+      "lm_seconds": 941.7547669950873,
+      "vlm_seconds": 124.32959943947695,
+      "cold_total_seconds": 2839.6733407586194,
+      "inventory_cached_total_seconds": 1066.0843664345641,
+      "vlm_batch_allocation": {
+        "seconds": 124.32959943947695,
+        "selected_rows": 240,
+        "touched_batches": 84,
+        "mixed_batches": 8,
+        "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+      },
+      "required_call_counts": {
+        "inventory": 86,
+        "source_extraction": 81,
+        "localization": 510
+      }
+    },
+    {
+      "condition": "TS_SEL_GUI_ORACLE",
+      "name": "Oracle span GUI · 진단",
+      "device": "B200 MIG45GB",
+      "n": 240,
+      "correct": 180,
+      "accuracy": 0.75,
+      "automatic": false,
+      "gold_span": true,
+      "inventory_seconds": 1773.588974324055,
+      "editor_vlm_seconds": 0.0,
+      "extraction_seconds": 0.0,
+      "localization_seconds": 598.9392513148487,
+      "lm_seconds": 598.9392513148487,
+      "vlm_seconds": 121.78782463663569,
+      "cold_total_seconds": 2494.3160502755395,
+      "inventory_cached_total_seconds": 720.7270759514844,
+      "vlm_batch_allocation": {
+        "seconds": 121.78782463663569,
+        "selected_rows": 240,
+        "touched_batches": 84,
+        "mixed_batches": 8,
+        "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+      },
+      "required_call_counts": {
+        "inventory": 86,
+        "source_extraction": 0,
+        "localization": 275
+      }
+    },
+    {
+      "condition": "TS_STEM_SINGLE_PASS_GUI_AUTO",
+      "name": "Stem 통합 GUI",
+      "device": "B200 MIG45GB",
+      "n": 240,
+      "correct": 173,
+      "accuracy": 0.7208333333333333,
+      "automatic": true,
+      "gold_span": false,
+      "inventory_seconds": 1773.588974324055,
+      "editor_vlm_seconds": 0.0,
+      "extraction_seconds": 0.0,
+      "localization_seconds": 428.11523604299873,
+      "lm_seconds": 428.11523604299873,
+      "vlm_seconds": 187.23848088644442,
+      "cold_total_seconds": 2388.942691253498,
+      "inventory_cached_total_seconds": 615.3537169294432,
+      "vlm_batch_allocation": {
+        "seconds": 187.23848088644442,
+        "selected_rows": 240,
+        "touched_batches": 84,
+        "mixed_batches": 8,
+        "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+      },
+      "required_call_counts": {
+        "inventory": 86,
+        "source_extraction": 0,
+        "localization": 251
+      }
+    },
+    {
+      "condition": "TS_ALL_SINGLE_PASS_GUI_AUTO",
+      "name": "Stem+Options 통합 GUI",
+      "device": "B200 MIG45GB",
+      "n": 240,
+      "correct": 179,
+      "accuracy": 0.7458333333333333,
+      "automatic": true,
+      "gold_span": false,
+      "inventory_seconds": 1773.588974324055,
+      "editor_vlm_seconds": 0.0,
+      "extraction_seconds": 0.0,
+      "localization_seconds": 1072.3339356593788,
+      "lm_seconds": 1072.3339356593788,
+      "vlm_seconds": 183.21210497121015,
+      "cold_total_seconds": 3029.135014954644,
+      "inventory_cached_total_seconds": 1255.546040630589,
+      "vlm_batch_allocation": {
+        "seconds": 183.21210497121015,
+        "selected_rows": 240,
+        "touched_batches": 84,
+        "mixed_batches": 8,
+        "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+      },
+      "required_call_counts": {
+        "inventory": 86,
+        "source_extraction": 0,
+        "localization": 278
+      }
+    },
+    {
+      "condition": "VISUAL_SELECTIVE_REWRITE",
+      "name": "Screenshot 직접 rewrite · 문맥 보존 별도 진단",
+      "device": "B200 MIG45GB",
+      "n": 240,
+      "correct": 171,
+      "accuracy": 0.7125,
+      "automatic": true,
+      "gold_span": false,
+      "inventory_seconds": 0.0,
+      "editor_vlm_seconds": 573.7237627841532,
+      "extraction_seconds": 0.0,
+      "localization_seconds": 0.0,
+      "lm_seconds": 0.0,
+      "vlm_seconds": 190.75322437503687,
+      "cold_total_seconds": 764.4769871591901,
+      "inventory_cached_total_seconds": 764.4769871591901,
+      "vlm_batch_allocation": {
+        "seconds": 190.75322437503687,
+        "selected_rows": 240,
+        "touched_batches": 84,
+        "mixed_batches": 8,
+        "allocation": "batch_runtime_ms * selected_rows / actual_batch_size; not standalone latency"
+      },
+      "required_call_counts": {
+        "inventory": 0,
+        "source_extraction": 0,
+        "localization": 0
+      },
+      "selective_scope_verified": false
+    }
+  ],
+  "ocr_progress_only": {
+    "as_of_utc": "2026-11-17T22:16:05.176809+00:00",
+    "complete": true,
+    "stages": {
+      "ocr": {
+        "started": true,
+        "complete": true,
+        "rows": 128,
+        "statuses": {
+          "success": 128
+        }
+      },
+      "rewrite": {
+        "started": true,
+        "complete": true,
+        "rows": 288,
+        "statuses": {
+          "success": 278,
+          "fallback_original": 7,
+          "no_op_no_edits": 3
+        }
+      },
+      "infer": {
+        "started": true,
+        "complete": true,
+        "rows": 288,
+        "statuses": {
+          "success": 288
+        }
+      }
+    }
+  },
+  "ocr_completed_results": {
+    "development_only": true,
+    "primary_pairs": 240,
+    "primary_items": 20,
+    "executed_pairs": 288,
+    "primary_images": 80,
+    "ocr_device": "cpu",
+    "correct": {
+      "OCR_E1_M0": 179,
+      "VLM_E1_M0": 178
+    },
+    "OCR_minus_VLM": {
+      "pairs": 240,
+      "items": 20,
+      "difference": 0.004166666666666667,
+      "ci95": [
+        -0.020833333333333332,
+        0.03333333333333333
+      ],
+      "exploratory_bootstrap_centered_p": 0.8773122687731227,
+      "recovery": 7,
+      "regression": 6
+    },
+    "cost": {
+      "ocr_seconds": 894.9245213484392,
+      "extraction_seconds": 63.51239993982017,
+      "matching_seconds": 326.73498244863003,
+      "answer_seconds": 189.96481504291296,
+      "total_seconds": 1475.1367187798023,
+      "seconds_per_pair": 6.146402994915843
+    },
+    "inventory_overlap_not_ground_truth": [
+      {
+        "image_sha256": "0119830a93cea372abd4e89078cc32411e3b92e2ea063b25c31857e77e5cdb3d",
+        "gui_language": "zh",
+        "vlm_strings": 11,
+        "ocr_strings": 13,
+        "exact_intersection": 6,
+        "vlm_only": [
+          "16:23",
+          "5G",
+          "83%",
+          "查找 App并开始积累凭证。",
+          "查找钱包适用 App"
+        ],
+        "ocr_only": [
+          "16:23(",
+          "835",
+          "APP",
+          "{{56",
+          "卫",
+          "查找 App 并开始积累凭证。",
+          "查找钱包适用"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "06b94d12c64b49a67901ba8ae8c880599125015c76832ce3ac7753b8e3328088",
+        "gui_language": "zh",
+        "vlm_strings": 14,
+        "ocr_strings": 19,
+        "exact_intersection": 7,
+        "vlm_only": [
+          ",",
+          "23:15",
+          "94",
+          "VPN",
+          "×",
+          "。",
+          "在“地点”中"
+        ],
+        "ocr_only": [
+          "0",
+          "23.15",
+          "5",
+          "8",
+          "NPN",
+          "O",
+          "a $ d f9h j k",
+          "oll",
+          "q' W e rt y。 U' i 。",
+          "乙 X C V b n m",
+          "图",
+          "在\"地点\"中"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "0e42f307ff662ed22c698058edc9ef6a1eab2672df170be74aa229e7f6917f64",
+        "gui_language": "en",
+        "vlm_strings": 13,
+        "ocr_strings": 18,
+        "exact_intersection": 11,
+        "vlm_only": [
+          "22:28",
+          "Shuffle playback"
+        ],
+        "ocr_only": [
+          "0",
+          "1 Shuffle playback",
+          "22.28 %\" '@ d",
+          "=",
+          "Di =",
+          "J0' 4",
+          "R"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "18708e523d672b35a902153c104d4f1b6c06926df81f0107ce1681a20dd30490",
+        "gui_language": "th",
+        "vlm_strings": 15,
+        "ocr_strings": 18,
+        "exact_intersection": 5,
+        "vlm_only": [
+          "00:00:03 | 10/6/2025",
+          "การอัดบันทึกมาตราฐาน 1",
+          "ตั้งค่าเป็นริงโทนสําหรับชั่วคราว",
+          "ตั้งเป็น",
+          "ตั้งเป็นเสียงเรียกเข้า",
+          "ตั้งเป็นเสียงเรียกเข้าของรายชื่อ",
+          "ลบ",
+          "เปลี่ยนชื่อ",
+          "เลือกทั้งหมดแล้ว",
+          "แบ่งปัน"
+        ],
+        "ocr_only": [
+          "00:00:03",
+          "10/6/2025",
+          "69",
+          "dบ&ล",
+          "การอัดบันทึกมาตรฐาน 1",
+          "ตงเบน",
+          "ตังเป็นเสียงเรียกเข้า",
+          "ตั้งค่าเป็นริงโทนสําหรับข้อความ",
+          "ตั้งเป็นเสียงเรียกเข้าของรายชือ",
+          "ู",
+          "เบลยนชอ",
+          "เลือกทังหมดแล้ว",
+          "แบงบน"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "1bb9f72ac960700ccf5936cd07c5e071913cc06f2fba0b5f6d7d4b91e3d26a23",
+        "gui_language": "th",
+        "vlm_strings": 25,
+        "ocr_strings": 36,
+        "exact_intersection": 8,
+        "vlm_only": [
+          "21:50",
+          "5G",
+          "ค้นหา",
+          "จินแผ่นดินใหญ่",
+          "จีหลิน",
+          "ฉางกวน",
+          "บัตรโดยสาร Chaozhou",
+          "บัตรโดยสาร Heyuan",
+          "บัตรโดยสาร Jiangmen",
+          "บัตรโดยสาร Jieyang",
+          "บัตรโดยสาร Maoming",
+          "บัตรโดยสาร Shanwei",
+          "บัตรโดยสาร Shaoguan",
+          "บัตรโดยสารจีหลิน",
+          "ผ่านทางเข้าออกได้อย่างรวดเร็วโดยยืน iPhone หรือ Apple Watch ของคุณให้ใกล้กับเครื่องอ่าน",
+          "เจิ้ยหยาง",
+          "เจียงเมิน"
+        ],
+        "ocr_only": [
+          "++ 56",
+          "-34]:^5&",
+          "21:50 (",
+          "=1},:02",
+          "apple watch ของคุณให้ใกล้กับเครื่องอ่าน",
+          "c",
+          "erวgซนัส",
+          "siagd[",
+          "{,",
+          "คนหา",
+          "จีนแผ่นดินใหญ่",
+          "จี๋หลิน",
+          "ฉาวก",
+          "ตอ",
+          "น",
+          "บัตรโดยสาร chaozhou",
+          "บัตรโดยสาร heyuan",
+          "บัตรโดยสาร jiangmen",
+          "บัตรโดยสาร jieyang",
+          "บัตรโดยสาร maoming",
+          "บัตรโดยสาร shanwei",
+          "บัตรโดยสาร shaoguan",
+          "บัตรโดยสารจี๋หลิน",
+          "ผ่านทางเข้าออกได้อย่างรวดเร็วโดยยืน iphone หรือ",
+          "ว.",
+          "สปน",
+          "เจียงเหมิน",
+          "เจี๋ยหยาง"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "1fdb9084c002e11b047ad6d5004a09b5d6464605629d228c42aef69b808b4465",
+        "gui_language": "ru",
+        "vlm_strings": 15,
+        "ocr_strings": 18,
+        "exact_intersection": 7,
+        "vlm_only": [
+          "00:00:03 | 10.06.2025",
+          "18:42",
+          "Все выбранные",
+          "Задать как рин...",
+          "Задать как сигнал для контакта",
+          "Переимен.",
+          "Удалить",
+          "выбор всех"
+        ],
+        "ocr_only": [
+          "00.00.03",
+          "10.06.2025",
+          "18:.42",
+          "67",
+          "Bce выбранные",
+          "N N %",
+          "Задать как сигНал для контакта",
+          "выбор всеx",
+          "задать как рин:",
+          "переимен:",
+          "удалить"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "1fdc89444b362200deab2a19b87d06ba87cfd7c430be8489f8697d0ebfa95c54",
+        "gui_language": "zh",
+        "vlm_strings": 0,
+        "ocr_strings": 8,
+        "exact_intersection": 0,
+        "vlm_only": [],
+        "ocr_only": [
+          "08:00",
+          "56",
+          "69",
+          "VPN SIII",
+          "内容库",
+          "图书",
+          "心愿单",
+          "访问您的应用内容库"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "22478e81e789cd21fb2e505bd07df99a253db0c8d74b96adeed51c2fc83f0a6a",
+        "gui_language": "zh",
+        "vlm_strings": 14,
+        "ocr_strings": 17,
+        "exact_intersection": 10,
+        "vlm_only": [
+          "00:00:03 | 2025/6/10",
+          "分享",
+          "标准录音 1",
+          "设为铃声"
+        ],
+        "ocr_only": [
+          "00:00:03",
+          "2025/6/10",
+          "72",
+          "凹 & *",
+          "分旱",
+          "标准录音1",
+          "设刀铃声"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "2426cc14d4e22d5233149359f30d73b7e4f8e9e3440d8418508dcad848ba587d",
+        "gui_language": "ru",
+        "vlm_strings": 9,
+        "ocr_strings": 12,
+        "exact_intersection": 4,
+        "vlm_only": [
+          "1",
+          "19:38 Нет дополнительного текста",
+          "19:47 Ср 18 июня",
+          "А автоматически убирать в Dock",
+          "Настройки карандаша..."
+        ],
+        "ocr_only": [
+          "\"",
+          "100 %",
+          "19.38 Нет дополнительного текста",
+          "19:47",
+          "Aq",
+          "Cp 18 июня",
+          "Автоматически убирать в Dock",
+          "Настройки карандаша:"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "255a20ee2ff7f9bc43947f33e841c4232f14538cc86f374ea0bbeb84dae8ff01",
+        "gui_language": "ru",
+        "vlm_strings": 9,
+        "ocr_strings": 20,
+        "exact_intersection": 3,
+        "vlm_only": [
+          "Автоматически отвечать на вызовы при подключении к внешнему аудиоустройству",
+          "Вибрировать при ответе и завершении вызова другим абонентом",
+          "Завершение вызова кнопкой питания",
+          "Наушники проводные или Bluetooth и другие аудиоустройства",
+          "Ответить на вызов / Завершить выз...",
+          "Это работает только при включенном экране."
+        ],
+        "ocr_only": [
+          "24",
+          "N N %",
+          "Автоматически отвечать на",
+          "Вибрировать при ответе",
+          "Завершение вызова",
+          "Наушники проводные или Bluetooth",
+          "Ответить на вызов / Завершить выз.",
+          "Это",
+          "аудиоустройства",
+          "включенном экране:",
+          "внешнему аудиоустройству",
+          "вызовы при подключении к",
+          "другим абонентом",
+          "и другие",
+          "и завершении вызова",
+          "кнопкой питания",
+          "работает только при"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "269e94bce4691dcf8bc35bd407ff24040c2643e8ade8045ee9d9ba6bb55139e5",
+        "gui_language": "zh",
+        "vlm_strings": 15,
+        "ocr_strings": 20,
+        "exact_intersection": 11,
+        "vlm_only": [
+          "N",
+          "连续30天种出健康的树(0/30)",
+          "连续3天种出健康的树(3/3)",
+          "连续7天种出健康的树(7/7)"
+        ],
+        "ocr_only": [
+          "-4 30 Tm4 /|6:",
+          "130",
+          "3",
+          "30",
+          "7",
+          "凹 & * 谷",
+          "又",
+          "连续3夭种出健康的树(3/3)",
+          "连续7夭种出健康的树 (7/7)"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "2743cdbb226b9a2763d578e18318571c0b5a19de1f9aa4e5aeb2b6cae9e30ac7",
+        "gui_language": "th",
+        "vlm_strings": 12,
+        "ocr_strings": 14,
+        "exact_intersection": 5,
+        "vlm_only": [
+          ".5",
+          "0.0",
+          "1x",
+          "LIVE บิด",
+          "RAW",
+          "ถ่ายโอน",
+          "ภาพนตร์"
+        ],
+        "ocr_only": [
+          ".",
+          "5",
+          "ilalalal",
+          "ix",
+          "live ปิด",
+          "o.0",
+          "raw",
+          "ภาพยนตร์",
+          "ววโมชัน"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "2a7d96d27aaca5ba08ea95557eea089bea3ac053a3c563cd78a9da94ae9d3bbd",
+        "gui_language": "en",
+        "vlm_strings": 24,
+        "ocr_strings": 30,
+        "exact_intersection": 19,
+        "vlm_only": [
+          "Account, country, & history",
+          "Play can recommend apps, offers, and",
+          "VPN",
+          "location. Learn more",
+          "your storage runs low. Learn more"
+        ],
+        "ocr_only": [
+          "Account; country, & history",
+          "Ior",
+          "Play",
+          "VPNI",
+          "can recommend apps, offers, and",
+          "location: Learn more",
+          "mOr ctorana",
+          "maro",
+          "oarn",
+          "rinc",
+          "ull"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "2c52ec7d3701982d0c6b25144557c793b68785fb426bc5f85be4890061e4db2f",
+        "gui_language": "zh",
+        "vlm_strings": 16,
+        "ocr_strings": 17,
+        "exact_intersection": 12,
+        "vlm_only": [
+          "23:15",
+          "94",
+          "VPN",
+          "已放置图钉"
+        ],
+        "ocr_only": [
+          "23.15",
+          "4Nl",
+          "NPN",
+          "OU",
+          "己放置图钉"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "2e69867f383d9c994952234a49b75a754393bdaa34444e3e2be40e5067c6bc87",
+        "gui_language": "th",
+        "vlm_strings": 16,
+        "ocr_strings": 23,
+        "exact_intersection": 7,
+        "vlm_only": [
+          "20:19",
+          "MIUI",
+          "ShareMe",
+          "บริการและช้อป",
+          "บันทึกวิดีโอหน้าจอ",
+          "รายชื่อ",
+          "รีโมท Mi",
+          "วิทยุ FM",
+          "เครื่องมือ"
+        ],
+        "ocr_only": [
+          "100",
+          "20:19 (",
+          "=",
+          "i",
+          "mเบเ",
+          "shareme",
+          "x",
+          "{3",
+          "จอ",
+          "บริการและข้อ",
+          "บันทึกวิดีโอหน้า",
+          "รายชือ",
+          "รีโมท mi",
+          "วิทยุ fm",
+          "เครืองมือ",
+          "๑"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "2e83702ca11e063a2120cf9bfeb3f69372b26e11a82da4627ca9cd5b0e19496d",
+        "gui_language": "en",
+        "vlm_strings": 26,
+        "ocr_strings": 30,
+        "exact_intersection": 22,
+        "vlm_only": [
+          "4G",
+          "Foshan",
+          "Search",
+          "or Apple Watch near a reader."
+        ],
+        "ocr_only": [
+          "# 4G",
+          "#52",
+          "04t",
+          "Apple Watch near a reader:",
+          "Fosh",
+          "Ja",
+          "Q Search",
+          "or"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "3490cfc9ad90adbb8badb464ed1d32a9a68f8f2bd4079356a00d3d246d56afaa",
+        "gui_language": "zh",
+        "vlm_strings": 25,
+        "ocr_strings": 30,
+        "exact_intersection": 15,
+        "vlm_only": [
+          "5G",
+          "83",
+          "只需将iPhone或Apple Watch靠近读卡器,即可一刷而过。",
+          "搜索",
+          "江苏交通一卡通·常州",
+          "江苏交通一卡通·淮海通",
+          "江苏交通一卡通·苏州",
+          "洪城一卡通",
+          "重庆畅通卡·交通联合版",
+          "金华市民卡·八婺通交联版"
+        ],
+        "ocr_only": [
+          "!;56",
+          "5(",
+          "835",
+          "Q 搜索",
+          "g",
+          "刷而过。",
+          "即可一",
+          "只需将 iPhone 或 Apple Watch靠近读卡器,",
+          "江苏交通一卡通 .常州",
+          "江苏交通一卡通 .淮海通",
+          "江苏交通一卡通 .苏州",
+          "洪城一一卡通",
+          "重庆畅通卡.交通联合版",
+          "金华市民卡.八婺通交联版",
+          "钽"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "3b4d9f90a9daf3c38d201a8d37b45d0693bb640ecbf34bf60911b161289140da",
+        "gui_language": "zh",
+        "vlm_strings": 20,
+        "ocr_strings": 28,
+        "exact_intersection": 14,
+        "vlm_only": [
+          "Play 可以根据您的设备位置信息推荐应用、",
+          "优惠和其他本地内容。了解详情",
+          "使用的应用。了解详情",
+          "当可用存储空间不足时,系统会归档您很少",
+          "账号、国家/地区和历史记录",
+          "账号偏好设置、通知"
+        ],
+        "ocr_only": [
+          "011",
+          "56",
+          "69",
+          "Play",
+          "VPNI",
+          "优惠和其他本地内容。",
+          "使用的应用。",
+          "可以根据您的设备位置信息推荐应用",
+          "国家/地区和历史记录",
+          "孓解送情",
+          "当可用存储空间不足时 ,",
+          "系统会归档您很少",
+          "账号",
+          "账号偏好设置。通知"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "3f70c6a398dbd6c46de5dcb978929da3b3168b9be3dc865abdfe8376cfe45672",
+        "gui_language": "th",
+        "vlm_strings": 25,
+        "ocr_strings": 26,
+        "exact_intersection": 16,
+        "vlm_only": [
+          "N",
+          "Wi-Fi หรือข้อมูลเครือข่ายโทรศัพท์",
+          "ป้องกันไม่ให้แอพของบุคคลที่สาม",
+          "ยืนยัน ติดตามพัสดุ เติมเงินโทรศัพท์",
+          "รายการที่ปิดกันของบัญชีบริการ",
+          "และช่วยให้คุณสามารถคัดลอกหรือส",
+          "แสดงข้อความพร้อมข้อมูลเกี่ยวกับตัว",
+          "ใช้เมนูต่างและใช้บริการอื่น ๆ ได้",
+          "ไม่มีชิมการ์ด"
+        ],
+        "ocr_only": [
+          "d la & ลี",
+          "wi fi",
+          "ป้องกันไมให้แอพของบุคคลที่สาม",
+          "ยืนยัน ติดตามพัสด เติมเงินโทรศัพท์",
+          "รายการที่ปิดกั้นของบัญชีบริการ",
+          "หรือข้อมูลเครือข่ายโทรศัพท์",
+          "และช่วยให้คุณสามารถคัดลอกรหัส",
+          "แสดงข้อความพร้อมข้อมูลเกี่ยวกับตั๋ว",
+          "ใช้เมนูด่วนและใช้บริการอื่น ต ได้",
+          "ไม่มีซิมการ์ด"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "4008970929c7ca1a0e791fbc2e2e41ac2da0abfe9a141654d279f48233a02ed0",
+        "gui_language": "th",
+        "vlm_strings": 0,
+        "ocr_strings": 24,
+        "exact_intersection": 0,
+        "vlm_only": [],
+        "ocr_only": [
+          "000111222333",
+          "2",
+          "23:27",
+          "3",
+          "5",
+          "9",
+          "?123",
+          "^ ผฺป.",
+          "eี",
+          "gif",
+          "vpn",
+          "ค้นหา \"000111222333\"",
+          "ถ.",
+          "ทม",
+          "ฝ",
+          "ฟฺหก ด",
+          "ร น ยฺฺบ",
+          "ล",
+          "สพะ",
+          "เลือกในแผนที่",
+          "แผนที่",
+          "ในสถานที่",
+          "ไทย",
+          "ํา ส ว"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "43c2340e9a0878e72883e4d66ef5f3d1fc21764203cbb022995ddee90eba8cb9",
+        "gui_language": "zh",
+        "vlm_strings": 13,
+        "ocr_strings": 12,
+        "exact_intersection": 9,
+        "vlm_only": [
+          "1",
+          "Aa",
+          "搜索",
+          "触控笔设置..."
+        ],
+        "ocr_only": [
+          "AO",
+          "Q 搜索",
+          "触控笔设置_"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "45bc1d45cfa31a299694abf3ef5536b416327796e35e63064d1dae6e250161f9",
+        "gui_language": "ru",
+        "vlm_strings": 15,
+        "ocr_strings": 18,
+        "exact_intersection": 9,
+        "vlm_only": [
+          "21:55",
+          "5G",
+          "Все мои",
+          "и собирайте карты.",
+          "交通",
+          "市政交通"
+        ],
+        "ocr_only": [
+          "21*55 €",
+          ":I! 5G",
+          "Bсe мои",
+          "D",
+          "iin",
+          "mlxzsim",
+          "гНIпапшв",
+          "и собирайте карты",
+          "л"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "481c77139686431ff0bc7fff39a7e5923f21406379a2c6a64f57499659c520f5",
+        "gui_language": "ru",
+        "vlm_strings": 13,
+        "ocr_strings": 23,
+        "exact_intersection": 8,
+        "vlm_only": [
+          "15:48",
+          "7 дней подряд",
+          "Всего Вы были сосредоточены 3 дня(-ей) (3/3)",
+          "Вы выращивали здоровые деревья 3 дней подряд (3/3)",
+          "Вы выращивали здоровые деревья 7 дней подряд (7/7)"
+        ],
+        "ocr_only": [
+          "15.48",
+          "3",
+          "30",
+          "7",
+          "90",
+          "N N %",
+          "Всего Вы были",
+          "Всего Вы были сосредоточены 4",
+          "Вы выращивали здоровые деревья 3 дней",
+          "Вы выращивали здоровые деревья 7 дней",
+          "дней подряд",
+          "подряд (3/3)",
+          "подряд (7/7)",
+          "редоточены 3 дня(-ей) (3/3)",
+          "часа (4/4)"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "4f155516bbb7bddc2389a307be7e4a8369be52fd7966d48b250e8d4a999efb87",
+        "gui_language": "ru",
+        "vlm_strings": 14,
+        "ocr_strings": 27,
+        "exact_intersection": 7,
+        "vlm_only": [
+          "23:25",
+          "Более точная информация о регулярных маршрутах",
+          "Использовать историю местоположений, чтобы отправлять более точную информацию о регулярных маршрутах",
+          "Как вы добираетесь",
+          "Не настроено",
+          "Получать информацию о возможных задержках и изменениях, прежде чем отправляться в путь",
+          "Уведомления о времени в пути и общ. транспорте"
+        ],
+        "ocr_only": [
+          "0",
+          "23.25",
+          "94",
+          "He настроено",
+          "NPN",
+          "Более точная информация 0 регулярных",
+          "В",
+          "Использовать историю местоположений;",
+          "Как вы",
+          "Получать информацию 0 возможных",
+          "Уведомления 0 времени",
+          "в путь",
+          "добираетесь",
+          "задержках и изменениях прежде чем",
+          "маршрутах",
+          "отправляться",
+          "пути и общ:",
+          "регулярных маршрутах",
+          "транспорте",
+          "чтобы отправлять более точную информацию"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "52d9e810f70085617fc61473e9229c50e7f6812c5492f46d93d92b0c880ff73a",
+        "gui_language": "zh",
+        "vlm_strings": 17,
+        "ocr_strings": 13,
+        "exact_intersection": 11,
+        "vlm_only": [
+          "1",
+          "Aa",
+          "二",
+          "搜索",
+          "目",
+          "相机"
+        ],
+        "ocr_only": [
+          "AO",
+          "Q 搜索"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "541c32e50485e631d8249b8a1265d0e820d91927791e60be9c5ba2f4205eac72",
+        "gui_language": "ru",
+        "vlm_strings": 8,
+        "ocr_strings": 8,
+        "exact_intersection": 7,
+        "vlm_only": [
+          "VPN"
+        ],
+        "ocr_only": [
+          "VPN 3Ч,l"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "5768514a3407909399f078230fe7dd9ff7014ccc073d66e6277e20248860eef2",
+        "gui_language": "en",
+        "vlm_strings": 16,
+        "ocr_strings": 21,
+        "exact_intersection": 12,
+        "vlm_only": [
+          "100",
+          "19:52",
+          "Screen Recorder",
+          "Services & feedback"
+        ],
+        "ocr_only": [
+          "19.52 (",
+          "2",
+          "83",
+          "=",
+          "Screen",
+          "Services &",
+          "X",
+          "feedback",
+          "o0"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "660f21587e5e7484459adae5126fe4ec6626cb791586bb61af1d97d21904da57",
+        "gui_language": "ru",
+        "vlm_strings": 13,
+        "ocr_strings": 29,
+        "exact_intersection": 5,
+        "vlm_only": [
+          "N",
+          "Автоматически распознавайте текст сообщения, мгновенно копируйте проверочные коды, отслеживайте доставку, пополняйте счет телефона, пользуйтесь быстрым меню и другими сервисами.",
+          "Запретите сторонним приложениям считывать ваши проверочные коды.",
+          "Защита с помощью проверочных кодов",
+          "Отображайте сообщения с информацией о билетах на поезд и авиабилеты в виде карточек.",
+          "Принимайте сообщения от сервисных аккаунтов по сети Wi-Fi или через мобильные данные.",
+          "Умное распознавание сообщений",
+          "←"
+        ],
+        "ocr_only": [
+          "N C A %",
+          "Wi-Fi или через мобильные",
+          "Автоматически распознавайте",
+          "Запретите сторонним",
+          "Защита c помощью",
+          "Отображайте сообщения с",
+          "Принимайте сообщения от",
+          "Умное распознавание",
+          "данные:",
+          "другими сервисами:",
+          "информацией 0 билетах на",
+          "карточек:",
+          "коды, отслеживайте доставку;",
+          "копируйте проверочные",
+          "поезд и авиабилеты в виде",
+          "пользуйтесь быстрым меню и",
+          "пополняйте счет телефона;",
+          "приложениям считывать ваши",
+          "проверочные коды:",
+          "проверочных кодов",
+          "сервисных аккаунтов по сети",
+          "сообщений",
+          "сообщения; мгновенно",
+          "текст"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "663f3782bc2fbd321c4090d34d5b2ac8edc68747814a27617457a8ae19ede21d",
+        "gui_language": "th",
+        "vlm_strings": 31,
+        "ocr_strings": 38,
+        "exact_intersection": 16,
+        "vlm_only": [
+          "20:14 จ. 9 มิ.ย.",
+          "Apple Pencil",
+          "Siri และการค้นหา",
+          "WLAN",
+          "การตั้งค่า",
+          "จอภาพและความสว่าง",
+          "ถ่ายภาพหน้าจอ >",
+          "ลายมือเป็นข้อความตัวอักษร ลองเขียนคําหรือข้อความในช่องด้าน",
+          "สุขภาพ",
+          "หน้าจอโฮมและงานมัลติทัสก์",
+          "เขียนกัน",
+          "เสร็จสิ้น",
+          "โน้ตดาวน์ >",
+          "ไฟฟ้า",
+          "试着在此处写几个字..."
+        ],
+        "ocr_only": [
+          "20:14",
+          "`^ร*%4ไ~17 ..,",
+          "aa",
+          "apple pencil",
+          "ate",
+          "siri และการค้นหา",
+          "wlan",
+          "การตังค่า",
+          "จ. 9 มิ.ย",
+          "จอภาพ",
+          "ถ่ายภาพหน้าจอ",
+          "ลายมือเป็นข้อความตัวอักษร ลองเขียนคําหรือข้อความ ในช่องด้าน",
+          "ศูนย์ควบคุม",
+          "สําหรับการเลื่อนแทน",
+          "หน้าจอโฮมและงานมัลติทาสก์",
+          "ะู",
+          "เชื่อมกัน",
+          "เปิด",
+          "เสรจสิน",
+          "และความสว่าง",
+          "โน้ตด่วน",
+          "โฟกัส"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "69022671c252f78f71c2aa646c87920de5fc12b7bf59e746af3f8df413a963f9",
+        "gui_language": "en",
+        "vlm_strings": 14,
+        "ocr_strings": 14,
+        "exact_intersection": 10,
+        "vlm_only": [
+          "1",
+          "1 Note",
+          "19:38 No additional text",
+          "19:43"
+        ],
+        "ocr_only": [
+          "19.38",
+          "19.43",
+          "No additional text",
+          "Note"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "6bc103c99600d8fe42a270342ae08e4b1ca5625ddb12fffdc6bf627a2064f46c",
+        "gui_language": "zh",
+        "vlm_strings": 9,
+        "ocr_strings": 11,
+        "exact_intersection": 8,
+        "vlm_only": [
+          "支持蓝牙耳机、线控耳机等设备"
+        ],
+        "ocr_only": [
+          "27",
+          "凹 (& *谷",
+          "支持蓝牙耳机。线控耳机等设备"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "6c463dd2cdb479b6598a220de721d4bcb44eb03bb5f47481394d738cdc46002a",
+        "gui_language": "th",
+        "vlm_strings": 27,
+        "ocr_strings": 28,
+        "exact_intersection": 10,
+        "vlm_only": [
+          "5G",
+          "Google Play Instant",
+          "Play สามารถแนะนําแอป ช้อปสินค้า และให้หา",
+          "VPN",
+          "การตั้งค่า",
+          "การตั้งค่าบัญชี การแจ้งเตือน",
+          "ความคิดเห็นเกี่ยวกับ Google Play Store",
+          "ความคุ้มแบบสุ่มและการตอบ",
+          "คําเริ่มต้นของระบบ",
+          "จัดการการตั้งค่าการแจ้งเตือน",
+          "บ้าน",
+          "ย้อนกลับ",
+          "รีม",
+          "อื่นๆ ในพื้นที่โดยอิงตามต่างหน้าของอุปกรณ์ของคุณ",
+          "เมนู",
+          "เริ่มต้น",
+          "ใช้ต่างหน้าของอุปกรณ์"
+        ],
+        "ocr_only": [
+          "5g",
+          "google play instant",
+          "play",
+          "vpn วัง|",
+          "การตังค่า",
+          "การตังค่าบัญชี การแจ้ง1เตือน",
+          "กึจเค้า้าวจีลง้ล.ลค้างวพิงปติง",
+          "ข.",
+          "ควบคุมแบบสํารวจและการตอบ",
+          "ความคิดเห็นเกี่ยวกับ google play store",
+          "ค่าเริ่มต้นของระบบ",
+          "จัดการการตังค่าการแจ้งเตือน",
+          "ธีม",
+          "บ.",
+          "สามารถแนะนําแอป ข้อเสนอ และเนือหา",
+          "อื่นฯ",
+          "ใช้ตําแหน่งของอุปกรณ์",
+          "ในพื้นที่โดยอิงตามตําแหน่งอุปกรณ์ของคุณ"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "6e352d60f6cf1fee1055360e78bca0dbef16a19e15a148430e91d2f9d68f5643",
+        "gui_language": "ru",
+        "vlm_strings": 11,
+        "ocr_strings": 13,
+        "exact_intersection": 7,
+        "vlm_only": [
+          ".5",
+          "3 с",
+          "LIVE ВЫКЛ.",
+          "КИНОЭФФЕКТ"
+        ],
+        "ocr_only": [
+          "0 3 c",
+          "5",
+          "Iulululul",
+          "LIVE ВЫКЛ:",
+          "RAW",
+          "ИНОЭФФЕКТ"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "6f1b567d35e7ad281762ec0c75d8c2f23fa2665d58796eb40c83d7fd5f454810",
+        "gui_language": "ru",
+        "vlm_strings": 13,
+        "ocr_strings": 21,
+        "exact_intersection": 11,
+        "vlm_only": [
+          "22:32",
+          "В случайном порядке"
+        ],
+        "ocr_only": [
+          "(",
+          "0",
+          "100J /",
+          "22:32 \"2 0 d",
+          "=",
+          ">",
+          "> :=",
+          "В",
+          "случайном порядке",
+          "ё"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "7841e78c9668846fc844c7c1134e33d125c632e5d146b9b7317226f0ab72dd44",
+        "gui_language": "zh",
+        "vlm_strings": 13,
+        "ocr_strings": 19,
+        "exact_intersection": 11,
+        "vlm_only": [
+          "22:26",
+          "随机播放"
+        ],
+        "ocr_only": [
+          "(",
+          "(0",
+          "22:26 % @d",
+          "33 随机播放",
+          "〉I :三",
+          "三",
+          "民",
+          "皿0彳"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "7a9f8b0b0b694bd6663a6ea5163307a6352190d0176b3ace31bf4f6c2a7d8b19",
+        "gui_language": "en",
+        "vlm_strings": 14,
+        "ocr_strings": 19,
+        "exact_intersection": 7,
+        "vlm_only": [
+          ",",
+          "23:21",
+          "94",
+          "?123",
+          "×",
+          "。",
+          "拼音"
+        ],
+        "ocr_only": [
+          "##E",
+          "0",
+          "2 X C V b n m",
+          "2123",
+          "23.21",
+          "5",
+          "8",
+          "9' w e\" r^ t' y\" u\" i\" 0",
+          "941",
+          "Alll",
+          "a s d f g h j k",
+          "p"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "7b6f2a38deac557cf488fc2c6b0af540ed6f2a71600cffb8788619221b5c3f18",
+        "gui_language": "en",
+        "vlm_strings": 51,
+        "ocr_strings": 61,
+        "exact_intersection": 30,
+        "vlm_only": [
+          "100% 🔋",
+          "22:00 Wed Jun 18",
+          "ARUBA",
+          "BERMUDA",
+          "CAYMAN ISLANDS (U.K.)",
+          "COAST MOUNTAINS",
+          "COAST RANGES",
+          "Colón",
+          "HAITI",
+          "La Habana",
+          "MOUNTAINS",
+          "Neison River",
+          "Notification Settings",
+          "ROCKY",
+          "ST. PIERRE AND MIQUELON (FR.)",
+          "Subway & Light Rail",
+          "×",
+          "高德地图",
+          "📶",
+          "🗺️",
+          "🧭"
+        ],
+        "ocr_only": [
+          "\"",
+          "(uk)",
+          "0",
+          "1",
+          "100%",
+          "2",
+          "22:00",
+          "5",
+          "6",
+          ";",
+          "@AMMANISLANDS",
+          "ARIUJBA",
+          "BERMU",
+          "Cancer",
+          "Colon",
+          "Cottinac",
+          "HAItI",
+          "Iiitu",
+          "Iotification",
+          "LaHabana",
+          "Light Rail",
+          "MQUELon (FR)",
+          "Milwaukee",
+          "Rivel",
+          "ST PIERRBAND",
+          "Subway",
+          "UNITED STATES",
+          "V",
+          "Wed Jun 18",
+          "es",
+          "~Tro/"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "7c92a5bddff9976185e5c26a4ee1f0563433983533b4f894606ec86f8a263c64",
+        "gui_language": "ru",
+        "vlm_strings": 23,
+        "ocr_strings": 29,
+        "exact_intersection": 19,
+        "vlm_only": [
+          "21:55",
+          "Быстро проходите через пункты оплаты проезда, поднося iPhone или Apple Watch к считывателю.",
+          "Даянь",
+          "Транспортная карта Даяня"
+        ],
+        "ocr_only": [
+          "'затEr",
+          "21*55 €",
+          "FiEL ;",
+          "K считЫвателю",
+          "m",
+          "Быстро проходите через пункты оплаты",
+          "Далянь",
+          "Транспортная карта Даляня",
+          "Уa \"$",
+          "проезда; поднося iPhone или Apple Watch"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "7cc5481f4c212fda97fe7fcfe0d0b61b3560ab85b134ecc80abcd047febe7502",
+        "gui_language": "ru",
+        "vlm_strings": 13,
+        "ocr_strings": 14,
+        "exact_intersection": 10,
+        "vlm_only": [
+          "22:32",
+          "Мі аккаунт",
+          "Текущая версия 5.2.51i-575"
+        ],
+        "ocr_only": [
+          "100J /",
+          "22.32 \"Z 0 %",
+          "Mi аккаунт",
+          "Текущая версия 5.2.511-575"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "7e0cfd3ca1feb5601a21b17d7bd9f9e12a139fc496ee7b50e4350ccb1af7343f",
+        "gui_language": "th",
+        "vlm_strings": 16,
+        "ocr_strings": 19,
+        "exact_intersection": 9,
+        "vlm_only": [
+          "7",
+          "N",
+          "ปลูกต้นไม้ที่สมบูรณ์ 3 วันติดต่อกัน (3/3)",
+          "ปลูกต้นไม้ที่สมบูรณ์ 30 วันติดต่อกัน (0/30)",
+          "ปลูกต้นไม้ที่สมบูรณ์ 7 วันติดต่อกัน (7/7)",
+          "เวลาโฟกัสทั้งหมดถึง 3 วัน (3/3)",
+          "เวลาโฟกัสทั้งหมดถึง 4 ชั่วโมง (4/4)"
+        ],
+        "ocr_only": [
+          "30 วันติดต่อกัน",
+          "7วันติดต่อกัน",
+          "i.",
+          "ปลูกต้นไม้ที่สมบูรณ์3 วันติดต่อกัน (3/3)",
+          "ปลูกต้นไม้ที่สมบูรณ์7 วันติดต่อกัน (7/7)",
+          "มม&ลด",
+          "เaลต้าไ.ทัทที่วขบรณ์วช วัชติดต่าลับ",
+          "เวด",
+          "เวลาโฟกัสทั้งหมดถึง3 วัน (3/3)",
+          "เวลาโฟกัสทั้งหมดถึง4 ชั่วโมง (4/4)"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "818e0ad8f6c875855654c45956cc3d4da4261903fcb599b5cb2168129e6f3046",
+        "gui_language": "ru",
+        "vlm_strings": 16,
+        "ocr_strings": 23,
+        "exact_intersection": 12,
+        "vlm_only": [
+          "100",
+          "20:17",
+          "Запись экрана",
+          "Службы и обратная св..."
+        ],
+        "ocr_only": [
+          "100)",
+          "2",
+          "20:17 (",
+          "5",
+          "=",
+          "Запись",
+          "Службы и",
+          "в",
+          "обратная св.",
+          "х",
+          "экрана"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "8374957bdbd978122436a9eff7dd28384db0169ab8dc35c0f5262a262daf4b64",
+        "gui_language": "en",
+        "vlm_strings": 32,
+        "ocr_strings": 38,
+        "exact_intersection": 24,
+        "vlm_only": [
+          "17:39 Mon Jun 9",
+          "Display & Brightness",
+          "Quick Note >",
+          "Screenshot >",
+          "Use your pencil to handwriting in any text area to convert it",
+          "om corner.",
+          "the box below.",
+          "试着在此处写几个字..."
+        ],
+        "ocr_only": [
+          "17:39",
+          "7A h k sbLyntr -",
+          "AA",
+          "ALR",
+          "Brightness",
+          "Display",
+          "Dr",
+          "Mon Jun 9",
+          "Quick Note",
+          "Screenshot",
+          "Use your pencil to handwrite in any text area to convert it",
+          "om corner:",
+          "scrolling instead:",
+          "the box below:"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "873abfb6744f4de433488606856365dacc5e9a8bc62e43f90394ffda0d1c789f",
+        "gui_language": "zh",
+        "vlm_strings": 19,
+        "ocr_strings": 23,
+        "exact_intersection": 14,
+        "vlm_only": [
+          "100",
+          "充电",
+          "勿扰模式",
+          "扫一扫",
+          "蓝牙"
+        ],
+        "ocr_only": [
+          "(",
+          "0)",
+          "1@",
+          "2",
+          "23",
+          "9",
+          "=",
+          "又",
+          "扫 >扫"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "8ad9243d102420276d869d790d82e208416c7cba5cb1532104142d1074f1a6f6",
+        "gui_language": "en",
+        "vlm_strings": 10,
+        "ocr_strings": 14,
+        "exact_intersection": 5,
+        "vlm_only": [
+          "1",
+          "1 Note",
+          "19:38 No additional text",
+          "19:42",
+          "Pencil Settings..."
+        ],
+        "ocr_only": [
+          "100%",
+          "19.38",
+          "19.42",
+          "Aa",
+          "No additional text",
+          "Note",
+          "Pencil",
+          "Settings;",
+          "l"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "8d4ed774d3386a366270833ac41ed4c1e8f8ac19185e78f12213ad2758eef5bd",
+        "gui_language": "ru",
+        "vlm_strings": 40,
+        "ocr_strings": 48,
+        "exact_intersection": 25,
+        "vlm_only": [
+          "22:09",
+          "БАГАМСКИЕ ОСТРОВА",
+          "БЕРЕГОВЫЕ ХРЕБТЫ",
+          "КАЙМАНОВЫ ОСТРОВА",
+          "Настстройки",
+          "Настстройки Карт",
+          "Настстройки уведомлений",
+          "Оttава",
+          "СКАЛИСТЫЕ ГОРЫ",
+          "СОЕДИНЁННЫЕ ШТАТЫ АМЕРИКИ",
+          "Ср 18 июня",
+          "ЯМАЙКА",
+          "море",
+          "地图",
+          "高德地图"
+        ],
+        "ocr_only": [
+          "&",
+          "'",
+          "100 %",
+          "22.09",
+          "6",
+          "8",
+          ";",
+          "@GUPOBA",
+          "Cp 18 июня",
+          "Ol",
+          "Rive",
+          "Ul",
+          "[АЙМАНОВЫ ЯМАЙКА",
+          "БАГАМСКИВ",
+          "Карт",
+          "Настройки",
+          "ОСТРОВА",
+          "Оттава",
+          "СОЕДИНЁННЫЕ",
+          "ШТАТЫ АМЕРИКИ",
+          "ШШ",
+          "м о p",
+          "опик"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "8ef82dba4a81ca9594afa3b900af0f3d3f506af0db4bfd8b900426ef3af0c42d",
+        "gui_language": "ru",
+        "vlm_strings": 36,
+        "ocr_strings": 40,
+        "exact_intersection": 27,
+        "vlm_only": [
+          "19:58 Пн 9 июня",
+          "a.",
+          "Ваш пальцы будут",
+          "Короткая заметка >",
+          "Снимок экрана >",
+          "Экран «Домой» и многозадачность",
+          "и написанное превратится в печатный текст. Напишите",
+          "что-нибудь от руки в поле ниже.",
+          "试着在此处写几个字..."
+        ],
+        "ocr_only": [
+          "'^ 1 % Jchb\"4м? ~",
+          "19:58",
+          "AA",
+          "Il",
+          "a",
+          "encil: Ваши пальцы будут",
+          "Короткая заметка",
+          "Пн 9 июня",
+          "Снимок экрана",
+          "Экран кДомойх и многозадачность",
+          "и написанное",
+          "превратится в печатный текст: Напишите",
+          "что-нибудь от руки ₽ поле ниже."
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "8fe8b64d2a5a42f3c6b4d997b47585c39da82fd4ab16a0ddd005248ed2609c2b",
+        "gui_language": "ru",
+        "vlm_strings": 11,
+        "ocr_strings": 19,
+        "exact_intersection": 6,
+        "vlm_only": [
+          "000111222333",
+          "23:25",
+          "VPN",
+          "Выбрать на карте",
+          "Искать \"000111222333\""
+        ],
+        "ocr_only": [
+          "000111222З33",
+          "23.25",
+          "3",
+          ":",
+          "NPN",
+          "X",
+          "aullll",
+          "Выбрать",
+          "Искать \"\"000111222333\"\"",
+          "Я Ч С M И Т Ь 6 Ю",
+          "й' ц? у' к' e\" н' г ш' щ' 3\"",
+          "на карте",
+          "ф ы в a П p 0 Л Д Ж Э"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "935a34e9d086bc97a6f9524af649ddf172152062fd501dac9a604a3280297dc8",
+        "gui_language": "ru",
+        "vlm_strings": 20,
+        "ocr_strings": 30,
+        "exact_intersection": 15,
+        "vlm_only": [
+          "Google Play может рекомендовать приложения, специальные предложения и другой контент на основе вашего местоположения. Подробнее...",
+          "VPN",
+          "Автоматически архивировать",
+          "Использовать данные о местоположении устройства",
+          "Настройки аккаунта и устройства"
+        ],
+        "ocr_only": [
+          "Google",
+          "Play",
+          "VPN 3Ч,l",
+          "anviAonnnьатz",
+          "И",
+          "Использовать данные 0",
+          "Настройки аккаунта и",
+          "Подробнее::",
+          "другой контент на основе вашего",
+          "местоположении",
+          "местоположения",
+          "может рекомендовать",
+          "отак лат,ишacv14",
+          "приложения; специальные предложения",
+          "устройства"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "93a7f9f0cd48b61795e45e74685daf85646ed18dfc6e0decfa93d4dc80e6d9b9",
+        "gui_language": "en",
+        "vlm_strings": 14,
+        "ocr_strings": 25,
+        "exact_intersection": 11,
+        "vlm_only": [
+          "7 Days in a Row",
+          "Plant healthy trees 30 days in a row (0/30)",
+          "Plant healthy trees 7 days in a row (7/7)"
+        ],
+        "ocr_only": [
+          "3",
+          "30",
+          "7",
+          "93",
+          "Days in a Row",
+          "Dlant hoalthutronc",
+          "Fa",
+          "Haucin",
+          "NX % ?",
+          "Plant healthy trees 3",
+          "Plant healthy trees 7",
+          "days",
+          "in a row (3/3)",
+          "in a row (7/7)"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "94f0a07a3dce167604bafcb1566e86db3ca51bb29d87d05ce6b7f1cd25d4be63",
+        "gui_language": "en",
+        "vlm_strings": 14,
+        "ocr_strings": 17,
+        "exact_intersection": 12,
+        "vlm_only": [
+          "00:00:03 | 6/10/2025",
+          "All selected"
+        ],
+        "ocr_only": [
+          "00 : 00: 03",
+          "6/10/2025",
+          "93",
+          "AIl selected",
+          "N X %"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "994e1ce62319dfaa1d627f3f1dca0bd6959747c89f730cae24897241a2ad2bfb",
+        "gui_language": "th",
+        "vlm_strings": 11,
+        "ocr_strings": 12,
+        "exact_intersection": 4,
+        "vlm_only": [
+          "1",
+          "1 โน้ต",
+          "19:57 พ. 18 ม.ย.",
+          "Aa",
+          "ลากเพื่อเอารายการออก",
+          "วันนี้",
+          "เลือกสี"
+        ],
+        "ocr_only": [
+          "100%",
+          "19:57",
+          "aa",
+          "พ. 18 มิ.ย.",
+          "รีเซ็ต",
+          "ลากเพือเอารายการออก",
+          "วันนี",
+          "เสร็จสิน"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "999c6da68d8a6266400ce8539133e4821119013f7672715308bbc72afe883305",
+        "gui_language": "zh",
+        "vlm_strings": 13,
+        "ocr_strings": 14,
+        "exact_intersection": 8,
+        "vlm_only": [
+          ".5",
+          "1x",
+          "5秒",
+          "RAW",
+          "慢动作"
+        ],
+        "ocr_only": [
+          "- 5秒",
+          "1X",
+          "5",
+          "Ilililyl",
+          "RA",
+          "度砌作"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "9b4ec75cac471b1d0d63550db0ce4de4357b532e5106355a294299aa1746f198",
+        "gui_language": "zh",
+        "vlm_strings": 16,
+        "ocr_strings": 16,
+        "exact_intersection": 13,
+        "vlm_only": [
+          "19:49",
+          "6月10日 周二",
+          "设置"
+        ],
+        "ocr_only": [
+          "19.49",
+          "6月108周二",
+          "C *"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "9b73c74431dada32b78fb526ed944c6e3e95b58c75502684d235329fb844cce7",
+        "gui_language": "zh",
+        "vlm_strings": 13,
+        "ocr_strings": 14,
+        "exact_intersection": 10,
+        "vlm_only": [
+          "22:27",
+          "当前版本 5.2.51i-575",
+          "睡眠模式、文件过滤等"
+        ],
+        "ocr_only": [
+          "22:27 % @d",
+          "当前版本 5.2.511-575",
+          "皿0彳",
+          "睡眠模式。文件过滤等"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "9deec10e44cb17905d3e9cb9c1b00559e6a165d75ad39f369089faa859596368",
+        "gui_language": "zh",
+        "vlm_strings": 36,
+        "ocr_strings": 36,
+        "exact_intersection": 23,
+        "vlm_only": [
+          "1",
+          "10 周二",
+          "11 周三",
+          "12 周四",
+          "12:00",
+          "13 周五",
+          "14 周六",
+          "8 周日",
+          "9 周一",
+          "五月十三",
+          "搜索",
+          "日",
+          "月"
+        ],
+        "ocr_only": [
+          "100%",
+          "10周二",
+          "11周三",
+          "12周四",
+          "13周五",
+          "14周六",
+          "8周日",
+          "9周一",
+          ":三 +",
+          "Q 搜索",
+          "T VV",
+          "^月",
+          "五月+三"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "a090278906da1c75fe2fa8e7d305980170ed1c7e97daf3f1a72898dac1c3d35f",
+        "gui_language": "en",
+        "vlm_strings": 14,
+        "ocr_strings": 26,
+        "exact_intersection": 8,
+        "vlm_only": [
+          "Automatically recognize message text and allow you to instantly copy verification codes, track packages, top up your phone, use the quick menu, and enjoy other services.",
+          "Display messages with information about your train and airline tickets in card view.",
+          "No SIM c...",
+          "Prevent third-party apps from reading your verification codes.",
+          "Receive messages from service accounts via Wi-Fi or mobile data.",
+          "Send service messages to"
+        ],
+        "ocr_only": [
+          "43",
+          "Automatically recognize message",
+          "Display messages with",
+          "NX * ?",
+          "No SIM C.",
+          "Prevent third-party apps from",
+          "Receive messages from service",
+          "Send service messages",
+          "accounts via Wi-Fi or mobile data:",
+          "airline tickets in card view:",
+          "copy verification codes, track",
+          "information about your train and",
+          "packages; top up your phone; use",
+          "reading your verification codes.",
+          "services.",
+          "text and allow you to instantly",
+          "the quick menu; and enjoy other",
+          "to"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "a1f4a178e00796130d3d3d52d261ec33ee6f4909da0bba893df30aac5efe3347",
+        "gui_language": "th",
+        "vlm_strings": 12,
+        "ocr_strings": 14,
+        "exact_intersection": 9,
+        "vlm_only": [
+          "5 วัน",
+          "ช่วงเวลาตอบกลับอัตโนมัติ",
+          "อื่น ๆ"
+        ],
+        "ocr_only": [
+          "28",
+          "5 วินาที",
+          "ชะลอการตอบกลับอัตโนมัติ",
+          "มมxลี",
+          "อื่นฯ"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "a2dfc9312fffa947c1a0112971bfe9040187bf58f7f8f8cef8927de393f78242",
+        "gui_language": "en",
+        "vlm_strings": 11,
+        "ocr_strings": 12,
+        "exact_intersection": 8,
+        "vlm_only": [
+          ".5",
+          "1x",
+          "RAW"
+        ],
+        "ocr_only": [
+          "5",
+          "Iulululul",
+          "Ix",
+          "RAWW"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "a5503c8280b088778d14dbb772f62c23485e97e1ef6675bb112f220bd1aaa567",
+        "gui_language": "th",
+        "vlm_strings": 5,
+        "ocr_strings": 8,
+        "exact_intersection": 5,
+        "vlm_only": [],
+        "ocr_only": [
+          "52",
+          "5g",
+          "vpn วัง|"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "b053c5538093b0bddb5ae1ed3eee435017547672b5ede52aa2320145e55ae61f",
+        "gui_language": "en",
+        "vlm_strings": 13,
+        "ocr_strings": 15,
+        "exact_intersection": 10,
+        "vlm_only": [
+          "22:02",
+          "5G",
+          "your passes."
+        ],
+        "ocr_only": [
+          "%4! 5G",
+          "'n",
+          "0",
+          "22:02 L",
+          "your passes:"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "b1ad731dd83b7d415b4fb2482dd6a3c306a2e8a603d8e598570fefe21d8406d3",
+        "gui_language": "ru",
+        "vlm_strings": 15,
+        "ocr_strings": 18,
+        "exact_intersection": 11,
+        "vlm_only": [
+          "20:17",
+          "Вт, 10 июня",
+          "Не беспокоить",
+          "Плавающие ок"
+        ],
+        "ocr_only": [
+          "10 июня",
+          "20.17",
+          "@ %",
+          "He беспокоить",
+          "Вт,",
+          "ЕЕ",
+          "Плавающие окI"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "b5bdcd862d3d45a3db97b58b1ed8736ba38df00f203269087449ff0077070f78",
+        "gui_language": "en",
+        "vlm_strings": 13,
+        "ocr_strings": 14,
+        "exact_intersection": 11,
+        "vlm_only": [
+          "22:29",
+          "Sleep timer, filtering files, and more"
+        ],
+        "ocr_only": [
+          "22.29 ,\" '@",
+          "J0' 4",
+          "Sleep timer; filtering files, and more"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "b82e7a547b4ba351aa1ce3af7837a1c2d93b3c59660d5b375ab7b921e894497e",
+        "gui_language": "en",
+        "vlm_strings": 8,
+        "ocr_strings": 8,
+        "exact_intersection": 7,
+        "vlm_only": [
+          "VPN"
+        ],
+        "ocr_only": [
+          "VPN Iil"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "ba8a108841364d30d5c3c572ecdbbdbc3f55e07060ea8c2c3be575f272aeeba0",
+        "gui_language": "th",
+        "vlm_strings": 16,
+        "ocr_strings": 18,
+        "exact_intersection": 10,
+        "vlm_only": [
+          "94",
+          "VPN",
+          "การตั้งค่าการเดินทาง",
+          "ทราบเกี่ยวกับความล่าช้าและบริการขัดข้องก่อนเดินทาง",
+          "เวลาเดินทาง",
+          "ให้ Maps คํานวณเวลาเดินทางของคุณได้แม่นยํามากขึ้นด้วยการใช้ประวัติตําแหน่ง"
+        ],
+        "ocr_only": [
+          "9ai",
+          "vpn",
+          "การตังค่าการเดินทาง",
+          "ขึนด้วยการใช้ประวัติตําแหน่ง",
+          "ทราบเกี่ยวกับความล่าช้าและบริการขัดข้องก่อนเดิน",
+          "ทาง",
+          "เวลา เดินทาง",
+          "ให้ maps คํานวณเวลา เดินทางของคุณได้แม่นยํามาก"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "c2acf1948acda3b2b1d9cc5d187766e3fd0ee75e4e8830e958c27e0f420dda02",
+        "gui_language": "th",
+        "vlm_strings": 10,
+        "ocr_strings": 11,
+        "exact_intersection": 3,
+        "vlm_only": [
+          "1",
+          "1 โน้ต",
+          "19:56 พ. 18 ม.ย.",
+          "การตั้งค่าดินสอ...",
+          "ย่ออัดโน้มติ",
+          "วันนี้",
+          "ใช้นิววาด"
+        ],
+        "ocr_only": [
+          "100%",
+          "19:56",
+          "aa",
+          "การตังค่าดินสอ",
+          "พ. 18 มิ.ย.",
+          "ย่ออัตโนมัติ",
+          "วันนี",
+          "ใช้นิ้ววาด"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "c2e808e88bd740f1c6284209299a3a3e064253a0062eb953f06e133780024584",
+        "gui_language": "th",
+        "vlm_strings": 15,
+        "ocr_strings": 17,
+        "exact_intersection": 8,
+        "vlm_only": [
+          "Mi แชร์",
+          "กิจวัติโอห์น่าจอ",
+          "ตัวประยัดแบต",
+          "ระเหยดแบตเตอรี่",
+          "สั่นเตือน",
+          "หามรบกวน",
+          "โหมดอ่าน"
+        ],
+        "ocr_only": [
+          "cx",
+          "db",
+          "mi แชร์",
+          "กกวิดีโอหน้าจอ",
+          "ตัวประหยัดแบต",
+          "ระหยัดแบตเตอรี่อั",
+          "สันเตือน",
+          "ห้ามรบกวน",
+          "โหมด อ่าน"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "c35c62b5783652e5a27fc924b0389448e7d5b892e44c44e039df08828b231772",
+        "gui_language": "th",
+        "vlm_strings": 13,
+        "ocr_strings": 15,
+        "exact_intersection": 5,
+        "vlm_only": [
+          "5G",
+          "กระเป่าสตางค์",
+          "ค้นหาแอปสําหรับกระเป่าสตางค์",
+          "ค้นหาแอปและเริ่มเก็บรวบรวมบัตร",
+          "บัตรขึ้นเครื่อง",
+          "รับ",
+          "และตั๋วหรือบัตรต่างๆ",
+          "ในที่เดียวกัน"
+        ],
+        "ocr_only": [
+          "+ 56",
+          "d.",
+          "กระเป๋าสตางค์",
+          "ค้นหาแอปสําหรับกระเป๋าสตางค์",
+          "ค้นหาแอปและเริม เก็บรวบรวมบัตร",
+          "บัตรขึนเครือง",
+          "รบ",
+          "วว",
+          "และตัวหรือบัตรต่างๆ",
+          "ในทีเดียวกัน"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "c5427a6c3c6908284b82f68b67a919c9442091f20c0d65c83148523dbca81208",
+        "gui_language": "th",
+        "vlm_strings": 13,
+        "ocr_strings": 15,
+        "exact_intersection": 9,
+        "vlm_only": [
+          "22:34",
+          "นโยบายความเป็นส่วนตัว",
+          "บัญชี Mi",
+          "เวอร์ชั่น"
+        ],
+        "ocr_only": [
+          "100)' 4",
+          "22:34 2 0 0",
+          "น",
+          "บัญชี mi",
+          "เวอร์ชัน",
+          "โยบายความเป็นส่วนตัว"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "ca0a3eab44c04c2245eb6d06d40ff5b1dfd1d09ad8e3640c5073ea3ad36bef6d",
+        "gui_language": "th",
+        "vlm_strings": 29,
+        "ocr_strings": 42,
+        "exact_intersection": 20,
+        "vlm_only": [
+          "E-Bike",
+          "การตั้งค่าการเดินทาง",
+          "ซาวานา",
+          "นิวเม็กซิโก",
+          "รถไฟฟ้าเมือง",
+          "รถไฟใต้ดินและรถไฟฟ้า",
+          "สหราชอาณาจักร",
+          "ออดตาวา",
+          "เล่นทาง"
+        ],
+        "ocr_only": [
+          ".",
+          "100%",
+          ":ู่",
+          ";",
+          "^แม่น้ํากรานเ",
+          "a.",
+          "e-bike",
+          "rive",
+          "th",
+          "คิงสตัน",
+          "บาฮามาส",
+          "ยอดเขาวิทนีย์",
+          "รถไฟชานเมือง",
+          "รถไฟใต้ดินและรถไฟรางเบา",
+          "รุ้",
+          "สหรัฐอเมริกา",
+          "หมู่เกาะเคย์แมน",
+          "ออตตาวา",
+          "ฮาวานา",
+          "ู",
+          "เดน",
+          "เส้นทาง"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "ca41cd9cad1bf5c01103c2ecde378b19aac92e929cf32737d773cec4637a46aa",
+        "gui_language": "th",
+        "vlm_strings": 29,
+        "ocr_strings": 34,
+        "exact_intersection": 22,
+        "vlm_only": [
+          "12:00",
+          "ค้นหา",
+          "จ. 9",
+          "พ. 11",
+          "วันนี้",
+          "ศ. 13",
+          "ส. 14"
+        ],
+        "ocr_only": [
+          "+",
+          "11",
+          "13",
+          "14",
+          "9",
+          "iz บบ",
+          "คินหา",
+          "จ",
+          "พ.",
+          "วันนี",
+          "ศ.",
+          "ส."
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "cacc9043633497fec015474dccabc07746cb26a2118ae4fdeb84953e270fd87b",
+        "gui_language": "en",
+        "vlm_strings": 9,
+        "ocr_strings": 16,
+        "exact_intersection": 4,
+        "vlm_only": [
+          "Auto answer calls when connected to external audio device",
+          "Bluetooth or wired earphones, and other audio devices",
+          "Press Power button to end calls",
+          "This works only when the screen is on.",
+          "Vibrate when other party answers/ends a call"
+        ],
+        "ocr_only": [
+          "25",
+          "Auto answer calls when",
+          "Bluetooth or wired earphones, and other",
+          "N <X * ?",
+          "Press Power button to end",
+          "This works only when the screen is on:",
+          "Vibrate when other party",
+          "answers/ends a call",
+          "audio devices",
+          "calls",
+          "connected to external audio",
+          "device"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "cb146f3ba0ef120c5d9716c349c7fa60f844eb6dd0390729d27c19237b0debed",
+        "gui_language": "th",
+        "vlm_strings": 13,
+        "ocr_strings": 21,
+        "exact_intersection": 10,
+        "vlm_only": [
+          "22:33",
+          "ทั้งหมด 4 เพลง",
+          "รายการเพลิง"
+        ],
+        "ocr_only": [
+          "100)' 4",
+          "22:33 2 0 0",
+          "4 เพลง",
+          "=",
+          ">| :=",
+          "a",
+          "c.",
+          "s.",
+          "ทั้งหมด",
+          "รายการเพลง",
+          "า"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "d8b740ed993a292885335c1614d4b966cf65f5f42c7654bf0b69e3745db5f27b",
+        "gui_language": "ru",
+        "vlm_strings": 12,
+        "ocr_strings": 12,
+        "exact_intersection": 9,
+        "vlm_only": [
+          "1",
+          "19:38 Нет дополнительного текста",
+          "19:47 Ср 18 июня"
+        ],
+        "ocr_only": [
+          "19.38 Нет дополнительного текста",
+          "19:47",
+          "Cp 18 июня"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "db5cf09993771c03693a1c898035349bd8403a88176f1f18996897c0fdbe957a",
+        "gui_language": "en",
+        "vlm_strings": 17,
+        "ocr_strings": 17,
+        "exact_intersection": 14,
+        "vlm_only": [
+          "23:20",
+          "94",
+          "VPN"
+        ],
+        "ocr_only": [
+          "23.20",
+          "941",
+          "IVPN"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "f3d1434aa4465b087916570d646c963420496f06f92296f3d48e9f5e8e8fb46b",
+        "gui_language": "zh",
+        "vlm_strings": 42,
+        "ocr_strings": 36,
+        "exact_intersection": 29,
+        "vlm_only": [
+          "1 100% 0",
+          "21:49 6月18日周三",
+          "Nelson River",
+          "×",
+          "圣皮",
+          "地图",
+          "大书洞",
+          "开曼群岛(英)",
+          "指南针",
+          "格兰德河",
+          "牙买加",
+          "通知设置",
+          "高德地图"
+        ],
+        "ocr_only": [
+          "100%",
+          "21:49",
+          "6月18日周三",
+          ":",
+          "涌匆讽罟",
+          "觅艮岛@匆 牙买加",
+          "邶"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "f4598e3a5cf03afdacfefd631a94726c4ffb4d29d228cd04e23c15d641da0e53",
+        "gui_language": "zh",
+        "vlm_strings": 20,
+        "ocr_strings": 22,
+        "exact_intersection": 12,
+        "vlm_only": [
+          "N",
+          "←",
+          "△",
+          "○",
+          "三",
+          "智能识别信息内容,提供复制验证码、查询快递、一键充值、短信公众号等服务",
+          "火车票、机票等短信以卡片形式显示",
+          "通过移动数据或者 WLAN 接收商家服务号信息"
+        ],
+        "ocr_only": [
+          "一键充值。短信公",
+          "众号等服务",
+          "凹 & * 谷",
+          "家服务号信息",
+          "提供复制验证",
+          "智能识别信息内容,",
+          "火车票。机票等短信以卡片形式显",
+          "码。查询快递:",
+          "示",
+          "通过移动数据或者 WLAN 接收商"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "f4600c8b022d44f69dbf9c2f1fe7ac2bd97c9d6ed5ea954d291af65c862b4429",
+        "gui_language": "ru",
+        "vlm_strings": 27,
+        "ocr_strings": 33,
+        "exact_intersection": 9,
+        "vlm_only": [
+          "12:00",
+          "13:00",
+          "14:00",
+          "15:00",
+          "16:00",
+          "17:00",
+          "18:00",
+          "19:00",
+          "20:00",
+          "21:00",
+          "21:02 Ср 18 июня",
+          "22:00",
+          "23:00",
+          "Вс, 8",
+          "ИЮНЬ 2025 г.",
+          "Пн, 9",
+          "Ср, 11",
+          "Чт, 12"
+        ],
+        "ocr_only": [
+          "+",
+          "100 %",
+          "12",
+          "13.00",
+          "14.00",
+          "15.00",
+          "16*00",
+          "17.00",
+          "18*00",
+          "19.00",
+          "20.*00",
+          "21.00",
+          "21.02",
+          "22*00",
+          "23.00",
+          "8",
+          "9",
+          "Bс,",
+          "Cp 18 июня",
+          "Cp, 11",
+          "Tz UU",
+          "Пн;",
+          "Чт;",
+          "июнь 2025 г:"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "f53f4ef65269fe091e73df96ee61d7e077ecbbac83842678e407fb07a6f012ba",
+        "gui_language": "en",
+        "vlm_strings": 30,
+        "ocr_strings": 30,
+        "exact_intersection": 26,
+        "vlm_only": [
+          "1",
+          "12:00",
+          "13:00",
+          "18:00"
+        ],
+        "ocr_only": [
+          "+",
+          "13*00",
+          "18*00",
+          "TZ-U"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "f5a5b29685f5a893498b63918bf4923fc098d4b51639f1878065cd8d5a63f2a1",
+        "gui_language": "zh",
+        "vlm_strings": 30,
+        "ocr_strings": 39,
+        "exact_intersection": 26,
+        "vlm_only": [
+          "17:35 6月9日周一",
+          "Siri与搜索",
+          "在文本区用触控笔手写文字并转化为文本格式。在下面方框中写几个字,来试试“随手写”功能。",
+          "试着在此处写几个字..."
+        ],
+        "ocr_only": [
+          "0",
+          "100%",
+          "17:35",
+          "6月9日周",
+          "AA",
+          "Siri 与搜索",
+          "~戎着花此处乌馆",
+          "》",
+          "下",
+          "在下面方",
+          "在文本区用触控笔手写文字并转化为文本格式。",
+          "来试试\"随手写\"功能。",
+          "框中写几个字"
+        ],
+        "ocr_status": "success"
+      },
+      {
+        "image_sha256": "fe2aed18eabfc27063196521e4f8960435edaec4d310bcb682faab436dd0994d",
+        "gui_language": "en",
+        "vlm_strings": 0,
+        "ocr_strings": 17,
+        "exact_intersection": 0,
+        "vlm_only": [],
+        "ocr_only": [
+          "( %",
+          "19.53",
+          "Battery saver",
+          "Cast",
+          "DND",
+          "Dark mode",
+          "Doo",
+          "Edit",
+          "Floating window",
+          "Hotspot",
+          "Mi Share",
+          "O0",
+          "OO",
+          "Reading mode",
+          "Tue, Jun 10",
+          "Vibrate",
+          "en Recorder"
+        ],
+        "ocr_status": "success"
+      }
+    ],
+    "old_edit_label_membership_not_accuracy": {
+      "baseline_edit_instances": 225,
+      "exact_present": 188,
+      "case_space_normalized_present": 188
+    },
+    "ocr_status": {
+      "success": 80
+    },
+    "rewrite_status": {
+      "success": 233,
+      "no_op_no_edits": 3,
+      "fallback_original": 4
+    },
+    "changed_pairs": 233,
+    "same_MCQs_as_VLM_baseline": 178,
+    "same_MCQs_label_differences": 0,
+    "by_gui": {
+      "en": {
+        "n": 60,
+        "correct": {
+          "OCR_E1_M0": 45,
+          "VLM_E1_M0": 47
+        }
+      },
+      "zh": {
+        "n": 60,
+        "correct": {
+          "OCR_E1_M0": 48,
+          "VLM_E1_M0": 47
+        }
+      },
+      "th": {
+        "n": 60,
+        "correct": {
+          "OCR_E1_M0": 41,
+          "VLM_E1_M0": 41
+        }
+      },
+      "ru": {
+        "n": 60,
+        "correct": {
+          "OCR_E1_M0": 45,
+          "VLM_E1_M0": 43
+        }
+      }
+    },
+    "stage_costs": {
+      "ocr": {
+        "execution_mode": "cpu",
+        "wall_seconds": 1415.6203524824232,
+        "reader_load_seconds": {
+          "en_download_check": 4.751809190958738,
+          "ru_download_check": 1.4049298455938697,
+          "th_download_check": 2.0753415962681174,
+          "zh_download_check": 1.358380232937634,
+          "en": 1.3195857368409634,
+          "ru": 1.5344943152740598,
+          "th": 2.1321201100945473,
+          "zh": 1.4324030689895153
+        },
+        "images": 128,
+        "statuses": {
+          "success": 128
+        },
+        "logical_runtime_seconds": 1397.7032761238515,
+        "new_runtime_seconds": 1397.7032761238515
+      },
+      "rewrite": {
+        "complete": true,
+        "wall_seconds": 495.64171492960304,
+        "calls": 302,
+        "cache_hits": 0,
+        "new_runtime_ms": 464104.6471223235
+      },
+      "infer": {
+        "wall_seconds": 147.94028572831303,
+        "execution_mode": "gpu",
+        "reused_batches": 45,
+        "reused_rows": 135,
+        "new_batches": 51,
+        "conflicting_cache_keys": 0
+      }
+    },
+    "contract_sha256": "cfe0dcac6bc9a3dfdf6ec700b1258393dc3cf3c30f308f40db2d1e0cd2c0aa02",
+    "weights": {
+      "craft_mlt_25k.pth": "4a5efbfb48b4081100544e75e1e2b57f8de3d84f213004b14b85fd4b3748db17",
+      "cyrillic_g2.pth": "48d0f3b58f28aa64651ab1032cc2d498c4de25135829668e87c14e7a07529f29",
+      "english_g2.pth": "e2272681d9d67a04e2dff396b6e95077bc19001f8f6d3593c307b9852e1c29e8",
+      "thai.pth": "3ebbb9321b9c7c694e169cd23cc37f3c0bd2a160f5b539602bbef80e663e0a17",
+      "zh_sim_g2.pth": "cb678fdef09d651e7763ca551ad790dc89f0b2e3d2a640484330e338fb574c7a"
+    }
+  },
+  "no_inference_launched": true,
+  "ocr_full_results": {
+    "8b": {
+      "development_only": true,
+      "execution_mode": "gpu",
+      "completed_cohorts": [
+        "screen",
+        "selection",
+        "internal_evaluation"
+      ],
+      "pending_cohorts": [],
+      "summary": {
+        "screen": {
+          "n": 240,
+          "items": 20,
+          "correct": {
+            "O": 162,
+            "VLM_E1_M0": 178,
+            "OCR_E1_M0": 179
+          },
+          "OCR_minus_VLM": {
+            "pairs": 240,
+            "items": 20,
+            "difference": 0.004166666666666667,
+            "ci95": [
+              -0.020833333333333332,
+              0.03333333333333333
+            ],
+            "exploratory_bootstrap_centered_p": 0.8773122687731227,
+            "recovery": 7,
+            "regression": 6
+          },
+          "OCR_minus_O": {
+            "pairs": 240,
+            "items": 20,
+            "difference": 0.07083333333333333,
+            "ci95": [
+              0.004166666666666667,
+              0.14583333333333334
+            ],
+            "exploratory_bootstrap_centered_p": 0.05219478052194781,
+            "recovery": 30,
+            "regression": 13
+          },
+          "by_gui": {
+            "en": {
+              "n": 60,
+              "correct": {
+                "O": 45,
+                "VLM_E1_M0": 47,
+                "OCR_E1_M0": 45
+              }
+            },
+            "zh": {
+              "n": 60,
+              "correct": {
+                "O": 44,
+                "VLM_E1_M0": 47,
+                "OCR_E1_M0": 48
+              }
+            },
+            "th": {
+              "n": 60,
+              "correct": {
+                "O": 27,
+                "VLM_E1_M0": 41,
+                "OCR_E1_M0": 41
+              }
+            },
+            "ru": {
+              "n": 60,
+              "correct": {
+                "O": 46,
+                "VLM_E1_M0": 43,
+                "OCR_E1_M0": 45
+              }
+            }
+          }
+        },
+        "selection": {
+          "n": 239,
+          "items": 20,
+          "correct": {
+            "O": 171,
+            "VLM_E1_M0": 175,
+            "OCR_E1_M0": 178
+          },
+          "OCR_minus_VLM": {
+            "pairs": 239,
+            "items": 20,
+            "difference": 0.012552301255230125,
+            "ci95": [
+              -0.008333333333333333,
+              0.0375
+            ],
+            "exploratory_bootstrap_centered_p": 0.30116988301169884,
+            "recovery": 5,
+            "regression": 2
+          },
+          "OCR_minus_O": {
+            "pairs": 239,
+            "items": 20,
+            "difference": 0.029288702928870293,
+            "ci95": [
+              -0.0211864406779661,
+              0.09166666666666666
+            ],
+            "exploratory_bootstrap_centered_p": 0.33496650334966505,
+            "recovery": 17,
+            "regression": 10
+          },
+          "by_gui": {
+            "en": {
+              "n": 60,
+              "correct": {
+                "O": 50,
+                "VLM_E1_M0": 48,
+                "OCR_E1_M0": 48
+              }
+            },
+            "zh": {
+              "n": 60,
+              "correct": {
+                "O": 43,
+                "VLM_E1_M0": 49,
+                "OCR_E1_M0": 47
+              }
+            },
+            "th": {
+              "n": 60,
+              "correct": {
+                "O": 30,
+                "VLM_E1_M0": 31,
+                "OCR_E1_M0": 36
+              }
+            },
+            "ru": {
+              "n": 59,
+              "correct": {
+                "O": 48,
+                "VLM_E1_M0": 47,
+                "OCR_E1_M0": 47
+              }
+            }
+          }
+        },
+        "internal_evaluation": {
+          "n": 1416,
+          "items": 118,
+          "correct": {
+            "O": 997,
+            "VLM_E1_M0": 1051,
+            "OCR_E1_M0": 1042
+          },
+          "OCR_minus_VLM": {
+            "pairs": 1416,
+            "items": 118,
+            "difference": -0.006355932203389831,
+            "ci95": [
+              -0.018361581920903956,
+              0.005649717514124294
+            ],
+            "exploratory_bootstrap_centered_p": 0.3310668933106689,
+            "recovery": 24,
+            "regression": 33
+          },
+          "OCR_minus_O": {
+            "pairs": 1416,
+            "items": 118,
+            "difference": 0.03177966101694915,
+            "ci95": [
+              0.005649717514124294,
+              0.05790960451977401
+            ],
+            "exploratory_bootstrap_centered_p": 0.0178982101789821,
+            "recovery": 122,
+            "regression": 77
+          },
+          "by_gui": {
+            "en": {
+              "n": 354,
+              "correct": {
+                "O": 290,
+                "VLM_E1_M0": 290,
+                "OCR_E1_M0": 287
+              }
+            },
+            "zh": {
+              "n": 354,
+              "correct": {
+                "O": 270,
+                "VLM_E1_M0": 275,
+                "OCR_E1_M0": 270
+              }
+            },
+            "th": {
+              "n": 354,
+              "correct": {
+                "O": 172,
+                "VLM_E1_M0": 214,
+                "OCR_E1_M0": 217
+              }
+            },
+            "ru": {
+              "n": 354,
+              "correct": {
+                "O": 265,
+                "VLM_E1_M0": 272,
+                "OCR_E1_M0": 268
+              }
+            }
+          }
+        },
+        "all_158": {
+          "n": 1895,
+          "items": 158,
+          "correct": {
+            "O": 1330,
+            "VLM_E1_M0": 1404,
+            "OCR_E1_M0": 1399
+          },
+          "OCR_minus_VLM": {
+            "pairs": 1895,
+            "items": 158,
+            "difference": -0.002638522427440633,
+            "ci95": [
+              -0.013185654008438819,
+              0.007387862796833773
+            ],
+            "exploratory_bootstrap_centered_p": 0.631036896310369,
+            "recovery": 36,
+            "regression": 41
+          },
+          "OCR_minus_O": {
+            "pairs": 1895,
+            "items": 158,
+            "difference": 0.03641160949868074,
+            "ci95": [
+              0.014247833238702783,
+              0.05916534601162177
+            ],
+            "exploratory_bootstrap_centered_p": 0.0017998200179982,
+            "recovery": 169,
+            "regression": 100
+          },
+          "by_gui": {
+            "en": {
+              "n": 474,
+              "correct": {
+                "O": 385,
+                "VLM_E1_M0": 385,
+                "OCR_E1_M0": 380
+              }
+            },
+            "zh": {
+              "n": 474,
+              "correct": {
+                "O": 357,
+                "VLM_E1_M0": 371,
+                "OCR_E1_M0": 365
+              }
+            },
+            "th": {
+              "n": 474,
+              "correct": {
+                "O": 229,
+                "VLM_E1_M0": 286,
+                "OCR_E1_M0": 294
+              }
+            },
+            "ru": {
+              "n": 473,
+              "correct": {
+                "O": 359,
+                "VLM_E1_M0": 362,
+                "OCR_E1_M0": 360
+              }
+            }
+          }
+        }
+      },
+      "costs": {
+        "screen": {
+          "n": 240,
+          "ocr_inventory_seconds": 894.9245213484392,
+          "vlm_inventory_seconds": 1773.588974324055,
+          "extraction_seconds": 63.51239993982017,
+          "ocr_matching_seconds": 326.73498244863003,
+          "vlm_matching_seconds": 318.6465036896989,
+          "ocr_answer_seconds": 189.96481504291296,
+          "vlm_answer_seconds": 190.0594604546204,
+          "ocr_total_seconds": 1475.1367187798023,
+          "vlm_total_seconds": 2345.8073384081945
+        },
+        "selection": {
+          "n": 239,
+          "ocr_inventory_seconds": 846.5517813730985,
+          "vlm_inventory_seconds": 1714.9893674934283,
+          "extraction_seconds": 134.50290270335972,
+          "ocr_matching_seconds": 437.7703120307997,
+          "vlm_matching_seconds": 491.6959533309564,
+          "ocr_answer_seconds": 199.94289108086377,
+          "vlm_answer_seconds": 195.69710565824062,
+          "ocr_total_seconds": 1618.7678871881217,
+          "vlm_total_seconds": 2536.885329185985
+        },
+        "internal_evaluation": {
+          "n": 1416,
+          "ocr_inventory_seconds": 5139.177536873147,
+          "vlm_inventory_seconds": 4830.024382928386,
+          "extraction_seconds": 379.1051655765623,
+          "ocr_matching_seconds": 1264.3723385306075,
+          "vlm_matching_seconds": 1451.728220468387,
+          "ocr_answer_seconds": 918.6003805110231,
+          "vlm_answer_seconds": 892.5671210205182,
+          "ocr_total_seconds": 7701.25542149134,
+          "vlm_total_seconds": 7553.424889993854
+        },
+        "all_158": {
+          "n": 1895,
+          "ocr_inventory_seconds": 6880.6538395946845,
+          "vlm_inventory_seconds": 8318.60272474587,
+          "extraction_seconds": 576.6615744549781,
+          "ocr_matching_seconds": 2028.8776330100372,
+          "vlm_matching_seconds": 2262.0706774890423,
+          "ocr_answer_seconds": 1308.5080866347998,
+          "vlm_answer_seconds": 1278.3236871333793,
+          "ocr_total_seconds": 10794.7011336945,
+          "vlm_total_seconds": 12435.65866382327
+        }
+      },
+      "quality": {
+        "screen": {
+          "ocr_status": {
+            "success": 80
+          },
+          "rewrite_status": {
+            "success": 233,
+            "fallback_original": 4,
+            "no_op_no_edits": 3
+          },
+          "changed_pairs": 233,
+          "invalid_labels": 0,
+          "same_MCQs": 178,
+          "same_MCQs_label_differences": 0,
+          "inventory_images": 80,
+          "source_MCQs": 80,
+          "infer_cost": {
+            "wall_seconds": 147.94028572831303,
+            "execution_mode": "gpu",
+            "reused_batches": 45,
+            "reused_rows": 135,
+            "new_batches": 51,
+            "conflicting_cache_keys": 0
+          }
+        },
+        "selection": {
+          "ocr_status": {
+            "success": 80
+          },
+          "rewrite_status": {
+            "fallback_original": 14,
+            "success": 223,
+            "no_op_no_edits": 2
+          },
+          "changed_pairs": 223,
+          "invalid_labels": 0,
+          "same_MCQs": 180,
+          "same_MCQs_label_differences": 0,
+          "inventory_images": 80,
+          "source_MCQs": 80,
+          "infer_cost": {
+            "wall_seconds": 129.6199371488765,
+            "execution_mode": "gpu",
+            "reused_batches": 38,
+            "reused_rows": 114,
+            "new_batches": 42,
+            "conflicting_cache_keys": 0
+          }
+        },
+        "internal_evaluation": {
+          "ocr_status": {
+            "success": 472
+          },
+          "rewrite_status": {
+            "success": 1346,
+            "fallback_original": 59,
+            "no_op_no_edits": 11
+          },
+          "changed_pairs": 1346,
+          "invalid_labels": 0,
+          "same_MCQs": 1123,
+          "same_MCQs_label_differences": 2,
+          "inventory_images": 472,
+          "source_MCQs": 472,
+          "infer_cost": {
+            "wall_seconds": 516.5786009086296,
+            "execution_mode": "gpu",
+            "reused_batches": 236,
+            "reused_rows": 708,
+            "new_batches": 236,
+            "conflicting_cache_keys": 0
+          }
+        }
+      },
+      "contract_sha256": "5053d49e6588f88f8161db05f4d3a6027705e5fab850979a64dd416ea76d66bb",
+      "source_and_raw_sha256": {
+        "followup_rel_4lang/method_dev/artifacts/dataset_audit/evaluation_labels_PRIVATE.jsonl": "82e29e2a57d1f361a1b13020fda34068f95bf5762c29a1c8d610d198aa3a7c6a",
+        "followup_rel_4lang/method_dev/scripts/report_ocr_remaining.py": "43d2c697483d56acee13f80e69b4fecf6f6a1b0c114ec84e688680073c3ef741",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/inputs.jsonl": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/infer/attempt_0001/evaluation/predictions.jsonl": "6023bf0fc61c38656a5e6a43c7df95dfb9ed18bd07617d1c6ab9abb07906e313",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/rewrite/attempt_0001/rewritten.jsonl": "803d831650f5572229b766540495011795370abc5efd2998d47c7a1839630f9c",
+        "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M0/infer/attempt_0001/evaluation/predictions.jsonl": "ea045fc1f1e71d78e61f1340a0522739d35f86cfe5c342b352262a87e146d14a",
+        "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/infer/attempt_0001/predictions.jsonl": "6f7e9009db90218352fa7a3110d6132deb40d6310be4346c9c5e68a4773721eb",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/ocr/attempt_0001/inventories.jsonl": "09b65f1cff100be6313f588f37d04aee83a27c758f768610b95a1b3ce5a68174",
+        "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/inventory/attempt_0001/inventories.jsonl": "c0de661dfbff7f102b92797f5a2f013ca8081ae7d22be65ed05ad00a6474be7d",
+        "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/extraction/E1/attempt_0001/extractions.jsonl": "58411672e0d0d384e85a88ac7a05bcd00480dd49e09e206ed9c5b2ddeb32344f",
+        "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M0/rewrite/attempt_0001/rewritten.jsonl": "571b017242606d0ffea52ebf58a4e6afc2853158e2f9be82d9daf67bf4b03f86",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/selection/inputs.jsonl": "7ab2900470258d91f877f3e309953ea24a8289830293bc408fbc57396a33be9a",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/selection/infer/attempt_0001/evaluation/predictions.jsonl": "8e3bc7bd75968439c6e62f4c7fd9986d795c65b98f0c69fc9185ee23945e01d1",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/selection/rewrite/attempt_0001/rewritten.jsonl": "c295de369d2c4873e669d951460ae8646b5d4a57bb601fec9a22a417197300d3",
+        "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/selection/E1_M0/infer/attempt_0001/evaluation/predictions.jsonl": "09497c64e084a0315231d7b7417c12f6019b8f3d7c1ff7575554f5452eaa32dc",
+        "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/selection/pred_fixed_contrastive_GUI_EXACT/attempt_0001/predictions.jsonl": "7fec520992bb75b986042c661e397f5b902cbbcbe7d43bf5c6eea5b954a76406",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/selection/ocr/attempt_0001/inventories.jsonl": "866aa5caa66a02529c01b0a2b0eb48cdb1eb8f1b20edccba8980dcaae388aea6",
+        "followup_rel_4lang/method_dev/artifacts/overnight_two_v1/selection/stem/inventory/attempt_0001/inventories.jsonl": "1eef48f014832ab7bdb9cf8e180c50d6d2d4e478f5941b7f3b81b3222c591c79",
+        "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/selection/extraction/E1/attempt_0001/extractions.jsonl": "9159eb7d27cc668777549728b041d97f59c6b31b700616dce3d439ca63b5994c",
+        "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/selection/E1_M0/rewrite/attempt_0001/rewritten.jsonl": "23663c7a3d4c649664a78d60c8f923ff7f39c42c77ae6a7086572ac7f29b9e53",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/internal_evaluation/inputs.jsonl": "1003321a9b8775e17ee8122cfd2f6dc6f0c474679cf45b553472461b1650302d",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/internal_evaluation/infer/attempt_0001/evaluation/predictions.jsonl": "28f401faf5274305477ab0dc1fb6020f213e36428ab035de5e0cc0f636566f5a",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/internal_evaluation/rewrite/attempt_0001/rewritten.jsonl": "114dfdeb22f72c2ba4afe2c66e76d3eae52ffd8e9fdcea3d7f1bb74ea4edd6b6",
+        "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/internal_evaluation/E1_M0/infer/attempt_0001/evaluation/predictions.jsonl": "808aa79c5011e4ed73be67371d9099576ba9cad4db10bceb8858774586e22e3f",
+        "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/pred_fixed_contrastive_GUI_EXACT/attempt_0001/predictions.jsonl": "6ea5e6df907ce085298ab22d6b8d3428490ed79b904f909172e0d682cb0c3513",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/internal_evaluation/ocr/attempt_0002/inventories.jsonl": "cd5098337a0fcd29cbec48a27837ce7029677f97f6f5c47b8de33b4aa78cbda2",
+        "followup_rel_4lang/method_dev/artifacts/overnight_two_v1/internal_evaluation/stem/inventory/attempt_0001/inventories.jsonl": "7b01e105b86e0b0aee8a41c2274fdc078eff74726049fc016964d5107100fcbf",
+        "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/internal_evaluation/extraction/E1/attempt_0001/extractions.jsonl": "a853087500e25932a7d7f8c8d91338bc43751e36a780ac3d12b47d09f9eb0c24",
+        "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/internal_evaluation/E1_M0/rewrite/attempt_0001/rewritten.jsonl": "1b426be59f267126a172a528a8199de67f30c7f5e731abf6064b82d455a73149"
+      },
+      "cost_scope": "Primary pairs; shared preprocessing cache keys counted once, including original cached runtimes. CPU OCR + GPU calls; model loads/startup excluded, batch runtime allocated by primary-row fraction."
+    },
+    "4b": {
+      "development_only": true,
+      "completed_cohorts": [
+        "screen",
+        "selection",
+        "internal_evaluation"
+      ],
+      "pending_cohorts": [],
+      "summary": {
+        "screen": {
+          "n": 240,
+          "items": 20,
+          "correct": {
+            "O_4B": 174,
+            "VLM_INV_4B": 181,
+            "OCR_8B": 179,
+            "OCR_4B": 175
+          },
+          "contrasts": {
+            "O_4B": {
+              "pairs": 240,
+              "items": 20,
+              "difference": 0.004166666666666667,
+              "ci95": [
+                -0.058333333333333334,
+                0.09166666666666666
+              ],
+              "exploratory_bootstrap_centered_p": 0.9537046295370463,
+              "recovery": 19,
+              "regression": 18
+            },
+            "VLM_INV_4B": {
+              "pairs": 240,
+              "items": 20,
+              "difference": -0.025,
+              "ci95": [
+                -0.0625,
+                0.0125
+              ],
+              "exploratory_bootstrap_centered_p": 0.2211778822117788,
+              "recovery": 6,
+              "regression": 12
+            },
+            "OCR_8B": {
+              "pairs": 240,
+              "items": 20,
+              "difference": -0.016666666666666666,
+              "ci95": [
+                -0.0875,
+                0.058333333333333334
+              ],
+              "exploratory_bootstrap_centered_p": 0.6958304169583042,
+              "recovery": 20,
+              "regression": 24
+            }
+          },
+          "by_gui": {
+            "en": {
+              "n": 60,
+              "correct": {
+                "O_4B": 49,
+                "VLM_INV_4B": 53,
+                "OCR_8B": 45,
+                "OCR_4B": 52
+              }
+            },
+            "zh": {
+              "n": 60,
+              "correct": {
+                "O_4B": 48,
+                "VLM_INV_4B": 44,
+                "OCR_8B": 48,
+                "OCR_4B": 46
+              }
+            },
+            "th": {
+              "n": 60,
+              "correct": {
+                "O_4B": 30,
+                "VLM_INV_4B": 34,
+                "OCR_8B": 41,
+                "OCR_4B": 29
+              }
+            },
+            "ru": {
+              "n": 60,
+              "correct": {
+                "O_4B": 47,
+                "VLM_INV_4B": 50,
+                "OCR_8B": 45,
+                "OCR_4B": 48
+              }
+            }
+          }
+        },
+        "selection": {
+          "n": 239,
+          "items": 20,
+          "correct": {
+            "O_4B": 179,
+            "VLM_INV_4B": 182,
+            "OCR_8B": 178,
+            "OCR_4B": 184
+          },
+          "contrasts": {
+            "O_4B": {
+              "pairs": 239,
+              "items": 20,
+              "difference": 0.02092050209205021,
+              "ci95": [
+                -0.029166666666666667,
+                0.07531380753138076
+              ],
+              "exploratory_bootstrap_centered_p": 0.46525347465253475,
+              "recovery": 18,
+              "regression": 13
+            },
+            "VLM_INV_4B": {
+              "pairs": 239,
+              "items": 20,
+              "difference": 0.008368200836820083,
+              "ci95": [
+                -0.012605042016806723,
+                0.029166666666666667
+              ],
+              "exploratory_bootstrap_centered_p": 0.46925307469253075,
+              "recovery": 4,
+              "regression": 2
+            },
+            "OCR_8B": {
+              "pairs": 239,
+              "items": 20,
+              "difference": 0.02510460251046025,
+              "ci95": [
+                -0.0625,
+                0.11297071129707113
+              ],
+              "exploratory_bootstrap_centered_p": 0.5962403759624038,
+              "recovery": 26,
+              "regression": 20
+            }
+          },
+          "by_gui": {
+            "en": {
+              "n": 60,
+              "correct": {
+                "O_4B": 51,
+                "VLM_INV_4B": 49,
+                "OCR_8B": 48,
+                "OCR_4B": 49
+              }
+            },
+            "zh": {
+              "n": 60,
+              "correct": {
+                "O_4B": 45,
+                "VLM_INV_4B": 52,
+                "OCR_8B": 47,
+                "OCR_4B": 51
+              }
+            },
+            "th": {
+              "n": 60,
+              "correct": {
+                "O_4B": 32,
+                "VLM_INV_4B": 31,
+                "OCR_8B": 36,
+                "OCR_4B": 33
+              }
+            },
+            "ru": {
+              "n": 59,
+              "correct": {
+                "O_4B": 51,
+                "VLM_INV_4B": 50,
+                "OCR_8B": 47,
+                "OCR_4B": 51
+              }
+            }
+          }
+        },
+        "internal_evaluation": {
+          "n": 1416,
+          "items": 118,
+          "correct": {
+            "O_4B": 955,
+            "VLM_INV_4B": 1015,
+            "OCR_8B": 1042,
+            "OCR_4B": 1014
+          },
+          "contrasts": {
+            "O_4B": {
+              "pairs": 1416,
+              "items": 118,
+              "difference": 0.041666666666666664,
+              "ci95": [
+                0.013418079096045197,
+                0.06991525423728813
+              ],
+              "exploratory_bootstrap_centered_p": 0.003999600039996,
+              "recovery": 142,
+              "regression": 83
+            },
+            "VLM_INV_4B": {
+              "pairs": 1416,
+              "items": 118,
+              "difference": -0.0007062146892655367,
+              "ci95": [
+                -0.014124293785310734,
+                0.012711864406779662
+              ],
+              "exploratory_bootstrap_centered_p": 0.9602039796020398,
+              "recovery": 31,
+              "regression": 32
+            },
+            "OCR_8B": {
+              "pairs": 1416,
+              "items": 118,
+              "difference": -0.01977401129943503,
+              "ci95": [
+                -0.057203389830508475,
+                0.01694915254237288
+              ],
+              "exploratory_bootstrap_centered_p": 0.29757024297570245,
+              "recovery": 116,
+              "regression": 144
+            }
+          },
+          "by_gui": {
+            "en": {
+              "n": 354,
+              "correct": {
+                "O_4B": 277,
+                "VLM_INV_4B": 286,
+                "OCR_8B": 287,
+                "OCR_4B": 285
+              }
+            },
+            "zh": {
+              "n": 354,
+              "correct": {
+                "O_4B": 251,
+                "VLM_INV_4B": 258,
+                "OCR_8B": 270,
+                "OCR_4B": 257
+              }
+            },
+            "th": {
+              "n": 354,
+              "correct": {
+                "O_4B": 167,
+                "VLM_INV_4B": 181,
+                "OCR_8B": 217,
+                "OCR_4B": 185
+              }
+            },
+            "ru": {
+              "n": 354,
+              "correct": {
+                "O_4B": 260,
+                "VLM_INV_4B": 290,
+                "OCR_8B": 268,
+                "OCR_4B": 287
+              }
+            }
+          }
+        },
+        "all_158": {
+          "n": 1895,
+          "items": 158,
+          "correct": {
+            "O_4B": 1308,
+            "VLM_INV_4B": 1378,
+            "OCR_4B": 1373,
+            "OCR_8B": 1399
+          },
+          "contrasts": {
+            "O_4B": {
+              "pairs": 1895,
+              "items": 158,
+              "difference": 0.03430079155672823,
+              "ci95": [
+                0.010554089709762533,
+                0.05910368250801725
+              ],
+              "exploratory_bootstrap_centered_p": 0.0051994800519948,
+              "recovery": 179,
+              "regression": 114
+            },
+            "VLM_INV_4B": {
+              "pairs": 1895,
+              "items": 158,
+              "difference": -0.002638522427440633,
+              "ci95": [
+                -0.014240506329113924,
+                0.008970976253298154
+              ],
+              "exploratory_bootstrap_centered_p": 0.676032396760324,
+              "recovery": 41,
+              "regression": 46
+            },
+            "OCR_8B": {
+              "pairs": 1895,
+              "items": 158,
+              "difference": -0.013720316622691292,
+              "ci95": [
+                -0.04546533371691599,
+                0.017414248021108178
+              ],
+              "exploratory_bootstrap_centered_p": 0.38836116388361164,
+              "recovery": 162,
+              "regression": 188
+            }
+          },
+          "by_gui": {
+            "en": {
+              "n": 474,
+              "correct": {
+                "O_4B": 377,
+                "VLM_INV_4B": 388,
+                "OCR_4B": 386,
+                "OCR_8B": 380
+              }
+            },
+            "zh": {
+              "n": 474,
+              "correct": {
+                "O_4B": 344,
+                "VLM_INV_4B": 354,
+                "OCR_4B": 354,
+                "OCR_8B": 365
+              }
+            },
+            "th": {
+              "n": 474,
+              "correct": {
+                "O_4B": 229,
+                "VLM_INV_4B": 246,
+                "OCR_4B": 247,
+                "OCR_8B": 294
+              }
+            },
+            "ru": {
+              "n": 473,
+              "correct": {
+                "O_4B": 358,
+                "VLM_INV_4B": 390,
+                "OCR_4B": 386,
+                "OCR_8B": 360
+              }
+            }
+          }
+        }
+      },
+      "costs": {
+        "screen": {
+          "n": 240,
+          "answer_4b_seconds": 175.2732721045613,
+          "new_answer_4b_seconds": 103.9783914256841,
+          "answer_8b_seconds": 189.96481504291296,
+          "old_vlm_inventory_4b_recipe_seconds": 1229.638716812556,
+          "shared_ocr_seconds": 894.9245213484392,
+          "shared_LM_seconds": 390.2473823884502,
+          "shared_preprocessing_seconds": 1285.1719037368894,
+          "standalone_4b_recipe_seconds": 1460.4451758414507,
+          "joint_8b_4b_recipe_seconds": 1650.4099908843637
+        },
+        "selection": {
+          "n": 239,
+          "answer_4b_seconds": 192.8884546974053,
+          "new_answer_4b_seconds": 102.34846721806873,
+          "answer_8b_seconds": 199.94289108086377,
+          "old_vlm_inventory_4b_recipe_seconds": 1272.414716956516,
+          "shared_ocr_seconds": 846.5517813730985,
+          "shared_LM_seconds": 572.2732147341594,
+          "shared_preprocessing_seconds": 1418.824996107258,
+          "standalone_4b_recipe_seconds": 1611.7134508046631,
+          "joint_8b_4b_recipe_seconds": 1811.656341885527
+        },
+        "internal_evaluation": {
+          "n": 1416,
+          "answer_4b_seconds": 807.4017998287454,
+          "new_answer_4b_seconds": 450.0348360110074,
+          "answer_8b_seconds": 918.6003805110231,
+          "old_vlm_inventory_4b_recipe_seconds": 6403.921719348989,
+          "shared_ocr_seconds": 5139.177536873147,
+          "shared_LM_seconds": 1643.4775041071698,
+          "shared_preprocessing_seconds": 6782.655040980317,
+          "standalone_4b_recipe_seconds": 7590.056840809062,
+          "joint_8b_4b_recipe_seconds": 8508.657221320085
+        },
+        "all_158": {
+          "n": 1895,
+          "answer_4b_seconds": 1175.563526630712,
+          "new_answer_4b_seconds": 656.3616946547602,
+          "answer_8b_seconds": 1308.5080866347998,
+          "old_vlm_inventory_4b_recipe_seconds": 8905.975153118061,
+          "shared_ocr_seconds": 6880.6538395946845,
+          "shared_LM_seconds": 2605.5392074650154,
+          "shared_preprocessing_seconds": 9486.1930470597,
+          "standalone_4b_recipe_seconds": 10661.756573690413,
+          "joint_8b_4b_recipe_seconds": 11970.264660325212
+        }
+      },
+      "quality": {
+        "screen": {
+          "infer_cost": {
+            "wall_seconds": 150.14108521677554,
+            "execution_mode": "gpu",
+            "reused_batches": 41,
+            "reused_rows": 123,
+            "new_batches": 55,
+            "conflicting_cache_keys": 0
+          },
+          "invalid_labels": 0,
+          "preprocessing_binding": {
+            "source_run": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1",
+            "source_contract_sha256": "cfe0dcac6bc9a3dfdf6ec700b1258393dc3cf3c30f308f40db2d1e0cd2c0aa02",
+            "rewritten_path": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/rewrite/attempt_0001/rewritten.jsonl",
+            "rewritten_sha256": "803d831650f5572229b766540495011795370abc5efd2998d47c7a1839630f9c",
+            "source_execution_mode": "gpu"
+          },
+          "identical_localized_MCQs_8b_4b": 240
+        },
+        "selection": {
+          "infer_cost": {
+            "wall_seconds": 123.46194342896342,
+            "execution_mode": "gpu",
+            "reused_batches": 40,
+            "reused_rows": 120,
+            "new_batches": 40,
+            "conflicting_cache_keys": 0
+          },
+          "invalid_labels": 0,
+          "preprocessing_binding": {
+            "source_run": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/selection",
+            "source_contract_sha256": "12b53a74166c309c3fd9c9b531432fd68e86c13c211c796d508ca7fe998fe516",
+            "rewritten_path": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/selection/rewrite/attempt_0001/rewritten.jsonl",
+            "rewritten_sha256": "c295de369d2c4873e669d951460ae8646b5d4a57bb601fec9a22a417197300d3",
+            "source_execution_mode": "gpu"
+          },
+          "identical_localized_MCQs_8b_4b": 239
+        },
+        "internal_evaluation": {
+          "infer_cost": {
+            "wall_seconds": 463.58793439902365,
+            "execution_mode": "gpu",
+            "reused_batches": 225,
+            "reused_rows": 675,
+            "new_batches": 247,
+            "conflicting_cache_keys": 0
+          },
+          "invalid_labels": 0,
+          "preprocessing_binding": {
+            "source_run": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/internal_evaluation",
+            "source_contract_sha256": "039a705ef1b034f288328442eba9719b186351a64411bb16028de37c01951bcf",
+            "rewritten_path": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/internal_evaluation/rewrite/attempt_0001/rewritten.jsonl",
+            "rewritten_sha256": "114dfdeb22f72c2ba4afe2c66e76d3eae52ffd8e9fdcea3d7f1bb74ea4edd6b6",
+            "source_execution_mode": "gpu"
+          },
+          "identical_localized_MCQs_8b_4b": 1416
+        }
+      },
+      "shared_preprocessing_with_8b": true,
+      "contract_sha256": "68be647088a3ada2d8821b11d7b40642264878d5c39f17c622e01df2658bf2c8",
+      "source_and_raw_sha256": {
+        "followup_rel_4lang/method_dev/artifacts/ocr_qwen3_vl_4b_v1/screen/inputs.jsonl": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a",
+        "followup_rel_4lang/method_dev/artifacts/ocr_qwen3_vl_4b_v1/screen/infer/attempt_0001/evaluation/predictions.jsonl": "2574171bcb05715e6079adcac711e3ef120cdb06ebce06047b0156571920f5a9",
+        "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/screen/infer_O/attempt_0001/evaluation/predictions.jsonl": "1b2f83e65f0ed0095e1f31ad2ead3b0a2b886ef876e6ee0b3226db922ddb5ed4",
+        "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/screen/infer_E1_M0/attempt_0001/evaluation/predictions.jsonl": "5573468e6d2fd0dc5cd95f36d2e2e5a4ab4f2e79b347b942f9a8703e973d3d0c",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/infer/attempt_0001/evaluation/predictions.jsonl": "6023bf0fc61c38656a5e6a43c7df95dfb9ed18bd07617d1c6ab9abb07906e313",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/ocr/attempt_0001/inventories.jsonl": "09b65f1cff100be6313f588f37d04aee83a27c758f768610b95a1b3ce5a68174",
+        "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/extraction/E1/attempt_0001/extractions.jsonl": "58411672e0d0d384e85a88ac7a05bcd00480dd49e09e206ed9c5b2ddeb32344f",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/rewrite/attempt_0001/rewritten.jsonl": "803d831650f5572229b766540495011795370abc5efd2998d47c7a1839630f9c",
+        "followup_rel_4lang/method_dev/artifacts/ocr_qwen3_vl_4b_v1/selection/inputs.jsonl": "7ab2900470258d91f877f3e309953ea24a8289830293bc408fbc57396a33be9a",
+        "followup_rel_4lang/method_dev/artifacts/ocr_qwen3_vl_4b_v1/selection/infer/attempt_0001/evaluation/predictions.jsonl": "f78ecd1d4aa4851a02b9100da5b10d1fb20652acb59e543059bf8113a3342eea",
+        "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/selection/infer_O/attempt_0001/evaluation/predictions.jsonl": "3f3474d137ae389b0291b49e4d3699acd6e87d6e186aeb6ac4e734d15ba804c3",
+        "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/selection/infer_E1_M0/attempt_0001/evaluation/predictions.jsonl": "2c4c873baf16a52afaa38d011eaf5fffd9258477505ed34e6cc9223d0f69238a",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/selection/infer/attempt_0001/evaluation/predictions.jsonl": "8e3bc7bd75968439c6e62f4c7fd9986d795c65b98f0c69fc9185ee23945e01d1",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/selection/ocr/attempt_0001/inventories.jsonl": "866aa5caa66a02529c01b0a2b0eb48cdb1eb8f1b20edccba8980dcaae388aea6",
+        "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/selection/extraction/E1/attempt_0001/extractions.jsonl": "9159eb7d27cc668777549728b041d97f59c6b31b700616dce3d439ca63b5994c",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/selection/rewrite/attempt_0001/rewritten.jsonl": "c295de369d2c4873e669d951460ae8646b5d4a57bb601fec9a22a417197300d3",
+        "followup_rel_4lang/method_dev/artifacts/ocr_qwen3_vl_4b_v1/internal_evaluation/inputs.jsonl": "1003321a9b8775e17ee8122cfd2f6dc6f0c474679cf45b553472461b1650302d",
+        "followup_rel_4lang/method_dev/artifacts/ocr_qwen3_vl_4b_v1/internal_evaluation/infer/attempt_0001/evaluation/predictions.jsonl": "119c290d8e7341b6b40c769348ab1e88da7df27ebc4fb39acf72e13820b72e7d",
+        "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/internal_evaluation/infer_O/attempt_0001/evaluation/predictions.jsonl": "000f92f67dd20e096e51976112f5e40104c45921c4801d3fa21d600dc5fff020",
+        "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/internal_evaluation/infer_E1_M0/attempt_0001/evaluation/predictions.jsonl": "66e238365fe0afe1b26e6656175ab7212dd62af250296e70cd889b75638431c4",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/internal_evaluation/infer/attempt_0001/evaluation/predictions.jsonl": "28f401faf5274305477ab0dc1fb6020f213e36428ab035de5e0cc0f636566f5a",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/internal_evaluation/ocr/attempt_0002/inventories.jsonl": "cd5098337a0fcd29cbec48a27837ce7029677f97f6f5c47b8de33b4aa78cbda2",
+        "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/internal_evaluation/extraction/E1/attempt_0001/extractions.jsonl": "a853087500e25932a7d7f8c8d91338bc43751e36a780ac3d12b47d09f9eb0c24",
+        "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/internal_evaluation/rewrite/attempt_0001/rewritten.jsonl": "114dfdeb22f72c2ba4afe2c66e76d3eae52ffd8e9fdcea3d7f1bb74ea4edd6b6"
+      }
+    }
+  },
+  "source_snapshots_sha256": {
+    "followup_rel_4lang/method_dev/scripts/report_current_experiments.py": "59c8755be93e55dfd25de5171483187101031b379e0948047d65e6fbe43d660c",
+    "followup_rel_4lang/method_dev/artifacts/tt_efficiency_comparison_snapshot.json": "28df4ac209df8c776983e34d8c538a6fbeb14cd1348a8ecccc84f9b815dbde9c",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_results_snapshot.json": "e98666d8c152dc5fc23989f9a0b6a4ea48c25d5ba48b30d370b9a78c0decaebd",
+    "followup_rel_4lang/method_dev/artifacts/oracle_exact_results_snapshot.json": "352440d05d84921427478ccb831ae915130f2d6a4f95f2c3134596f0d9276284",
+    "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_results_snapshot.json": "8e0f360b39d024f7d8776a3ffa214ab20d025682a4bb83641157b8260049d553",
+    "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_results_snapshot.json": "af81abb317f919481a3bf93f122496d8c7c97d8dcc236b05326f5e357f4f6800",
+    "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_results_snapshot.json": "5aa32cb21aca72c32836d4fdf52b1ab14b47707307dfa55ecf1d8ba3e8b1d87d",
+    "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/results.json": "bae61ee9d3b50b02f91948f72eb507318a1038007202bc24171309599e1ab130",
+    "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/results.json": "b23b69274f7067d6495f16349adac03bffbb3ef31e8991aaa3c77f8113c9664c",
+    "followup_rel_4lang/method_dev/artifacts/ocr_qwen3_vl_4b_v1/results.json": "19f30ae7a581bba6b7a6f12474619320cab201d8c62864ccf672af2dd63de16d"
+  }
+}

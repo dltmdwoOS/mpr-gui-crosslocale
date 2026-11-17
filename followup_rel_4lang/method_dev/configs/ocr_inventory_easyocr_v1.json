@@ -1,0 +1,13 @@
+{
+  "version": "easyocr-inventory-screen-v1",
+  "engine": "easyocr",
+  "package_version": "1.7.2",
+  "device": "cpu",
+  "threads": 3,
+  "languages": {"en": ["en"], "zh": ["ch_sim", "en"], "th": ["th", "en"], "ru": ["ru", "en"]},
+  "reader": {"detect_network": "craft", "recog_network": "standard", "quantize": true, "cudnn_benchmark": false},
+  "readtext": {"detail": 1, "paragraph": false, "decoder": "greedy", "batch_size": 8, "workers": 0, "min_size": 10, "text_threshold": 0.7, "low_text": 0.4, "link_threshold": 0.4, "canvas_size": 2560, "mag_ratio": 1.0, "slope_ths": 0.1, "ycenter_ths": 0.5, "height_ths": 0.5, "width_ths": 0.5, "add_margin": 0.1},
+  "confidence_filter": null,
+  "postprocessing": "existing legacy.canonicalize_visible_strings; no extra splitting, joining, translation or label correction",
+  "failure_policy": "failed image -> original MCQ; empty valid inventory -> same M0 matcher with empty list; no VLM inventory fallback"
+}

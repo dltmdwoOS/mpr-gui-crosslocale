@@ -1,0 +1,2399 @@
+{
+  "development_only": true,
+  "primary_pairs": 240,
+  "primary_items": 20,
+  "executed_pairs": 288,
+  "primary_images": 80,
+  "ocr_device": "cpu",
+  "correct": {
+    "OCR_E1_M0": 179,
+    "VLM_E1_M0": 178
+  },
+  "OCR_minus_VLM": {
+    "pairs": 240,
+    "items": 20,
+    "difference": 0.004166666666666667,
+    "ci95": [
+      -0.020833333333333332,
+      0.03333333333333333
+    ],
+    "exploratory_bootstrap_centered_p": 0.8773122687731227,
+    "recovery": 7,
+    "regression": 6
+  },
+  "cost": {
+    "ocr_seconds": 894.9245213484392,
+    "extraction_seconds": 63.51239993982017,
+    "matching_seconds": 326.73498244863003,
+    "answer_seconds": 189.96481504291296,
+    "total_seconds": 1475.1367187798023,
+    "seconds_per_pair": 6.146402994915843
+  },
+  "inventory_overlap_not_ground_truth": [
+    {
+      "image_sha256": "0119830a93cea372abd4e89078cc32411e3b92e2ea063b25c31857e77e5cdb3d",
+      "gui_language": "zh",
+      "vlm_strings": 11,
+      "ocr_strings": 13,
+      "exact_intersection": 6,
+      "vlm_only": [
+        "16:23",
+        "5G",
+        "83%",
+        "查找 App并开始积累凭证。",
+        "查找钱包适用 App"
+      ],
+      "ocr_only": [
+        "16:23(",
+        "835",
+        "APP",
+        "{{56",
+        "卫",
+        "查找 App 并开始积累凭证。",
+        "查找钱包适用"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "06b94d12c64b49a67901ba8ae8c880599125015c76832ce3ac7753b8e3328088",
+      "gui_language": "zh",
+      "vlm_strings": 14,
+      "ocr_strings": 19,
+      "exact_intersection": 7,
+      "vlm_only": [
+        ",",
+        "23:15",
+        "94",
+        "VPN",
+        "×",
+        "。",
+        "在“地点”中"
+      ],
+      "ocr_only": [
+        "0",
+        "23.15",
+        "5",
+        "8",
+        "NPN",
+        "O",
+        "a $ d f9h j k",
+        "oll",
+        "q' W e rt y。 U' i 。",
+        "乙 X C V b n m",
+        "图",
+        "在\"地点\"中"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "0e42f307ff662ed22c698058edc9ef6a1eab2672df170be74aa229e7f6917f64",
+      "gui_language": "en",
+      "vlm_strings": 13,
+      "ocr_strings": 18,
+      "exact_intersection": 11,
+      "vlm_only": [
+        "22:28",
+        "Shuffle playback"
+      ],
+      "ocr_only": [
+        "0",
+        "1 Shuffle playback",
+        "22.28 %\" '@ d",
+        "=",
+        "Di =",
+        "J0' 4",
+        "R"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "18708e523d672b35a902153c104d4f1b6c06926df81f0107ce1681a20dd30490",
+      "gui_language": "th",
+      "vlm_strings": 15,
+      "ocr_strings": 18,
+      "exact_intersection": 5,
+      "vlm_only": [
+        "00:00:03 | 10/6/2025",
+        "การอัดบันทึกมาตราฐาน 1",
+        "ตั้งค่าเป็นริงโทนสําหรับชั่วคราว",
+        "ตั้งเป็น",
+        "ตั้งเป็นเสียงเรียกเข้า",
+        "ตั้งเป็นเสียงเรียกเข้าของรายชื่อ",
+        "ลบ",
+        "เปลี่ยนชื่อ",
+        "เลือกทั้งหมดแล้ว",
+        "แบ่งปัน"
+      ],
+      "ocr_only": [
+        "00:00:03",
+        "10/6/2025",
+        "69",
+        "dบ&ล",
+        "การอัดบันทึกมาตรฐาน 1",
+        "ตงเบน",
+        "ตังเป็นเสียงเรียกเข้า",
+        "ตั้งค่าเป็นริงโทนสําหรับข้อความ",
+        "ตั้งเป็นเสียงเรียกเข้าของรายชือ",
+        "ู",
+        "เบลยนชอ",
+        "เลือกทังหมดแล้ว",
+        "แบงบน"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "1bb9f72ac960700ccf5936cd07c5e071913cc06f2fba0b5f6d7d4b91e3d26a23",
+      "gui_language": "th",
+      "vlm_strings": 25,
+      "ocr_strings": 36,
+      "exact_intersection": 8,
+      "vlm_only": [
+        "21:50",
+        "5G",
+        "ค้นหา",
+        "จินแผ่นดินใหญ่",
+        "จีหลิน",
+        "ฉางกวน",
+        "บัตรโดยสาร Chaozhou",
+        "บัตรโดยสาร Heyuan",
+        "บัตรโดยสาร Jiangmen",
+        "บัตรโดยสาร Jieyang",
+        "บัตรโดยสาร Maoming",
+        "บัตรโดยสาร Shanwei",
+        "บัตรโดยสาร Shaoguan",
+        "บัตรโดยสารจีหลิน",
+        "ผ่านทางเข้าออกได้อย่างรวดเร็วโดยยืน iPhone หรือ Apple Watch ของคุณให้ใกล้กับเครื่องอ่าน",
+        "เจิ้ยหยาง",
+        "เจียงเมิน"
+      ],
+      "ocr_only": [
+        "++ 56",
+        "-34]:^5&",
+        "21:50 (",
+        "=1},:02",
+        "apple watch ของคุณให้ใกล้กับเครื่องอ่าน",
+        "c",
+        "erวgซนัส",
+        "siagd[",
+        "{,",
+        "คนหา",
+        "จีนแผ่นดินใหญ่",
+        "จี๋หลิน",
+        "ฉาวก",
+        "ตอ",
+        "น",
+        "บัตรโดยสาร chaozhou",
+        "บัตรโดยสาร heyuan",
+        "บัตรโดยสาร jiangmen",
+        "บัตรโดยสาร jieyang",
+        "บัตรโดยสาร maoming",
+        "บัตรโดยสาร shanwei",
+        "บัตรโดยสาร shaoguan",
+        "บัตรโดยสารจี๋หลิน",
+        "ผ่านทางเข้าออกได้อย่างรวดเร็วโดยยืน iphone หรือ",
+        "ว.",
+        "สปน",
+        "เจียงเหมิน",
+        "เจี๋ยหยาง"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "1fdb9084c002e11b047ad6d5004a09b5d6464605629d228c42aef69b808b4465",
+      "gui_language": "ru",
+      "vlm_strings": 15,
+      "ocr_strings": 18,
+      "exact_intersection": 7,
+      "vlm_only": [
+        "00:00:03 | 10.06.2025",
+        "18:42",
+        "Все выбранные",
+        "Задать как рин...",
+        "Задать как сигнал для контакта",
+        "Переимен.",
+        "Удалить",
+        "выбор всех"
+      ],
+      "ocr_only": [
+        "00.00.03",
+        "10.06.2025",
+        "18:.42",
+        "67",
+        "Bce выбранные",
+        "N N %",
+        "Задать как сигНал для контакта",
+        "выбор всеx",
+        "задать как рин:",
+        "переимен:",
+        "удалить"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "1fdc89444b362200deab2a19b87d06ba87cfd7c430be8489f8697d0ebfa95c54",
+      "gui_language": "zh",
+      "vlm_strings": 0,
+      "ocr_strings": 8,
+      "exact_intersection": 0,
+      "vlm_only": [],
+      "ocr_only": [
+        "08:00",
+        "56",
+        "69",
+        "VPN SIII",
+        "内容库",
+        "图书",
+        "心愿单",
+        "访问您的应用内容库"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "22478e81e789cd21fb2e505bd07df99a253db0c8d74b96adeed51c2fc83f0a6a",
+      "gui_language": "zh",
+      "vlm_strings": 14,
+      "ocr_strings": 17,
+      "exact_intersection": 10,
+      "vlm_only": [
+        "00:00:03 | 2025/6/10",
+        "分享",
+        "标准录音 1",
+        "设为铃声"
+      ],
+      "ocr_only": [
+        "00:00:03",
+        "2025/6/10",
+        "72",
+        "凹 & *",
+        "分旱",
+        "标准录音1",
+        "设刀铃声"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "2426cc14d4e22d5233149359f30d73b7e4f8e9e3440d8418508dcad848ba587d",
+      "gui_language": "ru",
+      "vlm_strings": 9,
+      "ocr_strings": 12,
+      "exact_intersection": 4,
+      "vlm_only": [
+        "1",
+        "19:38 Нет дополнительного текста",
+        "19:47 Ср 18 июня",
+        "А автоматически убирать в Dock",
+        "Настройки карандаша..."
+      ],
+      "ocr_only": [
+        "\"",
+        "100 %",
+        "19.38 Нет дополнительного текста",
+        "19:47",
+        "Aq",
+        "Cp 18 июня",
+        "Автоматически убирать в Dock",
+        "Настройки карандаша:"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "255a20ee2ff7f9bc43947f33e841c4232f14538cc86f374ea0bbeb84dae8ff01",
+      "gui_language": "ru",
+      "vlm_strings": 9,
+      "ocr_strings": 20,
+      "exact_intersection": 3,
+      "vlm_only": [
+        "Автоматически отвечать на вызовы при подключении к внешнему аудиоустройству",
+        "Вибрировать при ответе и завершении вызова другим абонентом",
+        "Завершение вызова кнопкой питания",
+        "Наушники проводные или Bluetooth и другие аудиоустройства",
+        "Ответить на вызов / Завершить выз...",
+        "Это работает только при включенном экране."
+      ],
+      "ocr_only": [
+        "24",
+        "N N %",
+        "Автоматически отвечать на",
+        "Вибрировать при ответе",
+        "Завершение вызова",
+        "Наушники проводные или Bluetooth",
+        "Ответить на вызов / Завершить выз.",
+        "Это",
+        "аудиоустройства",
+        "включенном экране:",
+        "внешнему аудиоустройству",
+        "вызовы при подключении к",
+        "другим абонентом",
+        "и другие",
+        "и завершении вызова",
+        "кнопкой питания",
+        "работает только при"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "269e94bce4691dcf8bc35bd407ff24040c2643e8ade8045ee9d9ba6bb55139e5",
+      "gui_language": "zh",
+      "vlm_strings": 15,
+      "ocr_strings": 20,
+      "exact_intersection": 11,
+      "vlm_only": [
+        "N",
+        "连续30天种出健康的树(0/30)",
+        "连续3天种出健康的树(3/3)",
+        "连续7天种出健康的树(7/7)"
+      ],
+      "ocr_only": [
+        "-4 30 Tm4 /|6:",
+        "130",
+        "3",
+        "30",
+        "7",
+        "凹 & * 谷",
+        "又",
+        "连续3夭种出健康的树(3/3)",
+        "连续7夭种出健康的树 (7/7)"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "2743cdbb226b9a2763d578e18318571c0b5a19de1f9aa4e5aeb2b6cae9e30ac7",
+      "gui_language": "th",
+      "vlm_strings": 12,
+      "ocr_strings": 14,
+      "exact_intersection": 5,
+      "vlm_only": [
+        ".5",
+        "0.0",
+        "1x",
+        "LIVE บิด",
+        "RAW",
+        "ถ่ายโอน",
+        "ภาพนตร์"
+      ],
+      "ocr_only": [
+        ".",
+        "5",
+        "ilalalal",
+        "ix",
+        "live ปิด",
+        "o.0",
+        "raw",
+        "ภาพยนตร์",
+        "ววโมชัน"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "2a7d96d27aaca5ba08ea95557eea089bea3ac053a3c563cd78a9da94ae9d3bbd",
+      "gui_language": "en",
+      "vlm_strings": 24,
+      "ocr_strings": 30,
+      "exact_intersection": 19,
+      "vlm_only": [
+        "Account, country, & history",
+        "Play can recommend apps, offers, and",
+        "VPN",
+        "location. Learn more",
+        "your storage runs low. Learn more"
+      ],
+      "ocr_only": [
+        "Account; country, & history",
+        "Ior",
+        "Play",
+        "VPNI",
+        "can recommend apps, offers, and",
+        "location: Learn more",
+        "mOr ctorana",
+        "maro",
+        "oarn",
+        "rinc",
+        "ull"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "2c52ec7d3701982d0c6b25144557c793b68785fb426bc5f85be4890061e4db2f",
+      "gui_language": "zh",
+      "vlm_strings": 16,
+      "ocr_strings": 17,
+      "exact_intersection": 12,
+      "vlm_only": [
+        "23:15",
+        "94",
+        "VPN",
+        "已放置图钉"
+      ],
+      "ocr_only": [
+        "23.15",
+        "4Nl",
+        "NPN",
+        "OU",
+        "己放置图钉"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "2e69867f383d9c994952234a49b75a754393bdaa34444e3e2be40e5067c6bc87",
+      "gui_language": "th",
+      "vlm_strings": 16,
+      "ocr_strings": 23,
+      "exact_intersection": 7,
+      "vlm_only": [
+        "20:19",
+        "MIUI",
+        "ShareMe",
+        "บริการและช้อป",
+        "บันทึกวิดีโอหน้าจอ",
+        "รายชื่อ",
+        "รีโมท Mi",
+        "วิทยุ FM",
+        "เครื่องมือ"
+      ],
+      "ocr_only": [
+        "100",
+        "20:19 (",
+        "=",
+        "i",
+        "mเบเ",
+        "shareme",
+        "x",
+        "{3",
+        "จอ",
+        "บริการและข้อ",
+        "บันทึกวิดีโอหน้า",
+        "รายชือ",
+        "รีโมท mi",
+        "วิทยุ fm",
+        "เครืองมือ",
+        "๑"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "2e83702ca11e063a2120cf9bfeb3f69372b26e11a82da4627ca9cd5b0e19496d",
+      "gui_language": "en",
+      "vlm_strings": 26,
+      "ocr_strings": 30,
+      "exact_intersection": 22,
+      "vlm_only": [
+        "4G",
+        "Foshan",
+        "Search",
+        "or Apple Watch near a reader."
+      ],
+      "ocr_only": [
+        "# 4G",
+        "#52",
+        "04t",
+        "Apple Watch near a reader:",
+        "Fosh",
+        "Ja",
+        "Q Search",
+        "or"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "3490cfc9ad90adbb8badb464ed1d32a9a68f8f2bd4079356a00d3d246d56afaa",
+      "gui_language": "zh",
+      "vlm_strings": 25,
+      "ocr_strings": 30,
+      "exact_intersection": 15,
+      "vlm_only": [
+        "5G",
+        "83",
+        "只需将iPhone或Apple Watch靠近读卡器,即可一刷而过。",
+        "搜索",
+        "江苏交通一卡通·常州",
+        "江苏交通一卡通·淮海通",
+        "江苏交通一卡通·苏州",
+        "洪城一卡通",
+        "重庆畅通卡·交通联合版",
+        "金华市民卡·八婺通交联版"
+      ],
+      "ocr_only": [
+        "!;56",
+        "5(",
+        "835",
+        "Q 搜索",
+        "g",
+        "刷而过。",
+        "即可一",
+        "只需将 iPhone 或 Apple Watch靠近读卡器,",
+        "江苏交通一卡通 .常州",
+        "江苏交通一卡通 .淮海通",
+        "江苏交通一卡通 .苏州",
+        "洪城一一卡通",
+        "重庆畅通卡.交通联合版",
+        "金华市民卡.八婺通交联版",
+        "钽"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "3b4d9f90a9daf3c38d201a8d37b45d0693bb640ecbf34bf60911b161289140da",
+      "gui_language": "zh",
+      "vlm_strings": 20,
+      "ocr_strings": 28,
+      "exact_intersection": 14,
+      "vlm_only": [
+        "Play 可以根据您的设备位置信息推荐应用、",
+        "优惠和其他本地内容。了解详情",
+        "使用的应用。了解详情",
+        "当可用存储空间不足时,系统会归档您很少",
+        "账号、国家/地区和历史记录",
+        "账号偏好设置、通知"
+      ],
+      "ocr_only": [
+        "011",
+        "56",
+        "69",
+        "Play",
+        "VPNI",
+        "优惠和其他本地内容。",
+        "使用的应用。",
+        "可以根据您的设备位置信息推荐应用",
+        "国家/地区和历史记录",
+        "孓解送情",
+        "当可用存储空间不足时 ,",
+        "系统会归档您很少",
+        "账号",
+        "账号偏好设置。通知"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "3f70c6a398dbd6c46de5dcb978929da3b3168b9be3dc865abdfe8376cfe45672",
+      "gui_language": "th",
+      "vlm_strings": 25,
+      "ocr_strings": 26,
+      "exact_intersection": 16,
+      "vlm_only": [
+        "N",
+        "Wi-Fi หรือข้อมูลเครือข่ายโทรศัพท์",
+        "ป้องกันไม่ให้แอพของบุคคลที่สาม",
+        "ยืนยัน ติดตามพัสดุ เติมเงินโทรศัพท์",
+        "รายการที่ปิดกันของบัญชีบริการ",
+        "และช่วยให้คุณสามารถคัดลอกหรือส",
+        "แสดงข้อความพร้อมข้อมูลเกี่ยวกับตัว",
+        "ใช้เมนูต่างและใช้บริการอื่น ๆ ได้",
+        "ไม่มีชิมการ์ด"
+      ],
+      "ocr_only": [
+        "d la & ลี",
+        "wi fi",
+        "ป้องกันไมให้แอพของบุคคลที่สาม",
+        "ยืนยัน ติดตามพัสด เติมเงินโทรศัพท์",
+        "รายการที่ปิดกั้นของบัญชีบริการ",
+        "หรือข้อมูลเครือข่ายโทรศัพท์",
+        "และช่วยให้คุณสามารถคัดลอกรหัส",
+        "แสดงข้อความพร้อมข้อมูลเกี่ยวกับตั๋ว",
+        "ใช้เมนูด่วนและใช้บริการอื่น ต ได้",
+        "ไม่มีซิมการ์ด"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "4008970929c7ca1a0e791fbc2e2e41ac2da0abfe9a141654d279f48233a02ed0",
+      "gui_language": "th",
+      "vlm_strings": 0,
+      "ocr_strings": 24,
+      "exact_intersection": 0,
+      "vlm_only": [],
+      "ocr_only": [
+        "000111222333",
+        "2",
+        "23:27",
+        "3",
+        "5",
+        "9",
+        "?123",
+        "^ ผฺป.",
+        "eี",
+        "gif",
+        "vpn",
+        "ค้นหา \"000111222333\"",
+        "ถ.",
+        "ทม",
+        "ฝ",
+        "ฟฺหก ด",
+        "ร น ยฺฺบ",
+        "ล",
+        "สพะ",
+        "เลือกในแผนที่",
+        "แผนที่",
+        "ในสถานที่",
+        "ไทย",
+        "ํา ส ว"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "43c2340e9a0878e72883e4d66ef5f3d1fc21764203cbb022995ddee90eba8cb9",
+      "gui_language": "zh",
+      "vlm_strings": 13,
+      "ocr_strings": 12,
+      "exact_intersection": 9,
+      "vlm_only": [
+        "1",
+        "Aa",
+        "搜索",
+        "触控笔设置..."
+      ],
+      "ocr_only": [
+        "AO",
+        "Q 搜索",
+        "触控笔设置_"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "45bc1d45cfa31a299694abf3ef5536b416327796e35e63064d1dae6e250161f9",
+      "gui_language": "ru",
+      "vlm_strings": 15,
+      "ocr_strings": 18,
+      "exact_intersection": 9,
+      "vlm_only": [
+        "21:55",
+        "5G",
+        "Все мои",
+        "и собирайте карты.",
+        "交通",
+        "市政交通"
+      ],
+      "ocr_only": [
+        "21*55 €",
+        ":I! 5G",
+        "Bсe мои",
+        "D",
+        "iin",
+        "mlxzsim",
+        "гНIпапшв",
+        "и собирайте карты",
+        "л"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "481c77139686431ff0bc7fff39a7e5923f21406379a2c6a64f57499659c520f5",
+      "gui_language": "ru",
+      "vlm_strings": 13,
+      "ocr_strings": 23,
+      "exact_intersection": 8,
+      "vlm_only": [
+        "15:48",
+        "7 дней подряд",
+        "Всего Вы были сосредоточены 3 дня(-ей) (3/3)",
+        "Вы выращивали здоровые деревья 3 дней подряд (3/3)",
+        "Вы выращивали здоровые деревья 7 дней подряд (7/7)"
+      ],
+      "ocr_only": [
+        "15.48",
+        "3",
+        "30",
+        "7",
+        "90",
+        "N N %",
+        "Всего Вы были",
+        "Всего Вы были сосредоточены 4",
+        "Вы выращивали здоровые деревья 3 дней",
+        "Вы выращивали здоровые деревья 7 дней",
+        "дней подряд",
+        "подряд (3/3)",
+        "подряд (7/7)",
+        "редоточены 3 дня(-ей) (3/3)",
+        "часа (4/4)"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "4f155516bbb7bddc2389a307be7e4a8369be52fd7966d48b250e8d4a999efb87",
+      "gui_language": "ru",
+      "vlm_strings": 14,
+      "ocr_strings": 27,
+      "exact_intersection": 7,
+      "vlm_only": [
+        "23:25",
+        "Более точная информация о регулярных маршрутах",
+        "Использовать историю местоположений, чтобы отправлять более точную информацию о регулярных маршрутах",
+        "Как вы добираетесь",
+        "Не настроено",
+        "Получать информацию о возможных задержках и изменениях, прежде чем отправляться в путь",
+        "Уведомления о времени в пути и общ. транспорте"
+      ],
+      "ocr_only": [
+        "0",
+        "23.25",
+        "94",
+        "He настроено",
+        "NPN",
+        "Более точная информация 0 регулярных",
+        "В",
+        "Использовать историю местоположений;",
+        "Как вы",
+        "Получать информацию 0 возможных",
+        "Уведомления 0 времени",
+        "в путь",
+        "добираетесь",
+        "задержках и изменениях прежде чем",
+        "маршрутах",
+        "отправляться",
+        "пути и общ:",
+        "регулярных маршрутах",
+        "транспорте",
+        "чтобы отправлять более точную информацию"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "52d9e810f70085617fc61473e9229c50e7f6812c5492f46d93d92b0c880ff73a",
+      "gui_language": "zh",
+      "vlm_strings": 17,
+      "ocr_strings": 13,
+      "exact_intersection": 11,
+      "vlm_only": [
+        "1",
+        "Aa",
+        "二",
+        "搜索",
+        "目",
+        "相机"
+      ],
+      "ocr_only": [
+        "AO",
+        "Q 搜索"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "541c32e50485e631d8249b8a1265d0e820d91927791e60be9c5ba2f4205eac72",
+      "gui_language": "ru",
+      "vlm_strings": 8,
+      "ocr_strings": 8,
+      "exact_intersection": 7,
+      "vlm_only": [
+        "VPN"
+      ],
+      "ocr_only": [
+        "VPN 3Ч,l"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "5768514a3407909399f078230fe7dd9ff7014ccc073d66e6277e20248860eef2",
+      "gui_language": "en",
+      "vlm_strings": 16,
+      "ocr_strings": 21,
+      "exact_intersection": 12,
+      "vlm_only": [
+        "100",
+        "19:52",
+        "Screen Recorder",
+        "Services & feedback"
+      ],
+      "ocr_only": [
+        "19.52 (",
+        "2",
+        "83",
+        "=",
+        "Screen",
+        "Services &",
+        "X",
+        "feedback",
+        "o0"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "660f21587e5e7484459adae5126fe4ec6626cb791586bb61af1d97d21904da57",
+      "gui_language": "ru",
+      "vlm_strings": 13,
+      "ocr_strings": 29,
+      "exact_intersection": 5,
+      "vlm_only": [
+        "N",
+        "Автоматически распознавайте текст сообщения, мгновенно копируйте проверочные коды, отслеживайте доставку, пополняйте счет телефона, пользуйтесь быстрым меню и другими сервисами.",
+        "Запретите сторонним приложениям считывать ваши проверочные коды.",
+        "Защита с помощью проверочных кодов",
+        "Отображайте сообщения с информацией о билетах на поезд и авиабилеты в виде карточек.",
+        "Принимайте сообщения от сервисных аккаунтов по сети Wi-Fi или через мобильные данные.",
+        "Умное распознавание сообщений",
+        "←"
+      ],
+      "ocr_only": [
+        "N C A %",
+        "Wi-Fi или через мобильные",
+        "Автоматически распознавайте",
+        "Запретите сторонним",
+        "Защита c помощью",
+        "Отображайте сообщения с",
+        "Принимайте сообщения от",
+        "Умное распознавание",
+        "данные:",
+        "другими сервисами:",
+        "информацией 0 билетах на",
+        "карточек:",
+        "коды, отслеживайте доставку;",
+        "копируйте проверочные",
+        "поезд и авиабилеты в виде",
+        "пользуйтесь быстрым меню и",
+        "пополняйте счет телефона;",
+        "приложениям считывать ваши",
+        "проверочные коды:",
+        "проверочных кодов",
+        "сервисных аккаунтов по сети",
+        "сообщений",
+        "сообщения; мгновенно",
+        "текст"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "663f3782bc2fbd321c4090d34d5b2ac8edc68747814a27617457a8ae19ede21d",
+      "gui_language": "th",
+      "vlm_strings": 31,
+      "ocr_strings": 38,
+      "exact_intersection": 16,
+      "vlm_only": [
+        "20:14 จ. 9 มิ.ย.",
+        "Apple Pencil",
+        "Siri และการค้นหา",
+        "WLAN",
+        "การตั้งค่า",
+        "จอภาพและความสว่าง",
+        "ถ่ายภาพหน้าจอ >",
+        "ลายมือเป็นข้อความตัวอักษร ลองเขียนคําหรือข้อความในช่องด้าน",
+        "สุขภาพ",
+        "หน้าจอโฮมและงานมัลติทัสก์",
+        "เขียนกัน",
+        "เสร็จสิ้น",
+        "โน้ตดาวน์ >",
+        "ไฟฟ้า",
+        "试着在此处写几个字..."
+      ],
+      "ocr_only": [
+        "20:14",
+        "`^ร*%4ไ~17 ..,",
+        "aa",
+        "apple pencil",
+        "ate",
+        "siri และการค้นหา",
+        "wlan",
+        "การตังค่า",
+        "จ. 9 มิ.ย",
+        "จอภาพ",
+        "ถ่ายภาพหน้าจอ",
+        "ลายมือเป็นข้อความตัวอักษร ลองเขียนคําหรือข้อความ ในช่องด้าน",
+        "ศูนย์ควบคุม",
+        "สําหรับการเลื่อนแทน",
+        "หน้าจอโฮมและงานมัลติทาสก์",
+        "ะู",
+        "เชื่อมกัน",
+        "เปิด",
+        "เสรจสิน",
+        "และความสว่าง",
+        "โน้ตด่วน",
+        "โฟกัส"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "69022671c252f78f71c2aa646c87920de5fc12b7bf59e746af3f8df413a963f9",
+      "gui_language": "en",
+      "vlm_strings": 14,
+      "ocr_strings": 14,
+      "exact_intersection": 10,
+      "vlm_only": [
+        "1",
+        "1 Note",
+        "19:38 No additional text",
+        "19:43"
+      ],
+      "ocr_only": [
+        "19.38",
+        "19.43",
+        "No additional text",
+        "Note"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "6bc103c99600d8fe42a270342ae08e4b1ca5625ddb12fffdc6bf627a2064f46c",
+      "gui_language": "zh",
+      "vlm_strings": 9,
+      "ocr_strings": 11,
+      "exact_intersection": 8,
+      "vlm_only": [
+        "支持蓝牙耳机、线控耳机等设备"
+      ],
+      "ocr_only": [
+        "27",
+        "凹 (& *谷",
+        "支持蓝牙耳机。线控耳机等设备"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "6c463dd2cdb479b6598a220de721d4bcb44eb03bb5f47481394d738cdc46002a",
+      "gui_language": "th",
+      "vlm_strings": 27,
+      "ocr_strings": 28,
+      "exact_intersection": 10,
+      "vlm_only": [
+        "5G",
+        "Google Play Instant",
+        "Play สามารถแนะนําแอป ช้อปสินค้า และให้หา",
+        "VPN",
+        "การตั้งค่า",
+        "การตั้งค่าบัญชี การแจ้งเตือน",
+        "ความคิดเห็นเกี่ยวกับ Google Play Store",
+        "ความคุ้มแบบสุ่มและการตอบ",
+        "คําเริ่มต้นของระบบ",
+        "จัดการการตั้งค่าการแจ้งเตือน",
+        "บ้าน",
+        "ย้อนกลับ",
+        "รีม",
+        "อื่นๆ ในพื้นที่โดยอิงตามต่างหน้าของอุปกรณ์ของคุณ",
+        "เมนู",
+        "เริ่มต้น",
+        "ใช้ต่างหน้าของอุปกรณ์"
+      ],
+      "ocr_only": [
+        "5g",
+        "google play instant",
+        "play",
+        "vpn วัง|",
+        "การตังค่า",
+        "การตังค่าบัญชี การแจ้ง1เตือน",
+        "กึจเค้า้าวจีลง้ล.ลค้างวพิงปติง",
+        "ข.",
+        "ควบคุมแบบสํารวจและการตอบ",
+        "ความคิดเห็นเกี่ยวกับ google play store",
+        "ค่าเริ่มต้นของระบบ",
+        "จัดการการตังค่าการแจ้งเตือน",
+        "ธีม",
+        "บ.",
+        "สามารถแนะนําแอป ข้อเสนอ และเนือหา",
+        "อื่นฯ",
+        "ใช้ตําแหน่งของอุปกรณ์",
+        "ในพื้นที่โดยอิงตามตําแหน่งอุปกรณ์ของคุณ"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "6e352d60f6cf1fee1055360e78bca0dbef16a19e15a148430e91d2f9d68f5643",
+      "gui_language": "ru",
+      "vlm_strings": 11,
+      "ocr_strings": 13,
+      "exact_intersection": 7,
+      "vlm_only": [
+        ".5",
+        "3 с",
+        "LIVE ВЫКЛ.",
+        "КИНОЭФФЕКТ"
+      ],
+      "ocr_only": [
+        "0 3 c",
+        "5",
+        "Iulululul",
+        "LIVE ВЫКЛ:",
+        "RAW",
+        "ИНОЭФФЕКТ"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "6f1b567d35e7ad281762ec0c75d8c2f23fa2665d58796eb40c83d7fd5f454810",
+      "gui_language": "ru",
+      "vlm_strings": 13,
+      "ocr_strings": 21,
+      "exact_intersection": 11,
+      "vlm_only": [
+        "22:32",
+        "В случайном порядке"
+      ],
+      "ocr_only": [
+        "(",
+        "0",
+        "100J /",
+        "22:32 \"2 0 d",
+        "=",
+        ">",
+        "> :=",
+        "В",
+        "случайном порядке",
+        "ё"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "7841e78c9668846fc844c7c1134e33d125c632e5d146b9b7317226f0ab72dd44",
+      "gui_language": "zh",
+      "vlm_strings": 13,
+      "ocr_strings": 19,
+      "exact_intersection": 11,
+      "vlm_only": [
+        "22:26",
+        "随机播放"
+      ],
+      "ocr_only": [
+        "(",
+        "(0",
+        "22:26 % @d",
+        "33 随机播放",
+        "〉I :三",
+        "三",
+        "民",
+        "皿0彳"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "7a9f8b0b0b694bd6663a6ea5163307a6352190d0176b3ace31bf4f6c2a7d8b19",
+      "gui_language": "en",
+      "vlm_strings": 14,
+      "ocr_strings": 19,
+      "exact_intersection": 7,
+      "vlm_only": [
+        ",",
+        "23:21",
+        "94",
+        "?123",
+        "×",
+        "。",
+        "拼音"
+      ],
+      "ocr_only": [
+        "##E",
+        "0",
+        "2 X C V b n m",
+        "2123",
+        "23.21",
+        "5",
+        "8",
+        "9' w e\" r^ t' y\" u\" i\" 0",
+        "941",
+        "Alll",
+        "a s d f g h j k",
+        "p"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "7b6f2a38deac557cf488fc2c6b0af540ed6f2a71600cffb8788619221b5c3f18",
+      "gui_language": "en",
+      "vlm_strings": 51,
+      "ocr_strings": 61,
+      "exact_intersection": 30,
+      "vlm_only": [
+        "100% 🔋",
+        "22:00 Wed Jun 18",
+        "ARUBA",
+        "BERMUDA",
+        "CAYMAN ISLANDS (U.K.)",
+        "COAST MOUNTAINS",
+        "COAST RANGES",
+        "Colón",
+        "HAITI",
+        "La Habana",
+        "MOUNTAINS",
+        "Neison River",
+        "Notification Settings",
+        "ROCKY",
+        "ST. PIERRE AND MIQUELON (FR.)",
+        "Subway & Light Rail",
+        "×",
+        "高德地图",
+        "📶",
+        "🗺️",
+        "🧭"
+      ],
+      "ocr_only": [
+        "\"",
+        "(uk)",
+        "0",
+        "1",
+        "100%",
+        "2",
+        "22:00",
+        "5",
+        "6",
+        ";",
+        "@AMMANISLANDS",
+        "ARIUJBA",
+        "BERMU",
+        "Cancer",
+        "Colon",
+        "Cottinac",
+        "HAItI",
+        "Iiitu",
+        "Iotification",
+        "LaHabana",
+        "Light Rail",
+        "MQUELon (FR)",
+        "Milwaukee",
+        "Rivel",
+        "ST PIERRBAND",
+        "Subway",
+        "UNITED STATES",
+        "V",
+        "Wed Jun 18",
+        "es",
+        "~Tro/"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "7c92a5bddff9976185e5c26a4ee1f0563433983533b4f894606ec86f8a263c64",
+      "gui_language": "ru",
+      "vlm_strings": 23,
+      "ocr_strings": 29,
+      "exact_intersection": 19,
+      "vlm_only": [
+        "21:55",
+        "Быстро проходите через пункты оплаты проезда, поднося iPhone или Apple Watch к считывателю.",
+        "Даянь",
+        "Транспортная карта Даяня"
+      ],
+      "ocr_only": [
+        "'затEr",
+        "21*55 €",
+        "FiEL ;",
+        "K считЫвателю",
+        "m",
+        "Быстро проходите через пункты оплаты",
+        "Далянь",
+        "Транспортная карта Даляня",
+        "Уa \"$",
+        "проезда; поднося iPhone или Apple Watch"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "7cc5481f4c212fda97fe7fcfe0d0b61b3560ab85b134ecc80abcd047febe7502",
+      "gui_language": "ru",
+      "vlm_strings": 13,
+      "ocr_strings": 14,
+      "exact_intersection": 10,
+      "vlm_only": [
+        "22:32",
+        "Мі аккаунт",
+        "Текущая версия 5.2.51i-575"
+      ],
+      "ocr_only": [
+        "100J /",
+        "22.32 \"Z 0 %",
+        "Mi аккаунт",
+        "Текущая версия 5.2.511-575"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "7e0cfd3ca1feb5601a21b17d7bd9f9e12a139fc496ee7b50e4350ccb1af7343f",
+      "gui_language": "th",
+      "vlm_strings": 16,
+      "ocr_strings": 19,
+      "exact_intersection": 9,
+      "vlm_only": [
+        "7",
+        "N",
+        "ปลูกต้นไม้ที่สมบูรณ์ 3 วันติดต่อกัน (3/3)",
+        "ปลูกต้นไม้ที่สมบูรณ์ 30 วันติดต่อกัน (0/30)",
+        "ปลูกต้นไม้ที่สมบูรณ์ 7 วันติดต่อกัน (7/7)",
+        "เวลาโฟกัสทั้งหมดถึง 3 วัน (3/3)",
+        "เวลาโฟกัสทั้งหมดถึง 4 ชั่วโมง (4/4)"
+      ],
+      "ocr_only": [
+        "30 วันติดต่อกัน",
+        "7วันติดต่อกัน",
+        "i.",
+        "ปลูกต้นไม้ที่สมบูรณ์3 วันติดต่อกัน (3/3)",
+        "ปลูกต้นไม้ที่สมบูรณ์7 วันติดต่อกัน (7/7)",
+        "มม&ลด",
+        "เaลต้าไ.ทัทที่วขบรณ์วช วัชติดต่าลับ",
+        "เวด",
+        "เวลาโฟกัสทั้งหมดถึง3 วัน (3/3)",
+        "เวลาโฟกัสทั้งหมดถึง4 ชั่วโมง (4/4)"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "818e0ad8f6c875855654c45956cc3d4da4261903fcb599b5cb2168129e6f3046",
+      "gui_language": "ru",
+      "vlm_strings": 16,
+      "ocr_strings": 23,
+      "exact_intersection": 12,
+      "vlm_only": [
+        "100",
+        "20:17",
+        "Запись экрана",
+        "Службы и обратная св..."
+      ],
+      "ocr_only": [
+        "100)",
+        "2",
+        "20:17 (",
+        "5",
+        "=",
+        "Запись",
+        "Службы и",
+        "в",
+        "обратная св.",
+        "х",
+        "экрана"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "8374957bdbd978122436a9eff7dd28384db0169ab8dc35c0f5262a262daf4b64",
+      "gui_language": "en",
+      "vlm_strings": 32,
+      "ocr_strings": 38,
+      "exact_intersection": 24,
+      "vlm_only": [
+        "17:39 Mon Jun 9",
+        "Display & Brightness",
+        "Quick Note >",
+        "Screenshot >",
+        "Use your pencil to handwriting in any text area to convert it",
+        "om corner.",
+        "the box below.",
+        "试着在此处写几个字..."
+      ],
+      "ocr_only": [
+        "17:39",
+        "7A h k sbLyntr -",
+        "AA",
+        "ALR",
+        "Brightness",
+        "Display",
+        "Dr",
+        "Mon Jun 9",
+        "Quick Note",
+        "Screenshot",
+        "Use your pencil to handwrite in any text area to convert it",
+        "om corner:",
+        "scrolling instead:",
+        "the box below:"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "873abfb6744f4de433488606856365dacc5e9a8bc62e43f90394ffda0d1c789f",
+      "gui_language": "zh",
+      "vlm_strings": 19,
+      "ocr_strings": 23,
+      "exact_intersection": 14,
+      "vlm_only": [
+        "100",
+        "充电",
+        "勿扰模式",
+        "扫一扫",
+        "蓝牙"
+      ],
+      "ocr_only": [
+        "(",
+        "0)",
+        "1@",
+        "2",
+        "23",
+        "9",
+        "=",
+        "又",
+        "扫 >扫"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "8ad9243d102420276d869d790d82e208416c7cba5cb1532104142d1074f1a6f6",
+      "gui_language": "en",
+      "vlm_strings": 10,
+      "ocr_strings": 14,
+      "exact_intersection": 5,
+      "vlm_only": [
+        "1",
+        "1 Note",
+        "19:38 No additional text",
+        "19:42",
+        "Pencil Settings..."
+      ],
+      "ocr_only": [
+        "100%",
+        "19.38",
+        "19.42",
+        "Aa",
+        "No additional text",
+        "Note",
+        "Pencil",
+        "Settings;",
+        "l"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "8d4ed774d3386a366270833ac41ed4c1e8f8ac19185e78f12213ad2758eef5bd",
+      "gui_language": "ru",
+      "vlm_strings": 40,
+      "ocr_strings": 48,
+      "exact_intersection": 25,
+      "vlm_only": [
+        "22:09",
+        "БАГАМСКИЕ ОСТРОВА",
+        "БЕРЕГОВЫЕ ХРЕБТЫ",
+        "КАЙМАНОВЫ ОСТРОВА",
+        "Настстройки",
+        "Настстройки Карт",
+        "Настстройки уведомлений",
+        "Оttава",
+        "СКАЛИСТЫЕ ГОРЫ",
+        "СОЕДИНЁННЫЕ ШТАТЫ АМЕРИКИ",
+        "Ср 18 июня",
+        "ЯМАЙКА",
+        "море",
+        "地图",
+        "高德地图"
+      ],
+      "ocr_only": [
+        "&",
+        "'",
+        "100 %",
+        "22.09",
+        "6",
+        "8",
+        ";",
+        "@GUPOBA",
+        "Cp 18 июня",
+        "Ol",
+        "Rive",
+        "Ul",
+        "[АЙМАНОВЫ ЯМАЙКА",
+        "БАГАМСКИВ",
+        "Карт",
+        "Настройки",
+        "ОСТРОВА",
+        "Оттава",
+        "СОЕДИНЁННЫЕ",
+        "ШТАТЫ АМЕРИКИ",
+        "ШШ",
+        "м о p",
+        "опик"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "8ef82dba4a81ca9594afa3b900af0f3d3f506af0db4bfd8b900426ef3af0c42d",
+      "gui_language": "ru",
+      "vlm_strings": 36,
+      "ocr_strings": 40,
+      "exact_intersection": 27,
+      "vlm_only": [
+        "19:58 Пн 9 июня",
+        "a.",
+        "Ваш пальцы будут",
+        "Короткая заметка >",
+        "Снимок экрана >",
+        "Экран «Домой» и многозадачность",
+        "и написанное превратится в печатный текст. Напишите",
+        "что-нибудь от руки в поле ниже.",
+        "试着在此处写几个字..."
+      ],
+      "ocr_only": [
+        "'^ 1 % Jchb\"4м? ~",
+        "19:58",
+        "AA",
+        "Il",
+        "a",
+        "encil: Ваши пальцы будут",
+        "Короткая заметка",
+        "Пн 9 июня",
+        "Снимок экрана",
+        "Экран кДомойх и многозадачность",
+        "и написанное",
+        "превратится в печатный текст: Напишите",
+        "что-нибудь от руки ₽ поле ниже."
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "8fe8b64d2a5a42f3c6b4d997b47585c39da82fd4ab16a0ddd005248ed2609c2b",
+      "gui_language": "ru",
+      "vlm_strings": 11,
+      "ocr_strings": 19,
+      "exact_intersection": 6,
+      "vlm_only": [
+        "000111222333",
+        "23:25",
+        "VPN",
+        "Выбрать на карте",
+        "Искать \"000111222333\""
+      ],
+      "ocr_only": [
+        "000111222З33",
+        "23.25",
+        "3",
+        ":",
+        "NPN",
+        "X",
+        "aullll",
+        "Выбрать",
+        "Искать \"\"000111222333\"\"",
+        "Я Ч С M И Т Ь 6 Ю",
+        "й' ц? у' к' e\" н' г ш' щ' 3\"",
+        "на карте",
+        "ф ы в a П p 0 Л Д Ж Э"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "935a34e9d086bc97a6f9524af649ddf172152062fd501dac9a604a3280297dc8",
+      "gui_language": "ru",
+      "vlm_strings": 20,
+      "ocr_strings": 30,
+      "exact_intersection": 15,
+      "vlm_only": [
+        "Google Play может рекомендовать приложения, специальные предложения и другой контент на основе вашего местоположения. Подробнее...",
+        "VPN",
+        "Автоматически архивировать",
+        "Использовать данные о местоположении устройства",
+        "Настройки аккаунта и устройства"
+      ],
+      "ocr_only": [
+        "Google",
+        "Play",
+        "VPN 3Ч,l",
+        "anviAonnnьатz",
+        "И",
+        "Использовать данные 0",
+        "Настройки аккаунта и",
+        "Подробнее::",
+        "другой контент на основе вашего",
+        "местоположении",
+        "местоположения",
+        "может рекомендовать",
+        "отак лат,ишacv14",
+        "приложения; специальные предложения",
+        "устройства"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "93a7f9f0cd48b61795e45e74685daf85646ed18dfc6e0decfa93d4dc80e6d9b9",
+      "gui_language": "en",
+      "vlm_strings": 14,
+      "ocr_strings": 25,
+      "exact_intersection": 11,
+      "vlm_only": [
+        "7 Days in a Row",
+        "Plant healthy trees 30 days in a row (0/30)",
+        "Plant healthy trees 7 days in a row (7/7)"
+      ],
+      "ocr_only": [
+        "3",
+        "30",
+        "7",
+        "93",
+        "Days in a Row",
+        "Dlant hoalthutronc",
+        "Fa",
+        "Haucin",
+        "NX % ?",
+        "Plant healthy trees 3",
+        "Plant healthy trees 7",
+        "days",
+        "in a row (3/3)",
+        "in a row (7/7)"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "94f0a07a3dce167604bafcb1566e86db3ca51bb29d87d05ce6b7f1cd25d4be63",
+      "gui_language": "en",
+      "vlm_strings": 14,
+      "ocr_strings": 17,
+      "exact_intersection": 12,
+      "vlm_only": [
+        "00:00:03 | 6/10/2025",
+        "All selected"
+      ],
+      "ocr_only": [
+        "00 : 00: 03",
+        "6/10/2025",
+        "93",
+        "AIl selected",
+        "N X %"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "994e1ce62319dfaa1d627f3f1dca0bd6959747c89f730cae24897241a2ad2bfb",
+      "gui_language": "th",
+      "vlm_strings": 11,
+      "ocr_strings": 12,
+      "exact_intersection": 4,
+      "vlm_only": [
+        "1",
+        "1 โน้ต",
+        "19:57 พ. 18 ม.ย.",
+        "Aa",
+        "ลากเพื่อเอารายการออก",
+        "วันนี้",
+        "เลือกสี"
+      ],
+      "ocr_only": [
+        "100%",
+        "19:57",
+        "aa",
+        "พ. 18 มิ.ย.",
+        "รีเซ็ต",
+        "ลากเพือเอารายการออก",
+        "วันนี",
+        "เสร็จสิน"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "999c6da68d8a6266400ce8539133e4821119013f7672715308bbc72afe883305",
+      "gui_language": "zh",
+      "vlm_strings": 13,
+      "ocr_strings": 14,
+      "exact_intersection": 8,
+      "vlm_only": [
+        ".5",
+        "1x",
+        "5秒",
+        "RAW",
+        "慢动作"
+      ],
+      "ocr_only": [
+        "- 5秒",
+        "1X",
+        "5",
+        "Ilililyl",
+        "RA",
+        "度砌作"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "9b4ec75cac471b1d0d63550db0ce4de4357b532e5106355a294299aa1746f198",
+      "gui_language": "zh",
+      "vlm_strings": 16,
+      "ocr_strings": 16,
+      "exact_intersection": 13,
+      "vlm_only": [
+        "19:49",
+        "6月10日 周二",
+        "设置"
+      ],
+      "ocr_only": [
+        "19.49",
+        "6月108周二",
+        "C *"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "9b73c74431dada32b78fb526ed944c6e3e95b58c75502684d235329fb844cce7",
+      "gui_language": "zh",
+      "vlm_strings": 13,
+      "ocr_strings": 14,
+      "exact_intersection": 10,
+      "vlm_only": [
+        "22:27",
+        "当前版本 5.2.51i-575",
+        "睡眠模式、文件过滤等"
+      ],
+      "ocr_only": [
+        "22:27 % @d",
+        "当前版本 5.2.511-575",
+        "皿0彳",
+        "睡眠模式。文件过滤等"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "9deec10e44cb17905d3e9cb9c1b00559e6a165d75ad39f369089faa859596368",
+      "gui_language": "zh",
+      "vlm_strings": 36,
+      "ocr_strings": 36,
+      "exact_intersection": 23,
+      "vlm_only": [
+        "1",
+        "10 周二",
+        "11 周三",
+        "12 周四",
+        "12:00",
+        "13 周五",
+        "14 周六",
+        "8 周日",
+        "9 周一",
+        "五月十三",
+        "搜索",
+        "日",
+        "月"
+      ],
+      "ocr_only": [
+        "100%",
+        "10周二",
+        "11周三",
+        "12周四",
+        "13周五",
+        "14周六",
+        "8周日",
+        "9周一",
+        ":三 +",
+        "Q 搜索",
+        "T VV",
+        "^月",
+        "五月+三"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "a090278906da1c75fe2fa8e7d305980170ed1c7e97daf3f1a72898dac1c3d35f",
+      "gui_language": "en",
+      "vlm_strings": 14,
+      "ocr_strings": 26,
+      "exact_intersection": 8,
+      "vlm_only": [
+        "Automatically recognize message text and allow you to instantly copy verification codes, track packages, top up your phone, use the quick menu, and enjoy other services.",
+        "Display messages with information about your train and airline tickets in card view.",
+        "No SIM c...",
+        "Prevent third-party apps from reading your verification codes.",
+        "Receive messages from service accounts via Wi-Fi or mobile data.",
+        "Send service messages to"
+      ],
+      "ocr_only": [
+        "43",
+        "Automatically recognize message",
+        "Display messages with",
+        "NX * ?",
+        "No SIM C.",
+        "Prevent third-party apps from",
+        "Receive messages from service",
+        "Send service messages",
+        "accounts via Wi-Fi or mobile data:",
+        "airline tickets in card view:",
+        "copy verification codes, track",
+        "information about your train and",
+        "packages; top up your phone; use",
+        "reading your verification codes.",
+        "services.",
+        "text and allow you to instantly",
+        "the quick menu; and enjoy other",
+        "to"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "a1f4a178e00796130d3d3d52d261ec33ee6f4909da0bba893df30aac5efe3347",
+      "gui_language": "th",
+      "vlm_strings": 12,
+      "ocr_strings": 14,
+      "exact_intersection": 9,
+      "vlm_only": [
+        "5 วัน",
+        "ช่วงเวลาตอบกลับอัตโนมัติ",
+        "อื่น ๆ"
+      ],
+      "ocr_only": [
+        "28",
+        "5 วินาที",
+        "ชะลอการตอบกลับอัตโนมัติ",
+        "มมxลี",
+        "อื่นฯ"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "a2dfc9312fffa947c1a0112971bfe9040187bf58f7f8f8cef8927de393f78242",
+      "gui_language": "en",
+      "vlm_strings": 11,
+      "ocr_strings": 12,
+      "exact_intersection": 8,
+      "vlm_only": [
+        ".5",
+        "1x",
+        "RAW"
+      ],
+      "ocr_only": [
+        "5",
+        "Iulululul",
+        "Ix",
+        "RAWW"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "a5503c8280b088778d14dbb772f62c23485e97e1ef6675bb112f220bd1aaa567",
+      "gui_language": "th",
+      "vlm_strings": 5,
+      "ocr_strings": 8,
+      "exact_intersection": 5,
+      "vlm_only": [],
+      "ocr_only": [
+        "52",
+        "5g",
+        "vpn วัง|"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "b053c5538093b0bddb5ae1ed3eee435017547672b5ede52aa2320145e55ae61f",
+      "gui_language": "en",
+      "vlm_strings": 13,
+      "ocr_strings": 15,
+      "exact_intersection": 10,
+      "vlm_only": [
+        "22:02",
+        "5G",
+        "your passes."
+      ],
+      "ocr_only": [
+        "%4! 5G",
+        "'n",
+        "0",
+        "22:02 L",
+        "your passes:"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "b1ad731dd83b7d415b4fb2482dd6a3c306a2e8a603d8e598570fefe21d8406d3",
+      "gui_language": "ru",
+      "vlm_strings": 15,
+      "ocr_strings": 18,
+      "exact_intersection": 11,
+      "vlm_only": [
+        "20:17",
+        "Вт, 10 июня",
+        "Не беспокоить",
+        "Плавающие ок"
+      ],
+      "ocr_only": [
+        "10 июня",
+        "20.17",
+        "@ %",
+        "He беспокоить",
+        "Вт,",
+        "ЕЕ",
+        "Плавающие окI"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "b5bdcd862d3d45a3db97b58b1ed8736ba38df00f203269087449ff0077070f78",
+      "gui_language": "en",
+      "vlm_strings": 13,
+      "ocr_strings": 14,
+      "exact_intersection": 11,
+      "vlm_only": [
+        "22:29",
+        "Sleep timer, filtering files, and more"
+      ],
+      "ocr_only": [
+        "22.29 ,\" '@",
+        "J0' 4",
+        "Sleep timer; filtering files, and more"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "b82e7a547b4ba351aa1ce3af7837a1c2d93b3c59660d5b375ab7b921e894497e",
+      "gui_language": "en",
+      "vlm_strings": 8,
+      "ocr_strings": 8,
+      "exact_intersection": 7,
+      "vlm_only": [
+        "VPN"
+      ],
+      "ocr_only": [
+        "VPN Iil"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "ba8a108841364d30d5c3c572ecdbbdbc3f55e07060ea8c2c3be575f272aeeba0",
+      "gui_language": "th",
+      "vlm_strings": 16,
+      "ocr_strings": 18,
+      "exact_intersection": 10,
+      "vlm_only": [
+        "94",
+        "VPN",
+        "การตั้งค่าการเดินทาง",
+        "ทราบเกี่ยวกับความล่าช้าและบริการขัดข้องก่อนเดินทาง",
+        "เวลาเดินทาง",
+        "ให้ Maps คํานวณเวลาเดินทางของคุณได้แม่นยํามากขึ้นด้วยการใช้ประวัติตําแหน่ง"
+      ],
+      "ocr_only": [
+        "9ai",
+        "vpn",
+        "การตังค่าการเดินทาง",
+        "ขึนด้วยการใช้ประวัติตําแหน่ง",
+        "ทราบเกี่ยวกับความล่าช้าและบริการขัดข้องก่อนเดิน",
+        "ทาง",
+        "เวลา เดินทาง",
+        "ให้ maps คํานวณเวลา เดินทางของคุณได้แม่นยํามาก"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "c2acf1948acda3b2b1d9cc5d187766e3fd0ee75e4e8830e958c27e0f420dda02",
+      "gui_language": "th",
+      "vlm_strings": 10,
+      "ocr_strings": 11,
+      "exact_intersection": 3,
+      "vlm_only": [
+        "1",
+        "1 โน้ต",
+        "19:56 พ. 18 ม.ย.",
+        "การตั้งค่าดินสอ...",
+        "ย่ออัดโน้มติ",
+        "วันนี้",
+        "ใช้นิววาด"
+      ],
+      "ocr_only": [
+        "100%",
+        "19:56",
+        "aa",
+        "การตังค่าดินสอ",
+        "พ. 18 มิ.ย.",
+        "ย่ออัตโนมัติ",
+        "วันนี",
+        "ใช้นิ้ววาด"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "c2e808e88bd740f1c6284209299a3a3e064253a0062eb953f06e133780024584",
+      "gui_language": "th",
+      "vlm_strings": 15,
+      "ocr_strings": 17,
+      "exact_intersection": 8,
+      "vlm_only": [
+        "Mi แชร์",
+        "กิจวัติโอห์น่าจอ",
+        "ตัวประยัดแบต",
+        "ระเหยดแบตเตอรี่",
+        "สั่นเตือน",
+        "หามรบกวน",
+        "โหมดอ่าน"
+      ],
+      "ocr_only": [
+        "cx",
+        "db",
+        "mi แชร์",
+        "กกวิดีโอหน้าจอ",
+        "ตัวประหยัดแบต",
+        "ระหยัดแบตเตอรี่อั",
+        "สันเตือน",
+        "ห้ามรบกวน",
+        "โหมด อ่าน"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "c35c62b5783652e5a27fc924b0389448e7d5b892e44c44e039df08828b231772",
+      "gui_language": "th",
+      "vlm_strings": 13,
+      "ocr_strings": 15,
+      "exact_intersection": 5,
+      "vlm_only": [
+        "5G",
+        "กระเป่าสตางค์",
+        "ค้นหาแอปสําหรับกระเป่าสตางค์",
+        "ค้นหาแอปและเริ่มเก็บรวบรวมบัตร",
+        "บัตรขึ้นเครื่อง",
+        "รับ",
+        "และตั๋วหรือบัตรต่างๆ",
+        "ในที่เดียวกัน"
+      ],
+      "ocr_only": [
+        "+ 56",
+        "d.",
+        "กระเป๋าสตางค์",
+        "ค้นหาแอปสําหรับกระเป๋าสตางค์",
+        "ค้นหาแอปและเริม เก็บรวบรวมบัตร",
+        "บัตรขึนเครือง",
+        "รบ",
+        "วว",
+        "และตัวหรือบัตรต่างๆ",
+        "ในทีเดียวกัน"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "c5427a6c3c6908284b82f68b67a919c9442091f20c0d65c83148523dbca81208",
+      "gui_language": "th",
+      "vlm_strings": 13,
+      "ocr_strings": 15,
+      "exact_intersection": 9,
+      "vlm_only": [
+        "22:34",
+        "นโยบายความเป็นส่วนตัว",
+        "บัญชี Mi",
+        "เวอร์ชั่น"
+      ],
+      "ocr_only": [
+        "100)' 4",
+        "22:34 2 0 0",
+        "น",
+        "บัญชี mi",
+        "เวอร์ชัน",
+        "โยบายความเป็นส่วนตัว"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "ca0a3eab44c04c2245eb6d06d40ff5b1dfd1d09ad8e3640c5073ea3ad36bef6d",
+      "gui_language": "th",
+      "vlm_strings": 29,
+      "ocr_strings": 42,
+      "exact_intersection": 20,
+      "vlm_only": [
+        "E-Bike",
+        "การตั้งค่าการเดินทาง",
+        "ซาวานา",
+        "นิวเม็กซิโก",
+        "รถไฟฟ้าเมือง",
+        "รถไฟใต้ดินและรถไฟฟ้า",
+        "สหราชอาณาจักร",
+        "ออดตาวา",
+        "เล่นทาง"
+      ],
+      "ocr_only": [
+        ".",
+        "100%",
+        ":ู่",
+        ";",
+        "^แม่น้ํากรานเ",
+        "a.",
+        "e-bike",
+        "rive",
+        "th",
+        "คิงสตัน",
+        "บาฮามาส",
+        "ยอดเขาวิทนีย์",
+        "รถไฟชานเมือง",
+        "รถไฟใต้ดินและรถไฟรางเบา",
+        "รุ้",
+        "สหรัฐอเมริกา",
+        "หมู่เกาะเคย์แมน",
+        "ออตตาวา",
+        "ฮาวานา",
+        "ู",
+        "เดน",
+        "เส้นทาง"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "ca41cd9cad1bf5c01103c2ecde378b19aac92e929cf32737d773cec4637a46aa",
+      "gui_language": "th",
+      "vlm_strings": 29,
+      "ocr_strings": 34,
+      "exact_intersection": 22,
+      "vlm_only": [
+        "12:00",
+        "ค้นหา",
+        "จ. 9",
+        "พ. 11",
+        "วันนี้",
+        "ศ. 13",
+        "ส. 14"
+      ],
+      "ocr_only": [
+        "+",
+        "11",
+        "13",
+        "14",
+        "9",
+        "iz บบ",
+        "คินหา",
+        "จ",
+        "พ.",
+        "วันนี",
+        "ศ.",
+        "ส."
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "cacc9043633497fec015474dccabc07746cb26a2118ae4fdeb84953e270fd87b",
+      "gui_language": "en",
+      "vlm_strings": 9,
+      "ocr_strings": 16,
+      "exact_intersection": 4,
+      "vlm_only": [
+        "Auto answer calls when connected to external audio device",
+        "Bluetooth or wired earphones, and other audio devices",
+        "Press Power button to end calls",
+        "This works only when the screen is on.",
+        "Vibrate when other party answers/ends a call"
+      ],
+      "ocr_only": [
+        "25",
+        "Auto answer calls when",
+        "Bluetooth or wired earphones, and other",
+        "N <X * ?",
+        "Press Power button to end",
+        "This works only when the screen is on:",
+        "Vibrate when other party",
+        "answers/ends a call",
+        "audio devices",
+        "calls",
+        "connected to external audio",
+        "device"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "cb146f3ba0ef120c5d9716c349c7fa60f844eb6dd0390729d27c19237b0debed",
+      "gui_language": "th",
+      "vlm_strings": 13,
+      "ocr_strings": 21,
+      "exact_intersection": 10,
+      "vlm_only": [
+        "22:33",
+        "ทั้งหมด 4 เพลง",
+        "รายการเพลิง"
+      ],
+      "ocr_only": [
+        "100)' 4",
+        "22:33 2 0 0",
+        "4 เพลง",
+        "=",
+        ">| :=",
+        "a",
+        "c.",
+        "s.",
+        "ทั้งหมด",
+        "รายการเพลง",
+        "า"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "d8b740ed993a292885335c1614d4b966cf65f5f42c7654bf0b69e3745db5f27b",
+      "gui_language": "ru",
+      "vlm_strings": 12,
+      "ocr_strings": 12,
+      "exact_intersection": 9,
+      "vlm_only": [
+        "1",
+        "19:38 Нет дополнительного текста",
+        "19:47 Ср 18 июня"
+      ],
+      "ocr_only": [
+        "19.38 Нет дополнительного текста",
+        "19:47",
+        "Cp 18 июня"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "db5cf09993771c03693a1c898035349bd8403a88176f1f18996897c0fdbe957a",
+      "gui_language": "en",
+      "vlm_strings": 17,
+      "ocr_strings": 17,
+      "exact_intersection": 14,
+      "vlm_only": [
+        "23:20",
+        "94",
+        "VPN"
+      ],
+      "ocr_only": [
+        "23.20",
+        "941",
+        "IVPN"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "f3d1434aa4465b087916570d646c963420496f06f92296f3d48e9f5e8e8fb46b",
+      "gui_language": "zh",
+      "vlm_strings": 42,
+      "ocr_strings": 36,
+      "exact_intersection": 29,
+      "vlm_only": [
+        "1 100% 0",
+        "21:49 6月18日周三",
+        "Nelson River",
+        "×",
+        "圣皮",
+        "地图",
+        "大书洞",
+        "开曼群岛(英)",
+        "指南针",
+        "格兰德河",
+        "牙买加",
+        "通知设置",
+        "高德地图"
+      ],
+      "ocr_only": [
+        "100%",
+        "21:49",
+        "6月18日周三",
+        ":",
+        "涌匆讽罟",
+        "觅艮岛@匆 牙买加",
+        "邶"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "f4598e3a5cf03afdacfefd631a94726c4ffb4d29d228cd04e23c15d641da0e53",
+      "gui_language": "zh",
+      "vlm_strings": 20,
+      "ocr_strings": 22,
+      "exact_intersection": 12,
+      "vlm_only": [
+        "N",
+        "←",
+        "△",
+        "○",
+        "三",
+        "智能识别信息内容,提供复制验证码、查询快递、一键充值、短信公众号等服务",
+        "火车票、机票等短信以卡片形式显示",
+        "通过移动数据或者 WLAN 接收商家服务号信息"
+      ],
+      "ocr_only": [
+        "一键充值。短信公",
+        "众号等服务",
+        "凹 & * 谷",
+        "家服务号信息",
+        "提供复制验证",
+        "智能识别信息内容,",
+        "火车票。机票等短信以卡片形式显",
+        "码。查询快递:",
+        "示",
+        "通过移动数据或者 WLAN 接收商"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "f4600c8b022d44f69dbf9c2f1fe7ac2bd97c9d6ed5ea954d291af65c862b4429",
+      "gui_language": "ru",
+      "vlm_strings": 27,
+      "ocr_strings": 33,
+      "exact_intersection": 9,
+      "vlm_only": [
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00",
+        "19:00",
+        "20:00",
+        "21:00",
+        "21:02 Ср 18 июня",
+        "22:00",
+        "23:00",
+        "Вс, 8",
+        "ИЮНЬ 2025 г.",
+        "Пн, 9",
+        "Ср, 11",
+        "Чт, 12"
+      ],
+      "ocr_only": [
+        "+",
+        "100 %",
+        "12",
+        "13.00",
+        "14.00",
+        "15.00",
+        "16*00",
+        "17.00",
+        "18*00",
+        "19.00",
+        "20.*00",
+        "21.00",
+        "21.02",
+        "22*00",
+        "23.00",
+        "8",
+        "9",
+        "Bс,",
+        "Cp 18 июня",
+        "Cp, 11",
+        "Tz UU",
+        "Пн;",
+        "Чт;",
+        "июнь 2025 г:"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "f53f4ef65269fe091e73df96ee61d7e077ecbbac83842678e407fb07a6f012ba",
+      "gui_language": "en",
+      "vlm_strings": 30,
+      "ocr_strings": 30,
+      "exact_intersection": 26,
+      "vlm_only": [
+        "1",
+        "12:00",
+        "13:00",
+        "18:00"
+      ],
+      "ocr_only": [
+        "+",
+        "13*00",
+        "18*00",
+        "TZ-U"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "f5a5b29685f5a893498b63918bf4923fc098d4b51639f1878065cd8d5a63f2a1",
+      "gui_language": "zh",
+      "vlm_strings": 30,
+      "ocr_strings": 39,
+      "exact_intersection": 26,
+      "vlm_only": [
+        "17:35 6月9日周一",
+        "Siri与搜索",
+        "在文本区用触控笔手写文字并转化为文本格式。在下面方框中写几个字,来试试“随手写”功能。",
+        "试着在此处写几个字..."
+      ],
+      "ocr_only": [
+        "0",
+        "100%",
+        "17:35",
+        "6月9日周",
+        "AA",
+        "Siri 与搜索",
+        "~戎着花此处乌馆",
+        "》",
+        "下",
+        "在下面方",
+        "在文本区用触控笔手写文字并转化为文本格式。",
+        "来试试\"随手写\"功能。",
+        "框中写几个字"
+      ],
+      "ocr_status": "success"
+    },
+    {
+      "image_sha256": "fe2aed18eabfc27063196521e4f8960435edaec4d310bcb682faab436dd0994d",
+      "gui_language": "en",
+      "vlm_strings": 0,
+      "ocr_strings": 17,
+      "exact_intersection": 0,
+      "vlm_only": [],
+      "ocr_only": [
+        "( %",
+        "19.53",
+        "Battery saver",
+        "Cast",
+        "DND",
+        "Dark mode",
+        "Doo",
+        "Edit",
+        "Floating window",
+        "Hotspot",
+        "Mi Share",
+        "O0",
+        "OO",
+        "Reading mode",
+        "Tue, Jun 10",
+        "Vibrate",
+        "en Recorder"
+      ],
+      "ocr_status": "success"
+    }
+  ],
+  "old_edit_label_membership_not_accuracy": {
+    "baseline_edit_instances": 225,
+    "exact_present": 188,
+    "case_space_normalized_present": 188
+  },
+  "ocr_status": {
+    "success": 80
+  },
+  "rewrite_status": {
+    "success": 233,
+    "no_op_no_edits": 3,
+    "fallback_original": 4
+  },
+  "changed_pairs": 233,
+  "same_MCQs_as_VLM_baseline": 178,
+  "same_MCQs_label_differences": 0,
+  "by_gui": {
+    "en": {
+      "n": 60,
+      "correct": {
+        "OCR_E1_M0": 45,
+        "VLM_E1_M0": 47
+      }
+    },
+    "zh": {
+      "n": 60,
+      "correct": {
+        "OCR_E1_M0": 48,
+        "VLM_E1_M0": 47
+      }
+    },
+    "th": {
+      "n": 60,
+      "correct": {
+        "OCR_E1_M0": 41,
+        "VLM_E1_M0": 41
+      }
+    },
+    "ru": {
+      "n": 60,
+      "correct": {
+        "OCR_E1_M0": 45,
+        "VLM_E1_M0": 43
+      }
+    }
+  },
+  "stage_costs": {
+    "ocr": {
+      "execution_mode": "cpu",
+      "wall_seconds": 1415.6203524824232,
+      "reader_load_seconds": {
+        "en_download_check": 4.751809190958738,
+        "ru_download_check": 1.4049298455938697,
+        "th_download_check": 2.0753415962681174,
+        "zh_download_check": 1.358380232937634,
+        "en": 1.3195857368409634,
+        "ru": 1.5344943152740598,
+        "th": 2.1321201100945473,
+        "zh": 1.4324030689895153
+      },
+      "images": 128,
+      "statuses": {
+        "success": 128
+      },
+      "logical_runtime_seconds": 1397.7032761238515,
+      "new_runtime_seconds": 1397.7032761238515
+    },
+    "rewrite": {
+      "complete": true,
+      "wall_seconds": 495.64171492960304,
+      "calls": 302,
+      "cache_hits": 0,
+      "new_runtime_ms": 464104.6471223235
+    },
+    "infer": {
+      "wall_seconds": 147.94028572831303,
+      "execution_mode": "gpu",
+      "reused_batches": 45,
+      "reused_rows": 135,
+      "new_batches": 51,
+      "conflicting_cache_keys": 0
+    }
+  },
+  "contract_sha256": "cfe0dcac6bc9a3dfdf6ec700b1258393dc3cf3c30f308f40db2d1e0cd2c0aa02",
+  "weights": {
+    "craft_mlt_25k.pth": "4a5efbfb48b4081100544e75e1e2b57f8de3d84f213004b14b85fd4b3748db17",
+    "cyrillic_g2.pth": "48d0f3b58f28aa64651ab1032cc2d498c4de25135829668e87c14e7a07529f29",
+    "english_g2.pth": "e2272681d9d67a04e2dff396b6e95077bc19001f8f6d3593c307b9852e1c29e8",
+    "thai.pth": "3ebbb9321b9c7c694e169cd23cc37f3c0bd2a160f5b539602bbef80e663e0a17",
+    "zh_sim_g2.pth": "cb678fdef09d651e7763ca551ad790dc89f0b2e3d2a640484330e338fb574c7a"
+  }
+}

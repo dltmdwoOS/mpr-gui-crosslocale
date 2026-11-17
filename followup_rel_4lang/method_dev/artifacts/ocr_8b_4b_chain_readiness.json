@@ -1,0 +1,33 @@
+{
+  "as_of_utc": "2026-11-17T15:07:37.240762+00:00",
+  "ready": true,
+  "actual_8b_stopped": true,
+  "eight_b_selection_complete": true,
+  "internal_ocr_cached_images": 124,
+  "internal_ocr_total_images": 472,
+  "new_real_4b_inference_started": false,
+  "eight_b_contract_sha256": "5053d49e6588f88f8161db05f4d3a6027705e5fab850979a64dd416ea76d66bb",
+  "four_b_contract_sha256": "68be647088a3ada2d8821b11d7b40642264878d5c39f17c622e01df2658bf2c8",
+  "shared_ocr_fixed_LM_rewrites": true,
+  "only_solver_changes_to_4b": true,
+  "four_b_model": {
+    "model_id": "Qwen/Qwen3-VL-4B-Instruct",
+    "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+    "family": "qwen3_vl",
+    "path": "/home/jovyan/seungjae/.cache/huggingface/hub/models--Qwen--Qwen3-VL-4B-Instruct/snapshots/ebb281ec70b05090aa6165b016eac8ec08e71b17"
+  },
+  "cohorts": [
+    "screen",
+    "selection",
+    "internal_evaluation"
+  ],
+  "four_b_executed_pairs": 1944,
+  "four_b_primary_pairs": 1895,
+  "targeted_tests_passed": 19,
+  "full_chain_mock_passed": true,
+  "completed_chain_resume_without_reinference_passed": true,
+  "real_8b_resume_manifest_reordering_verified": true,
+  "solver_batch_size": 3,
+  "attn_implementation": "sdpa",
+  "run_command": "nohup bash followup_rel_4lang/method_dev/scripts/run_ocr_8b_then_4b.sh > followup_rel_4lang/method_dev/artifacts/ocr_8b_then_4b.log 2>&1 < /dev/null &"
+}

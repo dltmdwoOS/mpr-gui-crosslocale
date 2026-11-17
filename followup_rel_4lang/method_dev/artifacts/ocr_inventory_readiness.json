@@ -1,0 +1,56 @@
+{
+  "as_of_utc": "2026-11-17T10:24:28.110360+00:00",
+  "ready_for_screen": true,
+  "full_inference_started": false,
+  "condition": "E1_M0_EASYOCR",
+  "execution_pairs": 288,
+  "primary_pairs": 240,
+  "primary_items": 20,
+  "execution_images": 128,
+  "primary_images": 80,
+  "ocr_device": "cpu",
+  "ocr_threads": 3,
+  "models_cached": {
+    "craft_mlt_25k.pth": "4a5efbfb48b4081100544e75e1e2b57f8de3d84f213004b14b85fd4b3748db17",
+    "cyrillic_g2.pth": "48d0f3b58f28aa64651ab1032cc2d498c4de25135829668e87c14e7a07529f29",
+    "english_g2.pth": "e2272681d9d67a04e2dff396b6e95077bc19001f8f6d3593c307b9852e1c29e8",
+    "thai.pth": "3ebbb9321b9c7c694e169cd23cc37f3c0bd2a160f5b539602bbef80e663e0a17",
+    "zh_sim_g2.pth": "cb678fdef09d651e7763ca551ad790dc89f0b2e3d2a640484330e338fb574c7a"
+  },
+  "contract_sha256": "cfe0dcac6bc9a3dfdf6ec700b1258393dc3cf3c30f308f40db2d1e0cd2c0aa02",
+  "targeted_tests_passed": 20,
+  "mock": {
+    "ocr_images": 128,
+    "rewritten_pairs": 288,
+    "final_predictions": 288,
+    "empirical": false,
+    "resume_completed_stages_reused": true
+  },
+  "single_image_real_ocr_smoke": {
+    "language": "en",
+    "strings": 29,
+    "runtime_ms": 13478.086446411908,
+    "functionality_only": true
+  },
+  "packages": {
+    "easyocr": "1.7.2",
+    "opencv-python-headless": "4.11.0.86",
+    "scikit-image": "0.25.2",
+    "python-bidi": "0.6.6",
+    "Shapely": "2.0.7",
+    "pyclipper": "1.3.0.post6",
+    "ninja": "1.11.1.4",
+    "imageio": "2.38.2",
+    "tifffile": "2026.3.3",
+    "lazy-loader": "0.6",
+    "torch": "2.9.1+cu130",
+    "torchvision": "0.24.1+cu130",
+    "numpy": "1.26.4",
+    "transformers": "4.57.6"
+  },
+  "existing_active_package_versions_preserved": true,
+  "downstream_software_fingerprint_preserved": true,
+  "run_command": "nohup bash followup_rel_4lang/method_dev/scripts/run_ocr_inventory.sh --run > followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1.log 2>&1 < /dev/null &",
+  "gpu_policy": "Existing GPU pipeline lock is respected; no concurrent matching/solver. Rerun the same command after the other pipeline finishes.",
+  "protocol": "followup_rel_4lang/method_dev/reports/OCR_INVENTORY_SCREEN_PROTOCOL_KO.md"
+}

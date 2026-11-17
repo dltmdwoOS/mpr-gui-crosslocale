@@ -1,5 +1,13 @@
 # GCSA / RFA development harness
 
+OCR 8B·4B 전체 완료: [최종 결과와 효율](reports/OCR_FINAL_RESULTS_KO.md). 각main158문항·1,895pair에서8B는VLM inventory74.09%→OCR73.83%, 4B는72.72%→72.45%로 모두정답5개 감소였다. OCR−VLM의CI는각각[-1.32,+0.74]pp와[-1.42,+0.90]pp여서 우월성·동등성·비열등성을 주장하지 않는다. 전체 호출 시간은8B207.26→179.91분(13.2%감소), 4B148.43→177.70분(19.7%증가)이다. CPU OCR114.68분을 두solver가 공유하며, GPU 호출 구간 시간은크게 줄었지만 항상총시간까지 줄어들지는 않았다. [8B 상세](reports/OCR_INVENTORY_FULL_DEV_RESULTS_KO.md), [4B 상세](reports/OCR_QWEN3_VL_4B_RESULTS_KO.md).
+
+OCR 실행·재현: [8B→4B 연속 실행](reports/OCR_8B_4B_CHAIN_PROTOCOL_KO.md), [Selection/Internal 고정 확장](reports/OCR_INVENTORY_FULL_DEV_PROTOCOL_KO.md). Screen의OCR·E1/M0 설정을 유지했고4B는8B와 동일한 전처리 MCQ를 사용했다. 완료 상태에서 `bash followup_rel_4lang/method_dev/scripts/run_ocr_8b_then_4b.sh`는 추론을 반복하지 않고 보고서를 갱신한다. [완료 원시 archive](artifacts/ocr_completed_8b_4b.tar.gz), [manifest·checksum·복원 범위](artifacts/ocr_completed_archive_manifest.json)를 제공한다. 모델 weights·이미지와 private labels는 별도다.
+
+최신 종합: [개발 실험 현황 — TT·CLP·OCR 전체 완료](reports/CURRENT_EXPERIMENT_SUMMARY_KO.md). 8B 전체1,895쌍에서 O70.18%, TT71.13%, inventory 없는 직접 rewrite71.72%, VLM inventory E1/M0 74.09%, OCR73.83%, CLP65.96%다. CLP는 미파싱396쌍 중338쌍이 출력 상한에 도달했고54쌍은 명확한 마지막 답의 표기 차이로 거절됐다. 공식 점수는 보존하고 표기만 허용한68.60%는 사후 진단으로 구분한다. [전처리+풀이 비용 비교](reports/TT_PERFORMANCE_EFFICIENCY_KO.md)에 TT·CLP를 포함했다. OCR의Screen 정확도·비용 개선을 전체결과로 일반화하지 않았다.
+
+OCR inventory Screen 완료: [결과](reports/OCR_INVENTORY_SCREEN_RESULTS_KO.md), [프로토콜·실행 명령](reports/OCR_INVENTORY_SCREEN_PROTOCOL_KO.md). 기존 E1 추출 출력·M0 matcher·최종 Qwen3-VL-8B 설정을 유지하고 inventory만 EasyOCR 1.7.2로 교체했다. OCR은 CPU 3스레드이며 bbox/confidence는 기록용으로만 보존했다. 기존 batch 구성을 유지한288행 중 main240행을 주 분석했다. `bash followup_rel_4lang/method_dev/scripts/run_ocr_inventory.sh --run`은 완료 단계를 다시 추론하지 않고 보고서만 재생성한다.
+
 외부 baseline 추가: [Translate-Test·CLP GUI 이식 프로토콜](reports/EXTERNAL_BASELINES_PROTOCOL_KO.md). 공식 code/paper와 pinned commit을 확인했고 기존 고정 Qwen3-8B LM 및 Qwen3-VL-8B로 이식했다. Translate-Test는 전체 English 번역, CLP는 두 단계 대화를 유지한 이해+단계별 GUI 풀이이며 원 논문의 API 모델·task·decoding과 달라 adaptation으로 표기한다. CPU mock·표적 테스트10개·실제3쌍 GPU 기능 검증을 통과했다. 전체158문항 순차 실행과 종료 후 보고서 생성은 `bash followup_rel_4lang/method_dev/scripts/run_external_baselines_full.sh`다. 기존 실험 결과는 수정하지 않는다.
 
 Qwen3-VL-4B 전체158문항 완료: [전체 개발 결과](reports/QWEN3_VL_4B_TRANSFER_RESULTS_KO.md). 주 분석1,895쌍에서 O1,308정답(69.02%)→E1/M0 1,378정답(72.72%), +3.69pp(CI[+1.32,+6.23])다. Internal1,416쌍은67.44%→71.68%, +4.24pp(CI[+1.48,+7.06])였다. 고정 Qwen3-8B LM·E1/M0를 유지하고 inventory·최종 풀이만4B로 수행했다. 반복 관찰한 development set의 탐색 결과다. 전체 invocation wall187.70분(다운로드·재사용 E1 추출 제외), main 단독 recipe 계산 구간4.699초/pair이며 시간 분모를 보고서에 구분했다. [고정 프로토콜](reports/QWEN3_VL_4B_TRANSFER_PROTOCOL_KO.md), 전체 완료 원시 archive·설정·비용·checksum을 보존했다.
