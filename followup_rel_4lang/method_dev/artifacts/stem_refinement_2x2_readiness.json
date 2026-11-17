@@ -1,0 +1,130 @@
+{
+  "cpu_only": true,
+  "baseline_replay_pairs": 288,
+  "frozen_inventory_images": 128,
+  "initial_token_max": {
+    "E1": 568,
+    "M0": 1353,
+    "M1": 1592,
+    "M1_full_stem_probe": 1609
+  },
+  "repair_upper_estimate": {
+    "E1": 1536,
+    "M0": 2065,
+    "M1": 2304,
+    "M1_full_stem_probe": 2321
+  },
+  "max_input_tokens": 4096,
+  "memory_estimate": {
+    "estimate_only": true,
+    "guaranteed_no_oom": false,
+    "models": [
+      {
+        "role": "translator",
+        "model_id": "Qwen/Qwen3-8B",
+        "weights_gib": 15.256433486938477,
+        "kv_bytes_per_token": 147456,
+        "method_kv_gib_at_cap": 0.66796875,
+        "downstream_kv_gib_at_cap_batch3": 1.688323974609375
+      },
+      {
+        "role": "inventory",
+        "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+        "weights_gib": 16.33004042506218,
+        "kv_bytes_per_token": 147456,
+        "method_kv_gib_at_cap": 0.66796875,
+        "downstream_kv_gib_at_cap_batch3": 1.688323974609375
+      }
+    ],
+    "method_batch": 1,
+    "downstream_batch": 3,
+    "max_input_tokens": 4096,
+    "image_pixels_max": 2097152,
+    "premerge_patches_max_per_image": 8192,
+    "merged_vision_tokens_max_per_image": 2048,
+    "model_residency": "one model at a time; one child process per trial; no concurrent GPU children",
+    "note": "Weights+KV are exact-size components, not peak-memory upper bounds. Attention/Conv3D workspaces, activations, CUDA context and allocator fragmentation remain. SDPA, inference_mode, channels_last_3d, logits_to_keep=1. No automatic batch reduction."
+  },
+  "gpu_inference_started": false,
+  "note": "Estimates use frozen E0 spans and a whole-stem probe. E1 spans are unknown before generation; runtime checks actual input and refuses silent truncation. Weights/KV are not a peak-memory guarantee.",
+  "contract_sha256": "3e1fdb10cdefaf931e3ea59e9aae3c07438f7719b6a12042b618cda1e0ac338e",
+  "prompt_sha256": {
+    "E0": "043bef10f27be2868f582e50688c1336983384cab9fad732cb43a96551f4bfab",
+    "E1": "5c3d7f6459b991b778d36cebfc110877682ba03c4869828f97c04ff21bca087a",
+    "M0": "e70051309aaaebbde4c790acafad94b624d16fba0ed789b2e145ab6ef3a76202",
+    "M1": "1a68dd344d604beb6c54518c855cd0d23f6ce5061329478a51e4c8334e55a4dc"
+  },
+  "inputs_sha256": "b46e78db71d427e331941c1d61b558bb5638c406fa0cc15239f73c0a06c7aa2e",
+  "primary_pairs": 240,
+  "executed_pairs_per_cell": 288,
+  "cells": {
+    "E0_M0": [
+      0,
+      0
+    ],
+    "E1_M0": [
+      1,
+      0
+    ],
+    "E0_M1": [
+      0,
+      1
+    ],
+    "E1_M1": [
+      1,
+      1
+    ]
+  },
+  "baseline_primary_correct": 175,
+  "tests_passed": 17,
+  "full_cpu_mock_completed": true,
+  "repeat_prepare_and_completed_resume_passed": true,
+  "source_sha256": {
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/scripts/run_stem_refinement_2x2.py": "6ebdfdb9fbbc4059d0e06dfa34860a2a1823168c1ad33668956c30295dc73752",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/stem_refinement_2x2.py": "ca43ae8b5bfeb64edaf52ad7178816531dfdb1d5d24517321496cf9debc6d2d7",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/two_stage_v2/pipeline.py": "c712136315b7629325b3307ea92035dc49bba2e230d395800f4ff59fdfa1e50b",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/two_stage_v2/prompts.py": "e8bb96278ea87cc0eea27e97e3b874106f3e5e84458e7107fbdbc0e0a1a9d482",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/two_stage_v2/backend.py": "e3d3e5f4c73b6a4e3d72e3e83b72682304d25282e9f3235171a7b34556e9ffce",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/visual_rewrite_backend.py": "93bcf29fd81da1ed7a7e231e0f5367d2066250a9c6b57620bbf4a2dfd3c3d0e3",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/direct_selective_rewrite.py": "24614a5f21e41c0d00780e687ecb5976aff41c195d0ff20a44a77e0b2d14c8dc",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/exact_batch_reuse.py": "a3f21f45c5569ab2aaa35282b32995dc31bec7f67ca4add27d337726197f8efc",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/scripts/run_source_copy_rewrite.py": "fab96335858dc509599326f0e1ebc0dd707d7c15b14fbb7e324823c33609557e",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/scripts/run_overnight_two.py": "fbddf468d6f477ffc58735ba04182e158c79eb6452f4281da774a0285614eebe",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/scripts/run_stem_only_gui.py": "d8987b4d21b0bc137a1ff3c40c2571e0f6820388220f4e53676dfe71c66c3d27",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/inputs.jsonl": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/COMPLETE.json": "fc3852b3615633287cce1734cad3fd9ef3a0ca424388d4c82a257b8f5d57c4aa",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/contract.json": "39198ddddfbdb54660d29f40e5974c9ba6614ede44a7110d5fa06333452ba366",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/plan.json": "276fed01aab186ab01b995524564321013c61b81db0f7ec9ba6470dd8c8bb971",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/configs/two_stage_v2_hybrid.json": "284216d16ac7ac0aeb54bf56d6307339d25e1aa4a18f81000166becc2df2a420",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/stem_only_gui_screen_v1/contract.json": "086b95a25ab8e9f21df31c02e122ff4ea107c56e1c95371abaeef47201280daf",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/stem_only_gui_screen_v1/COMPLETE.json": "f1057464e4cad42ebf5f437afc8c7fdf0f5ada074072a4e39bfb3e93777c35d5",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/stem_only_gui_screen_v1/rewritten.jsonl": "9d6261a4e0741ab353d8d9e54e62e5b2ef80aed40f7238612a9a0f199107f924",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/stem_only_gui_screen_v1/infer/attempt_0001/predictions.jsonl": "95129bbb8efc4be2b51625bb703d882eea845eb02f7f063a4612e0eaa312466b",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/inventory/attempt_0001/inventories.jsonl": "c0de661dfbff7f102b92797f5a2f013ca8081ae7d22be65ed05ad00a6474be7d",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/extract_stem/attempt_0001/extractions.jsonl": "41b535f3657ae038771c758e49a28df246c2cb853601efd07b918b15b47d6440",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/rewrite/attempt_0001/TS_QSEL_OFULL_GUI_AUTO.jsonl": "c84a26a5e0e749b5eb5d77b433a328e21305eac39dc57332245e5daa6e975a51",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/visual_source_copy_rewrite_screen_v1/contract.json": "7abb00832f6cffd0fdbed6f5f8d7b1358666a842b4b058cef2acf3db33ef0f96",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/dataset_audit/evaluation_labels_PRIVATE.jsonl": "82e29e2a57d1f361a1b13020fda34068f95bf5762c29a1c8d610d198aa3a7c6a",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/dataset_audit/oracle_spans_DIAGNOSTIC_ONLY.jsonl": "b6f1642a1d257d7f6aa92ff3724957cb4541b44910273ac452a1f502267614ff",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw/run_contract.json": "ee1ef31c71262576a8a686150c7d31fe6dcbd20e0dcc5b564f5a483a66cceff7",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw/predictions.jsonl.gz": "6b9d07d95efcdddb93e345544e7df4a72c1c6374444848b3e1e210412b594575",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/01_code/src/mpr_crosslocale/methods/selective_alignment/search.py": "762243aeb40a51772bbd7334e9a5d0f611b64a03b1b146988a99a70dbd7cb796",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/01_code/src/mpr_crosslocale/methods/selective_alignment/pipeline.py": "0c59c661862b2ba753f91e67c2826f08bc1c3e7c65466375d56fcc75b5f11e3a",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/01_code/src/mpr_crosslocale/methods/selective_alignment/referent_extractor.py": "661b6997f78a132efa2b9cdc372462ad4b6b7b3d712a977aa40bb9c518ca893d",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/01_code/src/mpr_crosslocale/methods/selective_alignment/schemas.py": "7ad47d91e16f2a117d90e8fddfe9d8404779172f755a9ec8aedc7dd89823cd94",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/01_code/src/mpr_crosslocale/methods/selective_alignment/validation.py": "fe00efd9f2bbbb537b183f6c181fc508ab57754fd69554c2bac6b6155d58019c",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/01_code/src/mpr_crosslocale/methods/selective_alignment/__init__.py": "7a0223f23ff564adb6991ec837a552873bdce9f0d47c98e138980294c4c18584",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/01_code/src/mpr_crosslocale/methods/selective_alignment/inventory.py": "0d252555796335baa01ce9f86cb7939afd9ceef21dcbf39057342bb503c8e81f",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/01_code/src/mpr_crosslocale/methods/selective_alignment/context_router.py": "f23fa1f72436f27a8110cdfd4f129313144ee4da73945a941308bbf2504bc28c",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/01_code/src/mpr_crosslocale/methods/selective_alignment/matcher.py": "5abc6c1181d7619e2951003e1229031ec6b7ee4c85f479eeea874bdea5d72a4c",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/01_code/src/mpr_crosslocale/methods/selective_alignment/rewriter.py": "ae8d2e351b79aec7fe2fe4cf5b6506707d79b75efe68d6f0ae4e1a7405b3d4d1",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/01_code/src/mpr_crosslocale/models/qwen25vl.py": "76485637ec7e2c908f0b00f372c111f5c70ccca275d8484d7ca4f49f17c14d0a",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/01_code/src/mpr_crosslocale/models/qwen3_memory.py": "fe00351f368cdaca85418f7d0f3d03b638cffd4c61a86258a875e646ea66c4b6",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/01_code/src/mpr_crosslocale/inference/prompts.py": "5db5085c28e4f7b4495992008bdebe30f47f4809c307bacd47ffd22c91d73ba9",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/infer/attempt_0001/predictions.jsonl": "6f7e9009db90218352fa7a3110d6132deb40d6310be4346c9c5e68a4773721eb",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/visual_selective_rewrite_screen_v1/infer/attempt_0001/predictions.jsonl": "9dfb68881c6880c8ea6d0af83e95d5e629c0f8d95ae3f4e64c47962668378e29",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/single_pass_stem_screen_v1/infer/attempt_0001/predictions.jsonl": "376ea8e29e196426e7cc6472dd24a670da808da5c7b2a4b01e8bb56b867a5f5b",
+    "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/single_pass_all_screen_v1/infer/attempt_0001/predictions.jsonl": "982af6be88eb55efd0f82e927fef8b3471e7646e1b18d1933efef2029cfdfa45"
+  },
+  "real_gpu_experiment_started": false
+}
