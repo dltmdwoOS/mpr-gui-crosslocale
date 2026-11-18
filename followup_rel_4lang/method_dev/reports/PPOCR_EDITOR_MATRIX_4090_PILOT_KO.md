@@ -36,4 +36,4 @@ cp followup_rel_4lang/method_dev/artifacts/audit_4090/evaluation_labels_PRIVATE.
 
 파일과 스크린샷 checksum, 평가 라벨 digest, 모델 revision을 검사한다. 같은 프롬프트, BF16, SDPA, 2MP, 편집 batch 1, 풀이 batch 3을 사용한다. `--solver 4B`는 4B 체크포인트 `ebb281ec70b05090aa6165b016eac8ec08e71b17`를 받아 둔 뒤 실행한다. 정확도·단계별 시간·peak VRAM은 `artifacts/ppocr_vd_4090_pilot_8B/summary.json`에서 확인한다. 원시 편집과 풀이 출력도 같은 폴더에 보존한다. CPU 모의 실행으로 48쌍 × 3조건의 흐름을 확인했다. 실제 4090의 응답과 속도는 측정 전이다.
 
-전체 RTX 4090 재실험의 첫 비교는 **8B O / V-D-S / V-D-H**, 필요시 기존 L-D-S까지 같은 장비에서 측정하는 구성이다. 위 pilot은 메모리·출력 경로를 확인하는 용도이며 정확도 편차는 전체의 동일 1,895쌍에서 확인한다. PP-OCR의 기존 inventory 생성 시간과 새 장비에서 다시 측정한 시간을 구분한다. 4B 확대 여부는 B200 Internal 결과와 4090의 초/pair를 함께 본 뒤 판단한다.
+전체 RTX 4090 재실험의 첫 비교는 **8B O / V-D-S / V-D-H**, 필요시 기존 L-D-S까지 같은 장비에서 측정하는 구성이다. 위 pilot은 메모리·출력 경로를 확인하는 용도이며 정확도 편차는 전체의 동일 1,895쌍에서 확인한다. PP-OCR의 기존 inventory 생성 시간과 새 장비에서 다시 측정한 시간을 구분한다. B200 전체 집합에서 V-D-H는 8B 78.26%·78.98분, 4B 73.98%·83.79분이었다. 4B는 4090에서 메모리 여유가 필요하거나 속도 차이를 별도로 확인할 때 비교한다. [B200 전체 결과](PPOCR_EDITOR_MATRIX_VD_RESULTS_KO.md)

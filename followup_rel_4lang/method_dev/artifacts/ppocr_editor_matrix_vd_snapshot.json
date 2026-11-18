@@ -1,9 +1,9 @@
 {
-  "as_of_utc": "2026-11-18T08:50:22.053803+00:00",
+  "as_of_utc": "2026-11-18T12:48:15.737134+00:00",
   "execution_mode": "gpu",
   "development_only": true,
   "remaining_run_contract_sha256": "a57af45f617f58980faa2b6e95dd8d1ab7686690ed384d5dc4244f548ff03e45",
-  "complete": false,
+  "complete": true,
   "solvers": {
     "8B": {
       "completed_cohorts": [
@@ -2764,11 +2764,10 @@
     "4B": {
       "completed_cohorts": [
         "screen",
-        "selection"
-      ],
-      "pending_cohorts": [
+        "selection",
         "internal_evaluation"
       ],
+      "pending_cohorts": [],
       "by_cohort": {
         "screen": {
           "conditions": {
@@ -4122,99 +4121,776 @@
           },
           "S_H_same_stem": 177,
           "primary_pairs": 239
+        },
+        "internal_evaluation": {
+          "conditions": {
+            "O": {
+              "n": 1416,
+              "correct": 955,
+              "accuracy": 0.6744350282485876,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 354,
+                    "correct": 258
+                  },
+                  "ru": {
+                    "n": 354,
+                    "correct": 229
+                  },
+                  "th": {
+                    "n": 354,
+                    "correct": 224
+                  },
+                  "zh": {
+                    "n": 354,
+                    "correct": 244
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 354,
+                    "correct": 260
+                  },
+                  "th": {
+                    "n": 354,
+                    "correct": 167
+                  },
+                  "zh": {
+                    "n": 354,
+                    "correct": 251
+                  },
+                  "en": {
+                    "n": 354,
+                    "correct": 277
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 118,
+                    "correct": 101
+                  },
+                  "en→th": {
+                    "n": 118,
+                    "correct": 60
+                  },
+                  "en→zh": {
+                    "n": 118,
+                    "correct": 97
+                  },
+                  "ru→en": {
+                    "n": 118,
+                    "correct": 96
+                  },
+                  "ru→th": {
+                    "n": 118,
+                    "correct": 51
+                  },
+                  "ru→zh": {
+                    "n": 118,
+                    "correct": 82
+                  },
+                  "th→en": {
+                    "n": 118,
+                    "correct": 82
+                  },
+                  "th→ru": {
+                    "n": 118,
+                    "correct": 70
+                  },
+                  "th→zh": {
+                    "n": 118,
+                    "correct": 72
+                  },
+                  "zh→en": {
+                    "n": 118,
+                    "correct": 99
+                  },
+                  "zh→ru": {
+                    "n": 118,
+                    "correct": 89
+                  },
+                  "zh→th": {
+                    "n": 118,
+                    "correct": 56
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 0,
+                "extraction_seconds": 0.0,
+                "localization_seconds": 0.0,
+                "final_vlm_seconds": 649.7839370332658,
+                "total_seconds": 649.7839370332658,
+                "seconds_per_pair": 0.4588869611816849
+              },
+              "extraction_calls": {
+                "calls": 0,
+                "repairs": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "prefill_forward_gpu_ms": 0,
+                "decode_forward_gpu_ms": 0,
+                "tokenization_ms": 0,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 0.0,
+                "peak_reserved_bytes": null,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 0,
+                "repairs": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "prefill_forward_gpu_ms": 0,
+                "decode_forward_gpu_ms": 0,
+                "tokenization_ms": 0,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 0.0,
+                "peak_reserved_bytes": null,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 0,
+              "unparsed": 0,
+              "extraction_quality": null,
+              "rewrite_status": {},
+              "component_status": {},
+              "stem_changed_pairs": 0,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": null,
+              "vs_O": null,
+              "vs_L_D_S": null
+            },
+            "L-D-S": {
+              "n": 1416,
+              "correct": 1025,
+              "accuracy": 0.7238700564971752,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 354,
+                    "correct": 269
+                  },
+                  "ru": {
+                    "n": 354,
+                    "correct": 241
+                  },
+                  "th": {
+                    "n": 354,
+                    "correct": 261
+                  },
+                  "zh": {
+                    "n": 354,
+                    "correct": 254
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 354,
+                    "correct": 287
+                  },
+                  "th": {
+                    "n": 354,
+                    "correct": 187
+                  },
+                  "zh": {
+                    "n": 354,
+                    "correct": 265
+                  },
+                  "en": {
+                    "n": 354,
+                    "correct": 286
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 118,
+                    "correct": 104
+                  },
+                  "en→th": {
+                    "n": 118,
+                    "correct": 67
+                  },
+                  "en→zh": {
+                    "n": 118,
+                    "correct": 98
+                  },
+                  "ru→en": {
+                    "n": 118,
+                    "correct": 93
+                  },
+                  "ru→th": {
+                    "n": 118,
+                    "correct": 62
+                  },
+                  "ru→zh": {
+                    "n": 118,
+                    "correct": 86
+                  },
+                  "th→en": {
+                    "n": 118,
+                    "correct": 92
+                  },
+                  "th→ru": {
+                    "n": 118,
+                    "correct": 88
+                  },
+                  "th→zh": {
+                    "n": 118,
+                    "correct": 81
+                  },
+                  "zh→en": {
+                    "n": 118,
+                    "correct": 101
+                  },
+                  "zh→ru": {
+                    "n": 118,
+                    "correct": 95
+                  },
+                  "zh→th": {
+                    "n": 118,
+                    "correct": 58
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 55.13729390408844,
+                "extraction_seconds": 379.1051655765623,
+                "localization_seconds": 1268.7609487595037,
+                "final_vlm_seconds": 852.301849026233,
+                "total_seconds": 2555.3052572663873,
+                "seconds_per_pair": 1.804594108238974
+              },
+              "extraction_calls": {
+                "calls": 479,
+                "repairs": 7,
+                "input_tokens": 260843,
+                "output_tokens": 12011,
+                "prefill_forward_gpu_ms": null,
+                "decode_forward_gpu_ms": null,
+                "tokenization_ms": null,
+                "cap_hits": 0,
+                "visual_forward_calls": null,
+                "runtime_seconds": 379.1051655765623,
+                "peak_reserved_bytes": 16615735296,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 1466,
+                "repairs": 71,
+                "input_tokens": 1458498,
+                "output_tokens": 31224,
+                "prefill_forward_gpu_ms": null,
+                "decode_forward_gpu_ms": null,
+                "tokenization_ms": null,
+                "cap_hits": 0,
+                "visual_forward_calls": null,
+                "runtime_seconds": 1268.7609487595037,
+                "peak_reserved_bytes": 17314086912,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 1071,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.9419354838709677,
+                "recall": 0.9279661016949152,
+                "f1": 0.934898612593383,
+                "gold": 1416,
+                "found": 1395,
+                "matched": 1314,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "success": 1352,
+                "fallback_original": 52,
+                "no_op_no_edits": 12
+              },
+              "component_status": {},
+              "stem_changed_pairs": 1352,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": null,
+              "vs_O": {
+                "pairs": 1416,
+                "items": 118,
+                "difference": 0.04943502824858757,
+                "ci95": [
+                  0.023305084745762712,
+                  0.0755826271186438
+                ],
+                "exploratory_bootstrap_centered_p": 0.0004999500049995,
+                "recovery": 142,
+                "regression": 72
+              },
+              "vs_L_D_S": null
+            },
+            "V-D-S": {
+              "n": 1416,
+              "correct": 1018,
+              "accuracy": 0.7189265536723164,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 354,
+                    "correct": 264
+                  },
+                  "ru": {
+                    "n": 354,
+                    "correct": 236
+                  },
+                  "th": {
+                    "n": 354,
+                    "correct": 256
+                  },
+                  "zh": {
+                    "n": 354,
+                    "correct": 262
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 354,
+                    "correct": 285
+                  },
+                  "th": {
+                    "n": 354,
+                    "correct": 185
+                  },
+                  "zh": {
+                    "n": 354,
+                    "correct": 256
+                  },
+                  "en": {
+                    "n": 354,
+                    "correct": 292
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 118,
+                    "correct": 102
+                  },
+                  "en→th": {
+                    "n": 118,
+                    "correct": 64
+                  },
+                  "en→zh": {
+                    "n": 118,
+                    "correct": 98
+                  },
+                  "ru→en": {
+                    "n": 118,
+                    "correct": 97
+                  },
+                  "ru→th": {
+                    "n": 118,
+                    "correct": 57
+                  },
+                  "ru→zh": {
+                    "n": 118,
+                    "correct": 82
+                  },
+                  "th→en": {
+                    "n": 118,
+                    "correct": 92
+                  },
+                  "th→ru": {
+                    "n": 118,
+                    "correct": 88
+                  },
+                  "th→zh": {
+                    "n": 118,
+                    "correct": 76
+                  },
+                  "zh→en": {
+                    "n": 118,
+                    "correct": 103
+                  },
+                  "zh→ru": {
+                    "n": 118,
+                    "correct": 95
+                  },
+                  "zh→th": {
+                    "n": 118,
+                    "correct": 64
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 55.13729390408844,
+                "extraction_seconds": 361.6158659476787,
+                "localization_seconds": 1306.2346760686487,
+                "final_vlm_seconds": 817.4232833562419,
+                "total_seconds": 2540.4111192766577,
+                "seconds_per_pair": 1.7940756492066792
+              },
+              "extraction_calls": {
+                "calls": 525,
+                "repairs": 53,
+                "input_tokens": 286198,
+                "output_tokens": 12665,
+                "prefill_forward_gpu_ms": 65400.68943023682,
+                "decode_forward_gpu_ms": 289063.68951797485,
+                "tokenization_ms": 1044.202320277691,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 361.6158659476787,
+                "peak_reserved_bytes": 9095348224,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 1331,
+                "repairs": 74,
+                "input_tokens": 1322861,
+                "output_tokens": 37115,
+                "prefill_forward_gpu_ms": 358782.8804397583,
+                "decode_forward_gpu_ms": 925334.9493865967,
+                "tokenization_ms": 4178.79381775856,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 1306.2346760686487,
+                "peak_reserved_bytes": 9521070080,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 894,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.8142857142857143,
+                "recall": 0.7245762711864406,
+                "f1": 0.7668161434977578,
+                "gold": 1416,
+                "found": 1260,
+                "matched": 1026,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "success": 1141,
+                "fallback_original": 211,
+                "no_op_no_edits": 64
+              },
+              "component_status": {
+                "stem:success": 1141,
+                "options:original": 1416,
+                "stem:fallback_original": 211,
+                "stem:no_op_no_edits": 64
+              },
+              "stem_changed_pairs": 1141,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": 16,
+              "vs_O": {
+                "pairs": 1416,
+                "items": 118,
+                "difference": 0.04449152542372881,
+                "ci95": [
+                  0.0211864406779661,
+                  0.06779661016949153
+                ],
+                "exploratory_bootstrap_centered_p": 0.00029997000299970003,
+                "recovery": 119,
+                "regression": 56
+              },
+              "vs_L_D_S": {
+                "pairs": 1416,
+                "items": 118,
+                "difference": -0.0049435028248587575,
+                "ci95": [
+                  -0.0211864406779661,
+                  0.01059322033898305
+                ],
+                "exploratory_bootstrap_centered_p": 0.5724427557244276,
+                "recovery": 42,
+                "regression": 49
+              }
+            },
+            "V-D-H": {
+              "n": 1416,
+              "correct": 1029,
+              "accuracy": 0.7266949152542372,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 354,
+                    "correct": 264
+                  },
+                  "ru": {
+                    "n": 354,
+                    "correct": 253
+                  },
+                  "th": {
+                    "n": 354,
+                    "correct": 240
+                  },
+                  "zh": {
+                    "n": 354,
+                    "correct": 272
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 354,
+                    "correct": 266
+                  },
+                  "th": {
+                    "n": 354,
+                    "correct": 228
+                  },
+                  "zh": {
+                    "n": 354,
+                    "correct": 253
+                  },
+                  "en": {
+                    "n": 354,
+                    "correct": 282
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 118,
+                    "correct": 94
+                  },
+                  "en→th": {
+                    "n": 118,
+                    "correct": 75
+                  },
+                  "en→zh": {
+                    "n": 118,
+                    "correct": 95
+                  },
+                  "ru→en": {
+                    "n": 118,
+                    "correct": 92
+                  },
+                  "ru→th": {
+                    "n": 118,
+                    "correct": 74
+                  },
+                  "ru→zh": {
+                    "n": 118,
+                    "correct": 87
+                  },
+                  "th→en": {
+                    "n": 118,
+                    "correct": 92
+                  },
+                  "th→ru": {
+                    "n": 118,
+                    "correct": 77
+                  },
+                  "th→zh": {
+                    "n": 118,
+                    "correct": 71
+                  },
+                  "zh→en": {
+                    "n": 118,
+                    "correct": 98
+                  },
+                  "zh→ru": {
+                    "n": 118,
+                    "correct": 95
+                  },
+                  "zh→th": {
+                    "n": 118,
+                    "correct": 79
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 55.13729390408844,
+                "extraction_seconds": 361.6158659476787,
+                "localization_seconds": 2436.520686091855,
+                "final_vlm_seconds": 652.7326677264646,
+                "total_seconds": 3506.006513670087,
+                "seconds_per_pair": 2.4759933006144683
+              },
+              "extraction_calls": {
+                "calls": 525,
+                "repairs": 53,
+                "input_tokens": 286198,
+                "output_tokens": 12665,
+                "prefill_forward_gpu_ms": 65400.68943023682,
+                "decode_forward_gpu_ms": 289063.68951797485,
+                "tokenization_ms": 1044.202320277691,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 361.6158659476787,
+                "peak_reserved_bytes": 9095348224,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 1457,
+                "repairs": 41,
+                "input_tokens": 1355078,
+                "output_tokens": 111058,
+                "prefill_forward_gpu_ms": 151716.65041732788,
+                "decode_forward_gpu_ms": 2232307.0719337463,
+                "tokenization_ms": 4328.136104159057,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 2436.520686091855,
+                "peak_reserved_bytes": 9521070080,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 0,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.8142857142857143,
+                "recall": 0.7245762711864406,
+                "f1": 0.7668161434977578,
+                "gold": 1416,
+                "found": 1260,
+                "matched": 1026,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "success": 1223,
+                "partial_fallback": 168,
+                "fallback_original": 9,
+                "no_op_no_edits": 16
+              },
+              "component_status": {
+                "stem:no_op_no_edits": 381,
+                "options:success": 1411,
+                "stem:success": 862,
+                "stem:fallback_original": 173,
+                "options:fallback_original": 5
+              },
+              "stem_changed_pairs": 862,
+              "options_changed_pairs": 1370,
+              "semantic_warning_pairs": 98,
+              "vs_O": {
+                "pairs": 1416,
+                "items": 118,
+                "difference": 0.052259887005649715,
+                "ci95": [
+                  0.023305084745762712,
+                  0.08121468926553672
+                ],
+                "exploratory_bootstrap_centered_p": 0.00029997000299970003,
+                "recovery": 182,
+                "regression": 108
+              },
+              "vs_L_D_S": {
+                "pairs": 1416,
+                "items": 118,
+                "difference": 0.002824858757062147,
+                "ci95": [
+                  -0.025423728813559324,
+                  0.03036723163841808
+                ],
+                "exploratory_bootstrap_centered_p": 0.863013698630137,
+                "recovery": 155,
+                "regression": 151
+              }
+            }
+          },
+          "V-D-H_minus_V-D-S": {
+            "pairs": 1416,
+            "items": 118,
+            "difference": 0.007768361581920904,
+            "ci95": [
+              -0.020480225988700564,
+              0.036016949152542374
+            ],
+            "exploratory_bootstrap_centered_p": 0.5973402659734026,
+            "recovery": 144,
+            "regression": 133
+          },
+          "S_H_same_stem": 1087,
+          "primary_pairs": 1416
         }
       },
       "pooled_completed": {
         "conditions": {
           "O": {
-            "n": 479,
-            "correct": 353,
-            "accuracy": 0.7369519832985386,
+            "n": 1895,
+            "correct": 1308,
+            "accuracy": 0.6902374670184697,
             "language_groups": {
               "source_language": {
                 "en": {
-                  "n": 120,
-                  "correct": 92
+                  "n": 474,
+                  "correct": 350
                 },
                 "ru": {
-                  "n": 120,
-                  "correct": 85
+                  "n": 474,
+                  "correct": 314
                 },
                 "th": {
-                  "n": 120,
-                  "correct": 85
+                  "n": 474,
+                  "correct": 309
                 },
                 "zh": {
-                  "n": 119,
-                  "correct": 91
+                  "n": 473,
+                  "correct": 335
                 }
               },
               "gui_language": {
                 "ru": {
-                  "n": 119,
-                  "correct": 98
+                  "n": 473,
+                  "correct": 358
                 },
                 "th": {
-                  "n": 120,
-                  "correct": 62
+                  "n": 474,
+                  "correct": 229
                 },
                 "zh": {
-                  "n": 120,
-                  "correct": 93
+                  "n": 474,
+                  "correct": 344
                 },
                 "en": {
-                  "n": 120,
-                  "correct": 100
+                  "n": 474,
+                  "correct": 377
                 }
               },
               "language_pair": {
                 "en→ru": {
-                  "n": 40,
-                  "correct": 34
+                  "n": 158,
+                  "correct": 135
                 },
                 "en→th": {
-                  "n": 40,
-                  "correct": 22
+                  "n": 158,
+                  "correct": 82
                 },
                 "en→zh": {
-                  "n": 40,
-                  "correct": 36
+                  "n": 158,
+                  "correct": 133
                 },
                 "ru→en": {
-                  "n": 40,
-                  "correct": 33
+                  "n": 158,
+                  "correct": 129
                 },
                 "ru→th": {
-                  "n": 40,
-                  "correct": 21
+                  "n": 158,
+                  "correct": 72
                 },
                 "ru→zh": {
-                  "n": 40,
-                  "correct": 31
+                  "n": 158,
+                  "correct": 113
                 },
                 "th→en": {
-                  "n": 40,
-                  "correct": 29
+                  "n": 158,
+                  "correct": 111
                 },
                 "th→ru": {
-                  "n": 40,
-                  "correct": 30
+                  "n": 158,
+                  "correct": 100
                 },
                 "th→zh": {
-                  "n": 40,
-                  "correct": 26
+                  "n": 158,
+                  "correct": 98
                 },
                 "zh→en": {
-                  "n": 40,
-                  "correct": 38
+                  "n": 158,
+                  "correct": 137
                 },
                 "zh→ru": {
-                  "n": 39,
-                  "correct": 34
+                  "n": 157,
+                  "correct": 123
                 },
                 "zh→th": {
-                  "n": 40,
-                  "correct": 19
+                  "n": 158,
+                  "correct": 75
                 }
               }
             },
@@ -4222,9 +4898,9 @@
               "ocr_seconds": 0,
               "extraction_seconds": 0.0,
               "localization_seconds": 0.0,
-              "final_vlm_seconds": 311.83048138798523,
-              "total_seconds": 311.83048138798523,
-              "seconds_per_pair": 0.6510030926680276
+              "final_vlm_seconds": 961.614418421251,
+              "total_seconds": 961.614418421251,
+              "seconds_per_pair": 0.5074482419109504
             },
             "extraction_calls": {
               "calls": 0,
@@ -4266,547 +4942,550 @@
             "vs_L_D_S": null
           },
           "L-D-S": {
-            "n": 479,
-            "correct": 360,
-            "accuracy": 0.7515657620041754,
+            "n": 1895,
+            "correct": 1385,
+            "accuracy": 0.7308707124010554,
             "language_groups": {
               "source_language": {
                 "en": {
-                  "n": 120,
-                  "correct": 95
+                  "n": 474,
+                  "correct": 364
                 },
                 "ru": {
-                  "n": 120,
-                  "correct": 84
+                  "n": 474,
+                  "correct": 325
                 },
                 "th": {
-                  "n": 120,
-                  "correct": 90
+                  "n": 474,
+                  "correct": 351
                 },
                 "zh": {
-                  "n": 119,
-                  "correct": 91
+                  "n": 473,
+                  "correct": 345
                 }
               },
               "gui_language": {
                 "ru": {
-                  "n": 119,
-                  "correct": 96
+                  "n": 473,
+                  "correct": 383
                 },
                 "th": {
-                  "n": 120,
-                  "correct": 65
+                  "n": 474,
+                  "correct": 252
                 },
                 "zh": {
-                  "n": 120,
-                  "correct": 97
+                  "n": 474,
+                  "correct": 362
                 },
                 "en": {
-                  "n": 120,
-                  "correct": 102
+                  "n": 474,
+                  "correct": 388
                 }
               },
               "language_pair": {
                 "en→ru": {
-                  "n": 40,
-                  "correct": 35
+                  "n": 158,
+                  "correct": 139
                 },
                 "en→th": {
-                  "n": 40,
-                  "correct": 23
+                  "n": 158,
+                  "correct": 90
                 },
                 "en→zh": {
-                  "n": 40,
-                  "correct": 37
+                  "n": 158,
+                  "correct": 135
                 },
                 "ru→en": {
-                  "n": 40,
-                  "correct": 32
+                  "n": 158,
+                  "correct": 125
                 },
                 "ru→th": {
-                  "n": 40,
-                  "correct": 22
+                  "n": 158,
+                  "correct": 84
                 },
                 "ru→zh": {
-                  "n": 40,
-                  "correct": 30
+                  "n": 158,
+                  "correct": 116
                 },
                 "th→en": {
-                  "n": 40,
-                  "correct": 31
+                  "n": 158,
+                  "correct": 123
                 },
                 "th→ru": {
-                  "n": 40,
-                  "correct": 29
+                  "n": 158,
+                  "correct": 117
                 },
                 "th→zh": {
-                  "n": 40,
-                  "correct": 30
+                  "n": 158,
+                  "correct": 111
                 },
                 "zh→en": {
-                  "n": 40,
-                  "correct": 39
+                  "n": 158,
+                  "correct": 140
                 },
                 "zh→ru": {
-                  "n": 39,
-                  "correct": 32
+                  "n": 157,
+                  "correct": 127
                 },
                 "zh→th": {
-                  "n": 40,
-                  "correct": 20
+                  "n": 158,
+                  "correct": 78
                 }
               }
             },
             "cold_recipe": {
-              "ocr_seconds": 18.168869210407138,
-              "extraction_seconds": 198.0153026431799,
-              "localization_seconds": 746.6185303041711,
-              "final_vlm_seconds": 383.67021392999834,
-              "total_seconds": 1346.4729160877564,
-              "seconds_per_pair": 2.811008175548552
+              "ocr_seconds": 73.30616311449558,
+              "extraction_seconds": 576.6615744549781,
+              "localization_seconds": 2015.3794790636748,
+              "final_vlm_seconds": 1235.9720629562312,
+              "total_seconds": 3901.3192795893797,
+              "seconds_per_pair": 2.0587436831606225
             },
             "extraction_calls": {
-              "calls": 162,
-              "repairs": 2,
-              "input_tokens": 88239,
-              "output_tokens": 4182,
+              "calls": 640,
+              "repairs": 9,
+              "input_tokens": 348543,
+              "output_tokens": 16170,
               "prefill_forward_gpu_ms": null,
               "decode_forward_gpu_ms": null,
               "tokenization_ms": null,
               "cap_hits": 0,
               "visual_forward_calls": null,
-              "runtime_seconds": 198.0153026431799,
+              "runtime_seconds": 576.6615744549781,
               "peak_reserved_bytes": 16615735296,
               "historical_missing_metrics_are_null": true
             },
             "editor_calls": {
-              "calls": 500,
-              "repairs": 27,
-              "input_tokens": 489084,
-              "output_tokens": 10844,
+              "calls": 1966,
+              "repairs": 98,
+              "input_tokens": 1947582,
+              "output_tokens": 42068,
               "prefill_forward_gpu_ms": null,
               "decode_forward_gpu_ms": null,
               "tokenization_ms": null,
               "cap_hits": 0,
               "visual_forward_calls": null,
-              "runtime_seconds": 746.6185303041711,
-              "peak_reserved_bytes": 17175674880,
+              "runtime_seconds": 2015.3794790636748,
+              "peak_reserved_bytes": 17314086912,
               "historical_missing_metrics_are_null": true
             },
-            "reused_final_rows": 355,
+            "reused_final_rows": 1426,
             "unparsed": 0,
             "extraction_quality": {
-              "precision": 0.879492600422833,
-              "recall": 0.8684759916492694,
-              "f1": 0.8739495798319329,
-              "gold": 479,
-              "found": 473,
-              "matched": 416,
+              "precision": 0.9261241970021413,
+              "recall": 0.9129287598944591,
+              "f1": 0.9194791389848525,
+              "gold": 1895,
+              "found": 1868,
+              "matched": 1730,
               "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
             },
             "rewrite_status": {
-              "success": 456,
-              "fallback_original": 22,
-              "no_op_no_edits": 1
+              "success": 1808,
+              "fallback_original": 74,
+              "no_op_no_edits": 13
             },
             "component_status": {},
-            "stem_changed_pairs": 456,
+            "stem_changed_pairs": 1808,
             "options_changed_pairs": 0,
             "semantic_warning_pairs": null,
             "vs_O": {
-              "pairs": 479,
-              "items": 40,
-              "difference": 0.014613778705636743,
+              "pairs": 1895,
+              "items": 158,
+              "difference": 0.04063324538258575,
               "ci95": [
-                -0.025052192066805846,
-                0.06041666666666667
+                0.018974643444321187,
+                0.06385224274406333
               ],
-              "exploratory_bootstrap_centered_p": 0.5267473252674733,
-              "recovery": 37,
-              "regression": 30
+              "exploratory_bootstrap_centered_p": 0.0006999300069993001,
+              "recovery": 179,
+              "regression": 102
             },
             "vs_L_D_S": null
           },
           "V-D-S": {
-            "n": 479,
-            "correct": 360,
-            "accuracy": 0.7515657620041754,
+            "n": 1895,
+            "correct": 1378,
+            "accuracy": 0.7271767810026385,
             "language_groups": {
               "source_language": {
                 "en": {
-                  "n": 120,
-                  "correct": 97
+                  "n": 474,
+                  "correct": 361
                 },
                 "ru": {
-                  "n": 120,
-                  "correct": 83
+                  "n": 474,
+                  "correct": 319
                 },
                 "th": {
-                  "n": 120,
-                  "correct": 85
+                  "n": 474,
+                  "correct": 341
                 },
                 "zh": {
-                  "n": 119,
-                  "correct": 95
+                  "n": 473,
+                  "correct": 357
                 }
               },
               "gui_language": {
                 "ru": {
-                  "n": 119,
-                  "correct": 97
+                  "n": 473,
+                  "correct": 382
                 },
                 "th": {
-                  "n": 120,
-                  "correct": 70
+                  "n": 474,
+                  "correct": 255
                 },
                 "zh": {
-                  "n": 120,
-                  "correct": 90
+                  "n": 474,
+                  "correct": 346
                 },
                 "en": {
-                  "n": 120,
-                  "correct": 103
+                  "n": 474,
+                  "correct": 395
                 }
               },
               "language_pair": {
                 "en→ru": {
-                  "n": 40,
-                  "correct": 36
+                  "n": 158,
+                  "correct": 138
                 },
                 "en→th": {
-                  "n": 40,
-                  "correct": 24
+                  "n": 158,
+                  "correct": 88
                 },
                 "en→zh": {
-                  "n": 40,
-                  "correct": 37
+                  "n": 158,
+                  "correct": 135
                 },
                 "ru→en": {
-                  "n": 40,
-                  "correct": 34
+                  "n": 158,
+                  "correct": 131
                 },
                 "ru→th": {
-                  "n": 40,
-                  "correct": 23
+                  "n": 158,
+                  "correct": 80
                 },
                 "ru→zh": {
-                  "n": 40,
-                  "correct": 26
+                  "n": 158,
+                  "correct": 108
                 },
                 "th→en": {
-                  "n": 40,
-                  "correct": 30
+                  "n": 158,
+                  "correct": 122
                 },
                 "th→ru": {
-                  "n": 40,
-                  "correct": 28
+                  "n": 158,
+                  "correct": 116
                 },
                 "th→zh": {
-                  "n": 40,
-                  "correct": 27
+                  "n": 158,
+                  "correct": 103
                 },
                 "zh→en": {
-                  "n": 40,
-                  "correct": 39
+                  "n": 158,
+                  "correct": 142
                 },
                 "zh→ru": {
-                  "n": 39,
-                  "correct": 33
+                  "n": 157,
+                  "correct": 128
                 },
                 "zh→th": {
-                  "n": 40,
-                  "correct": 23
+                  "n": 158,
+                  "correct": 87
                 }
               }
             },
             "cold_recipe": {
-              "ocr_seconds": 18.168869210407138,
-              "extraction_seconds": 206.6199964247644,
-              "localization_seconds": 717.0500759882852,
-              "final_vlm_seconds": 340.39490157272667,
-              "total_seconds": 1282.2338431961834,
-              "seconds_per_pair": 2.67689737619245
+              "ocr_seconds": 73.30616311449558,
+              "extraction_seconds": 567.7969529740512,
+              "localization_seconds": 2023.284752056934,
+              "final_vlm_seconds": 1157.8181849289685,
+              "total_seconds": 3822.2060530744493,
+              "seconds_per_pair": 2.0169952786672556
             },
             "extraction_calls": {
-              "calls": 180,
-              "repairs": 20,
-              "input_tokens": 98297,
-              "output_tokens": 4428,
-              "prefill_forward_gpu_ms": 54373.40147399902,
-              "decode_forward_gpu_ms": 149579.93631362915,
-              "tokenization_ms": 383.63962434232235,
+              "calls": 704,
+              "repairs": 73,
+              "input_tokens": 383960,
+              "output_tokens": 17070,
+              "prefill_forward_gpu_ms": 119740.94664764404,
+              "decode_forward_gpu_ms": 438249.21171951294,
+              "tokenization_ms": 1426.1879567056894,
               "cap_hits": 0,
               "visual_forward_calls": 0,
-              "runtime_seconds": 206.6199964247644,
+              "runtime_seconds": 567.7969529740512,
               "peak_reserved_bytes": 9095348224,
               "historical_missing_metrics_are_null": true
             },
             "editor_calls": {
-              "calls": 435,
-              "repairs": 19,
-              "input_tokens": 425960,
-              "output_tokens": 12345,
-              "prefill_forward_gpu_ms": 237290.31017684937,
-              "decode_forward_gpu_ms": 472337.89982414246,
-              "tokenization_ms": 1329.6068981289864,
+              "calls": 1766,
+              "repairs": 93,
+              "input_tokens": 1748821,
+              "output_tokens": 49460,
+              "prefill_forward_gpu_ms": 596073.1906166077,
+              "decode_forward_gpu_ms": 1397672.8492107391,
+              "tokenization_ms": 5508.4007158875465,
               "cap_hits": 0,
               "visual_forward_calls": 0,
-              "runtime_seconds": 717.0500759882852,
-              "peak_reserved_bytes": 9458155520,
+              "runtime_seconds": 2023.284752056934,
+              "peak_reserved_bytes": 9521070080,
               "historical_missing_metrics_are_null": true
             },
-            "reused_final_rows": 280,
+            "reused_final_rows": 1174,
             "unparsed": 0,
             "extraction_quality": {
-              "precision": 0.8125,
-              "recall": 0.7056367432150313,
-              "f1": 0.7553072625698323,
-              "gold": 479,
-              "found": 416,
-              "matched": 338,
+              "precision": 0.8138424821002387,
+              "recall": 0.7197889182058047,
+              "f1": 0.763931671800616,
+              "gold": 1895,
+              "found": 1676,
+              "matched": 1364,
               "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
             },
             "rewrite_status": {
               "no_op_no_referents": 3,
-              "fallback_original": 67,
-              "no_op_no_edits": 26,
-              "success": 383
+              "fallback_original": 278,
+              "no_op_no_edits": 90,
+              "success": 1524
             },
             "component_status": {
               "stem:no_op_no_referents": 3,
-              "options:original": 479,
-              "stem:fallback_original": 67,
-              "stem:no_op_no_edits": 26,
-              "stem:success": 383
+              "options:original": 1895,
+              "stem:fallback_original": 278,
+              "stem:no_op_no_edits": 90,
+              "stem:success": 1524
             },
-            "stem_changed_pairs": 383,
+            "stem_changed_pairs": 1524,
             "options_changed_pairs": 0,
-            "semantic_warning_pairs": 4,
+            "semantic_warning_pairs": 20,
             "vs_O": {
-              "pairs": 479,
-              "items": 40,
-              "difference": 0.014613778705636743,
+              "pairs": 1895,
+              "items": 158,
+              "difference": 0.036939313984168866,
               "ci95": [
-                -0.025,
-                0.05477467105263103
+                0.01740506329113924,
+                0.05748945147679325
               ],
-              "exploratory_bootstrap_centered_p": 0.48965103489651035,
-              "recovery": 35,
-              "regression": 28
+              "exploratory_bootstrap_centered_p": 0.00019998000199980003,
+              "recovery": 154,
+              "regression": 84
             },
             "vs_L_D_S": {
-              "pairs": 479,
-              "items": 40,
-              "difference": 0.0,
+              "pairs": 1895,
+              "items": 158,
+              "difference": -0.0036939313984168864,
               "ci95": [
-                -0.029166666666666667,
-                0.029227557411273485
+                -0.017414248021108178,
+                0.010026385224274407
               ],
-              "exploratory_bootstrap_centered_p": 1.0,
-              "recovery": 18,
-              "regression": 18
+              "exploratory_bootstrap_centered_p": 0.6123387661233877,
+              "recovery": 60,
+              "regression": 67
             }
           },
           "V-D-H": {
-            "n": 479,
-            "correct": 373,
-            "accuracy": 0.778705636743215,
+            "n": 1895,
+            "correct": 1402,
+            "accuracy": 0.7398416886543535,
             "language_groups": {
               "source_language": {
                 "en": {
-                  "n": 120,
-                  "correct": 108
+                  "n": 474,
+                  "correct": 372
                 },
                 "ru": {
-                  "n": 120,
-                  "correct": 88
+                  "n": 474,
+                  "correct": 341
                 },
                 "th": {
-                  "n": 120,
-                  "correct": 83
+                  "n": 474,
+                  "correct": 323
                 },
                 "zh": {
-                  "n": 119,
-                  "correct": 94
+                  "n": 473,
+                  "correct": 366
                 }
               },
               "gui_language": {
                 "ru": {
-                  "n": 119,
-                  "correct": 95
+                  "n": 473,
+                  "correct": 361
                 },
                 "th": {
-                  "n": 120,
-                  "correct": 83
+                  "n": 474,
+                  "correct": 311
                 },
                 "zh": {
-                  "n": 120,
-                  "correct": 98
+                  "n": 474,
+                  "correct": 351
                 },
                 "en": {
-                  "n": 120,
-                  "correct": 97
+                  "n": 474,
+                  "correct": 379
                 }
               },
               "language_pair": {
                 "en→ru": {
-                  "n": 40,
-                  "correct": 36
+                  "n": 158,
+                  "correct": 130
                 },
                 "en→th": {
-                  "n": 40,
-                  "correct": 34
+                  "n": 158,
+                  "correct": 109
                 },
                 "en→zh": {
-                  "n": 40,
-                  "correct": 38
+                  "n": 158,
+                  "correct": 133
                 },
                 "ru→en": {
-                  "n": 40,
-                  "correct": 32
+                  "n": 158,
+                  "correct": 124
                 },
                 "ru→th": {
-                  "n": 40,
-                  "correct": 24
+                  "n": 158,
+                  "correct": 98
                 },
                 "ru→zh": {
-                  "n": 40,
-                  "correct": 32
+                  "n": 158,
+                  "correct": 119
                 },
                 "th→en": {
-                  "n": 40,
-                  "correct": 28
+                  "n": 158,
+                  "correct": 120
                 },
                 "th→ru": {
-                  "n": 40,
-                  "correct": 27
+                  "n": 158,
+                  "correct": 104
                 },
                 "th→zh": {
-                  "n": 40,
-                  "correct": 28
+                  "n": 158,
+                  "correct": 99
                 },
                 "zh→en": {
-                  "n": 40,
-                  "correct": 37
+                  "n": 158,
+                  "correct": 135
                 },
                 "zh→ru": {
-                  "n": 39,
-                  "correct": 32
+                  "n": 157,
+                  "correct": 127
                 },
                 "zh→th": {
-                  "n": 40,
-                  "correct": 25
+                  "n": 158,
+                  "correct": 104
                 }
               }
             },
             "cold_recipe": {
-              "ocr_seconds": 18.168869210407138,
-              "extraction_seconds": 206.6199964247644,
-              "localization_seconds": 1025.0660084467381,
-              "final_vlm_seconds": 271.7107983796547,
-              "total_seconds": 1521.5656724615644,
-              "seconds_per_pair": 3.176546289063809
+              "ocr_seconds": 73.30616311449558,
+              "extraction_seconds": 567.7969529740512,
+              "localization_seconds": 3461.5866945385933,
+              "final_vlm_seconds": 924.4434661061193,
+              "total_seconds": 5027.13327673326,
+              "seconds_per_pair": 2.652840779278765
             },
             "extraction_calls": {
-              "calls": 180,
-              "repairs": 20,
-              "input_tokens": 98297,
-              "output_tokens": 4428,
-              "prefill_forward_gpu_ms": 54373.40147399902,
-              "decode_forward_gpu_ms": 149579.93631362915,
-              "tokenization_ms": 383.63962434232235,
+              "calls": 704,
+              "repairs": 73,
+              "input_tokens": 383960,
+              "output_tokens": 17070,
+              "prefill_forward_gpu_ms": 119740.94664764404,
+              "decode_forward_gpu_ms": 438249.21171951294,
+              "tokenization_ms": 1426.1879567056894,
               "cap_hits": 0,
               "visual_forward_calls": 0,
-              "runtime_seconds": 206.6199964247644,
+              "runtime_seconds": 567.7969529740512,
               "peak_reserved_bytes": 9095348224,
               "historical_missing_metrics_are_null": true
             },
             "editor_calls": {
-              "calls": 496,
-              "repairs": 17,
-              "input_tokens": 456302,
-              "output_tokens": 37783,
-              "prefill_forward_gpu_ms": 149107.12424087524,
-              "decode_forward_gpu_ms": 858015.1298732758,
-              "tokenization_ms": 1496.795485727489,
+              "calls": 1953,
+              "repairs": 58,
+              "input_tokens": 1811380,
+              "output_tokens": 148841,
+              "prefill_forward_gpu_ms": 300823.7746582031,
+              "decode_forward_gpu_ms": 3090322.201807022,
+              "tokenization_ms": 5824.931589886546,
               "cap_hits": 0,
               "visual_forward_calls": 0,
-              "runtime_seconds": 1025.0660084467381,
-              "peak_reserved_bytes": 9458155520,
+              "runtime_seconds": 3461.5866945385933,
+              "peak_reserved_bytes": 9521070080,
               "historical_missing_metrics_are_null": true
             },
             "reused_final_rows": 3,
             "unparsed": 0,
             "extraction_quality": {
-              "precision": 0.8125,
-              "recall": 0.7056367432150313,
-              "f1": 0.7553072625698323,
-              "gold": 479,
-              "found": 416,
-              "matched": 338,
+              "precision": 0.8138424821002387,
+              "recall": 0.7197889182058047,
+              "f1": 0.763931671800616,
+              "gold": 1895,
+              "found": 1676,
+              "matched": 1364,
               "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
             },
             "rewrite_status": {
-              "success": 407,
-              "partial_fallback": 65,
-              "no_op_no_edits": 4,
-              "fallback_original": 3
+              "success": 1630,
+              "partial_fallback": 233,
+              "no_op_no_edits": 20,
+              "fallback_original": 12
             },
             "component_status": {
-              "stem:no_op_no_edits": 126,
-              "options:success": 479,
-              "stem:fallback_original": 68,
-              "stem:success": 285
+              "stem:no_op_no_edits": 507,
+              "options:success": 1890,
+              "stem:fallback_original": 241,
+              "stem:success": 1147,
+              "options:fallback_original": 5
             },
-            "stem_changed_pairs": 285,
-            "options_changed_pairs": 463,
-            "semantic_warning_pairs": 36,
+            "stem_changed_pairs": 1147,
+            "options_changed_pairs": 1833,
+            "semantic_warning_pairs": 134,
             "vs_O": {
-              "pairs": 479,
-              "items": 40,
-              "difference": 0.04175365344467641,
+              "pairs": 1895,
+              "items": 158,
+              "difference": 0.049604221635883905,
               "ci95": [
-                -0.0041753653444676405,
-                0.08958333333333333
+                0.025343189017951427,
+                0.07436708860759493
               ],
-              "exploratory_bootstrap_centered_p": 0.08289171082891711,
-              "recovery": 55,
-              "regression": 35
+              "exploratory_bootstrap_centered_p": 0.00019998000199980003,
+              "recovery": 237,
+              "regression": 143
             },
             "vs_L_D_S": {
-              "pairs": 479,
-              "items": 40,
-              "difference": 0.027139874739039668,
+              "pairs": 1895,
+              "items": 158,
+              "difference": 0.008970976253298154,
               "ci95": [
-                -0.018789144050104383,
-                0.07291666666666667
+                -0.014775920627004314,
+                0.03271767810026385
               ],
-              "exploratory_bootstrap_centered_p": 0.2576742325767423,
-              "recovery": 51,
-              "regression": 38
+              "exploratory_bootstrap_centered_p": 0.4717528247175283,
+              "recovery": 206,
+              "regression": 189
             }
           }
         },
         "V-D-H_minus_V-D-S": {
-          "pairs": 479,
-          "items": 40,
-          "difference": 0.027139874739039668,
+          "pairs": 1895,
+          "items": 158,
+          "difference": 0.012664907651715039,
           "ci95": [
-            -0.02092050209205021,
-            0.07708333333333334
+            -0.011087645195353749,
+            0.036939313984168866
           ],
-          "exploratory_bootstrap_centered_p": 0.2946705329467053,
-          "recovery": 51,
-          "regression": 38
+          "exploratory_bootstrap_centered_p": 0.3193680631936806,
+          "recovery": 195,
+          "regression": 171
         },
-        "S_H_same_stem": 370,
-        "primary_pairs": 479
+        "S_H_same_stem": 1457,
+        "primary_pairs": 1895
       },
       "prediction_sha256": {
         "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_screen_v2/V4/infer/V-D-S/predictions.jsonl": "f295f0fbeb163797e8690667e6dddf9be4ef86f61dafa998b1dddd91c206952c",
         "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_screen_v2/V4/infer/V-D-H/predictions.jsonl": "96dc6a1a58c94dcb352f0e483dba525f52dfa34a65a657d67ab3a828ff62826a",
         "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_vd_full_dev_v1/selection/V4/infer/V-D-S/predictions.jsonl": "339e0c2c3612eb3b6479dd5a875dfca89aff5386c7bf28b1a7e1a410a7990cb7",
-        "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_vd_full_dev_v1/selection/V4/infer/V-D-H/predictions.jsonl": "1418026afdd625698b25fd3e1ab425b1f862576d5685d42f32014da0caadcc1f"
+        "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_vd_full_dev_v1/selection/V4/infer/V-D-H/predictions.jsonl": "1418026afdd625698b25fd3e1ab425b1f862576d5685d42f32014da0caadcc1f",
+        "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_vd_full_dev_v1/internal_evaluation/V4/infer/V-D-S/predictions.jsonl": "6d96482e0e90a0e1664fc78dfc1c7cdb2d364a31a93fb3e4ebc105639b1b767e",
+        "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_vd_full_dev_v1/internal_evaluation/V4/infer/V-D-H/predictions.jsonl": "f622c2f144f80974f9758fa2cedf62dc65e6764eccb9712eab94a443c1616efc"
       },
       "remaining_run_actor_costs": {
         "selection": [
@@ -4822,6 +5501,21 @@
             "new_editor_runtime_ms": 1079890.2277173474,
             "editor_cache_hits": 0,
             "editor_calls": 553
+          }
+        ],
+        "internal_evaluation": [
+          {
+            "complete": true,
+            "wall_seconds": 5136.0693147182465,
+            "model_loads": [
+              {
+                "model_load_ms": 9429.327961057425,
+                "kind": "V"
+              }
+            ],
+            "new_editor_runtime_ms": 4103932.3187097907,
+            "editor_cache_hits": 1,
+            "editor_calls": 3313
           }
         ]
       }

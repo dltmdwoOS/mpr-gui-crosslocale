@@ -1,6 +1,6 @@
 # GCSA / RFA development harness
 
-PP-OCR 이후 편집 비교: Screen의 14개 새 평가를 완료했고 V-D-S와 V-D-H를 Selection/Internal로 확장했다. 8B 전체 1,895쌍의 정확도는 V-D-S 75.62%, V-D-H 78.26%, 기존 L-D-S 74.93%다. 4B는 스냅샷 시점에 479쌍까지 완료했다. [결과 및 측정 범위](reports/PPOCR_EDITOR_MATRIX_VD_RESULTS_KO.md) · [실행 안내](reports/PPOCR_EDITOR_MATRIX_RUNBOOK_KO.md) · [RTX 4090 pilot](reports/PPOCR_EDITOR_MATRIX_4090_PILOT_KO.md).
+PP-OCR 이후 편집 비교는 8B·4B 모두 전체 158문항·1,895쌍에서 완료했다. V-D-S, V-D-H, 기존 L-D-S의 정확도는 8B에서 75.62%, 78.26%, 74.93%, 4B에서 72.72%, 73.98%, 73.09%다. RTX 4090 재검증의 첫 후보는 8B V-D-H다. [전체 결과](reports/PPOCR_EDITOR_MATRIX_VD_RESULTS_KO.md) · [실행 안내](reports/PPOCR_EDITOR_MATRIX_RUNBOOK_KO.md) · [RTX 4090 pilot](reports/PPOCR_EDITOR_MATRIX_4090_PILOT_KO.md)
 
 기존 비교 기준은 **PP-OCRv5 기반 Stem-only Selective Alignment (L-D-S)**다. [5단계 설명과 O/R/T/F·R_stem·Translate-Test·CLP 비교](reports/PPOCR_STEM_ALIGNMENT_WRAPUP_KO.md)에 동일 1,895쌍의 결과·비용을 정리했다. 외부 baseline 비교는 8B에서 완료했으며, 4B는 같은 OCR과 고정 8B LM으로 편집한 입력을 사용했다.
 
