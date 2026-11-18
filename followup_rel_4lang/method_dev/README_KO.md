@@ -1,6 +1,6 @@
 # GCSA / RFA development harness
 
-PP-OCR 이후 편집 비교는 8B·4B 모두 전체 158문항·1,895쌍에서 완료했다. V-D-S, V-D-H, 기존 L-D-S의 정확도는 8B에서 75.62%, 78.26%, 74.93%, 4B에서 72.72%, 73.98%, 73.09%다. RTX 4090 재검증의 첫 후보는 8B V-D-H다. [전체 결과](reports/PPOCR_EDITOR_MATRIX_VD_RESULTS_KO.md) · [실행 안내](reports/PPOCR_EDITOR_MATRIX_RUNBOOK_KO.md) · [RTX 4090 pilot](reports/PPOCR_EDITOR_MATRIX_4090_PILOT_KO.md)
+최종 방법은 **PP-OCRv5 기반 질문 참조 정렬·보기 전체 번역**이다. Qwen3-VL-8B로 참조 추출과 후속 편집을 분리해 실행한다. 전체 개발 158문항·1,895쌍의 정확도는 8B 78.26%, 4B 73.98%였다. 초기 추출·정렬, 직접 재작성, 외부 대조, OCR 및 최종 편집 비교를 통일된 이름으로 정리했다. [방법 개발 최종 보고서](reports/FINAL_DEV_REPORT_KO.md) · [RTX 4090 파일럿](reports/PPOCR_EDITOR_MATRIX_4090_PILOT_KO.md)
 
 기존 비교 기준은 **PP-OCRv5 기반 Stem-only Selective Alignment (L-D-S)**다. [5단계 설명과 O/R/T/F·R_stem·Translate-Test·CLP 비교](reports/PPOCR_STEM_ALIGNMENT_WRAPUP_KO.md)에 동일 1,895쌍의 결과·비용을 정리했다. 외부 baseline 비교는 8B에서 완료했으며, 4B는 같은 OCR과 고정 8B LM으로 편집한 입력을 사용했다.
 
@@ -12,7 +12,7 @@ OCR 8B·4B 전체 완료: [최종 결과와 효율](reports/OCR_FINAL_RESULTS_KO
 
 OCR 실행·재현: [8B→4B 연속 실행](reports/OCR_8B_4B_CHAIN_PROTOCOL_KO.md), [Selection/Internal 고정 확장](reports/OCR_INVENTORY_FULL_DEV_PROTOCOL_KO.md). Screen의OCR·E1/M0 설정을 유지했고4B는8B와 동일한 전처리 MCQ를 사용했다. 완료 상태에서 `bash followup_rel_4lang/method_dev/scripts/run_ocr_8b_then_4b.sh`는 추론을 반복하지 않고 보고서를 갱신한다. [완료 원시 archive](artifacts/ocr_completed_8b_4b.tar.gz), [manifest·checksum·복원 범위](artifacts/ocr_completed_archive_manifest.json)를 제공한다. 모델 weights·이미지와 private labels는 별도다.
 
-최신 종합: [개발 실험 현황 — TT·CLP·OCR 전체 완료](reports/CURRENT_EXPERIMENT_SUMMARY_KO.md). 8B 전체1,895쌍에서 O70.18%, TT71.13%, inventory 없는 직접 rewrite71.72%, VLM inventory E1/M0 74.09%, OCR73.83%, CLP65.96%다. CLP는 미파싱396쌍 중338쌍이 출력 상한에 도달했고54쌍은 명확한 마지막 답의 표기 차이로 거절됐다. 공식 점수는 보존하고 표기만 허용한68.60%는 사후 진단으로 구분한다. [전처리+풀이 비용 비교](reports/TT_PERFORMANCE_EFFICIENCY_KO.md)에 TT·CLP를 포함했다. OCR의Screen 정확도·비용 개선을 전체결과로 일반화하지 않았다.
+초기 외부 대조와 CPU OCR 결과는 별도 보고서에 남아 있다. 영어 전체 번역 후 풀이는 71.13%, 영어 이해 후 단계별 풀이는 65.96%였다. 단계별 풀이의 미파싱 396쌍 중 338쌍이 출력 상한에 도달했고, 54쌍은 마지막 답의 표기 차이로 거절됐다. 표기만 허용한 68.60%는 사후 진단이다. [외부 대조와 CPU OCR 중간 집계](reports/CURRENT_EXPERIMENT_SUMMARY_KO.md) · [전처리·풀이 비용 비교](reports/TT_PERFORMANCE_EFFICIENCY_KO.md)
 
 OCR inventory Screen 완료: [결과](reports/OCR_INVENTORY_SCREEN_RESULTS_KO.md), [프로토콜·실행 명령](reports/OCR_INVENTORY_SCREEN_PROTOCOL_KO.md). 기존 E1 추출 출력·M0 matcher·최종 Qwen3-VL-8B 설정을 유지하고 inventory만 EasyOCR 1.7.2로 교체했다. OCR은 CPU 3스레드이며 bbox/confidence는 기록용으로만 보존했다. 기존 batch 구성을 유지한288행 중 main240행을 주 분석했다. `bash followup_rel_4lang/method_dev/scripts/run_ocr_inventory.sh --run`은 완료 단계를 다시 추론하지 않고 보고서만 재생성한다.
 
@@ -54,7 +54,7 @@ Qwen3-VL-4B 전체158문항 완료: [전체 개발 결과](reports/QWEN3_VL_4B_T
 `configs/gcsa_qwen3_fixed_lm_v1.json`이며 참조 추출·번역은 고정 text-only Qwen3-8B다.
 Qwen3-8B 다운로드·SHA 검증은 완료됐다. [실제 프롬프트 원문·한국어 해석·GO/NO-GO 검토](reports/PROMPTS_AND_GO_NO_GO_KO.md). 이전 v0 설정은 보존하며 현재 모델 준비 명령은 문서 마지막에 있다. [Smoke 재점검](reports/SMOKE_REAUDIT_KO.md)을 우선 참고한다.
 
-기준: `results-new-models-expA-20261115`, `e4aff7ace7248f1dd4e5a5dac0d4f679b33c6b5a`. 작업 브랜치 `method-selective-alignment-dev`. 기존 frozen 데이터·분석 규칙·원시 예측은 수정하지 않는다. [초기 준비 단계 보고](reports/FINAL_DEV_REPORT_KO.md).
+기준: `results-new-models-expA-20261115`, `e4aff7ace7248f1dd4e5a5dac0d4f679b33c6b5a`. 작업 브랜치 `method-selective-alignment-dev`. 기존 frozen 데이터·분석 규칙·원시 예측은 수정하지 않는다. [초기 데이터 검증](reports/STEP1_REPORT_KO.md) · [방법 개발 최종 보고서](reports/FINAL_DEV_REPORT_KO.md)
 
 [확대 파일럿·후보 탐색 설계 및 실행 명령](reports/SEARCH_DESIGN_KO.md): 기존 split을 보존한 32-item screen과 20-item selection, 추출 7조건·구조 9조건을 준비했다. 실제 진행 결과는 위 누적 실측 보고서에서 확인한다.
 
