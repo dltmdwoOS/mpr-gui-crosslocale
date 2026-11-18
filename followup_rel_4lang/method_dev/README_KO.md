@@ -1,5 +1,9 @@
 # GCSA / RFA development harness
 
+PP-OCR 이후 편집 비교: Screen의 14개 새 평가를 완료했고 V-D-S와 V-D-H를 Selection/Internal로 확장했다. 8B 전체 1,895쌍의 정확도는 V-D-S 75.62%, V-D-H 78.26%, 기존 L-D-S 74.93%다. 4B는 스냅샷 시점에 479쌍까지 완료했다. [결과 및 측정 범위](reports/PPOCR_EDITOR_MATRIX_VD_RESULTS_KO.md) · [실행 안내](reports/PPOCR_EDITOR_MATRIX_RUNBOOK_KO.md) · [RTX 4090 pilot](reports/PPOCR_EDITOR_MATRIX_4090_PILOT_KO.md).
+
+기존 비교 기준은 **PP-OCRv5 기반 Stem-only Selective Alignment (L-D-S)**다. [5단계 설명과 O/R/T/F·R_stem·Translate-Test·CLP 비교](reports/PPOCR_STEM_ALIGNMENT_WRAPUP_KO.md)에 동일 1,895쌍의 결과·비용을 정리했다. 외부 baseline 비교는 8B에서 완료했으며, 4B는 같은 OCR과 고정 8B LM으로 편집한 입력을 사용했다.
+
 GPU OCR 전체158문항 완료: [정확도·총시간·언어별 결과](reports/GPU_OCR_FULL_DEV_RESULTS_KO.md), [모든 표](reports/GPU_OCR_FULL_DEV_TABLES_KO.md), [재현 안내](reports/GPU_OCR_FULL_DEV_RUNBOOK_KO.md). Main1,895쌍에서 8B는 EasyOCR CUDA74.14%·72.26분, PP-OCRv5 74.93%·67.07분이며, 4B는72.66%·70.04분, 73.09%·65.02분이다. 기존 VLM inventory 대비 PP의 총 recipe는67.6%·56.2% 줄었다. 정확도 우위는 CI가0을 포함해 확정하지 않는다. 기존 Screen과 E1 추출을 재사용했고 raw archive·SHA manifest도 보존했다.
 
 GPU OCR Screen의 역사적 결과: [Screen 보고서](reports/GPU_OCR_SCREEN_RESULTS_KO.md), [설정](reports/GPU_OCR_SCREEN_RUNBOOK_KO.md). Main20문항·240쌍에서 8B는 EasyOCR CUDA75.42%·PP-OCRv5 75.83%, 4B는 두 방법 모두73.75%였다. 이후 Selection/Internal도 완료했으며 최신 결론은 위 전체158문항 보고서를 따른다.

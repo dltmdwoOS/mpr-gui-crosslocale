@@ -51,3 +51,5 @@ artifacts/search_plan_v1/*
 !artifacts/gpu_ocr_full_dev_results_snapshot.json
 !artifacts/gpu_ocr_full_dev_completed.tar.gz
 !artifacts/gpu_ocr_full_dev_archive_manifest.json
+!artifacts/ppocr_method_wrapup_snapshot.json
+!artifacts/ppocr_editor_matrix_vd_snapshot.json

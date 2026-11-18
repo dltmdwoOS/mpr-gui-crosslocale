@@ -1,0 +1,4830 @@
+{
+  "as_of_utc": "2026-11-18T08:50:22.053803+00:00",
+  "execution_mode": "gpu",
+  "development_only": true,
+  "remaining_run_contract_sha256": "a57af45f617f58980faa2b6e95dd8d1ab7686690ed384d5dc4244f548ff03e45",
+  "complete": false,
+  "solvers": {
+    "8B": {
+      "completed_cohorts": [
+        "screen",
+        "selection",
+        "internal_evaluation"
+      ],
+      "pending_cohorts": [],
+      "by_cohort": {
+        "screen": {
+          "conditions": {
+            "O": {
+              "n": 240,
+              "correct": 162,
+              "accuracy": 0.675,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 60,
+                    "correct": 40
+                  },
+                  "ru": {
+                    "n": 60,
+                    "correct": 39
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 41
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 42
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 60,
+                    "correct": 46
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 27
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 44
+                  },
+                  "en": {
+                    "n": 60,
+                    "correct": 45
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "en→th": {
+                    "n": 20,
+                    "correct": 9
+                  },
+                  "en→zh": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "ru→en": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "ru→th": {
+                    "n": 20,
+                    "correct": 8
+                  },
+                  "ru→zh": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "th→en": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "th→ru": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "th→zh": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "zh→en": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "zh→ru": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "zh→th": {
+                    "n": 20,
+                    "correct": 10
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 0,
+                "extraction_seconds": 0.0,
+                "localization_seconds": 0.0,
+                "final_vlm_seconds": 175.1673963656649,
+                "total_seconds": 175.1673963656649,
+                "seconds_per_pair": 0.7298641515236037
+              },
+              "extraction_calls": {
+                "calls": 0,
+                "repairs": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "prefill_forward_gpu_ms": 0,
+                "decode_forward_gpu_ms": 0,
+                "tokenization_ms": 0,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 0.0,
+                "peak_reserved_bytes": null,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 0,
+                "repairs": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "prefill_forward_gpu_ms": 0,
+                "decode_forward_gpu_ms": 0,
+                "tokenization_ms": 0,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 0.0,
+                "peak_reserved_bytes": null,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 0,
+              "unparsed": 0,
+              "extraction_quality": null,
+              "rewrite_status": {},
+              "component_status": {},
+              "stem_changed_pairs": 0,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": null,
+              "vs_O": null,
+              "vs_L_D_S": null
+            },
+            "L-D-S": {
+              "n": 240,
+              "correct": 182,
+              "accuracy": 0.7583333333333333,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 60,
+                    "correct": 46
+                  },
+                  "ru": {
+                    "n": 60,
+                    "correct": 47
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 44
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 45
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 60,
+                    "correct": 46
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 42
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 47
+                  },
+                  "en": {
+                    "n": 60,
+                    "correct": 47
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "en→th": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "en→zh": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "ru→en": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "ru→th": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "ru→zh": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "th→en": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "th→ru": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "th→zh": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "zh→en": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "zh→ru": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "zh→th": {
+                    "n": 20,
+                    "correct": 14
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 8.864168220199645,
+                "extraction_seconds": 63.51239993982017,
+                "localization_seconds": 328.80129240173846,
+                "final_vlm_seconds": 200.0421493593603,
+                "total_seconds": 601.2200099211186,
+                "seconds_per_pair": 2.5050833746713277
+              },
+              "extraction_calls": {
+                "calls": 80,
+                "repairs": 0,
+                "input_tokens": 43386,
+                "output_tokens": 2041,
+                "prefill_forward_gpu_ms": null,
+                "decode_forward_gpu_ms": null,
+                "tokenization_ms": null,
+                "cap_hits": 0,
+                "visual_forward_calls": null,
+                "runtime_seconds": 63.51239993982017,
+                "peak_reserved_bytes": 16615735296,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 252,
+                "repairs": 12,
+                "input_tokens": 245845,
+                "output_tokens": 5522,
+                "prefill_forward_gpu_ms": null,
+                "decode_forward_gpu_ms": null,
+                "tokenization_ms": null,
+                "cap_hits": 0,
+                "visual_forward_calls": null,
+                "runtime_seconds": 328.80129240173846,
+                "peak_reserved_bytes": 17175674880,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 163,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.8375,
+                "recall": 0.8375,
+                "f1": 0.8375,
+                "gold": 240,
+                "found": 240,
+                "matched": 201,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "success": 231,
+                "fallback_original": 8,
+                "no_op_no_edits": 1
+              },
+              "component_status": {},
+              "stem_changed_pairs": 231,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": null,
+              "vs_O": {
+                "pairs": 240,
+                "items": 20,
+                "difference": 0.08333333333333333,
+                "ci95": [
+                  0.020833333333333332,
+                  0.15416666666666667
+                ],
+                "exploratory_bootstrap_centered_p": 0.014498550144985502,
+                "recovery": 29,
+                "regression": 9
+              },
+              "vs_L_D_S": null
+            },
+            "V-D-S": {
+              "n": 240,
+              "correct": 180,
+              "accuracy": 0.75,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 60,
+                    "correct": 46
+                  },
+                  "ru": {
+                    "n": 60,
+                    "correct": 47
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 42
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 45
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 60,
+                    "correct": 46
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 42
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 46
+                  },
+                  "en": {
+                    "n": 60,
+                    "correct": 46
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "en→th": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "en→zh": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "ru→en": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "ru→th": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "ru→zh": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "th→en": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "th→ru": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "th→zh": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "zh→en": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "zh→ru": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "zh→th": {
+                    "n": 20,
+                    "correct": 14
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 8.864168220199645,
+                "extraction_seconds": 62.97380428016186,
+                "localization_seconds": 326.32447531819344,
+                "final_vlm_seconds": 173.30528381094337,
+                "total_seconds": 571.4677316294983,
+                "seconds_per_pair": 2.381115548456243
+              },
+              "extraction_calls": {
+                "calls": 80,
+                "repairs": 0,
+                "input_tokens": 43066,
+                "output_tokens": 1992,
+                "prefill_forward_gpu_ms": 17652.99052810669,
+                "decode_forward_gpu_ms": 44275.603801727295,
+                "tokenization_ms": 155.9304716065526,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 62.97380428016186,
+                "peak_reserved_bytes": 17796431872,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 237,
+                "repairs": 12,
+                "input_tokens": 230145,
+                "output_tokens": 6915,
+                "prefill_forward_gpu_ms": 129641.79790496826,
+                "decode_forward_gpu_ms": 192701.2878036499,
+                "tokenization_ms": 757.5462972745299,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 326.32447531819344,
+                "peak_reserved_bytes": 18371051520,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 159,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.92,
+                "recall": 0.8625,
+                "f1": 0.8903225806451613,
+                "gold": 240,
+                "found": 225,
+                "matched": 207,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "no_op_no_referents": 15,
+                "success": 212,
+                "fallback_original": 8,
+                "no_op_no_edits": 5
+              },
+              "component_status": {
+                "stem:no_op_no_referents": 15,
+                "options:original": 240,
+                "stem:success": 212,
+                "stem:fallback_original": 8,
+                "stem:no_op_no_edits": 5
+              },
+              "stem_changed_pairs": 212,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": 3,
+              "vs_O": {
+                "pairs": 240,
+                "items": 20,
+                "difference": 0.075,
+                "ci95": [
+                  0.0125,
+                  0.14166666666666666
+                ],
+                "exploratory_bootstrap_centered_p": 0.026597340265973404,
+                "recovery": 27,
+                "regression": 9
+              },
+              "vs_L_D_S": {
+                "pairs": 240,
+                "items": 20,
+                "difference": -0.008333333333333333,
+                "ci95": [
+                  -0.029166666666666667,
+                  0.0125
+                ],
+                "exploratory_bootstrap_centered_p": 0.5275472452754725,
+                "recovery": 2,
+                "regression": 4
+              }
+            },
+            "V-D-H": {
+              "n": 240,
+              "correct": 179,
+              "accuracy": 0.7458333333333333,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 60,
+                    "correct": 49
+                  },
+                  "ru": {
+                    "n": 60,
+                    "correct": 50
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 36
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 44
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 60,
+                    "correct": 40
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 48
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 45
+                  },
+                  "en": {
+                    "n": 60,
+                    "correct": 46
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "en→th": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "en→zh": {
+                    "n": 20,
+                    "correct": 18
+                  },
+                  "ru→en": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "ru→th": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "ru→zh": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "th→en": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "th→ru": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "th→zh": {
+                    "n": 20,
+                    "correct": 10
+                  },
+                  "zh→en": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "zh→ru": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "zh→th": {
+                    "n": 20,
+                    "correct": 15
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 8.864168220199645,
+                "extraction_seconds": 62.97380428016186,
+                "localization_seconds": 426.8631886392832,
+                "final_vlm_seconds": 122.61313813055554,
+                "total_seconds": 621.3142992702002,
+                "seconds_per_pair": 2.5888095802925006
+              },
+              "extraction_calls": {
+                "calls": 80,
+                "repairs": 0,
+                "input_tokens": 43066,
+                "output_tokens": 1992,
+                "prefill_forward_gpu_ms": 17652.99052810669,
+                "decode_forward_gpu_ms": 44275.603801727295,
+                "tokenization_ms": 155.9304716065526,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 62.97380428016186,
+                "peak_reserved_bytes": 17796431872,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 252,
+                "repairs": 12,
+                "input_tokens": 231763,
+                "output_tokens": 16431,
+                "prefill_forward_gpu_ms": 64828.600284576416,
+                "decode_forward_gpu_ms": 354303.38805007935,
+                "tokenization_ms": 765.0820696726441,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 426.8631886392832,
+                "peak_reserved_bytes": 18371051520,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 28,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.92,
+                "recall": 0.8625,
+                "f1": 0.8903225806451613,
+                "gold": 240,
+                "found": 225,
+                "matched": 207,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "success": 240
+              },
+              "component_status": {
+                "stem:no_op_no_edits": 28,
+                "options:success": 240,
+                "stem:success": 212
+              },
+              "stem_changed_pairs": 212,
+              "options_changed_pairs": 240,
+              "semantic_warning_pairs": 18,
+              "vs_O": {
+                "pairs": 240,
+                "items": 20,
+                "difference": 0.07083333333333333,
+                "ci95": [
+                  0.0,
+                  0.14166666666666666
+                ],
+                "exploratory_bootstrap_centered_p": 0.059694030596940305,
+                "recovery": 36,
+                "regression": 19
+              },
+              "vs_L_D_S": {
+                "pairs": 240,
+                "items": 20,
+                "difference": -0.0125,
+                "ci95": [
+                  -0.0875,
+                  0.058333333333333334
+                ],
+                "exploratory_bootstrap_centered_p": 0.7828217178282172,
+                "recovery": 19,
+                "regression": 22
+              }
+            }
+          },
+          "V-D-H_minus_V-D-S": {
+            "pairs": 240,
+            "items": 20,
+            "difference": -0.004166666666666667,
+            "ci95": [
+              -0.08333333333333333,
+              0.07083333333333333
+            ],
+            "exploratory_bootstrap_centered_p": 0.9612038796120388,
+            "recovery": 21,
+            "regression": 22
+          },
+          "S_H_same_stem": 224,
+          "primary_pairs": 240
+        },
+        "selection": {
+          "conditions": {
+            "O": {
+              "n": 239,
+              "correct": 171,
+              "accuracy": 0.7154811715481172,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 60,
+                    "correct": 44
+                  },
+                  "ru": {
+                    "n": 60,
+                    "correct": 39
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 42
+                  },
+                  "zh": {
+                    "n": 59,
+                    "correct": 46
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 59,
+                    "correct": 48
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 30
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 43
+                  },
+                  "en": {
+                    "n": 60,
+                    "correct": 50
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 20,
+                    "correct": 18
+                  },
+                  "en→th": {
+                    "n": 20,
+                    "correct": 10
+                  },
+                  "en→zh": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "ru→en": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "ru→th": {
+                    "n": 20,
+                    "correct": 10
+                  },
+                  "ru→zh": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "th→en": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "th→ru": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "th→zh": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "zh→en": {
+                    "n": 20,
+                    "correct": 19
+                  },
+                  "zh→ru": {
+                    "n": 19,
+                    "correct": 17
+                  },
+                  "zh→th": {
+                    "n": 20,
+                    "correct": 10
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 0,
+                "extraction_seconds": 0.0,
+                "localization_seconds": 0.0,
+                "final_vlm_seconds": 155.27177227723104,
+                "total_seconds": 155.27177227723104,
+                "seconds_per_pair": 0.6496726873524311
+              },
+              "extraction_calls": {
+                "calls": 0,
+                "repairs": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "prefill_forward_gpu_ms": 0,
+                "decode_forward_gpu_ms": 0,
+                "tokenization_ms": 0,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 0.0,
+                "peak_reserved_bytes": null,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 0,
+                "repairs": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "prefill_forward_gpu_ms": 0,
+                "decode_forward_gpu_ms": 0,
+                "tokenization_ms": 0,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 0.0,
+                "peak_reserved_bytes": null,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 0,
+              "unparsed": 0,
+              "extraction_quality": null,
+              "rewrite_status": {},
+              "component_status": {},
+              "stem_changed_pairs": 0,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": null,
+              "vs_O": null,
+              "vs_L_D_S": null
+            },
+            "L-D-S": {
+              "n": 239,
+              "correct": 182,
+              "accuracy": 0.7615062761506276,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 60,
+                    "correct": 46
+                  },
+                  "ru": {
+                    "n": 60,
+                    "correct": 44
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 45
+                  },
+                  "zh": {
+                    "n": 59,
+                    "correct": 47
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 59,
+                    "correct": 48
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 36
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 49
+                  },
+                  "en": {
+                    "n": 60,
+                    "correct": 49
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 20,
+                    "correct": 18
+                  },
+                  "en→th": {
+                    "n": 20,
+                    "correct": 11
+                  },
+                  "en→zh": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "ru→en": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "ru→th": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "ru→zh": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "th→en": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "th→ru": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "th→zh": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "zh→en": {
+                    "n": 20,
+                    "correct": 19
+                  },
+                  "zh→ru": {
+                    "n": 19,
+                    "correct": 16
+                  },
+                  "zh→th": {
+                    "n": 20,
+                    "correct": 12
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 9.304700990207493,
+                "extraction_seconds": 134.50290270335972,
+                "localization_seconds": 417.8172379024327,
+                "final_vlm_seconds": 210.5034739971161,
+                "total_seconds": 772.128315593116,
+                "seconds_per_pair": 3.2306624083393976
+              },
+              "extraction_calls": {
+                "calls": 82,
+                "repairs": 2,
+                "input_tokens": 44853,
+                "output_tokens": 2141,
+                "prefill_forward_gpu_ms": null,
+                "decode_forward_gpu_ms": null,
+                "tokenization_ms": null,
+                "cap_hits": 0,
+                "visual_forward_calls": null,
+                "runtime_seconds": 134.50290270335972,
+                "peak_reserved_bytes": 16615735296,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 248,
+                "repairs": 15,
+                "input_tokens": 243239,
+                "output_tokens": 5322,
+                "prefill_forward_gpu_ms": null,
+                "decode_forward_gpu_ms": null,
+                "tokenization_ms": null,
+                "cap_hits": 0,
+                "visual_forward_calls": null,
+                "runtime_seconds": 417.8172379024327,
+                "peak_reserved_bytes": 17142120448,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 168,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.9227467811158798,
+                "recall": 0.899581589958159,
+                "f1": 0.9110169491525424,
+                "gold": 239,
+                "found": 233,
+                "matched": 215,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "success": 225,
+                "fallback_original": 14
+              },
+              "component_status": {},
+              "stem_changed_pairs": 225,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": null,
+              "vs_O": {
+                "pairs": 239,
+                "items": 20,
+                "difference": 0.04602510460251046,
+                "ci95": [
+                  -0.008333333333333333,
+                  0.10833333333333334
+                ],
+                "exploratory_bootstrap_centered_p": 0.12248775122487751,
+                "recovery": 18,
+                "regression": 7
+              },
+              "vs_L_D_S": null
+            },
+            "V-D-S": {
+              "n": 239,
+              "correct": 181,
+              "accuracy": 0.7573221757322176,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 60,
+                    "correct": 47
+                  },
+                  "ru": {
+                    "n": 60,
+                    "correct": 43
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 44
+                  },
+                  "zh": {
+                    "n": 59,
+                    "correct": 47
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 59,
+                    "correct": 47
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 36
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 49
+                  },
+                  "en": {
+                    "n": 60,
+                    "correct": 49
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 20,
+                    "correct": 18
+                  },
+                  "en→th": {
+                    "n": 20,
+                    "correct": 12
+                  },
+                  "en→zh": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "ru→en": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "ru→th": {
+                    "n": 20,
+                    "correct": 12
+                  },
+                  "ru→zh": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "th→en": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "th→ru": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "th→zh": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "zh→en": {
+                    "n": 20,
+                    "correct": 19
+                  },
+                  "zh→ru": {
+                    "n": 19,
+                    "correct": 16
+                  },
+                  "zh→th": {
+                    "n": 20,
+                    "correct": 12
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 9.304700990207493,
+                "extraction_seconds": 91.15574625134468,
+                "localization_seconds": 439.0483137164265,
+                "final_vlm_seconds": 209.04176945518702,
+                "total_seconds": 748.5505304131657,
+                "seconds_per_pair": 3.1320105875027853
+              },
+              "extraction_calls": {
+                "calls": 80,
+                "repairs": 0,
+                "input_tokens": 43212,
+                "output_tokens": 1971,
+                "prefill_forward_gpu_ms": 25483.947578430176,
+                "decode_forward_gpu_ms": 64464.39163208008,
+                "tokenization_ms": 161.17473226040602,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 91.15574625134468,
+                "peak_reserved_bytes": 17762877440,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 242,
+                "repairs": 9,
+                "input_tokens": 237420,
+                "output_tokens": 6942,
+                "prefill_forward_gpu_ms": 133846.85972213745,
+                "decode_forward_gpu_ms": 301472.61943626404,
+                "tokenization_ms": 602.3196801543236,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 439.0483137164265,
+                "peak_reserved_bytes": 18345885696,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 176,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.9484978540772532,
+                "recall": 0.9246861924686193,
+                "f1": 0.9364406779661016,
+                "gold": 239,
+                "found": 233,
+                "matched": 221,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "success": 227,
+                "fallback_original": 5,
+                "no_op_no_edits": 1,
+                "no_op_no_referents": 6
+              },
+              "component_status": {
+                "stem:success": 227,
+                "options:original": 239,
+                "stem:fallback_original": 5,
+                "stem:no_op_no_edits": 1,
+                "stem:no_op_no_referents": 6
+              },
+              "stem_changed_pairs": 227,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": 0,
+              "vs_O": {
+                "pairs": 239,
+                "items": 20,
+                "difference": 0.04184100418410042,
+                "ci95": [
+                  -0.004219409282700422,
+                  0.1
+                ],
+                "exploratory_bootstrap_centered_p": 0.1267873212678732,
+                "recovery": 16,
+                "regression": 6
+              },
+              "vs_L_D_S": {
+                "pairs": 239,
+                "items": 20,
+                "difference": -0.0041841004184100415,
+                "ci95": [
+                  -0.02510460251046025,
+                  0.0125
+                ],
+                "exploratory_bootstrap_centered_p": 0.7863213678632137,
+                "recovery": 1,
+                "regression": 2
+              }
+            },
+            "V-D-H": {
+              "n": 239,
+              "correct": 191,
+              "accuracy": 0.799163179916318,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 60,
+                    "correct": 50
+                  },
+                  "ru": {
+                    "n": 60,
+                    "correct": 42
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 46
+                  },
+                  "zh": {
+                    "n": 59,
+                    "correct": 53
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 59,
+                    "correct": 48
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 44
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 49
+                  },
+                  "en": {
+                    "n": 60,
+                    "correct": 50
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "en→th": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "en→zh": {
+                    "n": 20,
+                    "correct": 18
+                  },
+                  "ru→en": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "ru→th": {
+                    "n": 20,
+                    "correct": 12
+                  },
+                  "ru→zh": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "th→en": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "th→ru": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "th→zh": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "zh→en": {
+                    "n": 20,
+                    "correct": 20
+                  },
+                  "zh→ru": {
+                    "n": 19,
+                    "correct": 17
+                  },
+                  "zh→th": {
+                    "n": 20,
+                    "correct": 16
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 9.304700990207493,
+                "extraction_seconds": 91.15574625134468,
+                "localization_seconds": 476.54274276364595,
+                "final_vlm_seconds": 175.84160654681423,
+                "total_seconds": 752.8447965520123,
+                "seconds_per_pair": 3.1499782282510975
+              },
+              "extraction_calls": {
+                "calls": 80,
+                "repairs": 0,
+                "input_tokens": 43212,
+                "output_tokens": 1971,
+                "prefill_forward_gpu_ms": 25483.947578430176,
+                "decode_forward_gpu_ms": 64464.39163208008,
+                "tokenization_ms": 161.17473226040602,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 91.15574625134468,
+                "peak_reserved_bytes": 17762877440,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 256,
+                "repairs": 17,
+                "input_tokens": 238033,
+                "output_tokens": 16768,
+                "prefill_forward_gpu_ms": 83569.4720954895,
+                "decode_forward_gpu_ms": 385501.1909351349,
+                "tokenization_ms": 659.2645086348057,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 476.54274276364595,
+                "peak_reserved_bytes": 18345885696,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 3,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.9484978540772532,
+                "recall": 0.9246861924686193,
+                "f1": 0.9364406779661016,
+                "gold": 239,
+                "found": 233,
+                "matched": 221,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "partial_fallback": 3,
+                "no_op_no_edits": 1,
+                "success": 235
+              },
+              "component_status": {
+                "stem:fallback_original": 1,
+                "options:success": 237,
+                "stem:no_op_no_edits": 20,
+                "stem:success": 218,
+                "options:fallback_original": 2
+              },
+              "stem_changed_pairs": 218,
+              "options_changed_pairs": 236,
+              "semantic_warning_pairs": 17,
+              "vs_O": {
+                "pairs": 239,
+                "items": 20,
+                "difference": 0.08368200836820083,
+                "ci95": [
+                  0.01680672268907563,
+                  0.15
+                ],
+                "exploratory_bootstrap_centered_p": 0.012098790120987902,
+                "recovery": 33,
+                "regression": 13
+              },
+              "vs_L_D_S": {
+                "pairs": 239,
+                "items": 20,
+                "difference": 0.03765690376569038,
+                "ci95": [
+                  -0.04602510460251046,
+                  0.12133891213389121
+                ],
+                "exploratory_bootstrap_centered_p": 0.39616038396160386,
+                "recovery": 28,
+                "regression": 19
+              }
+            }
+          },
+          "V-D-H_minus_V-D-S": {
+            "pairs": 239,
+            "items": 20,
+            "difference": 0.04184100418410042,
+            "ci95": [
+              -0.04583333333333333,
+              0.12552301255230125
+            ],
+            "exploratory_bootstrap_centered_p": 0.35376462353764626,
+            "recovery": 28,
+            "regression": 18
+          },
+          "S_H_same_stem": 224,
+          "primary_pairs": 239
+        },
+        "internal_evaluation": {
+          "conditions": {
+            "O": {
+              "n": 1416,
+              "correct": 997,
+              "accuracy": 0.7040960451977402,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 354,
+                    "correct": 258
+                  },
+                  "ru": {
+                    "n": 354,
+                    "correct": 258
+                  },
+                  "th": {
+                    "n": 354,
+                    "correct": 239
+                  },
+                  "zh": {
+                    "n": 354,
+                    "correct": 242
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 354,
+                    "correct": 265
+                  },
+                  "th": {
+                    "n": 354,
+                    "correct": 172
+                  },
+                  "zh": {
+                    "n": 354,
+                    "correct": 270
+                  },
+                  "en": {
+                    "n": 354,
+                    "correct": 290
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 118,
+                    "correct": 98
+                  },
+                  "en→th": {
+                    "n": 118,
+                    "correct": 60
+                  },
+                  "en→zh": {
+                    "n": 118,
+                    "correct": 100
+                  },
+                  "ru→en": {
+                    "n": 118,
+                    "correct": 105
+                  },
+                  "ru→th": {
+                    "n": 118,
+                    "correct": 58
+                  },
+                  "ru→zh": {
+                    "n": 118,
+                    "correct": 95
+                  },
+                  "th→en": {
+                    "n": 118,
+                    "correct": 87
+                  },
+                  "th→ru": {
+                    "n": 118,
+                    "correct": 77
+                  },
+                  "th→zh": {
+                    "n": 118,
+                    "correct": 75
+                  },
+                  "zh→en": {
+                    "n": 118,
+                    "correct": 98
+                  },
+                  "zh→ru": {
+                    "n": 118,
+                    "correct": 90
+                  },
+                  "zh→th": {
+                    "n": 118,
+                    "correct": 54
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 0,
+                "extraction_seconds": 0.0,
+                "localization_seconds": 0.0,
+                "final_vlm_seconds": 727.1900730160996,
+                "total_seconds": 727.1900730160996,
+                "seconds_per_pair": 0.5135523114520477
+              },
+              "extraction_calls": {
+                "calls": 0,
+                "repairs": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "prefill_forward_gpu_ms": 0,
+                "decode_forward_gpu_ms": 0,
+                "tokenization_ms": 0,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 0.0,
+                "peak_reserved_bytes": null,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 0,
+                "repairs": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "prefill_forward_gpu_ms": 0,
+                "decode_forward_gpu_ms": 0,
+                "tokenization_ms": 0,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 0.0,
+                "peak_reserved_bytes": null,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 0,
+              "unparsed": 0,
+              "extraction_quality": null,
+              "rewrite_status": {},
+              "component_status": {},
+              "stem_changed_pairs": 0,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": null,
+              "vs_O": null,
+              "vs_L_D_S": null
+            },
+            "L-D-S": {
+              "n": 1416,
+              "correct": 1056,
+              "accuracy": 0.7457627118644068,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 354,
+                    "correct": 271
+                  },
+                  "ru": {
+                    "n": 354,
+                    "correct": 269
+                  },
+                  "th": {
+                    "n": 354,
+                    "correct": 258
+                  },
+                  "zh": {
+                    "n": 354,
+                    "correct": 258
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 354,
+                    "correct": 268
+                  },
+                  "th": {
+                    "n": 354,
+                    "correct": 220
+                  },
+                  "zh": {
+                    "n": 354,
+                    "correct": 277
+                  },
+                  "en": {
+                    "n": 354,
+                    "correct": 291
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 118,
+                    "correct": 97
+                  },
+                  "en→th": {
+                    "n": 118,
+                    "correct": 76
+                  },
+                  "en→zh": {
+                    "n": 118,
+                    "correct": 98
+                  },
+                  "ru→en": {
+                    "n": 118,
+                    "correct": 100
+                  },
+                  "ru→th": {
+                    "n": 118,
+                    "correct": 71
+                  },
+                  "ru→zh": {
+                    "n": 118,
+                    "correct": 98
+                  },
+                  "th→en": {
+                    "n": 118,
+                    "correct": 92
+                  },
+                  "th→ru": {
+                    "n": 118,
+                    "correct": 85
+                  },
+                  "th→zh": {
+                    "n": 118,
+                    "correct": 81
+                  },
+                  "zh→en": {
+                    "n": 118,
+                    "correct": 99
+                  },
+                  "zh→ru": {
+                    "n": 118,
+                    "correct": 86
+                  },
+                  "zh→th": {
+                    "n": 118,
+                    "correct": 73
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 55.13729390408844,
+                "extraction_seconds": 379.1051655765623,
+                "localization_seconds": 1268.7609487595037,
+                "final_vlm_seconds": 948.3959901006892,
+                "total_seconds": 2651.3993983408436,
+                "seconds_per_pair": 1.8724572022181099
+              },
+              "extraction_calls": {
+                "calls": 479,
+                "repairs": 7,
+                "input_tokens": 260843,
+                "output_tokens": 12011,
+                "prefill_forward_gpu_ms": null,
+                "decode_forward_gpu_ms": null,
+                "tokenization_ms": null,
+                "cap_hits": 0,
+                "visual_forward_calls": null,
+                "runtime_seconds": 379.1051655765623,
+                "peak_reserved_bytes": 16615735296,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 1466,
+                "repairs": 71,
+                "input_tokens": 1458498,
+                "output_tokens": 31224,
+                "prefill_forward_gpu_ms": null,
+                "decode_forward_gpu_ms": null,
+                "tokenization_ms": null,
+                "cap_hits": 0,
+                "visual_forward_calls": null,
+                "runtime_seconds": 1268.7609487595037,
+                "peak_reserved_bytes": 17314086912,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 1092,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.9419354838709677,
+                "recall": 0.9279661016949152,
+                "f1": 0.934898612593383,
+                "gold": 1416,
+                "found": 1395,
+                "matched": 1314,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "success": 1352,
+                "fallback_original": 52,
+                "no_op_no_edits": 12
+              },
+              "component_status": {},
+              "stem_changed_pairs": 1352,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": null,
+              "vs_O": {
+                "pairs": 1416,
+                "items": 118,
+                "difference": 0.041666666666666664,
+                "ci95": [
+                  0.015536723163841809,
+                  0.067090395480226
+                ],
+                "exploratory_bootstrap_centered_p": 0.0015998400159984002,
+                "recovery": 122,
+                "regression": 63
+              },
+              "vs_L_D_S": null
+            },
+            "V-D-S": {
+              "n": 1416,
+              "correct": 1072,
+              "accuracy": 0.7570621468926554,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 354,
+                    "correct": 278
+                  },
+                  "ru": {
+                    "n": 354,
+                    "correct": 273
+                  },
+                  "th": {
+                    "n": 354,
+                    "correct": 260
+                  },
+                  "zh": {
+                    "n": 354,
+                    "correct": 261
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 354,
+                    "correct": 274
+                  },
+                  "th": {
+                    "n": 354,
+                    "correct": 223
+                  },
+                  "zh": {
+                    "n": 354,
+                    "correct": 281
+                  },
+                  "en": {
+                    "n": 354,
+                    "correct": 294
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 118,
+                    "correct": 100
+                  },
+                  "en→th": {
+                    "n": 118,
+                    "correct": 78
+                  },
+                  "en→zh": {
+                    "n": 118,
+                    "correct": 100
+                  },
+                  "ru→en": {
+                    "n": 118,
+                    "correct": 103
+                  },
+                  "ru→th": {
+                    "n": 118,
+                    "correct": 72
+                  },
+                  "ru→zh": {
+                    "n": 118,
+                    "correct": 98
+                  },
+                  "th→en": {
+                    "n": 118,
+                    "correct": 90
+                  },
+                  "th→ru": {
+                    "n": 118,
+                    "correct": 87
+                  },
+                  "th→zh": {
+                    "n": 118,
+                    "correct": 83
+                  },
+                  "zh→en": {
+                    "n": 118,
+                    "correct": 101
+                  },
+                  "zh→ru": {
+                    "n": 118,
+                    "correct": 87
+                  },
+                  "zh→th": {
+                    "n": 118,
+                    "correct": 73
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 55.13729390408844,
+                "extraction_seconds": 315.2816730812192,
+                "localization_seconds": 1445.3958183135837,
+                "final_vlm_seconds": 962.6540367733687,
+                "total_seconds": 2778.46882207226,
+                "seconds_per_pair": 1.962195495813743
+              },
+              "extraction_calls": {
+                "calls": 473,
+                "repairs": 1,
+                "input_tokens": 255144,
+                "output_tokens": 11536,
+                "prefill_forward_gpu_ms": 52793.71555709839,
+                "decode_forward_gpu_ms": 256003.10240745544,
+                "tokenization_ms": 965.1498505845666,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 315.2816730812192,
+                "peak_reserved_bytes": 17796431872,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 1432,
+                "repairs": 49,
+                "input_tokens": 1414933,
+                "output_tokens": 40692,
+                "prefill_forward_gpu_ms": 395138.74376296997,
+                "decode_forward_gpu_ms": 1026751.9856052399,
+                "tokenization_ms": 4492.54803545773,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 1445.3958183135837,
+                "peak_reserved_bytes": 18492686336,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 1101,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.9655172413793104,
+                "recall": 0.9491525423728814,
+                "f1": 0.9572649572649573,
+                "gold": 1416,
+                "found": 1392,
+                "matched": 1344,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "success": 1349,
+                "no_op_no_referents": 33,
+                "fallback_original": 31,
+                "no_op_no_edits": 3
+              },
+              "component_status": {
+                "stem:success": 1349,
+                "options:original": 1416,
+                "stem:no_op_no_referents": 33,
+                "stem:fallback_original": 31,
+                "stem:no_op_no_edits": 3
+              },
+              "stem_changed_pairs": 1349,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": 22,
+              "vs_O": {
+                "pairs": 1416,
+                "items": 118,
+                "difference": 0.05296610169491525,
+                "ci95": [
+                  0.028954802259887006,
+                  0.07627118644067797
+                ],
+                "exploratory_bootstrap_centered_p": 0.00019998000199980003,
+                "recovery": 124,
+                "regression": 49
+              },
+              "vs_L_D_S": {
+                "pairs": 1416,
+                "items": 118,
+                "difference": 0.011299435028248588,
+                "ci95": [
+                  0.0007062146892655367,
+                  0.021892655367231638
+                ],
+                "exploratory_bootstrap_centered_p": 0.0484951504849515,
+                "recovery": 37,
+                "regression": 21
+              }
+            },
+            "V-D-H": {
+              "n": 1416,
+              "correct": 1113,
+              "accuracy": 0.7860169491525424,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 354,
+                    "correct": 288
+                  },
+                  "ru": {
+                    "n": 354,
+                    "correct": 281
+                  },
+                  "th": {
+                    "n": 354,
+                    "correct": 258
+                  },
+                  "zh": {
+                    "n": 354,
+                    "correct": 286
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 354,
+                    "correct": 271
+                  },
+                  "th": {
+                    "n": 354,
+                    "correct": 276
+                  },
+                  "zh": {
+                    "n": 354,
+                    "correct": 270
+                  },
+                  "en": {
+                    "n": 354,
+                    "correct": 296
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 118,
+                    "correct": 98
+                  },
+                  "en→th": {
+                    "n": 118,
+                    "correct": 95
+                  },
+                  "en→zh": {
+                    "n": 118,
+                    "correct": 95
+                  },
+                  "ru→en": {
+                    "n": 118,
+                    "correct": 100
+                  },
+                  "ru→th": {
+                    "n": 118,
+                    "correct": 91
+                  },
+                  "ru→zh": {
+                    "n": 118,
+                    "correct": 90
+                  },
+                  "th→en": {
+                    "n": 118,
+                    "correct": 95
+                  },
+                  "th→ru": {
+                    "n": 118,
+                    "correct": 78
+                  },
+                  "th→zh": {
+                    "n": 118,
+                    "correct": 85
+                  },
+                  "zh→en": {
+                    "n": 118,
+                    "correct": 101
+                  },
+                  "zh→ru": {
+                    "n": 118,
+                    "correct": 95
+                  },
+                  "zh→th": {
+                    "n": 118,
+                    "correct": 90
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 55.13729390408844,
+                "extraction_seconds": 315.2816730812192,
+                "localization_seconds": 2230.422399107367,
+                "final_vlm_seconds": 764.3668662132695,
+                "total_seconds": 3365.208232305944,
+                "seconds_per_pair": 2.3765594860917685
+              },
+              "extraction_calls": {
+                "calls": 473,
+                "repairs": 1,
+                "input_tokens": 255144,
+                "output_tokens": 11536,
+                "prefill_forward_gpu_ms": 52793.71555709839,
+                "decode_forward_gpu_ms": 256003.10240745544,
+                "tokenization_ms": 965.1498505845666,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 315.2816730812192,
+                "peak_reserved_bytes": 17796431872,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 1495,
+                "repairs": 79,
+                "input_tokens": 1403317,
+                "output_tokens": 97523,
+                "prefill_forward_gpu_ms": 166234.11907577515,
+                "decode_forward_gpu_ms": 2017255.9918060303,
+                "tokenization_ms": 4533.991412259638,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 2230.422399107367,
+                "peak_reserved_bytes": 18492686336,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 15,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.9655172413793104,
+                "recall": 0.9491525423728814,
+                "f1": 0.9572649572649573,
+                "gold": 1416,
+                "found": 1392,
+                "matched": 1344,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "success": 1405,
+                "partial_fallback": 11
+              },
+              "component_status": {
+                "stem:success": 1315,
+                "options:success": 1415,
+                "stem:no_op_no_edits": 91,
+                "stem:fallback_original": 10,
+                "options:fallback_original": 1
+              },
+              "stem_changed_pairs": 1315,
+              "options_changed_pairs": 1412,
+              "semantic_warning_pairs": 104,
+              "vs_O": {
+                "pairs": 1416,
+                "items": 118,
+                "difference": 0.08192090395480225,
+                "ci95": [
+                  0.05084745762711865,
+                  0.1137005649717514
+                ],
+                "exploratory_bootstrap_centered_p": 9.999000099990002e-05,
+                "recovery": 203,
+                "regression": 87
+              },
+              "vs_L_D_S": {
+                "pairs": 1416,
+                "items": 118,
+                "difference": 0.04025423728813559,
+                "ci95": [
+                  0.012005649717514125,
+                  0.0692090395480226
+                ],
+                "exploratory_bootstrap_centered_p": 0.006399360063993601,
+                "recovery": 145,
+                "regression": 88
+              }
+            }
+          },
+          "V-D-H_minus_V-D-S": {
+            "pairs": 1416,
+            "items": 118,
+            "difference": 0.028954802259887006,
+            "ci95": [
+              0.0035310734463276836,
+              0.05580861581920878
+            ],
+            "exploratory_bootstrap_centered_p": 0.0342965703429657,
+            "recovery": 125,
+            "regression": 84
+          },
+          "S_H_same_stem": 1328,
+          "primary_pairs": 1416
+        }
+      },
+      "pooled_completed": {
+        "conditions": {
+          "O": {
+            "n": 1895,
+            "correct": 1330,
+            "accuracy": 0.7018469656992085,
+            "language_groups": {
+              "source_language": {
+                "en": {
+                  "n": 474,
+                  "correct": 342
+                },
+                "ru": {
+                  "n": 474,
+                  "correct": 336
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 322
+                },
+                "zh": {
+                  "n": 473,
+                  "correct": 330
+                }
+              },
+              "gui_language": {
+                "ru": {
+                  "n": 473,
+                  "correct": 359
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 229
+                },
+                "zh": {
+                  "n": 474,
+                  "correct": 357
+                },
+                "en": {
+                  "n": 474,
+                  "correct": 385
+                }
+              },
+              "language_pair": {
+                "en→ru": {
+                  "n": 158,
+                  "correct": 131
+                },
+                "en→th": {
+                  "n": 158,
+                  "correct": 79
+                },
+                "en→zh": {
+                  "n": 158,
+                  "correct": 132
+                },
+                "ru→en": {
+                  "n": 158,
+                  "correct": 136
+                },
+                "ru→th": {
+                  "n": 158,
+                  "correct": 76
+                },
+                "ru→zh": {
+                  "n": 158,
+                  "correct": 124
+                },
+                "th→en": {
+                  "n": 158,
+                  "correct": 116
+                },
+                "th→ru": {
+                  "n": 158,
+                  "correct": 105
+                },
+                "th→zh": {
+                  "n": 158,
+                  "correct": 101
+                },
+                "zh→en": {
+                  "n": 158,
+                  "correct": 133
+                },
+                "zh→ru": {
+                  "n": 157,
+                  "correct": 123
+                },
+                "zh→th": {
+                  "n": 158,
+                  "correct": 74
+                }
+              }
+            },
+            "cold_recipe": {
+              "ocr_seconds": 0,
+              "extraction_seconds": 0.0,
+              "localization_seconds": 0.0,
+              "final_vlm_seconds": 1057.6292416589956,
+              "total_seconds": 1057.6292416589956,
+              "seconds_per_pair": 0.5581156948068579
+            },
+            "extraction_calls": {
+              "calls": 0,
+              "repairs": 0,
+              "input_tokens": 0,
+              "output_tokens": 0,
+              "prefill_forward_gpu_ms": 0,
+              "decode_forward_gpu_ms": 0,
+              "tokenization_ms": 0,
+              "cap_hits": 0,
+              "visual_forward_calls": 0,
+              "runtime_seconds": 0.0,
+              "peak_reserved_bytes": null,
+              "historical_missing_metrics_are_null": true
+            },
+            "editor_calls": {
+              "calls": 0,
+              "repairs": 0,
+              "input_tokens": 0,
+              "output_tokens": 0,
+              "prefill_forward_gpu_ms": 0,
+              "decode_forward_gpu_ms": 0,
+              "tokenization_ms": 0,
+              "cap_hits": 0,
+              "visual_forward_calls": 0,
+              "runtime_seconds": 0.0,
+              "peak_reserved_bytes": null,
+              "historical_missing_metrics_are_null": true
+            },
+            "reused_final_rows": 0,
+            "unparsed": 0,
+            "extraction_quality": null,
+            "rewrite_status": {},
+            "component_status": {},
+            "stem_changed_pairs": 0,
+            "options_changed_pairs": 0,
+            "semantic_warning_pairs": null,
+            "vs_O": null,
+            "vs_L_D_S": null
+          },
+          "L-D-S": {
+            "n": 1895,
+            "correct": 1420,
+            "accuracy": 0.7493403693931399,
+            "language_groups": {
+              "source_language": {
+                "en": {
+                  "n": 474,
+                  "correct": 363
+                },
+                "ru": {
+                  "n": 474,
+                  "correct": 360
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 347
+                },
+                "zh": {
+                  "n": 473,
+                  "correct": 350
+                }
+              },
+              "gui_language": {
+                "ru": {
+                  "n": 473,
+                  "correct": 362
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 298
+                },
+                "zh": {
+                  "n": 474,
+                  "correct": 373
+                },
+                "en": {
+                  "n": 474,
+                  "correct": 387
+                }
+              },
+              "language_pair": {
+                "en→ru": {
+                  "n": 158,
+                  "correct": 130
+                },
+                "en→th": {
+                  "n": 158,
+                  "correct": 102
+                },
+                "en→zh": {
+                  "n": 158,
+                  "correct": 131
+                },
+                "ru→en": {
+                  "n": 158,
+                  "correct": 132
+                },
+                "ru→th": {
+                  "n": 158,
+                  "correct": 97
+                },
+                "ru→zh": {
+                  "n": 158,
+                  "correct": 131
+                },
+                "th→en": {
+                  "n": 158,
+                  "correct": 121
+                },
+                "th→ru": {
+                  "n": 158,
+                  "correct": 115
+                },
+                "th→zh": {
+                  "n": 158,
+                  "correct": 111
+                },
+                "zh→en": {
+                  "n": 158,
+                  "correct": 134
+                },
+                "zh→ru": {
+                  "n": 157,
+                  "correct": 117
+                },
+                "zh→th": {
+                  "n": 158,
+                  "correct": 99
+                }
+              }
+            },
+            "cold_recipe": {
+              "ocr_seconds": 73.30616311449558,
+              "extraction_seconds": 576.6615744549781,
+              "localization_seconds": 2015.3794790636748,
+              "final_vlm_seconds": 1358.9416134571657,
+              "total_seconds": 4024.288830090314,
+              "seconds_per_pair": 2.1236352665384244
+            },
+            "extraction_calls": {
+              "calls": 640,
+              "repairs": 9,
+              "input_tokens": 348543,
+              "output_tokens": 16170,
+              "prefill_forward_gpu_ms": null,
+              "decode_forward_gpu_ms": null,
+              "tokenization_ms": null,
+              "cap_hits": 0,
+              "visual_forward_calls": null,
+              "runtime_seconds": 576.6615744549781,
+              "peak_reserved_bytes": 16615735296,
+              "historical_missing_metrics_are_null": true
+            },
+            "editor_calls": {
+              "calls": 1966,
+              "repairs": 98,
+              "input_tokens": 1947582,
+              "output_tokens": 42068,
+              "prefill_forward_gpu_ms": null,
+              "decode_forward_gpu_ms": null,
+              "tokenization_ms": null,
+              "cap_hits": 0,
+              "visual_forward_calls": null,
+              "runtime_seconds": 2015.3794790636748,
+              "peak_reserved_bytes": 17314086912,
+              "historical_missing_metrics_are_null": true
+            },
+            "reused_final_rows": 1423,
+            "unparsed": 0,
+            "extraction_quality": {
+              "precision": 0.9261241970021413,
+              "recall": 0.9129287598944591,
+              "f1": 0.9194791389848525,
+              "gold": 1895,
+              "found": 1868,
+              "matched": 1730,
+              "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+            },
+            "rewrite_status": {
+              "success": 1808,
+              "fallback_original": 74,
+              "no_op_no_edits": 13
+            },
+            "component_status": {},
+            "stem_changed_pairs": 1808,
+            "options_changed_pairs": 0,
+            "semantic_warning_pairs": null,
+            "vs_O": {
+              "pairs": 1895,
+              "items": 158,
+              "difference": 0.047493403693931395,
+              "ci95": [
+                0.025843881856540084,
+                0.07022175290390707
+              ],
+              "exploratory_bootstrap_centered_p": 9.999000099990002e-05,
+              "recovery": 169,
+              "regression": 79
+            },
+            "vs_L_D_S": null
+          },
+          "V-D-S": {
+            "n": 1895,
+            "correct": 1433,
+            "accuracy": 0.7562005277044855,
+            "language_groups": {
+              "source_language": {
+                "en": {
+                  "n": 474,
+                  "correct": 371
+                },
+                "ru": {
+                  "n": 474,
+                  "correct": 363
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 346
+                },
+                "zh": {
+                  "n": 473,
+                  "correct": 353
+                }
+              },
+              "gui_language": {
+                "ru": {
+                  "n": 473,
+                  "correct": 367
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 301
+                },
+                "zh": {
+                  "n": 474,
+                  "correct": 376
+                },
+                "en": {
+                  "n": 474,
+                  "correct": 389
+                }
+              },
+              "language_pair": {
+                "en→ru": {
+                  "n": 158,
+                  "correct": 134
+                },
+                "en→th": {
+                  "n": 158,
+                  "correct": 104
+                },
+                "en→zh": {
+                  "n": 158,
+                  "correct": 133
+                },
+                "ru→en": {
+                  "n": 158,
+                  "correct": 134
+                },
+                "ru→th": {
+                  "n": 158,
+                  "correct": 98
+                },
+                "ru→zh": {
+                  "n": 158,
+                  "correct": 131
+                },
+                "th→en": {
+                  "n": 158,
+                  "correct": 119
+                },
+                "th→ru": {
+                  "n": 158,
+                  "correct": 115
+                },
+                "th→zh": {
+                  "n": 158,
+                  "correct": 112
+                },
+                "zh→en": {
+                  "n": 158,
+                  "correct": 136
+                },
+                "zh→ru": {
+                  "n": 157,
+                  "correct": 118
+                },
+                "zh→th": {
+                  "n": 158,
+                  "correct": 99
+                }
+              }
+            },
+            "cold_recipe": {
+              "ocr_seconds": 73.30616311449558,
+              "extraction_seconds": 468.90192243270576,
+              "localization_seconds": 2210.7686073482037,
+              "final_vlm_seconds": 1345.001090039499,
+              "total_seconds": 4097.977782934904,
+              "seconds_per_pair": 2.1625212574854373
+            },
+            "extraction_calls": {
+              "calls": 632,
+              "repairs": 1,
+              "input_tokens": 340887,
+              "output_tokens": 15476,
+              "prefill_forward_gpu_ms": 95888.37049484253,
+              "decode_forward_gpu_ms": 364287.86760520935,
+              "tokenization_ms": 1280.4157435894012,
+              "cap_hits": 0,
+              "visual_forward_calls": 0,
+              "runtime_seconds": 468.90192243270576,
+              "peak_reserved_bytes": 17796431872,
+              "historical_missing_metrics_are_null": true
+            },
+            "editor_calls": {
+              "calls": 1911,
+              "repairs": 70,
+              "input_tokens": 1882498,
+              "output_tokens": 54549,
+              "prefill_forward_gpu_ms": 658627.4013900757,
+              "decode_forward_gpu_ms": 1520925.8928451538,
+              "tokenization_ms": 5852.414012886584,
+              "cap_hits": 0,
+              "visual_forward_calls": 0,
+              "runtime_seconds": 2210.7686073482037,
+              "peak_reserved_bytes": 18492686336,
+              "historical_missing_metrics_are_null": true
+            },
+            "reused_final_rows": 1436,
+            "unparsed": 0,
+            "extraction_quality": {
+              "precision": 0.9578378378378378,
+              "recall": 0.9350923482849605,
+              "f1": 0.946328437917223,
+              "gold": 1895,
+              "found": 1850,
+              "matched": 1772,
+              "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+            },
+            "rewrite_status": {
+              "no_op_no_referents": 54,
+              "success": 1788,
+              "fallback_original": 44,
+              "no_op_no_edits": 9
+            },
+            "component_status": {
+              "stem:no_op_no_referents": 54,
+              "options:original": 1895,
+              "stem:success": 1788,
+              "stem:fallback_original": 44,
+              "stem:no_op_no_edits": 9
+            },
+            "stem_changed_pairs": 1788,
+            "options_changed_pairs": 0,
+            "semantic_warning_pairs": 25,
+            "vs_O": {
+              "pairs": 1895,
+              "items": 158,
+              "difference": 0.054353562005277044,
+              "ci95": [
+                0.033773087071240104,
+                0.07546174142480211
+              ],
+              "exploratory_bootstrap_centered_p": 9.999000099990002e-05,
+              "recovery": 167,
+              "regression": 64
+            },
+            "vs_L_D_S": {
+              "pairs": 1895,
+              "items": 158,
+              "difference": 0.006860158311345646,
+              "ci95": [
+                -0.0021108179419525065,
+                0.0158311345646438
+              ],
+              "exploratory_bootstrap_centered_p": 0.14208579142085792,
+              "recovery": 40,
+              "regression": 27
+            }
+          },
+          "V-D-H": {
+            "n": 1895,
+            "correct": 1483,
+            "accuracy": 0.7825857519788918,
+            "language_groups": {
+              "source_language": {
+                "en": {
+                  "n": 474,
+                  "correct": 387
+                },
+                "ru": {
+                  "n": 474,
+                  "correct": 373
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 340
+                },
+                "zh": {
+                  "n": 473,
+                  "correct": 383
+                }
+              },
+              "gui_language": {
+                "ru": {
+                  "n": 473,
+                  "correct": 359
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 368
+                },
+                "zh": {
+                  "n": 474,
+                  "correct": 364
+                },
+                "en": {
+                  "n": 474,
+                  "correct": 392
+                }
+              },
+              "language_pair": {
+                "en→ru": {
+                  "n": 158,
+                  "correct": 128
+                },
+                "en→th": {
+                  "n": 158,
+                  "correct": 128
+                },
+                "en→zh": {
+                  "n": 158,
+                  "correct": 131
+                },
+                "ru→en": {
+                  "n": 158,
+                  "correct": 132
+                },
+                "ru→th": {
+                  "n": 158,
+                  "correct": 119
+                },
+                "ru→zh": {
+                  "n": 158,
+                  "correct": 122
+                },
+                "th→en": {
+                  "n": 158,
+                  "correct": 123
+                },
+                "th→ru": {
+                  "n": 158,
+                  "correct": 106
+                },
+                "th→zh": {
+                  "n": 158,
+                  "correct": 111
+                },
+                "zh→en": {
+                  "n": 158,
+                  "correct": 137
+                },
+                "zh→ru": {
+                  "n": 157,
+                  "correct": 125
+                },
+                "zh→th": {
+                  "n": 158,
+                  "correct": 121
+                }
+              }
+            },
+            "cold_recipe": {
+              "ocr_seconds": 73.30616311449558,
+              "extraction_seconds": 468.90192243270576,
+              "localization_seconds": 3133.828330510296,
+              "final_vlm_seconds": 1062.8216108906392,
+              "total_seconds": 4738.858026948136,
+              "seconds_per_pair": 2.500716636911945
+            },
+            "extraction_calls": {
+              "calls": 632,
+              "repairs": 1,
+              "input_tokens": 340887,
+              "output_tokens": 15476,
+              "prefill_forward_gpu_ms": 95888.37049484253,
+              "decode_forward_gpu_ms": 364287.86760520935,
+              "tokenization_ms": 1280.4157435894012,
+              "cap_hits": 0,
+              "visual_forward_calls": 0,
+              "runtime_seconds": 468.90192243270576,
+              "peak_reserved_bytes": 17796431872,
+              "historical_missing_metrics_are_null": true
+            },
+            "editor_calls": {
+              "calls": 2003,
+              "repairs": 108,
+              "input_tokens": 1873113,
+              "output_tokens": 130722,
+              "prefill_forward_gpu_ms": 314632.19145584106,
+              "decode_forward_gpu_ms": 2757060.5707912445,
+              "tokenization_ms": 5958.337990567088,
+              "cap_hits": 0,
+              "visual_forward_calls": 0,
+              "runtime_seconds": 3133.828330510296,
+              "peak_reserved_bytes": 18492686336,
+              "historical_missing_metrics_are_null": true
+            },
+            "reused_final_rows": 46,
+            "unparsed": 0,
+            "extraction_quality": {
+              "precision": 0.9578378378378378,
+              "recall": 0.9350923482849605,
+              "f1": 0.946328437917223,
+              "gold": 1895,
+              "found": 1850,
+              "matched": 1772,
+              "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+            },
+            "rewrite_status": {
+              "success": 1880,
+              "partial_fallback": 14,
+              "no_op_no_edits": 1
+            },
+            "component_status": {
+              "stem:no_op_no_edits": 139,
+              "options:success": 1892,
+              "stem:success": 1745,
+              "stem:fallback_original": 11,
+              "options:fallback_original": 3
+            },
+            "stem_changed_pairs": 1745,
+            "options_changed_pairs": 1888,
+            "semantic_warning_pairs": 139,
+            "vs_O": {
+              "pairs": 1895,
+              "items": 158,
+              "difference": 0.08073878627968338,
+              "ci95": [
+                0.05435284531801432,
+                0.10759635616712868
+              ],
+              "exploratory_bootstrap_centered_p": 9.999000099990002e-05,
+              "recovery": 272,
+              "regression": 119
+            },
+            "vs_L_D_S": {
+              "pairs": 1895,
+              "items": 158,
+              "difference": 0.03324538258575198,
+              "ci95": [
+                0.007391665946900781,
+                0.05860612460401267
+              ],
+              "exploratory_bootstrap_centered_p": 0.012598740125987402,
+              "recovery": 192,
+              "regression": 129
+            }
+          }
+        },
+        "V-D-H_minus_V-D-S": {
+          "pairs": 1895,
+          "items": 158,
+          "difference": 0.026385224274406333,
+          "ci95": [
+            0.0015831134564643799,
+            0.05072433331995945
+          ],
+          "exploratory_bootstrap_centered_p": 0.0370962903709629,
+          "recovery": 174,
+          "regression": 124
+        },
+        "S_H_same_stem": 1776,
+        "primary_pairs": 1895
+      },
+      "prediction_sha256": {
+        "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_screen_v2/V8/infer/V-D-S/predictions.jsonl": "78a78b7d98abd57128e59444bdd95e96ecce2675948facd9f30a52f7dc9edd77",
+        "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_screen_v2/V8/infer/V-D-H/predictions.jsonl": "bd17a4e48731837f59d13f18abf1064ab843201ebaefa3f2f71008efc49ebabc",
+        "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_vd_full_dev_v1/selection/V8/infer/V-D-S/predictions.jsonl": "7b58c363e6a13a2412235c9c34e730915a39a0e5c57731a3adac4725245cb4be",
+        "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_vd_full_dev_v1/selection/V8/infer/V-D-H/predictions.jsonl": "b146cb116b9380ce76fd7cdaac2f44e93d984216bd6b58f03b58b5c0b0d70985",
+        "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_vd_full_dev_v1/internal_evaluation/V8/infer/V-D-S/predictions.jsonl": "a67b31a03d324d0967942d725be0f2b81be5a57b2a6fe80a190c2f10e19dd45b",
+        "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_vd_full_dev_v1/internal_evaluation/V8/infer/V-D-H/predictions.jsonl": "e88152a17f84d0b5340529beb52bf43796e46e6f9162295f5e8db41df36df2b8"
+      },
+      "remaining_run_actor_costs": {
+        "selection": [
+          {
+            "complete": true,
+            "wall_seconds": 1271.2749583497643,
+            "model_loads": [
+              {
+                "model_load_ms": 18127.361157909036,
+                "kind": "V"
+              }
+            ],
+            "new_editor_runtime_ms": 1010222.4218174815,
+            "editor_cache_hits": 0,
+            "editor_calls": 582
+          }
+        ],
+        "internal_evaluation": [
+          {
+            "complete": true,
+            "wall_seconds": 5052.548913309351,
+            "model_loads": [
+              {
+                "model_load_ms": 19592.28055831045,
+                "kind": "V"
+              }
+            ],
+            "new_editor_runtime_ms": 3990590.5893221498,
+            "editor_cache_hits": 1,
+            "editor_calls": 3400
+          }
+        ]
+      }
+    },
+    "4B": {
+      "completed_cohorts": [
+        "screen",
+        "selection"
+      ],
+      "pending_cohorts": [
+        "internal_evaluation"
+      ],
+      "by_cohort": {
+        "screen": {
+          "conditions": {
+            "O": {
+              "n": 240,
+              "correct": 174,
+              "accuracy": 0.725,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 60,
+                    "correct": 46
+                  },
+                  "ru": {
+                    "n": 60,
+                    "correct": 45
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 39
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 44
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 60,
+                    "correct": 47
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 30
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 48
+                  },
+                  "en": {
+                    "n": 60,
+                    "correct": 49
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "en→th": {
+                    "n": 20,
+                    "correct": 10
+                  },
+                  "en→zh": {
+                    "n": 20,
+                    "correct": 19
+                  },
+                  "ru→en": {
+                    "n": 20,
+                    "correct": 18
+                  },
+                  "ru→th": {
+                    "n": 20,
+                    "correct": 10
+                  },
+                  "ru→zh": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "th→en": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "th→ru": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "th→zh": {
+                    "n": 20,
+                    "correct": 12
+                  },
+                  "zh→en": {
+                    "n": 20,
+                    "correct": 18
+                  },
+                  "zh→ru": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "zh→th": {
+                    "n": 20,
+                    "correct": 10
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 0,
+                "extraction_seconds": 0.0,
+                "localization_seconds": 0.0,
+                "final_vlm_seconds": 170.5995056008299,
+                "total_seconds": 170.5995056008299,
+                "seconds_per_pair": 0.7108312733367913
+              },
+              "extraction_calls": {
+                "calls": 0,
+                "repairs": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "prefill_forward_gpu_ms": 0,
+                "decode_forward_gpu_ms": 0,
+                "tokenization_ms": 0,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 0.0,
+                "peak_reserved_bytes": null,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 0,
+                "repairs": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "prefill_forward_gpu_ms": 0,
+                "decode_forward_gpu_ms": 0,
+                "tokenization_ms": 0,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 0.0,
+                "peak_reserved_bytes": null,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 0,
+              "unparsed": 0,
+              "extraction_quality": null,
+              "rewrite_status": {},
+              "component_status": {},
+              "stem_changed_pairs": 0,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": null,
+              "vs_O": null,
+              "vs_L_D_S": null
+            },
+            "L-D-S": {
+              "n": 240,
+              "correct": 177,
+              "accuracy": 0.7375,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 60,
+                    "correct": 49
+                  },
+                  "ru": {
+                    "n": 60,
+                    "correct": 43
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 40
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 45
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 60,
+                    "correct": 47
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 32
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 45
+                  },
+                  "en": {
+                    "n": 60,
+                    "correct": 53
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 20,
+                    "correct": 18
+                  },
+                  "en→th": {
+                    "n": 20,
+                    "correct": 12
+                  },
+                  "en→zh": {
+                    "n": 20,
+                    "correct": 19
+                  },
+                  "ru→en": {
+                    "n": 20,
+                    "correct": 19
+                  },
+                  "ru→th": {
+                    "n": 20,
+                    "correct": 10
+                  },
+                  "ru→zh": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "th→en": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "th→ru": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "th→zh": {
+                    "n": 20,
+                    "correct": 12
+                  },
+                  "zh→en": {
+                    "n": 20,
+                    "correct": 19
+                  },
+                  "zh→ru": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "zh→th": {
+                    "n": 20,
+                    "correct": 10
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 8.864168220199645,
+                "extraction_seconds": 63.51239993982017,
+                "localization_seconds": 328.80129240173846,
+                "final_vlm_seconds": 185.3802487881233,
+                "total_seconds": 586.5581093498815,
+                "seconds_per_pair": 2.443992122291173
+              },
+              "extraction_calls": {
+                "calls": 80,
+                "repairs": 0,
+                "input_tokens": 43386,
+                "output_tokens": 2041,
+                "prefill_forward_gpu_ms": null,
+                "decode_forward_gpu_ms": null,
+                "tokenization_ms": null,
+                "cap_hits": 0,
+                "visual_forward_calls": null,
+                "runtime_seconds": 63.51239993982017,
+                "peak_reserved_bytes": 16615735296,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 252,
+                "repairs": 12,
+                "input_tokens": 245845,
+                "output_tokens": 5522,
+                "prefill_forward_gpu_ms": null,
+                "decode_forward_gpu_ms": null,
+                "tokenization_ms": null,
+                "cap_hits": 0,
+                "visual_forward_calls": null,
+                "runtime_seconds": 328.80129240173846,
+                "peak_reserved_bytes": 17175674880,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 161,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.8375,
+                "recall": 0.8375,
+                "f1": 0.8375,
+                "gold": 240,
+                "found": 240,
+                "matched": 201,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "success": 231,
+                "fallback_original": 8,
+                "no_op_no_edits": 1
+              },
+              "component_status": {},
+              "stem_changed_pairs": 231,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": null,
+              "vs_O": {
+                "pairs": 240,
+                "items": 20,
+                "difference": 0.0125,
+                "ci95": [
+                  -0.041666666666666664,
+                  0.08333333333333333
+                ],
+                "exploratory_bootstrap_centered_p": 0.7469253074692531,
+                "recovery": 20,
+                "regression": 17
+              },
+              "vs_L_D_S": null
+            },
+            "V-D-S": {
+              "n": 240,
+              "correct": 179,
+              "accuracy": 0.7458333333333333,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 60,
+                    "correct": 49
+                  },
+                  "ru": {
+                    "n": 60,
+                    "correct": 44
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 38
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 48
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 60,
+                    "correct": 49
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 35
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 42
+                  },
+                  "en": {
+                    "n": 60,
+                    "correct": 53
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 20,
+                    "correct": 19
+                  },
+                  "en→th": {
+                    "n": 20,
+                    "correct": 11
+                  },
+                  "en→zh": {
+                    "n": 20,
+                    "correct": 19
+                  },
+                  "ru→en": {
+                    "n": 20,
+                    "correct": 20
+                  },
+                  "ru→th": {
+                    "n": 20,
+                    "correct": 12
+                  },
+                  "ru→zh": {
+                    "n": 20,
+                    "correct": 12
+                  },
+                  "th→en": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "th→ru": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "th→zh": {
+                    "n": 20,
+                    "correct": 11
+                  },
+                  "zh→en": {
+                    "n": 20,
+                    "correct": 19
+                  },
+                  "zh→ru": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "zh→th": {
+                    "n": 20,
+                    "correct": 12
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 8.864168220199645,
+                "extraction_seconds": 89.45780280977488,
+                "localization_seconds": 289.16850763279945,
+                "final_vlm_seconds": 155.7352862196664,
+                "total_seconds": 543.2257648824403,
+                "seconds_per_pair": 2.263440687010168
+              },
+              "extraction_calls": {
+                "calls": 90,
+                "repairs": 10,
+                "input_tokens": 49081,
+                "output_tokens": 2261,
+                "prefill_forward_gpu_ms": 20847.582736968994,
+                "decode_forward_gpu_ms": 67370.2511253357,
+                "tokenization_ms": 179.85087167471647,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 89.45780280977488,
+                "peak_reserved_bytes": 9095348224,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 218,
+                "repairs": 11,
+                "input_tokens": 212138,
+                "output_tokens": 6255,
+                "prefill_forward_gpu_ms": 113695.62204360962,
+                "decode_forward_gpu_ms": 171703.8944721222,
+                "tokenization_ms": 700.0382049009204,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 289.16850763279945,
+                "peak_reserved_bytes": 9449766912,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 128,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.8115942028985508,
+                "recall": 0.7,
+                "f1": 0.7516778523489933,
+                "gold": 240,
+                "found": 207,
+                "matched": 168,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "no_op_no_referents": 3,
+                "fallback_original": 34,
+                "no_op_no_edits": 19,
+                "success": 184
+              },
+              "component_status": {
+                "stem:no_op_no_referents": 3,
+                "options:original": 240,
+                "stem:fallback_original": 34,
+                "stem:no_op_no_edits": 19,
+                "stem:success": 184
+              },
+              "stem_changed_pairs": 184,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": 3,
+              "vs_O": {
+                "pairs": 240,
+                "items": 20,
+                "difference": 0.020833333333333332,
+                "ci95": [
+                  -0.020833333333333332,
+                  0.06666666666666667
+                ],
+                "exploratory_bootstrap_centered_p": 0.393960603939606,
+                "recovery": 17,
+                "regression": 12
+              },
+              "vs_L_D_S": {
+                "pairs": 240,
+                "items": 20,
+                "difference": 0.008333333333333333,
+                "ci95": [
+                  -0.0375,
+                  0.05416666666666667
+                ],
+                "exploratory_bootstrap_centered_p": 0.7816218378162184,
+                "recovery": 11,
+                "regression": 9
+              }
+            },
+            "V-D-H": {
+              "n": 240,
+              "correct": 188,
+              "accuracy": 0.7833333333333333,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 60,
+                    "correct": 54
+                  },
+                  "ru": {
+                    "n": 60,
+                    "correct": 50
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 39
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 45
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 60,
+                    "correct": 46
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 42
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 49
+                  },
+                  "en": {
+                    "n": 60,
+                    "correct": 51
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 20,
+                    "correct": 19
+                  },
+                  "en→th": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "en→zh": {
+                    "n": 20,
+                    "correct": 18
+                  },
+                  "ru→en": {
+                    "n": 20,
+                    "correct": 20
+                  },
+                  "ru→th": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "ru→zh": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "th→en": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "th→ru": {
+                    "n": 20,
+                    "correct": 12
+                  },
+                  "th→zh": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "zh→en": {
+                    "n": 20,
+                    "correct": 18
+                  },
+                  "zh→ru": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "zh→th": {
+                    "n": 20,
+                    "correct": 12
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 8.864168220199645,
+                "extraction_seconds": 89.45780280977488,
+                "localization_seconds": 492.96795915812254,
+                "final_vlm_seconds": 110.90005944545072,
+                "total_seconds": 702.1899896335478,
+                "seconds_per_pair": 2.925791623473116
+              },
+              "extraction_calls": {
+                "calls": 90,
+                "repairs": 10,
+                "input_tokens": 49081,
+                "output_tokens": 2261,
+                "prefill_forward_gpu_ms": 20847.582736968994,
+                "decode_forward_gpu_ms": 67370.2511253357,
+                "tokenization_ms": 179.85087167471647,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 89.45780280977488,
+                "peak_reserved_bytes": 9095348224,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 252,
+                "repairs": 12,
+                "input_tokens": 230994,
+                "output_tokens": 19057,
+                "prefill_forward_gpu_ms": 66508.57512664795,
+                "decode_forward_gpu_ms": 417111.02428627014,
+                "tokenization_ms": 806.0831008478999,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 492.96795915812254,
+                "peak_reserved_bytes": 9449766912,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 3,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.8115942028985508,
+                "recall": 0.7,
+                "f1": 0.7516778523489933,
+                "gold": 240,
+                "found": 207,
+                "matched": 168,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "success": 203,
+                "partial_fallback": 35,
+                "no_op_no_edits": 1,
+                "fallback_original": 1
+              },
+              "component_status": {
+                "stem:no_op_no_edits": 60,
+                "options:success": 240,
+                "stem:fallback_original": 36,
+                "stem:success": 144
+              },
+              "stem_changed_pairs": 144,
+              "options_changed_pairs": 232,
+              "semantic_warning_pairs": 17,
+              "vs_O": {
+                "pairs": 240,
+                "items": 20,
+                "difference": 0.058333333333333334,
+                "ci95": [
+                  0.004166666666666667,
+                  0.11666666666666667
+                ],
+                "exploratory_bootstrap_centered_p": 0.049295070492950704,
+                "recovery": 30,
+                "regression": 16
+              },
+              "vs_L_D_S": {
+                "pairs": 240,
+                "items": 20,
+                "difference": 0.04583333333333333,
+                "ci95": [
+                  -0.008333333333333333,
+                  0.1
+                ],
+                "exploratory_bootstrap_centered_p": 0.11878812118788121,
+                "recovery": 28,
+                "regression": 17
+              }
+            }
+          },
+          "V-D-H_minus_V-D-S": {
+            "pairs": 240,
+            "items": 20,
+            "difference": 0.0375,
+            "ci95": [
+              -0.025,
+              0.10416666666666667
+            ],
+            "exploratory_bootstrap_centered_p": 0.26807319268073193,
+            "recovery": 25,
+            "regression": 16
+          },
+          "S_H_same_stem": 193,
+          "primary_pairs": 240
+        },
+        "selection": {
+          "conditions": {
+            "O": {
+              "n": 239,
+              "correct": 179,
+              "accuracy": 0.7489539748953975,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 60,
+                    "correct": 46
+                  },
+                  "ru": {
+                    "n": 60,
+                    "correct": 40
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 46
+                  },
+                  "zh": {
+                    "n": 59,
+                    "correct": 47
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 59,
+                    "correct": 51
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 32
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 45
+                  },
+                  "en": {
+                    "n": 60,
+                    "correct": 51
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "en→th": {
+                    "n": 20,
+                    "correct": 12
+                  },
+                  "en→zh": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "ru→en": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "ru→th": {
+                    "n": 20,
+                    "correct": 11
+                  },
+                  "ru→zh": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "th→en": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "th→ru": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "th→zh": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "zh→en": {
+                    "n": 20,
+                    "correct": 20
+                  },
+                  "zh→ru": {
+                    "n": 19,
+                    "correct": 18
+                  },
+                  "zh→th": {
+                    "n": 20,
+                    "correct": 9
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 0,
+                "extraction_seconds": 0.0,
+                "localization_seconds": 0.0,
+                "final_vlm_seconds": 141.23097578715533,
+                "total_seconds": 141.23097578715533,
+                "seconds_per_pair": 0.5909245848834951
+              },
+              "extraction_calls": {
+                "calls": 0,
+                "repairs": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "prefill_forward_gpu_ms": 0,
+                "decode_forward_gpu_ms": 0,
+                "tokenization_ms": 0,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 0.0,
+                "peak_reserved_bytes": null,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 0,
+                "repairs": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "prefill_forward_gpu_ms": 0,
+                "decode_forward_gpu_ms": 0,
+                "tokenization_ms": 0,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 0.0,
+                "peak_reserved_bytes": null,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 0,
+              "unparsed": 0,
+              "extraction_quality": null,
+              "rewrite_status": {},
+              "component_status": {},
+              "stem_changed_pairs": 0,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": null,
+              "vs_O": null,
+              "vs_L_D_S": null
+            },
+            "L-D-S": {
+              "n": 239,
+              "correct": 183,
+              "accuracy": 0.7656903765690377,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 60,
+                    "correct": 46
+                  },
+                  "ru": {
+                    "n": 60,
+                    "correct": 41
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 50
+                  },
+                  "zh": {
+                    "n": 59,
+                    "correct": 46
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 59,
+                    "correct": 49
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 33
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 52
+                  },
+                  "en": {
+                    "n": 60,
+                    "correct": 49
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "en→th": {
+                    "n": 20,
+                    "correct": 11
+                  },
+                  "en→zh": {
+                    "n": 20,
+                    "correct": 18
+                  },
+                  "ru→en": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "ru→th": {
+                    "n": 20,
+                    "correct": 12
+                  },
+                  "ru→zh": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "th→en": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "th→ru": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "th→zh": {
+                    "n": 20,
+                    "correct": 18
+                  },
+                  "zh→en": {
+                    "n": 20,
+                    "correct": 20
+                  },
+                  "zh→ru": {
+                    "n": 19,
+                    "correct": 16
+                  },
+                  "zh→th": {
+                    "n": 20,
+                    "correct": 10
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 9.304700990207493,
+                "extraction_seconds": 134.50290270335972,
+                "localization_seconds": 417.8172379024327,
+                "final_vlm_seconds": 198.28996514187506,
+                "total_seconds": 759.914806737875,
+                "seconds_per_pair": 3.1795598608279287
+              },
+              "extraction_calls": {
+                "calls": 82,
+                "repairs": 2,
+                "input_tokens": 44853,
+                "output_tokens": 2141,
+                "prefill_forward_gpu_ms": null,
+                "decode_forward_gpu_ms": null,
+                "tokenization_ms": null,
+                "cap_hits": 0,
+                "visual_forward_calls": null,
+                "runtime_seconds": 134.50290270335972,
+                "peak_reserved_bytes": 16615735296,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 248,
+                "repairs": 15,
+                "input_tokens": 243239,
+                "output_tokens": 5322,
+                "prefill_forward_gpu_ms": null,
+                "decode_forward_gpu_ms": null,
+                "tokenization_ms": null,
+                "cap_hits": 0,
+                "visual_forward_calls": null,
+                "runtime_seconds": 417.8172379024327,
+                "peak_reserved_bytes": 17142120448,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 194,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.9227467811158798,
+                "recall": 0.899581589958159,
+                "f1": 0.9110169491525424,
+                "gold": 239,
+                "found": 233,
+                "matched": 215,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "success": 225,
+                "fallback_original": 14
+              },
+              "component_status": {},
+              "stem_changed_pairs": 225,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": null,
+              "vs_O": {
+                "pairs": 239,
+                "items": 20,
+                "difference": 0.016736401673640166,
+                "ci95": [
+                  -0.041666666666666664,
+                  0.07532171864561713
+                ],
+                "exploratory_bootstrap_centered_p": 0.6017398260173983,
+                "recovery": 17,
+                "regression": 13
+              },
+              "vs_L_D_S": null
+            },
+            "V-D-S": {
+              "n": 239,
+              "correct": 181,
+              "accuracy": 0.7573221757322176,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 60,
+                    "correct": 48
+                  },
+                  "ru": {
+                    "n": 60,
+                    "correct": 39
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 47
+                  },
+                  "zh": {
+                    "n": 59,
+                    "correct": 47
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 59,
+                    "correct": 48
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 35
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 48
+                  },
+                  "en": {
+                    "n": 60,
+                    "correct": 50
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "en→th": {
+                    "n": 20,
+                    "correct": 13
+                  },
+                  "en→zh": {
+                    "n": 20,
+                    "correct": 18
+                  },
+                  "ru→en": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "ru→th": {
+                    "n": 20,
+                    "correct": 11
+                  },
+                  "ru→zh": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "th→en": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "th→ru": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "th→zh": {
+                    "n": 20,
+                    "correct": 16
+                  },
+                  "zh→en": {
+                    "n": 20,
+                    "correct": 20
+                  },
+                  "zh→ru": {
+                    "n": 19,
+                    "correct": 16
+                  },
+                  "zh→th": {
+                    "n": 20,
+                    "correct": 11
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 9.304700990207493,
+                "extraction_seconds": 117.16219361498952,
+                "localization_seconds": 427.8815683554858,
+                "final_vlm_seconds": 184.65961535306027,
+                "total_seconds": 739.0080783137431,
+                "seconds_per_pair": 3.0920840096809337
+              },
+              "extraction_calls": {
+                "calls": 90,
+                "repairs": 10,
+                "input_tokens": 49216,
+                "output_tokens": 2167,
+                "prefill_forward_gpu_ms": 33525.81873703003,
+                "decode_forward_gpu_ms": 82209.68518829346,
+                "tokenization_ms": 203.78875266760588,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 117.16219361498952,
+                "peak_reserved_bytes": 9095348224,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 217,
+                "repairs": 8,
+                "input_tokens": 213822,
+                "output_tokens": 6090,
+                "prefill_forward_gpu_ms": 123594.68813323975,
+                "decode_forward_gpu_ms": 300634.00535202026,
+                "tokenization_ms": 629.568693228066,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 427.8815683554858,
+                "peak_reserved_bytes": 9458155520,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 152,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.8133971291866029,
+                "recall": 0.7112970711297071,
+                "f1": 0.7589285714285715,
+                "gold": 239,
+                "found": 209,
+                "matched": 170,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "success": 199,
+                "fallback_original": 33,
+                "no_op_no_edits": 7
+              },
+              "component_status": {
+                "stem:success": 199,
+                "options:original": 239,
+                "stem:fallback_original": 33,
+                "stem:no_op_no_edits": 7
+              },
+              "stem_changed_pairs": 199,
+              "options_changed_pairs": 0,
+              "semantic_warning_pairs": 1,
+              "vs_O": {
+                "pairs": 239,
+                "items": 20,
+                "difference": 0.008368200836820083,
+                "ci95": [
+                  -0.05833943514644351,
+                  0.07563822997553439
+                ],
+                "exploratory_bootstrap_centered_p": 0.8417158284171583,
+                "recovery": 18,
+                "regression": 16
+              },
+              "vs_L_D_S": {
+                "pairs": 239,
+                "items": 20,
+                "difference": -0.008368200836820083,
+                "ci95": [
+                  -0.041666666666666664,
+                  0.029288702928870293
+                ],
+                "exploratory_bootstrap_centered_p": 0.6866313368663134,
+                "recovery": 7,
+                "regression": 9
+              }
+            },
+            "V-D-H": {
+              "n": 239,
+              "correct": 185,
+              "accuracy": 0.7740585774058577,
+              "language_groups": {
+                "source_language": {
+                  "en": {
+                    "n": 60,
+                    "correct": 54
+                  },
+                  "ru": {
+                    "n": 60,
+                    "correct": 38
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 44
+                  },
+                  "zh": {
+                    "n": 59,
+                    "correct": 49
+                  }
+                },
+                "gui_language": {
+                  "ru": {
+                    "n": 59,
+                    "correct": 49
+                  },
+                  "th": {
+                    "n": 60,
+                    "correct": 41
+                  },
+                  "zh": {
+                    "n": 60,
+                    "correct": 49
+                  },
+                  "en": {
+                    "n": 60,
+                    "correct": 46
+                  }
+                },
+                "language_pair": {
+                  "en→ru": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "en→th": {
+                    "n": 20,
+                    "correct": 17
+                  },
+                  "en→zh": {
+                    "n": 20,
+                    "correct": 20
+                  },
+                  "ru→en": {
+                    "n": 20,
+                    "correct": 12
+                  },
+                  "ru→th": {
+                    "n": 20,
+                    "correct": 11
+                  },
+                  "ru→zh": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "th→en": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "th→ru": {
+                    "n": 20,
+                    "correct": 15
+                  },
+                  "th→zh": {
+                    "n": 20,
+                    "correct": 14
+                  },
+                  "zh→en": {
+                    "n": 20,
+                    "correct": 19
+                  },
+                  "zh→ru": {
+                    "n": 19,
+                    "correct": 17
+                  },
+                  "zh→th": {
+                    "n": 20,
+                    "correct": 13
+                  }
+                }
+              },
+              "cold_recipe": {
+                "ocr_seconds": 9.304700990207493,
+                "extraction_seconds": 117.16219361498952,
+                "localization_seconds": 532.0980492886156,
+                "final_vlm_seconds": 160.81073893420398,
+                "total_seconds": 819.3756828280166,
+                "seconds_per_pair": 3.428350137355718
+              },
+              "extraction_calls": {
+                "calls": 90,
+                "repairs": 10,
+                "input_tokens": 49216,
+                "output_tokens": 2167,
+                "prefill_forward_gpu_ms": 33525.81873703003,
+                "decode_forward_gpu_ms": 82209.68518829346,
+                "tokenization_ms": 203.78875266760588,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 117.16219361498952,
+                "peak_reserved_bytes": 9095348224,
+                "historical_missing_metrics_are_null": true
+              },
+              "editor_calls": {
+                "calls": 244,
+                "repairs": 5,
+                "input_tokens": 225308,
+                "output_tokens": 18726,
+                "prefill_forward_gpu_ms": 82598.5491142273,
+                "decode_forward_gpu_ms": 440904.1055870056,
+                "tokenization_ms": 690.7123848795891,
+                "cap_hits": 0,
+                "visual_forward_calls": 0,
+                "runtime_seconds": 532.0980492886156,
+                "peak_reserved_bytes": 9458155520,
+                "historical_missing_metrics_are_null": true
+              },
+              "reused_final_rows": 0,
+              "unparsed": 0,
+              "extraction_quality": {
+                "precision": 0.8133971291866029,
+                "recall": 0.7112970711297071,
+                "f1": 0.7589285714285715,
+                "gold": 239,
+                "found": 209,
+                "matched": 170,
+                "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+              },
+              "rewrite_status": {
+                "success": 204,
+                "no_op_no_edits": 3,
+                "fallback_original": 2,
+                "partial_fallback": 30
+              },
+              "component_status": {
+                "stem:no_op_no_edits": 66,
+                "options:success": 239,
+                "stem:success": 141,
+                "stem:fallback_original": 32
+              },
+              "stem_changed_pairs": 141,
+              "options_changed_pairs": 231,
+              "semantic_warning_pairs": 19,
+              "vs_O": {
+                "pairs": 239,
+                "items": 20,
+                "difference": 0.02510460251046025,
+                "ci95": [
+                  -0.05,
+                  0.1
+                ],
+                "exploratory_bootstrap_centered_p": 0.5237476252374762,
+                "recovery": 25,
+                "regression": 19
+              },
+              "vs_L_D_S": {
+                "pairs": 239,
+                "items": 20,
+                "difference": 0.008368200836820083,
+                "ci95": [
+                  -0.06276150627615062,
+                  0.08333333333333333
+                ],
+                "exploratory_bootstrap_centered_p": 0.8455154484551545,
+                "recovery": 23,
+                "regression": 21
+              }
+            }
+          },
+          "V-D-H_minus_V-D-S": {
+            "pairs": 239,
+            "items": 20,
+            "difference": 0.016736401673640166,
+            "ci95": [
+              -0.058577405857740586,
+              0.09583333333333334
+            ],
+            "exploratory_bootstrap_centered_p": 0.6974302569743026,
+            "recovery": 26,
+            "regression": 22
+          },
+          "S_H_same_stem": 177,
+          "primary_pairs": 239
+        }
+      },
+      "pooled_completed": {
+        "conditions": {
+          "O": {
+            "n": 479,
+            "correct": 353,
+            "accuracy": 0.7369519832985386,
+            "language_groups": {
+              "source_language": {
+                "en": {
+                  "n": 120,
+                  "correct": 92
+                },
+                "ru": {
+                  "n": 120,
+                  "correct": 85
+                },
+                "th": {
+                  "n": 120,
+                  "correct": 85
+                },
+                "zh": {
+                  "n": 119,
+                  "correct": 91
+                }
+              },
+              "gui_language": {
+                "ru": {
+                  "n": 119,
+                  "correct": 98
+                },
+                "th": {
+                  "n": 120,
+                  "correct": 62
+                },
+                "zh": {
+                  "n": 120,
+                  "correct": 93
+                },
+                "en": {
+                  "n": 120,
+                  "correct": 100
+                }
+              },
+              "language_pair": {
+                "en→ru": {
+                  "n": 40,
+                  "correct": 34
+                },
+                "en→th": {
+                  "n": 40,
+                  "correct": 22
+                },
+                "en→zh": {
+                  "n": 40,
+                  "correct": 36
+                },
+                "ru→en": {
+                  "n": 40,
+                  "correct": 33
+                },
+                "ru→th": {
+                  "n": 40,
+                  "correct": 21
+                },
+                "ru→zh": {
+                  "n": 40,
+                  "correct": 31
+                },
+                "th→en": {
+                  "n": 40,
+                  "correct": 29
+                },
+                "th→ru": {
+                  "n": 40,
+                  "correct": 30
+                },
+                "th→zh": {
+                  "n": 40,
+                  "correct": 26
+                },
+                "zh→en": {
+                  "n": 40,
+                  "correct": 38
+                },
+                "zh→ru": {
+                  "n": 39,
+                  "correct": 34
+                },
+                "zh→th": {
+                  "n": 40,
+                  "correct": 19
+                }
+              }
+            },
+            "cold_recipe": {
+              "ocr_seconds": 0,
+              "extraction_seconds": 0.0,
+              "localization_seconds": 0.0,
+              "final_vlm_seconds": 311.83048138798523,
+              "total_seconds": 311.83048138798523,
+              "seconds_per_pair": 0.6510030926680276
+            },
+            "extraction_calls": {
+              "calls": 0,
+              "repairs": 0,
+              "input_tokens": 0,
+              "output_tokens": 0,
+              "prefill_forward_gpu_ms": 0,
+              "decode_forward_gpu_ms": 0,
+              "tokenization_ms": 0,
+              "cap_hits": 0,
+              "visual_forward_calls": 0,
+              "runtime_seconds": 0.0,
+              "peak_reserved_bytes": null,
+              "historical_missing_metrics_are_null": true
+            },
+            "editor_calls": {
+              "calls": 0,
+              "repairs": 0,
+              "input_tokens": 0,
+              "output_tokens": 0,
+              "prefill_forward_gpu_ms": 0,
+              "decode_forward_gpu_ms": 0,
+              "tokenization_ms": 0,
+              "cap_hits": 0,
+              "visual_forward_calls": 0,
+              "runtime_seconds": 0.0,
+              "peak_reserved_bytes": null,
+              "historical_missing_metrics_are_null": true
+            },
+            "reused_final_rows": 0,
+            "unparsed": 0,
+            "extraction_quality": null,
+            "rewrite_status": {},
+            "component_status": {},
+            "stem_changed_pairs": 0,
+            "options_changed_pairs": 0,
+            "semantic_warning_pairs": null,
+            "vs_O": null,
+            "vs_L_D_S": null
+          },
+          "L-D-S": {
+            "n": 479,
+            "correct": 360,
+            "accuracy": 0.7515657620041754,
+            "language_groups": {
+              "source_language": {
+                "en": {
+                  "n": 120,
+                  "correct": 95
+                },
+                "ru": {
+                  "n": 120,
+                  "correct": 84
+                },
+                "th": {
+                  "n": 120,
+                  "correct": 90
+                },
+                "zh": {
+                  "n": 119,
+                  "correct": 91
+                }
+              },
+              "gui_language": {
+                "ru": {
+                  "n": 119,
+                  "correct": 96
+                },
+                "th": {
+                  "n": 120,
+                  "correct": 65
+                },
+                "zh": {
+                  "n": 120,
+                  "correct": 97
+                },
+                "en": {
+                  "n": 120,
+                  "correct": 102
+                }
+              },
+              "language_pair": {
+                "en→ru": {
+                  "n": 40,
+                  "correct": 35
+                },
+                "en→th": {
+                  "n": 40,
+                  "correct": 23
+                },
+                "en→zh": {
+                  "n": 40,
+                  "correct": 37
+                },
+                "ru→en": {
+                  "n": 40,
+                  "correct": 32
+                },
+                "ru→th": {
+                  "n": 40,
+                  "correct": 22
+                },
+                "ru→zh": {
+                  "n": 40,
+                  "correct": 30
+                },
+                "th→en": {
+                  "n": 40,
+                  "correct": 31
+                },
+                "th→ru": {
+                  "n": 40,
+                  "correct": 29
+                },
+                "th→zh": {
+                  "n": 40,
+                  "correct": 30
+                },
+                "zh→en": {
+                  "n": 40,
+                  "correct": 39
+                },
+                "zh→ru": {
+                  "n": 39,
+                  "correct": 32
+                },
+                "zh→th": {
+                  "n": 40,
+                  "correct": 20
+                }
+              }
+            },
+            "cold_recipe": {
+              "ocr_seconds": 18.168869210407138,
+              "extraction_seconds": 198.0153026431799,
+              "localization_seconds": 746.6185303041711,
+              "final_vlm_seconds": 383.67021392999834,
+              "total_seconds": 1346.4729160877564,
+              "seconds_per_pair": 2.811008175548552
+            },
+            "extraction_calls": {
+              "calls": 162,
+              "repairs": 2,
+              "input_tokens": 88239,
+              "output_tokens": 4182,
+              "prefill_forward_gpu_ms": null,
+              "decode_forward_gpu_ms": null,
+              "tokenization_ms": null,
+              "cap_hits": 0,
+              "visual_forward_calls": null,
+              "runtime_seconds": 198.0153026431799,
+              "peak_reserved_bytes": 16615735296,
+              "historical_missing_metrics_are_null": true
+            },
+            "editor_calls": {
+              "calls": 500,
+              "repairs": 27,
+              "input_tokens": 489084,
+              "output_tokens": 10844,
+              "prefill_forward_gpu_ms": null,
+              "decode_forward_gpu_ms": null,
+              "tokenization_ms": null,
+              "cap_hits": 0,
+              "visual_forward_calls": null,
+              "runtime_seconds": 746.6185303041711,
+              "peak_reserved_bytes": 17175674880,
+              "historical_missing_metrics_are_null": true
+            },
+            "reused_final_rows": 355,
+            "unparsed": 0,
+            "extraction_quality": {
+              "precision": 0.879492600422833,
+              "recall": 0.8684759916492694,
+              "f1": 0.8739495798319329,
+              "gold": 479,
+              "found": 473,
+              "matched": 416,
+              "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+            },
+            "rewrite_status": {
+              "success": 456,
+              "fallback_original": 22,
+              "no_op_no_edits": 1
+            },
+            "component_status": {},
+            "stem_changed_pairs": 456,
+            "options_changed_pairs": 0,
+            "semantic_warning_pairs": null,
+            "vs_O": {
+              "pairs": 479,
+              "items": 40,
+              "difference": 0.014613778705636743,
+              "ci95": [
+                -0.025052192066805846,
+                0.06041666666666667
+              ],
+              "exploratory_bootstrap_centered_p": 0.5267473252674733,
+              "recovery": 37,
+              "regression": 30
+            },
+            "vs_L_D_S": null
+          },
+          "V-D-S": {
+            "n": 479,
+            "correct": 360,
+            "accuracy": 0.7515657620041754,
+            "language_groups": {
+              "source_language": {
+                "en": {
+                  "n": 120,
+                  "correct": 97
+                },
+                "ru": {
+                  "n": 120,
+                  "correct": 83
+                },
+                "th": {
+                  "n": 120,
+                  "correct": 85
+                },
+                "zh": {
+                  "n": 119,
+                  "correct": 95
+                }
+              },
+              "gui_language": {
+                "ru": {
+                  "n": 119,
+                  "correct": 97
+                },
+                "th": {
+                  "n": 120,
+                  "correct": 70
+                },
+                "zh": {
+                  "n": 120,
+                  "correct": 90
+                },
+                "en": {
+                  "n": 120,
+                  "correct": 103
+                }
+              },
+              "language_pair": {
+                "en→ru": {
+                  "n": 40,
+                  "correct": 36
+                },
+                "en→th": {
+                  "n": 40,
+                  "correct": 24
+                },
+                "en→zh": {
+                  "n": 40,
+                  "correct": 37
+                },
+                "ru→en": {
+                  "n": 40,
+                  "correct": 34
+                },
+                "ru→th": {
+                  "n": 40,
+                  "correct": 23
+                },
+                "ru→zh": {
+                  "n": 40,
+                  "correct": 26
+                },
+                "th→en": {
+                  "n": 40,
+                  "correct": 30
+                },
+                "th→ru": {
+                  "n": 40,
+                  "correct": 28
+                },
+                "th→zh": {
+                  "n": 40,
+                  "correct": 27
+                },
+                "zh→en": {
+                  "n": 40,
+                  "correct": 39
+                },
+                "zh→ru": {
+                  "n": 39,
+                  "correct": 33
+                },
+                "zh→th": {
+                  "n": 40,
+                  "correct": 23
+                }
+              }
+            },
+            "cold_recipe": {
+              "ocr_seconds": 18.168869210407138,
+              "extraction_seconds": 206.6199964247644,
+              "localization_seconds": 717.0500759882852,
+              "final_vlm_seconds": 340.39490157272667,
+              "total_seconds": 1282.2338431961834,
+              "seconds_per_pair": 2.67689737619245
+            },
+            "extraction_calls": {
+              "calls": 180,
+              "repairs": 20,
+              "input_tokens": 98297,
+              "output_tokens": 4428,
+              "prefill_forward_gpu_ms": 54373.40147399902,
+              "decode_forward_gpu_ms": 149579.93631362915,
+              "tokenization_ms": 383.63962434232235,
+              "cap_hits": 0,
+              "visual_forward_calls": 0,
+              "runtime_seconds": 206.6199964247644,
+              "peak_reserved_bytes": 9095348224,
+              "historical_missing_metrics_are_null": true
+            },
+            "editor_calls": {
+              "calls": 435,
+              "repairs": 19,
+              "input_tokens": 425960,
+              "output_tokens": 12345,
+              "prefill_forward_gpu_ms": 237290.31017684937,
+              "decode_forward_gpu_ms": 472337.89982414246,
+              "tokenization_ms": 1329.6068981289864,
+              "cap_hits": 0,
+              "visual_forward_calls": 0,
+              "runtime_seconds": 717.0500759882852,
+              "peak_reserved_bytes": 9458155520,
+              "historical_missing_metrics_are_null": true
+            },
+            "reused_final_rows": 280,
+            "unparsed": 0,
+            "extraction_quality": {
+              "precision": 0.8125,
+              "recall": 0.7056367432150313,
+              "f1": 0.7553072625698323,
+              "gold": 479,
+              "found": 416,
+              "matched": 338,
+              "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+            },
+            "rewrite_status": {
+              "no_op_no_referents": 3,
+              "fallback_original": 67,
+              "no_op_no_edits": 26,
+              "success": 383
+            },
+            "component_status": {
+              "stem:no_op_no_referents": 3,
+              "options:original": 479,
+              "stem:fallback_original": 67,
+              "stem:no_op_no_edits": 26,
+              "stem:success": 383
+            },
+            "stem_changed_pairs": 383,
+            "options_changed_pairs": 0,
+            "semantic_warning_pairs": 4,
+            "vs_O": {
+              "pairs": 479,
+              "items": 40,
+              "difference": 0.014613778705636743,
+              "ci95": [
+                -0.025,
+                0.05477467105263103
+              ],
+              "exploratory_bootstrap_centered_p": 0.48965103489651035,
+              "recovery": 35,
+              "regression": 28
+            },
+            "vs_L_D_S": {
+              "pairs": 479,
+              "items": 40,
+              "difference": 0.0,
+              "ci95": [
+                -0.029166666666666667,
+                0.029227557411273485
+              ],
+              "exploratory_bootstrap_centered_p": 1.0,
+              "recovery": 18,
+              "regression": 18
+            }
+          },
+          "V-D-H": {
+            "n": 479,
+            "correct": 373,
+            "accuracy": 0.778705636743215,
+            "language_groups": {
+              "source_language": {
+                "en": {
+                  "n": 120,
+                  "correct": 108
+                },
+                "ru": {
+                  "n": 120,
+                  "correct": 88
+                },
+                "th": {
+                  "n": 120,
+                  "correct": 83
+                },
+                "zh": {
+                  "n": 119,
+                  "correct": 94
+                }
+              },
+              "gui_language": {
+                "ru": {
+                  "n": 119,
+                  "correct": 95
+                },
+                "th": {
+                  "n": 120,
+                  "correct": 83
+                },
+                "zh": {
+                  "n": 120,
+                  "correct": 98
+                },
+                "en": {
+                  "n": 120,
+                  "correct": 97
+                }
+              },
+              "language_pair": {
+                "en→ru": {
+                  "n": 40,
+                  "correct": 36
+                },
+                "en→th": {
+                  "n": 40,
+                  "correct": 34
+                },
+                "en→zh": {
+                  "n": 40,
+                  "correct": 38
+                },
+                "ru→en": {
+                  "n": 40,
+                  "correct": 32
+                },
+                "ru→th": {
+                  "n": 40,
+                  "correct": 24
+                },
+                "ru→zh": {
+                  "n": 40,
+                  "correct": 32
+                },
+                "th→en": {
+                  "n": 40,
+                  "correct": 28
+                },
+                "th→ru": {
+                  "n": 40,
+                  "correct": 27
+                },
+                "th→zh": {
+                  "n": 40,
+                  "correct": 28
+                },
+                "zh→en": {
+                  "n": 40,
+                  "correct": 37
+                },
+                "zh→ru": {
+                  "n": 39,
+                  "correct": 32
+                },
+                "zh→th": {
+                  "n": 40,
+                  "correct": 25
+                }
+              }
+            },
+            "cold_recipe": {
+              "ocr_seconds": 18.168869210407138,
+              "extraction_seconds": 206.6199964247644,
+              "localization_seconds": 1025.0660084467381,
+              "final_vlm_seconds": 271.7107983796547,
+              "total_seconds": 1521.5656724615644,
+              "seconds_per_pair": 3.176546289063809
+            },
+            "extraction_calls": {
+              "calls": 180,
+              "repairs": 20,
+              "input_tokens": 98297,
+              "output_tokens": 4428,
+              "prefill_forward_gpu_ms": 54373.40147399902,
+              "decode_forward_gpu_ms": 149579.93631362915,
+              "tokenization_ms": 383.63962434232235,
+              "cap_hits": 0,
+              "visual_forward_calls": 0,
+              "runtime_seconds": 206.6199964247644,
+              "peak_reserved_bytes": 9095348224,
+              "historical_missing_metrics_are_null": true
+            },
+            "editor_calls": {
+              "calls": 496,
+              "repairs": 17,
+              "input_tokens": 456302,
+              "output_tokens": 37783,
+              "prefill_forward_gpu_ms": 149107.12424087524,
+              "decode_forward_gpu_ms": 858015.1298732758,
+              "tokenization_ms": 1496.795485727489,
+              "cap_hits": 0,
+              "visual_forward_calls": 0,
+              "runtime_seconds": 1025.0660084467381,
+              "peak_reserved_bytes": 9458155520,
+              "historical_missing_metrics_are_null": true
+            },
+            "reused_final_rows": 3,
+            "unparsed": 0,
+            "extraction_quality": {
+              "precision": 0.8125,
+              "recall": 0.7056367432150313,
+              "f1": 0.7553072625698323,
+              "gold": 479,
+              "found": 416,
+              "matched": 338,
+              "scope": "pair-weighted exact source-span diagnostic; not GUI correspondence precision"
+            },
+            "rewrite_status": {
+              "success": 407,
+              "partial_fallback": 65,
+              "no_op_no_edits": 4,
+              "fallback_original": 3
+            },
+            "component_status": {
+              "stem:no_op_no_edits": 126,
+              "options:success": 479,
+              "stem:fallback_original": 68,
+              "stem:success": 285
+            },
+            "stem_changed_pairs": 285,
+            "options_changed_pairs": 463,
+            "semantic_warning_pairs": 36,
+            "vs_O": {
+              "pairs": 479,
+              "items": 40,
+              "difference": 0.04175365344467641,
+              "ci95": [
+                -0.0041753653444676405,
+                0.08958333333333333
+              ],
+              "exploratory_bootstrap_centered_p": 0.08289171082891711,
+              "recovery": 55,
+              "regression": 35
+            },
+            "vs_L_D_S": {
+              "pairs": 479,
+              "items": 40,
+              "difference": 0.027139874739039668,
+              "ci95": [
+                -0.018789144050104383,
+                0.07291666666666667
+              ],
+              "exploratory_bootstrap_centered_p": 0.2576742325767423,
+              "recovery": 51,
+              "regression": 38
+            }
+          }
+        },
+        "V-D-H_minus_V-D-S": {
+          "pairs": 479,
+          "items": 40,
+          "difference": 0.027139874739039668,
+          "ci95": [
+            -0.02092050209205021,
+            0.07708333333333334
+          ],
+          "exploratory_bootstrap_centered_p": 0.2946705329467053,
+          "recovery": 51,
+          "regression": 38
+        },
+        "S_H_same_stem": 370,
+        "primary_pairs": 479
+      },
+      "prediction_sha256": {
+        "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_screen_v2/V4/infer/V-D-S/predictions.jsonl": "f295f0fbeb163797e8690667e6dddf9be4ef86f61dafa998b1dddd91c206952c",
+        "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_screen_v2/V4/infer/V-D-H/predictions.jsonl": "96dc6a1a58c94dcb352f0e483dba525f52dfa34a65a657d67ab3a828ff62826a",
+        "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_vd_full_dev_v1/selection/V4/infer/V-D-S/predictions.jsonl": "339e0c2c3612eb3b6479dd5a875dfca89aff5386c7bf28b1a7e1a410a7990cb7",
+        "followup_rel_4lang/method_dev/artifacts/ppocr_editor_matrix_vd_full_dev_v1/selection/V4/infer/V-D-H/predictions.jsonl": "1418026afdd625698b25fd3e1ab425b1f862576d5685d42f32014da0caadcc1f"
+      },
+      "remaining_run_actor_costs": {
+        "selection": [
+          {
+            "complete": true,
+            "wall_seconds": 1331.4818885503337,
+            "model_loads": [
+              {
+                "model_load_ms": 10354.424969293177,
+                "kind": "V"
+              }
+            ],
+            "new_editor_runtime_ms": 1079890.2277173474,
+            "editor_cache_hits": 0,
+            "editor_calls": 553
+          }
+        ]
+      }
+    }
+  }
+}

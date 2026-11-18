@@ -1,0 +1,631 @@
+{
+  "as_of_utc": "2026-11-18T01:45:03.693453+00:00",
+  "development_only": true,
+  "primary_items": 158,
+  "primary_pairs": 1895,
+  "comparison_model": "Qwen3-VL-8B-Instruct",
+  "correct": {
+    "PPOCR_STEM": 1420,
+    "O": 1330,
+    "TT": 1348,
+    "CLP": 1250,
+    "O_EXP_A": 1322,
+    "T_REF": 1335,
+    "R_REF": 1591,
+    "O_ORCF": 1327,
+    "R_ORCF": 1591,
+    "F_REF": 1551,
+    "R_stem": 1472
+  },
+  "contrasts_ppocr_minus_baseline": {
+    "O": {
+      "pairs": 1895,
+      "items": 158,
+      "difference": 0.047493403693931395,
+      "ci95": [
+        0.025843881856540084,
+        0.07022175290390707
+      ],
+      "exploratory_bootstrap_centered_p": 9.999000099990002e-05,
+      "recovery": 169,
+      "regression": 79
+    },
+    "T_REF": {
+      "pairs": 1895,
+      "items": 158,
+      "difference": 0.044854881266490766,
+      "ci95": [
+        0.01529535864978903,
+        0.07489451476793249
+      ],
+      "exploratory_bootstrap_centered_p": 0.0034996500349965005,
+      "recovery": 249,
+      "regression": 164
+    },
+    "R_REF": {
+      "pairs": 1895,
+      "items": 158,
+      "difference": -0.09023746701846966,
+      "ci95": [
+        -0.12189973614775726,
+        -0.05857519788918206
+      ],
+      "exploratory_bootstrap_centered_p": 9.999000099990002e-05,
+      "recovery": 100,
+      "regression": 271
+    },
+    "F_REF": {
+      "pairs": 1895,
+      "items": 158,
+      "difference": -0.06912928759894459,
+      "ci95": [
+        -0.10290373293806576,
+        -0.034828496042216356
+      ],
+      "exploratory_bootstrap_centered_p": 9.999000099990002e-05,
+      "recovery": 159,
+      "regression": 290
+    },
+    "R_stem": {
+      "pairs": 1895,
+      "items": 158,
+      "difference": -0.027440633245382585,
+      "ci95": [
+        -0.04538258575197889,
+        -0.010021097046413503
+      ],
+      "exploratory_bootstrap_centered_p": 0.0028997100289971,
+      "recovery": 40,
+      "regression": 92
+    },
+    "TT": {
+      "pairs": 1895,
+      "items": 158,
+      "difference": 0.03799472295514512,
+      "ci95": [
+        0.008970976253298154,
+        0.06912928759894459
+      ],
+      "exploratory_bootstrap_centered_p": 0.015198480151984802,
+      "recovery": 222,
+      "regression": 150
+    },
+    "CLP": {
+      "pairs": 1895,
+      "items": 158,
+      "difference": 0.08970976253298153,
+      "ci95": [
+        0.05118733509234828,
+        0.12928759894459102
+      ],
+      "exploratory_bootstrap_centered_p": 9.999000099990002e-05,
+      "recovery": 365,
+      "regression": 195
+    }
+  },
+  "by_cohort_correct": {
+    "screen": {
+      "PPOCR_STEM": 182,
+      "O": 162,
+      "TT": 171,
+      "CLP": 166,
+      "O_EXP_A": 160,
+      "T_REF": 162,
+      "R_REF": 194,
+      "O_ORCF": 161,
+      "R_ORCF": 194,
+      "F_REF": 192,
+      "R_stem": 185
+    },
+    "selection": {
+      "PPOCR_STEM": 182,
+      "O": 171,
+      "TT": 170,
+      "CLP": 147,
+      "O_EXP_A": 169,
+      "T_REF": 169,
+      "R_REF": 196,
+      "O_ORCF": 170,
+      "R_ORCF": 196,
+      "F_REF": 197,
+      "R_stem": 174
+    },
+    "internal_evaluation": {
+      "PPOCR_STEM": 1056,
+      "O": 997,
+      "TT": 1007,
+      "CLP": 937,
+      "O_EXP_A": 993,
+      "T_REF": 1004,
+      "R_REF": 1201,
+      "O_ORCF": 996,
+      "R_ORCF": 1201,
+      "F_REF": 1162,
+      "R_stem": 1113
+    }
+  },
+  "references": {
+    "definitions": {
+      "T_REF": "ExpA: gold span + Gemma referent translation; source context retained",
+      "R_REF": "ExpA: gold span + parallel GUI-language referents; source context retained",
+      "F_REF": "ORCF: parallel GUI-language context and referents; not automatic GUI_FULL"
+    },
+    "source_runs": {
+      "ExpA": {
+        "path": "followup_rel_4lang/artifacts/new_models_expA_20261115/analysis/expA_8b_20261114/qwen3/expA_qwen3/full",
+        "batch_size": 3,
+        "model_config": {
+          "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+          "model_family": "qwen3_vl",
+          "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+          "dtype": "bfloat16",
+          "quantization": null,
+          "attn_implementation": "sdpa",
+          "device_strategy": "cuda:0",
+          "patch_embed_memory_format": "channels_last_3d",
+          "processor_profile": "qwen_4090_2mp",
+          "min_pixels": 262144,
+          "max_pixels": 2097152,
+          "prompt_profile": "mpr_label_only_v1",
+          "generation": {
+            "do_sample": false,
+            "num_beams": 1,
+            "max_new_tokens": 2,
+            "temperature": null
+          }
+        },
+        "system_prompt": "You are a GUI reasoning assistant. Inspect the GUI image and answer the multiple-choice question. Respond with exactly one label: A, B, C, or D.",
+        "software_versions": {
+          "python": "3.12.3",
+          "platform": "Linux-5.15.0-161-generic-x86_64-with-glibc2.39",
+          "torch": "2.9.1+cu130",
+          "transformers": "4.57.6",
+          "accelerate": "1.15.0",
+          "qwen-vl-utils": "0.0.14",
+          "torchvision": "0.24.1+cu130",
+          "timm": "1.0.31",
+          "protobuf": "6.33.6",
+          "sentencepiece": "0.2.0",
+          "flash-attn": null
+        },
+        "fingerprint": "5948932f2ffd442460d191c777c7da41afddce420350d04c00583d10f8f1d6e5",
+        "hardware": {
+          "cuda_available": true,
+          "cuda_runtime_version": "13.0",
+          "gpu_count": 1,
+          "gpus": [
+            {
+              "index": 0,
+              "name": "NVIDIA GeForce RTX 4090",
+              "compute_capability": "8.9",
+              "total_memory_bytes": 25250627584
+            }
+          ]
+        }
+      },
+      "ORCF": {
+        "path": "followup_rel_4lang/artifacts/qwen3_single4090_20261107/full_rel",
+        "batch_size": 4,
+        "model_config": {
+          "model_id": "Qwen/Qwen3-VL-8B-Instruct",
+          "model_family": "qwen3_vl",
+          "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+          "dtype": "bfloat16",
+          "quantization": null,
+          "attn_implementation": "sdpa",
+          "device_strategy": "cuda:0",
+          "patch_embed_memory_format": "channels_last_3d",
+          "processor_profile": "qwen_4090_2mp",
+          "min_pixels": 262144,
+          "max_pixels": 2097152,
+          "prompt_profile": "mpr_label_only_v1",
+          "generation": {
+            "do_sample": false,
+            "num_beams": 1,
+            "max_new_tokens": 2,
+            "temperature": null
+          }
+        },
+        "system_prompt": "You are a GUI reasoning assistant. Inspect the GUI image and answer the multiple-choice question. Respond with exactly one label: A, B, C, or D.",
+        "software_versions": {
+          "python": "3.12.15",
+          "platform": "Linux-6.8.0-142-generic-x86_64-with-glibc2.39",
+          "torch": "2.9.1+cu130",
+          "transformers": "4.57.6",
+          "accelerate": "1.15.0",
+          "qwen-vl-utils": "0.0.14",
+          "torchvision": "0.24.1+cu130",
+          "timm": "1.0.31",
+          "protobuf": "6.33.6",
+          "sentencepiece": "0.2.0",
+          "flash-attn": null
+        },
+        "fingerprint": "4b9bd340dcba8ca556e0110b0683570c578d6a3e03790b44e126b394c822ec5d",
+        "hardware": {
+          "cuda_available": true,
+          "cuda_runtime_version": "13.0",
+          "gpu_count": 1,
+          "gpus": [
+            {
+              "index": 0,
+              "name": "NVIDIA GeForce RTX 4090",
+              "compute_capability": "8.9",
+              "total_memory_bytes": 25252724736
+            }
+          ]
+        }
+      }
+    },
+    "identical_model_config_and_system": true,
+    "different_batch_and_queue": true,
+    "shared_dataset_sha256": "e5aa6cd0c426cc648322c8c7702b1b6985fddb09ad895d70a85d86c6a3de38ce",
+    "legacy_pilot_policy": "ExpA T/R cover main only; do not silently shrink or invent references for legacy pilot",
+    "row_identity_checks": [
+      "pair_id",
+      "parallel_id",
+      "source/GUI language",
+      "gold",
+      "option order",
+      "ORCF image path",
+      "F representative exact field equality"
+    ]
+  },
+  "F_aliases": {
+    "F": 1893,
+    "R": 2
+  },
+  "historical_O": {
+    "O_EXP_A": 1322,
+    "O_ORCF": 1327
+  },
+  "R_stem_contract": {
+    "batch_size": 4,
+    "fingerprint": "e60574acf0226ce379574e1397c0c3f26415584b9be9b4724cefb16823381124"
+  },
+  "automatic_method_costs": {
+    "O": {
+      "stages_seconds": {},
+      "answer_seconds": 1057.6292416589956,
+      "preprocessing_seconds": 0,
+      "total_seconds": 1057.6292416589956,
+      "cohort_total_sum_seconds": 1057.6292416589956,
+      "n": 1895,
+      "unique_preprocessing_calls": {}
+    },
+    "TT": {
+      "stages_seconds": {
+        "translation": 919.9602044848725
+      },
+      "answer_seconds": 1006.1487907267486,
+      "preprocessing_seconds": 919.9602044848725,
+      "total_seconds": 1926.1089952116213,
+      "cohort_total_sum_seconds": 1926.108995211621,
+      "n": 1895,
+      "unique_preprocessing_calls": {
+        "translation": 474
+      }
+    },
+    "CLP": {
+      "stages_seconds": {
+        "alignment": 6837.372095397674
+      },
+      "answer_seconds": 9370.75354466432,
+      "preprocessing_seconds": 6837.372095397674,
+      "total_seconds": 16208.125640061993,
+      "cohort_total_sum_seconds": 16208.125640061993,
+      "n": 1895,
+      "unique_preprocessing_calls": {
+        "alignment": 632
+      }
+    },
+    "PPOCR_STEM": {
+      "inventory_seconds": 73.30616311449558,
+      "extraction_seconds": 576.6615744549781,
+      "matching_seconds": 2015.3794790636748,
+      "answer_seconds": 1358.9416134571657,
+      "total_seconds": 4024.288830090314,
+      "seconds_per_pair": 2.1236352665384244
+    }
+  },
+  "transfer_4b": {
+    "n": 1895,
+    "items": 158,
+    "methods": {
+      "O": {
+        "correct": 1308,
+        "accuracy": 0.6902374670184697,
+        "cost": {
+          "inventory_seconds": 0.0,
+          "extraction_seconds": 0.0,
+          "matching_seconds": 0.0,
+          "answer_seconds": 961.614418421251,
+          "total_seconds": 961.614418421251,
+          "seconds_per_pair": 0.5074482419109504
+        },
+        "by_gui": {
+          "en": {
+            "n": 474,
+            "correct": 377
+          },
+          "zh": {
+            "n": 474,
+            "correct": 344
+          },
+          "th": {
+            "n": 474,
+            "correct": 229
+          },
+          "ru": {
+            "n": 473,
+            "correct": 358
+          }
+        }
+      },
+      "VLM_inventory": {
+        "correct": 1378,
+        "accuracy": 0.7271767810026385,
+        "cost": {
+          "inventory_seconds": 5234.342757392675,
+          "extraction_seconds": 576.6615744549781,
+          "matching_seconds": 1966.4989758413285,
+          "answer_seconds": 1128.0129516643162,
+          "total_seconds": 8905.516259353297,
+          "seconds_per_pair": 4.699480875648177
+        },
+        "by_gui": {
+          "en": {
+            "n": 474,
+            "correct": 388
+          },
+          "zh": {
+            "n": 474,
+            "correct": 354
+          },
+          "th": {
+            "n": 474,
+            "correct": 246
+          },
+          "ru": {
+            "n": 473,
+            "correct": 390
+          }
+        }
+      },
+      "EasyOCR_CPU": {
+        "correct": 1373,
+        "accuracy": 0.7245382585751979,
+        "cost": {
+          "inventory_seconds": 6880.6538395946845,
+          "extraction_seconds": 576.6615744549781,
+          "matching_seconds": 2028.8776330100372,
+          "answer_seconds": 1175.563526630712,
+          "total_seconds": 10661.756573690413,
+          "seconds_per_pair": 5.626256767118951
+        },
+        "by_gui": {
+          "en": {
+            "n": 474,
+            "correct": 386
+          },
+          "zh": {
+            "n": 474,
+            "correct": 354
+          },
+          "th": {
+            "n": 474,
+            "correct": 247
+          },
+          "ru": {
+            "n": 473,
+            "correct": 386
+          }
+        }
+      },
+      "easyocr_cuda": {
+        "correct": 1377,
+        "accuracy": 0.7266490765171504,
+        "cost": {
+          "inventory_seconds": 248.8049068627879,
+          "extraction_seconds": 576.6615744549781,
+          "matching_seconds": 2180.1609939048067,
+          "answer_seconds": 1196.8362413275365,
+          "total_seconds": 4202.463716550109,
+          "seconds_per_pair": 2.217658953324596
+        },
+        "by_gui": {
+          "en": {
+            "n": 474,
+            "correct": 386
+          },
+          "zh": {
+            "n": 474,
+            "correct": 353
+          },
+          "th": {
+            "n": 474,
+            "correct": 250
+          },
+          "ru": {
+            "n": 473,
+            "correct": 388
+          }
+        },
+        "contrasts": {
+          "O": {
+            "pairs": 1895,
+            "items": 158,
+            "difference": 0.03641160949868074,
+            "ci95": [
+              0.012671594508975714,
+              0.06121372031662269
+            ],
+            "exploratory_bootstrap_centered_p": 0.0031996800319968005,
+            "recovery": 181,
+            "regression": 112
+          },
+          "VLM_inventory": {
+            "pairs": 1895,
+            "items": 158,
+            "difference": -0.0005277044854881266,
+            "ci95": [
+              -0.012130801687763712,
+              0.01108179419525066
+            ],
+            "exploratory_bootstrap_centered_p": 0.9505049495050495,
+            "recovery": 42,
+            "regression": 43
+          },
+          "EasyOCR_CPU": {
+            "pairs": 1895,
+            "items": 158,
+            "difference": 0.0021108179419525065,
+            "ci95": [
+              -0.0010548523206751054,
+              0.0058016877637130804
+            ],
+            "exploratory_bootstrap_centered_p": 0.23367663233676633,
+            "recovery": 6,
+            "regression": 2
+          }
+        }
+      },
+      "ppocrv5_cuda": {
+        "correct": 1385,
+        "accuracy": 0.7308707124010554,
+        "cost": {
+          "inventory_seconds": 73.30616311449558,
+          "extraction_seconds": 576.6615744549781,
+          "matching_seconds": 2015.3794790636748,
+          "answer_seconds": 1235.9720629562312,
+          "total_seconds": 3901.3192795893797,
+          "seconds_per_pair": 2.0587436831606225
+        },
+        "by_gui": {
+          "en": {
+            "n": 474,
+            "correct": 388
+          },
+          "zh": {
+            "n": 474,
+            "correct": 362
+          },
+          "th": {
+            "n": 474,
+            "correct": 252
+          },
+          "ru": {
+            "n": 473,
+            "correct": 383
+          }
+        },
+        "contrasts": {
+          "O": {
+            "pairs": 1895,
+            "items": 158,
+            "difference": 0.04063324538258575,
+            "ci95": [
+              0.018974643444321187,
+              0.06385224274406333
+            ],
+            "exploratory_bootstrap_centered_p": 0.0006999300069993001,
+            "recovery": 179,
+            "regression": 102
+          },
+          "VLM_inventory": {
+            "pairs": 1895,
+            "items": 158,
+            "difference": 0.0036939313984168864,
+            "ci95": [
+              -0.007383966244725738,
+              0.014263074484944533
+            ],
+            "exploratory_bootstrap_centered_p": 0.5271472852714728,
+            "recovery": 40,
+            "regression": 33
+          },
+          "EasyOCR_CPU": {
+            "pairs": 1895,
+            "items": 158,
+            "difference": 0.0063324538258575196,
+            "ci95": [
+              -0.0036939313984168864,
+              0.016350210970464137
+            ],
+            "exploratory_bootstrap_centered_p": 0.21487851214878512,
+            "recovery": 40,
+            "regression": 28
+          }
+        }
+      }
+    },
+    "ppocrv5_minus_easyocr_cuda": {
+      "pairs": 1895,
+      "items": 158,
+      "difference": 0.004221635883905013,
+      "ci95": [
+        -0.0063324538258575196,
+        0.014767932489451477
+      ],
+      "exploratory_bootstrap_centered_p": 0.43745625437456254,
+      "recovery": 39,
+      "regression": 31
+    }
+  },
+  "clp_diagnostics": {
+    "n": 1895,
+    "valid": 1499,
+    "cap_hit": 339,
+    "invalid_cap": 338,
+    "invalid_without_cap": 58,
+    "output_tokens": 600027,
+    "correct": 1250,
+    "E1_correct_on_same_valid_subset": 1168,
+    "posthoc_explicit_final_format": 54,
+    "posthoc_format_correct": 50
+  },
+  "sources_sha256": {
+    "followup_rel_4lang/method_dev/scripts/wrap_up_ppocr_method.py": "ade13fdbaa7ceb2b9bcbb5bdb012cec122116db35e4c420c8240c9bc023ad13e",
+    "followup_rel_4lang/method_dev/scripts/ppocr_wrapup_report.py": "007efdfb333941e954c0af799f0c0190a9e25a2adae17583270d8dd67106133a",
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/contract.json": "ee0fa9f54a8d43b22e4827a3fbc09bf622fe92b44b1c4496bb809b9a26892267",
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/COMPLETE.json": "f7ae17b822f3556e9cd861c41beae1a46297b81941e854492f32db81865d3bff",
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/results.json": "12197e0e386b6425c960e555286734f7b5ddf4aa5c8b8f3b7a9bcd72305f63b1",
+    "followup_rel_4lang/method_dev/artifacts/dataset_audit/evaluation_labels_PRIVATE.jsonl": "82e29e2a57d1f361a1b13020fda34068f95bf5762c29a1c8d610d198aa3a7c6a",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/contract.json": "d2ab6425e1f5d5d218d66749eda8aaefd645ca2cc839400a6864e7a16dbb6db0",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/COMPLETE.json": "99394f14143b4fb1ad043fae83d83a296babba3836497e544479b0f084fc57f6",
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/inputs.jsonl": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/inputs.jsonl": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a",
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_8B/attempt_0001/evaluation/predictions.jsonl": "30024f0fe51abf3afc4cd0aabed12864721313c2edd9b2dc2a86c243d6249547",
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/contract.json": "10ab5831fc0b093b0d290b3440c9caa01a1999218cc2b408d4055ec5fce2ba90",
+    "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/infer/attempt_0001/predictions.jsonl": "6f7e9009db90218352fa7a3110d6132deb40d6310be4346c9c5e68a4773721eb",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_tt/attempt_0001/evaluation/predictions.jsonl": "def8757113843c560b926b8a997acee8c3a84d147a45f0d1b9694e894578d27a",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/screen/infer_clp/attempt_0001/evaluation/predictions.jsonl": "2b189b5353526374491c8336190d73bb7c61fb49728c13bd3bba3b278f6b3445",
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/selection/ppocrv5_cuda/inputs.jsonl": "7ab2900470258d91f877f3e309953ea24a8289830293bc408fbc57396a33be9a",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/inputs.jsonl": "7ab2900470258d91f877f3e309953ea24a8289830293bc408fbc57396a33be9a",
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/selection/ppocrv5_cuda/infer_8B/attempt_0001/evaluation/predictions.jsonl": "6a9b652d0a4aea808daf5bd1e7eabbf6e22327a00af58d18d0d24fdc497478f1",
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/selection/ppocrv5_cuda/contract.json": "01b9b648ddb6f1a4e3d0071b0275169677cd938a85757f5e6cb9e1779983a9a1",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/selection/pred_fixed_contrastive_GUI_EXACT/attempt_0001/predictions.jsonl": "7fec520992bb75b986042c661e397f5b902cbbcbe7d43bf5c6eea5b954a76406",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_tt/attempt_0001/evaluation/predictions.jsonl": "4429b9b9ba66589b6be70a3bb74b7b6caf6b3a56a11dbdf14f7d13bf1a1ea68d",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/selection/infer_clp/attempt_0001/evaluation/predictions.jsonl": "619a6d2124b60e313c30411737bdcd2996ccc6f2454b56877cb02c59f6fbe90c",
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/internal_evaluation/ppocrv5_cuda/inputs.jsonl": "1003321a9b8775e17ee8122cfd2f6dc6f0c474679cf45b553472461b1650302d",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/inputs.jsonl": "1003321a9b8775e17ee8122cfd2f6dc6f0c474679cf45b553472461b1650302d",
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/internal_evaluation/ppocrv5_cuda/infer_8B/attempt_0001/evaluation/predictions.jsonl": "5efbf3d0d0def58fd46fb3b20fa51a1e150d1997089164c6737f29b8353b5f20",
+    "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/internal_evaluation/ppocrv5_cuda/contract.json": "48ea114e777d7c26d67e41b164ee2c00fb91d5cbc0ecce0dc009674983d30d81",
+    "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/pred_fixed_contrastive_GUI_EXACT/attempt_0001/predictions.jsonl": "6ea5e6df907ce085298ab22d6b8d3428490ed79b904f909172e0d682cb0c3513",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_tt/attempt_0001/evaluation/predictions.jsonl": "d29b2683d66894aba63e8bd0d65c165d3c44f63c11ab487476692e964b628330",
+    "followup_rel_4lang/method_dev/artifacts/external_baselines_v1/internal_evaluation/infer_clp/attempt_0001/evaluation/predictions.jsonl": "3e3a2e1fd058ea22dae559c32c550f9ace16a1a311f2db1906f5578fd6012e65",
+    "followup_rel_4lang/artifacts/new_models_expA_20261115/analysis/expA_8b_20261114/qwen3/expA_qwen3/full/run_contract.json": "3e0786aeac65805578bf1bc8492b3fd3f0aa0da37655976ba63a8dd7ff676bf2",
+    "followup_rel_4lang/dataset_lock.json": "29ab8507a8a03aff89528441663a6fbb844147dda8a53585c3aee08666086a99",
+    "followup_rel_4lang/data/rel_all_366/conditions_4lang.jsonl": "e5aa6cd0c426cc648322c8c7702b1b6985fddb09ad895d70a85d86c6a3de38ce",
+    "followup_rel_4lang/artifacts/qwen3_single4090_20261107/full_rel/run_contract.json": "228f3f54275926c6db67c72bdbdcb5cd5fa6c5b2bae60cfc571a69efbc6afd04",
+    "followup_rel_4lang/artifacts/new_models_expA_20261115/analysis/expA_8b_20261114/qwen3/expA_qwen3/full/predictions.jsonl": "c6315c8938a1cd2a83242f8d40f262711372d48f6a7be3c203fd13bfac7375e8",
+    "followup_rel_4lang/artifacts/qwen3_single4090_20261107/full_rel/predictions.jsonl.gz": "1b2adbd40058155ab3b44af5225137119030088e59de36eaffa9b2135e7558fc",
+    "followup_rel_4lang/method_dev/artifacts/search_report_snapshot.json": "f8e579718ce9378495da1921f1e7ab2af0ba982c99dd79c530b7711642e9134e",
+    "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw/run_contract.json": "ee1ef31c71262576a8a686150c7d31fe6dcbd20e0dcc5b564f5a483a66cceff7",
+    "followup_rel_4lang/rstem_ropts_inputs/input_lock.json": "d02977c384a8cd8903c639afc956ccea0fe706f7a3fed6f154e7fd29878ff129",
+    "followup_rel_4lang/rstem_ropts_inputs/mixed_conditions.jsonl": "a7fb09962989ead44c9e76184b5759aefb30bb34e4fd2f3eec091dffe2e54cbe",
+    "followup_rel_4lang/results/rstem_ropts_20261110/qwen3/raw/predictions.jsonl.gz": "6b9d07d95efcdddb93e345544e7df4a72c1c6374444848b3e1e210412b594575",
+    "followup_rel_4lang/method_dev/artifacts/tt_efficiency_comparison_snapshot.json": "28df4ac209df8c776983e34d8c538a6fbeb14cd1348a8ecccc84f9b815dbde9c",
+    "followup_rel_4lang/method_dev/artifacts/current_experiment_summary_snapshot.json": "655ea3650a59ff1045b56b8f707ce39b72081d60d02d6db147424f6c52c7ded6"
+  },
+  "policy": "Post-hoc comparison only; no inference or frozen-artifact changes. Reference costs not ranked against B200 automatic methods. TT/CLP measured for 8B only. No independent confirmatory claims."
+}
