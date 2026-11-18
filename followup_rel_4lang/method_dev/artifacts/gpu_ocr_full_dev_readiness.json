@@ -1,0 +1,59 @@
+{
+  "prepared": true,
+  "actual_new_gpu_inference_started": false,
+  "output_dir": "/home/jovyan/seungjae/mpr-gui-crosslocale/followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1",
+  "contract_sha256": "5b221b72d7e48c1bf195d966bba2f030497e237057a139a56e39d9022f4e6e08",
+  "counts": {
+    "selection": {
+      "executed_pairs": 240,
+      "primary_pairs": 239,
+      "items": 20,
+      "images": 80
+    },
+    "internal_evaluation": {
+      "executed_pairs": 1416,
+      "primary_pairs": 1416,
+      "items": 118,
+      "images": 472
+    }
+  },
+  "screen_reused": true,
+  "final_primary_pairs_per_condition": 1895,
+  "new_execution_rows_all_four_conditions": 6624,
+  "cache_seed_counts": {
+    "matching": 2530,
+    "easyocr_cuda": 128,
+    "ppocrv5_cuda": 128
+  },
+  "cache_seed_conflicts": {
+    "matching": [],
+    "easyocr_cuda": [],
+    "ppocrv5_cuda": []
+  },
+  "mock_completed_prediction_rows": {
+    "selection": {
+      "easyocr_cuda": {
+        "8B": 240,
+        "4B": 240
+      },
+      "ppocrv5_cuda": {
+        "8B": 240,
+        "4B": 240
+      }
+    },
+    "internal_evaluation": {
+      "easyocr_cuda": {
+        "8B": 1416,
+        "4B": 1416
+      },
+      "ppocrv5_cuda": {
+        "8B": 1416,
+        "4B": 1416
+      }
+    }
+  },
+  "mock_resume_skipped_stages": 16,
+  "targeted_tests_passed": 20,
+  "baseline_screen_and_remaining_costs_reproduced": true,
+  "command": "nohup bash followup_rel_4lang/method_dev/scripts/run_gpu_ocr_remaining.sh > followup_rel_4lang/method_dev/artifacts/gpu_ocr_remaining.log 2>&1 &"
+}

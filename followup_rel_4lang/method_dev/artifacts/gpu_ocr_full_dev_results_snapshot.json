@@ -1,0 +1,2789 @@
+{
+  "as_of_utc": "2026-11-18T01:15:13.774146+00:00",
+  "completed": true,
+  "result": {
+    "execution_mode": "gpu",
+    "development_only": true,
+    "completed_cohorts_all_four": [
+      "screen",
+      "selection",
+      "internal_evaluation"
+    ],
+    "pooled_cohorts": [
+      "screen",
+      "selection",
+      "internal_evaluation"
+    ],
+    "pooled_key": "all_158",
+    "pending_conditions": [],
+    "summary": {
+      "screen": {
+        "8B": {
+          "n": 240,
+          "items": 20,
+          "methods": {
+            "O": {
+              "correct": 162,
+              "accuracy": 0.675,
+              "cost": {
+                "inventory_seconds": 0.0,
+                "extraction_seconds": 0.0,
+                "matching_seconds": 0.0,
+                "answer_seconds": 175.1673963656649,
+                "total_seconds": 175.1673963656649,
+                "seconds_per_pair": 0.7298641515236037
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 45
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 44
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 27
+                },
+                "ru": {
+                  "n": 60,
+                  "correct": 46
+                }
+              }
+            },
+            "VLM_inventory": {
+              "correct": 178,
+              "accuracy": 0.7416666666666667,
+              "cost": {
+                "inventory_seconds": 1773.588974324055,
+                "extraction_seconds": 63.51239993982017,
+                "matching_seconds": 318.6465036896989,
+                "answer_seconds": 190.0594604546204,
+                "total_seconds": 2345.8073384081945,
+                "seconds_per_pair": 9.774197243367476
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 47
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 47
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 41
+                },
+                "ru": {
+                  "n": 60,
+                  "correct": 43
+                }
+              }
+            },
+            "EasyOCR_CPU": {
+              "correct": 179,
+              "accuracy": 0.7458333333333333,
+              "cost": {
+                "inventory_seconds": 894.9245213484392,
+                "extraction_seconds": 63.51239993982017,
+                "matching_seconds": 326.73498244863003,
+                "answer_seconds": 189.96481504291296,
+                "total_seconds": 1475.1367187798023,
+                "seconds_per_pair": 6.146402994915843
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 45
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 48
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 41
+                },
+                "ru": {
+                  "n": 60,
+                  "correct": 45
+                }
+              }
+            },
+            "easyocr_cuda": {
+              "correct": 181,
+              "accuracy": 0.7541666666666667,
+              "cost": {
+                "inventory_seconds": 31.03181923739612,
+                "extraction_seconds": 63.51239993982017,
+                "matching_seconds": 320.6217466434464,
+                "answer_seconds": 193.7538952436298,
+                "total_seconds": 608.9198610642925,
+                "seconds_per_pair": 2.5371660877678854
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 46
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 48
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 41
+                },
+                "ru": {
+                  "n": 60,
+                  "correct": 46
+                }
+              },
+              "contrasts": {
+                "O": {
+                  "pairs": 240,
+                  "items": 20,
+                  "difference": 0.07916666666666666,
+                  "ci95": [
+                    0.016666666666666666,
+                    0.15
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.025597440255974404,
+                  "recovery": 30,
+                  "regression": 11
+                },
+                "VLM_inventory": {
+                  "pairs": 240,
+                  "items": 20,
+                  "difference": 0.0125,
+                  "ci95": [
+                    -0.016666666666666666,
+                    0.04583333333333333
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.5165483451654834,
+                  "recovery": 8,
+                  "regression": 5
+                },
+                "EasyOCR_CPU": {
+                  "pairs": 240,
+                  "items": 20,
+                  "difference": 0.008333333333333333,
+                  "ci95": [
+                    0.0,
+                    0.025
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.6214378562143785,
+                  "recovery": 2,
+                  "regression": 0
+                }
+              }
+            },
+            "ppocrv5_cuda": {
+              "correct": 182,
+              "accuracy": 0.7583333333333333,
+              "cost": {
+                "inventory_seconds": 8.864168220199645,
+                "extraction_seconds": 63.51239993982017,
+                "matching_seconds": 328.80129240173846,
+                "answer_seconds": 200.0421493593603,
+                "total_seconds": 601.2200099211186,
+                "seconds_per_pair": 2.5050833746713277
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 47
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 47
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 42
+                },
+                "ru": {
+                  "n": 60,
+                  "correct": 46
+                }
+              },
+              "contrasts": {
+                "O": {
+                  "pairs": 240,
+                  "items": 20,
+                  "difference": 0.08333333333333333,
+                  "ci95": [
+                    0.020833333333333332,
+                    0.15416666666666667
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.014498550144985502,
+                  "recovery": 29,
+                  "regression": 9
+                },
+                "VLM_inventory": {
+                  "pairs": 240,
+                  "items": 20,
+                  "difference": 0.016666666666666666,
+                  "ci95": [
+                    -0.008333333333333333,
+                    0.041666666666666664
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.24237576242375763,
+                  "recovery": 6,
+                  "regression": 2
+                },
+                "EasyOCR_CPU": {
+                  "pairs": 240,
+                  "items": 20,
+                  "difference": 0.0125,
+                  "ci95": [
+                    -0.016666666666666666,
+                    0.041666666666666664
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.4764523547645235,
+                  "recovery": 6,
+                  "regression": 3
+                }
+              }
+            }
+          },
+          "ppocrv5_minus_easyocr_cuda": {
+            "pairs": 240,
+            "items": 20,
+            "difference": 0.004166666666666667,
+            "ci95": [
+              -0.020833333333333332,
+              0.02510416666666515
+            ],
+            "exploratory_bootstrap_centered_p": 0.863013698630137,
+            "recovery": 4,
+            "regression": 3
+          }
+        },
+        "4B": {
+          "n": 240,
+          "items": 20,
+          "methods": {
+            "O": {
+              "correct": 174,
+              "accuracy": 0.725,
+              "cost": {
+                "inventory_seconds": 0.0,
+                "extraction_seconds": 0.0,
+                "matching_seconds": 0.0,
+                "answer_seconds": 170.5995056008299,
+                "total_seconds": 170.5995056008299,
+                "seconds_per_pair": 0.7108312733367913
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 49
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 48
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 30
+                },
+                "ru": {
+                  "n": 60,
+                  "correct": 47
+                }
+              }
+            },
+            "VLM_inventory": {
+              "correct": 181,
+              "accuracy": 0.7541666666666667,
+              "cost": {
+                "inventory_seconds": 685.4309959830716,
+                "extraction_seconds": 63.51239993982017,
+                "matching_seconds": 309.7433138899505,
+                "answer_seconds": 170.9520069997137,
+                "total_seconds": 1229.638716812556,
+                "seconds_per_pair": 5.12349465338565
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 53
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 44
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 34
+                },
+                "ru": {
+                  "n": 60,
+                  "correct": 50
+                }
+              }
+            },
+            "EasyOCR_CPU": {
+              "correct": 175,
+              "accuracy": 0.7291666666666666,
+              "cost": {
+                "inventory_seconds": 894.9245213484392,
+                "extraction_seconds": 63.51239993982017,
+                "matching_seconds": 326.73498244863003,
+                "answer_seconds": 175.2732721045613,
+                "total_seconds": 1460.4451758414507,
+                "seconds_per_pair": 6.085188232672711
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 52
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 46
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 29
+                },
+                "ru": {
+                  "n": 60,
+                  "correct": 48
+                }
+              }
+            },
+            "easyocr_cuda": {
+              "correct": 177,
+              "accuracy": 0.7375,
+              "cost": {
+                "inventory_seconds": 31.03181923739612,
+                "extraction_seconds": 63.51239993982017,
+                "matching_seconds": 320.6217466434464,
+                "answer_seconds": 179.88454412948337,
+                "total_seconds": 595.0505099501461,
+                "seconds_per_pair": 2.479377124792275
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 53
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 46
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 29
+                },
+                "ru": {
+                  "n": 60,
+                  "correct": 49
+                }
+              },
+              "contrasts": {
+                "O": {
+                  "pairs": 240,
+                  "items": 20,
+                  "difference": 0.0125,
+                  "ci95": [
+                    -0.05,
+                    0.0959374999999985
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.7892210778922107,
+                  "recovery": 19,
+                  "regression": 16
+                },
+                "VLM_inventory": {
+                  "pairs": 240,
+                  "items": 20,
+                  "difference": -0.016666666666666666,
+                  "ci95": [
+                    -0.058333333333333334,
+                    0.029166666666666667
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.5183481651834817,
+                  "recovery": 7,
+                  "regression": 11
+                },
+                "EasyOCR_CPU": {
+                  "pairs": 240,
+                  "items": 20,
+                  "difference": 0.008333333333333333,
+                  "ci95": [
+                    0.0,
+                    0.025
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.6214378562143785,
+                  "recovery": 2,
+                  "regression": 0
+                }
+              }
+            },
+            "ppocrv5_cuda": {
+              "correct": 177,
+              "accuracy": 0.7375,
+              "cost": {
+                "inventory_seconds": 8.864168220199645,
+                "extraction_seconds": 63.51239993982017,
+                "matching_seconds": 328.80129240173846,
+                "answer_seconds": 185.3802487881233,
+                "total_seconds": 586.5581093498815,
+                "seconds_per_pair": 2.443992122291173
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 53
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 45
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 32
+                },
+                "ru": {
+                  "n": 60,
+                  "correct": 47
+                }
+              },
+              "contrasts": {
+                "O": {
+                  "pairs": 240,
+                  "items": 20,
+                  "difference": 0.0125,
+                  "ci95": [
+                    -0.041666666666666664,
+                    0.08333333333333333
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.7469253074692531,
+                  "recovery": 20,
+                  "regression": 17
+                },
+                "VLM_inventory": {
+                  "pairs": 240,
+                  "items": 20,
+                  "difference": -0.016666666666666666,
+                  "ci95": [
+                    -0.05416666666666667,
+                    0.016666666666666666
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.4233576642335766,
+                  "recovery": 3,
+                  "regression": 7
+                },
+                "EasyOCR_CPU": {
+                  "pairs": 240,
+                  "items": 20,
+                  "difference": 0.008333333333333333,
+                  "ci95": [
+                    -0.020833333333333332,
+                    0.0375
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.6828317168283171,
+                  "recovery": 7,
+                  "regression": 5
+                }
+              }
+            }
+          },
+          "ppocrv5_minus_easyocr_cuda": {
+            "pairs": 240,
+            "items": 20,
+            "difference": 0.0,
+            "ci95": [
+              -0.041666666666666664,
+              0.0375
+            ],
+            "exploratory_bootstrap_centered_p": 1.0,
+            "recovery": 6,
+            "regression": 6
+          }
+        }
+      },
+      "selection": {
+        "8B": {
+          "n": 239,
+          "items": 20,
+          "methods": {
+            "O": {
+              "correct": 171,
+              "accuracy": 0.7154811715481172,
+              "cost": {
+                "inventory_seconds": 0.0,
+                "extraction_seconds": 0.0,
+                "matching_seconds": 0.0,
+                "answer_seconds": 155.27177227723104,
+                "total_seconds": 155.27177227723104,
+                "seconds_per_pair": 0.6496726873524311
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 50
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 43
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 30
+                },
+                "ru": {
+                  "n": 59,
+                  "correct": 48
+                }
+              }
+            },
+            "VLM_inventory": {
+              "correct": 175,
+              "accuracy": 0.7322175732217573,
+              "cost": {
+                "inventory_seconds": 1714.9893674934283,
+                "extraction_seconds": 134.50290270335972,
+                "matching_seconds": 491.6959533309564,
+                "answer_seconds": 195.69710565824062,
+                "total_seconds": 2536.885329185985,
+                "seconds_per_pair": 10.614582967305378
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 48
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 49
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 31
+                },
+                "ru": {
+                  "n": 59,
+                  "correct": 47
+                }
+              }
+            },
+            "EasyOCR_CPU": {
+              "correct": 178,
+              "accuracy": 0.7447698744769874,
+              "cost": {
+                "inventory_seconds": 846.5517813730985,
+                "extraction_seconds": 134.50290270335972,
+                "matching_seconds": 437.7703120307997,
+                "answer_seconds": 199.94289108086377,
+                "total_seconds": 1618.7678871881217,
+                "seconds_per_pair": 6.773087394092559
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 48
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 47
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 36
+                },
+                "ru": {
+                  "n": 59,
+                  "correct": 47
+                }
+              }
+            },
+            "easyocr_cuda": {
+              "correct": 179,
+              "accuracy": 0.7489539748953975,
+              "cost": {
+                "inventory_seconds": 30.93441743310541,
+                "extraction_seconds": 134.50290270335972,
+                "matching_seconds": 477.55067445430905,
+                "answer_seconds": 201.7115448564291,
+                "total_seconds": 844.6995394472033,
+                "seconds_per_pair": 3.5343076964318128
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 48
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 48
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 36
+                },
+                "ru": {
+                  "n": 59,
+                  "correct": 47
+                }
+              },
+              "contrasts": {
+                "O": {
+                  "pairs": 239,
+                  "items": 20,
+                  "difference": 0.03347280334728033,
+                  "ci95": [
+                    -0.02092050209205021,
+                    0.09623430962343096
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.28787121287871215,
+                  "recovery": 18,
+                  "regression": 10
+                },
+                "VLM_inventory": {
+                  "pairs": 239,
+                  "items": 20,
+                  "difference": 0.016736401673640166,
+                  "ci95": [
+                    0.0,
+                    0.03765690376569038
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.09829017098290171,
+                  "recovery": 5,
+                  "regression": 1
+                },
+                "EasyOCR_CPU": {
+                  "pairs": 239,
+                  "items": 20,
+                  "difference": 0.0041841004184100415,
+                  "ci95": [
+                    0.0,
+                    0.012605042016806723
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.5542445755424458,
+                  "recovery": 1,
+                  "regression": 0
+                }
+              }
+            },
+            "ppocrv5_cuda": {
+              "correct": 182,
+              "accuracy": 0.7615062761506276,
+              "cost": {
+                "inventory_seconds": 9.304700990207493,
+                "extraction_seconds": 134.50290270335972,
+                "matching_seconds": 417.8172379024327,
+                "answer_seconds": 210.5034739971161,
+                "total_seconds": 772.128315593116,
+                "seconds_per_pair": 3.2306624083393976
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 49
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 49
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 36
+                },
+                "ru": {
+                  "n": 59,
+                  "correct": 48
+                }
+              },
+              "contrasts": {
+                "O": {
+                  "pairs": 239,
+                  "items": 20,
+                  "difference": 0.04602510460251046,
+                  "ci95": [
+                    -0.008333333333333333,
+                    0.10833333333333334
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.12248775122487751,
+                  "recovery": 18,
+                  "regression": 7
+                },
+                "VLM_inventory": {
+                  "pairs": 239,
+                  "items": 20,
+                  "difference": 0.029288702928870293,
+                  "ci95": [
+                    0.008333333333333333,
+                    0.0546218487394958
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.021497850214978503,
+                  "recovery": 8,
+                  "regression": 1
+                },
+                "EasyOCR_CPU": {
+                  "pairs": 239,
+                  "items": 20,
+                  "difference": 0.016736401673640166,
+                  "ci95": [
+                    0.0,
+                    0.037815126050420166
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.10838916108389161,
+                  "recovery": 5,
+                  "regression": 1
+                }
+              }
+            }
+          },
+          "ppocrv5_minus_easyocr_cuda": {
+            "pairs": 239,
+            "items": 20,
+            "difference": 0.012552301255230125,
+            "ci95": [
+              0.0,
+              0.03361344537815126
+            ],
+            "exploratory_bootstrap_centered_p": 0.22827717228277172,
+            "recovery": 4,
+            "regression": 1
+          }
+        },
+        "4B": {
+          "n": 239,
+          "items": 20,
+          "methods": {
+            "O": {
+              "correct": 179,
+              "accuracy": 0.7489539748953975,
+              "cost": {
+                "inventory_seconds": 0.0,
+                "extraction_seconds": 0.0,
+                "matching_seconds": 0.0,
+                "answer_seconds": 141.23097578715533,
+                "total_seconds": 141.23097578715533,
+                "seconds_per_pair": 0.5909245848834951
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 51
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 45
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 32
+                },
+                "ru": {
+                  "n": 59,
+                  "correct": 51
+                }
+              }
+            },
+            "VLM_inventory": {
+              "correct": 182,
+              "accuracy": 0.7615062761506276,
+              "cost": {
+                "inventory_seconds": 528.7557752095163,
+                "extraction_seconds": 134.50290270335972,
+                "matching_seconds": 428.62849683035165,
+                "answer_seconds": 180.52754221328846,
+                "total_seconds": 1272.414716956516,
+                "seconds_per_pair": 5.3239109496088535
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 49
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 52
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 31
+                },
+                "ru": {
+                  "n": 59,
+                  "correct": 50
+                }
+              }
+            },
+            "EasyOCR_CPU": {
+              "correct": 184,
+              "accuracy": 0.7698744769874477,
+              "cost": {
+                "inventory_seconds": 846.5517813730985,
+                "extraction_seconds": 134.50290270335972,
+                "matching_seconds": 437.7703120307997,
+                "answer_seconds": 192.8884546974053,
+                "total_seconds": 1611.7134508046631,
+                "seconds_per_pair": 6.743570923868884
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 49
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 51
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 33
+                },
+                "ru": {
+                  "n": 59,
+                  "correct": 51
+                }
+              }
+            },
+            "easyocr_cuda": {
+              "correct": 185,
+              "accuracy": 0.7740585774058577,
+              "cost": {
+                "inventory_seconds": 30.93441743310541,
+                "extraction_seconds": 134.50290270335972,
+                "matching_seconds": 477.55067445430905,
+                "answer_seconds": 193.83087750369063,
+                "total_seconds": 836.8188720944648,
+                "seconds_per_pair": 3.5013341928638697
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 49
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 51
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 34
+                },
+                "ru": {
+                  "n": 59,
+                  "correct": 51
+                }
+              },
+              "contrasts": {
+                "O": {
+                  "pairs": 239,
+                  "items": 20,
+                  "difference": 0.02510460251046025,
+                  "ci95": [
+                    -0.025,
+                    0.0794979079497908
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.3625637436256374,
+                  "recovery": 19,
+                  "regression": 13
+                },
+                "VLM_inventory": {
+                  "pairs": 239,
+                  "items": 20,
+                  "difference": 0.012552301255230125,
+                  "ci95": [
+                    -0.004219409282700422,
+                    0.029288702928870293
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.19338066193380662,
+                  "recovery": 4,
+                  "regression": 1
+                },
+                "EasyOCR_CPU": {
+                  "pairs": 239,
+                  "items": 20,
+                  "difference": 0.0041841004184100415,
+                  "ci95": [
+                    0.0,
+                    0.012605042016806723
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.5445455454454554,
+                  "recovery": 1,
+                  "regression": 0
+                }
+              }
+            },
+            "ppocrv5_cuda": {
+              "correct": 183,
+              "accuracy": 0.7656903765690377,
+              "cost": {
+                "inventory_seconds": 9.304700990207493,
+                "extraction_seconds": 134.50290270335972,
+                "matching_seconds": 417.8172379024327,
+                "answer_seconds": 198.28996514187506,
+                "total_seconds": 759.914806737875,
+                "seconds_per_pair": 3.1795598608279287
+              },
+              "by_gui": {
+                "en": {
+                  "n": 60,
+                  "correct": 49
+                },
+                "zh": {
+                  "n": 60,
+                  "correct": 52
+                },
+                "th": {
+                  "n": 60,
+                  "correct": 33
+                },
+                "ru": {
+                  "n": 59,
+                  "correct": 49
+                }
+              },
+              "contrasts": {
+                "O": {
+                  "pairs": 239,
+                  "items": 20,
+                  "difference": 0.016736401673640166,
+                  "ci95": [
+                    -0.041666666666666664,
+                    0.07532171864561713
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.6017398260173983,
+                  "recovery": 17,
+                  "regression": 13
+                },
+                "VLM_inventory": {
+                  "pairs": 239,
+                  "items": 20,
+                  "difference": 0.0041841004184100415,
+                  "ci95": [
+                    -0.02100840336134454,
+                    0.029166666666666667
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.8237176282371763,
+                  "recovery": 5,
+                  "regression": 4
+                },
+                "EasyOCR_CPU": {
+                  "pairs": 239,
+                  "items": 20,
+                  "difference": -0.0041841004184100415,
+                  "ci95": [
+                    -0.029166666666666667,
+                    0.01680672268907563
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.7901209879012099,
+                  "recovery": 3,
+                  "regression": 4
+                }
+              }
+            }
+          },
+          "ppocrv5_minus_easyocr_cuda": {
+            "pairs": 239,
+            "items": 20,
+            "difference": -0.008368200836820083,
+            "ci95": [
+              -0.03333333333333333,
+              0.012658227848101266
+            ],
+            "exploratory_bootstrap_centered_p": 0.5423457654234577,
+            "recovery": 3,
+            "regression": 5
+          }
+        }
+      },
+      "internal_evaluation": {
+        "8B": {
+          "n": 1416,
+          "items": 118,
+          "methods": {
+            "O": {
+              "correct": 997,
+              "accuracy": 0.7040960451977402,
+              "cost": {
+                "inventory_seconds": 0.0,
+                "extraction_seconds": 0.0,
+                "matching_seconds": 0.0,
+                "answer_seconds": 727.1900730160996,
+                "total_seconds": 727.1900730160996,
+                "seconds_per_pair": 0.5135523114520477
+              },
+              "by_gui": {
+                "en": {
+                  "n": 354,
+                  "correct": 290
+                },
+                "zh": {
+                  "n": 354,
+                  "correct": 270
+                },
+                "th": {
+                  "n": 354,
+                  "correct": 172
+                },
+                "ru": {
+                  "n": 354,
+                  "correct": 265
+                }
+              }
+            },
+            "VLM_inventory": {
+              "correct": 1051,
+              "accuracy": 0.742231638418079,
+              "cost": {
+                "inventory_seconds": 4830.024382928386,
+                "extraction_seconds": 379.1051655765623,
+                "matching_seconds": 1451.728220468387,
+                "answer_seconds": 892.5671210205182,
+                "total_seconds": 7553.424889993854,
+                "seconds_per_pair": 5.3343396115775805
+              },
+              "by_gui": {
+                "en": {
+                  "n": 354,
+                  "correct": 290
+                },
+                "zh": {
+                  "n": 354,
+                  "correct": 275
+                },
+                "th": {
+                  "n": 354,
+                  "correct": 214
+                },
+                "ru": {
+                  "n": 354,
+                  "correct": 272
+                }
+              }
+            },
+            "EasyOCR_CPU": {
+              "correct": 1042,
+              "accuracy": 0.7358757062146892,
+              "cost": {
+                "inventory_seconds": 5139.177536873147,
+                "extraction_seconds": 379.1051655765623,
+                "matching_seconds": 1264.3723385306075,
+                "answer_seconds": 918.6003805110231,
+                "total_seconds": 7701.25542149134,
+                "seconds_per_pair": 5.438739704443036
+              },
+              "by_gui": {
+                "en": {
+                  "n": 354,
+                  "correct": 287
+                },
+                "zh": {
+                  "n": 354,
+                  "correct": 270
+                },
+                "th": {
+                  "n": 354,
+                  "correct": 217
+                },
+                "ru": {
+                  "n": 354,
+                  "correct": 268
+                }
+              }
+            },
+            "easyocr_cuda": {
+              "correct": 1045,
+              "accuracy": 0.7379943502824858,
+              "cost": {
+                "inventory_seconds": 186.83867019228637,
+                "extraction_seconds": 379.1051655765623,
+                "matching_seconds": 1381.9885728070512,
+                "answer_seconds": 934.6116647087038,
+                "total_seconds": 2882.5440732846037,
+                "seconds_per_pair": 2.035694967008901
+              },
+              "by_gui": {
+                "en": {
+                  "n": 354,
+                  "correct": 288
+                },
+                "zh": {
+                  "n": 354,
+                  "correct": 270
+                },
+                "th": {
+                  "n": 354,
+                  "correct": 217
+                },
+                "ru": {
+                  "n": 354,
+                  "correct": 270
+                }
+              },
+              "contrasts": {
+                "O": {
+                  "pairs": 1416,
+                  "items": 118,
+                  "difference": 0.03389830508474576,
+                  "ci95": [
+                    0.007062146892655367,
+                    0.059322033898305086
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.0105989401059894,
+                  "recovery": 125,
+                  "regression": 77
+                },
+                "VLM_inventory": {
+                  "pairs": 1416,
+                  "items": 118,
+                  "difference": -0.00423728813559322,
+                  "ci95": [
+                    -0.016242937853107344,
+                    0.007768361581920904
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.5228477152284772,
+                  "recovery": 27,
+                  "regression": 33
+                },
+                "EasyOCR_CPU": {
+                  "pairs": 1416,
+                  "items": 118,
+                  "difference": 0.00211864406779661,
+                  "ci95": [
+                    -0.0007062146892655367,
+                    0.005649717514124294
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.24777522247775222,
+                  "recovery": 4,
+                  "regression": 1
+                }
+              }
+            },
+            "ppocrv5_cuda": {
+              "correct": 1056,
+              "accuracy": 0.7457627118644068,
+              "cost": {
+                "inventory_seconds": 55.13729390408844,
+                "extraction_seconds": 379.1051655765623,
+                "matching_seconds": 1268.7609487595037,
+                "answer_seconds": 948.3959901006892,
+                "total_seconds": 2651.3993983408436,
+                "seconds_per_pair": 1.8724572022181099
+              },
+              "by_gui": {
+                "en": {
+                  "n": 354,
+                  "correct": 291
+                },
+                "zh": {
+                  "n": 354,
+                  "correct": 277
+                },
+                "th": {
+                  "n": 354,
+                  "correct": 220
+                },
+                "ru": {
+                  "n": 354,
+                  "correct": 268
+                }
+              },
+              "contrasts": {
+                "O": {
+                  "pairs": 1416,
+                  "items": 118,
+                  "difference": 0.041666666666666664,
+                  "ci95": [
+                    0.015536723163841809,
+                    0.067090395480226
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.0015998400159984002,
+                  "recovery": 122,
+                  "regression": 63
+                },
+                "VLM_inventory": {
+                  "pairs": 1416,
+                  "items": 118,
+                  "difference": 0.0035310734463276836,
+                  "ci95": [
+                    -0.009887005649717515,
+                    0.015536723163841809
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.6154384561543845,
+                  "recovery": 27,
+                  "regression": 22
+                },
+                "EasyOCR_CPU": {
+                  "pairs": 1416,
+                  "items": 118,
+                  "difference": 0.009887005649717515,
+                  "ci95": [
+                    -0.0035310734463276836,
+                    0.021892655367231638
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.14858514148585142,
+                  "recovery": 34,
+                  "regression": 20
+                }
+              }
+            }
+          },
+          "ppocrv5_minus_easyocr_cuda": {
+            "pairs": 1416,
+            "items": 118,
+            "difference": 0.007768361581920904,
+            "ci95": [
+              -0.005649717514124294,
+              0.020480225988700564
+            ],
+            "exploratory_bootstrap_centered_p": 0.26507349265073493,
+            "recovery": 34,
+            "regression": 23
+          }
+        },
+        "4B": {
+          "n": 1416,
+          "items": 118,
+          "methods": {
+            "O": {
+              "correct": 955,
+              "accuracy": 0.6744350282485876,
+              "cost": {
+                "inventory_seconds": 0.0,
+                "extraction_seconds": 0.0,
+                "matching_seconds": 0.0,
+                "answer_seconds": 649.7839370332658,
+                "total_seconds": 649.7839370332658,
+                "seconds_per_pair": 0.4588869611816849
+              },
+              "by_gui": {
+                "en": {
+                  "n": 354,
+                  "correct": 277
+                },
+                "zh": {
+                  "n": 354,
+                  "correct": 251
+                },
+                "th": {
+                  "n": 354,
+                  "correct": 167
+                },
+                "ru": {
+                  "n": 354,
+                  "correct": 260
+                }
+              }
+            },
+            "VLM_inventory": {
+              "correct": 1015,
+              "accuracy": 0.7168079096045198,
+              "cost": {
+                "inventory_seconds": 4020.1559862000868,
+                "extraction_seconds": 379.1051655765623,
+                "matching_seconds": 1228.1271651210263,
+                "answer_seconds": 776.533402451314,
+                "total_seconds": 6403.921719348989,
+                "seconds_per_pair": 4.522543587110868
+              },
+              "by_gui": {
+                "en": {
+                  "n": 354,
+                  "correct": 286
+                },
+                "zh": {
+                  "n": 354,
+                  "correct": 258
+                },
+                "th": {
+                  "n": 354,
+                  "correct": 181
+                },
+                "ru": {
+                  "n": 354,
+                  "correct": 290
+                }
+              }
+            },
+            "EasyOCR_CPU": {
+              "correct": 1014,
+              "accuracy": 0.7161016949152542,
+              "cost": {
+                "inventory_seconds": 5139.177536873147,
+                "extraction_seconds": 379.1051655765623,
+                "matching_seconds": 1264.3723385306075,
+                "answer_seconds": 807.4017998287454,
+                "total_seconds": 7590.056840809062,
+                "seconds_per_pair": 5.360209633339733
+              },
+              "by_gui": {
+                "en": {
+                  "n": 354,
+                  "correct": 285
+                },
+                "zh": {
+                  "n": 354,
+                  "correct": 257
+                },
+                "th": {
+                  "n": 354,
+                  "correct": 185
+                },
+                "ru": {
+                  "n": 354,
+                  "correct": 287
+                }
+              }
+            },
+            "easyocr_cuda": {
+              "correct": 1015,
+              "accuracy": 0.7168079096045198,
+              "cost": {
+                "inventory_seconds": 186.83867019228637,
+                "extraction_seconds": 379.1051655765623,
+                "matching_seconds": 1381.9885728070512,
+                "answer_seconds": 823.1208196943626,
+                "total_seconds": 2771.0532282702625,
+                "seconds_per_pair": 1.9569584945411458
+              },
+              "by_gui": {
+                "en": {
+                  "n": 354,
+                  "correct": 284
+                },
+                "zh": {
+                  "n": 354,
+                  "correct": 256
+                },
+                "th": {
+                  "n": 354,
+                  "correct": 187
+                },
+                "ru": {
+                  "n": 354,
+                  "correct": 288
+                }
+              },
+              "contrasts": {
+                "O": {
+                  "pairs": 1416,
+                  "items": 118,
+                  "difference": 0.0423728813559322,
+                  "ci95": [
+                    0.014124293785310734,
+                    0.07062146892655367
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.0026997300269973002,
+                  "recovery": 143,
+                  "regression": 83
+                },
+                "VLM_inventory": {
+                  "pairs": 1416,
+                  "items": 118,
+                  "difference": 0.0,
+                  "ci95": [
+                    -0.012711864406779662,
+                    0.012711864406779662
+                  ],
+                  "exploratory_bootstrap_centered_p": 1.0,
+                  "recovery": 31,
+                  "regression": 31
+                },
+                "EasyOCR_CPU": {
+                  "pairs": 1416,
+                  "items": 118,
+                  "difference": 0.0007062146892655367,
+                  "ci95": [
+                    -0.00211864406779661,
+                    0.0035310734463276836
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.8134186581341866,
+                  "recovery": 3,
+                  "regression": 2
+                }
+              }
+            },
+            "ppocrv5_cuda": {
+              "correct": 1025,
+              "accuracy": 0.7238700564971752,
+              "cost": {
+                "inventory_seconds": 55.13729390408844,
+                "extraction_seconds": 379.1051655765623,
+                "matching_seconds": 1268.7609487595037,
+                "answer_seconds": 852.301849026233,
+                "total_seconds": 2555.3052572663873,
+                "seconds_per_pair": 1.804594108238974
+              },
+              "by_gui": {
+                "en": {
+                  "n": 354,
+                  "correct": 286
+                },
+                "zh": {
+                  "n": 354,
+                  "correct": 265
+                },
+                "th": {
+                  "n": 354,
+                  "correct": 187
+                },
+                "ru": {
+                  "n": 354,
+                  "correct": 287
+                }
+              },
+              "contrasts": {
+                "O": {
+                  "pairs": 1416,
+                  "items": 118,
+                  "difference": 0.04943502824858757,
+                  "ci95": [
+                    0.023305084745762712,
+                    0.0755826271186438
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.0004999500049995,
+                  "recovery": 142,
+                  "regression": 72
+                },
+                "VLM_inventory": {
+                  "pairs": 1416,
+                  "items": 118,
+                  "difference": 0.007062146892655367,
+                  "ci95": [
+                    -0.005649717514124294,
+                    0.01977401129943503
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.29157084291570845,
+                  "recovery": 32,
+                  "regression": 22
+                },
+                "EasyOCR_CPU": {
+                  "pairs": 1416,
+                  "items": 118,
+                  "difference": 0.007768361581920904,
+                  "ci95": [
+                    -0.0035310734463276836,
+                    0.018361581920903956
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.1857814218578142,
+                  "recovery": 30,
+                  "regression": 19
+                }
+              }
+            }
+          },
+          "ppocrv5_minus_easyocr_cuda": {
+            "pairs": 1416,
+            "items": 118,
+            "difference": 0.007062146892655367,
+            "ci95": [
+              -0.0049435028248587575,
+              0.01765536723163842
+            ],
+            "exploratory_bootstrap_centered_p": 0.24147585241475852,
+            "recovery": 30,
+            "regression": 20
+          }
+        }
+      },
+      "all_158": {
+        "8B": {
+          "n": 1895,
+          "items": 158,
+          "methods": {
+            "O": {
+              "correct": 1330,
+              "accuracy": 0.7018469656992085,
+              "cost": {
+                "inventory_seconds": 0.0,
+                "extraction_seconds": 0.0,
+                "matching_seconds": 0.0,
+                "answer_seconds": 1057.6292416589956,
+                "total_seconds": 1057.6292416589956,
+                "seconds_per_pair": 0.5581156948068579
+              },
+              "by_gui": {
+                "en": {
+                  "n": 474,
+                  "correct": 385
+                },
+                "zh": {
+                  "n": 474,
+                  "correct": 357
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 229
+                },
+                "ru": {
+                  "n": 473,
+                  "correct": 359
+                }
+              }
+            },
+            "VLM_inventory": {
+              "correct": 1404,
+              "accuracy": 0.7408970976253298,
+              "cost": {
+                "inventory_seconds": 8318.60272474587,
+                "extraction_seconds": 576.6615744549781,
+                "matching_seconds": 2262.0706774890423,
+                "answer_seconds": 1278.3236871333793,
+                "total_seconds": 12435.65866382327,
+                "seconds_per_pair": 6.562352856898823
+              },
+              "by_gui": {
+                "en": {
+                  "n": 474,
+                  "correct": 385
+                },
+                "zh": {
+                  "n": 474,
+                  "correct": 371
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 286
+                },
+                "ru": {
+                  "n": 473,
+                  "correct": 362
+                }
+              }
+            },
+            "EasyOCR_CPU": {
+              "correct": 1399,
+              "accuracy": 0.7382585751978892,
+              "cost": {
+                "inventory_seconds": 6880.6538395946845,
+                "extraction_seconds": 576.6615744549781,
+                "matching_seconds": 2028.8776330100372,
+                "answer_seconds": 1308.5080866347998,
+                "total_seconds": 10794.7011336945,
+                "seconds_per_pair": 5.696412207754354
+              },
+              "by_gui": {
+                "en": {
+                  "n": 474,
+                  "correct": 380
+                },
+                "zh": {
+                  "n": 474,
+                  "correct": 365
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 294
+                },
+                "ru": {
+                  "n": 473,
+                  "correct": 360
+                }
+              }
+            },
+            "easyocr_cuda": {
+              "correct": 1405,
+              "accuracy": 0.741424802110818,
+              "cost": {
+                "inventory_seconds": 248.8049068627879,
+                "extraction_seconds": 576.6615744549781,
+                "matching_seconds": 2180.1609939048067,
+                "answer_seconds": 1330.0771048087627,
+                "total_seconds": 4335.704580031335,
+                "seconds_per_pair": 2.28797075463395
+              },
+              "by_gui": {
+                "en": {
+                  "n": 474,
+                  "correct": 382
+                },
+                "zh": {
+                  "n": 474,
+                  "correct": 366
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 294
+                },
+                "ru": {
+                  "n": 473,
+                  "correct": 363
+                }
+              },
+              "contrasts": {
+                "O": {
+                  "pairs": 1895,
+                  "items": 158,
+                  "difference": 0.0395778364116095,
+                  "ci95": [
+                    0.017423442449841606,
+                    0.0623456379934066
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.0008999100089991,
+                  "recovery": 173,
+                  "regression": 98
+                },
+                "VLM_inventory": {
+                  "pairs": 1895,
+                  "items": 158,
+                  "difference": 0.0005277044854881266,
+                  "ci95": [
+                    -0.010021097046413503,
+                    0.010554089709762533
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.9461053894610539,
+                  "recovery": 40,
+                  "regression": 39
+                },
+                "EasyOCR_CPU": {
+                  "pairs": 1895,
+                  "items": 158,
+                  "difference": 0.0031662269129287598,
+                  "ci95": [
+                    0.0,
+                    0.006856540084388186
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.06729327067293271,
+                  "recovery": 7,
+                  "regression": 1
+                }
+              }
+            },
+            "ppocrv5_cuda": {
+              "correct": 1420,
+              "accuracy": 0.7493403693931399,
+              "cost": {
+                "inventory_seconds": 73.30616311449558,
+                "extraction_seconds": 576.6615744549781,
+                "matching_seconds": 2015.3794790636748,
+                "answer_seconds": 1358.9416134571657,
+                "total_seconds": 4024.288830090314,
+                "seconds_per_pair": 2.1236352665384244
+              },
+              "by_gui": {
+                "en": {
+                  "n": 474,
+                  "correct": 387
+                },
+                "zh": {
+                  "n": 474,
+                  "correct": 373
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 298
+                },
+                "ru": {
+                  "n": 473,
+                  "correct": 362
+                }
+              },
+              "contrasts": {
+                "O": {
+                  "pairs": 1895,
+                  "items": 158,
+                  "difference": 0.047493403693931395,
+                  "ci95": [
+                    0.025843881856540084,
+                    0.07022175290390707
+                  ],
+                  "exploratory_bootstrap_centered_p": 9.999000099990002e-05,
+                  "recovery": 169,
+                  "regression": 79
+                },
+                "VLM_inventory": {
+                  "pairs": 1895,
+                  "items": 158,
+                  "difference": 0.008443271767810026,
+                  "ci95": [
+                    -0.0026371308016877636,
+                    0.018499187483159908
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.12538746125387462,
+                  "recovery": 41,
+                  "regression": 25
+                },
+                "EasyOCR_CPU": {
+                  "pairs": 1895,
+                  "items": 158,
+                  "difference": 0.01108179419525066,
+                  "ci95": [
+                    0.0,
+                    0.021624472573839662
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.049095090490950906,
+                  "recovery": 45,
+                  "regression": 24
+                }
+              }
+            }
+          },
+          "ppocrv5_minus_easyocr_cuda": {
+            "pairs": 1895,
+            "items": 158,
+            "difference": 0.0079155672823219,
+            "ci95": [
+              -0.0031678986272439284,
+              0.01795142555438226
+            ],
+            "exploratory_bootstrap_centered_p": 0.15028497150284972,
+            "recovery": 42,
+            "regression": 27
+          }
+        },
+        "4B": {
+          "n": 1895,
+          "items": 158,
+          "methods": {
+            "O": {
+              "correct": 1308,
+              "accuracy": 0.6902374670184697,
+              "cost": {
+                "inventory_seconds": 0.0,
+                "extraction_seconds": 0.0,
+                "matching_seconds": 0.0,
+                "answer_seconds": 961.614418421251,
+                "total_seconds": 961.614418421251,
+                "seconds_per_pair": 0.5074482419109504
+              },
+              "by_gui": {
+                "en": {
+                  "n": 474,
+                  "correct": 377
+                },
+                "zh": {
+                  "n": 474,
+                  "correct": 344
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 229
+                },
+                "ru": {
+                  "n": 473,
+                  "correct": 358
+                }
+              }
+            },
+            "VLM_inventory": {
+              "correct": 1378,
+              "accuracy": 0.7271767810026385,
+              "cost": {
+                "inventory_seconds": 5234.342757392675,
+                "extraction_seconds": 576.6615744549781,
+                "matching_seconds": 1966.4989758413285,
+                "answer_seconds": 1128.0129516643162,
+                "total_seconds": 8905.516259353297,
+                "seconds_per_pair": 4.699480875648177
+              },
+              "by_gui": {
+                "en": {
+                  "n": 474,
+                  "correct": 388
+                },
+                "zh": {
+                  "n": 474,
+                  "correct": 354
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 246
+                },
+                "ru": {
+                  "n": 473,
+                  "correct": 390
+                }
+              }
+            },
+            "EasyOCR_CPU": {
+              "correct": 1373,
+              "accuracy": 0.7245382585751979,
+              "cost": {
+                "inventory_seconds": 6880.6538395946845,
+                "extraction_seconds": 576.6615744549781,
+                "matching_seconds": 2028.8776330100372,
+                "answer_seconds": 1175.563526630712,
+                "total_seconds": 10661.756573690413,
+                "seconds_per_pair": 5.626256767118951
+              },
+              "by_gui": {
+                "en": {
+                  "n": 474,
+                  "correct": 386
+                },
+                "zh": {
+                  "n": 474,
+                  "correct": 354
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 247
+                },
+                "ru": {
+                  "n": 473,
+                  "correct": 386
+                }
+              }
+            },
+            "easyocr_cuda": {
+              "correct": 1377,
+              "accuracy": 0.7266490765171504,
+              "cost": {
+                "inventory_seconds": 248.8049068627879,
+                "extraction_seconds": 576.6615744549781,
+                "matching_seconds": 2180.1609939048067,
+                "answer_seconds": 1196.8362413275365,
+                "total_seconds": 4202.463716550109,
+                "seconds_per_pair": 2.217658953324596
+              },
+              "by_gui": {
+                "en": {
+                  "n": 474,
+                  "correct": 386
+                },
+                "zh": {
+                  "n": 474,
+                  "correct": 353
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 250
+                },
+                "ru": {
+                  "n": 473,
+                  "correct": 388
+                }
+              },
+              "contrasts": {
+                "O": {
+                  "pairs": 1895,
+                  "items": 158,
+                  "difference": 0.03641160949868074,
+                  "ci95": [
+                    0.012671594508975714,
+                    0.06121372031662269
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.0031996800319968005,
+                  "recovery": 181,
+                  "regression": 112
+                },
+                "VLM_inventory": {
+                  "pairs": 1895,
+                  "items": 158,
+                  "difference": -0.0005277044854881266,
+                  "ci95": [
+                    -0.012130801687763712,
+                    0.01108179419525066
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.9505049495050495,
+                  "recovery": 42,
+                  "regression": 43
+                },
+                "EasyOCR_CPU": {
+                  "pairs": 1895,
+                  "items": 158,
+                  "difference": 0.0021108179419525065,
+                  "ci95": [
+                    -0.0010548523206751054,
+                    0.0058016877637130804
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.23367663233676633,
+                  "recovery": 6,
+                  "regression": 2
+                }
+              }
+            },
+            "ppocrv5_cuda": {
+              "correct": 1385,
+              "accuracy": 0.7308707124010554,
+              "cost": {
+                "inventory_seconds": 73.30616311449558,
+                "extraction_seconds": 576.6615744549781,
+                "matching_seconds": 2015.3794790636748,
+                "answer_seconds": 1235.9720629562312,
+                "total_seconds": 3901.3192795893797,
+                "seconds_per_pair": 2.0587436831606225
+              },
+              "by_gui": {
+                "en": {
+                  "n": 474,
+                  "correct": 388
+                },
+                "zh": {
+                  "n": 474,
+                  "correct": 362
+                },
+                "th": {
+                  "n": 474,
+                  "correct": 252
+                },
+                "ru": {
+                  "n": 473,
+                  "correct": 383
+                }
+              },
+              "contrasts": {
+                "O": {
+                  "pairs": 1895,
+                  "items": 158,
+                  "difference": 0.04063324538258575,
+                  "ci95": [
+                    0.018974643444321187,
+                    0.06385224274406333
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.0006999300069993001,
+                  "recovery": 179,
+                  "regression": 102
+                },
+                "VLM_inventory": {
+                  "pairs": 1895,
+                  "items": 158,
+                  "difference": 0.0036939313984168864,
+                  "ci95": [
+                    -0.007383966244725738,
+                    0.014263074484944533
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.5271472852714728,
+                  "recovery": 40,
+                  "regression": 33
+                },
+                "EasyOCR_CPU": {
+                  "pairs": 1895,
+                  "items": 158,
+                  "difference": 0.0063324538258575196,
+                  "ci95": [
+                    -0.0036939313984168864,
+                    0.016350210970464137
+                  ],
+                  "exploratory_bootstrap_centered_p": 0.21487851214878512,
+                  "recovery": 40,
+                  "regression": 28
+                }
+              }
+            }
+          },
+          "ppocrv5_minus_easyocr_cuda": {
+            "pairs": 1895,
+            "items": 158,
+            "difference": 0.004221635883905013,
+            "ci95": [
+              -0.0063324538258575196,
+              0.014767932489451477
+            ],
+            "exploratory_bootstrap_centered_p": 0.43745625437456254,
+            "recovery": 39,
+            "regression": 31
+          }
+        }
+      }
+    },
+    "quality": {
+      "screen": {
+        "easyocr_cuda/8B": {
+          "inventory_status": {
+            "success": 80
+          },
+          "rewrite_status": {
+            "success": 231,
+            "no_op_no_edits": 3,
+            "fallback_original": 6
+          },
+          "changed_pairs": 231,
+          "unparsed": 0,
+          "ocr_stage_all_rows": {
+            "execution_mode": "gpu",
+            "wall_seconds": 60.915399617515504,
+            "reader_load_seconds": {
+              "en": 2.930093437433243,
+              "ru": 1.4062989205121994,
+              "th": 2.379068296402693,
+              "zh": 1.4554450707510114
+            },
+            "images": 128,
+            "statuses": {
+              "success": 128
+            },
+            "logical_runtime_seconds": 50.68447513598949,
+            "new_runtime_seconds": 50.68447513598949,
+            "smoke_only_not_performance_benchmark": false
+          },
+          "matching_stage_all_rows": {
+            "complete": true,
+            "wall_seconds": 483.9662155173719,
+            "calls": 304,
+            "cache_hits": 0,
+            "new_runtime_ms": 454723.5687756911
+          },
+          "inference_stage_all_rows": {
+            "wall_seconds": 38.41642175335437,
+            "execution_mode": "gpu",
+            "reused_batches": 92,
+            "reused_rows": 276,
+            "new_batches": 4,
+            "conflicting_cache_keys": 0
+          }
+        },
+        "ppocrv5_cuda/8B": {
+          "inventory_status": {
+            "success": 80
+          },
+          "rewrite_status": {
+            "success": 231,
+            "fallback_original": 8,
+            "no_op_no_edits": 1
+          },
+          "changed_pairs": 231,
+          "unparsed": 0,
+          "ocr_stage_all_rows": {
+            "execution_mode": "gpu",
+            "wall_seconds": 20.73612406011671,
+            "reader_load_seconds": {
+              "en": 2.3703319085761905,
+              "ru": 0.4223075369372964,
+              "th": 0.4295150274410844,
+              "zh": 0.42791857849806547
+            },
+            "images": 128,
+            "statuses": {
+              "success": 128
+            },
+            "logical_runtime_seconds": 15.071105926297605,
+            "new_runtime_seconds": 15.071105926297605,
+            "smoke_only_not_performance_benchmark": false
+          },
+          "matching_stage_all_rows": {
+            "complete": true,
+            "wall_seconds": 474.9540519770235,
+            "calls": 302,
+            "cache_hits": 0,
+            "new_runtime_ms": 459802.4270441383
+          },
+          "inference_stage_all_rows": {
+            "wall_seconds": 106.20088574104011,
+            "execution_mode": "gpu",
+            "reused_batches": 64,
+            "reused_rows": 192,
+            "new_batches": 32,
+            "conflicting_cache_keys": 0
+          }
+        },
+        "easyocr_cuda/4B": {
+          "inventory_status": {
+            "success": 80
+          },
+          "rewrite_status": {
+            "success": 231,
+            "no_op_no_edits": 3,
+            "fallback_original": 6
+          },
+          "changed_pairs": 231,
+          "unparsed": 0,
+          "ocr_stage_all_rows": {
+            "execution_mode": "gpu",
+            "wall_seconds": 60.915399617515504,
+            "reader_load_seconds": {
+              "en": 2.930093437433243,
+              "ru": 1.4062989205121994,
+              "th": 2.379068296402693,
+              "zh": 1.4554450707510114
+            },
+            "images": 128,
+            "statuses": {
+              "success": 128
+            },
+            "logical_runtime_seconds": 50.68447513598949,
+            "new_runtime_seconds": 50.68447513598949,
+            "smoke_only_not_performance_benchmark": false
+          },
+          "matching_stage_all_rows": {
+            "complete": true,
+            "wall_seconds": 483.9662155173719,
+            "calls": 304,
+            "cache_hits": 0,
+            "new_runtime_ms": 454723.5687756911
+          },
+          "inference_stage_all_rows": {
+            "wall_seconds": 32.18818349856883,
+            "execution_mode": "gpu",
+            "reused_batches": 92,
+            "reused_rows": 276,
+            "new_batches": 4,
+            "conflicting_cache_keys": 0
+          }
+        },
+        "ppocrv5_cuda/4B": {
+          "inventory_status": {
+            "success": 80
+          },
+          "rewrite_status": {
+            "success": 231,
+            "fallback_original": 8,
+            "no_op_no_edits": 1
+          },
+          "changed_pairs": 231,
+          "unparsed": 0,
+          "ocr_stage_all_rows": {
+            "execution_mode": "gpu",
+            "wall_seconds": 20.73612406011671,
+            "reader_load_seconds": {
+              "en": 2.3703319085761905,
+              "ru": 0.4223075369372964,
+              "th": 0.4295150274410844,
+              "zh": 0.42791857849806547
+            },
+            "images": 128,
+            "statuses": {
+              "success": 128
+            },
+            "logical_runtime_seconds": 15.071105926297605,
+            "new_runtime_seconds": 15.071105926297605,
+            "smoke_only_not_performance_benchmark": false
+          },
+          "matching_stage_all_rows": {
+            "complete": true,
+            "wall_seconds": 474.9540519770235,
+            "calls": 302,
+            "cache_hits": 0,
+            "new_runtime_ms": 459802.4270441383
+          },
+          "inference_stage_all_rows": {
+            "wall_seconds": 96.07914161588997,
+            "execution_mode": "gpu",
+            "reused_batches": 64,
+            "reused_rows": 192,
+            "new_batches": 32,
+            "conflicting_cache_keys": 0
+          }
+        }
+      },
+      "selection": {
+        "easyocr_cuda/8B": {
+          "inventory_status": {
+            "success": 80
+          },
+          "rewrite_status": {
+            "success": 223,
+            "no_op_no_edits": 2,
+            "fallback_original": 14
+          },
+          "changed_pairs": 223,
+          "unparsed": 0,
+          "ocr_stage_all_rows": {
+            "execution_mode": "gpu",
+            "wall_seconds": 40.830771003849804,
+            "reader_load_seconds": {
+              "en": 2.9223205409944057,
+              "ru": 1.4990160865709186,
+              "th": 2.1626498010009527,
+              "zh": 1.5169778550043702
+            },
+            "images": 80,
+            "statuses": {
+              "success": 80
+            },
+            "logical_runtime_seconds": 30.93441743310541,
+            "new_runtime_seconds": 30.93441743310541,
+            "smoke_only_not_performance_benchmark": false
+          },
+          "matching_stage_all_rows": {
+            "complete": true,
+            "wall_seconds": 332.8018971635029,
+            "calls": 250,
+            "cache_hits": 96,
+            "new_runtime_ms": 316655.0630973652
+          },
+          "inference_stage_all_rows": {
+            "wall_seconds": 25.733491024002433,
+            "execution_mode": "gpu",
+            "reused_batches": 77,
+            "reused_rows": 231,
+            "new_batches": 3,
+            "conflicting_cache_keys": 0
+          }
+        },
+        "ppocrv5_cuda/8B": {
+          "inventory_status": {
+            "success": 80
+          },
+          "rewrite_status": {
+            "success": 225,
+            "fallback_original": 14
+          },
+          "changed_pairs": 225,
+          "unparsed": 0,
+          "ocr_stage_all_rows": {
+            "execution_mode": "gpu",
+            "wall_seconds": 16.069336001761258,
+            "reader_load_seconds": {
+              "en": 3.300110138952732,
+              "ru": 0.501863875426352,
+              "th": 0.5249241543933749,
+              "zh": 0.5239733569324017
+            },
+            "images": 80,
+            "statuses": {
+              "success": 80
+            },
+            "logical_runtime_seconds": 9.304700990207493,
+            "new_runtime_seconds": 9.304700990207493,
+            "smoke_only_not_performance_benchmark": false
+          },
+          "matching_stage_all_rows": {
+            "complete": true,
+            "wall_seconds": 434.14755715150386,
+            "calls": 249,
+            "cache_hits": 0,
+            "new_runtime_ms": 418333.7651481852
+          },
+          "inference_stage_all_rows": {
+            "wall_seconds": 86.34410811588168,
+            "execution_mode": "gpu",
+            "reused_batches": 56,
+            "reused_rows": 168,
+            "new_batches": 24,
+            "conflicting_cache_keys": 0
+          }
+        },
+        "easyocr_cuda/4B": {
+          "inventory_status": {
+            "success": 80
+          },
+          "rewrite_status": {
+            "success": 223,
+            "no_op_no_edits": 2,
+            "fallback_original": 14
+          },
+          "changed_pairs": 223,
+          "unparsed": 0,
+          "ocr_stage_all_rows": {
+            "execution_mode": "gpu",
+            "wall_seconds": 40.830771003849804,
+            "reader_load_seconds": {
+              "en": 2.9223205409944057,
+              "ru": 1.4990160865709186,
+              "th": 2.1626498010009527,
+              "zh": 1.5169778550043702
+            },
+            "images": 80,
+            "statuses": {
+              "success": 80
+            },
+            "logical_runtime_seconds": 30.93441743310541,
+            "new_runtime_seconds": 30.93441743310541,
+            "smoke_only_not_performance_benchmark": false
+          },
+          "matching_stage_all_rows": {
+            "complete": true,
+            "wall_seconds": 332.8018971635029,
+            "calls": 250,
+            "cache_hits": 96,
+            "new_runtime_ms": 316655.0630973652
+          },
+          "inference_stage_all_rows": {
+            "wall_seconds": 19.02159237395972,
+            "execution_mode": "gpu",
+            "reused_batches": 78,
+            "reused_rows": 234,
+            "new_batches": 2,
+            "conflicting_cache_keys": 0
+          }
+        },
+        "ppocrv5_cuda/4B": {
+          "inventory_status": {
+            "success": 80
+          },
+          "rewrite_status": {
+            "success": 225,
+            "fallback_original": 14
+          },
+          "changed_pairs": 225,
+          "unparsed": 0,
+          "ocr_stage_all_rows": {
+            "execution_mode": "gpu",
+            "wall_seconds": 16.069336001761258,
+            "reader_load_seconds": {
+              "en": 3.300110138952732,
+              "ru": 0.501863875426352,
+              "th": 0.5249241543933749,
+              "zh": 0.5239733569324017
+            },
+            "images": 80,
+            "statuses": {
+              "success": 80
+            },
+            "logical_runtime_seconds": 9.304700990207493,
+            "new_runtime_seconds": 9.304700990207493,
+            "smoke_only_not_performance_benchmark": false
+          },
+          "matching_stage_all_rows": {
+            "complete": true,
+            "wall_seconds": 434.14755715150386,
+            "calls": 249,
+            "cache_hits": 0,
+            "new_runtime_ms": 418333.7651481852
+          },
+          "inference_stage_all_rows": {
+            "wall_seconds": 56.07906561437994,
+            "execution_mode": "gpu",
+            "reused_batches": 65,
+            "reused_rows": 195,
+            "new_batches": 15,
+            "conflicting_cache_keys": 0
+          }
+        }
+      },
+      "internal_evaluation": {
+        "easyocr_cuda/8B": {
+          "inventory_status": {
+            "success": 472
+          },
+          "rewrite_status": {
+            "success": 1348,
+            "fallback_original": 57,
+            "no_op_no_edits": 11
+          },
+          "changed_pairs": 1348,
+          "unparsed": 0,
+          "ocr_stage_all_rows": {
+            "execution_mode": "gpu",
+            "wall_seconds": 198.40698895324022,
+            "reader_load_seconds": {
+              "en": 2.884199914522469,
+              "ru": 1.4038114612922072,
+              "th": 2.039160331711173,
+              "zh": 1.518211167305708
+            },
+            "images": 472,
+            "statuses": {
+              "success": 472
+            },
+            "logical_runtime_seconds": 186.83867019228637,
+            "new_runtime_seconds": 186.83867019228637,
+            "smoke_only_not_performance_benchmark": false
+          },
+          "matching_stage_all_rows": {
+            "complete": true,
+            "wall_seconds": 960.2452704589814,
+            "calls": 1467,
+            "cache_hits": 544,
+            "new_runtime_ms": 940133.2413516939
+          },
+          "inference_stage_all_rows": {
+            "wall_seconds": 72.26241755113006,
+            "execution_mode": "gpu",
+            "reused_batches": 453,
+            "reused_rows": 1359,
+            "new_batches": 19,
+            "conflicting_cache_keys": 0
+          }
+        },
+        "ppocrv5_cuda/8B": {
+          "inventory_status": {
+            "success": 472
+          },
+          "rewrite_status": {
+            "success": 1352,
+            "fallback_original": 52,
+            "no_op_no_edits": 12
+          },
+          "changed_pairs": 1352,
+          "unparsed": 0,
+          "ocr_stage_all_rows": {
+            "execution_mode": "gpu",
+            "wall_seconds": 63.086115271784365,
+            "reader_load_seconds": {
+              "en": 2.7889781668782234,
+              "ru": 0.48020964208990335,
+              "th": 0.4706927640363574,
+              "zh": 0.45899540465325117
+            },
+            "images": 472,
+            "statuses": {
+              "success": 472
+            },
+            "logical_runtime_seconds": 55.13729390408844,
+            "new_runtime_seconds": 55.13729390408844,
+            "smoke_only_not_performance_benchmark": false
+          },
+          "matching_stage_all_rows": {
+            "complete": true,
+            "wall_seconds": 1290.7515065558255,
+            "calls": 1466,
+            "cache_hits": 0,
+            "new_runtime_ms": 1268760.9487595037
+          },
+          "inference_stage_all_rows": {
+            "wall_seconds": 298.60758448485285,
+            "execution_mode": "gpu",
+            "reused_batches": 364,
+            "reused_rows": 1092,
+            "new_batches": 108,
+            "conflicting_cache_keys": 0
+          }
+        },
+        "easyocr_cuda/4B": {
+          "inventory_status": {
+            "success": 472
+          },
+          "rewrite_status": {
+            "success": 1348,
+            "fallback_original": 57,
+            "no_op_no_edits": 11
+          },
+          "changed_pairs": 1348,
+          "unparsed": 0,
+          "ocr_stage_all_rows": {
+            "execution_mode": "gpu",
+            "wall_seconds": 198.40698895324022,
+            "reader_load_seconds": {
+              "en": 2.884199914522469,
+              "ru": 1.4038114612922072,
+              "th": 2.039160331711173,
+              "zh": 1.518211167305708
+            },
+            "images": 472,
+            "statuses": {
+              "success": 472
+            },
+            "logical_runtime_seconds": 186.83867019228637,
+            "new_runtime_seconds": 186.83867019228637,
+            "smoke_only_not_performance_benchmark": false
+          },
+          "matching_stage_all_rows": {
+            "complete": true,
+            "wall_seconds": 960.2452704589814,
+            "calls": 1467,
+            "cache_hits": 544,
+            "new_runtime_ms": 940133.2413516939
+          },
+          "inference_stage_all_rows": {
+            "wall_seconds": 68.93247846048325,
+            "execution_mode": "gpu",
+            "reused_batches": 452,
+            "reused_rows": 1356,
+            "new_batches": 20,
+            "conflicting_cache_keys": 0
+          }
+        },
+        "ppocrv5_cuda/4B": {
+          "inventory_status": {
+            "success": 472
+          },
+          "rewrite_status": {
+            "success": 1352,
+            "fallback_original": 52,
+            "no_op_no_edits": 12
+          },
+          "changed_pairs": 1352,
+          "unparsed": 0,
+          "ocr_stage_all_rows": {
+            "execution_mode": "gpu",
+            "wall_seconds": 63.086115271784365,
+            "reader_load_seconds": {
+              "en": 2.7889781668782234,
+              "ru": 0.48020964208990335,
+              "th": 0.4706927640363574,
+              "zh": 0.45899540465325117
+            },
+            "images": 472,
+            "statuses": {
+              "success": 472
+            },
+            "logical_runtime_seconds": 55.13729390408844,
+            "new_runtime_seconds": 55.13729390408844,
+            "smoke_only_not_performance_benchmark": false
+          },
+          "matching_stage_all_rows": {
+            "complete": true,
+            "wall_seconds": 1290.7515065558255,
+            "calls": 1466,
+            "cache_hits": 0,
+            "new_runtime_ms": 1268760.9487595037
+          },
+          "inference_stage_all_rows": {
+            "wall_seconds": 269.0538476034999,
+            "execution_mode": "gpu",
+            "reused_batches": 357,
+            "reused_rows": 1071,
+            "new_batches": 115,
+            "conflicting_cache_keys": 0
+          }
+        }
+      }
+    },
+    "contract_sha256": "5b221b72d7e48c1bf195d966bba2f030497e237057a139a56e39d9022f4e6e08",
+    "source_and_raw_sha256": {
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/inputs.jsonl": "54357eb6778dc4b545924fb4ceba380a8b696a98c0612a8d7a985d720d2f7a8a",
+      "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/extraction/E1/attempt_0001/extractions.jsonl": "58411672e0d0d384e85a88ac7a05bcd00480dd49e09e206ed9c5b2ddeb32344f",
+      "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/ocr/attempt_0001/inventories.jsonl": "09b65f1cff100be6313f588f37d04aee83a27c758f768610b95a1b3ce5a68174",
+      "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/rewrite/attempt_0001/rewritten.jsonl": "803d831650f5572229b766540495011795370abc5efd2998d47c7a1839630f9c",
+      "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/infer/attempt_0001/predictions.jsonl": "6f7e9009db90218352fa7a3110d6132deb40d6310be4346c9c5e68a4773721eb",
+      "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M0/infer/attempt_0001/evaluation/predictions.jsonl": "ea045fc1f1e71d78e61f1340a0522739d35f86cfe5c342b352262a87e146d14a",
+      "followup_rel_4lang/method_dev/artifacts/two_stage_v2_hybrid/screen/inventory/attempt_0001/inventories.jsonl": "c0de661dfbff7f102b92797f5a2f013ca8081ae7d22be65ed05ad00a6474be7d",
+      "followup_rel_4lang/method_dev/artifacts/stem_refinement_2x2_screen_v1/E1_M0/rewrite/attempt_0001/rewritten.jsonl": "571b017242606d0ffea52ebf58a4e6afc2853158e2f9be82d9daf67bf4b03f86",
+      "followup_rel_4lang/method_dev/artifacts/ocr_inventory_screen_v1/infer/attempt_0001/evaluation/predictions.jsonl": "6023bf0fc61c38656a5e6a43c7df95dfb9ed18bd07617d1c6ab9abb07906e313",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_8B/attempt_0001/evaluation/predictions.jsonl": "a186368ffd7ae7f7e360db1d6e93e5048f8e5997eef1d527d28b4d24ccbdc15c",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/ocr/attempt_0001/inventories.jsonl": "7d6335bf9e9559e7d69b19e93fa7e5a787949bff37a1132b2fbf38e0e82f87b7",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/rewrite/attempt_0001/rewritten.jsonl": "d0660a2c393a102736db6fb353dd26bbb946f713f8be9c532353c9feedf2d74d",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_8B/attempt_0001/evaluation/predictions.jsonl": "30024f0fe51abf3afc4cd0aabed12864721313c2edd9b2dc2a86c243d6249547",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/ocr/attempt_0001/inventories.jsonl": "b6c1c52ed0ed523dfb9d577cb07354bee6d26b241665623242842d79853770c8",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/rewrite/attempt_0001/rewritten.jsonl": "f64b85216eff2b3d25935fa09fcc67633d41d1390ca173bf55d20028ee03b5be",
+      "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/screen/infer_O/attempt_0001/evaluation/predictions.jsonl": "1b2f83e65f0ed0095e1f31ad2ead3b0a2b886ef876e6ee0b3226db922ddb5ed4",
+      "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/screen/infer_E1_M0/attempt_0001/evaluation/predictions.jsonl": "5573468e6d2fd0dc5cd95f36d2e2e5a4ab4f2e79b347b942f9a8703e973d3d0c",
+      "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/screen/inventory/attempt_0001/inventories.jsonl": "87fffaa290dce814b5e849dc939284f9968a0017fb34d26f20e726d945266d29",
+      "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/screen/rewrite/attempt_0001/rewritten.jsonl": "eafad1e51ab22a1b300d7af46402e19121aad25daf25ffb964db1481107b3419",
+      "followup_rel_4lang/method_dev/artifacts/ocr_qwen3_vl_4b_v1/screen/infer/attempt_0001/evaluation/predictions.jsonl": "2574171bcb05715e6079adcac711e3ef120cdb06ebce06047b0156571920f5a9",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/easyocr_cuda/infer_4B/attempt_0001/evaluation/predictions.jsonl": "e0f08e74a97b9984b699468bf4757c1920c19d9e4364c05dff87aa273932c5df",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_screen_paddle_v1/ppocrv5_cuda/infer_4B/attempt_0001/evaluation/predictions.jsonl": "240de80b88d85861a80c9cb6ef14be6e43b22ad391fdc7f70dab7c730afaea85",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/selection/easyocr_cuda/inputs.jsonl": "7ab2900470258d91f877f3e309953ea24a8289830293bc408fbc57396a33be9a",
+      "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/selection/extraction/E1/attempt_0001/extractions.jsonl": "9159eb7d27cc668777549728b041d97f59c6b31b700616dce3d439ca63b5994c",
+      "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/selection/ocr/attempt_0001/inventories.jsonl": "866aa5caa66a02529c01b0a2b0eb48cdb1eb8f1b20edccba8980dcaae388aea6",
+      "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/selection/rewrite/attempt_0001/rewritten.jsonl": "c295de369d2c4873e669d951460ae8646b5d4a57bb601fec9a22a417197300d3",
+      "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/selection/pred_fixed_contrastive_GUI_EXACT/attempt_0001/predictions.jsonl": "7fec520992bb75b986042c661e397f5b902cbbcbe7d43bf5c6eea5b954a76406",
+      "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/selection/E1_M0/infer/attempt_0001/evaluation/predictions.jsonl": "09497c64e084a0315231d7b7417c12f6019b8f3d7c1ff7575554f5452eaa32dc",
+      "followup_rel_4lang/method_dev/artifacts/overnight_two_v1/selection/stem/inventory/attempt_0001/inventories.jsonl": "1eef48f014832ab7bdb9cf8e180c50d6d2d4e478f5941b7f3b81b3222c591c79",
+      "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/selection/E1_M0/rewrite/attempt_0001/rewritten.jsonl": "23663c7a3d4c649664a78d60c8f923ff7f39c42c77ae6a7086572ac7f29b9e53",
+      "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/selection/infer/attempt_0001/evaluation/predictions.jsonl": "8e3bc7bd75968439c6e62f4c7fd9986d795c65b98f0c69fc9185ee23945e01d1",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/selection/easyocr_cuda/infer_8B/attempt_0001/evaluation/predictions.jsonl": "73b7dbd5d13f9e1aa9f974a73f46fe469818b7b54d34317693fc94d80604852b",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/selection/easyocr_cuda/ocr/attempt_0001/inventories.jsonl": "4f958f44f513e3f3570339e653565cf990c704fb0434c110eacb12ab001faf0c",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/selection/easyocr_cuda/rewrite/attempt_0001/rewritten.jsonl": "55edd9cdb19d2b996c56177700a5c4a723f33d3ade3628790300503233933427",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/selection/ppocrv5_cuda/infer_8B/attempt_0001/evaluation/predictions.jsonl": "6a9b652d0a4aea808daf5bd1e7eabbf6e22327a00af58d18d0d24fdc497478f1",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/selection/ppocrv5_cuda/ocr/attempt_0001/inventories.jsonl": "8869d277cdd49419dc53e772909401c776ff9689ee3fd4c5cac839703bbb5422",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/selection/ppocrv5_cuda/rewrite/attempt_0001/rewritten.jsonl": "6424567740939ace86916afdccc8e0e231f4a461c07675cb7d4c3246d31a0a45",
+      "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/selection/infer_O/attempt_0001/evaluation/predictions.jsonl": "3f3474d137ae389b0291b49e4d3699acd6e87d6e186aeb6ac4e734d15ba804c3",
+      "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/selection/infer_E1_M0/attempt_0001/evaluation/predictions.jsonl": "2c4c873baf16a52afaa38d011eaf5fffd9258477505ed34e6cc9223d0f69238a",
+      "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/selection/inventory/attempt_0001/inventories.jsonl": "8096c6ac42d0657b1524c6b802cde4b23416978fb1d646449a9fdc330267eec9",
+      "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/selection/rewrite/attempt_0001/rewritten.jsonl": "27777c0dcf4052d1d53b53d6894cb8874912c2a2d348019e9452173e860cd196",
+      "followup_rel_4lang/method_dev/artifacts/ocr_qwen3_vl_4b_v1/selection/infer/attempt_0001/evaluation/predictions.jsonl": "f78ecd1d4aa4851a02b9100da5b10d1fb20652acb59e543059bf8113a3342eea",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/selection/easyocr_cuda/infer_4B/attempt_0001/evaluation/predictions.jsonl": "d3117be02a527258e1d3aa17daa6308eee9d4041702479cbe3566e135331bd00",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/selection/ppocrv5_cuda/infer_4B/attempt_0001/evaluation/predictions.jsonl": "2e6808f7082c64c2e548e40b84d019607e14450e9d1382aa052f9e9246e441c4",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/internal_evaluation/easyocr_cuda/inputs.jsonl": "1003321a9b8775e17ee8122cfd2f6dc6f0c474679cf45b553472461b1650302d",
+      "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/internal_evaluation/extraction/E1/attempt_0001/extractions.jsonl": "a853087500e25932a7d7f8c8d91338bc43751e36a780ac3d12b47d09f9eb0c24",
+      "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/internal_evaluation/ocr/attempt_0002/inventories.jsonl": "cd5098337a0fcd29cbec48a27837ce7029677f97f6f5c47b8de33b4aa78cbda2",
+      "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/internal_evaluation/rewrite/attempt_0001/rewritten.jsonl": "114dfdeb22f72c2ba4afe2c66e76d3eae52ffd8e9fdcea3d7f1bb74ea4edd6b6",
+      "followup_rel_4lang/method_dev/artifacts/search_pipeline_v1/jobs/internal_evaluation/pred_fixed_contrastive_GUI_EXACT/attempt_0001/predictions.jsonl": "6ea5e6df907ce085298ab22d6b8d3428490ed79b904f909172e0d682cb0c3513",
+      "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/internal_evaluation/E1_M0/infer/attempt_0001/evaluation/predictions.jsonl": "808aa79c5011e4ed73be67371d9099576ba9cad4db10bceb8858774586e22e3f",
+      "followup_rel_4lang/method_dev/artifacts/overnight_two_v1/internal_evaluation/stem/inventory/attempt_0001/inventories.jsonl": "7b01e105b86e0b0aee8a41c2274fdc078eff74726049fc016964d5107100fcbf",
+      "followup_rel_4lang/method_dev/artifacts/e1_stem_full_dev_v1/internal_evaluation/E1_M0/rewrite/attempt_0001/rewritten.jsonl": "1b426be59f267126a172a528a8199de67f30c7f5e731abf6064b82d455a73149",
+      "followup_rel_4lang/method_dev/artifacts/ocr_inventory_full_dev_v1/internal_evaluation/infer/attempt_0001/evaluation/predictions.jsonl": "28f401faf5274305477ab0dc1fb6020f213e36428ab035de5e0cc0f636566f5a",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/internal_evaluation/easyocr_cuda/infer_8B/attempt_0001/evaluation/predictions.jsonl": "0144ee346e7b6aeecf21492eecaaeb9715547d72eb88b37849b5ab9a77e40111",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/internal_evaluation/easyocr_cuda/ocr/attempt_0001/inventories.jsonl": "e7923510a8489623d4424fd93b9f96c5b3123aae7eb189ffdf02cee7c45a63bb",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/internal_evaluation/easyocr_cuda/rewrite/attempt_0001/rewritten.jsonl": "150ecc576e0c584e1a81baea8e57435679f94f3860bbe3adec475ddf7257b8c3",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/internal_evaluation/ppocrv5_cuda/infer_8B/attempt_0001/evaluation/predictions.jsonl": "5efbf3d0d0def58fd46fb3b20fa51a1e150d1997089164c6737f29b8353b5f20",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/internal_evaluation/ppocrv5_cuda/ocr/attempt_0001/inventories.jsonl": "b2dcbf11bd434abf06c7ff56d50d5895e32a924913bba5a3b46b2310d5604adb",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/internal_evaluation/ppocrv5_cuda/rewrite/attempt_0001/rewritten.jsonl": "4a72b514a916755b3d7cfa51c6e0748c743212954a49d176b7775a81eceb3ec2",
+      "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/internal_evaluation/infer_O/attempt_0001/evaluation/predictions.jsonl": "000f92f67dd20e096e51976112f5e40104c45921c4801d3fa21d600dc5fff020",
+      "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/internal_evaluation/infer_E1_M0/attempt_0001/evaluation/predictions.jsonl": "66e238365fe0afe1b26e6656175ab7212dd62af250296e70cd889b75638431c4",
+      "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/internal_evaluation/inventory/attempt_0001/inventories.jsonl": "e993a7e1bd1f6d54b9430e13cc87a0bbeddcc69eb06c9a3ac9b708ea9a3e54a5",
+      "followup_rel_4lang/method_dev/artifacts/transfer_qwen3_vl_4b_e1m0_all_v1/internal_evaluation/rewrite/attempt_0001/rewritten.jsonl": "5fe22bbe0cfd5475f4b36782ac95f28d4d001539b357e7150ddbd751206a3ef1",
+      "followup_rel_4lang/method_dev/artifacts/ocr_qwen3_vl_4b_v1/internal_evaluation/infer/attempt_0001/evaluation/predictions.jsonl": "119c290d8e7341b6b40c769348ab1e88da7df27ebc4fb39acf72e13820b72e7d",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/internal_evaluation/easyocr_cuda/infer_4B/attempt_0001/evaluation/predictions.jsonl": "d53076fc7985621d6315d4bc6b5544ecf596662b7a90d508a0298db5bd5c0274",
+      "followup_rel_4lang/method_dev/artifacts/gpu_ocr_full_dev_v1/internal_evaluation/ppocrv5_cuda/infer_4B/attempt_0001/evaluation/predictions.jsonl": "c65629170184b59ad2d86ddc420fc87af5b6641b9d373c304fcf26e93cddbefa"
+    },
+    "cost_scope": "Main rows only; globally deduplicated OCR/LM cache keys including original cached runtimes. Each complete batch counted once and allocated by primary rows. Model load/startup excluded."
+  },
+  "completion_audit": {
+    "prediction_rows_including_reused_screen": 7776,
+    "queue_hashes_verified": 12,
+    "primary_pairs_each": 1895,
+    "semantic_items_each": 158,
+    "same_question_diagnostics": {
+      "screen": {
+        "easyocr_cuda": {
+          "8B": {
+            "VLM_inventory": {
+              "same_MCQs": 175,
+              "same_MCQs_label_differences": 0
+            },
+            "EasyOCR_CPU": {
+              "same_MCQs": 236,
+              "same_MCQs_label_differences": 0
+            }
+          },
+          "4B": {
+            "VLM_inventory": {
+              "same_MCQs": 174,
+              "same_MCQs_label_differences": 0
+            },
+            "EasyOCR_CPU": {
+              "same_MCQs": 236,
+              "same_MCQs_label_differences": 0
+            }
+          }
+        },
+        "ppocrv5_cuda": {
+          "8B": {
+            "VLM_inventory": {
+              "same_MCQs": 186,
+              "same_MCQs_label_differences": 0
+            },
+            "EasyOCR_CPU": {
+              "same_MCQs": 197,
+              "same_MCQs_label_differences": 0
+            }
+          },
+          "4B": {
+            "VLM_inventory": {
+              "same_MCQs": 184,
+              "same_MCQs_label_differences": 0
+            },
+            "EasyOCR_CPU": {
+              "same_MCQs": 197,
+              "same_MCQs_label_differences": 0
+            }
+          }
+        }
+      },
+      "selection": {
+        "easyocr_cuda": {
+          "8B": {
+            "VLM_inventory": {
+              "same_MCQs": 180,
+              "same_MCQs_label_differences": 0
+            },
+            "EasyOCR_CPU": {
+              "same_MCQs": 236,
+              "same_MCQs_label_differences": 0
+            }
+          },
+          "4B": {
+            "VLM_inventory": {
+              "same_MCQs": 191,
+              "same_MCQs_label_differences": 0
+            },
+            "EasyOCR_CPU": {
+              "same_MCQs": 236,
+              "same_MCQs_label_differences": 0
+            }
+          }
+        },
+        "ppocrv5_cuda": {
+          "8B": {
+            "VLM_inventory": {
+              "same_MCQs": 198,
+              "same_MCQs_label_differences": 1
+            },
+            "EasyOCR_CPU": {
+              "same_MCQs": 195,
+              "same_MCQs_label_differences": 0
+            }
+          },
+          "4B": {
+            "VLM_inventory": {
+              "same_MCQs": 209,
+              "same_MCQs_label_differences": 0
+            },
+            "EasyOCR_CPU": {
+              "same_MCQs": 195,
+              "same_MCQs_label_differences": 0
+            }
+          }
+        }
+      },
+      "internal_evaluation": {
+        "easyocr_cuda": {
+          "8B": {
+            "VLM_inventory": {
+              "same_MCQs": 1121,
+              "same_MCQs_label_differences": 1
+            },
+            "EasyOCR_CPU": {
+              "same_MCQs": 1394,
+              "same_MCQs_label_differences": 0
+            }
+          },
+          "4B": {
+            "VLM_inventory": {
+              "same_MCQs": 1103,
+              "same_MCQs_label_differences": 1
+            },
+            "EasyOCR_CPU": {
+              "same_MCQs": 1394,
+              "same_MCQs_label_differences": 1
+            }
+          }
+        },
+        "ppocrv5_cuda": {
+          "8B": {
+            "VLM_inventory": {
+              "same_MCQs": 1206,
+              "same_MCQs_label_differences": 1
+            },
+            "EasyOCR_CPU": {
+              "same_MCQs": 1175,
+              "same_MCQs_label_differences": 1
+            }
+          },
+          "4B": {
+            "VLM_inventory": {
+              "same_MCQs": 1195,
+              "same_MCQs_label_differences": 1
+            },
+            "EasyOCR_CPU": {
+              "same_MCQs": 1175,
+              "same_MCQs_label_differences": 1
+            }
+          }
+        }
+      }
+    },
+    "stage_wall_seconds": {
+      "screen": {
+        "easyocr_cuda": {
+          "infer_8B": 38.41642175335437,
+          "infer_4B": 32.18818349856883,
+          "ocr": 60.915399617515504,
+          "rewrite": 483.9662155173719,
+          "total_seconds": 615.4862203868106
+        },
+        "ppocrv5_cuda": {
+          "infer_8B": 106.20088574104011,
+          "infer_4B": 96.07914161588997,
+          "ocr": 20.73612406011671,
+          "rewrite": 474.9540519770235,
+          "total_seconds": 697.9702033940703
+        }
+      },
+      "selection": {
+        "easyocr_cuda": {
+          "infer_8B": 25.733491024002433,
+          "infer_4B": 19.02159237395972,
+          "ocr": 40.830771003849804,
+          "rewrite": 332.8018971635029,
+          "total_seconds": 418.38775156531483
+        },
+        "ppocrv5_cuda": {
+          "infer_8B": 86.34410811588168,
+          "infer_4B": 56.07906561437994,
+          "ocr": 16.069336001761258,
+          "rewrite": 434.14755715150386,
+          "total_seconds": 592.6400668835267
+        }
+      },
+      "internal_evaluation": {
+        "easyocr_cuda": {
+          "infer_8B": 72.26241755113006,
+          "infer_4B": 68.93247846048325,
+          "ocr": 198.40698895324022,
+          "rewrite": 960.2452704589814,
+          "total_seconds": 1299.847155423835
+        },
+        "ppocrv5_cuda": {
+          "infer_8B": 298.60758448485285,
+          "infer_4B": 269.0538476034999,
+          "ocr": 63.086115271784365,
+          "rewrite": 1290.7515065558255,
+          "total_seconds": 1921.4990539159626
+        }
+      }
+    },
+    "extension_stage_wall_seconds": 4232.374027788639,
+    "joint_8b_4b_recipe_seconds": {
+      "easyocr_cuda": 5532.540821358872,
+      "ppocrv5_cuda": 5260.260893046545
+    }
+  },
+  "contract_sha256": "5b221b72d7e48c1bf195d966bba2f030497e237057a139a56e39d9022f4e6e08",
+  "raw_result_sha256": "12197e0e386b6425c960e555286734f7b5ddf4aa5c8b8f3b7a9bcd72305f63b1"
+}

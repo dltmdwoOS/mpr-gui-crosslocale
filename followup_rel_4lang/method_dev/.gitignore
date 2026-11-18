@@ -47,3 +47,7 @@ artifacts/search_plan_v1/*
 !artifacts/gpu_ocr_screen_results_snapshot.json
 !artifacts/gpu_ocr_screen_completed.tar.gz
 !artifacts/gpu_ocr_screen_archive_manifest.json
+!artifacts/gpu_ocr_full_dev_readiness.json
+!artifacts/gpu_ocr_full_dev_results_snapshot.json
+!artifacts/gpu_ocr_full_dev_completed.tar.gz
+!artifacts/gpu_ocr_full_dev_archive_manifest.json
